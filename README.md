@@ -1,7 +1,7 @@
 Rudeltippen
 ===========
 
-A betting game based the Play Framework and Twitter Bootstrap.
+A betting game based on the Play Framework and Twitter Bootstrap.
 
 Description
 ===========
@@ -22,3 +22,5 @@ TBD
 
 Stuff
 ===========
+
+TBD
