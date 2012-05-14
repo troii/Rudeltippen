@@ -47,7 +47,7 @@ TBD
 Support
 ===========
 
-If you need help, just visit the [Support-Page][6] and paste your Question (English or German). I'll get to it ASAP.
+If you need help, just visit the [Support-Page][6] and paste your Question (English or German). I'll get to it ASAP. If you found a Bug, please open an Issue on Github.
 
 Stuff
 ===========
