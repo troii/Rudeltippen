@@ -31,8 +31,11 @@ Demo
 ===========
 You can find a Demo [here][3]. You can login with the following credentials:
 
+
 Username: demo@rudeltippen.de
+
 Password: demo123456
+
 
 Please note that this is not an administrative Account, so some Features are not available. Also User Registration is not enabled.
 
