@@ -60,6 +60,6 @@ Stuff
 [2]: http://www.playframework.org/download
 [3]: http://demo.rudeltippen.de
 [4]: http://www.svenkubiak.de
-[5]: http://www.flattr.com
+[5]: https://flattr.com/thing/29899/svenkubiak-de
 [6]: http://dev.svenkubiak.de/rudeltippen
 [7]: http://twitter.github.com/bootstrap/
