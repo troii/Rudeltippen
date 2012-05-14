@@ -52,7 +52,7 @@ If you need help, just visit the [Support-Page][6] and paste your Question (Engl
 Stuff
 ===========
 
-- [Author-Homepage (German)][4]
+- [Author's Homepage (German)][4]
 - [flattr][5]
 - [Support-Page (German or Englisch)][6]
 
