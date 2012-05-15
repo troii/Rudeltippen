@@ -7,10 +7,11 @@ A betting game based on the Play Framework and Twitter Bootstrap. Ready to go fo
 
 Features in a Nutshell
 ===========
-- Automatic Result updates
-- Supports multiple Databases
-- Tournament Management
+- Automatic results updates
+- Automatic Tournament Management
 - Themeable (through [Bootstrap][7])
+- Responsive Layout - works on iPhone and iPad (through [Bootstrap][7])
+- Supports multiple Databases
 - Multilingual
 
 Requirements
@@ -39,12 +40,12 @@ Username: demo@rudeltippen.de
 Password: demo12345
 
 
-Please note that this is not an administrative Account, so some Features are not available. Also User Registration is not enabled.
+Please note that this is not an administrative User, so some Features are not available. Also User Registration is not enabled.
 
 Installation
 ===========
 
-This installation guide assumes that you already have JDK 1.6+ running, have your Database configured and your SMTP-Credentials right at your side.
+This installation guide assumes that you already have JDK 1.6+ running, have your Database- and SMTP-Credentials right at your side.
 
 1. Download [Play Framework 1.2.x][2] and unzip
 ------------------
@@ -65,7 +66,7 @@ On windows systems you'll need to set it in the global environment variables.
 3. Open <INSTLLATIONFOLDER>/conf/application.conf
 ------------------
 
-Set your URL
+Set your Rudeltippen URL
 
 ```bash
 %prod.app.register.url=http://www.mydomain.com
@@ -84,7 +85,7 @@ Set you Database connection. For a simple MySQL-Connection this will be somethin
 %prod.db=mysql://user:pwd@host/database
 ```
 
-Set your SMTP-Credentials
+Set your SMTP-Credentials (uncomment %prod.mail.smtp.channel if you want to use SSL)
 
 ```bash
 %prod.mail.smtp.host=127.0.0.1
@@ -93,34 +94,40 @@ Set your SMTP-Credentials
 #%prod.mail.smtp.channel=ssl
 ```
 
-Set your E-Mail-Sender
+Set your E-Mail-Sender and reply-to Address
 
 ```bash
 mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-Set the Twitter-Feed which is displayed at the Dashboard. Leave Blank, if you dont want that Feature
+Set the Twitter-Feed which is displayed at the Dashboard. Leave this blank, if you don't want that Feature.
 
 ```bash
 dashboard.twitter.username=mytwitterusername
 ```
 
-Save the file.
+By defautl Rudeltippen runs with -Xmx=128m -Xmx64m. Change this if need.
+
+```bash
+jvm.memory=-Xmx128m -Xms64m
+```
+
+Save application.conf.
 
 4. Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
 ------------------
 
-> By default Rudeltippen runs on Port 9000
+> By default Rudeltippen runs on Port 9000. If you need to change this, you'll find the Port Configuration in application.conf 'Server configuration'.
 
-5. Go to your Installation-Directory and run
+5. Go to your Installation-Directory of rudeltippen and run
 ------------------
 
 ```bash
 play id prod
 ```
 
-Now that we have Play in Production mode, we have to Download the Dependecies. Run
+This will set Play in production Mode. Now that we have Play in production mode, we have to Download the required Dependecies. Run
 
 ```bash
 play deps --sync
@@ -132,7 +139,7 @@ Finally we are ready to start-up Rudeltippen. Unix and Mac users can start Rudel
 play start
 ```
 
-If you’re on Windows, 'play start' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Download and Install psexec and start Rudeltippen with
+If you’re on Windows, 'play start' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install psexec and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
@@ -142,21 +149,63 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 ------------------
 
 > You did set username and password in application.conf (see 3.)
-> The setup will automaticly load all games for the Euro 2012.
+> After the Setup is complete Rudeltippen will automaticly load all games for the Euro 2012.
 
 7. Change the default values if you want to and create an inital user.
 ------------------
 
 > The inital user will be an administrative user and automaticly activated.
 
-8. Enjoy Rudeltippen!
+8. Login with your newely create user and enjoy Rudeltippen!
 ------------------
 
 
 Upgrade
 ===========
 
-TBD
+1. Download the latest Version of Rudeltippen and unzip
+------------------
+
+> You can delete the '/conf' folder after unzipping when upgrading
+
+2. Go to your Installation-Directory of rudeltippen and run
+------------------
+
+```bash
+play stop
+```
+3. Delete everything in your Installation-Directory except the '/conf' folder
+------------------
+
+4. Copy everything from previously unzipped lateste version except the '/conf' to your Installation-Directory
+------------------
+
+5. Go to your Installation-Directory of rudeltippen and run
+------------------
+
+> Make sure your Play Installation is in production mode (see Installation 5.)
+
+Now that we have Play in production mode, we have to Download the required Dependecies. Run
+
+```bash
+play deps --sync
+```
+
+Finally we are ready to start-up Rudeltippen. Unix and Mac users can start Rudeltippen with
+
+```bash
+play start
+```
+
+If you’re on Windows, 'play start' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install psexec and start Rudeltippen with
+
+```bash
+/path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
+```
+
+8. Enjoy your latest version of Rudeltippen!
+------------------
+
 
 Support
 ===========
