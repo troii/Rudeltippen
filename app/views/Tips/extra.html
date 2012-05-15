@@ -1,0 +1,43 @@
+<h3>Bonustips</h3>
+#{form @tips.storeextratips(), class:'form-horizontal well'}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Bonusfrage</th> 
+            <th>Punkte</th> 
+            <th>Abzugeben bis</th>
+            <th>Deine Antwort</th>  
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:extras, as:'extra'}
+            <tr>
+                <td>${extra.question}</td>
+                <td>${extra.points}</td>  
+                <td>${extra.ending.formatted()}</td>              
+                <td>
+                    #{if extra.tippable}
+                        <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
+                            #{if extra.getExtraTip() == 0}
+                                <option value="0" selected="selected">-- Bitte ausw&auml;hlen --</option>
+                            #{/if} 
+                            #{list items:extra.answers, as:'team'}
+                                #{if extra.getExtraTip() == team.id}
+                                    <option value="${team.id}" selected="selected">${team.name}</option>
+                                #{/if}
+                                #{else}
+                                    <option value="${team.id}">${team.name}</option>
+                                #{/else}
+                            #{/list}
+                        </select>
+                    #{/if}
+                    #{else}
+                        ${extra.getTip()}
+                    #{/else}
+                </td>
+            </tr>
+        #{/list}
+    </tbody>
+</table>
+<button class="btn btn-primary" type="submit">Speichern</button>
+#{/form}

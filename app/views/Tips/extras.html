@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+<div class="span3">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			#{list items:playdays, as:'aPlayday'}
+				<li><a href="javascript:load('${aPlayday.number}','/tips/games/${aPlayday.number}');">${aPlayday.name}</a></li>
+			#{/list}
+			<li class="active"><a href="javascript:load('${aPlayday.number + 1 }','/tips/extra');">Bonustips</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="span9">
+	#{include '/tips/extra.html' /}
+</div>

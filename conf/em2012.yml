@@ -1,0 +1,671 @@
+models.Bracket(a):
+    name:          Gruppe A
+    number:        1
+
+models.Bracket(b):
+    name:          Gruppe B
+    number:        2
+
+models.Bracket(c):
+    name:          Gruppe C
+    number:        3
+
+models.Bracket(d):
+    name:          Gruppe D
+    number:        4
+
+models.Team(polen):
+    name:          Polen
+    flag:          pol.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(griechenland):
+    name:          Griechenland
+    flag:          gri.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(russland):
+    name:          Russland
+    flag:          rus.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(tschechien):
+    name:          Tschechien
+    flag:          tsc.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(niederlande):
+    name:          Niederlande
+    flag:          nie.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(danemark):
+    name:          Dänemark
+    flag:          dan.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(deutschland):
+    name:          Deutschland
+    flag:          deu.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(portugal):
+    name:          Portugal
+    flag:          por.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(spanien):
+    name:          Spanien
+    flag:          spa.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(italien):
+    name:          Italien
+    flag:          ita.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(irland):
+    name:          Irland
+    flag:          irl.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(kroatien):
+    name:          Kroatien
+    flag:          kro.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(ukraine):
+    name:          Ukraine
+    flag:          ukr.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(schweden):
+    name:          Schweden
+    flag:          sch.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(frankreich):
+    name:          Frankreich
+    flag:          fra.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(england):
+    name:          England
+    flag:          eng.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Stadium(warschau):
+    name:          Warschau (POL)
+
+models.Stadium(posen):
+    name:          Posen (POL)
+
+models.Stadium(breslau):
+    name:          Breslau (POL)
+
+models.Stadium(danzig):
+    name:          Danzig (POL)
+
+models.Stadium(kiew):
+    name:          Kiew (UKR)
+
+models.Stadium(donezk):
+    name:          Donezk (UKR)
+
+models.Stadium(lemberg):
+    name:          Lemberg (UKR)
+
+models.Stadium(charkiw):
+    name:          Charkiw (UKR)
+
+models.Playday(p1):
+    name:          1. Spieltag
+    playdayStart:  2012-01-01 00:00:00
+    playdayEnd:    2012-06-11 23:59:59
+    playoff:       false
+    number:        1
+
+models.Playday(p2):
+    name:          2. Spieltag
+    playdayStart:  2012-06-12 00:00:00
+    playdayEnd:    2012-06-15 23:59:59
+    playoff:       false
+    number:        2
+
+models.Playday(p3):
+    name:          3. Spieltag
+    playdayStart:  2012-06-16 00:00:00
+    playdayEnd:    2012-06-19 23:59:59
+    playoff:       false
+    number:        3
+
+models.Playday(p4):
+    name:          Viertelfinale
+    playdayStart:  2012-06-20 00:00:00
+    playdayEnd:    2012-06-24 23:59:59
+    playoff:       true
+    number:        4
+
+models.Playday(p5):
+    name:          Halbfinale
+    playdayStart:  2012-06-25 00:00:00
+    playdayEnd:    2012-06-28 23:59:59
+    playoff:       true
+    number:        5
+
+models.Playday(p6):
+    name:          Finale
+    playdayEnd:    2012-06-29 00:00:00
+    playdayStart:  2012-07-01 23:59:59
+    playoff:       true
+    number:        6
+
+models.Game(g1):
+    number:    1
+    homeTeam:      polen
+    awayTeam:      griechenland
+    kickoff:       2012-06-08 16:00:00
+    playday:       p1
+    stadium:       warschau
+    playoff:       false
+    ended:         false
+    matchIDWS:     18795
+
+models.Game(g2):
+    number:    2
+    homeTeam:      russland
+    awayTeam:      tschechien
+    kickoff:       2012-06-08 18:45:00
+    playday:       p1
+    stadium:       breslau
+    playoff:       false
+    ended:         false
+    matchIDWS:     18796
+
+models.Game(g3):
+    number:    3
+    homeTeam:      niederlande
+    awayTeam:      danemark
+    kickoff:       2012-06-09 16:00:00
+    playday:       p1
+    stadium:       charkiw
+    playoff:       false
+    ended:         false
+    matchIDWS:     18801
+
+models.Game(g4):
+    number:    4
+    homeTeam:      deutschland
+    awayTeam:      portugal
+    kickoff:       2012-06-09 18:45:00
+    playday:       p1
+    stadium:       lemberg
+    playoff:       false
+    ended:         false
+    matchIDWS:     18802
+
+models.Game(g5):
+    number:    5
+    homeTeam:      spanien
+    awayTeam:      italien
+    kickoff:       2012-06-10 16:00:00
+    playday:       p1
+    stadium:       danzig
+    playoff:       false
+    ended:         false
+    matchIDWS:     18807
+
+models.Game(g6):
+    number:    6
+    homeTeam:      irland
+    awayTeam:      kroatien
+    kickoff:       2012-06-10 18:45:00
+    playday:       p1
+    stadium:       posen
+    playoff:       false
+    ended:         false
+    matchIDWS:     18808
+
+models.Game(g7):
+    number:    7
+    homeTeam:      frankreich
+    awayTeam:      england
+    kickoff:       2012-06-11 16:00:00
+    playday:       p1
+    stadium:       donezk
+    playoff:       false
+    ended:         false
+    matchIDWS:     18813
+
+models.Game(g8):
+    number:    8
+    homeTeam:      ukraine
+    awayTeam:      schweden
+    kickoff:       2012-06-11 18:45:00
+    playday:       p1
+    stadium:       kiew
+    playoff:       false
+    ended:         false
+    matchIDWS:     18814
+
+models.Game(g9):
+    number:    9
+    homeTeam:      griechenland
+    awayTeam:      tschechien
+    kickoff:       2012-06-12 16:00:00
+    playday:       p2
+    stadium:       breslau
+    playoff:       false
+    ended:         false
+    matchIDWS:     18798
+
+models.Game(g10):
+    number:    10
+    homeTeam:      polen
+    awayTeam:      russland
+    kickoff:       2012-06-12 18:45:00
+    playday:       p2
+    stadium:       warschau
+    playoff:       false
+    ended:         false
+    matchIDWS:     18797
+
+models.Game(g11):
+    number:    11
+    homeTeam:      danemark
+    awayTeam:      portugal
+    kickoff:       2012-06-13 16:00:00
+    playday:       p2
+    stadium:       lemberg
+    playoff:       false
+    ended:         false
+    matchIDWS:     18804
+
+models.Game(g12):
+    number:    12
+    homeTeam:      niederlande
+    awayTeam:      deutschland
+    kickoff:       2012-06-13 18:45:00
+    playday:       p2
+    stadium:       charkiw
+    playoff:       false
+    ended:         false
+    matchIDWS:     18803
+
+models.Game(g13):
+    number:    13
+    homeTeam:      italien
+    awayTeam:      kroatien
+    kickoff:       2012-06-14 16:00:00
+    playday:       p2
+    stadium:       posen
+    playoff:       false
+    ended:         false
+    matchIDWS:     18810
+
+models.Game(g14):
+    number:    14
+    homeTeam:      spanien
+    awayTeam:      irland
+    kickoff:       2012-06-14 18:45:00
+    playday:       p2
+    stadium:       danzig
+    playoff:       false
+    ended:         false
+    matchIDWS:     18809
+
+models.Game(g15):
+    number:    15
+    homeTeam:      ukraine
+    awayTeam:      frankreich
+    kickoff:       2012-06-15 16:00:00
+    playday:       p2
+    stadium:       donezk
+    playoff:       false
+    ended:         false
+    matchIDWS:     18816
+
+models.Game(g16):
+    number:    16
+    homeTeam:      schweden
+    awayTeam:      england
+    kickoff:       2012-06-15 18:45:00
+    playday:       p2
+    stadium:       kiew
+    playoff:       false
+    ended:         false
+    matchIDWS:     18815
+
+models.Game(g17):
+    number:    17
+    homeTeam:      tschechien
+    awayTeam:      polen
+    kickoff:       2012-06-16 18:45:00
+    playday:       p3
+    stadium:       breslau
+    playoff:       false
+    ended:         false
+    matchIDWS:     18800
+
+models.Game(g18):
+    number:    18
+    homeTeam:      griechenland
+    awayTeam:      russland
+    kickoff:       2012-06-16 18:45:00
+    playday:       p3
+    stadium:       warschau
+    playoff:       false
+    ended:         false
+    matchIDWS:     18799
+
+models.Game(g19):
+    number:    19
+    homeTeam:      portugal
+    awayTeam:      niederlande
+    kickoff:       2012-06-17 18:45:00
+    playday:       p3
+    stadium:       charkiw
+    playoff:       false
+    ended:         false
+    matchIDWS:     18805
+
+models.Game(g20):
+    number:    20
+    homeTeam:      danemark
+    awayTeam:      deutschland
+    kickoff:       2012-06-17 18:45:00
+    playday:       p3
+    stadium:       lemberg
+    playoff:       false
+    ended:         false
+    matchIDWS:     18806
+
+models.Game(g21):
+    number:    21
+    homeTeam:      kroatien
+    awayTeam:      spanien
+    kickoff:       2012-06-18 18:45:00
+    playday:       p3
+    stadium:       danzig
+    playoff:       false
+    ended:         false
+    matchIDWS:     18811
+
+models.Game(g22):
+    number:    22
+    homeTeam:      italien
+    awayTeam:      irland
+    kickoff:       2012-06-18 18:45:00
+    playday:       p3
+    stadium:       posen
+    playoff:       false
+    ended:         false
+    matchIDWS:     18812
+
+models.Game(g23):
+    number:    23
+    homeTeam:      england
+    awayTeam:      ukraine
+    kickoff:       2012-06-19 18:45:00
+    playday:       p3
+    stadium:       donezk
+    playoff:       false
+    ended:         false
+    matchIDWS:     18818
+
+models.Game(g24):
+    number:    24
+    homeTeam:      schweden
+    awayTeam:      frankreich
+    kickoff:       2012-06-19 18:45:00
+    playday:       p3
+    stadium:       kiew
+    playoff:       false
+    ended:         false
+    matchIDWS:     18817
+
+models.Game(g25):
+    number:    25
+    kickoff:       2012-06-21 18:45:00
+    playday:       p4
+    stadium:       warschau
+    homeReference: B-1-1
+    awayReference: B-2-2
+    playoff:       true
+    ended:         false
+
+models.Game(g26):
+    number:    26
+    kickoff:       2012-06-22 18:45:00
+    playday:       p4
+    stadium:       danzig
+    homeReference: B-2-1
+    awayReference: B-1-2
+    playoff:       true
+    ended:         false
+
+models.Game(g27):
+    number:    27
+    kickoff:       2012-06-23 18:45:00
+    playday:       p4
+    stadium:       donezk
+    homeReference: B-3-1
+    awayReference: B-4-2
+    playoff:       true
+    ended:         false
+
+models.Game(g28):
+    number:    28
+    kickoff:       2012-06-23 18:45:00
+    playday:       p4
+    stadium:       kiew
+    homeReference: B-4-1
+    awayReference: B-3-2
+    playoff:       true
+    ended:         false
+
+models.Game(g29):
+    number:    29
+    kickoff:       2012-06-27 18:45:00
+    playday:       p5
+    stadium:       donezk
+    homeReference: G-25-W
+    awayReference: G-27-W
+    playoff:       true
+    ended:         false
+
+models.Game(g30):
+    number:    30
+    kickoff:       2012-06-28 18:45:00
+    playday:       p5
+    stadium:       warschau
+    homeReference: G-26-W
+    awayReference: G-28-W
+    playoff:       true
+    ended:         false
+
+models.Game(g31):
+    number:    31
+    kickoff:       2012-07-01 18:45:00
+    playday:       p6
+    stadium:       kiew
+    homeReference: G-29-W
+    awayReference: G-30-W
+    playoff:       true
+    ended:         false
+
+models.Extra(b1):
+   question:        Wer wird Europameister?
+   extraReference:  G-31-W
+   gameReferences:
+                    - g31
+   questionShort:   Europameister
+   points:          4
+   ending:          2012-06-08 16:00:00
+   answers:
+                    - polen
+                    - griechenland
+                    - russland
+                    - tschechien
+                    - niederlande
+                    - danemark
+                    - deutschland
+                    - portugal
+                    - spanien
+                    - italien
+                    - irland
+                    - kroatien
+                    - ukraine
+                    - schweden
+                    - frankreich
+                    - england
+
+models.Extra(b2):
+   question:        Wer wird Vize-Europameister?
+   extraReference:  G-31-L
+   gameReferences:
+                    - g31
+   questionShort:   Vize-Europameister
+   points:          2
+   ending:          2012-06-08 16:00:00
+   answers:
+                    - polen
+                    - griechenland
+                    - russland
+                    - tschechien
+                    - niederlande
+                    - danemark
+                    - deutschland
+                    - portugal
+                    - spanien
+                    - italien
+                    - irland
+                    - kroatien
+                    - ukraine
+                    - schweden
+                    - frankreich
+                    - england
+
+models.Extra(b3):
+    question:        Wer wird Gruppensieger in Gruppe A?
+    questionShort:   Sieger Gruppe A
+    gameReferences:
+                     - g17
+                     - g18
+    extraReference:  B-1-1
+    ending:          2012-06-08 16:00:00
+    points:          1
+    answers:
+                     - polen
+                     - griechenland
+                     - russland
+                     - tschechien
+
+models.Extra(b4):
+     question:        Wer wird Gruppensieger in Gruppe B?
+     questionShort:   Sieger Gruppe B
+     gameReferences:
+                     - g19
+                     - g20
+     extraReference:  B-2-1
+     ending:          2012-06-08 16:00:00
+     points:          1
+     answers:
+                      - niederlande
+                      - danemark
+                      - deutschland
+                      - portugal
+
+models.Extra(b5):
+      question:        Wer wird Gruppensieger in Gruppe C?
+      extraReference:  B-3-1
+      gameReferences:
+                     - g21
+                     - g22
+      questionShort:   Sieger Gruppe C
+      ending:          2012-06-08 16:00:00
+      points:          1
+      answers:
+                      - spanien
+                      - italien
+                      - irland
+                      - kroatien
+
+models.Extra(b6):
+     question:        Wer wird Gruppensieger in Gruppe D?
+     questionShort:   Sieger Gruppe D
+     extraReference:  B-4-1
+     gameReferences:
+                     - g23
+                     - g24
+     ending:          2012-06-08 16:00:00
+     points:          1
+     answers:
+                      - ukraine
+                      - schweden
+                      - frankreich
+                      - england

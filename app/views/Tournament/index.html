@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+<div class="span3">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			<li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(1, '@{tournament.brackets()}');">Gruppen</a></li>
+			<li><a href="javascript:load(2, '@{tournament.preliminary()}');">Gruppenphase</a></li>
+			<li><a href="javascript:load(3, '@{tournament.playoffs()}');">K.o.-Phase</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="span9">
+	#{include '/Tournament/brackets.html' /}
+</div>

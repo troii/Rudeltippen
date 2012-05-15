@@ -1,0 +1,33 @@
+<h3>&{'extratips'}</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			#{list items:extras, as:'extra'}
+				<th>${extra.questionShort}</th>
+			#{/list}
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:tips, as:'extraTips'}
+		<tr>
+			#{list items:extraTips.entrySet(), as:'user'}
+				#{if user.key.picture == null}
+					<td width="54"><a href="@{users.show()}/${user.key.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
+				#{/if}
+				#{else}
+					<td width="54"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
+				#{/else}
+					<td><br /><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+				#{list items:user.value, as:'extraTip'}
+					<td>${extraTip?.answer.name}${extraTip?.getExtraTipPoints()}</div></td>
+				#{/list}
+			#{/list}
+		</tr>
+		#{/list}
+	</tbody>
+</table>
+#{include '/tags/paginationJS.html' /}
+
+

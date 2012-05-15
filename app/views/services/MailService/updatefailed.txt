@@ -1,0 +1,3 @@
+Die automatische Aktualisierung der Ergebnisse ist fehlgeschlagen.
+
+${response}

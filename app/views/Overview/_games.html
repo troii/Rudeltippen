@@ -1,0 +1,34 @@
+<h3>${playday.name}</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			#{list items:playday.games, as:'game'}
+			<th>
+				<div align="center">
+					<img alt="${game.homeTeam?.name}" title="${game.homeTeam?.name}" src="/public/images/flags/${game.homeTeam?.flag}"> <br/> ${game.getResult()} <br/> <img alt="${game.awayTeam?.name}" title="${game.awayTeam?.name}" src="/public/images/flags/${game.awayTeam?.flag}">
+				</div>
+			</th>
+			#{/list}
+		</tr>
+	</thead>
+	<tbody>
+			#{list items:tips, as:'userTips'}
+			<tr>
+				#{list items:userTips.entrySet(), as:'user'}
+					#{if user.key.picture == null}
+						<td width="54"><a href="@{users.show()}/${user.key.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
+					#{/if}
+					#{else}
+						<td width="54"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
+					#{/else}
+						<td><br /><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+					#{list items:user.value, as:'gameTip'}
+						<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTip()}${gameTip.getGameTipPoints()}</div></td>
+					#{/list}
+				#{/list}
+			</tr>
+			#{/list}
+	</tbody>
+</table>

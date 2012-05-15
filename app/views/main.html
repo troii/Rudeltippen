@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rudeltippen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rudeltippen">
+    <meta name="author" content="Sven Kubiak">
+    <link href="/public/stylesheets/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="/public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="/public/images/favicon.ico">
+  </head>
+
+  <body data-key="${play.configuration.get("dashboard.twitter.username")}">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="@{application.index()}">Rudeltippen</a>
+          #{if connectedUser != null}
+	          <div class="btn-group pull-right">
+	            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	              <i class="icon-user"></i> ${connectedUser.nickname} <span class="caret"></span>
+	            </a>
+	            <ul class="dropdown-menu">
+	              <li><a href="@{users.profile()}">Mein Profil</a></li>
+	              #{if connectedUser.admin}
+	              	<li><a href="@{admin.index()}">Ergebnisse eintragen</a></li>
+	              #{/if}
+	              <li class="divider"></li>
+	              <li><a href="@{auth.logout()}">Abmelden</a></li>
+	            </ul>
+	          </div>
+	          <div class="nav-collapse">
+	            <ul class="nav">
+	              <li #{if request.action == "Application.index" } class="active" #{/if}><a href="@{application.index()}">Dashboard</a></li>
+	              <li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="@{tournament.index()}">Turnierübersicht</a></li>
+	              <li #{if request.action == "Tips.index" } class="active" #{/if}><a href="@{tips.index()}">Tippabgabe</a></li>
+	              <li #{if request.action == "Overview.index" } class="active" #{/if}><a href="@{overview.index()}">Tippübersicht</a></li>
+	              <li #{if request.action == "Standings.index" } class="active" #{/if}><a href="@{standings.index()}">Gesamtübersicht</a></li>
+	              <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}">Regeln</a></li>
+	            </ul>
+	          </div>
+	      #{/if}
+	      #{else}
+	          <div class="nav-collapse">
+	            <ul class="nav">
+	              <li #{if request.action == "Auth.login" } class="active" #{/if}><a href="@{auth.login()}">Anmeldung</a></li>
+	              #{if isEnableRegistration}
+	              	<li #{if request.action == "Auth.register" } class="active" #{/if}><a href="@{auth.register()}">Registrierung</a></li>
+	              #{/if}
+	            </ul>
+	          </div>
+	      #{/else}
+        </div>
+      </div>
+    </div>
+
+	#{ifErrors}
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="alert alert-error">
+					<h4 class="alert-heading">Fehler</h4>
+					#{if flash.errormessage != null}
+			    		<p>${flash.errormessage}</p>
+					#{/if}
+					#{else}
+			    		<p>Bei der Verarbeitung ist ein Fehler aufgetreten!</p>
+					#{/else}
+				</div>
+			</div>
+		</div>
+	#{/ifErrors}
+	#{if flash.warningmessage != null}
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="alert alert-info">
+					<h4 class="alert-heading">Warnung</h4>
+					<p>${flash.warningmessage}</p>
+				</div>
+			</div>
+		</div>
+	#{/if}
+	#{if flash.infomessage != null}
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="alert alert-success">
+					<h4 class="alert-heading">Info</h4>
+					<p>${flash.infomessage}</p>
+				</div>
+			</div>
+		</div>
+	#{/if}
+
+	<div class="container-fluid">
+      <div class="row-fluid">
+		#{doLayout /}
+      </div>
+      <hr>
+      <footer>
+        <p><a href="https://github.com/svenkubiak/rudeltippen">&copy; Rudeltippen 2012</a> | <a href="http://www.svenkubiak.de">svenkubiak</a> | <a href="http://flattr.com/thing/680536/Rudeltippen">flattr</a> | 1.0.0.Beta1</p>
+      </footer>
+    </div>
+    <script src="/public/javascripts/jquery.js"></script>
+    <script src="/public/javascripts/additional.js"></script>
+    <script src="/public/javascripts/bootstrap.js"></script>
+  </body>
+</html>

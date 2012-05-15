@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+<div class="span3">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			#{list items:playdays, as:'aPlayday'}
+				<li #{if aPlayday_index == number } class="active" #{/if}><a href="javascript:load('${aPlayday.number}','/overview/playday/${aPlayday.number}/1');">${aPlayday.name}</a></li>
+			#{/list}
+			<li><a href="javascript:load('${aPlayday.number + 1}','/overview/extra');">&{'extratips'}</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="span9">
+	#{include '/overview/_games.html' /}
+	#{include '/tags/paginationJS.html' /}
+</div>

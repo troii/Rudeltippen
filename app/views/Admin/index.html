@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+<div class="span3">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			#{list items:playdays, as:'aPlayday'}
+				<li #{if aPlayday_index == number } class="active" #{/if}><a href="javascript:load('${aPlayday.number}','/admin/results/${aPlayday.number}');">${aPlayday.name}</a></li>
+			#{/list}
+		</ul>
+	</div>
+</div>
+
+<div class="span9">
+	#{include '/admin/_games.html' /}
+</div>

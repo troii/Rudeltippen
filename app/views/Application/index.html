@@ -1,0 +1,108 @@
+#{extends 'main.html' /}
+<div class="span">
+	<div class="row-fluid">
+		<div class="span6">
+			<h2>&{'topthree'}</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>&{'tipper'}</th>
+						<th>&{'nickname'}</th>
+						<th>&{'points'}</th>
+						<th>&{'extrapoints'}</th>
+						<th>&{'totalpoints'}</th>
+					</tr>
+				</thead>
+				<tbody>
+				#{list items:topUsers, as:'topUser'}
+					<tr>
+						#{if topUser.picture == null}
+							<td><a href="@{users.show()}/${topUser.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
+						#{/if}
+						#{else}
+							<td><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
+						#{/else}
+						<td><b><a href="@{users.show()}/${topUser.nickname}">${topUser.nickname}</a></b></td>
+						<td>${topUser.tipPoints}</td>
+						<td>${topUser.extraPoints}</td>
+						<td><b>${topUser.points}</b></td>
+					</tr>
+				#{/list}
+				</tbody>
+			</table>
+		</div>
+		<div class="span6">
+			<h2>&{'lastgames'}</h2>
+			<table class="table">
+            <thead>
+                <tr>
+                    <th>&{'date'}</th>
+                    <th>&{'hometeam'}</th>
+                    <th>&{'awayteam'}</th>
+                    <th>&{'result'}</th>
+                    <th>&{'yourbet'}</th>
+                </tr>
+            </thead>
+            <tbody>
+                #{list items:previousGames, as:'previousGame'}
+                    <tr>
+                        <td>${previousGame.kickoff.formatted()}</td>
+                        <td><img src="/public/images/flags/${previousGame.homeTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${previousGame.homeTeam?.name}</td>
+                        <td><img src="/public/images/flags/${previousGame.awayTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${previousGame.awayTeam?.name}</td>
+                        #{if previousGame.overtime}
+                            <td>${previousGame.homeScoreOT} : ${previousGame.awayScoreOT} (${previousGame.overtimeType})</td>
+                        #{/if}
+                        #{else}
+                            <td>${previousGame.homeScore} : ${previousGame.awayScore}</td>
+                        #{/else}
+                        <td>${previousGame.getTip()}</td>
+                    </tr>
+                #{/list}
+                #{else}
+                    <tr>
+                        <td colspan="6">&{'nogamesyet'}</td>
+                    </tr>
+                #{/else}
+            </tbody>
+        </table>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			#{if play.configuration.get("dashboard.twitter.username") != ""}
+				<h2>&{'twitternews'}</h2>
+				<div class="twitter"></div>
+			#{/if}
+		</div>
+		<div class="span6">
+			<h2>&{'nextgames'}</h2>
+			<table class="table">
+			<thead>
+				<tr>
+					<th>&{'date'}</th>
+					<th>&{'hometeam'}</th>
+					<th>&{'awayteam'}</th>
+					<th>&{'yourbet'}</th>
+					<th>&{'tendence'}</th>
+				</tr>
+			</thead>
+				<tbody>
+					#{list items:nextGames, as:'nextGame'}
+						<tr>
+							<td>${nextGame.kickoff.formatted()}</td>
+							<td><img src="/public/images/flags/${nextGame.homeTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${nextGame.homeTeam?.name}</td>
+							<td><img src="/public/images/flags/${nextGame.awayTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${nextGame.awayTeam?.name}</td>
+							<td>${nextGame.getTip()}</td>
+							<td>${nextGame.getTrend()}</td>
+						</tr>
+					#{/list}
+					#{else}
+						<tr>
+							<td colspan="6">&{'nomoregamesyet'}</td>
+						</tr>
+					#{/else}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

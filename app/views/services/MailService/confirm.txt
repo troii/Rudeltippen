@@ -1,0 +1,5 @@
+Hallo ${user.nickname}!
+
+${message}
+
+${appUrl}/users/confirm/${token}

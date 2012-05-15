@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{form @Auth.resend(), class:'form-horizontal well'}
+	<fieldset>
+		<legend>&{'forgotten'}</legend>
+		<div class="control-group #{if errors[0] != null} error #{/if}">
+			<label for="username" class="control-label">&{'email'}</label>
+			<div class="controls">
+				<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
+				#{if errors[0] != null}
+					<span class="help-inline">${errors[0]}</span>
+				#{/if}
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn btn-primary" type="submit">&{'send'}</button>
+		</div>
+	</fieldset>
+#{/form}

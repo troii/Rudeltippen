@@ -1,0 +1,96 @@
+#{extends 'main.html' /}
+<div class="span">
+	<div class="row-fluid">
+		<div class="span6">
+			<h2>Nickname ändern</h2>
+			#{form @Users.updatenickname(), class:'form-horizontal well'}
+				<div class="control-group #{ifError 'username'} error #{/ifError}">
+					<label for="input01" class="control-label">Neuer Nickname</label>
+					<div class="controls">
+						<input type="text" id="nickname" name="nickname" value="" class="input-xlarge">
+						#{ifError 'nickname'}
+							<span class="help-inline">#{error 'nickname' /}</span>
+						#{/ifError}
+					</div>
+				</div>
+				<div class="form-actions">
+					<button class="btn btn-primary" type="submit">Absenden</button>
+				</div>
+			#{/form}
+		</div>
+		<div class="span6">
+			<h2>Profilbild ändern</h2>
+			#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
+				<div class="control-group">
+		            <label for="fileInput" class="control-label">Profilbild</label>
+		            <div class="controls">
+		              <input type="file" id="picture" name="picture" class="input-file">
+		              <p class="help-block">(max. 100 Kb, max. 162x162)</p>
+		            </div>
+		        </div>
+				<div class="form-actions">
+					<button class="btn btn-primary" type="submit">Absenden</button>
+				</div>
+			#{/form}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<h2>Passwort ändern</h2>
+			#{form @Users.updatepassword(), class:'form-horizontal well'}
+				<div class="control-group">
+					<label for="userpass" class="control-label">Neues Passwort</label>
+					<div class="controls">
+						<input type="password" value="" id="" name="userpass" class="input-xlarge">
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="userpassConfirmation" class="control-label">Neue Passwort wiederholen</label>
+					<div class="controls">
+						<input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-xlarge focused">
+					</div>
+				</div>
+			<div class="form-actions">
+				<button class="btn btn-primary" type="submit">Absenden</button>
+			</div>
+			#{/form}
+		</div>
+		<div class="span6">
+			<h2>E-Mail-Adresse ändern</h2>
+			#{form @Users.updateusername(), class:'form-horizontal well'}
+				<div class="control-group">
+					<div class="control-group">
+						<label for="username" class="control-label">Neue E-Mail</label>
+						<div class="controls">
+							<input type="text" value="" id="username" name="username" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="usernameConfirmation" class="control-label">Neue E-Mail wiederholen</label>
+						<div class="controls">
+							<input type="text" value="" id="usernameConfirmation" name="usernameConfirmation" class="input-xlarge focused">
+						</div>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button class="btn btn-primary" type="submit">Absenden</button>
+				</div>
+			#{/form}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<h2>Benachrichtigungen ändern</h2>
+			#{form @Users.updatenotifications(), class:'form-horizontal well'}
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> Tipp Erinnerung </label>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button class="btn btn-primary" type="submit">Absenden</button>
+				</div>
+			#{/form}
+		</div>
+	</div>
+</div>

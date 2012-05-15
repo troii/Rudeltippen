@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+<h3>Hier findest Du alle Regeln in der Übersicht</h3>
+<table class="table">
+	<tbody>
+		<tr>
+			<td width="275"><b>Punkte f&uuml;r richtigen Tipp</b></td>
+			<td>${settings.pointsTip}</td>
+		</tr>
+		<tr>
+			<td><b>Punkte f&uuml;r richtige Differenz</b></td>
+			<td>${settings.pointsTipDiff}</td>
+		</tr>
+		<tr>
+			<td><b>Punkte f&uuml;r richtige Tendenz</b></td>
+			<td>${settings.pointsTipTrend}</td>
+		</tr>
+		<tr>
+			<td><b>Tippabgabe</b></td>
+			<td>Bis ${settings.minutesBeforeTip} Minuten vor Spielbeginn</td>
+		</tr>
+           <tr>
+               <td><b>Tippabgabe Bonus Tipps</b></td>
+               <td>Bis zum ${settings.bonusTippEnding.formatted()}</td>
+           </tr>
+		<tr>
+			<td><b>Tipp-Wertung innerhalb der Playoffs</b></td>
+			#{if settings.countFinalResult}
+				<td>Endstand (inkl. Verl&auml;ngerung und/oder Elfmeterschie&szlig;en)</td>
+			#{/if}
+			#{else}
+				<td>Stand nach 90 Minuten
+					<ul>
+                        <li>Tippt ein Spieler auf den Sieg einer Mannschaft nach 90 Minuten und diese Mannschaft gewinnt erst nach Verl&auml;ngerung und/oder Elfmeterschie&szlig;en, erhält der Spieler nur die Punkte für die richtige Tendenz.</li>
+                    </ul>
+				</td>
+			#{/else}
+		</tr>
+		<tr>
+			<td><b>Allgemeine Informationen</b></td>
+			<td>
+				<ul>
+					<li>Die Tipps der anderen Mitspieler sind ab Spielbeginn sichtbar.</li>
+					<li>In der Tipp&uuml;bersicht zeigt die Zahl in Klammern hinter den Tipps die Anzahl der Punkt f&uuml;r diesen Tipp.</li>
+					<li>Damit eine Tendenz im Dashboard f&uuml;r Spiele angezeigt wird, m&uuml;ssen mind. 4 Tipps abgegeben wordern sein.</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>

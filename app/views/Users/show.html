@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{if user?.pictureLarge != null}
+    <img src="${user?.pictureLarge}" />
+#{/if}
+#{else}
+   <img src="/public/images/user_placeholder_large.gif" width="162" height="162"/>
+#{/else}
+<table class="table">
+	<thead>
+           <tr>
+               <td><b>Platz</b></td>
+               <td>${user?.place}</td>
+           </tr>
+    </thead>
+    <tbody>
+		<tr>
+			<td width="200"><b>Punkte</b></td>
+			<td>${user?.points}</td>
+		</tr>
+           <tr>
+               <td width="200"><b>Punkte pro Tipp</b></td>
+               <td>${pointsPerTipp}</td>
+           </tr>
+		<tr>
+			<td width="200"><b>Abgegebene Tipps</b></td>
+			<td>${statistics?.sumTipps} von ${statistics?.sumGames} m&ouml;glichen Tipps</td>
+		</tr>
+		<tr>
+			<td><b>Richtige Ergebnisse</b></td>
+			<td>${statistics?.correctTipps}</td>
+		</tr>
+		<tr>
+			<td><b>Richtige Differenzen</b></td>
+			<td>${statistics?.correctDifference}</td>
+		</tr>
+		<tr>
+			<td><b>Richtige Tendenzen</b></td>
+			<td>${statistics?.correctTrend}</td>
+		</tr>
+           <tr>
+               <td><b>Tipp-Quote</b></td>
+               <td>${statistics?.tippQuote} % richtige Ergebnisse</td>
+           </tr>
+	</tbody>
+</table>

@@ -1,0 +1,24 @@
+#{if pagination.showControls == true}
+	<div class="pagination-container">
+		<ul class="pagination">
+			#{if pagination.currentPage != 1}
+				<li><a name="page1" href="javascript:loadJS('${playday.number}','${pagination.url}${playday.number}/1');">&laquo;&nbsp;Erste</a></li>
+				<li><a name="page${pagination.currentPage - 1}" href="javascript:loadJS('${playday.number}','${pagination.url}${playday.number}/${pagination.currentPage - 1}');">&lsaquo;&nbsp;Zur&uuml;ck</a></li>
+			#{/if}
+			#{list items:pagination.offsetstart..pagination.offset, as:'page'}
+				#{if page - 1 <= pagination.pages}
+					#{if page == pagination.currentPage}
+						<li class="active"><a name="page${page}">${page}</a></li>
+					#{/if}
+					#{else}
+						<li><a name="page${page}" href="javascript:loadJS('${playday.number}','${pagination.url}${playday.number}/${page}');">${page}</a></li>
+					#{/else}
+				#{/if}
+			#{/list}
+			#{if pagination.currentPage != (pagination.pages + 1)}
+				<li><a name="page${pagination.currentPage + 1}" href="javascript:loadJS('${playday.number}','${pagination.url}${playday.number}/${pagination.currentPage + 1}');">Vor&nbsp;&rsaquo;</a></li>
+				<li><a name="page${pagination.pages + 1}" href="javascript:loadJS('${playday.number}','${pagination.url}${playday.number}/${pagination.pages + 1}');">Letzte&nbsp;&raquo;</a></li>
+			#{/if}
+		</ul>
+	</div>
+#{/if}
