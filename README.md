@@ -32,7 +32,7 @@ Translations
 
 Demo
 ===========
-You can find a Demo [here][3]. You can login with the following credentials:
+You can find a Demo [here][3]. Login with the following credentials:
 
 
 Username: demo@rudeltippen.de
@@ -166,7 +166,7 @@ Upgrade
 1. Download the latest Version of Rudeltippen and unzip
 ------------------
 
-> You can delete the '/conf' folder after unzipping when upgrading
+> You can delete the '/conf' folder after unzipping the latest version when upgrading
 
 2. Go to your Installation-Directory of rudeltippen and run
 ------------------
@@ -174,13 +174,13 @@ Upgrade
 ```bash
 play stop
 ```
-3. Delete everything in your Installation-Directory except the '/conf' folder
+3. Delete **everything** in your Installation-Directory except the '/conf' folder
 ------------------
 
-4. Copy everything from previously unzipped lateste version except the '/conf' to your Installation-Directory
+4. Copy **everything** from the previously unzipped latest version except the '/conf' to your Installation-Directory
 ------------------
 
-5. Go to your Installation-Directory of rudeltippen and run
+5. Go to your Installation-Directory
 ------------------
 
 > Make sure your Play Installation is in production mode (see Installation 5.)
