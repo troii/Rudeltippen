@@ -62,6 +62,48 @@ On windows systems you'll need to set it in the global environment variables.
 
 3. Open <INSTLLATIONFOLDER>/conf/application.conf
 
+Set your URL
+
+```bash
+%prod.app.register.url=http://www.mydomain.com
+```
+
+Set the Username and Password for inital setup
+
+```bash
+app.setup.username=admin
+app.setup.password=secretpassword
+```
+
+Set you Database connection. For a simple MySQL-Connection this will be something like this
+
+```bash
+%prod.db=mysql://user:pwd@host/database
+```
+
+Set your SMTP-Credentials
+
+```bash
+%prod.mail.smtp.host=127.0.0.1
+%prod.mail.smtp.user=admin
+%prod.mail.smtp.pass=
+#%prod.mail.smtp.channel=ssl
+```
+
+Set your E-Mail-Sender
+
+```bash
+mailservice.replyto=me@example.de
+mailservice.from=Rudelmail <me@example.de>
+```
+
+Set the Twitter-Feed which is displayed at the Dashboard. Leave Blank, if you dont want that Feature
+
+```bash
+dashboard.twitter.username=mytwitterusername
+```
+
+
 Upgrade
 ===========
 
