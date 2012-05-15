@@ -103,9 +103,47 @@ Set the Twitter-Feed which is displayed at the Dashboard. Leave Blank, if you do
 dashboard.twitter.username=mytwitterusername
 ```
 
+Save the file.
+
+4. Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
+
+> By default Rudeltippen runs on Port 9000
+
+5. Now its time to start Rudeltippen. Go to your Installation-Directory and run.
+
+```bash
+play id prod
+```
+
+Now we have Play in Production mode, we have to Download the Dependecies. Run
+
+```bash
+play deps --sync
+```
+
+Finally we are ready to start-up Rudeltippen. Unix and Mac users can start Rudeltippen with
+
+```bash
+play start
+```
+
+If you’re on Windows, 'play start' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Download and Install psexec and start Rudeltippen with
+
+```bash
+/path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
+```
+
+6. Open your Browser and go to http://yourdomain.com/setup
+
+7. Change the default values if you want to and create a inital user. This will be an administrative user.
+
+8. Enjoy Rudeltippen!
+
 
 Upgrade
 ===========
+
+TBD
 
 Support
 ===========
@@ -116,6 +154,7 @@ Stuff
 ===========
 
 - [Author's Homepage (German)][4]
+- Follow [@rudeltippen][8] for the latest development News
 - [flattr][5]
 - [Support-Page (German or Englisch)][6]
 
@@ -126,3 +165,5 @@ Stuff
 [5]: https://flattr.com/thing/29899/svenkubiak-de
 [6]: http://dev.svenkubiak.de/rudeltippen
 [7]: http://twitter.github.com/bootstrap/
+[8]: http://twitter.com/rudeltippen
+[9]: http://www.playframework.org/documentation/1.2.4/production
