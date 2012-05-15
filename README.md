@@ -113,7 +113,7 @@ Save the file.
 
 > By default Rudeltippen runs on Port 9000
 
-5. Now its time to start Rudeltippen. Go to your Installation-Directory and run.
+5. Go to your Installation-Directory and run
 ------------------
 
 ```bash
