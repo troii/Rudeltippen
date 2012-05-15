@@ -46,7 +46,8 @@ Installation
 
 This installation guide assumes that you already have JDK 1.6+ running, have your Database configured and your SMTP-Credentials right at your side.
 
-**Download [Play Framework 1.2.x][2] and unzip.**
+Download [Play Framework 1.2.x][2] and unzip.
+------------------
 
 For convenience, you should add the framework installation directory to your system PATH. On UNIX systems will be something like:
 
