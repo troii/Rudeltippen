@@ -142,6 +142,7 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 ------------------
 
 > You did set username and password in application.conf (see 3.)
+> The setup will automaticly load all games for the Euro 2012.
 
 7. Change the default values if you want to and create an inital user.
 ------------------
