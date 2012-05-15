@@ -1,9 +1,9 @@
-PLEASE NOT: Current Version 1.0.0.Beta1 is for testing purposes only! Final Version of 1.0.0 is planned for end of May.
+**PLEASE NOTE: The current Version 1.0.0.Beta1 is for testing purposes only! The final version 1.0.0 is planned for end of May.**
 
 Rudeltippen
 ===========
 
-A betting game based on the Play Framework and Twitter Bootstrap.
+A betting game based on the Play Framework and Twitter Bootstrap. Ready to go for the Euro 2012.
 
 Features in a Nutshell
 ===========
@@ -148,7 +148,7 @@ TBD
 Support
 ===========
 
-If you need help, just visit the [Support-Page][6] and paste your Question (English or German). I'll get to it ASAP. If you found a Bug, please open an Issue on Github.
+If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a Bug, please open an Issue on Github.
 
 Stuff
 ===========
