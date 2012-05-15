@@ -160,7 +160,7 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 ------------------
 
 
-Upgrade
+Upgrading
 ===========
 
 1. Download the latest Version of Rudeltippen and unzip
