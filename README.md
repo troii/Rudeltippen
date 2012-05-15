@@ -141,8 +141,12 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 6. Open your Browser and go to http://yourdomain.com/setup
 ------------------
 
-7. Change the default values if you want to and create a inital user. This will be an administrative user.
+> You did set username and password in application.conf (see 3.)
+
+7. Change the default values if you want to and create an inital user.
 ------------------
+
+> The inital user will be an administrative user and automaticly activated.
 
 8. Enjoy Rudeltippen!
 ------------------
