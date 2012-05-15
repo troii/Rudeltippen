@@ -46,7 +46,7 @@ Installation
 
 This installation guide assumes that you already have JDK 1.6+ running, have your Database configured and your SMTP-Credentials right at your side.
 
-1. Download [Play Framework 1.2.x][2] and unzip. From the Play Documentation:
+**Download [Play Framework 1.2.x][2] and unzip.**
 
 For convenience, you should add the framework installation directory to your system PATH. On UNIX systems will be something like:
 
@@ -58,9 +58,9 @@ On windows systems you'll need to set it in the global environment variables.
 
 > If you’re on UNIX, make sure that the play script is executable (otherwise do a chmod a+x play).
 
-2. Download the current Version of Rudeltippen and unzip.
+**Download the current Version of Rudeltippen and unzip.**
 
-3. Open <INSTLLATIONFOLDER>/conf/application.conf
+**Open <INSTLLATIONFOLDER>/conf/application.conf**
 
 Set your URL
 
@@ -105,17 +105,17 @@ dashboard.twitter.username=mytwitterusername
 
 Save the file.
 
-4. Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
+**Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.**
 
 > By default Rudeltippen runs on Port 9000
 
-5. Now its time to start Rudeltippen. Go to your Installation-Directory and run.
+**Now its time to start Rudeltippen. Go to your Installation-Directory and run.**
 
 ```bash
 play id prod
 ```
 
-Now we have Play in Production mode, we have to Download the Dependecies. Run
+Now that we have Play in Production mode, we have to Download the Dependecies. Run
 
 ```bash
 play deps --sync
@@ -133,11 +133,11 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
 ```
 
-6. Open your Browser and go to http://yourdomain.com/setup
+**Open your Browser and go to http://yourdomain.com/setup**
 
-7. Change the default values if you want to and create a inital user. This will be an administrative user.
+**Change the default values if you want to and create a inital user. This will be an administrative user.**
 
-8. Enjoy Rudeltippen!
+**Enjoy Rudeltippen!**
 
 
 Upgrade
