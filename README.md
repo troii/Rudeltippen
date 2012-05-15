@@ -1,3 +1,5 @@
+PLEASE NOT: Current Version 1.0.0.Beta1 is for testing purposes only! Final Version of 1.0.0 is planned for end of May.
+
 Rudeltippen
 ===========
 
@@ -6,10 +8,10 @@ A betting game based on the Play Framework and Twitter Bootstrap.
 Features in a Nutshell
 ===========
 - Automatic Result updates
-- Multilingual
 - Supports multiple Databases
 - Tournament Management
 - Themeable (through [Bootstrap][7])
+- Multilingual
 
 Requirements
 ===========
@@ -34,7 +36,7 @@ You can find a Demo [here][3]. You can login with the following credentials:
 
 Username: demo@rudeltippen.de
 
-Password: demo123456
+Password: demo12345
 
 
 Please note that this is not an administrative Account, so some Features are not available. Also User Registration is not enabled.
@@ -42,7 +44,26 @@ Please note that this is not an administrative Account, so some Features are not
 Installation
 ===========
 
-TBD
+This installation guide assumes that you already have JDK 1.6+ running, have your Database configured and your SMTP-Credentials right at your side.
+
+1. Download [Play Framework 1.2.x][2] and unzip. From the Play Documentation:
+
+For convenience, you should add the framework installation directory to your system PATH. On UNIX systems will be something like:
+
+```bash
+export PATH=$PATH:/path/to/play
+```
+
+On windows systems you'll need to set it in the global environment variables.
+
+> If you’re on UNIX, make sure that the play script is executable (otherwise do a chmod a+x play).
+
+2. Download the current Version of Rudeltippen and unzip.
+
+3. Open <INSTLLATIONFOLDER>/conf/application.conf
+
+Upgrade
+===========
 
 Support
 ===========
