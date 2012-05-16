@@ -22,3 +22,5 @@ eclipse/Connect JPDA to rudeltippen.launch
 eclipse/Test rudeltippen.launch
 
 eclipse/rudeltippen.launch
+
+tmp/
