@@ -251,7 +251,7 @@ public class ViewUtils extends JavaExtensions{
     public static String getGameTip(GameTip gameTip) {
     	final User user = AppUtils.getConnectedUser();
     	if (gameTip.getPlaced() != null) {
-    		if (gameTip.getGame().isEnded()) {	
+    		if (gameTip.getGame() != null && gameTip.getGame().isEnded()) {	
     			return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
     		} else {
     			if (user.equals(gameTip.getUser())) {
@@ -266,7 +266,7 @@ public class ViewUtils extends JavaExtensions{
     }
     
     public static String getGameTipPoints(GameTip gameTip) {
-    	if (gameTip.getGame().isEnded()) {
+    	if (gameTip != null && gameTip.getGame() != null && gameTip.getGame().isEnded()) {
     		return " (" + gameTip.getPoints() + ")";
     	} 
     	
@@ -277,7 +277,7 @@ public class ViewUtils extends JavaExtensions{
     	final User user = AppUtils.getConnectedUser();
     	ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
     	
-    	if (extraTip != null) {
+    	if (extraTip != null && extraTip.getAnswer() != null) {
     		return extraTip.getAnswer().getId();
     	}
     	
@@ -285,7 +285,7 @@ public class ViewUtils extends JavaExtensions{
     }
     
     public static String getExtraTipPoints(ExtraTip extraTip) {
-    	if (extraTip.getExtra().getAnswer() != null) {
+    	if (extraTip != null && extraTip.getExtra() != null && extraTip.getExtra().getAnswer() != null) {
     		return " ("+ extraTip.getPoints() + ")";
     	}
     	
