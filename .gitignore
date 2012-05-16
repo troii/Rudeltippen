@@ -4,3 +4,21 @@
 *.jar
 *.war
 *.ear
+
+.classpath
+
+.project
+
+.settings/org.eclipse.core.resources.prefs
+
+.settings/org.eclipse.jdt.core.prefs
+
+eclipse/.settings/org.eclipse.core.resources.prefs
+
+eclipse/.settings/org.eclipse.jdt.core.prefs
+
+eclipse/Connect JPDA to rudeltippen.launch
+
+eclipse/Test rudeltippen.launch
+
+eclipse/rudeltippen.launch
