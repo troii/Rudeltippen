@@ -66,7 +66,6 @@ $(document).ready(function(){
 		    url:'http://api.twitter.com/1/statuses/user_timeline.json?count=5',
 		    data:{screen_name:username, include_rts:0},
 		    success:function(data, textStatus, XMLHttpRequest) {
-		    	console.log(data);
 		        var tmp = false;
 		        var results = $('.span6 > .twitter');
 		        for(i in data) {
