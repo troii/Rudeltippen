@@ -4,7 +4,7 @@
 			<tr>
 				<th>Platz</th>
 				<th>Tipper</th>
-				<th>Nickname</th>
+				<th class="hidden-phone">Nickname</th>
 				<th>Punkte</th>
 				<th>Bonuspunkte</th>
 				<th><div align="center">Gesamtpunkte</div></th>
@@ -25,7 +25,7 @@
 					#{/if}
 					#{else}
 						<td><div style="float: left;"><a href="@{users.show()}/${users.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></div></td>
-						<td align="left" style="vertical-align: top;"><b><a href="@{users.show()}/${user.nickname}">${user.nickname}</a></b></td>
+						<td class="hidden-phone" align="left" style="vertical-align: top;"><b><a href="@{users.show()}/${user.nickname}">${user.nickname}</a></b></td>
 					#{/else}
 					<td style="vertical-align: top;">${user.tipPoints}</td>
 					<td style="vertical-align: top;">${user.extraPoints}</td>

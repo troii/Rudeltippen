@@ -6,7 +6,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>&{'tipper'}</th>
+						<th class="hidden-phone">&{'tipper'}</th>
 						<th>&{'nickname'}</th>
 						<th>&{'points'}</th>
 						<th>&{'extrapoints'}</th>
@@ -17,10 +17,10 @@
 				#{list items:topUsers, as:'topUser'}
 					<tr>
 						#{if topUser.picture == null}
-							<td><a href="@{users.show()}/${topUser.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
+							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
 						#{/if}
 						#{else}
-							<td><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
+							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
 						#{/else}
 						<td><b><a href="@{users.show()}/${topUser.nickname}">${topUser.nickname}</a></b></td>
 						<td>${topUser.tipPoints}</td>
@@ -36,7 +36,7 @@
 			<table class="table">
             <thead>
                 <tr>
-                    <th>&{'date'}</th>
+                    <th class="hidden-phone">&{'date'}</th>
                     <th>&{'hometeam'}</th>
                     <th>&{'awayteam'}</th>
                     <th>&{'result'}</th>
@@ -46,7 +46,7 @@
             <tbody>
                 #{list items:previousGames, as:'previousGame'}
                     <tr>
-                        <td>${previousGame.kickoff.formatted()}</td>
+                        <td class="hidden-phone">${previousGame.kickoff.formatted()}</td>
                         <td><img src="/public/images/flags/${previousGame.homeTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${previousGame.homeTeam?.name}</td>
                         <td><img src="/public/images/flags/${previousGame.awayTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${previousGame.awayTeam?.name}</td>
                         #{if previousGame.overtime}
@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span6 hidden-phone">
 			#{if play.configuration.get("dashboard.twitter.username") != ""}
 				<h2>&{'twitternews'}</h2>
 				<div class="twitter"></div>
@@ -79,7 +79,7 @@
 			<table class="table">
 			<thead>
 				<tr>
-					<th>&{'date'}</th>
+					<th class="hidden-phone">&{'date'}</th>
 					<th>&{'hometeam'}</th>
 					<th>&{'awayteam'}</th>
 					<th>&{'yourbet'}</th>
@@ -89,7 +89,7 @@
 				<tbody>
 					#{list items:nextGames, as:'nextGame'}
 						<tr>
-							<td>${nextGame.kickoff.formatted()}</td>
+							<td class="hidden-phone">${nextGame.kickoff.formatted()}</td>
 							<td><img src="/public/images/flags/${nextGame.homeTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${nextGame.homeTeam?.name}</td>
 							<td><img src="/public/images/flags/${nextGame.awayTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${nextGame.awayTeam?.name}</td>
 							<td>${nextGame.getTip()}</td>

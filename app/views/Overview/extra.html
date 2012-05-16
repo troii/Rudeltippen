@@ -21,7 +21,7 @@
 				#{/else}
 					<td><br /><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
 				#{list items:user.value, as:'extraTip'}
-					<td>${extraTip?.answer.name}${extraTip?.getExtraTipPoints()}</div></td>
+					<td>#{if extraTip?.answer?.name == null}-#{else}${extraTip?.answer?.name}#{/else}#{/if}${extraTip?.getExtraTipPoints()}</div></td>
 				#{/list}
 			#{/list}
 		</tr>
@@ -29,5 +29,3 @@
 	</tbody>
 </table>
 #{include '/tags/paginationJS.html' /}
-
-

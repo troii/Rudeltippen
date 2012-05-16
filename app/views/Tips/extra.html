@@ -5,7 +5,7 @@
         <tr>
             <th>Bonusfrage</th> 
             <th>Punkte</th> 
-            <th>Abzugeben bis</th>
+            <th class="hidden-phone">Abzugeben bis</th>
             <th>Deine Antwort</th>  
         </tr>
     </thead>
@@ -14,12 +14,12 @@
             <tr>
                 <td>${extra.question}</td>
                 <td>${extra.points}</td>  
-                <td>${extra.ending.formatted()}</td>              
+                <td class="hidden-phone">${extra.ending.formatted()}</td>              
                 <td>
                     #{if extra.tippable}
                         <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
                             #{if extra.getExtraTip() == 0}
-                                <option value="0" selected="selected">-- Bitte ausw&auml;hlen --</option>
+                                <option value="0" class="span2" selected="selected">-- Bitte ausw&auml;hlen --</option>
                             #{/if} 
                             #{list items:extra.answers, as:'team'}
                                 #{if extra.getExtraTip() == team.id}

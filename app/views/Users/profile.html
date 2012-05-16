@@ -7,7 +7,7 @@
 				<div class="control-group #{ifError 'username'} error #{/ifError}">
 					<label for="input01" class="control-label">Neuer Nickname</label>
 					<div class="controls">
-						<input type="text" id="nickname" name="nickname" value="" class="input-xlarge">
+						<input type="text" id="nickname" name="nickname" value="" class="input-medium">
 						#{ifError 'nickname'}
 							<span class="help-inline">#{error 'nickname' /}</span>
 						#{/ifError}
@@ -18,7 +18,7 @@
 				</div>
 			#{/form}
 		</div>
-		<div class="span6">
+		<div class="span6 visible-desktop">
 			<h2>Profilbild ändern</h2>
 			#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
 				<div class="control-group">
@@ -41,13 +41,13 @@
 				<div class="control-group">
 					<label for="userpass" class="control-label">Neues Passwort</label>
 					<div class="controls">
-						<input type="password" value="" id="" name="userpass" class="input-xlarge">
+						<input type="password" value="" id="" name="userpass" class="input-medium">
 					</div>
 				</div>
 				<div class="control-group">
 					<label for="userpassConfirmation" class="control-label">Neue Passwort wiederholen</label>
 					<div class="controls">
-						<input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-xlarge focused">
+						<input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
 					</div>
 				</div>
 			<div class="form-actions">
@@ -62,13 +62,13 @@
 					<div class="control-group">
 						<label for="username" class="control-label">Neue E-Mail</label>
 						<div class="controls">
-							<input type="text" value="" id="username" name="username" class="input-xlarge">
+							<input type="text" value="" id="username" name="username" class="input-medium">
 						</div>
 					</div>
 					<div class="control-group">
 						<label for="usernameConfirmation" class="control-label">Neue E-Mail wiederholen</label>
 						<div class="controls">
-							<input type="text" value="" id="usernameConfirmation" name="usernameConfirmation" class="input-xlarge focused">
+							<input type="text" value="" id="usernameConfirmation" name="usernameConfirmation" class="input-medium">
 						</div>
 					</div>
 				</div>

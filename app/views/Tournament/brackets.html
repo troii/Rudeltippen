@@ -3,7 +3,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>#</th>
+			<th class="hidden-phone">#</th>
 			<th>Mannschaft</th>
 			<th>Spiele</th>
 			<th>S</th>
@@ -17,7 +17,7 @@
 	<tbody>
 		#{list items:bracket.teams, as:'team'}
 			<tr>
-				<td>${team_index}</td>
+				<td class="hidden-phone">${team_index}</td>
 				#{if team.flag != null}
 					<td><img src="/public/images/flags/${team.flag}"/>&nbsp;&nbsp;&nbsp;&nbsp;${team.name}</td>
 				#{/if}

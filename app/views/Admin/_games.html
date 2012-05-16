@@ -3,9 +3,9 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>&{'game'}</th>
-			<th>&{'date'} - &{'time'}</th>
-			<th>&{'location'}</th>
+			<th class="hidden-phone">&{'game'}</th>
+			<th class="hidden-phone">&{'date'} - &{'time'}</th>
+			<th class="hidden-phone">&{'location'}</th>
 			<th>&{'hometeam'}</th>
 			<th>&{'awayteam'}</th>
 			#{if playday.playoff}
@@ -20,9 +20,9 @@
 	<tbody>
 			#{list items:playday.games, as:'game'}
 				<tr>
-					<td>${game.number}</td>
-					<td>${game.kickoff.formatted()}</td>
-					<td>${game.stadium.name}</td>
+					<td class="hidden-phone">${game.number}</td>
+					<td class="hidden-phone">${game.kickoff.formatted()}</td>
+					<td class="hidden-phone">${game.stadium.name}</td>
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
 						<td><img src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&nbsp;&nbsp;${game.homeTeam?.name}</td>
 						<td><img src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&nbsp;&nbsp;${game.awayTeam?.name}</td>

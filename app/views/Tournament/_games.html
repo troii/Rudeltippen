@@ -3,9 +3,9 @@
 	<table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Spiel</th>
-			<th>Datum - Uhrzeit</th>
-			<th>Spielort</th>
+			<th class="hidden-phone">Spiel</th>
+			<th class="hidden-phone">Datum - Uhrzeit</th>
+			<th class="hidden-phone">Spielort</th>
 			<th>Heimmannschaft</th>
 			<th>Auswärtsmannschaft</th>
 			<th>Ergebnis</th>
@@ -14,9 +14,9 @@
 		<tbody>
 			#{list items:playday.games, as:'game'}
 				<tr>
-					<td>${game.number}</td>
-					<td>${game.kickoff.formatted()}</td>
-					<td>${game.stadium?.name}</td>
+					<td class="hidden-phone">${game.number}</td>
+					<td class="hidden-phone">${game.kickoff.formatted()}</td>
+					<td class="hidden-phone">${game.stadium?.name}</td>
 					#{if game.homeTeam != null}
 						#{if game.homeTeam.flag != null}
 							<td><img src="/public/images/flags/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&nbsp;&nbsp;&nbsp;&nbsp;${game.homeTeam?.name}</td>
