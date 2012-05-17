@@ -47,8 +47,10 @@ Installation
 
 This installation guide assumes that you already have JDK 1.6+ running, have your Database- and SMTP-Credentials right at your side.
 
-1. Download [Play Framework 1.2.x][2] and unzip
+Step 1
 ------------------
+
+Download [Play Framework 1.2.x][2] and unzip
 
 For convenience, you should add the framework installation directory to your system PATH. On UNIX systems will be something like:
 
@@ -60,11 +62,15 @@ On windows systems you'll need to set it in the global environment variables.
 
 > If you’re on UNIX, make sure that the play script is executable (otherwise do a chmod a+x play).
 
-2. Download the current Version of Rudeltippen and unzip
+Step 2
 ------------------
 
-3. Open <INSTLLATIONFOLDER>/conf/application.conf
+Download the current Version of Rudeltippen and unzip
+
+Step 3
 ------------------
+
+Open <INSTLLATIONFOLDER>/conf/application.conf
 
 Set your Rudeltippen URL
 
@@ -115,13 +121,17 @@ jvm.memory=-Xmx128m -Xms64m
 
 Save application.conf.
 
-4. Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
+Step 4
 ------------------
+
+Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
 
 > By default Rudeltippen runs on Port 9000. If you need to change this, you'll find the Port Configuration in application.conf 'Server configuration'.
 
-5. Go to your Installation-Directory of rudeltippen and run
+Step 5
 ------------------
+
+Go to your Installation-Directory of rudeltippen and run
 
 ```bash
 play id prod
@@ -145,43 +155,59 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
 ```
 
-6. Open your Browser and go to http://yourdomain.com/setup
+Step 6
 ------------------
+
+Open your Browser and go to http://yourdomain.com/setup
 
 > You did set username and password in application.conf (see 3.)
 > After the Setup is complete Rudeltippen will automaticly load all games for the Euro 2012.
 
-7. Change the default values if you want to and create an inital user.
+Step 7
 ------------------
+
+Change the default values if you want to and create an inital user.
 
 > The inital user will be an administrative user and automaticly activated.
 
-8. Login with your newely create user and enjoy Rudeltippen!
+Step 8
 ------------------
 
+Login with your newely create user and enjoy Rudeltippen!
 
 Upgrading
 ===========
 
-1. Download the latest Version of Rudeltippen and unzip
+Step 1
 ------------------
+
+Download the latest Version of Rudeltippen and unzip
 
 > You can delete the '/conf' folder after unzipping the latest version when upgrading
 
-2. Go to your Installation-Directory of rudeltippen and run
+Step 2
 ------------------
+
+Go to your Installation-Directory of rudeltippen and run
 
 ```bash
 play stop
 ```
-3. Delete **everything** in your Installation-Directory except the '/conf' folder
+
+Step 3
 ------------------
 
-4. Copy **everything** from the previously unzipped latest version except the '/conf' to your Installation-Directory
+Delete **everything** in your Installation-Directory except the '/conf' folder
+
+Step 4
 ------------------
 
-5. Go to your Installation-Directory
+Copy **everything** from the previously unzipped latest version except the '/conf' to your Installation-Directory
+
+Step 5
 ------------------
+
+Go to your Installation-Directory
 
 > Make sure your Play Installation is in production mode (see Installation 5.)
 
@@ -203,8 +229,10 @@ If you’re on Windows, 'play start' will execute Rudeltippen in the current Com
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
 ```
 
-8. Enjoy your latest version of Rudeltippen!
+Step 6
 ------------------
+
+Enjoy your latest version of Rudeltippen!
 
 
 Support
