@@ -72,7 +72,7 @@ public class Setup extends Controller{
 		validation.maxSize(userpass, 32);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
-		
+
     	SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
     	Date extraEnding = null;
 		try {
@@ -84,10 +84,10 @@ public class Setup extends Controller{
 		if (!validation.hasErrors()) {
 	    	session.clear();
 	        response.removeCookie("rememberme");
-	        
+
 			Fixtures.deleteDatabase();
 	    	Fixtures.loadModels("em2012.yml");
-	    	
+
 			Settings settings = new Settings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
 			settings.setAppName("rudeltippen");
@@ -117,7 +117,6 @@ public class Setup extends Controller{
 			user.setSalt(salt);
 			user.setUsername(username);
 			user.setNickname(nickname);
-			user.setEmail(username);
 			user.setUserpass(AppUtils.hashPassword(userpass, salt));
 			user.setRegistered(new Date());
 			user.setPoints(0);
@@ -133,7 +132,7 @@ public class Setup extends Controller{
 		}
 		params.flash();
 		validation.keep();
-		
+
 		index();
 	}
 }
