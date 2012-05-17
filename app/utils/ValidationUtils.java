@@ -1,20 +1,29 @@
 package utils;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import models.Confirmation;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
+import play.libs.Crypto;
+
 public class ValidationUtils {
 	public static boolean usernameExists(String username) {
-		User user = User.find("byUsername", username).first();
-		return user != null;
-	}
+		List<Confirmation> confirmations = Confirmation.findAll();
+		for (Confirmation confirmation : confirmations) {
+			String value = confirmation.getConfirmValue();
+			value = Crypto.decryptAES(value);
 
-	public static boolean emailExists(String email) {
-		User user = User.find("byEmail", email).first();
+			if (value.equals(username)) {
+				return true;
+			}
+		}
+
+		User user = User.find("byUsername", username).first();
 		return user != null;
 	}
 
