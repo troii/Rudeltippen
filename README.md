@@ -75,14 +75,14 @@ Open <INSTLLATIONFOLDER>/conf/application.conf
 Set your Rudeltippen URL
 
 ```bash
-%prod.app.register.url=http://www.mydomain.com
+%prod.app.register.url=http://www.yourdomain.com
 ```
 
 Set the Username and Password for inital setup
 
 ```bash
 app.setup.username=admin
-app.setup.password=secretpassword
+app.setup.password=admin
 ```
 
 Set you Database connection. For a simple MySQL-Connection this will be something like this
