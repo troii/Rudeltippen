@@ -160,7 +160,6 @@ public class Auth extends Controller {
 		    User user = new User();
 			user.setRegistered(new Date());
 			user.setNickname(nickname);
-			user.setEmail(nickname);
 			user.setUsername(username);
 			user.setActive(false);
 			user.setReminder(true);
