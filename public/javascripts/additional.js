@@ -55,15 +55,15 @@ function linkify(text) {
 }
 
 $(document).ready(function(){
-	$(".alert-info").delay(4000).slideToggle();
-	$(".alert-success").delay(4000).slideToggle();
+	$(".alert-info").delay(5000).slideToggle();
+	$(".alert-success").delay(5000).slideToggle();
 
 	var username = $('body').data('key');
 	if (username != "") {
 		$.ajax({
 		    type:'GET',
 		    dataType:'jsonp',
-		    url:'http://api.twitter.com/1/statuses/user_timeline.json?count=5',
+		    url:'http://api.twitter.com/1/statuses/user_timeline.json?count=4',
 		    data:{screen_name:username, include_rts:0},
 		    success:function(data, textStatus, XMLHttpRequest) {
 		        var tmp = false;
