@@ -20,7 +20,7 @@ function loadJS(item, url) {
 	$('.span9').load(url).hide().fadeIn('slow');
 }
 
-//see http://stackoverflow.com/questions/6549223/javascript-code-to-display-twitter-created-at-as-xxxx-ago
+//http://stackoverflow.com/questions/6549223/javascript-code-to-display-twitter-created-at-as-xxxx-ago
 function prettyDate(time){
     var system_date = new Date(Date.parse(time));
     var user_date = new Date();
@@ -76,6 +76,6 @@ $(document).ready(function(){
 		    error:function(req, status, error) {
 		        alert('error: '+status);
 		    }
-		});	
+		});
 	}
 });
