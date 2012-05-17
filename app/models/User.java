@@ -23,9 +23,6 @@ public class User extends Model{
 	private String nickname;
 
 	@Column(nullable=false)
-	private String email;
-
-	@Column(nullable=false)
 	private String salt;
 
 	@Column(nullable=false)
@@ -69,14 +66,6 @@ public class User extends Model{
 
 	public void setUserpass(String userpass) {
 		this.userpass = userpass;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getSalt() {
