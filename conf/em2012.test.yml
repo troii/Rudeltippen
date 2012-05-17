@@ -54,7 +54,7 @@ models.Team(polen):
 
 models.Team(griechenland):
     name:          Griechenland
-    flag:          gri.png
+    flag:          gre.png
     bracket:       a
     gamesPlayed:   0
     gamesWon:      0
@@ -72,7 +72,7 @@ models.Team(russland):
 
 models.Team(tschechien):
     name:          Tschechien
-    flag:          tsc.png
+    flag:          cze.png
     bracket:       a
     gamesPlayed:   0
     gamesWon:      0
@@ -81,7 +81,7 @@ models.Team(tschechien):
 
 models.Team(niederlande):
     name:          Niederlande
-    flag:          nie.png
+    flag:          ned.png
     bracket:       b
     gamesPlayed:   0
     gamesWon:      0
@@ -90,7 +90,7 @@ models.Team(niederlande):
 
 models.Team(danemark):
     name:          Dänemark
-    flag:          dan.png
+    flag:          den.png
     bracket:       b
     gamesPlayed:   0
     gamesWon:      0
@@ -99,7 +99,7 @@ models.Team(danemark):
 
 models.Team(deutschland):
     name:          Deutschland
-    flag:          deu.png
+    flag:          ger.png
     bracket:       b
     gamesPlayed:   0
     gamesWon:      0
@@ -117,7 +117,7 @@ models.Team(portugal):
 
 models.Team(spanien):
     name:          Spanien
-    flag:          spa.png
+    flag:          esp.png
     bracket:       c
     gamesPlayed:   0
     gamesWon:      0
@@ -144,7 +144,7 @@ models.Team(irland):
 
 models.Team(kroatien):
     name:          Kroatien
-    flag:          kro.png
+    flag:          cro.png
     bracket:       c
     gamesPlayed:   0
     gamesWon:      0
@@ -162,7 +162,7 @@ models.Team(ukraine):
 
 models.Team(schweden):
     name:          Schweden
-    flag:          sch.png
+    flag:          swe.png
     bracket:       d
     gamesPlayed:   0
     gamesWon:      0
@@ -180,7 +180,7 @@ models.Team(frankreich):
 
 models.Team(england):
     name:          England
-    flag:          eng.png
+    flag:          gbr.png
     bracket:       d
     gamesPlayed:   0
     gamesWon:      0
