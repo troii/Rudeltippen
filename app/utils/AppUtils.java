@@ -82,7 +82,6 @@ public class AppUtils {
     		User user = new User();
     		user.setAdmin(true);
     		user.setUsername("user" + i + "@rudeltippen.de");
-    		user.setEmail("user" + i + "@rudeltippen.de");
     		user.setNickname("user" + i);
     		user.setRegistered(new Date());
     		user.setActive(true);
@@ -437,5 +436,15 @@ public class AppUtils {
 			tips.add(userTips);
 		}
 		return tips;
+	}
+
+
+	public static int getCurrentPlayday () {
+		final Playday playday = Playday.find("SELECT p FROM Playday p WHERE NOW() >= playdayStart AND NOW() <= playdayEnd").first();
+		if (playday != null && playday.getNumber() != 0) {
+			return playday.getNumber() - 1;
+		}
+
+		return 0;
 	}
 }
