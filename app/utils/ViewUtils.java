@@ -236,22 +236,22 @@ public class ViewUtils extends JavaExtensions{
 
         return pagination;
     }
-    
+
     public static String getResult(Game game) {
     	if (game.isEnded()) {
     		if (game.isOvertime()) {
     	    	return game.getHomeScoreOT() + " : " + game.getAwayScoreOT() + " (" + game.getOvertimeType() + ")";
     		} else {
-    			return game.getHomeScore() + " : " + game.getAwayScore(); 
+    			return game.getHomeScore() + " : " + game.getAwayScore();
     		}
     	}
     	return "-";
     }
-    
+
     public static String getGameTip(GameTip gameTip) {
     	final User user = AppUtils.getConnectedUser();
     	if (gameTip.getPlaced() != null) {
-    		if (gameTip.getGame() != null && gameTip.getGame().isEnded()) {	
+    		if (gameTip.getGame() != null && gameTip.getGame().isEnded()) {
     			return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
     		} else {
     			if (user.equals(gameTip.getUser())) {
@@ -261,34 +261,34 @@ public class ViewUtils extends JavaExtensions{
     			}
     		}
     	}
-    	
+
     	return "-";
     }
-    
+
     public static String getGameTipPoints(GameTip gameTip) {
     	if (gameTip != null && gameTip.getGame() != null && gameTip.getGame().isEnded()) {
     		return " (" + gameTip.getPoints() + ")";
-    	} 
-    	
+    	}
+
     	return "";
     }
-    
+
     public static long getExtraTip(Extra extra) {
     	final User user = AppUtils.getConnectedUser();
     	ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
-    	
+
     	if (extraTip != null && extraTip.getAnswer() != null) {
     		return extraTip.getAnswer().getId();
     	}
-    	
+
     	return 0;
     }
-    
+
     public static String getExtraTipPoints(ExtraTip extraTip) {
     	if (extraTip != null && extraTip.getExtra() != null && extraTip.getExtra().getAnswer() != null) {
     		return " ("+ extraTip.getPoints() + ")";
     	}
-    	
+
     	return "";
     }
 }
