@@ -17,7 +17,6 @@ import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.i18n.Messages;
 import play.mvc.With;
-import services.TwitterService;
 import utils.AppUtils;
 import utils.ValidationUtils;
 
@@ -132,7 +131,6 @@ public class Tips extends Root {
 						extraTip.setExtra(extra);
 						extraTip.setAnswer(team);
 						extraTip._save();
-						TwitterService.updateStatus(user.getUsername() + " " + Messages.get("controller.tipps.twitter.bonus") + " (" + extra.getQuestion() + ")");
 						Logger.info("Stored BonusTipp - " + user.getUsername() + " - " + extraTip);
 					}
 					flash.put("infomessage", Messages.get("controller.tipps.bonussaved"));
