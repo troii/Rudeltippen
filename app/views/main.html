@@ -43,31 +43,32 @@
 	              <i class="icon-user"></i> ${connectedUser.nickname} <span class="caret"></span>
 	            </a>
 	            <ul class="dropdown-menu">
-	              <li><a href="@{users.profile()}">Mein Profil</a></li>
+	              <li><a href="@{users.profile()}">&{'myprofile'}</a></li>
 	              #{if connectedUser.admin}
-	              	<li><a href="@{admin.index()}">Ergebnisse eintragen</a></li>
+	              	<li><a href="@{admin.settings()}">&{'settings'}</a></li>
+	              	<li><a href="@{admin.index()}">&{'results'}</a></li>
 	              #{/if}
 	              <li class="divider"></li>
-	              <li><a href="@{auth.logout()}">Abmelden</a></li>
+	              <li><a href="@{auth.logout()}">&{'logout'}</a></li>
 	            </ul>
 	          </div>
 	          <div class="nav-collapse">
 	            <ul class="nav">
-	              <li #{if request.action == "Application.index" } class="active" #{/if}><a href="@{application.index()}">Dashboard</a></li>
-	              <li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="@{tournament.index()}">Turnierübersicht</a></li>
-	              <li #{if request.action == "Tips.index" } class="active" #{/if}><a href="@{tips.index()}">Tippabgabe</a></li>
-	              <li #{if request.action == "Overview.index" } class="active" #{/if}><a href="@{overview.index()}">Tippübersicht</a></li>
-	              <li #{if request.action == "Standings.index" } class="active" #{/if}><a href="@{standings.index()}">Gesamtübersicht</a></li>
-	              <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}">Regeln</a></li>
+	              <li #{if request.action == "Application.index" } class="active" #{/if}><a href="@{application.index()}">&{'dashboard'}</a></li>
+	              <li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="@{tournament.index()}">&{'tournament'}</a></li>
+	              <li #{if request.action == "Tips.index" } class="active" #{/if}><a href="@{tips.index()}/${currentPlayday}">&{'tips'}</a></li>
+	              <li #{if request.action == "Overview.index" } class="active" #{/if}><a href="@{overview.index()}">&{'overview'}</a></li>
+	              <li #{if request.action == "Standings.index" } class="active" #{/if}><a href="@{standings.index()}">&{'standings'}</a></li>
+	              <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}">&{'rules'}</a></li>
 	            </ul>
 	          </div>
 	      #{/if}
 	      #{else}
 	          <div class="nav-collapse">
 	            <ul class="nav">
-	              <li #{if request.action == "Auth.login" } class="active" #{/if}><a href="@{auth.login()}">Anmeldung</a></li>
+	              <li #{if request.action == "Auth.login" } class="active" #{/if}><a href="@{auth.login()}">&{'login'}</a></li>
 	              #{if isEnableRegistration}
-	              	<li #{if request.action == "Auth.register" } class="active" #{/if}><a href="@{auth.register()}">Registrierung</a></li>
+	              	<li #{if request.action == "Auth.register" } class="active" #{/if}><a href="@{auth.register()}">&{'registration'}</a></li>
 	              #{/if}
 	            </ul>
 	          </div>
@@ -80,12 +81,12 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="alert alert-error">
-					<h4 class="alert-heading">Fehler</h4>
+					<h4 class="alert-heading">&{'error'}</h4>
 					#{if flash.errormessage != null}
 			    		<p>${flash.errormessage}</p>
 					#{/if}
 					#{else}
-			    		<p>Bei der Verarbeitung ist ein Fehler aufgetreten!</p>
+			    		<p>&{'erroroccured'}</p>
 					#{/else}
 				</div>
 			</div>
@@ -95,7 +96,7 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="alert alert-info">
-					<h4 class="alert-heading">Warnung</h4>
+					<h4 class="alert-heading">&{'warning'}</h4>
 					<p>${flash.warningmessage}</p>
 				</div>
 			</div>
@@ -105,7 +106,7 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="alert alert-success">
-					<h4 class="alert-heading">Info</h4>
+					<h4 class="alert-heading">&{'info'}</h4>
 					<p>${flash.infomessage}</p>
 				</div>
 			</div>
@@ -118,7 +119,7 @@
       </div>
       <hr>
       <footer>
-        <p><a href="https://github.com/svenkubiak/rudeltippen">Rudeltippen 1.0.0.Beta1</a> | <a href="http://flattr.com/thing/680536/Rudeltippen">flattr</a></p>
+        <p><a href="https://github.com/svenkubiak/rudeltippen">Rudeltippen 1.0.0.Beta2</a> | <a href="http://flattr.com/thing/680536/Rudeltippen">flattr</a></p>
       </footer>
     </div>
     <script src="/public/javascripts/jquery.js"></script>
