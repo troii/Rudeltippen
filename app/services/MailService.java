@@ -122,18 +122,18 @@ public class MailService extends Mailer {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
-		
+
 		List<User> users = User.find("Admin", true).fetch();
 		for (User user : users) {
-			if (ValidationUtils.isValidEmail(user.getEmail())) {
+			if (ValidationUtils.isValidEmail(user.getUsername())) {
 				setReplyTo(replyto);
 				setFrom(from);
-				addRecipient(user.getEmail());
+				addRecipient(user.getUsername());
 				setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed"));
 				send(response);
 			} else {
 				Logger.error("Tryed to sent info on webservice, but recipient was invalid.");
-			}	
+			}
 		}
 	}
 }
