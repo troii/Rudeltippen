@@ -75,4 +75,8 @@ public class Admin extends Root {
 
 		redirect("/admin/index/" + playday);
 	}
+
+	public static void settings() {
+		render();
+	}
 }
