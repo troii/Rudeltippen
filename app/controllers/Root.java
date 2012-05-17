@@ -14,5 +14,6 @@ public class Root extends Controller {
 	    } else {
 	    	renderArgs.put("connectedUser", null);
 	    }
+	    renderArgs.put("currentPlayday", AppUtils.getCurrentPlayday());
 	}
 }
