@@ -28,7 +28,6 @@ public class UnitTests extends UnitTest {
     		user.setAdmin(true);
     		user.setUsername("user" + i + "@rudeltippen.de");
     		user.setNickname("user" + i);
-    		user.setEmail("user" + i + "@rudeltippen.de");
     		user.setRegistered(new Date());
     		user.setReminder(true);
     		user.setActive(true);
@@ -39,7 +38,6 @@ public class UnitTests extends UnitTest {
         User user = new User();
         user.setAdmin(false);
         user.setUsername("user8@rudeltippen.de");
-        user.setEmail("user8@rudeltippen.de");
         user.setNickname("user8");
         user.setRegistered(new Date());
         user.setReminder(true);
@@ -51,7 +49,6 @@ public class UnitTests extends UnitTest {
 		user = new User();
 		user.setAdmin(false);
 		user.setUsername("user555@rudeltippen.de");
-		user.setEmail("user555@rudeltippen.de");
 		user.setNickname("user555");
 		user.setRegistered(new Date());
 		user.setReminder(true);
@@ -149,34 +146,34 @@ public class UnitTests extends UnitTest {
     	Team away = new Team();
     	home.setName("home");
     	away.setName("away");
-    	
+
     	Game game = new Game();
     	game.setHomeTeam(home);
     	game.setAwayTeam(away);
     	game.setHomeScore("5");
     	game.setAwayScore("3");
-    	
+
     	assertEquals("home", game.getWinner().getName());
     	assertEquals("away", game.getLoser().getName());
-    	
+
     	game.setHomeScore("3");
     	game.setAwayScore("5");
-    	
+
     	assertEquals("home", game.getLoser().getName());
     	assertEquals("away", game.getWinner().getName());
-    	
+
     	game.setOvertime(true);
     	game.setHomeScore("1");
     	game.setAwayScore("1");
     	game.setHomeScoreOT("8");
     	game.setAwayScoreOT("3");
-    	
+
     	assertEquals("home", game.getWinner().getName());
     	assertEquals("away", game.getLoser().getName());
-    	
+
     	game.setHomeScoreOT("3");
     	game.setAwayScoreOT("8");
-    	
+
     	assertEquals("home", game.getLoser().getName());
     	assertEquals("away", game.getWinner().getName());
     }
