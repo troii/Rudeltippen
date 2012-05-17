@@ -1,4 +1,4 @@
-**PLEASE NOTE: The current Version 1.0.0.Beta1 is for testing purposes only! The final version 1.0.0 is planned for end of May.**
+**PLEASE NOTE: The current Version 1.0.0.Beta2 is for testing purposes only! The final version 1.0.0 is planned for end of May.**
 
 Rudeltippen
 ===========
