@@ -16,6 +16,7 @@ import models.Settings;
 import models.User;
 import play.Logger;
 import play.data.validation.Validation;
+import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.libs.Crypto;
@@ -27,6 +28,7 @@ import utils.ValidationUtils;
 
 @With(Auth.class)
 public class Users extends Root {
+	@Transactional(readOnly=true)
 	public static void show(String nickname) {
 		final User user = User.find("byNickname", nickname).first();
 
@@ -77,6 +79,7 @@ public class Users extends Root {
 		}
 	}
 
+	@Transactional(readOnly=true)
 	public static void profile() {
 		final User user = AppUtils.getConnectedUser();
 
@@ -224,14 +227,12 @@ public class Users extends Root {
 	}
 
 	public static void updatepicture(File picture) {
-		validation.required(picture);
-
 		if (picture != null) {
 			validation.isTrue(ValidationUtils.checkFileLength(picture.length())).message("validation.checkFileLength");
 		} else {
 			validation.isTrue(false);
 		}
-
+		
 		if (validation.hasErrors()) {
 			flash.put("profileerror", true);
 			params.flash();
@@ -261,7 +262,6 @@ public class Users extends Root {
 		}
 
 		flash.keep();
-
 		redirect("/users/profile");
 	}
 }

@@ -15,6 +15,7 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
+import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.With;
 import services.TwitterService;
@@ -23,6 +24,7 @@ import utils.ValidationUtils;
 
 @With(Auth.class)
 public class Tips extends Root {
+	@Transactional(readOnly=true)
 	public static void index(int number) {
 		if (number <= 0) { number = 1; }
 		List<Playday> playdays = Playday.findAll();
@@ -31,6 +33,7 @@ public class Tips extends Root {
 		render(playdays, playday, number);
 	}
 
+	@Transactional(readOnly=true)
 	public static void games(int number) {
 		if (number <= 0) { number = 1; }
 		Playday playday = Playday.find("byNumber", number).first();
@@ -38,11 +41,13 @@ public class Tips extends Root {
 		render(playday);
 	}
 
+	@Transactional(readOnly=true)
 	public static void extra() {
 		List<Extra> extras = Extra.findAll();
 		render(extras);
 	}
 
+	@Transactional(readOnly=true)
 	public static void extras() {
 		List<Playday> playdays = Playday.findAll();
 		List<Extra> extras = Extra.findAll();

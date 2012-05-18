@@ -5,10 +5,12 @@ import java.util.List;
 import models.Game;
 import models.Settings;
 import models.User;
+import play.db.jpa.Transactional;
 import play.mvc.With;
 import utils.AppUtils;
 
 @With(Auth.class)
+@Transactional(readOnly=true)
 public class Application extends Root {
     public static void index() {
     	final List<User> topUsers = User.find("ORDER BY points DESC").fetch(3);

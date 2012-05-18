@@ -4,9 +4,11 @@ import java.util.List;
 
 import models.Bracket;
 import models.Playday;
+import play.db.jpa.Transactional;
 import play.mvc.With;
 
 @With(Auth.class)
+@Transactional(readOnly=true)
 public class Tournament extends Root {
 	public static void index() {
 		final List<Bracket> brackets = Bracket.findAll();
