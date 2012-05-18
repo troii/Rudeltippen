@@ -70,7 +70,7 @@
 	<div class="row-fluid">
 		<div class="span6 hidden-phone">
 			#{if play.configuration.get("dashboard.twitter.username") != ""}
-				<h2>&{'twitternews'}</h2>
+				<h2>&{'twitternews'} (@${play.configuration.get("dashboard.twitter.username")})</h2>
 				<div class="twitter"></div>
 			#{/if}
 		</div>
@@ -83,7 +83,7 @@
 					<th>&{'hometeam'}</th>
 					<th>&{'awayteam'}</th>
 					<th>&{'yourbet'}</th>
-					<th>&{'tendence'}</th>
+					<th class="visible-desktop">&{'tendence'}</th>
 				</tr>
 			</thead>
 				<tbody>
@@ -93,7 +93,7 @@
 							<td><img src="/public/images/flags/${nextGame.homeTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${nextGame.homeTeam?.name}</td>
 							<td><img src="/public/images/flags/${nextGame.awayTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;${nextGame.awayTeam?.name}</td>
 							<td>${nextGame.getTip()}</td>
-							<td>${nextGame.getTrend()}</td>
+							<td class="visible-desktop">${nextGame.getTrend()}</td>
 						</tr>
 					#{/list}
 					#{else}
