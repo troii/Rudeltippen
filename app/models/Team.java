@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -20,11 +21,11 @@ public class Team extends Model{
 	@ManyToOne
 	private Bracket bracket;
 
-	@OneToMany(mappedBy = "homeTeam")
+	@OneToMany(mappedBy = "homeTeam", fetch=FetchType.LAZY)
 	@OrderBy("kickoff")
 	private List<Game> homeGames;
 
-	@OneToMany(mappedBy = "awayTeam")
+	@OneToMany(mappedBy = "awayTeam", fetch=FetchType.LAZY)
 	@OrderBy("kickoff")
 	private List<Game> awayGames;
 
