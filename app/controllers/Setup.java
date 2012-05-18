@@ -2,8 +2,13 @@ package controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
+import models.Game;
 import models.Settings;
 import models.User;
 import play.Play;
@@ -29,9 +34,12 @@ public class Setup extends Controller{
 
 	public static void index() {
 		final Settings settings = AppUtils.getSettings();
-		render(settings);
-	}
+		final List<String> timeZones = AppUtils.getTimezones();
+		final List<String> locales = AppUtils.getLanguages();
 
+		render(settings, timeZones, locales);
+	}
+	
 	public static void init(String name,
 							int pointsGameWin,
 							int pointsGameDraw,
@@ -39,11 +47,14 @@ public class Setup extends Controller{
 							int pointsTipDiff,
 							int pointsTipTrend,
 							int minutesBeforeTip,
+							int maxPictureSize,
 							String timeZoneString,
 							String dateString,
 							String dateTimeLang,
 							String timeString,
 							boolean countFinalResult,
+							boolean informOnNewTipper,
+							boolean enableRegistration,
 							String bonusTipEnding,
 							String nickname,
 							String username,
@@ -59,6 +70,7 @@ public class Setup extends Controller{
 		validation.required(username);
 		validation.required(userpass);
 		validation.required(nickname);
+		validation.range(pointsGameDraw, 0, 1024000);
 		validation.range(pointsGameWin, 1, 99);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsTip, 0, 99);
@@ -86,7 +98,15 @@ public class Setup extends Controller{
 	        response.removeCookie("rememberme");
 
 			Fixtures.deleteDatabase();
+			//TODO: In future version this should come from a dropdown in setup
 	    	Fixtures.loadModels("em2012.yml");
+	    	
+	    	List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
+	    	List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
+	    	boolean hasPlayoffs = false;
+	    	if (playoffGames != null && playoffGames.size() > 0) {
+	    		hasPlayoffs = true;
+	    	}
 
 			Settings settings = new Settings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
@@ -99,17 +119,16 @@ public class Setup extends Controller{
 			settings.setPointsTipTrend(pointsTipTrend);
 			settings.setMinutesBeforeTip(minutesBeforeTip);
 			settings.setBonusTippEnding(extraEnding);
-			settings.setInformOnNewTipper(true);
+			settings.setInformOnNewTipper(informOnNewTipper);
 			settings.setTimeZoneString(timeZoneString);
 			settings.setDateString(dateString);
 			settings.setDateTimeLang(dateTimeLang);
 			settings.setTimeString(timeString);
-			settings.setPlayoffs(true);
-			settings.setPrePlayoffGames(24);
+			settings.setPlayoffs(hasPlayoffs);
+			settings.setPrePlayoffGames(prePlayoffGames.size());
 			settings.setCountFinalResult(countFinalResult);
-			settings.setEnableRegistration(true);
-			settings.setPlayoffTeams(2);
-			settings.setMaxPictureSize(102400);
+			settings.setEnableRegistration(enableRegistration);
+			settings.setMaxPictureSize(maxPictureSize);
 			settings._save();
 
 			User user = new User();
@@ -119,6 +138,8 @@ public class Setup extends Controller{
 			user.setNickname(nickname);
 			user.setUserpass(AppUtils.hashPassword(userpass, salt));
 			user.setRegistered(new Date());
+			user.setExtraPoints(0);
+			user.setTipPoints(0);
 			user.setPoints(0);
 			user.setActive(true);
 			user.setAdmin(true);
