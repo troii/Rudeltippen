@@ -5,11 +5,10 @@
 			#{list items:playdays, as:'aPlayday'}
 				<li #{if aPlayday_index == number } class="active" #{/if}><a href="javascript:load('${aPlayday.number}','/tips/games/${aPlayday.number}');">${aPlayday.name}</a></li>
 			#{/list}
-			<li><a href="javascript:load('${aPlayday.number + 1 }','/tips/extra');">Bonustips</a></li>
+			<li><a href="javascript:load('${aPlayday.number + 1 }','/tips/extra');">&{'extratips'}</a></li>
 		</ul>
 	</div>
 </div>
-
 <div class="span9">
 	#{include '/tips/_games.html' /}
 </div>
