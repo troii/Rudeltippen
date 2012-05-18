@@ -1,18 +1,23 @@
 package unit;
 
 import java.util.Date;
+import java.util.Map;
 
 import models.Game;
 import models.Settings;
 import models.Team;
 import models.User;
+import models.WSResult;
+import models.WSResults;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.w3c.dom.Document;
 
 import play.test.Fixtures;
 import play.test.UnitTest;
+import services.UpdateService;
 import utils.AppUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
@@ -200,35 +205,22 @@ public class UnitTests extends UnitTest {
 
     @Test
     public void testWebServiceUpdate() {
-//TODO needs implementation
-//        Game game = new Game();
-//        game.setMatchIDWS("9897");
-//        WSResults wsResults = WSAppUtils.setResultsFromWebService(game);
-//        Map<String, WSResult> wsResult = wsResults.getWsResult();
-//
-//        assertNotNull(wsResults);
-//        assertNotNull(wsResult);
-//        assertTrue(wsResult.containsKey("45"));
-//        assertTrue(wsResult.containsKey("90"));
-//        assertTrue(wsResult.containsKey("120"));
-//        assertTrue(wsResult.containsKey("121"));
-//        assertEquals(wsResult.get("90").getHomeScore(), "0");
-//        assertEquals(wsResult.get("90").getAwayScore(), "0");
-//        assertEquals(wsResult.get("120").getHomeScore(), "0");
-//        assertEquals(wsResult.get("120").getAwayScore(), "0");
-//        assertEquals(wsResult.get("121").getHomeScore(), "5");
-//        assertEquals(wsResult.get("121").getAwayScore(), "3");
-//
-//        Document document = WSAppUtils.getDocumentFromWebService("9998");
-//        if (document != null) {
-//            game = Game.find("byGameNumber", 1).first();
-//            game.setMatchIDWS("9998");
-//            WSAppUtils.setLiveResult(game, document);
-//        }
-//
-//        LiveResult liveResult = game.getLiveResult();
-//        assertNotNull(liveResult);
-//        assertEquals(liveResult.getHomeScore(), "2");
-//        assertEquals(liveResult.getAwayScore(), "1");
+        Game game = new Game();
+        game.setWebserviceID("9897");
+        WSResults wsResults = UpdateService.setResultsFromWebService(game);
+        Map<String, WSResult> wsResult = wsResults.getWsResult();
+        
+        assertNotNull(wsResults);
+        assertNotNull(wsResult);
+        assertTrue(wsResult.containsKey("45"));
+        assertTrue(wsResult.containsKey("90"));
+        assertTrue(wsResult.containsKey("120"));
+        assertTrue(wsResult.containsKey("121"));
+        assertEquals(wsResult.get("90").getHomeScore(), "0");
+        assertEquals(wsResult.get("90").getAwayScore(), "0");
+        assertEquals(wsResult.get("120").getHomeScore(), "0");
+        assertEquals(wsResult.get("120").getAwayScore(), "0");  
+        assertEquals(wsResult.get("121").getHomeScore(), "5");
+        assertEquals(wsResult.get("121").getAwayScore(), "3");    
     }
 }
