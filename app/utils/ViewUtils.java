@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import models.Bracket;
@@ -62,7 +63,9 @@ public class ViewUtils extends JavaExtensions{
 		String dateString = settings.getDateString();
 		String timeString = settings.getTimeString();
 
-		SimpleDateFormat df = new SimpleDateFormat(dateString + " - " + timeString);
+		//FIXME Hardcoded language and country
+		Locale currentLocale = new Locale("de", "DE");
+		SimpleDateFormat df = new SimpleDateFormat(dateString + " - " + timeString, currentLocale);
 		return df.format(date);
 	}
 
@@ -257,7 +260,7 @@ public class ViewUtils extends JavaExtensions{
     			if (user.equals(gameTip.getUser())) {
     				return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
     			} else {
-    				return "Getippt";
+    				return Messages.get("tiped");
     			}
     		}
     	}

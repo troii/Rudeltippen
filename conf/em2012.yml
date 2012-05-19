@@ -159,28 +159,28 @@ models.Team(england):
     gamesLost:     0
 
 models.Stadium(warschau):
-    name:          Warschau (POL)
+    name:          Warschau
 
 models.Stadium(posen):
-    name:          Posen (POL)
+    name:          Posen
 
 models.Stadium(breslau):
-    name:          Breslau (POL)
+    name:          Breslau
 
 models.Stadium(danzig):
-    name:          Danzig (POL)
+    name:          Danzig
 
 models.Stadium(kiew):
-    name:          Kiew (UKR)
+    name:          Kiew
 
 models.Stadium(donezk):
-    name:          Donezk (UKR)
+    name:          Donezk
 
 models.Stadium(lemberg):
-    name:          Lemberg (UKR)
+    name:          Lemberg
 
 models.Stadium(charkiw):
-    name:          Charkiw (UKR)
+    name:          Charkiw
 
 models.Playday(p1):
     name:          1. Spieltag

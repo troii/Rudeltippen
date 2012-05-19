@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,7 +16,7 @@ public class Stadium extends Model{
 	@Column(nullable=false)
 	private String name;
 
-	@OneToMany(mappedBy = "stadium")
+	@OneToMany(mappedBy = "stadium", fetch=FetchType.LAZY)
 	private List<Game> games;
 
 	private String capacity;

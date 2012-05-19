@@ -306,7 +306,6 @@ public class Auth extends Controller {
         	String usersalt = null;
         	User user = User.find("byUsername", username).first();
         	if (user != null) {	usersalt = user.getSalt(); }
-        	System.out.println(AppUtils.hashPassword(userpass, usersalt));
         	return User.connect(username, AppUtils.hashPassword(userpass, usersalt)) != null;
         }
 

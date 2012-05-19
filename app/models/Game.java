@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +24,7 @@ public class Game extends Model{
 	@ManyToOne
 	private Stadium stadium;
 
-	@OneToMany(mappedBy = "game")
+	@OneToMany(mappedBy = "game", fetch=FetchType.LAZY)
 	private List<GameTip> gameTips;
 
 	@ManyToOne

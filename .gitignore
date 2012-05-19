@@ -25,4 +25,16 @@ eclipse/rudeltippen.launch
 
 tmp/
 
+
 logs/
+test-result/unit.UnitTests.class.passed.html
+
+test-result/TEST-functional.ApplicationTests.xml
+
+test-result/TEST-unit.UnitTests.xml
+
+test-result/application.log
+
+test-result/functional.ApplicationTests.class.passed.html
+
+test-result/result.passed

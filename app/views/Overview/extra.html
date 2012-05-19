@@ -2,7 +2,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th></th>
+			<th class="hidden-phone"></th>
 			<th></th>
 			#{list items:extras, as:'extra'}
 				<th>${extra.questionShort}</th>
@@ -14,10 +14,10 @@
 		<tr>
 			#{list items:extraTips.entrySet(), as:'user'}
 				#{if user.key.picture == null}
-					<td><a href="@{users.show()}/${user.key.nickname}"><img src="/public/images/user_placeholder.gif" /></a></td>
+					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="/public/images/user_placeholder.gif" /></a></td>
 				#{/if}
 				#{else}
-					<td><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
+					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
 				#{/else}
 					<td><br /><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
 				#{list items:user.value, as:'extraTip'}

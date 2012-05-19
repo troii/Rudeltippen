@@ -1,10 +1,14 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
+import java.util.Map.Entry;
 
 import models.Bracket;
 import models.Extra;
@@ -15,12 +19,15 @@ import models.Playday;
 import models.Settings;
 import models.Team;
 import models.User;
+import models.WSResult;
+import models.WSResults;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
 import play.Play;
+import play.cache.Cache;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.test.Fixtures;
@@ -29,7 +36,12 @@ import controllers.Auth.Security;
 
 public class AppUtils {
 	public static Settings getSettings() {
-		return Settings.find("byAppName", "rudeltippen").first();
+		Settings settings = (Settings) Cache.get("settings");
+		if (settings == null) {
+			settings = Settings.find("byAppName", "rudeltippen").first();
+			Cache.add("settings", settings);
+		}
+		return settings;
 	}
 
     public static String hashPassword(String userpass, String usersalt) {
@@ -74,10 +86,8 @@ public class AppUtils {
 
 	public static void initApp() {
 		Fixtures.deleteDatabase();
-		Fixtures.loadModels("em2012.yml");
-	}
-
-	public static void addTestUser() {
+		Fixtures.loadModels("em2012.test.yml");
+		
     	for (int i=1; i <= 100; i++) {
     		User user = new User();
     		user.setAdmin(true);
@@ -232,18 +242,7 @@ public class AppUtils {
                 List<Game> playoffGames = Game.find("byPlayoffAndEnded", true, false).fetch();
                 for (Game game : playoffGames) {
                     Team home = AppUtils.getTeamByReference(game.getHomeReference());
-
-                    if (home!= null) {
-						System.out.println("Home: " + home.getName());
-					}
-
                     Team away = AppUtils.getTeamByReference(game.getAwayReference());
-
-                    if (away!= null) {
-						System.out.println("Away: " + away.getName());
-					}
-
-
                     game.setHomeTeam(home);
                     game.setAwayTeam(away);
                     game._save();
@@ -438,7 +437,6 @@ public class AppUtils {
 		return tips;
 	}
 
-
 	public static int getCurrentPlayday () {
 		final Playday playday = Playday.find("SELECT p FROM Playday p WHERE NOW() >= playdayStart AND NOW() <= playdayEnd").first();
 		if (playday != null && playday.getNumber() != 0) {
@@ -447,4 +445,39 @@ public class AppUtils {
 
 		return 0;
 	}
+	
+	public static List<String> getTimezones() {
+		String [] zonesArray = TimeZone.getAvailableIDs();
+		Arrays.sort(zonesArray);
+		return Arrays.asList(zonesArray);
+	}
+
+	public static List<String> getLanguages() {
+		String [] localeArray = Locale.getISOLanguages();
+		Arrays.sort(localeArray);
+		return Arrays.asList(localeArray);
+	}
+	
+    public static void setGameScoreFromWebService(Game game, final WSResults wsResults) {
+        Map<String, WSResult> wsResult = wsResults.getWsResult();
+        final String homeScore = wsResult.get("90").getHomeScore();
+        final String awayScore = wsResult.get("90").getAwayScore();
+        String homeScoreExtratime = null;
+        String awayScoreExtratime = null;
+        String extratime = null;
+
+        if (wsResult.containsKey("121")) {
+            homeScoreExtratime = wsResult.get("121").getHomeScore();
+            awayScoreExtratime = wsResult.get("121").getAwayScore();
+            extratime = "i.E.";
+        } else if (wsResult.containsKey("120")) {
+            homeScoreExtratime = wsResult.get("120").getHomeScore();
+            awayScoreExtratime = wsResult.get("120").getAwayScore();
+            extratime = "n.V.";
+        }
+
+        Logger.info("Updating Result from WebService. " + game);
+        setGameScore(String.valueOf(game.getId()), homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
+        calculateScoresAndPoints();
+    }
 }

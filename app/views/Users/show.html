@@ -8,38 +8,38 @@
 <table class="table">
 	<thead>
            <tr>
-               <td><b>Platz</b></td>
+               <td><b>&{'place'}</b></td>
                <td>${user?.place}</td>
            </tr>
     </thead>
     <tbody>
 		<tr>
-			<td width="200"><b>Punkte</b></td>
+			<td width="200"><b>&{'points'}</b></td>
 			<td>${user?.points}</td>
 		</tr>
            <tr>
-               <td width="200"><b>Punkte pro Tipp</b></td>
+               <td width="200"><b>&{'pointsperbet'}</b></td>
                <td>${pointsPerTipp}</td>
            </tr>
 		<tr>
-			<td width="200"><b>Abgegebene Tipps</b></td>
+			<td width="200"><b>&{'placedbets'}</b></td>
 			<td>${statistics?.sumTipps} von ${statistics?.sumGames} m&ouml;glichen Tipps</td>
 		</tr>
 		<tr>
-			<td><b>Richtige Ergebnisse</b></td>
+			<td><b>&{'correctresults'}</b></td>
 			<td>${statistics?.correctTipps}</td>
 		</tr>
 		<tr>
-			<td><b>Richtige Differenzen</b></td>
+			<td><b>&{'correctdifferences'}</b></td>
 			<td>${statistics?.correctDifference}</td>
 		</tr>
 		<tr>
-			<td><b>Richtige Tendenzen</b></td>
+			<td><b>&{'correcttendence'}</b></td>
 			<td>${statistics?.correctTrend}</td>
 		</tr>
            <tr>
-               <td><b>Tipp-Quote</b></td>
-               <td>${statistics?.tippQuote} % richtige Ergebnisse</td>
+               <td><b>&{'betquote'}</b></td>
+               <td>${statistics?.tippQuote} % &{'correctresultsquote'}</td>
            </tr>
 	</tbody>
 </table>

@@ -1,10 +1,14 @@
 package functional;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import models.User;
+
 import org.junit.Test;
 
+import play.Play;
 import play.mvc.Http.Response;
 import play.test.FunctionalTest;
 
@@ -143,78 +147,47 @@ public class ApplicationTests extends FunctionalTest {
 
         assertStatus(200, GET("/"));
         assertStatus(200, GET("/application/rules"));
+        assertStatus(200, GET("/tips"));
+        assertStatus(200, GET("/users/show/user1"));
+        assertStatus(200, GET("/users/profile"));
+        assertStatus(200, GET("/overview"));
+        assertStatus(200, GET("/tips/storeextra"));
+        assertStatus(200, GET("/tips/storetips"));
 
-//TODO needs implementation
-//
-//        response = GET("/games/store");
-//        assertStatus(302, GET("/games/store"));
-//        assertEquals(response.getHeader("location"), "/games/results?playday=0");
-//
-//        assertStatus(200, GET("/profile/index"));
-//
-//        response = GET("/profile/statistic");
-//        assertStatus(302, GET("/profile/statistic"));
-//        assertEquals(response.getHeader("location"), "/");
-//
-//        assertStatus(200, GET("/profile/statistic/user5"));
-//
-//        response = GET("/profile/updatenickname");
-//        assertStatus(302, GET("/profile/updatenickname"));
-//        assertEquals(response.getHeader("location"), "/profile");
-//
-//        response = GET("/profile/updatenotifications");
-//        assertStatus(302, GET("/profile/updatenotifications"));
-//        assertEquals(response.getHeader("location"), "/profile");
-//
-//        response = GET("/profile/updatepassword");
-//        assertStatus(302, GET("/profile/updatepassword"));
-//        assertEquals(response.getHeader("location"), "/profile");
-//
-//        response = GET("/profile/updatepicture");
-//        assertStatus(302, GET("/profile/updatepicture"));
-//        assertEquals(response.getHeader("location"), "/profile");
-//
-//        response = GET("/profile/updateusername");
-//        assertStatus(302, GET("/profile/updateusername"));
-//        assertEquals(response.getHeader("location"), "/profile");
-//
-//        assertStatus(200, GET("/tipps/games"));
-//
-//        response = GET("/tipps/overview");
-//        assertStatus(302, GET("/tipps/overview"));
-//        assertEquals(response.getHeader("location"), "/tipps/overview?playday=0");
-//
-//        assertStatus(200, GET("/tipps/overview?playday=0"));
-//
-//        response = GET("/tipps/storebonus");
-//        assertStatus(302, GET("/tipps/storebonus"));
-//        assertEquals(response.getHeader("location"), "/tipps/games?playday=0");
-//
-//        response = GET("/tipps/storegames");
-//        assertStatus(302, GET("/tipps/storegames"));
-//        assertEquals(response.getHeader("location"), "/tipps/games?playday=0");
-//
-//        File file = new File(Play.applicationPath + "/conf/user.test.gif");
-//        Map<String, File> files = new HashMap<String, File>();
-//        files.put("picture", file);
-//        response = POST("/profile/updatepicture", params, files);
-//        assertEquals(response.getHeader("location"), "/profile");
-//
-//        User user = User.find("byUsername", "user5@rudeltippen.de").first();
-//        assertNotNull(user.getPicture());
-//        assertNotNull(user.getPictureLarge());
+        response = GET("/users/updatenickname");
+        assertStatus(302, GET("/users/updatenickname"));
+        assertEquals(response.getHeader("location"), "/users/profile");
+        
+        response = GET("/users/updatenotifications");
+        assertStatus(302, GET("/users/updatenotifications"));
+        assertEquals(response.getHeader("location"), "/users/profile");
+
+        response = GET("/users/updatepassword");
+        assertStatus(302, GET("/users/updatepassword"));
+        assertEquals(response.getHeader("location"), "/users/profile");
+
+        response = GET("/users/updatepicture");
+        assertStatus(302, GET("/users/updatepicture"));
+        assertEquals(response.getHeader("location"), "/users/profile");
+
+        response = GET("/users/updateusername");
+        assertStatus(302, GET("/users/updateusername"));
+        assertEquals(response.getHeader("location"), "/users/profile");
+        
+        response = GET("/users/updatepicture");
+        assertStatus(302, GET("/users/updatepicture"));
+        assertEquals(response.getHeader("location"), "/users/profile");
     }
 
     @Test
     public void testIsNotAdmin() {
-//TODO needs implementation
-//        Map<String, String> params = new HashMap<String, String>();
-//        params.put("username", "user8@rudeltippen.de");
-//        params.put("userpass", "user8");
-//        Response response = POST("/auth/authenticate", params);
-//        assertStatus(302, response);
-//        assertEquals(response.getHeader("location"), "/");
-//
-//        assertStatus(403, POST("/games/results"));
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("username", "user8@rudeltippen.de");
+        params.put("userpass", "user8");
+        Response response = POST("/auth/authenticate", params);
+        assertStatus(302, response);
+        assertEquals(response.getHeader("location"), "/");
+
+        assertStatus(403, POST("/admin/results"));
     }
 }

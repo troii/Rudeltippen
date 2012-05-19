@@ -8,11 +8,13 @@ import models.ExtraTip;
 import models.GameTip;
 import models.Playday;
 import models.User;
+import play.db.jpa.Transactional;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ViewUtils;
 
 @With(Auth.class)
+@Transactional(readOnly=true)
 public class Overview extends Root{
 	public static void index(int number, String page) {
 		if (number <= 0) { number = 1; }
@@ -45,9 +47,9 @@ public class Overview extends Root{
 		final List<Extra> extras = Extra.findAll();
 		List<Map<User, List<ExtraTip>>> tips =  AppUtils.getExtraTips(users, extras);
 
-		//FIX ME: We dont need a hardcoded playday
+		//TODO: Ugly workaround for settings the playday in /overview/extra for pagingation which requires a Playday object
 		Playday playday = new Playday();
-		playday.setNumber(7);
+		playday.setNumber((int)Playday.count() + 1);
 
 		render(pagination, tips, playday, extras);
 	}

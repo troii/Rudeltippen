@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,10 +35,10 @@ public class User extends Model{
     @Column(length=1024)
     private String pictureLarge;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<GameTip> gameTips;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ExtraTip> extraTips;
 
 	@OneToMany(mappedBy = "user")

@@ -34,7 +34,7 @@ public class ValidationUtils {
 
     public static boolean checkFileLength(Long filesize) {
     	if (filesize > 0 && (filesize <= AppUtils.getSettings().getMaxPictureSize())) {
-            return true;
+    		return true;
         }
         return false;
     }
