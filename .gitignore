@@ -24,3 +24,5 @@ eclipse/Test rudeltippen.launch
 eclipse/rudeltippen.launch
 
 tmp/
+
+logs/
