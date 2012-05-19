@@ -1,5 +1,3 @@
-**PLEASE NOTE: The current Version 1.0.0.Beta1 is for testing purposes only! The final version 1.0.0 is planned for end of May.**
-
 Rudeltippen
 ===========
 
@@ -18,11 +16,10 @@ Requirements
 ===========
 
 - [Java SDK 1.6+][1]
-- [Play Framework 1.2.x][2]
-- Apache, Nginx or any other HTTP-Server with Proxy-Support
+- Apache, Nginx or any other HTTP-Server with Proxy-Support (Apache recommended)
 - SMTP-Server (SSL/non-SSL)
 - Linux, Mac or Windows
-- MySQL, PostgreSQL, MSSQL or Oracle
+- MySQL, PostgreSQL, MSSQL or Oracle Databse (MySQL recommended)
 
 Translations
 ===========
@@ -40,34 +37,19 @@ Username: demo@rudeltippen.de
 Password: demo12345
 
 
-Please note that this is not an administrative User, so some Features are not available. Also User Registration is not enabled.
+Please note that the above user is not an administrative user, so some Features are not available. Also Registration is not enabled.
 
 Installation
 ===========
 
-This installation guide assumes that you already have JDK 1.6+ running, have your Database- and SMTP-Credentials right at your side.
+This installation guide assumes that you already have JDK 1.6+ installed and running, and have your Database- and SMTP-Credentials right beside you.
 
 Step 1
 ------------------
 
-Download [Play Framework 1.2.x][2] and unzip
-
-For convenience, you should add the framework installation directory to your system PATH. On UNIX systems will be something like:
-
-```bash
-export PATH=$PATH:/path/to/play
-```
-
-On windows systems you'll need to set it in the global environment variables.
-
-> If you’re on UNIX, make sure that the play script is executable (otherwise do a chmod a+x play).
+Download the latest version of Rudeltippen and unzip to your <INSTLLATIONFOLDER>
 
 Step 2
-------------------
-
-Download the current Version of Rudeltippen and unzip
-
-Step 3
 ------------------
 
 Open <INSTLLATIONFOLDER>/conf/application.conf
@@ -121,41 +103,29 @@ jvm.memory=-Xmx128m -Xms64m
 
 Save application.conf.
 
-Step 4
+Step 3
 ------------------
 
 Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
 
-> By default Rudeltippen runs on Port 9000. If you need to change this, you'll find the Port Configuration in application.conf 'Server configuration'.
+> By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the Port Configuration in application.conf 'Server configuration'.
 
-Step 5
+Step 4
 ------------------
 
-Go to your Installation-Directory of rudeltippen and run
+You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your <INSTLLATIONFOLDER>
 
 ```bash
-play id prod
+startup.sh
 ```
 
-This will set Play in production Mode. Now that we have Play in production mode, we have to Download the required Dependecies. Run
-
-```bash
-play deps --sync
-```
-
-Finally we are ready to start-up Rudeltippen. Unix and Mac users can start Rudeltippen with
-
-```bash
-play start
-```
-
-If you’re on Windows, 'play start' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install psexec and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
 ```
 
-Step 6
+Step 5
 ------------------
 
 Open your Browser and go to http://yourdomain.com/setup
@@ -163,73 +133,89 @@ Open your Browser and go to http://yourdomain.com/setup
 > You did set username and password in application.conf (see 3.)
 > After the Setup is complete Rudeltippen will automaticly load all games for the Euro 2012.
 
-Step 7
+Step 6
 ------------------
 
 Change the default values if you want to and create an inital user.
 
 > The inital user will be an administrative user and automaticly activated.
 
-Step 8
+Step 7
 ------------------
 
 Login with your newely create user and enjoy Rudeltippen!
 
+If you need to stop Rudeltippen. Got to your <INSTLLATIONFOLDER> and call
+
+```bash
+shutdown.sh
+```
+
+OR
+
+```bash
+shutdown.bat
+```
+
+
 Upgrading
 ===========
+
+Step 0
+------------------
+
+Go to your <INSTLLATIONFOLDER> and make a copy of /conf/application.conf. We will need this File once upgrading is finished.
 
 Step 1
 ------------------
 
-Download the latest Version of Rudeltippen and unzip
-
-> You can delete the '/conf' folder after unzipping the latest version when upgrading
+Download the latest of Rudeltippen.
 
 Step 2
 ------------------
 
-Go to your Installation-Directory of rudeltippen and run
+Go to your <INSTLLATIONFOLDER> rudeltippen and run
 
 ```bash
-play stop
+shutdown.sh
+```
+
+OR
+
+```bash
+shutdown.bat
 ```
 
 Step 3
 ------------------
 
-Delete **everything** in your Installation-Directory except the '/conf' folder
+Completly delete your <INSTLLATIONFOLDER>
 
 Step 4
 ------------------
 
-Copy **everything** from the previously unzipped latest version except the '/conf' to your Installation-Directory
+Unzip the latest version of Rudeltippen to your <INSTLLATIONFOLDER>
 
 Step 5
 ------------------
 
-Go to your Installation-Directory
+In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER>/conf and replace the existing file. If you did not make of copy application.conf, even of you were told to, you need to rerun Step 2 (and only step 2!) of the Installation guid (see above).
 
-> Make sure your Play Installation is in production mode (see Installation 5.)
+Step 6
+------------------
 
-Now that we have Play in production mode, we have to Download the required Dependecies. Run
-
-```bash
-play deps --sync
-```
-
-Finally we are ready to start-up Rudeltippen. Unix and Mac users can start Rudeltippen with
+You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your <INSTLLATIONFOLDER>
 
 ```bash
-play start
+startup.sh
 ```
 
-If you’re on Windows, 'play start' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install psexec and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
-```
 
-Step 6
+Step 7
 ------------------
 
 Enjoy your latest version of Rudeltippen!
@@ -240,10 +226,6 @@ Support
 
 If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a Bug, please open an Issue on Github.
 
-FAQ
-===========
-
-TBD
 
 Stuff
 ===========
@@ -262,3 +244,4 @@ Stuff
 [7]: http://twitter.github.com/bootstrap/
 [8]: http://twitter.com/rudeltippen
 [9]: http://www.playframework.org/documentation/1.2.4/production
+[10]: http://technet.microsoft.com/de-de/sysinternals/bb897553.aspx
