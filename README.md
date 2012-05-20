@@ -47,12 +47,12 @@ This installation guide assumes that you already have JDK 1.6+ installed and run
 Step 1
 ------------------
 
-Download the latest version of Rudeltippen and unzip to your <INSTLLATIONFOLDER>
+Download the latest version of Rudeltippen and unzip to your INSTLLATIONFOLDER
 
 Step 2
 ------------------
 
-Open <INSTLLATIONFOLDER>/conf/application.conf
+Open INSTLLATIONFOLDER/conf/application.conf
 
 Set your Rudeltippen URL
 
@@ -113,13 +113,13 @@ Follow the Section ['Front-end HTTP server' on the Play Framework Documentation]
 Step 4
 ------------------
 
-You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your <INSTLLATIONFOLDER>
+You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
 ```bash
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. To solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
@@ -145,7 +145,7 @@ Step 7
 
 Login with your newely create user and enjoy Rudeltippen!
 
-If you need to stop Rudeltippen. Got to your <INSTLLATIONFOLDER> and call
+If you need to stop Rudeltippen. Got to your INSTLLATIONFOLDER and call
 
 ```bash
 shutdown.sh
@@ -164,7 +164,7 @@ Upgrading
 Step 0
 ------------------
 
-Go to your <INSTLLATIONFOLDER> and make a copy of /conf/application.conf. We will need this File once upgrading is finished.
+Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. We will need this File once upgrading is finished.
 
 Step 1
 ------------------
@@ -174,7 +174,7 @@ Download the latest of Rudeltippen.
 Step 2
 ------------------
 
-Go to your <INSTLLATIONFOLDER> rudeltippen and run
+Go to your INSTLLATIONFOLDER rudeltippen and run
 
 ```bash
 shutdown.sh
@@ -189,22 +189,22 @@ shutdown.bat
 Step 3
 ------------------
 
-Completly delete your <INSTLLATIONFOLDER>
+Completly delete your INSTLLATIONFOLDER
 
 Step 4
 ------------------
 
-Unzip the latest version of Rudeltippen to your <INSTLLATIONFOLDER>
+Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER
 
 Step 5
 ------------------
 
-In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER>/conf and replace the existing file. If you did not make of copy application.conf, even of you were told to, you need to rerun Step 2 (and only step 2!) of the Installation guid (see above).
+In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make of copy application.conf, even of you were told to, you need to rerun Step 2 (and only step 2!) of the Installation guid (see above).
 
 Step 6
 ------------------
 
-You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your <INSTLLATIONFOLDER>
+You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
 ```bash
 startup.sh
@@ -213,7 +213,7 @@ startup.sh
 If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
-/path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
+/path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/INSTLLATIONFOLDER
 ```
 
 Step 7
