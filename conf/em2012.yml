@@ -1,21 +1,21 @@
 models.Bracket(a):
-    name:          Gruppe A
+    name:          GroupA
     number:        1
 
 models.Bracket(b):
-    name:          Gruppe B
+    name:          GroupB
     number:        2
 
 models.Bracket(c):
-    name:          Gruppe C
+    name:          GroupC
     number:        3
 
 models.Bracket(d):
-    name:          Gruppe D
+    name:          GroupD
     number:        4
 
 models.Team(polen):
-    name:          Polen
+    name:          Poland
     flag:          pol.png
     bracket:       a
     gamesPlayed:   0
@@ -24,7 +24,7 @@ models.Team(polen):
     gamesLost:     0
 
 models.Team(griechenland):
-    name:          Griechenland
+    name:          Greece
     flag:          gre.png
     bracket:       a
     gamesPlayed:   0
@@ -33,7 +33,7 @@ models.Team(griechenland):
     gamesLost:     0
 
 models.Team(russland):
-    name:          Russland
+    name:          Russia
     flag:          rus.png
     bracket:       a
     gamesPlayed:   0
@@ -42,7 +42,7 @@ models.Team(russland):
     gamesLost:     0
 
 models.Team(tschechien):
-    name:          Tschechien
+    name:          CzechRepublic
     flag:          cze.png
     bracket:       a
     gamesPlayed:   0
@@ -51,7 +51,7 @@ models.Team(tschechien):
     gamesLost:     0
 
 models.Team(niederlande):
-    name:          Niederlande
+    name:          Netherlands
     flag:          ned.png
     bracket:       b
     gamesPlayed:   0
@@ -60,7 +60,7 @@ models.Team(niederlande):
     gamesLost:     0
 
 models.Team(danemark):
-    name:          Dänemark
+    name:          Denmark
     flag:          den.png
     bracket:       b
     gamesPlayed:   0
@@ -69,7 +69,7 @@ models.Team(danemark):
     gamesLost:     0
 
 models.Team(deutschland):
-    name:          Deutschland
+    name:          Germany
     flag:          ger.png
     bracket:       b
     gamesPlayed:   0
@@ -87,7 +87,7 @@ models.Team(portugal):
     gamesLost:     0
 
 models.Team(spanien):
-    name:          Spanien
+    name:          Spain
     flag:          esp.png
     bracket:       c
     gamesPlayed:   0
@@ -96,7 +96,7 @@ models.Team(spanien):
     gamesLost:     0
 
 models.Team(italien):
-    name:          Italien
+    name:          Italy
     flag:          ita.png
     bracket:       c
     gamesPlayed:   0
@@ -105,7 +105,7 @@ models.Team(italien):
     gamesLost:     0
 
 models.Team(irland):
-    name:          Irland
+    name:          RepublicofIreland
     flag:          irl.png
     bracket:       c
     gamesPlayed:   0
@@ -114,7 +114,7 @@ models.Team(irland):
     gamesLost:     0
 
 models.Team(kroatien):
-    name:          Kroatien
+    name:          Croatia
     flag:          cro.png
     bracket:       c
     gamesPlayed:   0
@@ -132,7 +132,7 @@ models.Team(ukraine):
     gamesLost:     0
 
 models.Team(schweden):
-    name:          Schweden
+    name:          Sweden
     flag:          swe.png
     bracket:       d
     gamesPlayed:   0
@@ -141,7 +141,7 @@ models.Team(schweden):
     gamesLost:     0
 
 models.Team(frankreich):
-    name:          Frankreich
+    name:          France
     flag:          fra.png
     bracket:       d
     gamesPlayed:   0
@@ -159,66 +159,82 @@ models.Team(england):
     gamesLost:     0
 
 models.Stadium(warschau):
-    name:          Warschau
+    name:          NationalStadium
+    city:          warsaw
+    capacity:      50000
 
 models.Stadium(posen):
-    name:          Posen
+    name:          PGEArena
+    city:          gdansk
+    capacity:      40000
 
 models.Stadium(breslau):
-    name:          Breslau
+    name:          MunicipalStadium
+    city:          wroclaw
+    capacity:      40000
 
 models.Stadium(danzig):
-    name:          Danzig
+    name:          MunicipalStadium
+    city:          poznan
+    capacity:      40000
 
 models.Stadium(kiew):
-    name:          Kiew
+    name:          OlympicStadium
+    city:          kiev
+    capacity:      70500
 
 models.Stadium(donezk):
-    name:          Donezk
+    name:          DonbassArena
+    city:          donetsk
+    capacity:      50000
 
 models.Stadium(lemberg):
-    name:          Lemberg
+    name:          MetalistStadium
+    city:          kharkiv
+    capacity:      35000
 
 models.Stadium(charkiw):
-    name:          Charkiw
+    name:          ArenaLviv
+    city:          lviv
+    capacity:      32767
 
 models.Playday(p1):
-    name:          1. Spieltag
+    name:          FirstRound
     playdayStart:  2012-01-01 00:00:00
     playdayEnd:    2012-06-11 23:59:59
     playoff:       false
     number:        1
 
 models.Playday(p2):
-    name:          2. Spieltag
+    name:          SecondRound
     playdayStart:  2012-06-12 00:00:00
     playdayEnd:    2012-06-15 23:59:59
     playoff:       false
     number:        2
 
 models.Playday(p3):
-    name:          3. Spieltag
+    name:          ThirdRound
     playdayStart:  2012-06-16 00:00:00
     playdayEnd:    2012-06-19 23:59:59
     playoff:       false
     number:        3
 
 models.Playday(p4):
-    name:          Viertelfinale
+    name:          Quarterfinals
     playdayStart:  2012-06-20 00:00:00
     playdayEnd:    2012-06-24 23:59:59
     playoff:       true
     number:        4
 
 models.Playday(p5):
-    name:          Halbfinale
+    name:          Seminfinals
     playdayStart:  2012-06-25 00:00:00
     playdayEnd:    2012-06-28 23:59:59
     playoff:       true
     number:        5
 
 models.Playday(p6):
-    name:          Finale
+    name:          Final
     playdayEnd:    2012-06-29 00:00:00
     playdayStart:  2012-07-01 23:59:59
     playoff:       true
@@ -559,11 +575,11 @@ models.Game(g31):
     ended:         false
 
 models.Extra(b1):
-   question:        Wer wird Europameister?
+   question:        WhowillbeEuropeanChampion
    extraReference:  G-31-W
    gameReferences:
                     - g31
-   questionShort:   Europameister
+   questionShort:   EuropeanChampion
    points:          4
    ending:          2012-06-08 16:00:00
    answers:
@@ -585,7 +601,7 @@ models.Extra(b1):
                     - england
 
 models.Extra(b2):
-   question:        Wer wird Vize-Europameister?
+   question:        WhowillbeVice-EuropeanChampion
    extraReference:  G-31-L
    gameReferences:
                     - g31
@@ -611,8 +627,8 @@ models.Extra(b2):
                     - england
 
 models.Extra(b3):
-    question:        Wer wird Gruppensieger in Gruppe A?
-    questionShort:   Sieger Gruppe A
+    question:        WhowillbegroupwinnersinGroupA
+    questionShort:   WinnerGroupA
     gameReferences:
                      - g17
                      - g18
@@ -626,8 +642,8 @@ models.Extra(b3):
                      - tschechien
 
 models.Extra(b4):
-     question:        Wer wird Gruppensieger in Gruppe B?
-     questionShort:   Sieger Gruppe B
+     question:        WhowillbegroupwinnersinGroupB
+     questionShort:   WinnerGroupB
      gameReferences:
                      - g19
                      - g20
@@ -641,12 +657,12 @@ models.Extra(b4):
                       - portugal
 
 models.Extra(b5):
-      question:        Wer wird Gruppensieger in Gruppe C?
+      question:        WhowillbegroupwinnersinGroupC
       extraReference:  B-3-1
       gameReferences:
                      - g21
                      - g22
-      questionShort:   Sieger Gruppe C
+      questionShort:   WinnerGroupC
       ending:          2012-06-08 16:00:00
       points:          1
       answers:
@@ -656,8 +672,8 @@ models.Extra(b5):
                       - kroatien
 
 models.Extra(b6):
-     question:        Wer wird Gruppensieger in Gruppe D?
-     questionShort:   Sieger Gruppe D
+     question:        WhowillbegroupwinnersinGroupD
+     questionShort:   WinnerGroupD
      extraReference:  B-4-1
      gameReferences:
                      - g23
