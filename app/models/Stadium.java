@@ -19,7 +19,11 @@ public class Stadium extends Model{
 	@OneToMany(mappedBy = "stadium", fetch=FetchType.LAZY)
 	private List<Game> games;
 
+	@Column(nullable=false)
 	private String capacity;
+
+	@Column(nullable=false)
+	private String city;
 
 	public String getName() {
 		return name;
@@ -43,5 +47,13 @@ public class Stadium extends Model{
 
 	public void setCapacity(String capacity) {
 		this.capacity = capacity;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

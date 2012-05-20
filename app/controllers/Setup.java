@@ -1,12 +1,11 @@
 package controllers;
 
+import interfaces.AppConstants;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import models.Game;
 import models.Settings;
@@ -19,7 +18,7 @@ import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
 
-public class Setup extends Controller{
+public class Setup extends Controller implements AppConstants {
 	@Before
 	protected static void auth() {
 		String requestUsername = request.user;
@@ -39,7 +38,7 @@ public class Setup extends Controller{
 
 		render(settings, timeZones, locales);
 	}
-	
+
 	public static void init(String name,
 							int pointsGameWin,
 							int pointsGameDraw,
@@ -100,7 +99,7 @@ public class Setup extends Controller{
 			Fixtures.deleteDatabase();
 			//TODO: In future version this should come from a dropdown in setup
 	    	Fixtures.loadModels("em2012.yml");
-	    	
+
 	    	List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
 	    	List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
 	    	boolean hasPlayoffs = false;
@@ -110,7 +109,7 @@ public class Setup extends Controller{
 
 			Settings settings = new Settings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
-			settings.setAppName("rudeltippen");
+			settings.setAppName(APPNAME);
 			settings.setName(name);
 			settings.setPointsGameWin(pointsGameWin);
 			settings.setPointsGameDraw(pointsGameDraw);

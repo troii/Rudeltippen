@@ -1,7 +1,11 @@
 package controllers;
 
+import interfaces.AppConstants;
 import interfaces.CheckAccess;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +27,7 @@ import utils.AppUtils;
 @With(Auth.class)
 @CheckAccess("admin")
 @Transactional(readOnly=true)
-public class Admin extends Root {
+public class Admin extends Root implements AppConstants {
 	public static void index(int number) {
 		if (number <= 0) { number = 1; }
 		final List<Playday> playdays = Playday.findAll();
@@ -84,16 +88,112 @@ public class Admin extends Root {
 		redirect("/admin/index/" + playday);
 	}
 
+	public static void updatesettings ( String name,
+										int pointsGameWin,
+										int pointsGameDraw,
+										int pointsTip,
+										int pointsTipDiff,
+										int pointsTipTrend,
+										int minutesBeforeTip,
+										int maxPictureSize,
+										String timeZoneString,
+										String dateString,
+										String dateTimeLang,
+										String timeString,
+										boolean countFinalResult,
+										boolean informOnNewTipper,
+										boolean enableRegistration,
+										String bonusTipEnding,
+										String nickname,
+										String username,
+										String usernameConfirmation,
+										String userpass,
+										String userpassConfirmation
+										) {
+		validation.required(name);
+		validation.required(timeZoneString);
+		validation.required(dateString);
+		validation.required(dateTimeLang);
+		validation.required(timeString);
+		validation.required(username);
+		validation.required(userpass);
+		validation.required(nickname);
+		validation.range(pointsGameDraw, 0, 1024000);
+		validation.range(pointsGameWin, 1, 99);
+		validation.range(pointsGameDraw, 0, 99);
+		validation.range(pointsTip, 0, 99);
+		validation.range(pointsTipDiff, 0, 99);
+		validation.range(pointsTipTrend, 0, 99);
+		validation.range(minutesBeforeTip, 1, 1440);
+		validation.email(username);
+		validation.equals(username, usernameConfirmation);
+		validation.equals(userpass, userpassConfirmation);
+		validation.minSize(userpass, 8);
+		validation.maxSize(userpass, 32);
+		validation.minSize(nickname, 3);
+		validation.maxSize(nickname, 20);
+
+    	SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+    	Date extraEnding = null;
+		try {
+			extraEnding = df.parse(bonusTipEnding);
+		} catch (ParseException e) {
+			validation.isTrue(false).message(Messages.get("controller.setup.dateerror"));
+		}
+
+		if (!validation.hasErrors()) {
+			Settings settings = Settings.find("byName", APPNAME).first();
+			settings.setName(name);
+			settings.setPointsGameWin(pointsGameWin);
+			settings.setPointsGameDraw(pointsGameDraw);
+			settings.setPointsTip(pointsTip);
+			settings.setPointsTipDiff(pointsTipDiff);
+			settings.setPointsTipTrend(pointsTipTrend);
+			settings.setMinutesBeforeTip(minutesBeforeTip);
+			settings.setBonusTippEnding(extraEnding);
+			settings.setInformOnNewTipper(informOnNewTipper);
+			settings.setTimeZoneString(timeZoneString);
+			settings.setDateString(dateString);
+			settings.setDateTimeLang(dateTimeLang);
+			settings.setTimeString(timeString);
+			settings.setCountFinalResult(countFinalResult);
+			settings.setEnableRegistration(enableRegistration);
+			settings.setMaxPictureSize(maxPictureSize);
+			settings._save();
+
+			flash.put("infomessage", Messages.get("setup.saved"));
+	    	flash.keep();
+
+			Cache.delete("settings");
+		}
+		params.flash();
+		validation.keep();
+
+		settings();
+	}
+
 	public static void settings() {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
 
+		flash.put("name", settings.getName());
+		flash.put("pointsGameWin", settings.getPointsGameWin());
+		flash.put("pointsGameDraw", settings.getPointsGameDraw());
+		flash.put("pointsTip", settings.getPointsTip());
+		flash.put("pointsTipDiff", settings.getPointsTipDiff());
+		flash.put("pointsTipTrend", settings.getPointsTipTrend());
+		flash.put("minutesBeforeTip", settings.getMinutesBeforeTip());
+		flash.put("extraEnding", settings.getBonusTippEnding());
+		flash.put("informOnNewTipper", settings.isInformOnNewTipper());
+		flash.put("timeZoneString", settings.getTimeZoneString());
+		flash.put("dateString", settings.getDateString());
+		flash.put("dateTimeLang", settings.getDateTimeLang());
+		flash.put("timeString", settings.getTimeString());
+		flash.put("countFinalResult", settings.isCountFinalResult());
+		flash.put("enableRegistration", settings.isEnableRegistration());
+		flash.put("maxPictureSize", settings.getMaxPictureSize());
+
 		render(settings, timeZones, locales);
 	}
-	
-	public static void storesettings() {
-		Cache.delete("settings");
-		settings();
-	}	
 }
