@@ -214,6 +214,7 @@ If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in t
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
+```
 
 Step 7
 ------------------
