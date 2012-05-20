@@ -199,7 +199,7 @@ Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER
 Step 5
 ------------------
 
-In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make of copy application.conf, even of you were told to, you need to rerun Step 2 (and only step 2!) of the Installation guid (see above).
+In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make of copy application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the Installation guide (see above).
 
 Step 6
 ------------------
