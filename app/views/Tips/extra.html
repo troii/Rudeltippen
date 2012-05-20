@@ -3,30 +3,30 @@
 <table class="table">
     <thead>
         <tr>
-            <th>&{'extraquestion'}</th> 
-            <th>&{'points'}</th> 
+            <th>&{'extraquestion'}</th>
+            <th>&{'points'}</th>
             <th class="hidden-phone">&{'betending'}</th>
-            <th>&{'youranswer'}</th>  
+            <th>&{'youranswer'}</th>
         </tr>
     </thead>
     <tbody>
         #{list items:extras, as:'extra'}
             <tr>
-                <td>${extra.question}</td>
-                <td>${extra.points}</td>  
-                <td class="hidden-phone">${extra.ending.formatted()}</td>              
+                <td>&{extra.question}</td>
+                <td>${extra.points}</td>
+                <td class="hidden-phone">${extra.ending.formatted()}</td>
                 <td>
                     #{if extra.tippable}
                         <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
                             #{if extra.getExtraTip() == 0}
                                 <option value="0" class="span2" selected="selected">-- &{'pleasecoose'} --</option>
-                            #{/if} 
+                            #{/if}
                             #{list items:extra.answers, as:'team'}
                                 #{if extra.getExtraTip() == team.id}
-                                    <option value="${team.id}" selected="selected">${team.name}</option>
+                                    <option value="${team.id}" selected="selected">&{team.name}</option>
                                 #{/if}
                                 #{else}
-                                    <option value="${team.id}">${team.name}</option>
+                                    <option value="${team.id}">&{team.name}</option>
                                 #{/else}
                             #{/list}
                         </select>

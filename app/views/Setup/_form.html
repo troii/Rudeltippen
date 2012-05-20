@@ -1,17 +1,17 @@
 <fieldset>
-	<legend>Bitte gib Deine Tippspiel Einstellungen ein</legend>
+	<legend>&{'setup.legend'}</legend>
 	<div class="control-group #{ifError 'name'} error #{/ifError}">
-		<label for="input01" class="control-label">Tippspiel Name</label>
+		<label for="input01" class="control-label">&{'setup.name'}</label>
 		<div class="controls">
 			<input type="text" id="name" value="#{if flash.name != null}${flash.name}#{/if}#{else}Rudeltippen EM 2012#{/else}" name="name" class="input-medium">
-			<p class="help-block">Der Name des Tippspiels. Wird u.a. in E-Mails ausgegeben.</p>
+			<p class="help-block">&{'setup.name.help'}</p>
 			#{ifError 'name'}
 				<span class="help-inline">#{error 'name' /}</span>
 			#{/ifError}
 		</div>
 	</div>
 	<div class="control-group #{ifError 'pointsGameWin'} error #{/ifError}">
-		<label for="input01" class="control-label">Punkte für einen Sieg</label>
+		<label for="input01" class="control-label">&{'setup.pointsgamewin'}</label>
 		<div class="controls">
 			<input type="text" id="pointsGameWin" value="#{if flash.pointsGameWin != null}${flash.pointsGameWin}#{/if}#{else}3#{/else}" name="pointsGameWin" class="input-medium">
 			#{ifError 'pointsGameWin'}
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'pointsGameDraw'} error #{/ifError}">
-		<label for="input01" class="control-label">Punkte für ein Untentschieden</label>
+		<label for="input01" class="control-label">&{'setup.pointsgamedraw'}</label>
 		<div class="controls">
 			<input type="text" id="pointsGameDraw" value="#{if flash.pointsGameDraw != null}${flash.pointsGameDraw}#{/if}#{else}1#{/else}" name="pointsGameDraw" class="input-medium">
 			#{ifError 'pointsGameDraw'}
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'pointsTip'} error #{/ifError}">
-		<label for="input01" class="control-label">Punkte für einen richtigen Tipp</label>
+		<label for="input01" class="control-label">&{'setup.pointsbet'}</label>
 		<div class="controls">
 			<input type="text" id="pointsTip" value="#{if flash.pointsTip != null}${flash.pointsTip}#{/if}#{else}4#{/else}" name="pointsTip" class="input-medium">
 			#{ifError 'pointsTip'}
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'pointsTipDiff'} error #{/ifError}">
-		<label for="input01" class="control-label">Punkte für die richtigen Differenz</label>
+		<label for="input01" class="control-label">&{'setup.pointsbetdiff'}</label>
 		<div class="controls">
 			<input type="text" id="pointsTipDiff" value="#{if flash.pointsTipDiff != null}${flash.pointsTipDiff}#{/if}#{else}2#{/else}" name="pointsTipDiff" class="input-medium">
 			#{ifError 'pointsTipDiff'}
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'pointsTipTrend'} error #{/ifError}">
-		<label for="input01" class="control-label">Punkte für die richtigen Tendenz</label>
+		<label for="input01" class="control-label">&{'setup.pointsbettrend'}</label>
 		<div class="controls">
 			<input type="text" id="pointsTipTrend" value="#{if flash.pointsTipTrend != null}${flash.pointsTipTrend}#{/if}#{else}1#{/else}" name="pointsTipTrend" class="input-medium">
 			#{ifError 'pointsTipTrend'}
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'minutesBeforeTip'} error #{/ifError}">
-		<label for="input01" class="control-label">Minuten vor Spielbeginn bevor ein Tipp abgegeen werden muss</label>
+		<label for="input01" class="control-label">&{'setup.minutesbefore'}</label>
 		<div class="controls">
 			<input type="text" id="minutesBeforeTip" value="#{if flash.minutesBeforeTip != null}${flash.minutesBeforeTip}#{/if}#{else}10#{/else}" name="minutesBeforeTip" class="input-medium">
 			#{ifError 'minutesBeforeTip'}
@@ -65,21 +65,29 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'bonusTipEnding'} error #{/ifError}">
-		<label for="input01" class="control-label">Bonustipp abgabe endet am</label>
+		<label for="input01" class="control-label">&{'setup.extratipending'}</label>
 		<div class="controls">
 			<input type="text" id="bonusTipEnding" value="#{if flash.bonusTipEnding != null}${flash.bonusTipEnding}#{/if}#{else}2012-06-08 16:00:00#{/else}" name="bonusTipEnding" class="input-medium">
-			<p class="help-block">Das Datum muss in Format yyyy-mm-dd hh:mm:ss in deiner Zeitzone angegeben werden.</p>
+			<p class="help-block">&{'setup.extratipending.help'}</p>
 			#{ifError 'minutesBeforeTip'}
 				<span class="help-inline">#{error 'bonusTipEnding' /}</span>
 			#{/ifError}
 		</div>
-	</div>		
+	</div>
 	<div class="control-group #{ifError 'timeZoneString'} error #{/ifError}">
-		<label for="input01" class="control-label">Zeitzone</label>
+		<label for="input01" class="control-label">&{'setup.timezone'}</label>
 		<div class="controls">
 			<select name="timeZoneString">
 				#{list items:timeZones, as:'timezone'}
-    				<option value="${timezone}">${timezone}</option>
+					#{if timezone == flash.timeZoneString}
+    					<option selected value="${timezone}">${timezone}</option>
+    				#{/if}
+    				#{elseif timezone == 'Europe/Berlin'}
+    					<option selected value="${timezone}">${timezone}</option>
+    				#{/elseif}
+    				#{else}
+    					<option value="${timezone}">${timezone}</option>
+    				#{/else}
 				#{/list}
 			</select>
 			#{ifError 'timeZoneString'}
@@ -88,21 +96,28 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'dateTimeLang'} error #{/ifError}">
-		<label for="input01" class="control-label">Zeitzone Sprache</label>
+		<label for="input01" class="control-label">&{'setup.timezonelang'}</label>
 		<div class="controls">
 			<select name="dateTimeLang">
 				#{list items:locales, as:'locale'}
-    				<option value="${locale}">${locale}</option>
+					#{if locale == flash.dateTimeLang}
+						<option selected value="${locale}">${locale}</option>
+					#{/if}
+					#{elseif locale == 'de'}
+						<option selected value="${locale}">${locale}</option>
+					#{/elseif}
+					#{else}
+    					<option value="${locale}">${locale}</option>
+    				#{/else}
 				#{/list}
 			</select>
-			<p class="help-block">Sprache f&uuml;r die Zeitzone. Betrifft u.a. die Datumsausgabe.</p>
 			#{ifError 'dateTimeLang'}
 				<span class="help-inline">#{error 'dateTimeLang' /}</span>
 			#{/ifError}
 		</div>
 	</div>
 	<div class="control-group #{ifError 'dateString'} error #{/ifError}">
-		<label for="input01" class="control-label">Datumsausgabe</label>
+		<label for="input01" class="control-label">&{'setup.datestring'}</label>
 		<div class="controls">
 			<input type="text" id="dateString" value="#{if flash.dateString != null}${flash.dateString}#{/if}#{else}dd. MMMM yyyy#{/else}" name="dateString" class="input-medium">
 			#{ifError 'dateString'}
@@ -111,7 +126,7 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'timeString'} error #{/ifError}">
-		<label for="input01" class="control-label">Zeitausgabe</label>
+		<label for="input01" class="control-label">&{'setup.timestring'}</label>
 		<div class="controls">
 			<input type="text" id="timeString" value="#{if flash.timeString != null}${flash.timeString}#{/if}#{else}HH:mm#{/else}" name="timeString" class="input-medium">
 			#{ifError 'timeString'}
@@ -120,33 +135,33 @@
 		</div>
 	</div>
 	<div class="control-group #{ifError 'maxPictureSize'} error #{/ifError}">
-		<label for="input01" class="control-label">Max. Profilbildg&ouml;sse in Kilobyte</label>
+		<label for="input01" class="control-label">&{'setup.maxpicturesize'}</label>
 		<div class="controls">
 			<input type="text" id="maxPictureSize" value="#{if flash.maxPictureSize != null}${flash.maxPictureSize}#{/if}#{else}102400#{/else}" name="maxPictureSize" class="input-medium">
 			#{ifError 'maxPictureSize'}
 				<span class="help-inline">#{error 'maxPictureSize' /}</span>
 			#{/ifError}
 		</div>
-	</div>	
-	<div class="control-group #{ifError 'timeString'} error #{/ifError}">
-		<label for="input01" class="control-label">Tippwertung<br/>Stand nach...</label>
+	</div>
+	<div class="control-group">
+		<label for="input01" class="control-label">&{'setup.countfinalresult'}</label>
 		<div class="controls">
-			<input type="radio" id="countFinalResult" value="false" name="countFinalResults" checked="checked" class="input-medium"> 90 Minuten<br />
-			<input type="radio" id="countFinalResult" value="true" name="countFinalResults" class="input-medium"> Endstand (inkl. Verl&auml;ngerung/Elfmeterschiessen)
+			<input type="radio" id="countFinalResult" value="false" name="countFinalResults" #{if flash.countFinalResults == null || flashcountFinalResults == true} checked="checked" #{/if} class="input-medium"> &{'setup.ninetyminutes'}<br />
+			<input type="radio" id="countFinalResult" value="true" name="countFinalResults" #{if flash.countFinalResults == false} checked="checked" #{/if} class="input-medium"> &{'setup.finalresult'}
 		</div>
 	</div>
-	<div class="control-group #{ifError 'timeString'} error #{/ifError}">
-		<label for="input01" class="control-label">Admin(s) beanchrichtigen, wenn sich ein neuer Benutzer anmeldet</label>
+	<div class="control-group">
+		<label for="input01" class="control-label">&{'setup.informontipper'}</label>
 		<div class="controls">
-			<input type="radio" id="informOnNewTipper" value="true" name="informOnNewTipper" checked="checked" class="input-medium"> Ja<br />
-			<input type="radio" id="informOnNewTipper" value="false" name="informOnNewTipper" class="input-medium"> Nein
+			<input type="radio" id="informOnNewTipper" value="true" name="informOnNewTipper" #{if flash.informOnNewTipper == null || flash.informOnNewTipper == true} checked="checked" #{/if} class="input-medium"> &{'yes'}<br />
+			<input type="radio" id="informOnNewTipper" value="false" name="informOnNewTipper" #{if flash.informOnNewTipper == false} checked="checked" #{/if} class="input-medium"> &{'no'}
 		</div>
-	</div>	
-	<div class="control-group #{ifError 'timeString'} error #{/ifError}">
-		<label for="input01" class="control-label">Registrierung aktiv</label>
+	</div>
+	<div class="control-group">
+		<label for="input01" class="control-label">&{'setup.enableregistration'}</label>
 		<div class="controls">
-			<input type="radio" id="enableRegistration" value="true" name="enableRegistration" checked="checked" class="input-medium"> Ja<br />
-			<input type="radio" id="enableRegistration" value="false" name="enableRegistration" class="input-medium"> Nein
+			<input type="radio" id="enableRegistration" value="true" name="enableRegistration" #{if flash.enableRegistration == null || flash.enableRegistration == true} checked="checked" #{/if}  class="input-medium"> &{'yes'}<br />
+			<input type="radio" id="enableRegistration" value="false" name="enableRegistration" #{if flash.enableRegistration == false} checked="checked" #{/if} class="input-medium"> &{'no'}
 		</div>
-	</div>		
+	</div>
 </fieldset>

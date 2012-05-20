@@ -1,5 +1,5 @@
 #{list items:brackets, as:'bracket'}
-<h2>${bracket.name}</h2>
+<h2>&{bracket.name}</h2>
 <table class="table">
 	<thead>
 		<tr>
@@ -7,7 +7,7 @@
 			<th>&{'team'}</th>
 			<th>&{'games'}</th>
 			<th>&{'gameswon'}</th>
-			<th>&{'gamedraw'}</th>
+			<th>&{'gamesdraw'}</th>
 			<th>&{'gameslost'}</th>
 			<th>&{'goals'}</th>
 			<th>&{'goalsdiff'}</th>
@@ -19,7 +19,7 @@
 			<tr>
 				<td class="hidden-phone">${team_index}</td>
 				#{if team.flag != null}
-					<td><img src="/public/images/flags/${team.flag}"/>&nbsp;&nbsp;&nbsp;&nbsp;${team.name}</td>
+					<td><img src="/public/images/flags/${team.flag}"/>&nbsp;&nbsp;&nbsp;&nbsp;&{team.name}</td>
 				#{/if}
 				#{else}
 					<td>${team.name}</td>

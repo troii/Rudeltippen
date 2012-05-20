@@ -1,4 +1,4 @@
-<h3>${playday.name}</h3>
+<h3>&{playday.name}</h3>
 #{form @tips.storetips(), class:'form-horizontal well'}
 	<table class="table">
 		<thead>
@@ -20,8 +20,8 @@
 					<td class="visible-desktop">${game.kickoff.formatted()}</td>
 					<td class="visible-desktop">${game.tippEnding.difference()}</td>
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-						<td><img class="hidden-phone" src="/public/images/flags/${game.homeTeam?.flag}">&nbsp;&nbsp;${game.homeTeam?.name}</td>
-						<td><img class="hidden-phone" src="/public/images/flags/${game.awayTeam?.flag}">&nbsp;&nbsp;${game.awayTeam?.name}</td>
+						<td><img class="hidden-phone" src="/public/images/flags/${game.homeTeam?.flag}">&nbsp;&nbsp;&{game.homeTeam?.name}</td>
+						<td><img class="hidden-phone" src="/public/images/flags/${game.awayTeam?.flag}">&nbsp;&nbsp;&{game.awayTeam?.name}</td>
 					#{/if}
 					#{else}
 						<td>&nbsp;&nbsp;${game.homeReferenceName()}</td>

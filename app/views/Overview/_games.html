@@ -1,4 +1,4 @@
-<h3>${playday.name}</h3>
+<h3>&{playday.name}</h3>
 <table class="table">
 	<thead>
 		<tr>
@@ -8,7 +8,7 @@
 			<th>
 				<div align="center">
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-						<img alt="${game.homeTeam?.name}" title="${game.homeTeam?.name}" rel="tooltip" src="/public/images/flags/${game.homeTeam?.flag}"> <br/> ${game.getResult()} <br/> <img alt="${game.awayTeam?.name}" rel="tooltip" title="${game.awayTeam?.name}" src="/public/images/flags/${game.awayTeam?.flag}">
+						<img alt="&{game.homeTeam?.name}" title="&{game.homeTeam?.name}" rel="tooltip" src="/public/images/flags/${game.homeTeam?.flag}"> <br/> ${game.getResult()} <br/> <img alt="&{game.awayTeam?.name}" rel="tooltip" title="&{game.awayTeam?.name}" src="/public/images/flags/${game.awayTeam?.flag}">
 					#{/if}
 					#{else}
 						${game.homeReferenceName()} - ${game.awayReferenceName()}
