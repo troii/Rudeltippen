@@ -25,7 +25,7 @@ Translations
 ===========
 
 - German
-- English (TBD)
+- English
 
 Demo
 ===========
