@@ -17,7 +17,7 @@ Requirements
 
 - [Java SDK 1.6+][1]
 - Apache, Nginx or any other HTTP-Server with Proxy-Support (Apache recommended)
-- SMTP-Server (SSL/non-SSL)
+- SMTP-Account (SSL/non-SSL, you can use e.g. Gmail)
 - Linux, Mac or Windows
 - MySQL, PostgreSQL, MSSQL or Oracle Databse (MySQL recommended)
 
@@ -85,6 +85,15 @@ Set your SMTP-Credentials (uncomment %prod.mail.smtp.channel if you want to use 
 %prod.mail.smtp.user=admin
 %prod.mail.smtp.pass=
 #%prod.mail.smtp.channel=ssl
+```
+
+If you have a Gmail account, just enter your SMTP-Credentials as follows
+
+```bash
+%prod.mail.smtp.host=smtp.gmail.com
+%prod.mail.smtp.user=yourGmailLogin
+%prod.mail.smtp.pass=yourGmailPassword
+%prod.mail.smtp.channel=ssl
 ```
 
 Set your E-Mail-Sender and reply-to Address
