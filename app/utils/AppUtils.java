@@ -469,11 +469,11 @@ public class AppUtils {
         if (wsResult.containsKey("121")) {
             homeScoreExtratime = wsResult.get("121").getHomeScore();
             awayScoreExtratime = wsResult.get("121").getAwayScore();
-            extratime = "i.E.";
+            extratime = "ie";
         } else if (wsResult.containsKey("120")) {
             homeScoreExtratime = wsResult.get("120").getHomeScore();
             awayScoreExtratime = wsResult.get("120").getAwayScore();
-            extratime = "n.V.";
+            extratime = "nv";
         }
 
         Logger.info("Updating Result from WebService. " + game);

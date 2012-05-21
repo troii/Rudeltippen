@@ -1,28 +1,28 @@
-Hallo ${user.nickname}!
+&{'hello'} ${user.nickname}!
 
-Du möchtest erinnert werden, wenn Tipps abzugeben sind.
+&{'mails.reminder.header'}
 
 -----------------------------------------------------------
-Folgende Tipps solltest Du heute abgeben
+&{'mails.reminder.tips'}
 -----------------------------------------------------------
 
 #{list items:games, as:'game'}
-${game.homeTeam?.name} : ${game.awayTeam?.name} / Abgabe bis: ${game.tippEnding.format(setting?.dateTimeString, setting?.language)}
+&{game.homeTeam?.name} : &{game.awayTeam?.name} / &{'mails.tips.due'}: ${game.tippEnding.formatted()}
 #{/list}
 #{else}
-Keine Tipps
+&{'notips'}
 #{/else}
 
 -----------------------------------------------------------
-Folgende Bonustipps solltest Du heute abgeben
+&{'mails.reminder.extratips'}
 -----------------------------------------------------------
 
-#{list items:bonus, as:'aBonus'}
-${bonus.question} / Abgabe bis: ${bonus.ending.format(setting?.dateTimeString, setting?.language)}
+#{list items:extras, as:'extra'}
+&{extra.question} / &{'mails.tips.due'}s: ${extra.ending.formatted()}
 #{/list}
 #{else}
-Keine Bonustipps
+&{'noextratips'}
 #{/else}
 
 ---
-Du kannst diese Benachrichtigung jederzeit unter "Gehe zu > Mein Profil" deaktivieren.
+&{'mails.reminder.deactivate'}

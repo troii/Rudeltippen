@@ -1,5 +1,5 @@
-Hallo ${user.nickname}!
+&{'hello'} ${user.nickname}!
 
-Dein Passwort wurde zurückgesetzt und Du kannst dich ab sofort mit folgendem Passwort anmelden:
+&{'mailservice.newuserpass.body'}
 
 ${userpass}

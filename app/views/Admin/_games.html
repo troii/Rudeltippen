@@ -30,28 +30,28 @@
 							<td style="text-align: center;">-</td>
 							<td style="text-align: left;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
 						#{if game.playoff}
-							<td style="text-align: right;"><input type="text" size="3" length="3" class="input-mini" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "n.V." || game.overtimeType == "i.E."} ${game.homeScoreOT} #{/if}"/></td>
+							<td style="text-align: right;"><input type="text" size="3" length="3" class="input-mini" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
 							<td style="text-align: center;">-</td>
-							<td style="text-align: left;"><input type="text" size="3" length="3" class="input-mini"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "n.V." ||game.overtimeType == "i.E."} ${game.awayScoreOT} #{/if}"/></td>
+							<td style="text-align: left;"><input type="text" size="3" length="3" class="input-mini"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
 							<td>
 								<select id="extratime_${playday_index}_${game_index}" name="extratime_${game.id}">
-									#{if game.overtimeType != "n.V." && game.overtimeType != "i.E."}
+									#{if game.overtimeType != "nv" && game.overtimeType != "ie"}
 										<option selected="selected">---</option>
 									#{/if}
 									#{else}
 										<option value="0">---</option>
 									#{/else}
-									#{if game.overtimeType == "n.V."}
-										<option selected="selected">n.V.</option>
+									#{if game.overtimeType == "nv"}
+										<option selected="selected">&{'overtime.nv'}</option>
 									#{/if}
 									#{else}
-										<option>n.V.</option>
+										<option>&{'overtime.nv'}</option>
 									#{/else}
-									#{if game.overtimeType == "i.E."}
-										<option selected="selected">i.E.</option>
+									#{if game.overtimeType == "ie"}
+										<option selected="selected">&{'overtime.ie'}</option>
 									#{/if}
 									#{else}
-										<option>i.E.</option>
+										<option>&{'overtime.ie'}</option>
 									#{/else}
 								</select>
 							</td>
@@ -68,8 +68,4 @@
 </table>
 <button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
 #{/form}
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.stadium').tooltip();
-});
-</script>
+#{include '/tags/javascript.html'/}

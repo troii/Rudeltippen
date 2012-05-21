@@ -1,4 +1,4 @@
-Soeben hat sich ein neuer Benutzer für das Tippspiel '${settings.name}' registriert.
+&{'mails.newuser.header'}
 
-Benutzername: ${user.nickname}
-E-Mail-Adresse: ${user.username}
+&{'nickname'}: ${user.nickname}
+&{'username'}: ${user.username}
