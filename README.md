@@ -21,7 +21,7 @@ Requirements
 - Linux, Mac or Windows
 - MySQL, PostgreSQL, MSSQL or Oracle Databse (MySQL recommended)
 
-Translations
+Languages
 ===========
 
 - German
@@ -147,7 +147,7 @@ Step 5
 Open your Browser and go to http://yourdomain.com/setup
 
 > You did set username and password in application.conf (see 3.)
-> After the Setup is complete Rudeltippen will automaticly load all games for the Euro 2012.
+> After the Setup is complete Rudeltippen will automaticly load all data required for the Euro 2012.
 
 Step 6
 ------------------
