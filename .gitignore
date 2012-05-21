@@ -38,3 +38,9 @@ test-result/application.log
 test-result/functional.ApplicationTests.class.passed.html
 
 test-result/result.passed
+
+play/.DS_Store
+
+play/framework/src/play/.DS_Store
+
+server.pid
