@@ -120,6 +120,8 @@ Step 4
 
 You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
+> It will most likely be required to make startup.sh, shutdown.sh and /play/play executable
+
 ```bash
 startup.sh
 ```
