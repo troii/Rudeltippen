@@ -1,7 +1,6 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -25,8 +24,8 @@ eclipse/rudeltippen.launch
 
 tmp/
 
-
 logs/
+
 test-result/unit.UnitTests.class.passed.html
 
 test-result/TEST-functional.ApplicationTests.xml
