@@ -118,9 +118,9 @@ Follow the Section ['Front-end HTTP server' on the Play Framework Documentation]
 Step 4
 ------------------
 
-You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
+> It will most likely be required to make startup.sh, shutdown.sh and /play/play executable if you are on UNIX or Mac
 
-> It will most likely be required to make startup.sh, shutdown.sh and /play/play executable
+You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
 ```bash
 startup.sh
