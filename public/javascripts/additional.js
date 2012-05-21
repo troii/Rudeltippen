@@ -26,6 +26,7 @@ $(document).ready(function(){
 	$('#fat-btn').click(function() {
 		var btn = $(this)
 		btn.button('loading')
-	})
+	});
+	$('.stadium').tooltip();
 	$('img').tooltip();
 });
