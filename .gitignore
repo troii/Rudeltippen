@@ -24,6 +24,8 @@ eclipse/rudeltippen.launch
 
 tmp/
 
+lib/
+
 logs/
 
 test-result/unit.UnitTests.class.passed.html
