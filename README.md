@@ -66,6 +66,11 @@ Set the Username and Password for inital setup
 app.setup.username=admin
 app.setup.password=admin
 ```
+Set the application key for rudeltippen
+
+```bash
+application.secret=yoursecretcryptographicskey
+```
 
 Set you Database connection. For a simple MySQL-Connection this will be something like this
 
