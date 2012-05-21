@@ -3,14 +3,14 @@
 <html>
     <head>
         <title>Application error</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=${_response_encoding}"/>	
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>	
     </head>
     <body>
         #{if play.mode.name() == 'DEV'}
             #{500 exception /}
         #{/if}
         #{else}
-            <h1>Oops, an error occured</h1>
+            <h1>Sorry, that should not happen</h1>
             #{if exception instanceof play.exceptions.PlayException}
                 <p>
                     This exception has been logged with id <strong>${exception.id}</strong>.
