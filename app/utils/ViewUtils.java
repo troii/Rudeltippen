@@ -18,6 +18,7 @@ import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
+import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
 
@@ -64,9 +65,14 @@ public class ViewUtils extends JavaExtensions{
 		String dateString = settings.getDateString();
 		String timeString = settings.getTimeString();
 
-		//FIXME Hardcoded language and country
-		Locale currentLocale = new Locale("de", "DE");
+		String lang = Lang.get();
+		if (StringUtils.isBlank(lang)) {
+			lang = "de";
+		}
+		
+		Locale currentLocale = new Locale(lang, lang.toUpperCase());
 		SimpleDateFormat df = new SimpleDateFormat(dateString + " - " + timeString, currentLocale);
+		
 		return df.format(date);
 	}
 
