@@ -26,8 +26,8 @@ import utils.AppUtils;
 
 @With(Auth.class)
 @CheckAccess("admin")
-@Transactional(readOnly=true)
 public class Admin extends Root implements AppConstants {
+	@Transactional(readOnly=true)
 	public static void index(int number) {
 		if (number <= 0) { number = 1; }
 		final List<Playday> playdays = Playday.findAll();
@@ -36,6 +36,7 @@ public class Admin extends Root implements AppConstants {
 		render(playdays, playday, number);
 	}
 
+	@Transactional(readOnly=true)
 	public static void results(int number) {
 		if (number <= 0) { number = 1; }
 		final List<Playday> playdays = Playday.findAll();
@@ -172,6 +173,7 @@ public class Admin extends Root implements AppConstants {
 		settings();
 	}
 
+	@Transactional(readOnly=true)
 	public static void settings() {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();

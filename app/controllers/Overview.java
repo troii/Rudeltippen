@@ -47,7 +47,7 @@ public class Overview extends Root{
 		final List<Extra> extras = Extra.findAll();
 		List<Map<User, List<ExtraTip>>> tips =  AppUtils.getExtraTips(users, extras);
 
-		//TODO: Ugly workaround for settings the playday in /overview/extra for pagingation which requires a Playday object
+		//TODO: Ugly workaround for setting the playday in /overview/extra for pagingation which requires a Playday object
 		Playday playday = new Playday();
 		playday.setNumber((int)Playday.count() + 1);
 

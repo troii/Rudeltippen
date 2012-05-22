@@ -11,6 +11,7 @@ import models.Game;
 import models.Settings;
 import models.User;
 import play.Play;
+import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.mvc.Before;
@@ -31,6 +32,7 @@ public class Setup extends Controller implements AppConstants {
 		}
 	}
 
+	@Transactional(readOnly=true)
 	public static void index() {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();

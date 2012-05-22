@@ -476,7 +476,7 @@ public class AppUtils {
             extratime = "nv";
         }
 
-        Logger.info("Updating Result from WebService. " + game);
+        Logger.info("Updating results from WebService. " + game);
         setGameScore(String.valueOf(game.getId()), homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         calculateScoresAndPoints();
     }

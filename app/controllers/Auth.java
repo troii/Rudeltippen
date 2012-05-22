@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.Play;
 import play.data.validation.Validation;
+import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.libs.Crypto;
@@ -123,6 +124,7 @@ public class Auth extends Controller {
 		confirmation._delete();
 	}
 
+	@Transactional(readOnly=true)
     public static void register() {
     	final Settings settings = AppUtils.getSettings();
     	if (!settings.isEnableRegistration()) {
@@ -241,6 +243,7 @@ public class Auth extends Controller {
 		redirect("/");
     }
 
+    @Transactional(readOnly=true)
     public static void forgotten() {
     	render();
     }
@@ -275,6 +278,7 @@ public class Auth extends Controller {
         redirectToOriginalURL();
     }
 
+    @Transactional(readOnly=true)
     public static void logout() throws Throwable {
         Security.invoke("onDisconnected");
     	session.clear();
