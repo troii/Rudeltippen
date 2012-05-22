@@ -19,7 +19,7 @@
                     #{if extra.tippable}
                         <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
                             #{if extra.getExtraTip() == 0}
-                                <option value="0" class="span2" selected="selected">-- &{'pleasecoose'} --</option>
+                                <option value="0" selected="selected">-- &{'pleasechoose'} --</option>
                             #{/if}
                             #{list items:extra.answers, as:'team'}
                                 #{if extra.getExtraTip() == team.id}
@@ -41,3 +41,4 @@
 </table>
 <button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
 #{/form}
+#{include '/tags/javascript.html' /}

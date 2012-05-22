@@ -177,7 +177,7 @@ public class ViewUtils extends JavaExtensions{
             String groupName = bracket.getName();
             String placeName = getPlaceName(Integer.parseInt(references[2]));
 
-            return placeName + " " + groupName;
+            return placeName + " " + Messages.get(groupName);
         }
 
         return "";

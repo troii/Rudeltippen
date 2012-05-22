@@ -55,7 +55,7 @@
 	            <ul class="nav">
 	              <li #{if request.action == "Application.index" } class="active" #{/if}><a href="@{application.index()}">&{'dashboard'}</a></li>
 	              <li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="@{tournament.index()}">&{'tournament'}</a></li>
-	              <li #{if request.action == "Tips.index" } class="active" #{/if}><a href="@{tips.index()}/${currentPlayday}">&{'tips'}</a></li>
+	              <li #{if request.action == "Tips.index" || request.action == "Tips.extras"} class="active" #{/if}><a href="@{tips.index()}/${currentPlayday}">&{'tips'}</a></li>
 	              <li #{if request.action == "Overview.index" } class="active" #{/if}><a href="@{overview.index()}">&{'overview'}</a></li>
 	              <li #{if request.action == "Standings.index" } class="active" #{/if}><a href="@{standings.index()}">&{'standings'}</a></li>
 	              <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}">&{'rules'}</a></li>

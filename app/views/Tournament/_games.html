@@ -22,7 +22,7 @@
 							<td><img src="/public/images/flags/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&nbsp;&nbsp;&nbsp;&nbsp;&{game.homeTeam?.name}</td>
 						#{/if}
 						#{else}
-							<td>${game.homeTeam?.name}</td>
+							<td>&{game.homeTeam?.name}</td>
 						#{/else}
 					#{/if}
 					#{else}
@@ -33,7 +33,7 @@
 							<td><img src="/public/images/flags/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&nbsp;&nbsp;&nbsp;&nbsp;&{game.awayTeam?.name}</td>
 						#{/if}
 						#{else}
-							<td>${game.awayTeam?.name}</td>
+							<td>&{game.awayTeam?.name}</td>
 						#{/else}
 					#{/if}
 					#{else}
