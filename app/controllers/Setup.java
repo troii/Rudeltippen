@@ -71,7 +71,7 @@ public class Setup extends Controller implements AppConstants {
 		validation.required(username);
 		validation.required(userpass);
 		validation.required(nickname);
-		validation.range(pointsGameDraw, 0, 1024000);
+		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsGameWin, 1, 99);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsTip, 0, 99);
@@ -98,8 +98,9 @@ public class Setup extends Controller implements AppConstants {
 	    	session.clear();
 	        response.removeCookie("rememberme");
 
+	        Fixtures.deleteAllModels();
 			Fixtures.deleteDatabase();
-			//TODO: In future version this should come from a dropdown in setup
+			//TODO: In future versions this should come from a dropdown in setup form
 	    	Fixtures.loadModels("em2012.yml");
 
 	    	List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
