@@ -20,12 +20,6 @@ public class Settings extends Model {
 	@Column(nullable=false)
 	private String name;
 
-	private String twitterConsumerkey;
-	private String twitterConsumersecret;
-	private String twitterToken;
-	private String twitterSecret;
-	private String lastTweet;
-
 	@Column(nullable=false)
 	private String timeZoneString;
 
@@ -38,6 +32,8 @@ public class Settings extends Model {
 	@Column(nullable=false)
 	private String dateTimeLang;
 
+	private String lastTweet;
+	
 	@Column(nullable=false)
 	private int maxPictureSize;
 
@@ -65,7 +61,6 @@ public class Settings extends Model {
 	@Column(nullable=false)
 	private int playoffTeams;
 
-	private boolean tweetable;
 	private boolean informOnNewTipper;
 	private boolean playoffs;
 	private boolean countFinalResult;
@@ -95,46 +90,6 @@ public class Settings extends Model {
 
 	public void setMaxPictureSize(int maxPictureSize) {
 		this.maxPictureSize = maxPictureSize;
-	}
-
-	public String getTwitterConsumerkey() {
-		return twitterConsumerkey;
-	}
-
-	public void setTwitterConsumerkey(String twitterConsumerkey) {
-		this.twitterConsumerkey = twitterConsumerkey;
-	}
-
-	public String getTwitterConsumersecret() {
-		return twitterConsumersecret;
-	}
-
-	public void setTwitterConsumersecret(String twitterConsumersecret) {
-		this.twitterConsumersecret = twitterConsumersecret;
-	}
-
-	public String getTwitterToken() {
-		return twitterToken;
-	}
-
-	public void setTwitterToken(String twitterToken) {
-		this.twitterToken = twitterToken;
-	}
-
-	public String getTwitterSecret() {
-		return twitterSecret;
-	}
-
-	public void setTwitterSecret(String twitterSecret) {
-		this.twitterSecret = twitterSecret;
-	}
-
-	public boolean isTweetable() {
-		return tweetable;
-	}
-
-	public void setTweetable(boolean tweetable) {
-		this.tweetable = tweetable;
 	}
 
 	public String getAppName() {
