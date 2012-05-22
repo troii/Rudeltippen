@@ -53,7 +53,11 @@ public class Auth extends Controller {
 	@Before
 	protected static void registration() {
 		final Settings settings = AppUtils.getSettings();
-		renderArgs.put("isEnableRegistration", settings.isEnableRegistration());
+		if (settings == null) {
+			renderArgs.put("isEnableRegistration", false);
+		} else {
+			renderArgs.put("isEnableRegistration", settings.isEnableRegistration());
+		}
 	}
 
     private static void check(CheckAccess check) throws Throwable {
@@ -261,7 +265,7 @@ public class Auth extends Controller {
         } catch (Throwable e) {
             Logger.error("Authentication exception", e);
         }
-        
+
         if (!allowed || validation.hasErrors()) {
             flash.keep("url");
             flash.put("errormessage", Messages.get("validation.invalidLogin"));
@@ -309,11 +313,11 @@ public class Auth extends Controller {
         static boolean authenticate(String username, String userpass) {
         	String usersalt = null;
         	User user = User.find("byUsername", username).first();
-        	if (user != null) {	
+        	if (user != null) {
         		usersalt = user.getSalt();
         		return User.connect(username, AppUtils.hashPassword(userpass, usersalt)) != null;
         	}
-        	
+
         	return false;
         }
 
