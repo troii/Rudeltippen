@@ -12,6 +12,7 @@ import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
 import play.Logger;
+import play.Play;
 import play.libs.Codec;
 import play.mvc.Http;
 
@@ -19,8 +20,9 @@ import utils.AppUtils;
 
 public class TwitterService {
     public static void updateStatus(String message) {
+    	String enable = Play.configuration.getProperty("twitter.enable");
     	Settings settings = AppUtils.getSettings();
-        if (settings.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
+        if (StringUtils.isNotBlank(enable) && ("true").equals(enable) && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
             OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/statuses/update.json");
             request.addQuerystringParameter("status", message);
             sendRequest(request);
@@ -37,12 +39,17 @@ public class TwitterService {
     }
     
     private static void sendRequest(OAuthRequest request) {
+    	String consumerKey = Play.configuration.getProperty("twitter.consumerkey");
+    	String consumerSecret = Play.configuration.getProperty("twitter.consumersecret");
+    	String token = Play.configuration.getProperty("twitter.token");
+    	String secret = Play.configuration.getProperty("twitter.secret");
+    	
         OAuthService service = new ServiceBuilder().provider(TwitterApi.class)
-                .apiKey(AppUtils.getSettings().getTwitterConsumerkey())
-                .apiSecret(AppUtils.getSettings().getTwitterConsumersecret())
+                .apiKey(consumerKey)
+                .apiSecret(consumerSecret)
                 .build();
 
-        Token accessToken = new Token(AppUtils.getSettings().getTwitterToken(), AppUtils.getSettings().getTwitterSecret());
+        Token accessToken = new Token(token, secret);
         service.signRequest(accessToken, request);
         Response response = request.send();
 
