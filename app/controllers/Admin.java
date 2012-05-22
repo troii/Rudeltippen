@@ -104,35 +104,20 @@ public class Admin extends Root implements AppConstants {
 										boolean countFinalResult,
 										boolean informOnNewTipper,
 										boolean enableRegistration,
-										String bonusTipEnding,
-										String nickname,
-										String username,
-										String usernameConfirmation,
-										String userpass,
-										String userpassConfirmation
+										String bonusTipEnding
 										) {
 		validation.required(name);
 		validation.required(timeZoneString);
 		validation.required(dateString);
 		validation.required(dateTimeLang);
 		validation.required(timeString);
-		validation.required(username);
-		validation.required(userpass);
-		validation.required(nickname);
-		validation.range(pointsGameDraw, 0, 1024000);
-		validation.range(pointsGameWin, 1, 99);
+		validation.required(bonusTipEnding);
+		validation.range(pointsGameDraw, 0, 99);
+		validation.range(pointsGameWin, 0, 99);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
-		validation.range(minutesBeforeTip, 1, 1440);
-		validation.email(username);
-		validation.equals(username, usernameConfirmation);
-		validation.equals(userpass, userpassConfirmation);
-		validation.minSize(userpass, 8);
-		validation.maxSize(userpass, 32);
-		validation.minSize(nickname, 3);
-		validation.maxSize(nickname, 20);
 
     	SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
     	Date extraEnding = null;
@@ -143,7 +128,7 @@ public class Admin extends Root implements AppConstants {
 		}
 
 		if (!validation.hasErrors()) {
-			Settings settings = Settings.find("byName", APPNAME).first();
+			Settings settings = Settings.find("byAppName", APPNAME).first();
 			settings.setName(name);
 			settings.setPointsGameWin(pointsGameWin);
 			settings.setPointsGameDraw(pointsGameDraw);
@@ -186,7 +171,7 @@ public class Admin extends Root implements AppConstants {
 		flash.put("pointsTipDiff", settings.getPointsTipDiff());
 		flash.put("pointsTipTrend", settings.getPointsTipTrend());
 		flash.put("minutesBeforeTip", settings.getMinutesBeforeTip());
-		flash.put("extraEnding", settings.getBonusTippEnding());
+		flash.put("bonusTipEnding", settings.getBonusTippEnding());
 		flash.put("informOnNewTipper", settings.isInformOnNewTipper());
 		flash.put("timeZoneString", settings.getTimeZoneString());
 		flash.put("dateString", settings.getDateString());
@@ -195,6 +180,7 @@ public class Admin extends Root implements AppConstants {
 		flash.put("countFinalResult", settings.isCountFinalResult());
 		flash.put("enableRegistration", settings.isEnableRegistration());
 		flash.put("maxPictureSize", settings.getMaxPictureSize());
+		flash.put("enableRegistration", settings.isEnableRegistration());
 
 		render(settings, timeZones, locales);
 	}
