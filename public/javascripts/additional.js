@@ -20,6 +20,10 @@ function loadJS(item, url) {
 	$('.span9').load(url).hide().fadeIn('slow');
 }
 
+function showCredits() {
+	$('#modalCredits').modal('show');
+}
+
 $(document).ready(function(){
 	$(".alert-info").delay(5000).slideToggle();
 	$(".alert-success").delay(5000).slideToggle();
