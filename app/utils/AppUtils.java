@@ -1,5 +1,7 @@
 package utils;
 
+import interfaces.AppConstants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -34,14 +36,9 @@ import play.test.Fixtures;
 import services.TwitterService;
 import controllers.Auth.Security;
 
-public class AppUtils {
+public class AppUtils implements AppConstants{
 	public static Settings getSettings() {
-		Settings settings = (Settings) Cache.get("settings");
-		if (settings == null) {
-			settings = Settings.find("byAppName", "rudeltippen").first();
-			Cache.add("settings", settings);
-		}
-		return settings;
+		return Settings.find("byAppName", APPNAME).first();
 	}
 
     public static String hashPassword(String userpass, String usersalt) {
