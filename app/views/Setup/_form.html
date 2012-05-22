@@ -4,7 +4,6 @@
 		<label for="input01" class="control-label">&{'setup.name'}</label>
 		<div class="controls">
 			<input type="text" id="name" value="#{if flash.name != null}${flash.name}#{/if}#{else}Rudeltippen EM 2012#{/else}" name="name" class="input-medium">
-			<p class="help-block">&{'setup.name.help'}</p>
 			#{ifError 'name'}
 				<span class="help-inline">#{error 'name' /}</span>
 			#{/ifError}
@@ -68,8 +67,7 @@
 		<label for="input01" class="control-label">&{'setup.extratipending'}</label>
 		<div class="controls">
 			<input type="text" id="bonusTipEnding" value="#{if flash.bonusTipEnding != null}${flash.bonusTipEnding}#{/if}#{else}2012-06-08 16:00:00#{/else}" name="bonusTipEnding" class="input-medium">
-			<p class="help-block">&{'setup.extratipending.help'}</p>
-			#{ifError 'minutesBeforeTip'}
+			#{ifError 'bonusTipEnding'}
 				<span class="help-inline">#{error 'bonusTipEnding' /}</span>
 			#{/ifError}
 		</div>
@@ -82,7 +80,7 @@
 					#{if timezone == flash.timeZoneString}
     					<option selected value="${timezone}">${timezone}</option>
     				#{/if}
-    				#{elseif timezone == 'Europe/Berlin'}
+    				#{elseif flash.timezone == null && timezone == 'Europe/Berlin'}
     					<option selected value="${timezone}">${timezone}</option>
     				#{/elseif}
     				#{else}
@@ -103,7 +101,7 @@
 					#{if locale == flash.dateTimeLang}
 						<option selected value="${locale}">${locale}</option>
 					#{/if}
-					#{elseif locale == 'de'}
+					#{elseif flash.dateTimeLang == null && locale == 'de'}
 						<option selected value="${locale}">${locale}</option>
 					#{/elseif}
 					#{else}
@@ -146,22 +144,22 @@
 	<div class="control-group">
 		<label for="input01" class="control-label">&{'setup.countfinalresult'}</label>
 		<div class="controls">
-			<input type="radio" id="countFinalResult" value="false" name="countFinalResults" #{if flash.countFinalResults == null || flashcountFinalResults == true} checked="checked" #{/if} class="input-medium"> &{'setup.ninetyminutes'}<br />
-			<input type="radio" id="countFinalResult" value="true" name="countFinalResults" #{if flash.countFinalResults == false} checked="checked" #{/if} class="input-medium"> &{'setup.finalresult'}
+			<input type="radio" id="countFinalResult" value="false" name="countFinalResult" #{if flash.countFinalResult == null || flash.countFinalResult == 'false'} checked="checked" #{/if} class="input-medium"> &{'setup.ninetyminutes'}<br />
+			<input type="radio" id="countFinalResult" value="true" name="countFinalResult" #{if flash.countFinalResult == 'true'} checked="checked" #{/if} class="input-medium"> &{'setup.finalresult'}
 		</div>
 	</div>
 	<div class="control-group">
 		<label for="input01" class="control-label">&{'setup.informontipper'}</label>
 		<div class="controls">
-			<input type="radio" id="informOnNewTipper" value="true" name="informOnNewTipper" #{if flash.informOnNewTipper == null || flash.informOnNewTipper == true} checked="checked" #{/if} class="input-medium"> &{'yes'}<br />
-			<input type="radio" id="informOnNewTipper" value="false" name="informOnNewTipper" #{if flash.informOnNewTipper == false} checked="checked" #{/if} class="input-medium"> &{'no'}
+			<input type="radio" id="informOnNewTipper" value="true" name="informOnNewTipper" #{if flash.informOnNewTipper == null || flash.informOnNewTipper == 'true'} checked="checked" #{/if} class="input-medium"> &{'yes'}<br />
+			<input type="radio" id="informOnNewTipper" value="false" name="informOnNewTipper" #{if flash.informOnNewTipper == 'false'} checked="checked" #{/if} class="input-medium"> &{'no'}
 		</div>
 	</div>
 	<div class="control-group">
 		<label for="input01" class="control-label">&{'setup.enableregistration'}</label>
 		<div class="controls">
-			<input type="radio" id="enableRegistration" value="true" name="enableRegistration" #{if flash.enableRegistration == null || flash.enableRegistration == true} checked="checked" #{/if}  class="input-medium"> &{'yes'}<br />
-			<input type="radio" id="enableRegistration" value="false" name="enableRegistration" #{if flash.enableRegistration == false} checked="checked" #{/if} class="input-medium"> &{'no'}
+			<input type="radio" id="enableRegistration" value="true" name="enableRegistration" #{if flash.enableRegistration == null || flash.enableRegistration == 'true'} checked="checked" #{/if}  class="input-medium"> &{'yes'}<br />
+			<input type="radio" id="enableRegistration" value="false" name="enableRegistration" #{if flash.enableRegistration == 'false'} checked="checked" #{/if} class="input-medium"> &{'no'}
 		</div>
 	</div>
 </fieldset>
