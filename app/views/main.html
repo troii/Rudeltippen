@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <title>Rudeltippen</title>
@@ -27,7 +27,6 @@
   </head>
 
   <body data-key="${play.configuration.get("dashboard.twitter.username")}">
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -76,7 +75,6 @@
         </div>
       </div>
     </div>
-
 	#{ifErrors}
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -112,14 +110,22 @@
 			</div>
 		</div>
 	#{/if}
-
 	<div class="container-fluid">
-      <div class="row-fluid">
-		#{doLayout /}
-      </div>
-      <hr>
-      <footer>
-        <p><a href="https://github.com/svenkubiak/rudeltippen">1.0.0.RC1</a> | <a href="#">Credits</a> | <a href="http://flattr.com/thing/680536/Rudeltippen">Flattr Rudeltippen</a></p>
+		<div class="row-fluid">#{doLayout /}</div>
+		<hr>
+		<footer>
+		<div class="modal hide fade" id="modalCredits">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3>Credits</h3>
+			</div>
+			<div class="modal-body">
+				<p>Rudeltippen is based on some great Open Source Software.</p>
+				<p>Thanks to <a href="http://iam.guillaume.bort.fr/" target="_blank">Guillaume Bort</a>, the Play Developers and <a href="http://zenexity.com/" target="_blank">Zenexity</a> for bringing the <a href="http://www.playframework.org/" target="_blank">Play! Framework</a> to the Java-World. Thanks to <a href="https://twitter.com" target="_blank">Twitter</a> for this handy UI-Framework called <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. And last but not least, thanks to <a href="http://kampongboy92.deviantart.com/" target="_blank">kampongboy92</a> who made some great looking flags.</p>
+				<p>Rudeltippen by <a href="http://www.svenkubiak.de" target="_blank">Sven Kubiak</a></p>
+			</div>
+			</div>
+        	<p><a href="https://github.com/svenkubiak/rudeltippen" target="_blank">Rudeltippen 1.0.0.RC1</a> | <a href="javascript:showCredits();">Credits</a> | <a href="http://flattr.com/thing/680536/Rudeltippen" target="_blank">Flattr</a></p>
       </footer>
     </div>
     <script src="/public/javascripts/jquery.js"></script>
@@ -127,6 +133,7 @@
     <script src="/public/javascripts/bootstrap.js"></script>
     <script src="/public/javascripts/bootstrap-button.js"></script>
     <script src="/public/javascripts/bootstrap-tooltip.js"></script>
+    <script src="/public/javascripts/bootstrap-modal.js"></script>
     #{if request.action == "Application.index" }
     	<script src="/public/javascripts/twitter.js"></script>
     #{/if}
