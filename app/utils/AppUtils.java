@@ -274,7 +274,7 @@ public class AppUtils {
         TwitterService.updateStatus(message);
     }
 
-	private static boolean allReferencedGamesEnded(List<Game> games) {
+	public static boolean allReferencedGamesEnded(List<Game> games) {
         if (games == null || games.size() <= 0) {
             return false;
         }

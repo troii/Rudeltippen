@@ -1,6 +1,8 @@
 package unit;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import models.Game;
@@ -62,24 +64,6 @@ public class UnitTests extends UnitTest {
 		user.setUserpass(AppUtils.hashPassword("user555", "foo"));
 		user._save();
 	}
-
-    @Test
-    public void testValidScore() {
-    	assertTrue(ValidationUtils.isValidScore("0", "0"));
-    	assertTrue(ValidationUtils.isValidScore("99", "99"));
-        assertFalse(ValidationUtils.isValidScore("-1", "-1"));
-        assertFalse(ValidationUtils.isValidScore("a", "b"));
-        assertFalse(ValidationUtils.isValidScore("100", "1"));
-        assertFalse(ValidationUtils.isValidScore("1", "100"));
-        assertFalse(ValidationUtils.isValidScore("-1", "1"));
-        assertFalse(ValidationUtils.isValidScore("1", "-51"));
-    }
-
-    @Test
-    public void testPasswordGenerator() {
-        assertTrue(!StringUtils.isNumeric(AppUtils.generatePassword(6)));
-    	assertNotNull(AppUtils.generatePassword(6));
-    }
 
     @Test
     public void testGetPoints() {
@@ -184,24 +168,59 @@ public class UnitTests extends UnitTest {
     }
 
     @Test
-    public void testUtilsFunctions() {
+    public void testAppUtils() {
+        assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+        assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+        assertTrue(!StringUtils.isNumeric(AppUtils.generatePassword(6)));
+    	assertNotNull(AppUtils.generatePassword(6));
+    	Game g1 = new Game();
+    	Game g2 = new Game();
+    	g1.setEnded(true);
+    	g2.setEnded(true);
+    	
+    	List<Game> games = new ArrayList<Game>();
+    	games.add(g1);
+    	games.add(g2);
+    	
+    	assertTrue(AppUtils.allReferencedGamesEnded(games));
+    	
+    	g1.setEnded(false);
+    	
+    	assertFalse(AppUtils.allReferencedGamesEnded(games));
+    	
+    	assertTrue(AppUtils.getTimezones().size() > 0);
+    	assertTrue(AppUtils.getLanguages().size() > 0);
+    }
+    
+    @Test
+    public void testValidationUtils() {
     	Settings settings = AppUtils.getSettings();
         long maxSize = settings.getMaxPictureSize();
+        
         assertTrue(ValidationUtils.checkFileLength(maxSize));
         assertFalse(ValidationUtils.checkFileLength(maxSize + 1));
-
-        assertNotNull(AppUtils.getSettings());
-        assertNotNull(AppUtils.getTeamByReference("B-1-1"));
-        assertTrue(ValidationUtils.usernameExists("user1@rudeltippen.de"));
+    	assertTrue(ValidationUtils.usernameExists("user1@rudeltippen.de"));
+    	assertTrue(ValidationUtils.isValidEmail("user1@rudeltippen.de"));
         assertFalse(ValidationUtils.usernameExists("foobar555@bar.com"));
         assertTrue(ValidationUtils.nicknameExists("user5"));
-        assertFalse(ValidationUtils.nicknameExists("user55555"));
+    	assertTrue(ValidationUtils.isValidScore("0", "0"));
+    	assertTrue(ValidationUtils.isValidScore("99", "99"));
+        assertFalse(ValidationUtils.isValidScore("-1", "-1"));
+        assertFalse(ValidationUtils.isValidScore("a", "b"));
+        assertFalse(ValidationUtils.isValidScore("100", "1"));
+        assertFalse(ValidationUtils.isValidScore("1", "100"));
+        assertFalse(ValidationUtils.isValidScore("-1", "1"));
+        assertFalse(ValidationUtils.isValidScore("1", "-51"));
+    } 
+    
+    @Test
+    public void testViewUtils() {
         assertNotNull(ViewUtils.difference(new Date()));
-        assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+        assertNotNull(ViewUtils.formatted(new Date()));
         assertEquals(ViewUtils.getPlaceName(-5), "");
         assertEquals(ViewUtils.getPlaceName(11), "");
         assertEquals(ViewUtils.getPlaceName(1), "Erster");
-    }
+    }    
 
     @Test
     public void testWebServiceUpdate() {
