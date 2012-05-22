@@ -237,6 +237,43 @@ Step 7
 
 Enjoy your latest version of Rudeltippen!
 
+Advanced configuration
+===========
+
+SSL
+------------------
+
+By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltippen you need a private key and a certificate (this may be self-signed). In INSTLLATIONFOLDER/conf you find two empty files:
+
+```bash
+cert.txt
+key.txt
+```
+Paste you private key and your certificate in these files. 
+
+Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
+
+```bash
+#%prod.https.port=1924
+#%prod.certificate.key.file=conf/key.txt
+#%prod.certificate.file=conf/cert.txt 
+```
+
+You need to restart rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 1924. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. 
+
+Twitter
+------------------
+
+Rudeltippen can automaticly post some information (e.g. "The Top 3" or new results) to a Twitter-Account. If you want to enable this feature you need a consumerkey, a consumersecret, a token and a secret. Open INSTLLATIONFOLDER/conf/application.conf, uncommend the following lines and paste your data:
+
+```bash
+#%prod.twitter.consumerkey=
+#%prod.twitter.consumersecret=
+#%prod.twitter.token=
+#%prod.twitter.secret=
+```
+
+You need to restart rudeltippen in order for the changes to take place. 
 
 Support
 ===========
