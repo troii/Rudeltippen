@@ -1,4 +1,4 @@
-//http://stackoverflow.com/questions/6549223/javascript-code-to-display-twitter-created-at-as-xxxx-ago
+//from http://stackoverflow.com/questions/6549223/javascript-code-to-display-twitter-created-at-as-xxxx-ago
 function prettyDate(time){
     var system_date = new Date(Date.parse(time));
     var user_date = new Date();
