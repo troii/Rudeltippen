@@ -271,7 +271,10 @@ Rudeltippen can automaticly post some information (e.g. "The Top 3" or new resul
 #%prod.twitter.consumersecret=
 #%prod.twitter.token=
 #%prod.twitter.secret=
+#%prod.twitter.enable=false
 ```
+
+By default 'twitter.enable' is set to 'false'. Set it to true to enable posting to the Twitter-Account.
 
 You need to restart rudeltippen in order for the changes to take place. 
 
