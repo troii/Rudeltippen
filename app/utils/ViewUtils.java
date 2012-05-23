@@ -250,7 +250,7 @@ public class ViewUtils extends JavaExtensions{
     public static String getResult(Game game) {
     	if (game.isEnded()) {
     		if (game.isOvertime()) {
-    	    	return game.getHomeScoreOT() + " : " + game.getAwayScoreOT() + " (" + game.getOvertimeType() + ")";
+    	    	return game.getHomeScoreOT() + " : " + game.getAwayScoreOT() + " (" + Messages.get(game.getOvertimeType()) + ")";
     		} else {
     			return game.getHomeScore() + " : " + game.getAwayScore();
     		}
