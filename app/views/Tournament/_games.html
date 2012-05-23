@@ -44,7 +44,7 @@
 					#{/if}
 					#{else}
 						#{if game.overtime}
-							<td>${game.homeScoreOT} : ${game.awayScoreOT} (${game.overtimeType})</td>
+							<td>${game.homeScoreOT} : ${game.awayScoreOT} (&{game.overtimeType})</td>
 						#{/if}
 						#{else}
 							<td>${game.homeScore} : ${game.awayScore}</td>

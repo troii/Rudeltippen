@@ -50,7 +50,7 @@
                         <td><img src="/public/images/flags/${previousGame.homeTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;&{previousGame.homeTeam?.name}</td>
                         <td><img src="/public/images/flags/${previousGame.awayTeam?.flag}">&nbsp;&nbsp;&nbsp;&nbsp;&{previousGame.awayTeam?.name}</td>
                         #{if previousGame.overtime}
-                            <td>${previousGame.homeScoreOT} : ${previousGame.awayScoreOT} (${previousGame.overtimeType})</td>
+                            <td>${previousGame.homeScoreOT} : ${previousGame.awayScoreOT} (&{previousGame.overtimeType})</td>
                         #{/if}
                         #{else}
                             <td>${previousGame.homeScore} : ${previousGame.awayScore}</td>
