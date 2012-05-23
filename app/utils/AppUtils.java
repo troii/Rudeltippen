@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.Map.Entry;
 
 import models.Bracket;
 import models.Extra;
@@ -29,7 +28,7 @@ import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
 import play.Play;
-import play.cache.Cache;
+import play.i18n.Lang;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.test.Fixtures;
@@ -50,6 +49,15 @@ public class AppUtils implements AppConstants{
 
         return password;
     }
+
+
+	public static void setAppLanguage() {
+		String defaultLanguage = Play.configuration.getProperty("default.language");
+		if (StringUtils.isBlank(defaultLanguage)) {
+			defaultLanguage = "de";
+		}
+		Lang.change(defaultLanguage);
+	}
 
     public static User getConnectedUser() {
         final String username = Security.connected();
@@ -85,7 +93,7 @@ public class AppUtils implements AppConstants{
 		Fixtures.deleteAllModels();
 		Fixtures.deleteDatabase();
 		Fixtures.loadModels("em2012.test.yml");
-		
+
     	for (int i=1; i <= 100; i++) {
     		User user = new User();
     		user.setAdmin(true);
@@ -443,7 +451,7 @@ public class AppUtils implements AppConstants{
 
 		return 0;
 	}
-	
+
 	public static List<String> getTimezones() {
 		String [] zonesArray = TimeZone.getAvailableIDs();
 		Arrays.sort(zonesArray);
@@ -455,7 +463,7 @@ public class AppUtils implements AppConstants{
 		Arrays.sort(localeArray);
 		return Arrays.asList(localeArray);
 	}
-	
+
     public static void setGameScoreFromWebService(Game game, final WSResults wsResults) {
         Map<String, WSResult> wsResult = wsResults.getWsResult();
         final String homeScore = wsResult.get("90").getHomeScore();

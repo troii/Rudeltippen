@@ -8,6 +8,8 @@ import utils.AppUtils;
 public class Root extends Controller {
 	@Before
     protected static void setConnectedUser() {
+		AppUtils.setAppLanguage();
+
 	    final User connectedUser = AppUtils.getConnectedUser();
 	    if (connectedUser != null) {
 	        renderArgs.put("connectedUser", connectedUser);

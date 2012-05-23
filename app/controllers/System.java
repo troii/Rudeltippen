@@ -23,6 +23,8 @@ import utils.AppUtils;
 public class System extends Controller implements AppConstants {
 	@Before
 	protected static void auth() {
+		AppUtils.setAppLanguage();
+
 		String requestUsername = request.user;
 		String requestUserpass = request.password;
 		String appUsername = Play.configuration.getProperty("app.setup.username");
@@ -41,7 +43,7 @@ public class System extends Controller implements AppConstants {
 
 		render(settings, timeZones, locales);
 	}
-	
+
 	@NoTransaction
 	public static void update() {
 		render();

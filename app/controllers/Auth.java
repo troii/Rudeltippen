@@ -34,6 +34,8 @@ public class Auth extends Controller {
 
 	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm"})
     protected static void checkAccess() throws Throwable {
+		AppUtils.setAppLanguage();
+
     	if (!session.contains("username")) {
             flash.put("url", "/");
             login();
