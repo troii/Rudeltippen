@@ -94,6 +94,17 @@ public class ViewUtils extends JavaExtensions{
 
 		return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
 	}
+	
+	public static String getTipPoints(Game game) {
+		User user = AppUtils.getConnectedUser();
+		GameTip gameTip = GameTip.find("byGameAndUser", game, user).first();
+
+		if (gameTip != null && game.isEnded()) {
+			return "(" + gameTip.getPoints() + ")";
+		}
+
+		return "";
+	}
 
 	public static String getHomeScoreTip(Game game) {
 		String homeScore = "";
