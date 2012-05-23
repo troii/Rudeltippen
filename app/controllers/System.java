@@ -11,6 +11,7 @@ import models.Game;
 import models.Settings;
 import models.User;
 import play.Play;
+import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
@@ -19,7 +20,7 @@ import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
 
-public class Setup extends Controller implements AppConstants {
+public class System extends Controller implements AppConstants {
 	@Before
 	protected static void auth() {
 		String requestUsername = request.user;
@@ -33,12 +34,17 @@ public class Setup extends Controller implements AppConstants {
 	}
 
 	@Transactional(readOnly=true)
-	public static void index() {
+	public static void setup() {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
 
 		render(settings, timeZones, locales);
+	}
+	
+	@NoTransaction
+	public static void update() {
+		render();
 	}
 
 	public static void init(String name,
@@ -156,6 +162,6 @@ public class Setup extends Controller implements AppConstants {
 		params.flash();
 		validation.keep();
 
-		index();
+		setup();
 	}
 }

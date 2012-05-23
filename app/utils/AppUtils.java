@@ -82,6 +82,7 @@ public class AppUtils implements AppConstants{
     }
 
 	public static void initApp() {
+		Fixtures.deleteAllModels();
 		Fixtures.deleteDatabase();
 		Fixtures.loadModels("em2012.test.yml");
 		
@@ -92,8 +93,8 @@ public class AppUtils implements AppConstants{
     		user.setNickname("user" + i);
     		user.setRegistered(new Date());
     		user.setActive(true);
-    		user.setSalt("jfjfj");
-    		user.setUserpass(AppUtils.hashPassword("user" + i, "jfjfj"));
+    		user.setSalt("foo");
+    		user.setUserpass(AppUtils.hashPassword("user" + i, "foo"));
     		user._save();
     	}
 	}

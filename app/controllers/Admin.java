@@ -79,6 +79,7 @@ public class Admin extends Root implements AppConstants {
 		int playday = 1;
 		if (keys != null && keys.size() >= 1) {
 			if (StringUtils.isNotBlank(gamekey)) {
+				gamekey = gamekey.replace("_et", "");
 				Game game = Game.findById(new Long(gamekey));
 				if (game != null && game.getPlayday() != null) {
 					playday = game.getPlayday().getNumber();

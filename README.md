@@ -66,6 +66,13 @@ Set the Username and Password for inital setup
 app.setup.username=admin
 app.setup.password=admin
 ```
+
+Set your default Language
+
+```bash
+default.language=de
+```
+
 Set the application key for rudeltippen
 
 ```bash
@@ -144,7 +151,7 @@ If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in t
 Step 5
 ------------------
 
-Open your Browser and go to http://yourdomain.com/setup
+Open your Browser and go to http://yourdomain.com/system/setup
 
 > You did set username and password in application.conf (see 3.)
 > After the Setup is complete Rudeltippen will automaticly load all data required for the Euro 2012.
