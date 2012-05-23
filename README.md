@@ -66,6 +66,13 @@ Set the Username and Password for inital setup
 app.setup.username=admin
 app.setup.password=admin
 ```
+
+Set your default Language
+
+```bash
+default.language=de
+```
+
 Set the application key for rudeltippen
 
 ```bash
