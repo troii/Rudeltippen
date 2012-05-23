@@ -293,6 +293,18 @@ public class ViewUtils extends JavaExtensions{
 
     	return 0;
     }
+    
+    public static String getExtraTipAnswer(ExtraTip extraTip) {
+    	if (extraTip.getAnswer() != null) {
+    		if (extraTip.getExtra().getEnding().getTime() > new Date().getTime()) {
+    			return Messages.get(extraTip.getAnswer().getName());
+    		} else {
+    			return Messages.get("model.user.tipped");
+    		}
+    	}
+    	
+    	return "-";
+    }
 
     public static String getExtraTipPoints(ExtraTip extraTip) {
     	if (extraTip != null && extraTip.getExtra() != null && extraTip.getExtra().getAnswer() != null) {
