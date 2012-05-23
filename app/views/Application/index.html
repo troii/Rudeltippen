@@ -55,7 +55,7 @@
                         #{else}
                             <td>${previousGame.homeScore} : ${previousGame.awayScore}</td>
                         #{/else}
-                        <td>${previousGame.getTip()}</td>
+                        <td>${previousGame.getTip()} ${previousGame.getTipPoints()}</td>
                     </tr>
                 #{/list}
                 #{else}
