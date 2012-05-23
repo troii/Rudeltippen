@@ -151,7 +151,7 @@ If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in t
 Step 5
 ------------------
 
-Open your Browser and go to http://yourdomain.com/setup
+Open your Browser and go to http://yourdomain.com/system/setup
 
 > You did set username and password in application.conf (see 3.)
 > After the Setup is complete Rudeltippen will automaticly load all data required for the Euro 2012.

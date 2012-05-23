@@ -19,7 +19,7 @@ import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
 
-public class Setup extends Controller implements AppConstants {
+public class System extends Controller implements AppConstants {
 	@Before
 	protected static void auth() {
 		String requestUsername = request.user;
@@ -33,7 +33,7 @@ public class Setup extends Controller implements AppConstants {
 	}
 
 	@Transactional(readOnly=true)
-	public static void index() {
+	public static void setup() {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
@@ -156,6 +156,6 @@ public class Setup extends Controller implements AppConstants {
 		params.flash();
 		validation.keep();
 
-		index();
+		setup();
 	}
 }
