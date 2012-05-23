@@ -11,6 +11,7 @@ import models.Game;
 import models.Settings;
 import models.User;
 import play.Play;
+import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
@@ -39,6 +40,11 @@ public class System extends Controller implements AppConstants {
 		final List<String> locales = AppUtils.getLanguages();
 
 		render(settings, timeZones, locales);
+	}
+	
+	@NoTransaction
+	public static void update() {
+		render();
 	}
 
 	public static void init(String name,
