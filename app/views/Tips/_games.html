@@ -3,7 +3,6 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th class="visible-desktop">&{'game'}</th>
 				<th class="visible-desktop">&{'date'} - &{'time'}</th>
 				<th class="visible-desktop">&{'betending'}</th>
 				<th>&{'hometeam'}</th>
@@ -16,7 +15,6 @@
 		<tbody>
 			#{list items:playday.games, as:'game'}
 				<tr>
-					<td class="visible-desktop">${game.number}</td>
 					<td class="visible-desktop">${game.kickoff.formatted()}</td>
 					<td class="visible-desktop">${game.tippEnding.difference()}</td>
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
@@ -30,7 +28,7 @@
 					<td class="hidden-phone">${game.getResult()}</td>
 					#{if game.tippable}
 						<td style="text-align: right;"><input type="text" value="${game.getHomeScoreTip()}" id="game_homeScore_${game_index}" name="game_${game.id}_homeScore" class="input-mini"></td>
-						<td>:</td>
+						<td style="text-align: center;">:</td>
 						<td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="input-mini"></td>
 					#{/if}
 					#{else}
