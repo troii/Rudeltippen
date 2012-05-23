@@ -82,54 +82,8 @@ public class Users extends Root {
 	@Transactional(readOnly=true)
 	public static void profile() {
 		final User user = AppUtils.getConnectedUser();
-
-		if (user != null) {
-            final Settings settings = AppUtils.getSettings();
-            final List<GameTip> gameTips = GameTip.find("byUser", user).fetch();
-		    Map<String, Integer> statistics = new HashMap<String, Integer>();
-
-			int sumTipps = gameTips.size();
-			int correctTipps = 0;
-			int correctTrend = 0;
-			int correctDifference = 0;
-			for (GameTip gameTip : gameTips) {
-				if (!gameTip.getGame().isEnded()) {
-					continue;
-				}
-
-				int points = gameTip.getPoints();
-				if (points == settings.getPointsTip()) {
-					correctTipps++;
-				} else if (points == settings.getPointsTipTrend()) {
-					correctTrend++;
-				} else if (points == settings.getPointsTipDiff()) {
-					correctDifference++;
-				}
-			}
-			statistics.put("sumGames", (int) Game.count());
-			statistics.put("sumTipps", sumTipps);
-			statistics.put("correctTipps", correctTipps);
-			statistics.put("correctTrend", correctTrend);
-			statistics.put("correctDifference", correctDifference);
-			float pointsTipp = (float) user.getPoints() / (float) sumTipps;
-			String pointsPerTipp = "0";
-			if (pointsTipp > 0) {
-			    DecimalFormat df = new DecimalFormat( "0.00" );
-			    pointsPerTipp = df.format( pointsTipp );
-			}
-
-			if (sumTipps > 0) {
-				statistics.put("tippQuote", 100 / sumTipps * correctTipps);
-			} else {
-				statistics.put("tippQuote", 0);
-			}
-
-			render(user, statistics, pointsPerTipp);
-		} else {
-			redirect("/");
-		}
+		render(user);
 	}
-
 
 	public static void updatenickname(String nickname) {
 		validation.required(nickname);
