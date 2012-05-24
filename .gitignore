@@ -45,3 +45,23 @@ play/.DS_Store
 play/framework/src/play/.DS_Store
 
 server.pid
+
+.DS_Store
+
+eclipse/classes/selenium/0.Registration.test.html
+
+eclipse/classes/selenium/1.Login.test.html
+
+eclipse/classes/selenium/2.Application.test.html
+
+eclipse/classes/selenium/3.GameTip.test.html
+
+eclipse/classes/selenium/4.Results.test.html
+
+eclipse/classes/selenium/5.Playoffs.test.html
+
+eclipse/classes/selenium/6.ExtraTips.test.html
+
+eclipse/classes/selenium/7.Profile.test.html
+
+eclipse/classes/selenium/8.Logout.test.html
