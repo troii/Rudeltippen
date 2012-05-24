@@ -4,7 +4,7 @@
 		<div class="span6">
 			<h2>&{'changenickname'}</h2>
 			#{form @Users.updatenickname(), class:'form-horizontal well'}
-				<div class="control-group #{ifError 'username'} error #{/ifError}">
+				<div class="control-group #{ifError 'nickname'} error #{/ifError}">
 					<label for="input01" class="control-label">&{'newnickname'}</label>
 					<div class="controls">
 						<input type="text" id="nickname" name="nickname" value="" class="input-medium">
@@ -14,22 +14,22 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button1" type="submit" data-toggle="button">&{'save'}</button>
 				</div>
 			#{/form}
 		</div>
 		<div class="span6 visible-desktop">
 			<h2>&{'changepicture'}</h2>
 			#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
-				<div class="control-group">
+				<div class="control-group #{ifError 'picture'} error #{/ifError}">
 		            <label for="fileInput" class="control-label">&{'profilepicture'}</label>
 		            <div class="controls">
 		              <input type="file" id="picture" name="picture" class="input-file">
-		              <p class="help-block">&{'profilepicture'}</p>
+		              <p class="help-block">&{'maxprofile'}</p>
 		            </div>
 		        </div>
 				<div class="form-actions">
-					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button2" type="submit" data-toggle="button">&{'save'}</button>
 				</div>
 			#{/form}
 		</div>
@@ -38,42 +38,52 @@
 		<div class="span6">
 			<h2>&{'changepassword'}</h2>
 			#{form @Users.updatepassword(), class:'form-horizontal well'}
-				<div class="control-group">
+				<div class="control-group #{ifError 'userpass'} error #{/ifError}">
 					<label for="userpass" class="control-label">&{'newpassword'}</label>
 					<div class="controls">
-						<input type="password" value="" id="" name="userpass" class="input-medium">
+						<input type="password" value="" id="userpass" name="userpass" class="input-medium">
+						#{ifError 'userpass'}
+							<span class="help-inline">#{error 'userpass' /}</span>
+						#{/ifError}
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
 					<label for="userpassConfirmation" class="control-label">&{'newpasswordconfirm'}</label>
 					<div class="controls">
 						<input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
+						#{ifError 'userpassConfirmation'}
+							<span class="help-inline">#{error 'userpassConfirmation' /}</span>
+						#{/ifError}
 					</div>
 				</div>
 			<div class="form-actions">
-				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
 			</div>
 			#{/form}
 		</div>
 		<div class="span6">
 			<h2>&{'changeemail'}</h2>
 			#{form @Users.updateusername(), class:'form-horizontal well'}
-				<div class="control-group">
-					<div class="control-group">
-						<label for="username" class="control-label">&{'newemail'}</label>
-						<div class="controls">
-							<input type="text" value="" id="username" name="username" class="input-medium">
-						</div>
+				<div class="control-group #{ifError 'username'} error #{/ifError}">
+					<label for="username" class="control-label">&{'newemail'}</label>
+					<div class="controls">
+						<input type="text" value="" id="username" name="username" class="input-medium">
+						#{ifError 'username'}
+							<span class="help-inline">#{error 'username' /}</span>
+						#{/ifError}
 					</div>
-					<div class="control-group">
-						<label for="usernameConfirmation" class="control-label">&{'newemailconfirm'}</label>
-						<div class="controls">
-							<input type="text" value="" id="usernameConfirmation" name="usernameConfirmation" class="input-medium">
-						</div>
+				</div>
+				<div class="control-group #{ifError 'usernameConfirmation'} error #{/ifError}">
+					<label for="usernameConfirmation" class="control-label">&{'newemailconfirm'}</label>
+					<div class="controls">
+						<input type="text" value="" id="usernameConfirmation" name="usernameConfirmation" class="input-medium">
+						#{ifError 'usernameConfirmation'}
+							<span class="help-inline">#{error 'usernameConfirmation' /}</span>
+						#{/ifError}
 					</div>
 				</div>
 				<div class="form-actions">
-					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button4" type="submit" data-toggle="button">&{'save'}</button>
 				</div>
 			#{/form}
 		</div>
@@ -88,7 +98,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
 				</div>
 			#{/form}
 		</div>

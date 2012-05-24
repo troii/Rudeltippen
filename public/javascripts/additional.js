@@ -25,9 +25,9 @@ function showCredits() {
 }
 
 $(document).ready(function(){
-	$(".alert-info").delay(5000).slideToggle();
-	$(".alert-success").delay(5000).slideToggle();
-	$('#fat-btn').click(function() {
+	$('.alert-info').delay(5000).slideToggle();
+	$('.alert-success').delay(5000).slideToggle();
+	$('.btn-primary').click(function() {
 		var btn = $(this)
 		btn.button('loading')
 	});
