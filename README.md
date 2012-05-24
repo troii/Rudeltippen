@@ -290,6 +290,10 @@ Support
 
 If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a Bug, please open an Issue on Github.
 
+licence
+===========
+
+Rudeltippen is distributed under [Apache 2 licence][11]
 
 Stuff
 ===========
@@ -309,3 +313,4 @@ Stuff
 [8]: http://twitter.com/rudeltippen
 [9]: http://www.playframework.org/documentation/1.2.4/production
 [10]: http://technet.microsoft.com/de-de/sysinternals/bb897553.aspx
+[11]: http://www.apache.org/licenses/LICENSE-2.0.html
