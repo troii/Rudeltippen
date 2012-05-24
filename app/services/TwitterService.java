@@ -15,7 +15,6 @@ import play.Logger;
 import play.Play;
 import play.libs.Codec;
 import play.mvc.Http;
-
 import utils.AppUtils;
 
 public class TwitterService {

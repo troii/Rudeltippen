@@ -14,7 +14,6 @@ import org.w3c.dom.NodeList;
 
 import play.Logger;
 import play.libs.WS;
-import utils.AppUtils;
 
 public class UpdateService {
 	public static WSResults setResultsFromWebService(Game game) {
