@@ -19,9 +19,8 @@ import utils.AppUtils;
 
 public class TwitterService {
     public static void updateStatus(String message) {
-    	String enable = Play.configuration.getProperty("twitter.enable");
     	Settings settings = AppUtils.getSettings();
-        if (StringUtils.isNotBlank(enable) && ("true").equals(enable) && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
+        if (AppUtils.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
             OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/statuses/update.json");
             request.addQuerystringParameter("status", message);
             sendRequest(request);

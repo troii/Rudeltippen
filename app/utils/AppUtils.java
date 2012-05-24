@@ -279,6 +279,15 @@ public class AppUtils implements AppConstants{
         }
         TwitterService.updateStatus(message);
     }
+    
+    public static boolean isTweetable() {
+    	String tweetable = Play.configuration.getProperty("tweet.enable");
+    	if (StringUtils.isNotBlank(tweetable) && ("true").equals(tweetable)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
 
 	public static boolean allReferencedGamesEnded(List<Game> games) {
         if (games == null || games.size() <= 0) {

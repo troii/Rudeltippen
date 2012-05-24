@@ -5,6 +5,7 @@ import java.util.List;
 import models.Game;
 import models.User;
 import play.Logger;
+import play.Play;
 import play.jobs.Job;
 import play.jobs.On;
 import services.TwitterService;
@@ -14,7 +15,7 @@ import utils.AppUtils;
 public class TwitterJob extends Job{
 	@Override
 	public void doJob() {
-		if (AppUtils.isJobInstance()) {
+		if (AppUtils.isJobInstance() && AppUtils.isTweetable()) {
 		    Logger.info("Running Job: Twitter");
 		    final Game game = Game.find("byGameNumber", 1).first();
 		    if (game != null && game.isEnded()) {
