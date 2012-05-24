@@ -1,7 +1,9 @@
-#{list items:brackets, as:'bracket'}
-<h2>&{bracket.name}</h2>
 <table class="table">
+#{list items:brackets, as:'bracket'}
 	<thead>
+		<tr>
+			<th colspan="6"><h2>&{bracket.name}</h2></th>
+		</tr>
 		<tr>
 			<th class="hidden-phone">#</th>
 			<th>&{'team'}</th>
@@ -34,5 +36,5 @@
 			</tr>
 		#{/list}
 	</tbody>
-</table>
 #{/list}
+</table>

@@ -1,7 +1,9 @@
+<table class="table table-striped">
 #{list items:playdays, as:'playday'}
-	<h2>&{playday.name}</h2>
-	<table class="table table-striped">
 	<thead>
+		<tr>
+			<th colspan="6"><h2>&{playday.name}</h2></th>
+		</tr>
 		<tr>
 			<th class="hidden-phone">&{'game'}</th>
 			<th class="hidden-phone">&{'date'} - &{'time'}</th>
@@ -53,6 +55,6 @@
 				</tr>
 		#{/list}
 	</tbody>
-</table>
 #{/list}
+</table>
 #{include '/Tags/javascript.html' /}
