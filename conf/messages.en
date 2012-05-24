@@ -252,6 +252,7 @@ rules.global.3=A tendence on the Dashboard will be displayed if there are at lea
 rules.nintyminutesinfo=If player places a tip on a team's victory after 90 minutes and this team wins after extra time and / or penalties, the player receives only the points for a correct tendence.
 rules.points.playoffs=Tip-count in playoffs
 rules.points.extras=Placing bonus tips
+rules.extras.time=Until %s
 rules.bet.minutes=Placing a tip
 rules.bet.minutes.value=Until %s minutes before kickoff
 NationalStadium=National Stadium
