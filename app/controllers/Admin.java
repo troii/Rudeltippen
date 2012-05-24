@@ -18,7 +18,6 @@ import models.Settings;
 
 import org.apache.commons.lang.StringUtils;
 
-import play.cache.Cache;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.With;
@@ -150,8 +149,6 @@ public class Admin extends Root implements AppConstants {
 
 			flash.put("infomessage", Messages.get("setup.saved"));
 	    	flash.keep();
-
-			Cache.delete("settings");
 		}
 		params.flash();
 		validation.keep();
