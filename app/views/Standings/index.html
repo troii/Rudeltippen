@@ -20,7 +20,7 @@
 						<td style="vertical-align: top;">${user_index + ((pagination.currentPage -1 ) * pagination.fetch)}</td>
 					#{/else}
 					#{if user.picture != null}
-						<td><a href="@{users.show()}/${users.nickname}"><img src="${user.picture}" /></a></td>
+						<td><a href="@{users.show()}/${user.nickname}"><img src="${user.picture}" /></a></td>
 						<td><b><a href="@{users.show()}/${user.nickname}">${user.nickname}</a></b></td>
 					#{/if}
 					#{else}
