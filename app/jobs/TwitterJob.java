@@ -6,6 +6,7 @@ import models.Game;
 import models.User;
 import play.Logger;
 import play.Play;
+import play.i18n.Messages;
 import play.jobs.Job;
 import play.jobs.On;
 import services.TwitterService;
@@ -31,7 +32,7 @@ public class TwitterJob extends Job{
 	                }
 	                count++;
 	            }
-	            TwitterService.updateStatus("Top 3: " + buffer.toString());    
+	            TwitterService.updateStatus(Messages.get("topthree") + " " + buffer.toString());    
 		    }
 		}
 	}

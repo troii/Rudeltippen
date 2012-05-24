@@ -271,10 +271,10 @@ public class AppUtils implements AppConstants{
 
         String message = "";
         if (game.isOvertime()) {
-            message = Messages.get("helper.tweetscore") + " " + game.getHomeTeam().getName() + " - " + game.getAwayTeam().getName() + " "
+            message = Messages.get("helper.tweetscore") + " " + Messages.get(game.getHomeTeam().getName()) + " - " + Messages.get(game.getAwayTeam().getName()) + " "
                     + game.getHomeScoreOT() + ":" + game.getHomeScoreOT() + " (" + game.getOvertimeType() + ")";
         } else {
-            message = Messages.get("helper.tweetscore") + " " + game.getHomeTeam().getName() + " - " + game.getAwayTeam().getName() + " "
+            message = Messages.get("helper.tweetscore") + " " + Messages.get(game.getHomeTeam().getName()) + " - " + Messages.get(game.getAwayTeam().getName()) + " "
                     + game.getHomeScore() + ":" + game.getAwayScore();
         }
         TwitterService.updateStatus(message);
