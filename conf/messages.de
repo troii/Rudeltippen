@@ -252,6 +252,7 @@ rules.global.3=Damit eine Tendenz im Dashboard f&uuml;r Spiele angezeigt wird, m
 rules.nintyminutesinfo=Tippt ein Spieler auf den Sieg einer Mannschaft nach 90 Minuten und diese Mannschaft gewinnt erst nach Verl&auml;ngerung und/oder Elfmeterschie&szlig;en, erhält der Spieler nur die Punkte für die richtige Tendenz.
 rules.points.playoffs=Tipp-Wertung innerhalb der Playoffs
 rules.points.extras=Tippabgabe Bonus Tipps
+rules.extras.time=Bis zum %s
 rules.bet.minutes=Tippabgabe
 rules.bet.minutes.value=Bis %s Minuten vor Spielbeginn
 models.Stadium(warschau):
