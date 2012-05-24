@@ -24,6 +24,8 @@ eclipse/rudeltippen.launch
 
 tmp/
 
+modules/
+
 lib/
 
 logs/
