@@ -16,8 +16,8 @@
 				#{/if}
 			#{/list}
 			#{if pagination.currentPage != (pagination.pages + 1)}
-				<li><a name="page${pagination.currentPage + 1}" href="/standings/${pagination.currentPage + 1}">{'pagebefore'}&nbsp;&rsaquo;</a></li>
-				<li><a name="page${pagination.pages + 1}" href="/standings/${pagination.pages + 1}">{'lastpage'}&nbsp;&raquo;</a></li>
+				<li><a name="page${pagination.currentPage + 1}" href="/standings/${pagination.currentPage + 1}">&{'pagebefore'}&nbsp;&rsaquo;</a></li>
+				<li><a name="page${pagination.pages + 1}" href="/standings/${pagination.pages + 1}">&{'lastpage'}&nbsp;&raquo;</a></li>
 			#{/if}
 		</ul>
 	</div>
