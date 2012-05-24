@@ -77,4 +77,14 @@ public class Playday extends Model{
 	public void setPlayoff(boolean playoff) {
 		this.playoff = playoff;
 	}
+	
+	public boolean isTippable() {
+		for (Game game : this.games){
+			if (game.isTippable()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

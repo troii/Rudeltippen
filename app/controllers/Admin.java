@@ -103,29 +103,19 @@ public class Admin extends Root implements AppConstants {
 										String timeString,
 										boolean countFinalResult,
 										boolean informOnNewTipper,
-										boolean enableRegistration,
-										String bonusTipEnding
+										boolean enableRegistration
 										) {
 		validation.required(name);
 		validation.required(timeZoneString);
 		validation.required(dateString);
 		validation.required(dateTimeLang);
 		validation.required(timeString);
-		validation.required(bonusTipEnding);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsGameWin, 0, 99);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
-
-    	SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
-    	Date extraEnding = null;
-		try {
-			extraEnding = df.parse(bonusTipEnding);
-		} catch (ParseException e) {
-			validation.isTrue(false).message(Messages.get("controller.setup.dateerror"));
-		}
 
 		if (!validation.hasErrors()) {
 			Settings settings = Settings.find("byAppName", APPNAME).first();
@@ -136,7 +126,6 @@ public class Admin extends Root implements AppConstants {
 			settings.setPointsTipDiff(pointsTipDiff);
 			settings.setPointsTipTrend(pointsTipTrend);
 			settings.setMinutesBeforeTip(minutesBeforeTip);
-			settings.setBonusTippEnding(extraEnding);
 			settings.setInformOnNewTipper(informOnNewTipper);
 			settings.setTimeZoneString(timeZoneString);
 			settings.setDateString(dateString);
@@ -169,7 +158,6 @@ public class Admin extends Root implements AppConstants {
 		flash.put("pointsTipDiff", settings.getPointsTipDiff());
 		flash.put("pointsTipTrend", settings.getPointsTipTrend());
 		flash.put("minutesBeforeTip", settings.getMinutesBeforeTip());
-		flash.put("bonusTipEnding", settings.getBonusTippEnding());
 		flash.put("informOnNewTipper", settings.isInformOnNewTipper());
 		flash.put("timeZoneString", settings.getTimeZoneString());
 		flash.put("dateString", settings.getDateString());

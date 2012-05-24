@@ -66,8 +66,6 @@ public class Settings extends Model {
 	private boolean countFinalResult;
 	private boolean enableRegistration;
 
-	private Date bonusTippEnding;
-
 	public String getAppSalt() {
 		return appSalt;
 	}
@@ -226,14 +224,6 @@ public class Settings extends Model {
 
 	public void setEnableRegistration(boolean enableRegistration) {
 		this.enableRegistration = enableRegistration;
-	}
-
-	public Date getBonusTippEnding() {
-		return bonusTippEnding;
-	}
-
-	public void setBonusTippEnding(Date bonusTippEnding) {
-		this.bonusTippEnding = bonusTippEnding;
 	}
 
 	public String getLastTweet() {

@@ -64,7 +64,6 @@ public class System extends Controller implements AppConstants {
 							boolean countFinalResult,
 							boolean informOnNewTipper,
 							boolean enableRegistration,
-							String bonusTipEnding,
 							String nickname,
 							String username,
 							String usernameConfirmation,
@@ -94,14 +93,6 @@ public class System extends Controller implements AppConstants {
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
 
-    	SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
-    	Date extraEnding = null;
-		try {
-			extraEnding = df.parse(bonusTipEnding);
-		} catch (ParseException e) {
-			validation.isTrue(false).message(Messages.get("controller.setup.dateerror"));
-		}
-
 		if (!validation.hasErrors()) {
 	    	session.clear();
 	        response.removeCookie("rememberme");
@@ -128,7 +119,6 @@ public class System extends Controller implements AppConstants {
 			settings.setPointsTipDiff(pointsTipDiff);
 			settings.setPointsTipTrend(pointsTipTrend);
 			settings.setMinutesBeforeTip(minutesBeforeTip);
-			settings.setBonusTippEnding(extraEnding);
 			settings.setInformOnNewTipper(informOnNewTipper);
 			settings.setTimeZoneString(timeZoneString);
 			settings.setDateString(dateString);

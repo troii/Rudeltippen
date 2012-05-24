@@ -63,15 +63,6 @@
 			#{/ifError}
 		</div>
 	</div>
-	<div class="control-group #{ifError 'bonusTipEnding'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.extratipending'}</label>
-		<div class="controls">
-			<input type="text" id="bonusTipEnding" value="#{if flash.bonusTipEnding != null}${flash.bonusTipEnding}#{/if}#{else}2012-06-08 18:00:00#{/else}" name="bonusTipEnding" class="input-medium">
-			#{ifError 'bonusTipEnding'}
-				<span class="help-inline">#{error 'bonusTipEnding' /}</span>
-			#{/ifError}
-		</div>
-	</div>
 	<div class="control-group #{ifError 'timeZoneString'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.timezone'}</label>
 		<div class="controls">

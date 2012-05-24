@@ -50,6 +50,15 @@ public class AppUtils implements AppConstants{
         return password;
     }
 
+    public static boolean extrasTippable(List<Extra> extras) {
+		for (Extra extra : extras) {
+			if (extra.isTippable()) {
+				return true;
+			}
+		}
+		
+		return false;
+    }
 
 	public static void setAppLanguage() {
 		String defaultLanguage = Play.configuration.getProperty("default.language");

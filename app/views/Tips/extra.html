@@ -39,6 +39,8 @@
         #{/list}
     </tbody>
 </table>
-<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+#{if tippable}
+	<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+#{/if}
 #{/form}
 #{include '/Tags/javascript.html' /}

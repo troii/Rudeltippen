@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -43,14 +44,18 @@ public class Tips extends Root {
 	@Transactional(readOnly=true)
 	public static void extra() {
 		List<Extra> extras = Extra.findAll();
-		render(extras);
+		boolean tippable = AppUtils.extrasTippable(extras);
+		
+		render(extras, tippable);
 	}
 
 	@Transactional(readOnly=true)
 	public static void extras() {
 		List<Playday> playdays = Playday.findAll();
 		List<Extra> extras = Extra.findAll();
-		render(extras, playdays);
+		boolean tippable = AppUtils.extrasTippable(extras);
+		
+		render(extras, playdays, tippable);
 	}
 
 	public static void storetips() {
