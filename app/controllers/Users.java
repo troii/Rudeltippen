@@ -181,14 +181,17 @@ public class Users extends Root {
 	}
 
 	public static void updatepicture(File picture) {
+		validation.required(picture);
+		
 		if (picture != null) {
-			validation.isTrue(ValidationUtils.checkFileLength(picture.length())).message("validation.checkFileLength");
+			int size = AppUtils.getSettings().getMaxPictureSize();
+			String message = Messages.get("profile.maxpicturesize", size / 1024);
+			validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
 		} else {
 			validation.isTrue(false);
 		}
 		
 		if (validation.hasErrors()) {
-			flash.put("profileerror", true);
 			params.flash();
 			validation.keep();
 		} else {

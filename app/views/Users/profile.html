@@ -22,10 +22,12 @@
 			<h2>&{'changepicture'}</h2>
 			#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
 				<div class="control-group #{ifError 'picture'} error #{/ifError}">
-		            <label for="fileInput" class="control-label">&{'profilepicture'}</label>
+		            <label for="fileInput" class="control-label">&{'profilepicture'}<br />&{'maxprofile'}</label>
 		            <div class="controls">
 		              <input type="file" id="picture" name="picture" class="input-file">
-		              <p class="help-block">&{'maxprofile'}</p>
+		              #{ifError 'picture'}
+							<span class="help-inline">#{error 'picture' /}</span>
+					  #{/ifError}
 		            </div>
 		        </div>
 				<div class="form-actions">

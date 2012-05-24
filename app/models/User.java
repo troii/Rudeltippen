@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,10 +30,10 @@ public class User extends Model{
 	@Column(nullable=false)
 	private Date registered;
 
-	@Column(length=512)
+	@Lob
 	private String picture;
 
-    @Column(length=1024)
+	@Lob
     private String pictureLarge;
 
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
