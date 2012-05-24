@@ -41,13 +41,13 @@ public class User extends Model{
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ExtraTip> extraTips;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<Confirmation> confirmations;
 
+	private Date lastLogin;
 	private boolean reminder;
 	private boolean admin;
 	private boolean active;
-	private Date lastLogin;
 	private int tipPoints;
 	private int extraPoints;
 	private int points;

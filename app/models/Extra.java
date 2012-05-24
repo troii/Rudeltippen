@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,7 +16,7 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="rudeltippen_extras")
 public class Extra extends Model{
-	@OneToMany(mappedBy = "extra")
+	@OneToMany(mappedBy = "extra", fetch=FetchType.LAZY)
 	private List<ExtraTip> extraTips;
 
 	@Column(nullable=false)
