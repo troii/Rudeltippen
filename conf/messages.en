@@ -92,6 +92,7 @@ in.years=in %s years
 in.ended=Ended
 view.user.point=You have <b>%s Point</b>. You are on rank <b>%s</b> of %s
 view.user.points=You have <b>%s Points</b>. You are on rank <b>%s</b> of %s
+profile.maxpicturesize=Profile picture should not exceed %s Kilobyte 
 extratips=Bonus tips
 game=Game
 betending=Predictions ends
