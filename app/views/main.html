@@ -132,6 +132,7 @@
     <script src="/public/javascripts/bootstrap.js"></script>
     <script src="/public/javascripts/bootstrap-plugins.js"></script>
     #{if request.action == "Application.index" }
+        #{i18n keys:['js.*'] /}
     	<script src="/public/javascripts/twitter.js"></script>
     #{/if}
     <script src="/public/javascripts/additional.js"></script>

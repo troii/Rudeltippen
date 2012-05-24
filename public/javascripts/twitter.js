@@ -4,17 +4,17 @@ function prettyDate(time){
     var user_date = new Date();
 
     var diff = Math.floor((user_date - system_date) / 1000);
-    if (diff <= 1) {return "Gerade eben";}
-    if (diff < 60) {return "Vor " + diff + " Sekunden";}
-    if (diff <= 90) {return "Vor einer Minute";}
-    if (diff <= 3540) {return "Vor " + Math.round(diff / 60) + " Minuten";}
-    if (diff <= 5400) {return "Vor 1 Stunde";}
-    if (diff <= 86400) {return "Vor " + Math.round(diff / 3600) + " Stunden";}
-    if (diff <= 129600) {return "Vor 1 Tag";}
-    if (diff < 604800) {return "Vor " + Math.round(diff / 86400) + " Tagen";}
-    if (diff <= 777600) {return "Vor 1 Jahr";}
-    return "am " + system_date;
-
+    if (diff <= 1) {return i18n('js.justnow');}
+    if (diff < 60) {return i18n('js.secondsago', diff);}
+    if (diff <= 90) {return i18n('js.oneminuteago');}
+    if (diff <= 3540) {return i18n('js.secondsago', Math.round(diff / 60));}
+    if (diff <= 5400) {return i18n('js.onehourago');}
+    if (diff <= 86400) {return i18n('js.hoursago', Math.round(diff / 3600));}
+    if (diff <= 129600) {return i18n('js.onedayago');}
+    if (diff < 604800) {return i18n('js.daysago', Math.round(diff / 86400));}
+    if (diff <= 777600) {return i18n('js.oneyearago');}
+    
+    return i18n('js.at') + " " + system_date;
 }
 
 function linkify(text) {
