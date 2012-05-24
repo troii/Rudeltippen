@@ -114,6 +114,7 @@ public class ViewUtils extends JavaExtensions{
 		for (GameTip gameTip : gameTips) {
 			if (gameTip.getUser().equals(user)) {
 				homeScore = String.valueOf(gameTip.getHomeScore());
+				break;
 			}
 		}
 
@@ -128,6 +129,7 @@ public class ViewUtils extends JavaExtensions{
 		for (GameTip gameTip : gameTips) {
 			if (gameTip.getUser().equals(user)) {
 				awayScore = String.valueOf(gameTip.getAwayScore());
+				break;
 			}
 		}
 
@@ -142,6 +144,7 @@ public class ViewUtils extends JavaExtensions{
 		for (GameTip gameTip : gameTips) {
 			if (gameTip.getGame().isEnded() && gameTip.getUser().equals(user)) {
 				points = String.valueOf(gameTip.getPoints());
+				break;
 			}
 		}
 
