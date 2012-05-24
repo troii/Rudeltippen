@@ -6,13 +6,15 @@
    <img src="/public/images/user_placeholder_large.gif" width="162" height="162"/>
 #{/else}
 <table class="table">
-	<thead>
-           <tr>
-               <td><b>&{'place'}</b></td>
-               <td>${user?.place}</td>
-           </tr>
-    </thead>
     <tbody>
+        <tr>
+            <td><b>&{'nickname'}</b></td>
+            <td>${user?.nickname}</td>
+        </tr>
+        <tr>
+            <td><b>&{'place'}</b></td>
+            <td>${user?.place}</td>
+        </tr>
 		<tr>
 			<td width="200"><b>&{'points'}</b></td>
 			<td>${user?.points}</td>
