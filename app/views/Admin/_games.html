@@ -17,53 +17,55 @@
 		</tr>
 	</thead>
 	<tbody>
-			#{list items:playday.games, as:'game'}
-				<tr>
-					<td class="visible-desktop">${game.number}</td>
-					<td class="visible-desktop">${game.kickoff.formatted()}</td>
-					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-						<td><img src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&nbsp;&nbsp;&{game.homeTeam?.name}</td>
-						<td><img src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&nbsp;&nbsp;&{game.awayTeam?.name}</td>
-							<td style="text-align: right;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
-							<td style="text-align: center;">-</td>
-							<td style="text-align: left;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
-						#{if game.playoff}
-							<td style="text-align: right;"><input type="text" size="3" length="3" class="input-mini" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
-							<td style="text-align: center;">-</td>
-							<td style="text-align: left;"><input type="text" size="3" length="3" class="input-mini"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
-							<td>
-								<select id="extratime_${playday_index}_${game_index}" name="extratime_${game.id}">
-									#{if game.overtimeType != "nv" && game.overtimeType != "ie"}
-										<option selected="selected">---</option>
-									#{/if}
-									#{else}
-										<option value="0">---</option>
-									#{/else}
-									#{if game.overtimeType == "nv"}
-										<option selected="selected">&{'overtime.nv'}</option>
-									#{/if}
-									#{else}
-										<option value="nv">&{'overtime.nv'}</option>
-									#{/else}
-									#{if game.overtimeType == "ie"}
-										<option selected="selected">&{'overtime.ie'}</option>
-									#{/if}
-									#{else}
-										<option value="ie">&{'overtime.ie'}</option>
-									#{/else}
-								</select>
-							</td>
-						#{/if}
+		#{list items:playday.games, as:'game'}
+			<tr>
+				<td class="visible-desktop">${game.number}</td>
+				<td class="visible-desktop">${game.kickoff.formatted()}</td>
+				#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
+					<td><img src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&nbsp;&nbsp;&{game.homeTeam?.name}</td>
+					<td><img src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&nbsp;&nbsp;&{game.awayTeam?.name}</td>
+						<td style="text-align: right;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
+						<td style="text-align: center;">-</td>
+						<td style="text-align: left;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
+					#{if game.playoff}
+						<td style="text-align: right;"><input type="text" size="3" length="3" class="input-mini" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
+						<td style="text-align: center;">-</td>
+						<td style="text-align: left;"><input type="text" size="3" length="3" class="input-mini"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
+						<td>
+							<select id="extratime_${playday_index}_${game_index}" name="extratime_${game.id}">
+								#{if game.overtimeType != "nv" && game.overtimeType != "ie"}
+									<option selected="selected">---</option>
+								#{/if}
+								#{else}
+									<option value="0">---</option>
+								#{/else}
+								#{if game.overtimeType == "nv"}
+									<option selected="selected">&{'overtime.nv'}</option>
+								#{/if}
+								#{else}
+									<option value="nv">&{'overtime.nv'}</option>
+								#{/else}
+								#{if game.overtimeType == "ie"}
+									<option selected="selected">&{'overtime.ie'}</option>
+								#{/if}
+								#{else}
+									<option value="ie">&{'overtime.ie'}</option>
+								#{/else}
+							</select>
+						</td>
 					#{/if}
-					#{else}
-						<td>&{'notset'}</td>
-						<td>&{'notset'}</td>
-						<td style="text-align: center;" colspan="7">-</td>
-					#{/else}
-				</tr>
-			#{/list}
+				#{/if}
+				#{else}
+					<td>&{'notset'}</td>
+					<td>&{'notset'}</td>
+					<td style="text-align: center;" colspan="7">-</td>
+				#{/else}
+			</tr>
+		#{/list}
 	</tbody>
 </table>
-<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+#{if playday.isTippable()}
+	<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+#{/if}
 #{/form}
 #{include '/Tags/javascript.html'/}
