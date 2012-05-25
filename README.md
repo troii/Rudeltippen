@@ -261,12 +261,12 @@ Paste you private key and your certificate in these files.
 Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
 
 ```bash
-#%prod.https.port=1924
+#https.port=9904
 #%prod.certificate.key.file=conf/key.txt
 #%prod.certificate.file=conf/cert.txt 
 ```
 
-You need to restart rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 1924. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. 
+You need to restart rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. 
 
 Twitter
 ------------------
