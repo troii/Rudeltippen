@@ -19,7 +19,7 @@ function prettyDate(time){
 
 function linkify(text) {
     text = text.replace(/(https?:\/\/\S+)/gi, function (s) {
-        return '<a target="_blank" href="' + s + '">' + s + '</a>';
+        return '<br /><a target="_blank" href="' + s + '">' + s + '</a>';
     });
 
     text = text.replace(/(^|)@(\w+)/gi, function (s) {
@@ -41,10 +41,11 @@ $(document).ready(function(){
 		    url:'http://api.twitter.com/1/statuses/user_timeline.json?count=4',
 		    data:{screen_name:username, include_rts:0},
 		    success:function(data, textStatus, XMLHttpRequest) {
+		    	$('#ajaxloader').hide();
 		        var tmp = false;
-		        var results = $('.span6 > .twitter');
+		        var results = $('.span5 > .twitter');
 		        for(i in data) {
-		        	tmp = $('<h5>'+prettyDate(data[i].created_at)+'</h5><p>'+linkify(data[i].text)+'</p>');
+		        	tmp = $('<h4>'+prettyDate(data[i].created_at)+'</h4><p>'+linkify(data[i].text)+'</p>');
 		            results.append(tmp);
 		        }
 		    },
