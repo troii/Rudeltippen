@@ -24,6 +24,7 @@ import models.WSResult;
 import models.WSResults;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
@@ -56,7 +57,7 @@ public class AppUtils implements AppConstants{
 				return true;
 			}
 		}
-		
+
 		return false;
     }
 
@@ -278,23 +279,33 @@ public class AppUtils implements AppConstants{
 
         saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 
-        String message = "";
+        StringBuilder buffer = new StringBuilder();
+    	buffer.append(Messages.get("helper.tweetscore"));
+    	buffer.append(" ");
+    	buffer.append(StringEscapeUtils.unescapeHtml(Messages.get(game.getHomeTeam().getName())));
+    	buffer.append(" - ");
+    	buffer.append(StringEscapeUtils.unescapeHtml(Messages.get(game.getAwayTeam().getName())));
+    	buffer.append(" ");
         if (game.isOvertime()) {
-            message = Messages.get("helper.tweetscore") + " " + Messages.get(game.getHomeTeam().getName()) + " - " + Messages.get(game.getAwayTeam().getName()) + " "
-                    + game.getHomeScoreOT() + ":" + game.getHomeScoreOT() + " (" + game.getOvertimeType() + ")";
+        	buffer.append(game.getHomeScoreOT());
+        	buffer.append(":");
+        	buffer.append(game.getAwayScoreOT());
+        	buffer.append(" (" + Messages.get(game.getOvertimeType()) + ")");
         } else {
-            message = Messages.get("helper.tweetscore") + " " + Messages.get(game.getHomeTeam().getName()) + " - " + Messages.get(game.getAwayTeam().getName()) + " "
-                    + game.getHomeScore() + ":" + game.getAwayScore();
+        	buffer.append(game.getHomeScore());
+        	buffer.append(":");
+        	buffer.append(game.getAwayScore());
         }
-        TwitterService.updateStatus(message);
+        buffer.append(" - " + StringEscapeUtils.unescapeHtml(Messages.get(game.getPlayday().getName())));
+        TwitterService.updateStatus(buffer.toString());
     }
-    
+
     public static boolean isTweetable() {
-    	String tweetable = Play.configuration.getProperty("tweet.enable");
+    	String tweetable = Play.configuration.getProperty("twitter.enable");
     	if (StringUtils.isNotBlank(tweetable) && ("true").equals(tweetable)) {
     		return true;
     	}
-    	
+
     	return false;
     }
 
