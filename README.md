@@ -256,22 +256,22 @@ By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltipp
 cert.txt
 key.txt
 ```
-Paste you private key and your certificate in these files. 
+Paste you private key and your certificate in these files.
 
 Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
 
 ```bash
 #https.port=9904
 #%prod.certificate.key.file=conf/key.txt
-#%prod.certificate.file=conf/cert.txt 
+#%prod.certificate.file=conf/cert.txt
 ```
 
-You need to restart rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. 
+You need to restart rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port.
 
 Twitter
 ------------------
 
-Rudeltippen can automaticly post some information (e.g. "The Top 3" or new results) to a Twitter-Account. If you want to enable this feature you need a consumerkey, a consumersecret, a token and a secret. Open INSTLLATIONFOLDER/conf/application.conf, uncommend the following lines and paste your data:
+Rudeltippen can automaticly post the following informations: daily top 3, results updated and new registration to a Twitter-Account. If you want to enable this feature you need a consumerkey, a consumersecret, a token and a secret. Open INSTLLATIONFOLDER/conf/application.conf, uncommend the following lines and paste your data:
 
 ```bash
 #%prod.twitter.consumerkey=
@@ -283,7 +283,7 @@ Rudeltippen can automaticly post some information (e.g. "The Top 3" or new resul
 
 By default 'twitter.enable' is set to 'false'. Set it to true to enable posting to the Twitter-Account.
 
-You need to restart rudeltippen in order for the changes to take place. 
+You need to restart rudeltippen in order for the changes to take place.
 
 Support
 ===========
