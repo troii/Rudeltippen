@@ -21,7 +21,7 @@
 			<tr>
 				<td class="hidden-phone">${team_index}</td>
 				#{if team.flag != null}
-					<td><img src="/public/images/flags/${team.flag}"/>&nbsp;&nbsp;&nbsp;&nbsp;&{team.name}</td>
+					<td><img class="hidden-phone" src="/public/images/flags/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
 				#{/if}
 				#{else}
 					<td>${team.name}</td>

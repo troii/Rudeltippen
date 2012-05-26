@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <th>&{'extraquestion'}</th>
-            <th>&{'points'}</th>
+            <th class="hidden-phone">&{'points'}</th>
             <th class="hidden-phone">&{'betending'}</th>
             <th>&{'youranswer'}</th>
         </tr>
@@ -13,7 +13,7 @@
         #{list items:extras, as:'extra'}
             <tr>
                 <td>&{extra.question}</td>
-                <td>${extra.points}</td>
+                <td class="hidden-phone">${extra.points}</td>
                 <td class="hidden-phone">${extra.ending.difference()}</td>
                 <td>
                     #{if extra.tippable}
