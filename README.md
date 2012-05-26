@@ -290,7 +290,7 @@ Support
 
 If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a Bug, please open an Issue on Github.
 
-licence
+Licence
 ===========
 
 Rudeltippen is distributed under [Apache 2 licence][11]
