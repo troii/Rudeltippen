@@ -2,6 +2,7 @@ package services;
 
 import models.Settings;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
@@ -20,6 +21,7 @@ import utils.AppUtils;
 public class TwitterService {
     public static void updateStatus(String message) {
     	Settings settings = AppUtils.getSettings();
+    	message = StringEscapeUtils.escapeHtml(message);
         if (AppUtils.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
             OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/statuses/update.json");
             request.addQuerystringParameter("status", message);
@@ -35,13 +37,13 @@ public class TwitterService {
         	Logger.info("Sending no new Tweet, since message is null or last Tweet matches new Tweet.");
         }
     }
-    
+
     private static void sendRequest(OAuthRequest request) {
     	String consumerKey = Play.configuration.getProperty("twitter.consumerkey");
     	String consumerSecret = Play.configuration.getProperty("twitter.consumersecret");
     	String token = Play.configuration.getProperty("twitter.token");
     	String secret = Play.configuration.getProperty("twitter.secret");
-    	
+
         OAuthService service = new ServiceBuilder().provider(TwitterApi.class)
                 .apiKey(consumerKey)
                 .apiSecret(consumerSecret)

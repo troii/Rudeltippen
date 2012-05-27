@@ -24,7 +24,6 @@ import models.WSResult;
 import models.WSResults;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
@@ -282,9 +281,9 @@ public class AppUtils implements AppConstants{
         StringBuilder buffer = new StringBuilder();
     	buffer.append(Messages.get("helper.tweetscore"));
     	buffer.append(" ");
-    	buffer.append(StringEscapeUtils.unescapeHtml(Messages.get(game.getHomeTeam().getName())));
+    	buffer.append(Messages.get(game.getHomeTeam().getName()));
     	buffer.append(" - ");
-    	buffer.append(StringEscapeUtils.unescapeHtml(Messages.get(game.getAwayTeam().getName())));
+    	buffer.append(Messages.get(game.getAwayTeam().getName()));
     	buffer.append(" ");
         if (game.isOvertime()) {
         	buffer.append(game.getHomeScoreOT());
@@ -296,7 +295,7 @@ public class AppUtils implements AppConstants{
         	buffer.append(":");
         	buffer.append(game.getAwayScore());
         }
-        buffer.append(" - " + StringEscapeUtils.unescapeHtml(Messages.get(game.getPlayday().getName())));
+        buffer.append(" - " + Messages.get(game.getPlayday().getName()));
         TwitterService.updateStatus(buffer.toString());
     }
 
