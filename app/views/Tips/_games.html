@@ -9,7 +9,6 @@
 				<th>&{'awayteam'}</th>
 				<th class="hidden-phone">&{'result'}</div></th>
 				<th colspan="3"><div align="center">&{'yourbet'}</div></th>
-				<th class="hidden-phone">&{'points'}</div></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,9 +33,8 @@
 						<td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="input-mini"></td>
 					#{/if}
 					#{else}
-						<td style="text-align: center;" colspan="3">${game.getTip()}</td>
+						<td style="text-align: center;" colspan="3">${game.getTip()} ${game.getTipPoints()}</td>
 					#{/else}
-					<td class="hidden-phone">${game.getPoints()}</td>
 				</tr>
 			#{/list}
 		</tbody>
