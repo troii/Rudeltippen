@@ -9,13 +9,18 @@
     <link rel="apple-touch-icon" href="/public/images/touch-icon.png"/>
     <link rel="shortcut icon" href="/public/images/favicon.ico">
     <link href="/public/stylesheets/bootstrap.css" rel="stylesheet">
-    <link href="/public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
     <link href="/public/stylesheets/additional.css" rel="stylesheet">
+    <link href="/public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
   </head>
   <body data-key="${play.configuration.get("dashboard.twitter.username")}">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
           <a class="brand" href="@{application.index()}">Rudeltippen</a>
           #{if connectedUser != null}
 	          <div class="btn-group pull-right">

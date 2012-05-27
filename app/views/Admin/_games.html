@@ -3,7 +3,6 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th class="visible-desktop">&{'game'}</th>
 			<th class="visible-desktop">&{'date'} - &{'time'}</th>
 			<th>&{'hometeam'}</th>
 			<th>&{'awayteam'}</th>
@@ -19,22 +18,21 @@
 	<tbody>
 		#{list items:playday.games, as:'game'}
 			<tr>
-				<td class="visible-desktop">${game.number}</td>
 				<td class="visible-desktop">${game.kickoff.formatted()}</td>
 				#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
 					<td class="hidden-phone"><img src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.homeTeam?.name}</td>
 					<td class="hidden-phone"><img src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.awayTeam?.name}</td>
 					<td class="visible-phone"><img rel="tooltip" title="&{game.homeTeam?.name}" src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.homeTeam?.name}</td>
 					<td class="visible-phone"><img rel="tooltip" title="&{game.awayTeam?.name}" src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.awayTeam?.name}</td>
-					<td style="text-align: right;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
+					<td style="text-align: right;"><input type="text" class="input-xmini" size="3" length="3" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
 					<td style="text-align: center;">-</td>
-					<td style="text-align: left;"><input type="text" class="input-mini" size="3" length="3" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
+					<td style="text-align: left;"><input type="text" class="input-xmini" size="3" length="3" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
 					#{if game.playoff}
-						<td style="text-align: right;"><input type="text" size="3" length="3" class="input-mini" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
+						<td style="text-align: right;"><input type="text" size="3" length="3" class="input-xmini" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
 						<td style="text-align: center;">-</td>
-						<td style="text-align: left;"><input type="text" size="3" length="3" class="input-mini"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
+						<td style="text-align: left;"><input type="text" size="3" length="3" class="input-xmini"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
 						<td>
-							<select id="extratime_${playday_index}_${game_index}" name="extratime_${game.id}">
+							<select id="extratime_${playday_index}_${game_index}" class="input-mini" name="extratime_${game.id}">
 								#{if game.overtimeType != "nv" && game.overtimeType != "ie"}
 									<option selected="selected">---</option>
 								#{/if}
