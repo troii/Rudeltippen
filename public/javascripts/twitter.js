@@ -38,7 +38,7 @@ $(document).ready(function(){
 		$.ajax({
 		    type:'GET',
 		    dataType:'jsonp',
-		    url:'http://api.twitter.com/1/statuses/user_timeline.json?count=4',
+		    url:'https://api.twitter.com/1/statuses/user_timeline.json?count=4',
 		    data:{screen_name:username, include_rts:0},
 		    success:function(data, textStatus, XMLHttpRequest) {
 		    	$('#ajaxloader').hide();
