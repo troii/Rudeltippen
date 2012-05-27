@@ -7,8 +7,8 @@ Features in a Nutshell
 ===========
 - Automatic results updates
 - Automatic Tournament Management
-- Themeable (through [Bootstrap][7])
-- Responsive Layout - works on iPhone and iPad (through [Bootstrap][7])
+- Fluid, themabale responsive layout
+- Smartphone and table compatible
 - Supports multiple Databases
 - Multilingual
 
@@ -37,12 +37,12 @@ Username: demo@rudeltippen.de
 Password: demo12345
 
 
-Please note that the above user is not an administrative user, so some Features are not available. Also Registration is not enabled.
+Please note that the above user is not an administrative user, so some features are not available. Also registration is not enabled.
 
 Installation
 ===========
 
-This installation guide assumes that you already have JDK 1.6+ installed and running, and have your Database- and SMTP-Credentials right beside you.
+This installation guide assumes that you already have JDK 1.6+ installed and running, and have your database- and SMTP credentials right beside you.
 
 Step 1
 ------------------
@@ -60,7 +60,7 @@ Set your Rudeltippen URL
 %prod.app.register.url=http://www.yourdomain.com
 ```
 
-Set the Username and Password for inital setup
+Set the username and password for inital setup
 
 ```bash
 app.setup.username=admin
@@ -79,13 +79,13 @@ Set the application key for rudeltippen
 application.secret=yoursecretcryptographicskey
 ```
 
-Set you Database connection. For a simple MySQL-Connection this will be something like this
+Set you database connection. For a simple MySQL connection this will be something like this
 
 ```bash
 %prod.db=mysql://user:pwd@host/database
 ```
 
-Set your SMTP-Credentials (uncomment %prod.mail.smtp.channel if you want to use SSL)
+Set your SMTP credentials (uncomment %prod.mail.smtp.channel if you want to use SSL)
 
 ```bash
 %prod.mail.smtp.host=127.0.0.1
@@ -94,7 +94,7 @@ Set your SMTP-Credentials (uncomment %prod.mail.smtp.channel if you want to use 
 #%prod.mail.smtp.channel=ssl
 ```
 
-If you have a Gmail account, just enter your SMTP-Credentials as follows
+If you have a Gmail account, just enter your SMTP credentials as follows
 
 ```bash
 %prod.mail.smtp.host=smtp.gmail.com
@@ -110,13 +110,13 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-Set the Twitter-Feed which is displayed at the Dashboard. Leave this blank, if you don't want that Feature.
+Set the Twitter-Feed which is displayed at the dashboard. Leave this blank, if you don't want that feature.
 
 ```bash
 dashboard.twitter.username=mytwitterusername
 ```
 
-By defautl Rudeltippen runs with -Xmx=128m -Xmx64m. Change this if need.
+By defautl Rudeltippen runs with -Xmx=128m -Xmx64m.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -127,9 +127,9 @@ Save application.conf.
 Step 3
 ------------------
 
-Follow the Section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
+Follow the section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
 
-> By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the Port Configuration in application.conf 'Server configuration'.
+> By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the port configuration in application.conf 'Server configuration'.
 
 Step 4
 ------------------
@@ -142,7 +142,7 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. To solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the Window will close Rudeltippen. To solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
@@ -166,7 +166,7 @@ Change the default values if you want to and create an inital user.
 Step 7
 ------------------
 
-Login with your newely create user and enjoy Rudeltippen!
+Login with your just created user and enjoy Rudeltippen!
 
 If you need to stop Rudeltippen. Got to your INSTLLATIONFOLDER and call
 
@@ -187,7 +187,7 @@ Upgrading
 Step 0
 ------------------
 
-Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. We will need this File once upgrading is finished.
+Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. We will need this file once upgrading is finished.
 
 Step 1
 ------------------
@@ -233,7 +233,7 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current Command-Window. Thus, closing the Window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/INSTLLATIONFOLDER
@@ -288,7 +288,7 @@ You need to restart rudeltippen in order for the changes to take place.
 Support
 ===========
 
-If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a Bug, please open an Issue on Github.
+If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a bug, please open an Issue on Github.
 
 Licence
 ===========
@@ -299,7 +299,7 @@ Stuff
 ===========
 
 - [Author's Homepage (German)][4]
-- Follow [@rudeltippen][8] for the latest development News
+- Follow [@rudeltippen][8] for the latest development news
 - [flattr][5]
 - [Support-Page (German or Englisch)][6]
 
