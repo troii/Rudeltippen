@@ -13,7 +13,7 @@ function prettyDate(time){
     if (diff <= 129600) {return i18n('js.onedayago');}
     if (diff < 604800) {return i18n('js.daysago', Math.round(diff / 86400));}
     if (diff <= 777600) {return i18n('js.oneyearago');}
-    
+
     return i18n('js.at') + " " + system_date;
 }
 
