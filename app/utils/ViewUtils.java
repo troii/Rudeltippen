@@ -69,10 +69,10 @@ public class ViewUtils extends JavaExtensions{
 		if (StringUtils.isBlank(lang)) {
 			lang = "de";
 		}
-		
+
 		Locale currentLocale = new Locale(lang, lang.toUpperCase());
 		SimpleDateFormat df = new SimpleDateFormat(dateString + " - " + timeString, currentLocale);
-		
+
 		return df.format(date);
 	}
 
@@ -94,7 +94,7 @@ public class ViewUtils extends JavaExtensions{
 
 		return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
 	}
-	
+
 	public static String getTipPoints(Game game) {
 		User user = AppUtils.getConnectedUser();
 		GameTip gameTip = GameTip.find("byGameAndUser", game, user).first();
@@ -307,16 +307,16 @@ public class ViewUtils extends JavaExtensions{
 
     	return 0;
     }
-    
+
     public static String getExtraTipAnswer(ExtraTip extraTip) {
     	if (extraTip.getAnswer() != null) {
-    		if (extraTip.getExtra().getEnding().getTime() > new Date().getTime()) {
+    		if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
     			return Messages.get(extraTip.getAnswer().getName());
     		} else {
     			return Messages.get("model.user.tipped");
     		}
     	}
-    	
+
     	return "-";
     }
 
