@@ -31,7 +31,7 @@ public class TwitterJob extends Job{
 	                }
 	                count++;
 	            }
-	            TwitterService.updateStatus(Messages.get("topthree") + " " + buffer.toString());
+	            TwitterService.updateStatus(Messages.get("topthree") + ": " + buffer.toString());
 		    }
 		}
 	}
