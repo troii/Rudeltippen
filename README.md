@@ -6,10 +6,10 @@ A betting game based on the Play Framework and Twitter Bootstrap. Ready to go fo
 Features in a Nutshell
 ===========
 - Automatic results updates
-- Automatic Tournament Management
+- Automatic tournament management
 - Fluid, themabale responsive layout
 - Smartphone and table compatible
-- Supports multiple Databases
+- Supports multiple databases
 - Multilingual
 
 Requirements
@@ -17,9 +17,9 @@ Requirements
 
 - [Java SDK 1.6+][1]
 - Apache, Nginx or any other HTTP-Server with Proxy-Support (Apache recommended)
-- SMTP-Account (SSL/non-SSL, you can use e.g. Gmail)
-- Linux, Mac or Windows
+- SMTP-Account (SSL/non-SSL, you can use e.g. [Gmail][12])
 - MySQL, PostgreSQL, MSSQL or Oracle Databse (MySQL recommended)
+- Linux, Mac or Windows
 
 Languages
 ===========
@@ -42,7 +42,7 @@ Please note that the above user is not an administrative user, so some features 
 Installation
 ===========
 
-This installation guide assumes that you already have JDK 1.6+ installed and running, and have your database- and SMTP credentials right beside you.
+This installation guide assumes that you already have JDK 1.6+ installed and have your database- and SMTP credentials right beside you.
 
 Step 1
 ------------------
@@ -60,20 +60,20 @@ Set your Rudeltippen URL
 %prod.app.register.url=http://www.yourdomain.com
 ```
 
-Set the username and password for inital setup
+Set the username and password for inital setup (make it "secure")
 
 ```bash
 app.setup.username=admin
 app.setup.password=admin
 ```
 
-Set your default Language
+Set the language for Rudeltippen (currently de or en)
 
 ```bash
 default.language=de
 ```
 
-Set the application key for rudeltippen
+Set the application key for rudeltippen (make it "secure")
 
 ```bash
 application.secret=yoursecretcryptographicskey
@@ -103,20 +103,20 @@ If you have a Gmail account, just enter your SMTP credentials as follows
 %prod.mail.smtp.channel=ssl
 ```
 
-Set your E-Mail-Sender and reply-to Address
+Set your E-Mail-Sender and reply-to address
 
 ```bash
 mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-Set the Twitter-Feed which is displayed at the dashboard. Leave this blank, if you don't want that feature.
+Set the Twitter-Feed which is displayed at the dashboard. Leave this blank, if you don't want this feature.
 
 ```bash
 dashboard.twitter.username=mytwitterusername
 ```
 
-By defautl Rudeltippen runs with -Xmx=128m -Xmx64m.
+By defautl Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for arroung 50 to 100 users. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -129,12 +129,12 @@ Step 3
 
 Follow the section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
 
-> By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the port configuration in application.conf 'Server configuration'.
+> By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the port configuration in application.conf under 'Server configuration'.
 
 Step 4
 ------------------
 
-> It will most likely be required to make startup.sh, shutdown.sh and /play/play executable if you are on UNIX or Mac
+> It will most likely be required to make startup.sh, shutdown.sh and INSTLLATIONFOLDER/play/play executable if you are on UNIX or Mac
 
 You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
@@ -142,7 +142,7 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the Window will close Rudeltippen. To solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. To solve this, download and install [PsExec from the PsTools][10] and start Rudeltippen with
 
 ```bash
 /path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
@@ -151,10 +151,9 @@ If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in t
 Step 5
 ------------------
 
-Open your Browser and go to http://yourdomain.com/system/setup
+Open your browser and go to http://yourdomain.com/system/setup
 
-> You did set username and password in application.conf (see 3.)
-> After the Setup is complete Rudeltippen will automaticly load all data required for the Euro 2012.
+> You did set username and password in application.conf (see step 3)
 
 Step 6
 ------------------
@@ -162,6 +161,7 @@ Step 6
 Change the default values if you want to and create an inital user.
 
 > The inital user will be an administrative user and automaticly activated.
+> After the setup is complete, Rudeltippen will automaticly load all data for the Euro 2012.
 
 Step 7
 ------------------
@@ -180,7 +180,6 @@ OR
 shutdown.bat
 ```
 
-
 Upgrading
 ===========
 
@@ -197,7 +196,7 @@ Download the latest of Rudeltippen.
 Step 2
 ------------------
 
-Go to your INSTLLATIONFOLDER rudeltippen and run
+Go to your INSTLLATIONFOLDER and run
 
 ```bash
 shutdown.sh
@@ -222,7 +221,7 @@ Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER
 Step 5
 ------------------
 
-In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make of copy application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the Installation guide (see above).
+In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above).
 
 Step 6
 ------------------
@@ -266,7 +265,7 @@ Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
 #%prod.certificate.file=conf/cert.txt
 ```
 
-You need to restart rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port.
+You need to restart Rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. Read the documentation of your HTTP-Server on how to configure SSL Proxy support.
 
 Twitter
 ------------------
@@ -281,14 +280,14 @@ Rudeltippen can automaticly post the following informations: daily top 3, result
 #%prod.twitter.enable=false
 ```
 
-By default 'twitter.enable' is set to 'false'. Set it to true to enable posting to the Twitter-Account.
+By default 'twitter.enable' is set to 'false'. Set it to 'true' to enable posting to the Twitter-Account.
 
-You need to restart rudeltippen in order for the changes to take place.
+You need to restart Rudeltippen in order for the changes to take place.
 
 Support
 ===========
 
-If you need help, just visit the [Support-Page][6] and paste your Question (English or German). If you found a bug, please open an Issue on Github.
+If you need help, just visit the [Support-Page][6] and drop your Question (English or German). If you found a bug, please open an Issue on Github.
 
 Licence
 ===========
@@ -314,3 +313,4 @@ Stuff
 [9]: http://www.playframework.org/documentation/1.2.4/production
 [10]: http://technet.microsoft.com/de-de/sysinternals/bb897553.aspx
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
+[12]: http://mail.google.com/
