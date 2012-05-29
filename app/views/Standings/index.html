@@ -5,8 +5,8 @@
 				<th>&{'place'}</th>
 				<th class="hidden-phone">&{'tipper'}</th>
 				<th>&{'nickname'}</th>
-				<th>&{'points'}</th>
-				<th>&{'extrapoints'}</th>
+				<th class="hidden-phone">&{'points'}</th>
+				<th class="hidden-phone">&{'extrapoints'}</th>
 				<th>&{'totalpoints'}</th>
 			</tr>
 		</thead>
@@ -26,8 +26,8 @@
 						<td class="hidden-phone"><a href="@{users.show()}/${user.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
 					#{/else}
 					<td><b><a href="@{users.show()}/${user.nickname}">${user.nickname}</a></b></td>
-					<td>${user.tipPoints}</td>
-					<td>${user.extraPoints}</td>
+					<td class="hidden-phone">${user.tipPoints}</td>
+					<td class="hidden-phone">${user.extraPoints}</td>
 					<td><b>${user.points}</b></td>
 				</tr>
 			 #{/list}

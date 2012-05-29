@@ -12,4 +12,10 @@ body {
 	padding-left: 50%;
 }
 
-.input-xmini{width:40px;}
+.input-xmini{
+	width:40px;
+}
+
+.flag {
+	padding-right: 8px;
+}

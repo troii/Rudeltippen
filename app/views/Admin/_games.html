@@ -20,10 +20,8 @@
 			<tr>
 				<td class="visible-desktop">${game.kickoff.formatted()}</td>
 				#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-					<td class="hidden-phone"><img src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.homeTeam?.name}</td>
-					<td class="hidden-phone"><img src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.awayTeam?.name}</td>
-					<td class="visible-phone"><img rel="tooltip" title="&{game.homeTeam?.name}" src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.homeTeam?.name}</td>
-					<td class="visible-phone"><img rel="tooltip" title="&{game.awayTeam?.name}" src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&nbsp;&nbsp;&{game.awayTeam?.name}</td>
+					<td><img class="flag" src="/public/images/flags/${game.homeTeam?.flag}" width="18" height="18"/>&{game.homeTeam?.name}</td>
+					<td><img class="flag" src="/public/images/flags/${game.awayTeam?.flag}" width="18" height="18"/>&{game.awayTeam?.name}</td>
 					<td style="text-align: right;"><input type="text" class="input-xmini" size="3" length="3" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
 					<td style="text-align: center;">-</td>
 					<td style="text-align: left;"><input type="text" class="input-xmini" size="3" length="3" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
