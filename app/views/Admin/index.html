@@ -3,7 +3,7 @@
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
 			#{list items:playdays, as:'aPlayday'}
-				<li #{if aPlayday_index == number } class="active" #{/if}><a href="javascript:load('${aPlayday.number}','/admin/results/${aPlayday.number}');">&{aPlayday.name}</a></li>
+				<li #{if aPlayday_index == number } class="active" #{/if}><a href="javascript:load('${aPlayday.number}','@{admin.results()}/${aPlayday.number}');">&{aPlayday.name}</a></li>
 			#{/list}
 		</ul>
 	</div>

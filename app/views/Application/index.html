@@ -17,7 +17,7 @@
 				#{list items:topUsers, as:'topUser'}
 					<tr>
 						#{if topUser.picture == null}
-							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="/public/images/user_placeholder.gif" width="54" height="54" /></a></td>
+							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}
 						#{else}
 							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
@@ -47,8 +47,8 @@
                 #{list items:previousGames, as:'previousGame'}
                     <tr>
                         <td class="hidden-phone">${previousGame.kickoff.formatted()}</td>
-                        <td><img class="flag" src="/public/images/flags/${previousGame.homeTeam?.flag}">&{previousGame.homeTeam?.name}</td>
-                        <td><img class="flag" src="/public/images/flags/${previousGame.awayTeam?.flag}">&{previousGame.awayTeam?.name}</td>
+                        <td><img class="flag" src="@{'/public/images/flags'}/${previousGame.homeTeam?.flag}">&{previousGame.homeTeam?.name}</td>
+                        <td><img class="flag" src="@{'/public/images/flags'}/${previousGame.awayTeam?.flag}">&{previousGame.awayTeam?.name}</td>
                         #{if previousGame.overtime}
                             <td>${previousGame.homeScoreOT} : ${previousGame.awayScoreOT} (&{previousGame.overtimeType})</td>
                         #{/if}
@@ -90,8 +90,8 @@
 					#{list items:nextGames, as:'nextGame'}
 						<tr>
 							<td class="hidden-phone">${nextGame.kickoff.formatted()}</td>
-							<td><img class="flag" src="/public/images/flags/${nextGame.homeTeam?.flag}">&{nextGame.homeTeam?.name}</td>
-							<td><img class="flag" src="/public/images/flags/${nextGame.awayTeam?.flag}">&{nextGame.awayTeam?.name}</td>
+							<td><img class="flag" src="@{'/public/images/flags'}/${nextGame.homeTeam?.flag}">&{nextGame.homeTeam?.name}</td>
+							<td><img class="flag" src="@{'/public/images/flags'}/${nextGame.awayTeam?.flag}">&{nextGame.awayTeam?.name}</td>
 							<td>${nextGame.getTip()}</td>
 							<td class="visible-desktop">${nextGame.getTrend()}</td>
 						</tr>

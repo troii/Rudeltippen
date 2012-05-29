@@ -14,7 +14,7 @@
 		<tr>
 			#{list items:extraTips.entrySet(), as:'user'}
 				#{if user.key.picture == null}
-					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="/public/images/user_placeholder.gif" /></a></td>
+					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" /></a></td>
 				#{/if}
 				#{else}
 					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
