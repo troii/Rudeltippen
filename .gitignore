@@ -11,5 +11,6 @@ lib/
 logs/
 test-result/
 play/
+precompiled/
 server.pid
 .DS_Store
