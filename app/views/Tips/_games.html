@@ -17,20 +17,18 @@
 					<td class="visible-desktop">${game.kickoff.formatted()}</td>
 					<td class="visible-desktop">${game.tippEnding.difference()}</td>
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-						<td class="hidden-phone"><img src="/public/images/flags/${game.homeTeam?.flag}">&nbsp;&nbsp;&{game.homeTeam?.name}</td>
-						<td class="hidden-phone"><img src="/public/images/flags/${game.awayTeam?.flag}">&nbsp;&nbsp;&{game.awayTeam?.name}</td>
-						<td class="visible-phone"><img rel="tooltip" title="&{game.homeTeam?.name}" src="/public/images/flags/${game.homeTeam?.flag}"></td>
-						<td class="visible-phone"><img rel="tooltip" title="&{game.awayTeam?.name}" src="/public/images/flags/${game.awayTeam?.flag}"></td>
+						<td><img src="/public/images/flags/${game.homeTeam?.flag}">&nbsp;&nbsp;&{game.homeTeam?.name}</td>
+						<td><img src="/public/images/flags/${game.awayTeam?.flag}">&nbsp;&nbsp;&{game.awayTeam?.name}</td>
 					#{/if}
 					#{else}
-						<td>&nbsp;&nbsp;${game.homeReferenceName()}</td>
-						<td>&nbsp;&nbsp;${game.awayReferenceName()}</td>
+						<td>${game.homeReferenceName()}</td>
+						<td>${game.awayReferenceName()}</td>
 					#{/else}
 					<td class="hidden-phone">${game.getResult()}</td>
 					#{if game.tippable}
-						<td style="text-align: right;"><input type="text" value="${game.getHomeScoreTip()}" id="game_homeScore_${game_index}" name="game_${game.id}_homeScore" class="input-mini"></td>
+						<td style="text-align: right;"><input type="text" value="${game.getHomeScoreTip()}" id="game_homeScore_${game_index}" name="game_${game.id}_homeScore" class="input-xmini"></td>
 						<td style="text-align: center;">:</td>
-						<td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="input-mini"></td>
+						<td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="input-xmini"></td>
 					#{/if}
 					#{else}
 						<td style="text-align: center;" colspan="3">${game.getTip()} ${game.getTipPoints()}</td>
