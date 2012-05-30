@@ -18,7 +18,7 @@ public class ValidationUtils {
 			String value = confirmation.getConfirmValue();
 			value = Crypto.decryptAES(value);
 
-			if (value.equals(username)) {
+			if (value.equalsIgnoreCase(username)) {
 				return true;
 			}
 		}

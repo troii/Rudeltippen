@@ -10,6 +10,8 @@ import java.util.Map;
 
 import models.Confirmation;
 import models.ConfirmationType;
+import models.Extra;
+import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
@@ -37,6 +39,12 @@ public class Users extends Root {
             final List<GameTip> tips = GameTip.find("byUser", user).fetch();
 		    Map<String, Integer> statistics = new HashMap<String, Integer>();
 
+            final long extra = Extra.count();
+            final List<ExtraTip> correctExtraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
+		    
+			statistics.put("extraTips", (int) extra);
+			statistics.put("correctExtraTips", correctExtraTips.size());
+		    
 			int sumTipps = tips.size();
 			int correctTipps = 0;
 			int correctTrend = 0;
@@ -214,7 +222,7 @@ public class Users extends Root {
 				Logger.info("Picture updated: " + user.getUsername());
 			} catch (IOException e) {
 				flash.put("warningmessage", Messages.get("controller.profile.updatepicturefail"));
-				Logger.error("Failed to save User Picture", e);
+				Logger.error("Failed to save user picture", e);
 			}
 		}
 

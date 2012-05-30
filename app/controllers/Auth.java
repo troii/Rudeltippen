@@ -110,13 +110,13 @@ public class Auth extends Controller {
 			user.setUsername(newusername);
 			user._save();
 			session.remove("username");
-			Logger.info("Old username: " + oldusername + " - " + "New username: " + newusername);
+			Logger.info("User changed username... old username: " + oldusername + " - " + "new username: " + newusername);
 			flash.put("infomessage", Messages.get("controller.users.changedusername"));
 		} else if ((ConfirmationType.CHANGEUSERPASS).equals(confirmationType)) {
 			user.setUserpass(Crypto.decryptAES(confirmation.getConfirmValue()));
 			user._save();
 			session.remove("username");
-			Logger.info(user.getUsername() + " change his password");
+			Logger.info(user.getUsername() + " changed his password");
 			flash.put("infomessage", Messages.get("controller.users.changeduserpass"));
 		} else if ((ConfirmationType.FORGOTUSERPASS).equals(confirmationType)) {
 			final String userpass = AppUtils.generatePassword(12);
@@ -124,7 +124,7 @@ public class Auth extends Controller {
 			user._save();
 			session.remove("username");
 			MailService.newuserpass(user, userpass);
-			Logger.info("Send new Passwort to: " + user.getUsername());
+			Logger.info("New password was send to: " + user.getUsername());
 			flash.put("infomessage", Messages.get("controller.users.forgotuserpass"));
 		}
 		confirmation._delete();

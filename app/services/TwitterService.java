@@ -55,9 +55,9 @@ public class TwitterService {
 
         int responseCode = response.getCode();
         if (response.getCode() == Http.StatusCode.OK) {
-        	Logger.info("Twitter Request successful. Response-Code: " + responseCode);
+        	Logger.info("Twitter request successful. Response-Code: " + responseCode);
         } else {
-        	Logger.error("Twitter Request failed. Response-Code: " + responseCode);
+        	Logger.error("Twitter request failed. Response-Code: " + responseCode);
         }
     }
 }

@@ -19,7 +19,7 @@ public class ReminderJob extends Job {
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
-		    Logger.info("Running Job: Reminder");
+		    Logger.info("Running job: ReminderJob");
 			final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE DATE(ending) = DATE(NOW())").fetch();
 			final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE DATE(kickoff) = DATE(NOW())").fetch();
 			final List<User> users = User.find("byReminderAndActive", true, true).fetch();

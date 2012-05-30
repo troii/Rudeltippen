@@ -39,9 +39,13 @@
 			<td><b>&{'correcttendence'}</b></td>
 			<td>${statistics?.correctTrend}</td>
 		</tr>
-           <tr>
-               <td><b>&{'betquote'}</b></td>
-               <td>${statistics?.tippQuote} % &{'correctresultsquote'}</td>
-           </tr>
+		<tr>
+			<td><b>&{'correct.extratips'}</b></td>
+			<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
+		</tr>		
+        <tr>
+            <td><b>&{'betquote'}</b></td>
+            <td>${statistics?.tippQuote} % &{'correctresultsquote'}</td>
+        </tr>
 	</tbody>
 </table>

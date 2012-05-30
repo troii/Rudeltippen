@@ -15,12 +15,12 @@ public class CleanupJob extends Job {
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
-		    Logger.info("Running Job: Cleanup");
+		    Logger.info("Running job: CleanupJob");
 			List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE DATE(NOW()) > DATE(created) + 2").fetch();
 			for (Confirmation confirmation : confirmations) {
 				if (ConfirmationType.ACTIVATION.equals(confirmation.getConfirmType())) {
 					User user = confirmation.getUser();
-					Logger.info("Deleting User: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days.");
+					Logger.info("Deleting user: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days.");
 					confirmation._delete();
 					user._delete();
 				}

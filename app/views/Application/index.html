@@ -71,7 +71,7 @@
 		#{if play.configuration.get("dashboard.twitter.username") != ""}
 		<div class="span5 hidden-phone">
 				<h2>&{'twitternews'} (@${play.configuration.get("dashboard.twitter.username")})</h2>
-				<div class="twitter"><img src="/public/images/ajax-loader.gif" id="ajaxloader"></div>
+				<div class="twitter"><img src="@{'/public/images/ajax-loader.gif'}" id="ajaxloader"></div>
 		</div>
 		#{/if}
 		<div class="span7">

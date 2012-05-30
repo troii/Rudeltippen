@@ -2,7 +2,7 @@
 	<div class="pagination-container">
 		<ul class="pagination">
 			#{if pagination.currentPage != 1}
-				<li><a name="page1" href="/standings/1">&laquo;&nbsp;&{'firstpage'}</a></li>
+				<li><a name="page1" href="@{standings.index()}/1">&laquo;&nbsp;&{'firstpage'}</a></li>
 				<li><a name="page${pagination.currentPage - 1}" href="@{standings.index()}/${pagination.currentPage - 1}">&lsaquo;&nbsp;&{'pageback'}</a></li>
 			#{/if}
 			#{list items:pagination.offsetstart..pagination.offset, as:'page'}

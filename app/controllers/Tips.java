@@ -141,7 +141,7 @@ public class Tips extends Root {
 						extraTip.setExtra(extra);
 						extraTip.setAnswer(team);
 						extraTip._save();
-						Logger.info("Stored BonusTipp - " + user.getUsername() + " - " + extraTip);
+						Logger.info("Stored extratip - " + user.getUsername() + " - " + extraTip);
 					}
 					flash.put("infomessage", Messages.get("controller.tipps.bonussaved"));
 					flash.keep();

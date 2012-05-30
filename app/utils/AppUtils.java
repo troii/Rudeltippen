@@ -79,13 +79,11 @@ public class AppUtils implements AppConstants{
     }
 
     public static String generatePassword(int length) {
-        String password = RandomStringUtils.randomAlphanumeric(length);
-
         if (length <= 0 || length > 30) {
-            password = RandomStringUtils.randomAlphanumeric(30);
+            length = 30;
         }
 
-        return password;
+        return RandomStringUtils.randomAlphanumeric(length);
     }
 
     public static boolean isJobInstance() {
@@ -103,6 +101,7 @@ public class AppUtils implements AppConstants{
 		Fixtures.deleteDatabase();
 		Fixtures.loadModels("em2012.test.yml");
 
+		String salt = "foo";
     	for (int i=1; i <= 100; i++) {
     		User user = new User();
     		user.setAdmin(true);
@@ -110,8 +109,8 @@ public class AppUtils implements AppConstants{
     		user.setNickname("user" + i);
     		user.setRegistered(new Date());
     		user.setActive(true);
-    		user.setSalt("foo");
-    		user.setUserpass(AppUtils.hashPassword("user" + i, "foo"));
+    		user.setSalt(salt);
+    		user.setUserpass(AppUtils.hashPassword("user" + i, salt));
     		user._save();
     	}
 	}
@@ -300,7 +299,7 @@ public class AppUtils implements AppConstants{
     }
 
     public static boolean isTweetable() {
-    	String tweetable = Play.configuration.getProperty("twitter.enable");
+    	final String tweetable = Play.configuration.getProperty("twitter.enable");
     	if (StringUtils.isNotBlank(tweetable) && ("true").equals(tweetable)) {
     		return true;
     	}
@@ -449,6 +448,7 @@ public class AppUtils implements AppConstants{
 			userTips.put(user,  gameTips);
 			tips.add(userTips);
 		}
+		
 		return tips;
 	}
 
@@ -468,6 +468,7 @@ public class AppUtils implements AppConstants{
 			userTips.put(user, extraTips);
 			tips.add(userTips);
 		}
+		
 		return tips;
 	}
 

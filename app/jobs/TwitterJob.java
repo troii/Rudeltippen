@@ -16,7 +16,7 @@ public class TwitterJob extends Job{
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance() && AppUtils.isTweetable()) {
-		    Logger.info("Running Job: Twitter");
+		    Logger.info("Running job: TwitterJob");
 		    final Game game = Game.find("byNumber", 1).first();
 		    if (game != null && game.isEnded()) {
 	            int count = 1;
