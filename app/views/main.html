@@ -17,21 +17,21 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
           </a>
           <a class="brand" href="@{application.index()}">Rudeltippen</a>
           #{if connectedUser != null}
-	          <div class="btn-group pull-right">
+	      <div class="btn-group pull-right">
 	            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-	              <i class="icon-user"></i> ${connectedUser.nickname} <span class="caret"></span>
+	            	<i class="icon-user"></i> ${connectedUser.nickname} <span class="caret"></span>
 	            </a>
 	            <ul class="dropdown-menu">
 	              <li><a href="@{users.profile()}">&{'myprofile'}</a></li>
 	              #{if connectedUser.admin}
-	              	<li><a href="@{admin.settings()}">&{'settings'}</a></li>
-	              	<li><a href="@{admin.index()}">&{'results'}</a></li>
+	              		<li><a href="@{admin.settings()}">&{'settings'}</a></li>
+	              		<li><a href="@{admin.index()}">&{'results'}</a></li>
 	              #{/if}
 	              <li class="divider"></li>
 	              <li><a href="@{auth.logout()}">&{'logout'}</a></li>
@@ -46,60 +46,60 @@
 	              <li #{if request.action == "Standings.index" } class="active" #{/if}><a href="@{standings.index()}">&{'standings'}</a></li>
 	              <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}">&{'rules'}</a></li>
 	            </ul>
-	          </div>
+	      </div>
 	      #{/if}
 	      #{else}
-	          <div class="nav-collapse">
-	            <ul class="nav">
-	              <li #{if request.action == "Auth.login" } class="active" #{/if}><a href="@{auth.login()}">&{'login'}</a></li>
-	              #{if isEnableRegistration}
-	              	<li #{if request.action == "Auth.register" } class="active" #{/if}><a href="@{auth.register()}">&{'registration'}</a></li>
-	              #{/if}
-	            </ul>
-	          </div>
+	      <div class="nav-collapse">
+	        <ul class="nav">
+	            <li #{if request.action == "Auth.login" } class="active" #{/if}><a href="@{auth.login()}">&{'login'}</a></li>
+	            #{if isEnableRegistration}
+	            	<li #{if request.action == "Auth.register" } class="active" #{/if}><a href="@{auth.register()}">&{'registration'}</a></li>
+	        	#{/if}
+	      	</ul>
+	      </div>
 	      #{/else}
         </div>
       </div>
     </div>
 	#{ifErrors}
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="alert alert-error">
-					<h4 class="alert-heading">&{'error'}</h4>
-					#{if flash.errormessage != null}
-			    		<p>${flash.errormessage}</p>
-					#{/if}
-					#{else}
-			    		<p>&{'erroroccured'}</p>
-					#{/else}
-				</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="alert alert-error">
+				<h4 class="alert-heading">&{'error'}</h4>
+				#{if flash.errormessage != null}
+		    		<p>${flash.errormessage}</p>
+				#{/if}
+				#{else}
+		    		<p>&{'erroroccured'}</p>
+				#{/else}
 			</div>
 		</div>
+	</div>
 	#{/ifErrors}
 	#{if flash.warningmessage != null}
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="alert alert-info">
-					<h4 class="alert-heading">&{'warning'}</h4>
-					<p>${flash.warningmessage}</p>
-				</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="alert alert-info">
+				<h4 class="alert-heading">&{'warning'}</h4>
+				<p>${flash.warningmessage}</p>
 			</div>
 		</div>
+	</div>
 	#{/if}
 	#{if flash.infomessage != null}
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="alert alert-success">
-					<h4 class="alert-heading">&{'info'}</h4>
-					<p>${flash.infomessage}</p>
-				</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="alert alert-success">
+				<h4 class="alert-heading">&{'info'}</h4>
+				<p>${flash.infomessage}</p>
 			</div>
 		</div>
+	</div>
 	#{/if}
 	<div class="container-fluid">
 		<div class="row-fluid">#{doLayout /}</div>
 		<hr>
-		<footer>
+		<footer class="footer">
 			<div class="modal hide fade" id="modalCredits">
 				<div class="modal-header">
 					<a href="#" class="close" data-dismiss="modal">&times;</a>
