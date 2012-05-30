@@ -186,7 +186,7 @@ Upgrading
 Step 0
 ------------------
 
-Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. We will need this file once upgrading is finished.
+Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. If you have other files in the /conf folder, e.g. custom cert.txt or key.txt etc., which you edited after installation, you need to backup those files as well.
 
 Step 1
 ------------------
@@ -221,7 +221,7 @@ Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER
 Step 5
 ------------------
 
-In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above).
+In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above). Also copy and replace all files you did copy in Step 1.
 
 Step 6
 ------------------
