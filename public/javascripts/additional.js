@@ -11,7 +11,7 @@ function load(item, url) {
 	$('.span9').load(url, function() {
 		$('.span9').fadeIn('slow');
 	});
-	$('.footer').fadeIn('slow');
+	$('.footer').delay(800).fadeIn('slow');
 }
 
 function loadJS(item, url) {
@@ -27,7 +27,7 @@ function loadJS(item, url) {
 	$('.span9').load(url, function() {
 		$('.span9').fadeIn('slow');
 	});
-	$('.footer').fadeIn('slow');
+	$('.footer').delay(800).fadeIn('slow');
 }
 
 function helpify() {
