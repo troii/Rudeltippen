@@ -6,7 +6,12 @@ function load(item, url) {
 			$(this).removeClass('active');
 		}
 	});
-	$('.span9').load(url).hide().fadeIn('slow');
+	$('.footer').hide();
+	$('.span9').html('<p><img src="/public/images/ajax-loader.gif" border="0"/></p>');
+	$('.span9').load(url, function() {
+		$('.span9').fadeIn('slow');
+	});
+	$('.footer').fadeIn('slow');
 }
 
 function loadJS(item, url) {
@@ -17,7 +22,12 @@ function loadJS(item, url) {
 			$(this).removeClass('active');
 		}
 	});
-	$('.span9').load(url).hide().fadeIn('slow');
+	$('.footer').hide();
+	$('.span9').html('<p><img src="/public/images/ajax-loader.gif" border="0"/></p>');
+	$('.span9').load(url, function() {
+		$('.span9').fadeIn('slow');
+	});
+	$('.footer').fadeIn('slow');
 }
 
 function helpify() {
