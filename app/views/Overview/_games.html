@@ -19,21 +19,21 @@
 		</tr>
 	</thead>
 	<tbody>
-			#{list items:tips, as:'userTips'}
-			<tr>
-				#{list items:userTips.entrySet(), as:'user'}
-					#{if user.key.picture == null}
-						<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" width="54" height="54" /></a></td>
-					#{/if}
-					#{else}
-						<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
-					#{/else}
-						<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
-					#{list items:user.value, as:'gameTip'}
-						<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTip()}${gameTip.getGameTipPoints()}</div></td>
-					#{/list}
+		#{list items:tips, as:'userTips'}
+		<tr #{if userTips.entrySet().key.nickname == [connectedUser.nickname]} class="connecteduser" #{/if}>
+			#{list items:userTips.entrySet(), as:'user'}
+				#{if user.key.picture == null}
+					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" width="54" height="54" /></a></td>
+				#{/if}
+				#{else}
+					<td class="hidden-phone"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
+				#{/else}
+					<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+				#{list items:user.value, as:'gameTip'}
+					<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTip()}${gameTip.getGameTipPoints()}</div></td>
 				#{/list}
-			</tr>
 			#{/list}
+		</tr>
+		#{/list}
 	</tbody>
 </table>

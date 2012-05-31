@@ -15,7 +15,7 @@
 				</thead>
 				<tbody>
 				#{list items:topUsers, as:'topUser'}
-					<tr #{if topUser == connectedUser} class="connecteduser" #{/if}>
+					<tr>
 						#{if topUser.picture == null}
 							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}

@@ -16,8 +16,9 @@ public class Application extends Root {
     	final List<User> topUsers = User.find("ORDER BY points DESC").fetch(3);
 		final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE kickoff > NOW() AND homeTeam_id != null AND awayTeam_id != null ORDER BY kickoff ASC").fetch(3);
 		final List<Game> previousGames = Game.find("SELECT g FROM Game g WHERE ended = 1 ORDER BY kickoff DESC").fetch(3);
-
-		render(topUsers, nextGames, previousGames);
+		final long users = User.count();
+		
+		render(topUsers, nextGames, previousGames, users);
     }
 
 	public static void rules() {
