@@ -67,7 +67,7 @@
 			<div class="alert alert-error">
 				<h4 class="alert-heading">&{'error'}</h4>
 				#{if flash.errormessage != null}
-		    		<p>${flash.errormessage}</p>
+		    		<p>${flash.errormessage.raw()}</p>
 				#{/if}
 				#{else}
 		    		<p>&{'erroroccured'}</p>
@@ -81,7 +81,7 @@
 		<div class="row-fluid">
 			<div class="alert alert-info">
 				<h4 class="alert-heading">&{'warning'}</h4>
-				<p>${flash.warningmessage}</p>
+				<p>${flash.warningmessage.raw()}</p>
 			</div>
 		</div>
 	</div>
@@ -91,7 +91,7 @@
 		<div class="row-fluid">
 			<div class="alert alert-success">
 				<h4 class="alert-heading">&{'info'}</h4>
-				<p>${flash.infomessage}</p>
+				<p>${flash.infomessage.raw()}</p>
 			</div>
 		</div>
 	</div>
