@@ -15,7 +15,7 @@
 				</thead>
 				<tbody>
 				#{list items:topUsers, as:'topUser'}
-					<tr>
+					<tr #{if topUser == connectedUser} class="connecteduser" #{/if}>
 						#{if topUser.picture == null}
 							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}
@@ -28,6 +28,9 @@
 						<td><b>${topUser.points}</b></td>
 					</tr>
 				#{/list}
+					<tr>
+						<td colspan="5">&{'user.placandpoints.' + (connectedUser.points == 1 ? '1' : 'many'), connectedUser.points, connectedUser.place, users}</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -70,7 +73,7 @@
 	<div class="row-fluid">
 		#{if play.configuration.get("dashboard.twitter.username") != ""}
 		<div class="span5 hidden-phone">
-			<h2>&{'twitternews'} (@${play.configuration.get("dashboard.twitter.username")})</h2>
+			<h2>&{'twitternews'} (<a href="https://twitter.com/${play.configuration.get('dashboard.twitter.username')}" target="_blank">@${play.configuration.get("dashboard.twitter.username")}</a>)</h2>
 			<div class="twitter"><img src="@{'/public/images/ajax-loader.gif'}" id="ajaxloader"></div>
 		</div>
 		#{/if}
