@@ -11,10 +11,8 @@ import utils.ViewUtils;
 @With(Auth.class)
 @Transactional(readOnly=true)
 public class Standings extends Root {
-	public static void index(String page) {
-		final Map pagination = ViewUtils.getPagination("user", page, "");
-		final List<User> users = User.find("ORDER BY points DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
-
-		render(users, pagination);
+	public static void index() {
+		final List<User> users = User.findAll();
+		render(users);
 	}
 }
