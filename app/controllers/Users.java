@@ -90,7 +90,8 @@ public class Users extends Root {
 	@Transactional(readOnly=true)
 	public static void profile() {
 		final User user = AppUtils.getConnectedUser();
-		render(user);
+		final Settings settings = AppUtils.getSettings();
+		render(user, settings);
 	}
 
 	public static void updatenickname(String nickname) {
@@ -227,6 +228,18 @@ public class Users extends Root {
 		}
 
 		flash.keep();
+		redirect("/users/profile");
+	}
+	
+	public static void deletepicture() {
+		User user = AppUtils.getConnectedUser();
+		user.setPicture(null);
+		user.setPictureLarge(null);
+		user._save();
+		
+		flash.put("infomessage", Messages.get("controller.profile.deletedpicture"));
+		flash.keep();
+		
 		redirect("/users/profile");
 	}
 }

@@ -22,7 +22,14 @@
 			<h2>&{'changepicture'}</h2>
 			#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
 				<div class="control-group #{ifError 'picture'} error #{/ifError}">
-		            <label for="fileInput" class="control-label">&{'profilepicture'}<br />&{'maxprofile'}</label>
+					#{if user.picture != null}
+						<label for="currentpicture" class="control-label">&{'current.profilepicture'}</label>
+						<div class="controls">
+		              		<img src="${user.picture}" border="0"/><br />
+							<a href="@{users.deletepicture()}" onclick="return confirm(&{'delete.picture.confirm'})">&{'delete'}</a>
+		            	</div>
+					#{/if}
+		            <label for="fileInput" class="control-label">&{'newprofilepicture'}<br />&{'maxprofile', settings.maxPictureSize / 1024}</label>
 		            <div class="controls">
 		              <input type="file" id="picture" name="picture" class="input-file">
 		              #{ifError 'picture'}
