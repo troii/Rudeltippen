@@ -16,7 +16,7 @@ public class CleanupJob extends Job {
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
 		    Logger.info("Running job: CleanupJob");
-			List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE DATE(NOW()) > DATE(created) + 2").fetch();
+			List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE DATE(NOW()) > (DATE(created) + 2)").fetch();
 			for (Confirmation confirmation : confirmations) {
 				if (ConfirmationType.ACTIVATION.equals(confirmation.getConfirmType())) {
 					User user = confirmation.getUser();
