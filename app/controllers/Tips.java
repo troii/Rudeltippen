@@ -44,7 +44,7 @@ public class Tips extends Root {
 	public static void extra() {
 		List<Extra> extras = Extra.findAll();
 		boolean tippable = AppUtils.extrasTippable(extras);
-		
+
 		render(extras, tippable);
 	}
 
@@ -53,11 +53,12 @@ public class Tips extends Root {
 		List<Playday> playdays = Playday.findAll();
 		List<Extra> extras = Extra.findAll();
 		boolean tippable = AppUtils.extrasTippable(extras);
-		
+
 		render(extras, playdays, tippable);
 	}
 
 	public static void storetips() {
+		checkAuthenticity();
 		int tipped = 0;
 		int playday = 1;
 		List<String> keys = new ArrayList<String>();
@@ -104,6 +105,7 @@ public class Tips extends Root {
 	}
 
 	public static void storeextratips() {
+		checkAuthenticity();
 		final Map<String, String> map = params.allSimple();
 		for (Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();

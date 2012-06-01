@@ -41,10 +41,10 @@ public class Users extends Root {
 
             final long extra = Extra.count();
             final List<ExtraTip> correctExtraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
-		    
+
 			statistics.put("extraTips", (int) extra);
 			statistics.put("correctExtraTips", correctExtraTips.size());
-		    
+
 			int sumTipps = tips.size();
 			int correctTipps = 0;
 			int correctTrend = 0;
@@ -95,6 +95,7 @@ public class Users extends Root {
 	}
 
 	public static void updatenickname(String nickname) {
+		checkAuthenticity();
 		validation.required(nickname);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
@@ -116,7 +117,8 @@ public class Users extends Root {
 	    redirect("/users/profile");
 	}
 
-	public static void updateusername(String username, String usernameConfirmation) throws Throwable {
+	public static void updateusername(String username, String usernameConfirmation) {
+		checkAuthenticity();
 		validation.required(username);
 		validation.email(username);
 		validation.equals(username, usernameConfirmation);
@@ -147,6 +149,7 @@ public class Users extends Root {
 	}
 
 	public static void updatepassword(String userpass, String userpassConfirmation) {
+		checkAuthenticity();
 		validation.required(userpass);
 		validation.equals(userpass, userpassConfirmation);
         validation.minSize(userpass, 6);
@@ -178,6 +181,7 @@ public class Users extends Root {
 	}
 
 	public static void updatenotifications(boolean reminder) {
+		checkAuthenticity();
 		User user = AppUtils.getConnectedUser();
 		user.setReminder(reminder);
 		user._save();
@@ -190,8 +194,9 @@ public class Users extends Root {
 	}
 
 	public static void updatepicture(File picture) {
+		checkAuthenticity();
 		validation.required(picture);
-		
+
 		if (picture != null) {
 			int size = AppUtils.getSettings().getMaxPictureSize();
 			String message = Messages.get("profile.maxpicturesize", size / 1024);
@@ -199,7 +204,7 @@ public class Users extends Root {
 		} else {
 			validation.isTrue(false);
 		}
-		
+
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
@@ -230,16 +235,16 @@ public class Users extends Root {
 		flash.keep();
 		redirect("/users/profile");
 	}
-	
+
 	public static void deletepicture() {
 		User user = AppUtils.getConnectedUser();
 		user.setPicture(null);
 		user.setPictureLarge(null);
 		user._save();
-		
+
 		flash.put("infomessage", Messages.get("controller.profile.deletedpicture"));
 		flash.keep();
-		
+
 		redirect("/users/profile");
 	}
 }
