@@ -5,7 +5,6 @@ import java.util.List;
 import models.Game;
 import models.WSResults;
 import play.Logger;
-import play.Play;
 import play.jobs.Every;
 import play.jobs.Job;
 import services.UpdateService;
