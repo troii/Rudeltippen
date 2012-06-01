@@ -32,7 +32,7 @@ public class ApplicationTests extends FunctionalTest {
 		Response response = GET("/auth/login");
 		assertStatus(200, response);
 	}
-
+	
 	@Test
 	public void testAuthForgotten() {
 		Response response = GET("/auth/forgotten");
