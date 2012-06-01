@@ -448,7 +448,7 @@ public class AppUtils implements AppConstants{
 			userTips.put(user,  gameTips);
 			tips.add(userTips);
 		}
-		
+
 		return tips;
 	}
 
@@ -468,7 +468,7 @@ public class AppUtils implements AppConstants{
 			userTips.put(user, extraTips);
 			tips.add(userTips);
 		}
-		
+
 		return tips;
 	}
 
@@ -514,5 +514,14 @@ public class AppUtils implements AppConstants{
         Logger.info("Updating results from WebService. " + game);
         setGameScore(String.valueOf(game.getId()), homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         calculateScoresAndPoints();
+    }
+
+    public static boolean verifyAuthenticity() {
+    	String check = Play.configuration.getProperty("check.authenticity");
+    	if (!("false").equalsIgnoreCase(check)) {
+    		return true;
+    	}
+
+    	return false;
     }
 }

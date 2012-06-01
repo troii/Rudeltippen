@@ -95,7 +95,8 @@ public class Users extends Root {
 	}
 
 	public static void updatenickname(String nickname) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		validation.required(nickname);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
@@ -118,7 +119,8 @@ public class Users extends Root {
 	}
 
 	public static void updateusername(String username, String usernameConfirmation) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		validation.required(username);
 		validation.email(username);
 		validation.equals(username, usernameConfirmation);
@@ -149,7 +151,8 @@ public class Users extends Root {
 	}
 
 	public static void updatepassword(String userpass, String userpassConfirmation) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		validation.required(userpass);
 		validation.equals(userpass, userpassConfirmation);
         validation.minSize(userpass, 6);
@@ -181,7 +184,8 @@ public class Users extends Root {
 	}
 
 	public static void updatenotifications(boolean reminder) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		User user = AppUtils.getConnectedUser();
 		user.setReminder(reminder);
 		user._save();
@@ -194,7 +198,8 @@ public class Users extends Root {
 	}
 
 	public static void updatepicture(File picture) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		validation.required(picture);
 
 		if (picture != null) {

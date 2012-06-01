@@ -68,7 +68,8 @@ public class System extends Controller implements AppConstants {
 							String userpass,
 							String userpassConfirmation
 							) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		validation.required(name);
 		validation.required(timeZoneString);
 		validation.required(dateString);

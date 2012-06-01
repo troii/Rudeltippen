@@ -58,7 +58,8 @@ public class Tips extends Root {
 	}
 
 	public static void storetips() {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		int tipped = 0;
 		int playday = 1;
 		List<String> keys = new ArrayList<String>();
@@ -105,7 +106,8 @@ public class Tips extends Root {
 	}
 
 	public static void storeextratips() {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		final Map<String, String> map = params.allSimple();
 		for (Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();

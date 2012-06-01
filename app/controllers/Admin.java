@@ -42,7 +42,8 @@ public class Admin extends Root implements AppConstants {
 	}
 
 	public static void storeresults() {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		final Map<String, String> map = params.allSimple();
 		Set<String> keys = new HashSet<String>();
 		for (Entry<String, String> entry : map.entrySet()) {
@@ -103,7 +104,8 @@ public class Admin extends Root implements AppConstants {
 										boolean informOnNewTipper,
 										boolean enableRegistration
 										) {
-		checkAuthenticity();
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
 		validation.required(name);
 		validation.required(timeZoneString);
 		validation.required(dateString);

@@ -141,7 +141,8 @@ public class Auth extends Controller {
     }
 
     public static void create(String nickname, String username, String usernameConfirmation, String userpass, String userpassConfirmation) {
-    	checkAuthenticity();
+    	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
     	final Settings settings = AppUtils.getSettings();
     	if (!settings.isEnableRegistration()) {
     		redirect("/");
@@ -219,7 +220,8 @@ public class Auth extends Controller {
     }
 
     public static void resend(String username) throws Throwable {
-    	checkAuthenticity();
+    	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
     	validation.required(username);
 		validation.isTrue(ValidationUtils.usernameExists(username)).message("validation.userNotExists");
 		validation.email(username);
@@ -257,7 +259,8 @@ public class Auth extends Controller {
     }
 
     public static void authenticate(String username, String userpass, boolean remember) {
-    	checkAuthenticity();
+    	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+
         Boolean allowed = false;
         try {
             allowed = (Boolean) Security.invoke("authenticate", username, userpass);

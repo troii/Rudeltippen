@@ -1,14 +1,10 @@
 package functional;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import models.User;
-
 import org.junit.Test;
 
-import play.Play;
 import play.mvc.Http.Response;
 import play.test.FunctionalTest;
 
@@ -32,7 +28,7 @@ public class ApplicationTests extends FunctionalTest {
 		Response response = GET("/auth/login");
 		assertStatus(200, response);
 	}
-	
+
 	@Test
 	public void testAuthForgotten() {
 		Response response = GET("/auth/forgotten");
@@ -43,7 +39,6 @@ public class ApplicationTests extends FunctionalTest {
     public void testAuthResend() {
         Response response = GET("/auth/resend");
         assertStatus(302, response);
-        assertEquals(response.getHeader("location"), "/auth/forgotten");
     }
 
     @Test
@@ -157,7 +152,7 @@ public class ApplicationTests extends FunctionalTest {
         response = GET("/users/updatenickname");
         assertStatus(302, GET("/users/updatenickname"));
         assertEquals(response.getHeader("location"), "/users/profile");
-        
+
         response = GET("/users/updatenotifications");
         assertStatus(302, GET("/users/updatenotifications"));
         assertEquals(response.getHeader("location"), "/users/profile");
@@ -173,7 +168,7 @@ public class ApplicationTests extends FunctionalTest {
         response = GET("/users/updateusername");
         assertStatus(302, GET("/users/updateusername"));
         assertEquals(response.getHeader("location"), "/users/profile");
-        
+
         response = GET("/users/updatepicture");
         assertStatus(302, GET("/users/updatepicture"));
         assertEquals(response.getHeader("location"), "/users/profile");
