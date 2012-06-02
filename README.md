@@ -27,6 +27,11 @@ Languages
 - German
 - English
 
+Screenshots
+===========
+
+You can find some screenshots of Rudeltippen [here][13]
+
 Demo
 ===========
 You can find a Demo [here][3]. Login with the following credentials:
@@ -314,3 +319,4 @@ Stuff
 [10]: http://technet.microsoft.com/de-de/sysinternals/bb897553.aspx
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
 [12]: http://mail.google.com/
+[13]: https://picasaweb.google.com/108885060281225128504/Rudeltippen
