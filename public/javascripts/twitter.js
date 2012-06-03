@@ -45,7 +45,6 @@ $(document).ready(function(){
 		        var tmp = false;
 		        var results = $('.span5 > .twitter');
 		        for(i in data) {
-		        	console.log(data);
 		        	tmp = $('<h4><a href="https://twitter.com/'+username+'/status/'+data[i].id_str+'" target="_blank">'+prettyDate(data[i].created_at)+'</a></h4><p>'+linkify(data[i].text)+'</p>');
 		            results.append(tmp);
 		        }

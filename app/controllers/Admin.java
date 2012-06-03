@@ -12,6 +12,7 @@ import java.util.Set;
 import models.Game;
 import models.Playday;
 import models.Settings;
+import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -39,6 +40,11 @@ public class Admin extends Root implements AppConstants {
 		final Playday playday = Playday.find("byNumber", number).first();
 
 		render(playdays, playday, number);
+	}
+
+	public static void users() {
+		List<User> users = User.findAll();
+		render(users);
 	}
 
 	public static void storeresults() {

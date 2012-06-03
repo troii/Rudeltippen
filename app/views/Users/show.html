@@ -16,15 +16,15 @@
             <td>${user?.place}</td>
         </tr>
 		<tr>
-			<td width="200"><b>&{'points'}</b></td>
+			<td><b>&{'points'}</b></td>
 			<td>${user?.points}</td>
 		</tr>
            <tr>
-               <td width="200"><b>&{'pointsperbet'}</b></td>
+               <td><b>&{'pointsperbet'}</b></td>
                <td>${pointsPerTipp}</td>
            </tr>
 		<tr>
-			<td width="200"><b>&{'placedbets'}</b></td>
+			<td><b>&{'placedbets'}</b></td>
 			<td>&{'placedbets.value', statistics?.sumTipps, statistics?.sumGames}</td>
 		</tr>
 		<tr>
@@ -42,7 +42,7 @@
 		<tr>
 			<td><b>&{'correct.extratips'}</b></td>
 			<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
-		</tr>		
+		</tr>
         <tr>
             <td><b>&{'betquote'}</b></td>
             <td>${statistics?.tippQuote} % &{'correctresultsquote'}</td>

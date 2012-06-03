@@ -13,7 +13,6 @@ import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
-import models.Stadium;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
@@ -326,8 +325,5 @@ public class ViewUtils extends JavaExtensions{
     	}
 
     	return "";
-    }
-    public static String linked (Stadium stadium) {
-    	return "<a href='#' rel='tooltip' class='stadium' title='" + Messages.get(stadium.getName()) + " (" + stadium.getCapacity() + ")'>" + Messages.get(stadium.getCity()) + "</a>";
     }
 }
