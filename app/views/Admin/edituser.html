@@ -1,0 +1,49 @@
+<div class="modal-header">
+	<a href="#" class="close" data-dismiss="modal">&times;</a>
+	<h3>Beutzer bearbeiten</h3>
+</div>
+<div class="modal-body">
+#{form @Admin.saveuser(), class:'form-horizontal well'}
+	<fieldset>
+		<div class="control-group #{ifError 'nickname'} error #{/ifError}">
+			<label for="input01" class="control-label">&{'nickname'}</label>
+			<div class="controls">
+				<input type="text" id="nickname" value="${flash.nickname}" name="nickname" class="input-xlarge">
+				#{ifError 'nickname'}
+					<span class="help-inline">#{error 'nickname' /}</span>
+				#{/ifError}
+			</div>
+		</div>
+		<div class="control-group #{ifError 'username'} error #{/ifError}">
+			<label for="input01" class="control-label">&{'email'}</label>
+			<div class="controls">
+				<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
+				#{ifError 'username'}
+					<span class="help-inline">#{error 'username' /}</span>
+				#{/ifError}
+			</div>
+		</div>
+		<div class="control-group #{ifError 'userpass'} error #{/ifError}">
+			<label for="input01" class="control-label">&{'password'}</label>
+			<div class="controls">
+				<input type="password" id="userpass" name="userpass" class="input-xlarge">
+				#{ifError 'userpass'}
+					<span class="help-inline">#{error 'userpass' /}</span>
+				#{/ifError}
+			</div>
+		</div>
+		<div class="control-group #{ifError 'userpass'} error #{/ifError}">
+			<label for="input01" class="control-label">&{'password'}</label>
+			<div class="controls">
+				<input type="password" id="userpass" name="userpass" class="input-xlarge">
+				#{ifError 'userpass'}
+					<span class="help-inline">#{error 'userpass' /}</span>
+				#{/ifError}
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+		</div>
+	</fieldset>
+#{/form}
+</div>

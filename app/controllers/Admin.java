@@ -16,6 +16,7 @@ import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
+import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.With;
@@ -176,5 +177,105 @@ public class Admin extends Root implements AppConstants {
 		flash.put("enableRegistration", settings.isEnableRegistration());
 
 		render(settings, timeZones, locales);
+	}
+
+	public static void changeactive(long userid) {
+		final User connectedUser = AppUtils.getConnectedUser();
+		User user = User.findById(userid);
+
+		if (user != null) {
+			if (connectedUser.equals(user)) {
+				String message;
+				String activate;
+				if (user.isActive()) {
+					user.setActive(false);
+					activate = "deactivated";
+					message = Messages.get("info.change.deactivate", user.getUsername());
+				} else {
+					user.setActive(true);
+					activate = "activated";
+					message = Messages.get("info.change.activate", user.getUsername());
+				}
+				user._save();
+				flash.put("infomessage", message);
+				Logger.info("User " + user.getUsername() + " has been " + activate + " - by " + connectedUser.getUsername());
+			} else {
+				flash.put("warningmessage", Messages.get("warning.change.active"));
+			}
+		} else {
+			flash.put("errormessage", Messages.get("error.loading.user"));
+		}
+
+		flash.keep();
+		redirect("/admin/users");
+	}
+
+	public static void changeadmin(long userid) {
+		final User connectedUser = AppUtils.getConnectedUser();
+		User user = User.findById(userid);
+
+		if (user != null) {
+			if (!connectedUser.equals(user)) {
+				String message;
+				String admin;
+				if (user.isAdmin()) {
+					message = Messages.get("info.change.admin", user.getUsername());
+					admin = "is now admin";
+					user.setAdmin(false);
+				} else {
+					message = Messages.get("info.change.deadmin", user.getUsername());
+					admin = "is not admin anymore";
+					user.setAdmin(true);
+				}
+				user._save();
+				flash.put("infomessage", message);
+				Logger.info("User " + user.getUsername() + " " + admin + " - by " + connectedUser.getUsername());
+			} else {
+				flash.put("warningmessage", Messages.get("warning.change.admin"));
+			}
+		} else {
+			flash.put("errormessage", Messages.get("error.loading.user"));
+		}
+
+		flash.keep();
+		redirect("/admin/users");
+	}
+
+	public static void deleteuser(long userid) {
+		final User connectedUser = AppUtils.getConnectedUser();
+		User user = User.findById(userid);
+
+		if (user != null) {
+			if (!connectedUser.equals(user)) {
+				String username = user.getUsername();
+				user._delete();
+				flash.put("infomessage", "");
+				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
+			} else {
+				flash.put("warningmessage", Messages.get("warning.delete.user"));
+			}
+		} else {
+			flash.put("errormessage", Messages.get("error.loading.user"));
+		}
+
+		flash.keep();
+		redirect("/admin/users");
+	}
+
+	public static void saveuser(long userid) {
+		User user = User.findById(userid);
+		if (user != null) {
+
+		} else {
+			flash.put("warningmessage", Messages.get("warning.delete.user"));
+		}
+
+		flash.keep();
+		redirect("/admin/users");
+	}
+
+	public static void edituser(long userid) {
+		User user = User.findById(userid);
+		render(user);
 	}
 }
