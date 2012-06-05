@@ -158,8 +158,8 @@ public class Auth extends Controller {
 		validation.maxSize(userpass, 32);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
-		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).message(Messages.get("controller.users.emailexists"));
-		validation.isTrue(!ValidationUtils.usernameExists(username)).message(Messages.get("controller.users.nicknamexists"));
+		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
+		validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.emailexists"));
 
 		if (validation.hasErrors()) {
 			params.flash();
@@ -223,7 +223,7 @@ public class Auth extends Controller {
     	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
     	validation.required(username);
-		validation.isTrue(ValidationUtils.usernameExists(username)).message("validation.userNotExists");
+		validation.isTrue(ValidationUtils.usernameExists(username)).key("username").message("validation.userNotExists");
 		validation.email(username);
 
 		if (validation.hasErrors()) {
