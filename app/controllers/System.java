@@ -48,53 +48,6 @@ public class System extends Controller implements AppConstants {
 		render(settings, timeZones, locales);
 	}
 
-	public static void doUpdate(String sql, String signed) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
-		
-		validation.required(sql);
-		validation.required(signed);
-
-		if (!validation.hasErrors()) {
-			HttpResponse response = WS.url("http://updates.rudeltippen.de/em2012.txt").get();
-			if (response.success()) {
-				String content = response.getString();
-				if (Crypto.sign(sql).equals(signed) && Codec.hexMD5(content).equals(Codec.hexMD5(sql))) {
-					Fixtures.executeSQL(sql);
-					flash.put("infomessage", Messages.get("updates.success"));
-				} else {
-					validation.isTrue(false);
-					flash.put("errormessage", Messages.get("updates.nonverify"));
-				}
-			} else {
-				validation.isTrue(false);
-				flash.put("errormessage", Messages.get("updates.connection.failed"));
-			}
-			flash.keep();
-			redirect("/auth/login");
-		} else {
-			flash.put("errormessage", Messages.get("updates.nonverify"));
-			flash.keep();
-			update();
-		}
-	}
-	
-	public static void update() {
-		String content = "";
-		String signed = "";
-		
-		HttpResponse response = WS.url("http://updates.rudeltippen.de/em2012.txt").get();
-		if (response.success()) {
-			content = response.getString();
-			signed = Crypto.sign(content);
-		} else {
-			validation.isTrue(false);
-			flash.put("errormessage", Messages.get("updates.connection.failed"));
-			flash.keep();
-		}
-		
-		render(content, signed);
-	}
-
 	public static void init(String name,
 							int pointsGameWin,
 							int pointsGameDraw,

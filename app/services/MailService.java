@@ -15,6 +15,23 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 
 public class MailService extends Mailer {
+	public static void updates(User user, List<String> statements) {
+		final String replyto = Play.configuration.getProperty("mailservice.replyto");
+		final String from = Play.configuration.getProperty("mailservice.from");	
+		final Settings settings = AppUtils.getSettings();
+		final String recipient = user.getUsername();
+
+		if (ValidationUtils.isValidEmail(recipient)) {
+			setFrom(from);
+			addRecipient(recipient);
+			setReplyTo(replyto);
+			setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.updates"));
+			send(user, statements);
+		} else {
+			Logger.error("Tryed to sent updates mail, but recipient was invalid.");
+		}			
+	}
+	
 	public static void register(User user) {
 		final String appUrl = Play.configuration.getProperty("app.register.url");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");

@@ -524,4 +524,13 @@ public class AppUtils implements AppConstants{
 
     	return false;
     }
+    
+    public static boolean isAutomaticUpdates() {
+    	String updates = Play.configuration.getProperty("automatic.updates");
+    	if (("true").equalsIgnoreCase(updates)) {
+    		return true;
+    	}
+
+    	return false;    	
+    }
 }
