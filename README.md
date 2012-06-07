@@ -52,7 +52,7 @@ This installation guide assumes that you already have JDK 1.6+ installed and hav
 Step 1
 ------------------
 
-Download the latest version of Rudeltippen and unzip to your INSTLLATIONFOLDER
+Download the [latest tagged version of Rudeltippen][14] and unzip to your INSTLLATIONFOLDER
 
 Step 2
 ------------------
@@ -196,7 +196,7 @@ Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. If you h
 Step 1
 ------------------
 
-Download the latest of Rudeltippen.
+Download the [latest tagged version of Rudeltippen][14]
 
 Step 2
 ------------------
@@ -320,3 +320,4 @@ Stuff
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
 [12]: http://mail.google.com/
 [13]: https://picasaweb.google.com/108885060281225128504/Rudeltippen
+[14]: https://github.com/svenkubiak/Rudeltippen/tags
