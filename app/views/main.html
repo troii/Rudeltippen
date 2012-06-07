@@ -30,6 +30,7 @@
 	            <ul class="dropdown-menu">
 	              <li><a href="@{users.profile()}">&{'myprofile'}</a></li>
 	              #{if connectedUser.admin}
+	              		<li class="divider"></li>
 	              		<li><a href="@{admin.users()}">&{'usermanagement'}</a></li>
 	              		<li><a href="@{admin.settings()}">&{'settings'}</a></li>
 	              		<li><a href="@{admin.index()}">&{'results'}</a></li>

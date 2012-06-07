@@ -148,19 +148,15 @@ public class Auth extends Controller {
     		redirect("/");
     	}
 
-		validation.required(username);
-		validation.required(userpass);
-		validation.required(nickname);
-		validation.email(username);
-		validation.equals(username, usernameConfirmation);
-		validation.equals(userpass, userpassConfirmation);
-		validation.minSize(userpass, 8);
-		validation.maxSize(userpass, 32);
-		validation.minSize(nickname, 3);
-		validation.maxSize(nickname, 20);
-		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).message(Messages.get("controller.users.emailexists"));
-		validation.isTrue(!ValidationUtils.usernameExists(username)).message(Messages.get("controller.users.nicknamexists"));
-
+    	validation = ValidationUtils.getUserValidations(
+    			validation,
+    			username,
+    			userpass,
+    			nickname,
+    			usernameConfirmation,
+    			userpassConfirmation,
+    			false);
+    	
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
@@ -223,7 +219,7 @@ public class Auth extends Controller {
     	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
     	validation.required(username);
-		validation.isTrue(ValidationUtils.usernameExists(username)).message("validation.userNotExists");
+		validation.isTrue(ValidationUtils.usernameExists(username)).key("username").message("validation.userNotExists");
 		validation.email(username);
 
 		if (validation.hasErrors()) {

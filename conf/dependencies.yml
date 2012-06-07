@@ -1,2 +1,2 @@
 require:
-    - org.scribe -> scribe 1.3.0
+    - org.scribe -> scribe 1.3.1

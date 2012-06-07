@@ -9,6 +9,8 @@ import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
+import play.data.validation.Validation;
+import play.i18n.Messages;
 import play.libs.Crypto;
 
 public class ValidationUtils {
@@ -66,5 +68,65 @@ public class ValidationUtils {
         final Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
         final Matcher m = p.matcher(email);
         return m.matches();
+    }
+    
+    public static Validation getUserValidations(
+    		Validation validation,
+    		String username,
+    		String userpass,
+    		String nickname,
+    		String usernameConfirmation,
+    		String userpassConfirmation,
+    		boolean update) {
+    	
+		validation.required(username);
+		validation.required(userpass);
+		validation.required(nickname);
+		validation.email(username);
+		validation.equals(username, usernameConfirmation);
+		validation.equals(userpass, userpassConfirmation);
+		validation.minSize(userpass, 8);
+		validation.maxSize(userpass, 32);
+		validation.minSize(nickname, 3);
+		validation.maxSize(nickname, 20);
+		if (!update) {
+			validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
+			validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.emailexists"));			
+		}
+		
+		return validation;
+    }
+    
+    public static Validation getSettingsValidations(
+    			Validation validation,
+    			String name,
+				int pointsGameWin,
+				int pointsGameDraw,
+				int pointsTip,
+				int pointsTipDiff,
+				int pointsTipTrend,
+				int minutesBeforeTip,
+				int maxPictureSize,
+				String timeZoneString,
+				String dateString,
+				String dateTimeLang,
+				String timeString,
+				boolean countFinalResult,
+				boolean informOnNewTipper,
+				boolean enableRegistration) {
+    	
+		validation.required(name);
+		validation.required(timeZoneString);
+		validation.required(dateString);
+		validation.required(dateTimeLang);
+		validation.required(timeString);
+		validation.range(pointsGameDraw, 0, 99);
+		validation.range(pointsGameWin, 1, 99);
+		validation.range(pointsGameDraw, 0, 99);
+		validation.range(pointsTip, 0, 99);
+		validation.range(pointsTipDiff, 0, 99);
+		validation.range(pointsTipTrend, 0, 99);
+    	
+    	return validation;
     }
 }

@@ -52,8 +52,3 @@ $(document).ready(function(){
 	$('.alert-success').delay(5000).slideToggle();
 	helpify();
 });
-
-function showEditUser() {
-	$('#editUserModal').load("/admin/edituser/1");
-	$('#editUserModal').modal('show');
-}

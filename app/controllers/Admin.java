@@ -21,6 +21,7 @@ import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.With;
 import utils.AppUtils;
+import utils.ValidationUtils;
 
 @With(Auth.class)
 @CheckAccess("admin")
@@ -43,6 +44,7 @@ public class Admin extends Root implements AppConstants {
 		render(playdays, playday, number);
 	}
 
+	@Transactional(readOnly=true)
 	public static void users() {
 		List<User> users = User.findAll();
 		render(users);
@@ -113,18 +115,24 @@ public class Admin extends Root implements AppConstants {
 										) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(name);
-		validation.required(timeZoneString);
-		validation.required(dateString);
-		validation.required(dateTimeLang);
-		validation.required(timeString);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsGameWin, 0, 99);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsTip, 0, 99);
-		validation.range(pointsTipDiff, 0, 99);
-		validation.range(pointsTipTrend, 0, 99);
-
+		validation = ValidationUtils.getSettingsValidations(
+				validation,
+				name,
+				pointsGameWin,
+				pointsGameDraw,
+				pointsTip,
+				pointsTipDiff,
+				pointsTipTrend,
+				minutesBeforeTip, 
+				maxPictureSize,
+				timeZoneString,
+				dateString, 
+				dateTimeLang,
+				timeString,
+				countFinalResult,
+				informOnNewTipper,
+				enableRegistration);
+		
 		if (!validation.hasErrors()) {
 			Settings settings = Settings.find("byAppName", APPNAME).first();
 			settings.setName(name);
@@ -184,7 +192,7 @@ public class Admin extends Root implements AppConstants {
 		User user = User.findById(userid);
 
 		if (user != null) {
-			if (connectedUser.equals(user)) {
+			if (!connectedUser.equals(user)) {
 				String message;
 				String activate;
 				if (user.isActive()) {
@@ -219,11 +227,11 @@ public class Admin extends Root implements AppConstants {
 				String message;
 				String admin;
 				if (user.isAdmin()) {
-					message = Messages.get("info.change.admin", user.getUsername());
+					message = Messages.get("info.change.deadmin", user.getUsername());
 					admin = "is now admin";
 					user.setAdmin(false);
 				} else {
-					message = Messages.get("info.change.deadmin", user.getUsername());
+					message = Messages.get("info.change.admin", user.getUsername());
 					admin = "is not admin anymore";
 					user.setAdmin(true);
 				}
@@ -249,7 +257,7 @@ public class Admin extends Root implements AppConstants {
 			if (!connectedUser.equals(user)) {
 				String username = user.getUsername();
 				user._delete();
-				flash.put("infomessage", "");
+				flash.put("infomessage", Messages.get("info.delete.user", username));
 				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
 			} else {
 				flash.put("warningmessage", Messages.get("warning.delete.user"));
@@ -260,22 +268,5 @@ public class Admin extends Root implements AppConstants {
 
 		flash.keep();
 		redirect("/admin/users");
-	}
-
-	public static void saveuser(long userid) {
-		User user = User.findById(userid);
-		if (user != null) {
-
-		} else {
-			flash.put("warningmessage", Messages.get("warning.delete.user"));
-		}
-
-		flash.keep();
-		redirect("/admin/users");
-	}
-
-	public static void edituser(long userid) {
-		User user = User.findById(userid);
-		render(user);
 	}
 }

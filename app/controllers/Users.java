@@ -100,7 +100,7 @@ public class Users extends Root {
 		validation.required(nickname);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
-	    validation.isTrue(!ValidationUtils.nicknameExists(nickname)).message(Messages.get("controller.users.emailexists"));
+	    validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.emailexists"));
 
 	    if (validation.hasErrors()) {
 			params.flash();
@@ -124,7 +124,7 @@ public class Users extends Root {
 		validation.required(username);
 		validation.email(username);
 		validation.equals(username, usernameConfirmation);
-		validation.equals(ValidationUtils.usernameExists(username), false);
+		validation.equals(ValidationUtils.usernameExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
 
 		if (validation.hasErrors()) {
 			params.flash();

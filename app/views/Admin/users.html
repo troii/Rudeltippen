@@ -2,13 +2,13 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>&{'profilbild'}</th>
+			<th>&{'profilepicture'}</th>
 			<th>&{'nickname'}</th>
 			<th>&{'username'}</th>
 			<th>&{'registered'}</th>
-			<th>&{'active'}</th>
-			<th>&{'admin'}</th>
-			<th>&{'actions'}</th>
+			<th>&{'isactive'}</th>
+			<th>&{'isadmin'}</th>
+			<th>&{'delete'}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,9 +25,8 @@
 				<td>${user.registered.formatted()}</td>
 				<td>#{if user.active}<a href="@{admin.changeactive()}/${user.id}" onclick="return confirm(&{'admin.changedeactive.confirm', user.nickname})"><i class="icon-thumbs-up"></i></a>#{/if}#{else}<a href="@{admin.changeactive()}/${user.id}" onclick="return confirm(&{'admin.changeactive.confirm', user.nickname})"><i class="icon-thumbs-down"></i></a>#{/else}</td>
 				<td>#{if user.admin}<a href="@{admin.changeadmin()}/${user.id}" onclick="return confirm(&{'admin.changedeadmin.confirm', user.nickname})"><i class="icon-star"></i></a>#{/if}#{else}<a href="@{admin.changeadmin()}/${user.id}" onclick="return confirm(&{'admin.changeadmin.confirm', user.nickname})"><i class="icon-star-empty"></i></a>#{/else}</td>
-				<td><a href="javascript:showEditUser();"><i class="icon-pencil"></i></a><a href="@{admin.deleteuser()}/${user.id}" onclick="return confirm(&{'admin.deleteuser.confirm', user.nickname})"><i class="icon-trash"></i></a></td>
+				<td><a href="@{admin.deleteuser()}/${user.id}" onclick="return confirm(&{'admin.deleteuser.confirm', user.nickname})"><i class="icon-trash"></i></a></td>
 			</tr>
 		 #{/list}
 	</tbody>
 </table>
-<div class="modal fade" id="editUserModal"></div>

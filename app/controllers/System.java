@@ -8,15 +8,21 @@ import java.util.List;
 import models.Game;
 import models.Settings;
 import models.User;
+import play.Logger;
 import play.Play;
 import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
+import play.libs.Crypto;
+import play.libs.WS;
+import play.libs.WS.HttpResponse;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Http.Response;
 import play.test.Fixtures;
 import utils.AppUtils;
+import utils.ValidationUtils;
 
 public class System extends Controller implements AppConstants {
 	@Before
@@ -42,9 +48,51 @@ public class System extends Controller implements AppConstants {
 		render(settings, timeZones, locales);
 	}
 
-	@NoTransaction
+	public static void doUpdate(String sql, String signed) {
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		
+		validation.required(sql);
+		validation.required(signed);
+
+		if (!validation.hasErrors()) {
+			HttpResponse response = WS.url("http://updates.rudeltippen.de/em2012.txt").get();
+			if (response.success()) {
+				String content = response.getString();
+				if (Crypto.sign(sql).equals(signed) && Codec.hexMD5(content).equals(Codec.hexMD5(sql))) {
+					Fixtures.executeSQL(sql);
+					flash.put("infomessage", Messages.get("updates.success"));
+				} else {
+					validation.isTrue(false);
+					flash.put("errormessage", Messages.get("updates.nonverify"));
+				}
+			} else {
+				validation.isTrue(false);
+				flash.put("errormessage", Messages.get("updates.connection.failed"));
+			}
+			flash.keep();
+			redirect("/auth/login");
+		} else {
+			flash.put("errormessage", Messages.get("updates.nonverify"));
+			flash.keep();
+			update();
+		}
+	}
+	
 	public static void update() {
-		render();
+		String content = "";
+		String signed = "";
+		
+		HttpResponse response = WS.url("http://updates.rudeltippen.de/em2012.txt").get();
+		if (response.success()) {
+			content = response.getString();
+			signed = Crypto.sign(content);
+		} else {
+			validation.isTrue(false);
+			flash.put("errormessage", Messages.get("updates.connection.failed"));
+			flash.keep();
+		}
+		
+		render(content, signed);
 	}
 
 	public static void init(String name,
@@ -70,21 +118,23 @@ public class System extends Controller implements AppConstants {
 							) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(name);
-		validation.required(timeZoneString);
-		validation.required(dateString);
-		validation.required(dateTimeLang);
-		validation.required(timeString);
-		validation.required(username);
-		validation.required(userpass);
-		validation.required(nickname);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsGameWin, 1, 99);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsTip, 0, 99);
-		validation.range(pointsTipDiff, 0, 99);
-		validation.range(pointsTipTrend, 0, 99);
-		validation.range(minutesBeforeTip, 1, 1440);
+		validation = ValidationUtils.getSettingsValidations(
+				validation,
+				usernameConfirmation,
+				pointsGameWin,
+				pointsGameDraw,
+				pointsTip,
+				pointsTipDiff,
+				pointsTipTrend,
+				minutesBeforeTip,
+				maxPictureSize,
+				timeZoneString,
+				dateString,
+				dateTimeLang,
+				timeString,
+				countFinalResult,
+				informOnNewTipper,
+				enableRegistration);
 		validation.email(username);
 		validation.equals(username, usernameConfirmation);
 		validation.equals(userpass, userpassConfirmation);
