@@ -249,7 +249,7 @@ models.Game(g1):
     stadium:       warschau
     playoff:       false
     ended:         false
-    matchIDWS:     18795
+    webserviceID:     18795
 
 models.Game(g2):
     number:    2
@@ -260,7 +260,7 @@ models.Game(g2):
     stadium:       breslau
     playoff:       false
     ended:         false
-    matchIDWS:     18796
+    webserviceID:     18796
 
 models.Game(g3):
     number:    3
@@ -271,7 +271,7 @@ models.Game(g3):
     stadium:       charkiw
     playoff:       false
     ended:         false
-    matchIDWS:     18801
+    webserviceID:     18801
 
 models.Game(g4):
     number:    4
@@ -282,7 +282,7 @@ models.Game(g4):
     stadium:       lemberg
     playoff:       false
     ended:         false
-    matchIDWS:     18802
+    webserviceID:     18802
 
 models.Game(g5):
     number:    5
@@ -293,7 +293,7 @@ models.Game(g5):
     stadium:       danzig
     playoff:       false
     ended:         false
-    matchIDWS:     18807
+    webserviceID:     18807
 
 models.Game(g6):
     number:    6
@@ -304,7 +304,7 @@ models.Game(g6):
     stadium:       posen
     playoff:       false
     ended:         false
-    matchIDWS:     18808
+    webserviceID:     18808
 
 models.Game(g7):
     number:    7
@@ -315,7 +315,7 @@ models.Game(g7):
     stadium:       donezk
     playoff:       false
     ended:         false
-    matchIDWS:     18813
+    webserviceID:     18813
 
 models.Game(g8):
     number:    8
@@ -326,7 +326,7 @@ models.Game(g8):
     stadium:       kiew
     playoff:       false
     ended:         false
-    matchIDWS:     18814
+    webserviceID:     18814
 
 models.Game(g9):
     number:    9
@@ -337,7 +337,7 @@ models.Game(g9):
     stadium:       breslau
     playoff:       false
     ended:         false
-    matchIDWS:     18798
+    webserviceID:     18798
 
 models.Game(g10):
     number:    10
@@ -348,7 +348,7 @@ models.Game(g10):
     stadium:       warschau
     playoff:       false
     ended:         false
-    matchIDWS:     18797
+    webserviceID:     18797
 
 models.Game(g11):
     number:    11
@@ -359,7 +359,7 @@ models.Game(g11):
     stadium:       lemberg
     playoff:       false
     ended:         false
-    matchIDWS:     18804
+    webserviceID:     18804
 
 models.Game(g12):
     number:    12
@@ -370,7 +370,7 @@ models.Game(g12):
     stadium:       charkiw
     playoff:       false
     ended:         false
-    matchIDWS:     18803
+    webserviceID:     18803
 
 models.Game(g13):
     number:    13
@@ -381,7 +381,7 @@ models.Game(g13):
     stadium:       posen
     playoff:       false
     ended:         false
-    matchIDWS:     18810
+    webserviceID:     18810
 
 models.Game(g14):
     number:    14
@@ -392,7 +392,7 @@ models.Game(g14):
     stadium:       danzig
     playoff:       false
     ended:         false
-    matchIDWS:     18809
+    webserviceID:     18809
 
 models.Game(g15):
     number:    15
@@ -403,7 +403,7 @@ models.Game(g15):
     stadium:       donezk
     playoff:       false
     ended:         false
-    matchIDWS:     18816
+    webserviceID:     18816
 
 models.Game(g16):
     number:    16
@@ -414,7 +414,7 @@ models.Game(g16):
     stadium:       kiew
     playoff:       false
     ended:         false
-    matchIDWS:     18815
+    webserviceID:     18815
 
 models.Game(g17):
     number:    17
@@ -425,7 +425,7 @@ models.Game(g17):
     stadium:       breslau
     playoff:       false
     ended:         false
-    matchIDWS:     18800
+    webserviceID:     18800
 
 models.Game(g18):
     number:    18
@@ -436,7 +436,7 @@ models.Game(g18):
     stadium:       warschau
     playoff:       false
     ended:         false
-    matchIDWS:     18799
+    webserviceID:     18799
 
 models.Game(g19):
     number:    19
@@ -447,7 +447,7 @@ models.Game(g19):
     stadium:       charkiw
     playoff:       false
     ended:         false
-    matchIDWS:     18805
+    webserviceID:     18805
 
 models.Game(g20):
     number:    20
@@ -458,7 +458,7 @@ models.Game(g20):
     stadium:       lemberg
     playoff:       false
     ended:         false
-    matchIDWS:     18806
+    webserviceID:     18806
 
 models.Game(g21):
     number:    21
@@ -469,7 +469,7 @@ models.Game(g21):
     stadium:       danzig
     playoff:       false
     ended:         false
-    matchIDWS:     18811
+    webserviceID:     18811
 
 models.Game(g22):
     number:    22
@@ -480,7 +480,7 @@ models.Game(g22):
     stadium:       posen
     playoff:       false
     ended:         false
-    matchIDWS:     18812
+    webserviceID:     18812
 
 models.Game(g23):
     number:    23
@@ -491,7 +491,7 @@ models.Game(g23):
     stadium:       donezk
     playoff:       false
     ended:         false
-    matchIDWS:     18818
+    webserviceID:     18818
 
 models.Game(g24):
     number:    24
@@ -502,7 +502,7 @@ models.Game(g24):
     stadium:       kiew
     playoff:       false
     ended:         false
-    matchIDWS:     18817
+    webserviceID:     18817
 
 models.Game(g25):
     number:    25
