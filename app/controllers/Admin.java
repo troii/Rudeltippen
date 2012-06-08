@@ -259,6 +259,7 @@ public class Admin extends Root implements AppConstants {
 				user._delete();
 				flash.put("infomessage", Messages.get("info.delete.user", username));
 				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
+				AppUtils.calculateScoresAndPoints();
 			} else {
 				flash.put("warningmessage", Messages.get("warning.delete.user"));
 			}
