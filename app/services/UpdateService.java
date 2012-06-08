@@ -16,15 +16,17 @@ import play.Logger;
 import play.libs.WS;
 
 public class UpdateService {
-	public static WSResults setResultsFromWebService(Game game) {
+	public static WSResults getResultsFromWebService(Game game) {
         WSResults wsResults = new WSResults();
+        wsResults.setUpdated(false);
         String matchID = game.getWebserviceID();
         if (StringUtils.isNotBlank(matchID)) {
 			Document document = getDocumentFromWebService(matchID);	
 	    	if (document != null) {
 	    	    final String matchIsFinished = document.getElementsByTagName("matchIsFinished").item(0).getTextContent();
 	    		if (("true").equalsIgnoreCase(matchIsFinished)) {
-	    	        setEndResult(wsResults, document);
+	    			wsResults = getEndResult(wsResults, document);
+	    			wsResults.setUpdated(true);
 	    		}
 	    	}
 		}
@@ -55,7 +57,7 @@ public class UpdateService {
         return document;
     }
 
-    public static void setEndResult(WSResults wsResults, Document document) {
+    public static WSResults getEndResult(WSResults wsResults, Document document) {
         Map<String, WSResult> resultsMap = new HashMap<String, WSResult>();
         Node matchResults = document.getElementsByTagName("matchResults").item(0);
         NodeList matchResult = matchResults.getChildNodes();
@@ -87,5 +89,7 @@ public class UpdateService {
             }
         }
         wsResults.setWsResult(resultsMap);
+        
+        return wsResults;
     }
 }

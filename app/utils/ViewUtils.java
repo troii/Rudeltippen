@@ -274,9 +274,10 @@ public class ViewUtils extends JavaExtensions{
     }
 
     public static String getGameTip(GameTip gameTip) {
+    	Date date = new Date();
     	final User user = AppUtils.getConnectedUser();
     	if (gameTip.getPlaced() != null) {
-    		if (gameTip.getGame() != null && gameTip.getGame().isEnded()) {
+    		if (gameTip.getGame() != null && date.after(gameTip.getGame().getKickoff())) {
     			return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
     		} else {
     			if (user.equals(gameTip.getUser())) {
@@ -309,6 +310,17 @@ public class ViewUtils extends JavaExtensions{
     	return 0;
     }
 
+    public static String getAnswer(Extra extra) {
+    	final User user = AppUtils.getConnectedUser();
+    	ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
+
+    	if (extraTip != null && extraTip.getAnswer() != null) {
+    		return extraTip.getAnswer().getName();
+    	}
+
+    	return "";
+    }
+    
     public static String getExtraTipAnswer(ExtraTip extraTip) {
     	if (extraTip.getAnswer() != null) {
     		if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
