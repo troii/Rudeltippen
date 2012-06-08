@@ -262,11 +262,11 @@ rules.extras.time=Bis zum %s
 rules.bet.minutes=Tippabgabe
 rules.bet.minutes.value=Bis %s Minuten vor Spielbeginn
 models.Stadium(warschau):
-NationalStadium=Nationalstadion
+NationalStadium=National Stadion
 warsaw=Warschau
 PGEArena=PGE Arena Gda&#324;sk
 gdansk=Danzig
-MunicipalStadium=Städtische Stadion
+MunicipalStadium=Städtisches Stadion
 wroclaw=Beslau
 poznan=Posen
 OlympicStadium=Olympastadion Kiew

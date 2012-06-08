@@ -1,5 +1,7 @@
 package utils;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -151,11 +153,15 @@ public class ViewUtils extends JavaExtensions{
 	}
 
 	public static String getTrend(Game game) {
-		List<GameTip> gameTips = game.getGameTips();
-		final int tipsTotal = gameTips.size();
-		int tipsWin = 0;
+		final List<GameTip> gameTips = game.getGameTips();
+
+		if (gameTips == null || gameTips.size() < 4) {
+			return Messages.get("model.game.notenoughtipps");
+		}
+		
+		int tipsHome = 0;
 		int tipsDraw = 0;
-		int tipsLose = 0;
+		int tipsAway = 0;
 
 		for (GameTip gameTip : gameTips) {
 			int homeScore = gameTip.getHomeScore();
@@ -164,17 +170,13 @@ public class ViewUtils extends JavaExtensions{
 			if (homeScore == awayScore) {
 				tipsDraw++;
 			} else if (homeScore > awayScore) {
-				tipsWin++;
+				tipsHome++;
 			} else if (homeScore < awayScore) {
-				tipsLose++;
+				tipsAway++;
 			}
 		}
-
-		if (tipsTotal < 4) {
-			return Messages.get("model.game.notenoughtipps");
-		}
-
-		return (100 / tipsTotal) * tipsWin + "% / " + (100 / tipsTotal) * tipsDraw + "% / " + (100 / tipsTotal) * tipsLose + "%";
+		
+		return tipsHome + " / " + tipsDraw + " / " + tipsAway;
 	}
 
 	private static String getReference(String reference) {

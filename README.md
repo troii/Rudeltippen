@@ -3,12 +3,17 @@ Rudeltippen
 
 A betting game based on the Play Framework and Twitter Bootstrap. Ready to go for the Euro 2012.
 
+Available leagues
+===========
+- Euro 2012
+
 Features in a Nutshell
 ===========
 - Automatic results updates
 - Automatic tournament management
-- Fluid, themabale responsive layout
-- Smartphone and table compatible
+- Automatic playing schedule updates
+- Fluid, themeable, responsive layout
+- Smartphone and tablet compatible
 - Supports multiple databases
 - Multilingual
 
@@ -16,7 +21,7 @@ Requirements
 ===========
 
 - [Java SDK 1.6+][1]
-- Apache, Nginx or any other HTTP-Server with Proxy-Support (Apache recommended)
+- Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support (Apache recommended)
 - SMTP-Account (SSL/non-SSL, you can use e.g. [Gmail][12])
 - MySQL, PostgreSQL, MSSQL or Oracle Databse (MySQL recommended)
 - Linux, Mac or Windows
@@ -78,6 +83,12 @@ Set the language for Rudeltippen (currently de or en)
 default.language=de
 ```
 
+Since version 1.1.0 Rudeltippen has a feature which can automaticly updates your playing schedule. By default this feature is not enable. If you want to enable this feature set 'automatic.updates' to true
+
+```bash
+%prod.automatic.updates=false
+```
+
 Set the application key for rudeltippen (make it "secure")
 
 ```bash
@@ -121,7 +132,7 @@ Set the Twitter-Feed which is displayed at the dashboard. Leave this blank, if y
 dashboard.twitter.username=mytwitterusername
 ```
 
-By defautl Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for arroung 50 to 100 users. Change this, if required.
+By default Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for arroung 50 to 100 users. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -229,6 +240,15 @@ Step 5
 In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above). Also copy and replace all files you did copy in Step 1.
 
 Step 6
+------------------
+
+Since version 1.1.0 Rudeltippen has a feature which can automaticly updates your playing schedule. By default this feature is not enable. If you want to enable this feature and are upgrading from a version prior to 1.1.0 you need to add the following line to your application.conf:
+
+```bash
+%prod.automatic.updates=true
+```
+
+Step 7
 ------------------
 
 You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER

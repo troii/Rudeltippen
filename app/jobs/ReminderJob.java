@@ -36,7 +36,7 @@ public class ReminderJob extends Job {
 				}
 
 				for (Extra extra : nextExtras) {
-					final ExtraTip extraTip = ExtraTip.find("byBonusAndUser", extra, user).first();
+					final ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
 					if (extraTip == null) {
 						reminderBonus.add(extra);
 					}

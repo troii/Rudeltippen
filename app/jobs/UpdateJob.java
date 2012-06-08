@@ -8,61 +8,65 @@ import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import play.Logger;
 import play.db.DB;
-import play.i18n.Messages;
 import play.jobs.Every;
 import play.jobs.Job;
-import play.libs.Crypto;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import services.MailService;
 import utils.AppUtils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 @Every("60min")
 public class UpdateJob extends Job{
-	private static final String UPDATEURL = "http://api.rudeltippen.de";
+	private static final String APIURL = "http://api.rudeltippen.de";
 	
 	public void doJob() {
-		if (AppUtils.isJobInstance() && AppUtils.isAutomaticUpdates()) {
+		if (AppUtils.isJobInstance() && AppUtils.automaticUpdates()) {
 			Logger.info("Running job: UpdateJob");
+			
 			Settings settings = AppUtils.getSettings();
 			String dbName = settings.getDbName();
 			int dbVersion = settings.getDbVersion();
 			
-			//FIXME Workaround for empty dbName when automatic update was not available
+			//TODO Remove workaround for empty dbName when automatic update was not available
 			if (StringUtils.isBlank(dbName)) {
 				dbName = "em2012";
 			}
 			
 			int latest = getLatestDbVersion(dbName);
-			if (latest > dbVersion) {
-				HttpResponse response = WS.url(UPDATEURL + "/updates/" + dbName + "/" + dbVersion + "/" + latest).get();
+			if (StringUtils.isNotBlank(dbName) && (latest > dbVersion)) {
+				HttpResponse response = WS.url(APIURL + "/updates/" + dbName + "/" + dbVersion + "/" + latest).get();
 				if (response.success()) {
 					JsonElement jsonElement = response.getJson();
-					JsonArray jsonArray = jsonElement.getAsJsonArray();
-					List<String> statements = new ArrayList<String>();
-					for (int i=0; i < jsonArray.size(); i++) {
-						JsonObject object = (JsonObject) jsonArray.get(i);
-						JsonElement element = object.get("query");
-						if (element != null) {
-							String query = element.getAsString();
-							if (StringUtils.isNotBlank(query)) {
-								DB.execute(query);
+					if (jsonElement != null) {
+						JsonArray jsonArray = jsonElement.getAsJsonArray();
+						if (jsonArray != null && jsonArray.size() > 0) {
+							List<String> statements = new ArrayList<String>();
+							for (int i=0; i < jsonArray.size(); i++) {
+								JsonObject object = (JsonObject) jsonArray.get(i);
+								JsonElement element = object.get("query");
+								if (element != null) {
+									String query = element.getAsString();
+									if (StringUtils.isNotBlank(query)) {
+										DB.execute(query);
+										Logger.info("Executed SQL statement: " + query);
+									}
+								}
 							}
-						}
-					}
-					
-					settings.setDbVersion(latest);
-					settings._save();
+							
+							settings.setDbVersion(latest);
+							settings._save();
 
-					List<User> admins = User.find("byAdmin", true).fetch();
-					for (User user : admins) {
-						MailService.updates(user, statements);
+							List<User> admins = User.find("byAdmin", true).fetch();
+							for (User user : admins) {
+								MailService.updates(user, statements);
+							}								
+						}
 					}
 				}				
 			}
@@ -70,7 +74,7 @@ public class UpdateJob extends Job{
 	}
 
 	private int getLatestDbVersion(String name) {
-		HttpResponse response = WS.url(UPDATEURL + "/updates/latest/" + name).get();
+		HttpResponse response = WS.url(APIURL + "/updates/latest/" + name).get();
 		if (response.success()) {
 			JsonElement jsonElement = response.getJson();
 			if (jsonElement != null) {
