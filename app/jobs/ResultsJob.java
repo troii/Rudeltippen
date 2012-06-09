@@ -22,7 +22,7 @@ public class ResultsJob extends Job{
 				if (wsResults != null && wsResults.isUpdated()) {
 					AppUtils.setGameScoreFromWebService(game, wsResults);
 				}
-			}			
+			}
 		}
 	}
 }
