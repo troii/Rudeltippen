@@ -525,8 +525,9 @@ js.oneyearago=Vor 1 Jahr
 js.secondsago=Vor %s Sekunden
 js.minutesago=Vor %s Minuten
 js.hoursago=Vor %s Stunden
-<<<<<<< .minejs.daysago=Vor %s Tagen
-noextratips=Keine Bonustipps=======js.daysago=Vor %s Tagen
+daysago=Vor %s Tagen
+noextratips=Keine Bonustipps
+js.daysago=Vor %s Tagen
 admin.changeactive.confirm='Bist Du sicher, dass der Benutzer ** %s ** aktiviert werden soll?'
 admin.changeadmin.confirm='Bist Du sicher, dass der Benutzer ** %s ** Admin werden soll?'
 admin.changedeactive.confirm='Bist Du sicher, dass der Benutzer ** %s ** deaktiviert werden soll?'
@@ -553,4 +554,4 @@ update.legend=System-Aktualisierungen
 update.notice=Folgende SQL-Statemens werden ausgef&uuml;rt
 execute=Ausf&uuml;hren
 mails.subject.updates=Spieldaten wurde aktualisiert
-updates.statements=Folgende Statements wurden ausgef&uuml;hrt:>>>>>>> .theirs
+updates.statements=Folgende Statements wurden ausgef&uuml;hrt:

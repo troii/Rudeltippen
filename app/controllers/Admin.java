@@ -46,7 +46,7 @@ public class Admin extends Root implements AppConstants {
 
 	@Transactional(readOnly=true)
 	public static void users() {
-		List<User> users = User.findAll();
+		List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
 		render(users);
 	}
 
@@ -123,16 +123,16 @@ public class Admin extends Root implements AppConstants {
 				pointsTip,
 				pointsTipDiff,
 				pointsTipTrend,
-				minutesBeforeTip, 
+				minutesBeforeTip,
 				maxPictureSize,
 				timeZoneString,
-				dateString, 
+				dateString,
 				dateTimeLang,
 				timeString,
 				countFinalResult,
 				informOnNewTipper,
 				enableRegistration);
-		
+
 		if (!validation.hasErrors()) {
 			Settings settings = Settings.find("byAppName", APPNAME).first();
 			settings.setName(name);
