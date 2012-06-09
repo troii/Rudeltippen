@@ -15,7 +15,6 @@ import models.WSResults;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-import org.w3c.dom.Document;
 
 import play.test.Fixtures;
 import play.test.UnitTest;
@@ -177,26 +176,26 @@ public class UnitTests extends UnitTest {
     	Game g2 = new Game();
     	g1.setEnded(true);
     	g2.setEnded(true);
-    	
+
     	List<Game> games = new ArrayList<Game>();
     	games.add(g1);
     	games.add(g2);
-    	
+
     	assertTrue(AppUtils.allReferencedGamesEnded(games));
-    	
+
     	g1.setEnded(false);
-    	
+
     	assertFalse(AppUtils.allReferencedGamesEnded(games));
-    	
+
     	assertTrue(AppUtils.getTimezones().size() > 0);
     	assertTrue(AppUtils.getLanguages().size() > 0);
     }
-    
+
     @Test
     public void testValidationUtils() {
     	Settings settings = AppUtils.getSettings();
         long maxSize = settings.getMaxPictureSize();
-        
+
         assertTrue(ValidationUtils.checkFileLength(maxSize));
         assertFalse(ValidationUtils.checkFileLength(maxSize + 1));
     	assertTrue(ValidationUtils.usernameExists("user1@rudeltippen.de"));
@@ -211,8 +210,8 @@ public class UnitTests extends UnitTest {
         assertFalse(ValidationUtils.isValidScore("1", "100"));
         assertFalse(ValidationUtils.isValidScore("-1", "1"));
         assertFalse(ValidationUtils.isValidScore("1", "-51"));
-    } 
-    
+    }
+
     @Test
     public void testViewUtils() {
         assertNotNull(ViewUtils.difference(new Date()));
@@ -220,26 +219,25 @@ public class UnitTests extends UnitTest {
         assertEquals(ViewUtils.getPlaceName(-5), "");
         assertEquals(ViewUtils.getPlaceName(11), "");
         assertEquals(ViewUtils.getPlaceName(1), "Erster");
-    }    
+    }
 
     @Test
     public void testWebServiceUpdate() {
         Game game = new Game();
-        game.setWebserviceID("9897");
+        game.setWebserviceID("19218");
         WSResults wsResults = UpdateService.getResultsFromWebService(game);
         Map<String, WSResult> wsResult = wsResults.getWsResult();
-        
+
         assertNotNull(wsResults);
         assertNotNull(wsResult);
-        assertTrue(wsResult.containsKey("45"));
         assertTrue(wsResult.containsKey("90"));
         assertTrue(wsResult.containsKey("120"));
         assertTrue(wsResult.containsKey("121"));
-        assertEquals(wsResult.get("90").getHomeScore(), "0");
-        assertEquals(wsResult.get("90").getAwayScore(), "0");
+        assertEquals(wsResult.get("90").getHomeScore(), "5");
+        assertEquals(wsResult.get("90").getAwayScore(), "4");
         assertEquals(wsResult.get("120").getHomeScore(), "0");
-        assertEquals(wsResult.get("120").getAwayScore(), "0");  
-        assertEquals(wsResult.get("121").getHomeScore(), "5");
-        assertEquals(wsResult.get("121").getAwayScore(), "3");    
+        assertEquals(wsResult.get("120").getAwayScore(), "0");
+        assertEquals(wsResult.get("121").getHomeScore(), "3");
+        assertEquals(wsResult.get("121").getAwayScore(), "4");
     }
 }
