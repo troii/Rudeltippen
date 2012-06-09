@@ -1,7 +1,5 @@
 package utils;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -158,7 +156,7 @@ public class ViewUtils extends JavaExtensions{
 		if (gameTips == null || gameTips.size() < 4) {
 			return Messages.get("model.game.notenoughtipps");
 		}
-		
+
 		int tipsHome = 0;
 		int tipsDraw = 0;
 		int tipsAway = 0;
@@ -175,7 +173,7 @@ public class ViewUtils extends JavaExtensions{
 				tipsAway++;
 			}
 		}
-		
+
 		return tipsHome + " / " + tipsDraw + " / " + tipsAway;
 	}
 
@@ -315,12 +313,12 @@ public class ViewUtils extends JavaExtensions{
     	ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
 
     	if (extraTip != null && extraTip.getAnswer() != null) {
-    		return extraTip.getAnswer().getName();
+    		return Messages.get(extraTip.getAnswer().getName());
     	}
 
     	return "";
     }
-    
+
     public static String getExtraTipAnswer(ExtraTip extraTip) {
     	if (extraTip.getAnswer() != null) {
     		if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
