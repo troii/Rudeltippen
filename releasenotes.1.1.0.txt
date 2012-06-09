@@ -1,0 +1,32 @@
+In versions before 1.1.0 the results where not updated automatically, due to different reasons:
+
+- The API from OpenLigaDB did change
+- There was a bug in Rudeltippen which lead to a null pointer exception when the Webservice was contacted
+- Due to some refactoring the webserviceID for the games were not stored correctly in the database when the original EM 2012 data was loaded
+
+With version 1.1.0 the API changes were made and the the bug in Rudeltippen was fixed.
+
+However, for the result updates to work correctly the games need a reference to the matchID at OpenLigaDB.
+
+With version 1.1.0 there is a new update service available which contains the latest play schedule updates including the matchID required for OpenLigaDB.
+You can either update your database manually or use the automatic update service build in Rudeltippen as of version 1.1.0.
+
+Manual update
+======================
+
+You can get the latest play schedule update ready to paste in your database from the following URL:
+
+http://api.rudeltippen.de/updates/all/<LEAGUENAME>
+
+LEAGUENAME = e.g. em2012
+
+Automatic update
+======================
+
+By default the automatic play schedule update is not enabled. To enable this feature you need to add the following line to your INSTALLATIONFOLDER/application.conf
+
+%prod.automatic.updates=true
+
+You need to restart Rudeltippen in order to enable the new feature.
+
+The automatic update service will contact the API every hour against to check if updates available.

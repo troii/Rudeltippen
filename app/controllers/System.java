@@ -9,7 +9,6 @@ import models.Game;
 import models.Settings;
 import models.User;
 import play.Play;
-import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Codec;
@@ -17,6 +16,7 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
+import utils.ValidationUtils;
 
 public class System extends Controller implements AppConstants {
 	@Before
@@ -42,11 +42,6 @@ public class System extends Controller implements AppConstants {
 		render(settings, timeZones, locales);
 	}
 
-	@NoTransaction
-	public static void update() {
-		render();
-	}
-
 	public static void init(String name,
 							int pointsGameWin,
 							int pointsGameDraw,
@@ -70,21 +65,23 @@ public class System extends Controller implements AppConstants {
 							) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(name);
-		validation.required(timeZoneString);
-		validation.required(dateString);
-		validation.required(dateTimeLang);
-		validation.required(timeString);
-		validation.required(username);
-		validation.required(userpass);
-		validation.required(nickname);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsGameWin, 1, 99);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsTip, 0, 99);
-		validation.range(pointsTipDiff, 0, 99);
-		validation.range(pointsTipTrend, 0, 99);
-		validation.range(minutesBeforeTip, 1, 1440);
+		validation = ValidationUtils.getSettingsValidations(
+				validation,
+				usernameConfirmation,
+				pointsGameWin,
+				pointsGameDraw,
+				pointsTip,
+				pointsTipDiff,
+				pointsTipTrend,
+				minutesBeforeTip,
+				maxPictureSize,
+				timeZoneString,
+				dateString,
+				dateTimeLang,
+				timeString,
+				countFinalResult,
+				informOnNewTipper,
+				enableRegistration);
 		validation.email(username);
 		validation.equals(username, usernameConfirmation);
 		validation.equals(userpass, userpassConfirmation);

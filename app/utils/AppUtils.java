@@ -495,11 +495,17 @@ public class AppUtils implements AppConstants{
 
     public static void setGameScoreFromWebService(Game game, final WSResults wsResults) {
         Map<String, WSResult> wsResult = wsResults.getWsResult();
-        final String homeScore = wsResult.get("90").getHomeScore();
-        final String awayScore = wsResult.get("90").getAwayScore();
+
+        String homeScore = null;
+        String awayScore = null;
         String homeScoreExtratime = null;
         String awayScoreExtratime = null;
         String extratime = null;
+
+        if (wsResult.containsKey("90")) {
+            homeScore = wsResult.get("90").getHomeScore();
+            awayScore = wsResult.get("90").getAwayScore();
+        }
 
         if (wsResult.containsKey("121")) {
             homeScoreExtratime = wsResult.get("121").getHomeScore();
@@ -511,6 +517,8 @@ public class AppUtils implements AppConstants{
             extratime = "nv";
         }
 
+        Logger.info("Recieved from WebService - HomeScore: " + homeScore + " AwayScore: " + awayScore);
+        Logger.info("Recieved from WebService - HomeScoreExtra: " + homeScoreExtratime + " AwayScoreExtra: " + awayScoreExtratime + " (" + extratime + ")");
         Logger.info("Updating results from WebService. " + game);
         setGameScore(String.valueOf(game.getId()), homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         calculateScoresAndPoints();
@@ -519,6 +527,15 @@ public class AppUtils implements AppConstants{
     public static boolean verifyAuthenticity() {
     	String check = Play.configuration.getProperty("check.authenticity");
     	if (!("false").equalsIgnoreCase(check)) {
+    		return true;
+    	}
+
+    	return false;
+    }
+
+    public static boolean automaticUpdates() {
+    	String updates = Play.configuration.getProperty("automatic.updates");
+    	if (("true").equalsIgnoreCase(updates)) {
     		return true;
     	}
 

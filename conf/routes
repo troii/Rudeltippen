@@ -28,4 +28,8 @@ GET	    /admin/results/{number}				    admin.results
 GET	    /admin/index/{number}				    admin.index
 GET	    /users/show/{nickname}					users.show
 GET	    /standings/{page}						standings.index
-*       /{controller}/{action}                  {controller}.{action}
+GET	    /admin/changeactive/{userid}			admin.changeactive
+GET	    /admin/changeadmin/{userid}				admin.changeadmin
+GET	    /admin/deleteuser/{userid}				admin.deleteuser
+GET	    /admin/edituser/{userid}				admin.edituser
+*     	/{controller}/{action}                  {controller}.{action}

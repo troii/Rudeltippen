@@ -15,7 +15,6 @@ import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
-import models.Stadium;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
@@ -275,9 +274,10 @@ public class ViewUtils extends JavaExtensions{
     }
 
     public static String getGameTip(GameTip gameTip) {
+    	Date date = new Date();
     	final User user = AppUtils.getConnectedUser();
     	if (gameTip.getPlaced() != null) {
-    		if (gameTip.getGame() != null && gameTip.getGame().isEnded()) {
+    		if (gameTip.getGame() != null && date.after(gameTip.getGame().getKickoff())) {
     			return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
     		} else {
     			if (user.equals(gameTip.getUser())) {
@@ -310,6 +310,17 @@ public class ViewUtils extends JavaExtensions{
     	return 0;
     }
 
+    public static String getAnswer(Extra extra) {
+    	final User user = AppUtils.getConnectedUser();
+    	ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
+
+    	if (extraTip != null && extraTip.getAnswer() != null) {
+    		return extraTip.getAnswer().getName();
+    	}
+
+    	return "";
+    }
+    
     public static String getExtraTipAnswer(ExtraTip extraTip) {
     	if (extraTip.getAnswer() != null) {
     		if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
@@ -328,8 +339,5 @@ public class ViewUtils extends JavaExtensions{
     	}
 
     	return "";
-    }
-    public static String linked (Stadium stadium) {
-    	return "<a href='#' rel='tooltip' class='stadium' title='" + Messages.get(stadium.getName()) + " (" + stadium.getCapacity() + ")'>" + Messages.get(stadium.getCity()) + "</a>";
     }
 }

@@ -16,15 +16,17 @@ import play.Logger;
 import play.libs.WS;
 
 public class UpdateService {
-	public static WSResults setResultsFromWebService(Game game) {
+	public static WSResults getResultsFromWebService(Game game) {
         WSResults wsResults = new WSResults();
+        wsResults.setUpdated(false);
         String matchID = game.getWebserviceID();
         if (StringUtils.isNotBlank(matchID)) {
-			Document document = getDocumentFromWebService(matchID);	
+			Document document = getDocumentFromWebService(matchID);
 	    	if (document != null) {
 	    	    final String matchIsFinished = document.getElementsByTagName("matchIsFinished").item(0).getTextContent();
 	    		if (("true").equalsIgnoreCase(matchIsFinished)) {
-	    	        setEndResult(wsResults, document);
+	    			wsResults = getEndResult(wsResults, document);
+	    			wsResults.setUpdated(true);
 	    		}
 	    	}
 		}
@@ -35,7 +37,7 @@ public class UpdateService {
         final String WS_ENCODING = "UTF-8";
         final String WS_CONTENT_TYPE = "application/soap+xml";
         final String WS_URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx";
-        
+
         StringBuilder buffer = new StringBuilder();
         buffer.append("<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">");
         buffer.append("<soap12:Body>");
@@ -44,7 +46,7 @@ public class UpdateService {
         buffer.append("</GetMatchByMatchID>");
         buffer.append("</soap12:Body>");
         buffer.append("</soap12:Envelope>");
-        
+
         Document document = null;
         try {
         	document = WS.url(WS_URL).setHeader("Content-Type", WS_CONTENT_TYPE).setHeader("charset", WS_ENCODING).body(buffer.toString()).post().getXml();
@@ -55,7 +57,7 @@ public class UpdateService {
         return document;
     }
 
-    public static void setEndResult(WSResults wsResults, Document document) {
+    public static WSResults getEndResult(WSResults wsResults, Document document) {
         Map<String, WSResult> resultsMap = new HashMap<String, WSResult>();
         Node matchResults = document.getElementsByTagName("matchResults").item(0);
         NodeList matchResult = matchResults.getChildNodes();
@@ -63,23 +65,21 @@ public class UpdateService {
         for (int i=0; i < matchResult.getLength(); i++) {
             NodeList singleResults = matchResult.item(i).getChildNodes();
             String name = singleResults.item(0).getTextContent();
-            
+
             if (StringUtils.isBlank(name)) {
                 continue;
             }
-            
+
             WSResult wsResult = new WSResult();
             String key = null;
-            if (("nach 45 minuten").equalsIgnoreCase((name))) {
-                key = "45";
-            } else if (("nach 90 minuten").equalsIgnoreCase(name)) {
+            if (("Endergebnis").equalsIgnoreCase(name)) {
                 key = "90";
-            } else if (("nach verlängerung").equalsIgnoreCase(name)) {
-                key = "120"; 
-            } else if (("nach elfmeterschiessen").equalsIgnoreCase(name)) {
+            } else if (("Verlängerung").equalsIgnoreCase(name)) {
+                key = "120";
+            } else if (("Elfmeterschiessen").equalsIgnoreCase(name)) {
                 key = "121";
             }
-            
+
             if (StringUtils.isNotBlank(key)) {
                 wsResult.setHomeScore(singleResults.item(1).getTextContent());
                 wsResult.setAwayScore(singleResults.item(2).getTextContent());
@@ -87,5 +87,7 @@ public class UpdateService {
             }
         }
         wsResults.setWsResult(resultsMap);
+
+        return wsResults;
     }
 }

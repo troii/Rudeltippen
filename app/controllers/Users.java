@@ -124,7 +124,7 @@ public class Users extends Root {
 		validation.required(username);
 		validation.email(username);
 		validation.equals(username, usernameConfirmation);
-		validation.equals(ValidationUtils.usernameExists(username), false);
+		validation.equals(ValidationUtils.usernameExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
 
 		if (validation.hasErrors()) {
 			params.flash();

@@ -226,7 +226,7 @@ public class UnitTests extends UnitTest {
     public void testWebServiceUpdate() {
         Game game = new Game();
         game.setWebserviceID("9897");
-        WSResults wsResults = UpdateService.setResultsFromWebService(game);
+        WSResults wsResults = UpdateService.getResultsFromWebService(game);
         Map<String, WSResult> wsResult = wsResults.getWsResult();
         
         assertNotNull(wsResults);

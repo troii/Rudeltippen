@@ -31,6 +31,8 @@ public class Settings extends Model {
 	private String dateTimeLang;
 
 	private String lastTweet;
+	private String dbName;
+	private int dbVersion;
 	
 	@Column(nullable=false)
 	private int maxPictureSize;
@@ -230,5 +232,21 @@ public class Settings extends Model {
 
 	public void setLastTweet(String lastTweet) {
 		this.lastTweet = lastTweet;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
+	}
+
+	public int getDbVersion() {
+		return dbVersion;
+	}
+
+	public void setDbVersion(int dbVersion) {
+		this.dbVersion = dbVersion;
 	}
 }

@@ -1,53 +1,53 @@
-	<fieldset>
-		<legend>&{'login.legend'}</legend>
-		<div class="control-group #{ifError 'nickname'} error #{/ifError}">
-			<label for="input01" class="control-label">&{'nickname'}</label>
-			<div class="controls">
-				<input type="text" id="nickname" value="${flash.nickname}" name="nickname" class="input-xlarge">
-				#{ifError 'nickname'}
-					<span class="help-inline">#{error 'nickname' /}</span>
-				#{/ifError}
-			</div>
+<fieldset>
+	<legend>&{'login.legend'}</legend>
+	<div class="control-group #{ifError 'nickname'} error #{/ifError}">
+		<label for="input01" class="control-label">&{'nickname'}</label>
+		<div class="controls">
+			<input type="text" id="nickname" value="${flash.nickname}" name="nickname" class="input-xlarge">
+			#{ifError 'nickname'}
+				<span class="help-inline">#{error 'nickname' /}</span>
+			#{/ifError}
 		</div>
-		<div class="control-group #{ifError 'username'} error #{/ifError}">
-			<label for="input01" class="control-label">&{'email'}</label>
-			<div class="controls">
-				<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
-				#{ifError 'username'}
-					<span class="help-inline">#{error 'username' /}</span>
-				#{/ifError}
-			</div>
+	</div>
+	<div class="control-group #{ifError 'username'} error #{/ifError}">
+		<label for="input01" class="control-label">&{'email'}</label>
+		<div class="controls">
+			<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
+			#{ifError 'username'}
+				<span class="help-inline">#{error 'username' /}</span>
+			#{/ifError}
 		</div>
-		<div class="control-group #{ifError 'usernameConfirmation'} error #{/ifError}">
-			<label for="input01" class="control-label">&{'emailconfirmation'}</label>
-			<div class="controls">
-				<input type="text" id="usernameConfirmation" value="${flash.usernameConfirmation}" name="usernameConfirmation" class="input-xlarge">
-				#{ifError 'usernameConfirmation'}
-					<span class="help-inline">#{error 'usernameConfirmation' /}</span>
-				#{/ifError}
-			</div>
+	</div>
+	<div class="control-group #{ifError 'usernameConfirmation'} error #{/ifError}">
+		<label for="input01" class="control-label">&{'emailconfirmation'}</label>
+		<div class="controls">
+			<input type="text" id="usernameConfirmation" value="${flash.usernameConfirmation}" name="usernameConfirmation" class="input-xlarge">
+			#{ifError 'usernameConfirmation'}
+				<span class="help-inline">#{error 'usernameConfirmation' /}</span>
+			#{/ifError}
 		</div>
-		<div class="control-group #{ifError 'userpass'} error #{/ifError}">
-			<label for="input01" class="control-label">&{'password'}</label>
-			<div class="controls">
-				<input type="password" id="userpass" name="userpass" class="input-xlarge">
-				#{ifError 'userpass'}
-					<span class="help-inline">#{error 'userpass' /}</span>
-				#{/ifError}
-			</div>
+	</div>
+	<div class="control-group #{ifError 'userpass'} error #{/ifError}">
+		<label for="input01" class="control-label">&{'password'}</label>
+		<div class="controls">
+			<input type="password" id="userpass" name="userpass" class="input-xlarge">
+			#{ifError 'userpass'}
+				<span class="help-inline">#{error 'userpass' /}</span>
+			#{/ifError}
 		</div>
-		<div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
-			<label for="input01" class="control-label">&{'passwordconfirmation'}</label>
-			<div class="controls">
-				<input type="password" id="userpassConfirmation" name="userpassConfirmation" class="input-xlarge">
-			</div>
-			<div class="controls">
-				#{ifError 'userpassConfirmation'}
-					<span class="help-inline">#{error 'userpassConfirmation' /}</span>
-				#{/ifError}
-			</div>
+	</div>
+	<div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
+		<label for="input01" class="control-label">&{'passwordconfirmation'}</label>
+		<div class="controls">
+			<input type="password" id="userpassConfirmation" name="userpassConfirmation" class="input-xlarge">
 		</div>
-		<div class="form-actions">
-			<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+		<div class="controls">
+			#{ifError 'userpassConfirmation'}
+				<span class="help-inline">#{error 'userpassConfirmation' /}</span>
+			#{/ifError}
 		</div>
-	</fieldset>
+	</div>
+	<div class="form-actions">
+		<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+	</div>
+</fieldset>
