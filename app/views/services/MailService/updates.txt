@@ -1,5 +1,3 @@
-&{'updates.statements'}
-
 #{list items:statements, as:'statement'}
 ${statement}
 #{/list}
