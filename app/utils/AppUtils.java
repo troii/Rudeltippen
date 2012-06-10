@@ -63,7 +63,7 @@ public class AppUtils implements AppConstants{
 	public static void setAppLanguage() {
 		String defaultLanguage = Play.configuration.getProperty("default.language");
 		if (StringUtils.isBlank(defaultLanguage)) {
-			defaultLanguage = "de";
+			defaultLanguage = "en";
 		}
 		Lang.change(defaultLanguage);
 	}
@@ -540,5 +540,14 @@ public class AppUtils implements AppConstants{
     	}
 
     	return false;
+    }
+
+    public static String getMailTemplate(String name) {
+    	String lang = Lang.get();
+    	if (StringUtils.isBlank(lang)) {
+    		lang = "en";
+    	}
+
+    	return "services/MailService/" + lang + "/" + name + ".txt";
     }
 }
