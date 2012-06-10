@@ -21,7 +21,7 @@ import utils.AppUtils;
 public class TwitterService {
     public static void updateStatus(String message) {
     	Settings settings = AppUtils.getSettings();
-    	message = StringEscapeUtils.escapeHtml(message);
+    	message = StringEscapeUtils.unescapeHtml(message);
         if (AppUtils.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
             OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/statuses/update.json");
             request.addQuerystringParameter("status", message);
