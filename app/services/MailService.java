@@ -7,6 +7,9 @@ import models.Extra;
 import models.Game;
 import models.Settings;
 import models.User;
+
+import org.apache.commons.lang.StringEscapeUtils;
+
 import play.Logger;
 import play.Play;
 import play.i18n.Messages;
@@ -17,7 +20,7 @@ import utils.ValidationUtils;
 public class MailService extends Mailer {
 	public static void updates(User user, List<String> statements) {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
-		final String from = Play.configuration.getProperty("mailservice.from");	
+		final String from = Play.configuration.getProperty("mailservice.from");
 		final Settings settings = AppUtils.getSettings();
 		final String recipient = user.getUsername();
 
@@ -25,13 +28,13 @@ public class MailService extends Mailer {
 			setFrom(from);
 			addRecipient(recipient);
 			setReplyTo(replyto);
-			setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.updates"));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updates")));
 			send(user, statements);
 		} else {
 			Logger.error("Tryed to sent updates mail, but recipient was invalid.");
-		}			
+		}
 	}
-	
+
 	public static void register(User user) {
 		final String appUrl = Play.configuration.getProperty("app.register.url");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
@@ -43,7 +46,7 @@ public class MailService extends Mailer {
 			setFrom(from);
 			addRecipient(recipient);
 			setReplyTo(replyto);
-			setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.registration"));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.registration")));
 			send(user, settings, appUrl);
 		} else {
 			Logger.error("Tryed to sent registration mail, but recipient was invalid.");
@@ -60,7 +63,7 @@ public class MailService extends Mailer {
 			setFrom(from);
 			setReplyTo(replyto);
 			addRecipient(recipient);
-			setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.reminder"));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.reminder")));
 			send(user, games, settings, extras);
 		} else {
 			Logger.error("Tryed to sent reminder, but recipient was invalid.");
@@ -94,8 +97,8 @@ public class MailService extends Mailer {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(user.getUsername());
-			setSubject("[" + settings.getName() + "] " + subject);
-			send(user, token, appUrl, message);
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + subject));
+			send(user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
 		} else {
 			Logger.error("Tryed to sent confirmation e-mail, but user was null or recipient e-mail invalid.");
 		}
@@ -112,7 +115,7 @@ public class MailService extends Mailer {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
-			setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.newpassword"));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.newpassword")));
 			send(user, userpass, appUrl);
 		} else {
 			Logger.error("Tryed to sent new passwort, but recipient was invalid.");
@@ -128,7 +131,7 @@ public class MailService extends Mailer {
 			setFrom(from);
 			setReplyTo(replyto);
 			addRecipient(admin.getUsername());
-			setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.newuser"));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.newuser")));
 			send(user, settings);
 		} else {
 			Logger.error("Tryed to sent new user e-mail to admin, but recipient was invalid.");
@@ -146,7 +149,7 @@ public class MailService extends Mailer {
 				setReplyTo(replyto);
 				setFrom(from);
 				addRecipient(user.getUsername());
-				setSubject("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed"));
+				setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed")));
 				send(response);
 			} else {
 				Logger.error("Tryed to sent info on webservice, but recipient was invalid.");
