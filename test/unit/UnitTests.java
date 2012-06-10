@@ -5,6 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import jobs.CleanupJob;
+import jobs.ReminderJob;
+import jobs.ResultsJob;
+import jobs.TwitterJob;
+import jobs.UpdateJob;
 import models.Game;
 import models.Settings;
 import models.Team;
@@ -239,5 +244,14 @@ public class UnitTests extends UnitTest {
         assertEquals(wsResult.get("120").getAwayScore(), "0");
         assertEquals(wsResult.get("121").getHomeScore(), "3");
         assertEquals(wsResult.get("121").getAwayScore(), "4");
+    }
+
+    @Test
+    public void testJobs() {
+    	new CleanupJob().now();
+    	new ReminderJob().now();
+    	new ResultsJob().now();
+    	new TwitterJob().now();
+    	new UpdateJob().now();
     }
 }
