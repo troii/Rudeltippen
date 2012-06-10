@@ -1,4 +1,4 @@
-&{'mails.newuser.header'}
+A new user just registered.
 
 &{'nickname'}: ${user.nickname}
 &{'username'}: ${user.username}

@@ -1,4 +1,4 @@
-&{'hello'} ${user.nickname}!
+Hallo ${user.nickname}!
 
 ${message}
 

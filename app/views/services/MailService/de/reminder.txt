@@ -1,0 +1,28 @@
+Hallo ${user.nickname}!
+
+Du möchtest erinnert werden, wenn Tipps abzugeben sind.
+
+-----------------------------------------------------------
+Folgende Tipps solltest Du heute abgeben
+-----------------------------------------------------------
+
+#{list items:games, as:'game'}
+&{game.homeTeam?.name.htmlUnescape()} : &{game.awayTeam?.name.htmlUnescape()} / Abzugeben bis: ${game.tippEnding.formatted()}
+#{/list}
+#{else}
+Keine Tipps
+#{/else}
+
+-----------------------------------------------------------
+Folgende Bonustipps solltest Du heute abgeben
+-----------------------------------------------------------
+
+#{list items:extras, as:'extra'}
+&{extra.question.htmlUnescape()} / Abzugeben bis: ${extra.ending.formatted()}
+#{/list}
+#{else}
+Keine Bonustipps
+#{/else}
+
+---
+Du kannst diese Benachrichtigung jederzeit unter "Mein Profil" deaktivieren.
