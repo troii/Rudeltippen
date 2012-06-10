@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import models.Confirmation;
+import models.ConfirmationType;
 import models.Game;
 import models.Playday;
 import models.Settings;
@@ -200,6 +202,10 @@ public class Admin extends Root implements AppConstants {
 					activate = "deactivated";
 					message = Messages.get("info.change.deactivate", user.getUsername());
 				} else {
+					Confirmation confirmation = Confirmation.find("byConfirmationTypeAndUser", ConfirmationType.ACTIVATION, user).first();
+					if (confirmation != null) {
+						confirmation._delete();
+					}
 					user.setActive(true);
 					activate = "activated";
 					message = Messages.get("info.change.activate", user.getUsername());

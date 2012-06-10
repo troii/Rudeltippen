@@ -20,9 +20,10 @@ public class CleanupJob extends Job {
 			for (Confirmation confirmation : confirmations) {
 				if (ConfirmationType.ACTIVATION.equals(confirmation.getConfirmType())) {
 					User user = confirmation.getUser();
-					Logger.info("Deleting user: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days.");
-					confirmation._delete();
-					user._delete();
+					if (user != null && !user.isActive()) {
+						Logger.info("Deleting user: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days.");
+						user._delete();
+					}
 				}
 			}
 		}
