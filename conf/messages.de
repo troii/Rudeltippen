@@ -336,7 +336,7 @@ mails.subject.notification          = Ergebnis Benachrichtigung
 mails.subject.registration          = Deine Registrierung
 mails.subject.reminder              = Tipp-Erinnerung
 mails.subject.updatefailed          = Ergebnis-Aktualisierung fehlgeschlagen
-mails.subject.updates               = Spieldaten wurde aktualisiert
+mails.subject.updates               = Spieldaten wurden aktualisiert
 mails.tips.due                      = Abgabe bis
 
 mailservice.newuserpass.body = Dein Passwort wurde zur&uuml;ckgesetzt und Du kannst dich ab sofort mit folgendem Passwort anmelden:
