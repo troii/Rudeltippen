@@ -346,7 +346,7 @@ maxprofile = (max. %s Kilobyte)
 minutesBeforeTipp = Minuten vor Tippende
 
 model.game.losergame      = Verlierer Spiel
-model.game.notenoughtipps = Zu wenige Tipps
+model.game.notenoughtipps = N/A
 model.game.winnergame     = Sieger Spiel
 model.user.place          = Platz
 model.user.point          = Punkt
