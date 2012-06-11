@@ -10,6 +10,7 @@ import jobs.ReminderJob;
 import jobs.ResultsJob;
 import jobs.TwitterJob;
 import jobs.UpdateJob;
+import models.ConfirmationType;
 import models.Game;
 import models.Settings;
 import models.Team;
@@ -23,6 +24,8 @@ import org.junit.Test;
 
 import play.test.Fixtures;
 import play.test.UnitTest;
+import services.MailService;
+import services.TwitterService;
 import services.UpdateService;
 import utils.AppUtils;
 import utils.ValidationUtils;
@@ -253,5 +256,32 @@ public class UnitTests extends UnitTest {
     	new ResultsJob().now();
     	new TwitterJob().now();
     	new UpdateJob().now();
+    }
+    
+    @Test
+    public void testServices() {
+    	User user = new User();
+    	User admin = new User();
+    	
+    	user.setUsername("foo@bar.com");
+    	admin.setUsername("foo@bar.com");
+    	
+    	String response = "foobar";
+    	String message = "foobar";
+    	String token = "foobar";
+    	String userpass = "foobar";
+    	String notification = "foobar";
+    	ConfirmationType confirmationType = ConfirmationType.ACTIVATION;
+    	
+    	List<String> statements = new ArrayList<String>();
+    	statements.add("foobar");
+    	
+    	MailService.confirm(user, token, confirmationType);
+    	MailService.newuser(user, admin);
+    	MailService.newuserpass(user, userpass);
+    	MailService.notifications(notification);
+    	MailService.updates(user, statements);
+    	MailService.webserviceError(response);
+    	TwitterService.updateStatus(message);
     }
 }
