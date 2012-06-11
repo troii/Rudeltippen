@@ -51,7 +51,7 @@ public class UpdateService {
         try {
         	document = WS.url(WS_URL).setHeader("Content-Type", WS_CONTENT_TYPE).setHeader("charset", WS_ENCODING).body(buffer.toString()).post().getXml();
         } catch (Exception e) {
-        	MailService.webserviceUpdateFailed(e.getMessage());
+        	MailService.webserviceError(e.getMessage());
         	Logger.error("Updating of results from WebService failed", e);
         }
         return document;
