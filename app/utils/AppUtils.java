@@ -32,6 +32,7 @@ import play.i18n.Lang;
 import play.i18n.Messages;
 import play.libs.Codec;
 import play.test.Fixtures;
+import services.MailService;
 import services.TwitterService;
 import controllers.Auth.Security;
 
@@ -61,11 +62,11 @@ public class AppUtils implements AppConstants{
     }
 
 	public static void setAppLanguage() {
-		String defaultLanguage = Play.configuration.getProperty("default.language");
-		if (StringUtils.isBlank(defaultLanguage)) {
-			defaultLanguage = "en";
+		String lang = Play.configuration.getProperty("default.language");
+		if (StringUtils.isBlank(lang)) {
+			lang = "en";
 		}
-		Lang.change(defaultLanguage);
+		Lang.change(lang);
 	}
 
     public static User getConnectedUser() {
@@ -276,8 +277,14 @@ public class AppUtils implements AppConstants{
         }
 
         saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
+        
+        String notification = getNotificationMessage(game);
+        TwitterService.updateStatus(notification);
+        MailService.notifications(notification);
+    }
 
-        StringBuilder buffer = new StringBuilder();
+	public static String getNotificationMessage(Game game) {
+		StringBuilder buffer = new StringBuilder();
     	buffer.append(Messages.get("helper.tweetscore"));
     	buffer.append(" ");
     	buffer.append(Messages.get(game.getHomeTeam().getName()));
@@ -295,8 +302,9 @@ public class AppUtils implements AppConstants{
         	buffer.append(game.getAwayScore());
         }
         buffer.append(" - " + Messages.get(game.getPlayday().getName()));
-        TwitterService.updateStatus(buffer.toString());
-    }
+        
+		return buffer.toString();
+	}
 
     public static boolean isTweetable() {
     	final String tweetable = Play.configuration.getProperty("twitter.enable");
@@ -543,11 +551,11 @@ public class AppUtils implements AppConstants{
     }
 
     public static String getMailTemplate(String name) {
-    	String lang = Lang.get();
+    	String lang = Play.configuration.getProperty("default.language");
     	if (StringUtils.isBlank(lang)) {
     		lang = "en";
     	}
 
-    	return "services/MailService/" + lang + "/" + name + ".txt";
+    	return "services/MailService/" + lang + "/" + name;
     }
 }
