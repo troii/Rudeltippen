@@ -37,6 +37,7 @@ function helpify() {
 	});
 	$('.stadium').on().tooltip();
 	$('img').on().tooltip();
+	$('.admintooltip').on().tooltip();
 }
 
 function showCredits() {
