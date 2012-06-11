@@ -45,7 +45,8 @@ public class Users extends Root {
 			statistics.put("extraTips", (int) extra);
 			statistics.put("correctExtraTips", correctExtraTips.size());
 
-			int sumTipps = tips.size();
+			int sumAllTipps = tips.size();
+			int sumTipps = 0;
 			int correctTipps = 0;
 			int correctTrend = 0;
 			int correctDifference = 0;
@@ -62,20 +63,21 @@ public class Users extends Root {
 				} else if (points == settings.getPointsTipDiff()) {
 					correctDifference++;
 				}
+				sumTipps++;
 			}
 			statistics.put("sumGames", (int) Game.count());
-			statistics.put("sumTipps", sumTipps);
+			statistics.put("sumTipps", sumAllTipps);
 			statistics.put("correctTipps", correctTipps);
 			statistics.put("correctTrend", correctTrend);
 			statistics.put("correctDifference", correctDifference);
-			float pointsTipp = (float) user.getPoints() / (float) sumTipps;
+			float pointsTipp = (float) user.getPoints() / (float) sumAllTipps;
 			String pointsPerTipp = "0";
 			if (pointsTipp > 0) {
 			    DecimalFormat df = new DecimalFormat( "0.00" );
 			    pointsPerTipp = df.format( pointsTipp );
 			}
 
-			if (sumTipps > 0) {
+			if (sumAllTipps > 0) {
 				statistics.put("tippQuote", 100 / sumTipps * correctTipps);
 			} else {
 				statistics.put("tippQuote", 0);
