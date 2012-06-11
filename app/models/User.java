@@ -50,6 +50,7 @@ public class User extends Model{
 	private boolean reminder;
 	private boolean admin;
 	private boolean active;
+	private boolean notification;
 	private int tipPoints;
 	private int extraPoints;
 	private int points;
@@ -201,5 +202,13 @@ public class User extends Model{
 
 	public void setPlace(int place) {
 		this.place = place;
+	}
+
+	public boolean isResultReminder() {
+		return notification;
+	}
+
+	public void setResultReminder(boolean resultReminder) {
+		this.notification = resultReminder;
 	}
 }
