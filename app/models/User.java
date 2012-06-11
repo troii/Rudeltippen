@@ -204,11 +204,11 @@ public class User extends Model{
 		this.place = place;
 	}
 
-	public boolean isResultReminder() {
+	public boolean isNotification() {
 		return notification;
 	}
 
-	public void setResultReminder(boolean resultReminder) {
-		this.notification = resultReminder;
+	public void setNotification(boolean notification) {
+		this.notification = notification;
 	}
 }
