@@ -17,6 +17,17 @@
 			</th>
 			#{/list}
 		</tr>
+		<tr class="hidden-phone">
+			<th></th>
+			<th>&{'tendence'}</th>
+			#{list items:playday.games, as:'game'}
+			<th>
+				<div align="center">
+					${game.getTrend()}
+				</div>
+			</th>
+			#{/list}
+		</tr>		
 	</thead>
 	<tbody>
 		#{list items:tips, as:'userTips'}
