@@ -2,8 +2,12 @@ package jobs;
 
 import java.util.List;
 
+import javax.print.attribute.standard.JobSheets;
+
 import models.Confirmation;
 import models.ConfirmationType;
+import models.ExtraTip;
+import models.GameTip;
 import models.User;
 import play.Logger;
 import play.jobs.Job;
@@ -16,13 +20,15 @@ public class CleanupJob extends Job {
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
 		    Logger.info("Running job: CleanupJob");
-			List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE DATE(NOW()) > (DATE(created) + 2)").fetch();
+			List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE confirmType = ? AND DATE(NOW()) > (DATE(created) + 2)", ConfirmationType.ACTIVATION).fetch();
 			for (Confirmation confirmation : confirmations) {
-				if (ConfirmationType.ACTIVATION.equals(confirmation.getConfirmType())) {
-					User user = confirmation.getUser();
-					if (user != null && !user.isActive()) {
-						Logger.info("Deleting user: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days.");
-						user._delete();
+				User user = confirmation.getUser();
+				if (user != null && !user.isActive()) {
+					List<GameTip> gameTips = user.getGameTips();
+					List<ExtraTip> extraTips = user.getExtraTips();
+					if ( (gameTips == null || gameTips.size() <= 0) && (extraTips == null || extraTips.size() <= 0) ) {
+						Logger.info("Deleting user: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days after registration and has no game tips and no extra tips.");
+						user._delete();	
 					}
 				}
 			}
