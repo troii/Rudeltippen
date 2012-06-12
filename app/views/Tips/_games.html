@@ -1,4 +1,4 @@
-<h3>&{playday.name}</h3>
+<h3>&{playday?.name}</h3>
 #{form @tips.storetips(), class:'form-horizontal well'}
 	<table class="table">
 		<thead>
@@ -12,7 +12,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			#{list items:playday.games, as:'game'}
+			#{list items:playday?.games, as:'game'}
 				<tr>
 					<td class="visible-desktop">${game.kickoff.formatted()}</td>
 					<td class="visible-desktop">${game.tippEnding.difference()}</td>
@@ -37,7 +37,7 @@
 			#{/list}
 		</tbody>
 	</table>
-	#{if playday.isTippable()}
+	#{if playday?.isTippable()}
 		<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
 	#{/if}
 #{/form}
