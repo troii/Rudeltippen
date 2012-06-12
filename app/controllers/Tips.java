@@ -61,6 +61,7 @@ public class Tips extends Root {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		int tipped = 0;
+		int playday = 1;
 		List<String> keys = new ArrayList<String>();
 		final Map<String, String> map = params.allSimple();
 		for (Entry<String, String> entry : map.entrySet()) {
@@ -90,6 +91,8 @@ public class Tips extends Root {
 				AppUtils.placeTip(game, Integer.parseInt(homeScore), Integer.parseInt(awayScore));
 				keys.add(key);
 				tipped++;
+				
+				playday = game.getPlayday().getNumber();
 			}
 		}
 		if (tipped > 0) {
@@ -99,7 +102,7 @@ public class Tips extends Root {
 		}
 		flash.keep();
 
-		redirect("/tips/index/" + AppUtils.getCurrentPlayday());
+		redirect("/tips/index/" + playday);
 	}
 
 	public static void storeextratips() {
