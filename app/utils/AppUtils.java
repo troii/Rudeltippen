@@ -483,7 +483,7 @@ public class AppUtils implements AppConstants{
 	public static int getCurrentPlayday () {
 		final Playday playday = Playday.find("SELECT p FROM Playday p WHERE NOW() >= playdayStart AND NOW() <= playdayEnd").first();
 		if (playday != null && playday.getNumber() != 0) {
-			return playday.getNumber() - 1;
+			return playday.getNumber();
 		}
 
 		return 0;
