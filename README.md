@@ -14,7 +14,6 @@ Features in a Nutshell
 - Automatic playing schedule updates
 - Fluid, themeable, responsive layout
 - Smartphone and tablet compatible
-- Supports multiple databases
 - Multilingual
 
 Requirements
@@ -23,7 +22,7 @@ Requirements
 - [Java SDK 1.6+][1]
 - Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support (Apache recommended)
 - SMTP-Account (SSL/non-SSL, you can use e.g. [Gmail][12])
-- MySQL, PostgreSQL, MSSQL or Oracle Databse (MySQL recommended)
+- MySQL
 - Linux, Mac or Windows
 
 Languages
