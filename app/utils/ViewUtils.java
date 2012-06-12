@@ -15,6 +15,7 @@ import models.GameTip;
 import models.Settings;
 import models.User;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.i18n.Lang;
@@ -337,5 +338,9 @@ public class ViewUtils extends JavaExtensions{
     	}
 
     	return "";
+    }
+    
+    public static String htmlUnescape (String html) {
+    	return StringEscapeUtils.unescapeHtml(html);
     }
 }
