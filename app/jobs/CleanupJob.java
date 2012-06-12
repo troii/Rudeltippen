@@ -2,8 +2,6 @@ package jobs;
 
 import java.util.List;
 
-import javax.print.attribute.standard.JobSheets;
-
 import models.Confirmation;
 import models.ConfirmationType;
 import models.ExtraTip;
