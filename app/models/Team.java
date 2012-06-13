@@ -10,7 +10,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
+
 import play.db.jpa.Model;
+import play.i18n.Messages;
 
 @Entity
 @Table(name="rudeltippen_teams")
@@ -152,5 +156,14 @@ public class Team extends Model{
 
 	public void setPlace(int place) {
 		this.place = place;
+	}
+	
+	public String nameUnescaped() {
+		if (StringUtils.isNotBlank(this.name)) {
+			String name = Messages.get(this.name);
+			return StringEscapeUtils.unescapeHtml(name);
+		}
+		
+		return "";
 	}
 }

@@ -11,7 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
+
 import play.db.jpa.Model;
+import play.i18n.Messages;
 
 @Entity
 @Table(name="rudeltippen_extras")
@@ -122,5 +126,14 @@ public class Extra extends Model{
 		}
 		
 		return true;
+	}
+	
+	public String questionUnescaped() {
+		if (StringUtils.isNotBlank(this.question)) {
+			String question = Messages.get(this.question);
+			return StringEscapeUtils.unescapeHtml(question);
+		}
+		
+		return "";
 	}
 }
