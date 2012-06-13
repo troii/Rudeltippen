@@ -70,14 +70,14 @@ public class Users extends Root {
 			statistics.put("correctTipps", correctTipps);
 			statistics.put("correctTrend", correctTrend);
 			statistics.put("correctDifference", correctDifference);
-			float pointsTipp = (float) user.getPoints() / (float) sumAllTipps;
+			float pointsTipp = (float) user.getPoints() / (float) sumTipps;
 			String pointsPerTipp = "0";
 			if (pointsTipp > 0) {
 			    DecimalFormat df = new DecimalFormat( "0.00" );
 			    pointsPerTipp = df.format( pointsTipp );
 			}
 
-			if (sumAllTipps > 0) {
+			if (sumTipps > 0) {
 				statistics.put("tippQuote", 100 / sumTipps * correctTipps);
 			} else {
 				statistics.put("tippQuote", 0);
