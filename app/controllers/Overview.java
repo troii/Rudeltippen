@@ -40,7 +40,6 @@ public class Overview extends Root{
 		render(playday, tips, playdays, number, pagination);
 	}
 
-
 	public static void extra(int number, String page) {
 		final Map pagination = ViewUtils.getPagination("user", page, "/overview/extra/");
 		final List<User> users = User.find("ORDER BY points DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));

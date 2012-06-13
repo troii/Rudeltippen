@@ -40,7 +40,7 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String recipient = user.getUsername();
-
+		
 		if (ValidationUtils.isValidEmail(recipient)) {
 			setFrom(from);
 			setReplyTo(replyto);
