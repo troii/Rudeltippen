@@ -22,6 +22,7 @@ GET	    /tips/{number}				            tips.index
 GET	    /tips/index/{number}				    tips.index
 GET	    /tips/games/{number}				    tips.games
 GET	    /tips/playday/{number}				    tips.playday
+GET	    /overview/{number}/{page}				overview.index
 GET	    /overview/playday/{number}/{page}		overview.playday
 GET	    /overview/extra/{number}/{page}			overview.extra
 GET	    /admin/results/{number}				    admin.results
