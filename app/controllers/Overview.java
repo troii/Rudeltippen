@@ -17,27 +17,11 @@ import utils.ViewUtils;
 @Transactional(readOnly=true)
 public class Overview extends Root{
 	public static void index(int number, String page) {
-		if (number <= 0) { number = 1; }
-		List<Playday> playdays = Playday.findAll();
-		Playday playday = Playday.find("byNumber", number).first();
-
-		final Map pagination = ViewUtils.getPagination("user", page, "/overview/playday/");
-		final List<User> users = User.find("ORDER BY points DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
-		List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
-
-		render(playday, tips, playdays, number, pagination);
+		renderWrapper(number, page);
 	}
 
 	public static void playday(int number, String page) {
-		if (number <= 0) { number = 1; }
-		List<Playday> playdays = Playday.findAll();
-		Playday playday = Playday.find("byNumber", number).first();
-
-		final Map pagination = ViewUtils.getPagination("user", page, "/overview/playday/");
-		final List<User> users = User.find("ORDER BY points DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
-		List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
-
-		render(playday, tips, playdays, number, pagination);
+		renderWrapper(number, page);
 	}
 
 	public static void extra(int number, String page) {
@@ -51,5 +35,17 @@ public class Overview extends Root{
 		playday.setNumber((int)Playday.count() + 1);
 
 		render(pagination, tips, playday, extras);
+	}
+	
+	private static void renderWrapper(int number, String page) {
+		if (number <= 0) { number = 1; }
+		List<Playday> playdays = Playday.findAll();
+		Playday playday = Playday.find("byNumber", number).first();
+
+		final Map pagination = ViewUtils.getPagination("user", page, "/overview/playday/");
+		final List<User> users = User.find("ORDER BY points DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
+		List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
+
+		render(playday, tips, playdays, number, pagination);
 	}
 }
