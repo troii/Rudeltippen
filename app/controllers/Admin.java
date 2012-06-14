@@ -29,7 +29,7 @@ import utils.ValidationUtils;
 @CheckAccess("admin")
 public class Admin extends Root implements AppConstants {
 	@Transactional(readOnly=true)
-	public static void index(int number) {
+	public static void playday(int number) {
 		if (number <= 0) { number = 1; }
 		final List<Playday> playdays = Playday.findAll();
 		final Playday playday = Playday.find("byNumber", number).first();
