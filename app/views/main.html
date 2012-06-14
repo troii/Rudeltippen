@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <title>Rudeltippen</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="description" content="Rudeltippen">
     <meta name="author" content="Sven Kubiak">
-    <link rel="apple-touch-icon" href="@{'/public/images/touch-icon.png'}"/>
+    <link rel="apple-touch-icon-precomposed" href="@{'/public/images/touch-icon57x57.png'}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="@{'/public/images/touch-icon72x72.png'}" />
+    <link rel="apple-touch-icon" href="@{'/public/images/touch-icon57x57.png'}"/>
     <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
     <link href="@{'/public/stylesheets/bootstrap.css'}" rel="stylesheet">
     <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
@@ -33,7 +37,7 @@
 	              		<li class="divider"></li>
 	              		<li><a href="@{admin.users()}">&{'usermanagement'}</a></li>
 	              		<li><a href="@{admin.settings()}">&{'settings'}</a></li>
-	              		<li><a href="@{admin.index()}">&{'results'}</a></li>
+	              		<li><a href="@{admin.playday()}/${currentPlayday}">&{'results'}</a></li>
 	              #{/if}
 	              <li class="divider"></li>
 	              <li><a href="@{auth.logout()}">&{'logout'}</a></li>
@@ -123,11 +127,11 @@
     <script src="@{'/public/javascripts/jquery.js'}"></script>
     <script src="@{'/public/javascripts/bootstrap.js'}"></script>
     <script src="@{'/public/javascripts/bootstrap-plugins.js'}"></script>
+    <script src="@{'/public/javascripts/ie.js'}"></script>
     #{if request.action == "Application.index" }
         #{i18n keys:['js.*'] /}
     	<script src="@{'/public/javascripts/twitter.js'}"></script>
     #{/if}
-    <script src="@{'/public/javascripts/ie.js'}"></script>
     <script src="@{'/public/javascripts/additional.js'}"></script>
   </body>
 </html>

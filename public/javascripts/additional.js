@@ -52,4 +52,9 @@ $(document).ready(function(){
 	$('.alert-info').delay(5000).slideToggle();
 	$('.alert-success').delay(5000).slideToggle();
 	helpify();
+	window.addEventListener("load", function() {
+		setTimeout(function() {
+			window.scrollTo(0, 1);
+		}, 0);
+	});
 });
