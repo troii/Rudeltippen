@@ -28,9 +28,9 @@
 						<td><b>${topUser.points}</b></td>
 					</tr>
 				#{/list}
-					<tr>
-						<td colspan="5">&{'user.placandpoints.' + (connectedUser.points == 1 ? '1' : 'many'), connectedUser.points, connectedUser.place, users}</td>
-					</tr>
+				<tr>
+					<td colspan="5">&{'user.placandpoints.' + (connectedUser.points == 1 ? '1' : 'many'), connectedUser.points, connectedUser.place, users}</td>
+				</tr>
 				</tbody>
 			</table>
 		</div>
@@ -58,7 +58,7 @@
                         #{else}
                             <td>${previousGame.homeScore} : ${previousGame.awayScore}</td>
                         #{/else}
-                        <td>${previousGame.getTip()} ${previousGame.getTipPoints()}</td>
+                        <td>${previousGame.getGameTipAndPoints()}</td>
                     </tr>
                 #{/list}
                 #{else}
@@ -95,7 +95,7 @@
 							<td class="hidden-phone">${nextGame.kickoff.formatted()}</td>
 							<td><img class="flag" src="@{'/public/images/flags'}/${nextGame.homeTeam?.flag}">&{nextGame.homeTeam?.name}</td>
 							<td><img class="flag" src="@{'/public/images/flags'}/${nextGame.awayTeam?.flag}">&{nextGame.awayTeam?.name}</td>
-							<td>${nextGame.getTip()}</td>
+							<td>${nextGame.getGameTipAndPoints()}</td>
 							<td class="visible-desktop">${nextGame.getTrend()}</td>
 						</tr>
 					#{/list}

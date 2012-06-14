@@ -31,7 +31,7 @@
 						<td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="input-xmini"></td>
 					#{/if}
 					#{else}
-						<td style="text-align: center;" colspan="3">${game.getTip()} ${game.getTipPoints()}</td>
+						<td style="text-align: center;" colspan="3">${game.getGameTipAndPoints()}</td>
 					#{/else}
 				</tr>
 			#{/list}

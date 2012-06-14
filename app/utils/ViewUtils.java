@@ -83,27 +83,23 @@ public class ViewUtils extends JavaExtensions{
 	public static String awayReferenceName (Game game) {
 		return getReference(game.getAwayReference());
 	}
-
-	public static String getTip(Game game) {
+	
+	public static String getGameTipAndPoints(Game game) {
+		String tip = "-";
 		User user = AppUtils.getConnectedUser();
 		GameTip gameTip = GameTip.find("byGameAndUser", game, user).first();
 
-		if (gameTip == null) {
-			return "-";
+		if (gameTip != null) {
+			if (gameTip.getGame() != null) {
+				if (gameTip.getGame().isEnded()) {
+					tip = gameTip.getHomeScore() + " : " + gameTip.getAwayScore() + " (" + gameTip.getPoints() + ")";
+				} else {
+					tip = gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
+				}
+			}
 		}
 
-		return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
-	}
-
-	public static String getTipPoints(Game game) {
-		User user = AppUtils.getConnectedUser();
-		GameTip gameTip = GameTip.find("byGameAndUser", game, user).first();
-
-		if (gameTip != null && game.isEnded()) {
-			return "(" + gameTip.getPoints() + ")";
-		}
-
-		return "";
+		return tip;		
 	}
 
 	public static String getHomeScoreTip(Game game) {
@@ -271,31 +267,32 @@ public class ViewUtils extends JavaExtensions{
     	}
     	return "-";
     }
-
-    public static String getGameTip(GameTip gameTip) {
+    
+    public static String getGameTipAndPoints(GameTip gameTip) {
+    	String tip = "-";
     	Date date = new Date();
+    	
     	final User user = AppUtils.getConnectedUser();
-    	if (gameTip.getPlaced() != null) {
-    		if (gameTip.getGame() != null && date.after(gameTip.getGame().getKickoff())) {
-    			return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
-    		} else {
-    			if (user.equals(gameTip.getUser())) {
-    				return gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
+    	if (gameTip != null) {
+        	Game game = gameTip.getGame();
+    		if (game != null) {
+    			if (game.isEnded()) {
+    				tip = gameTip.getHomeScore() + " : " + gameTip.getAwayScore() + " (" + gameTip.getPoints() + ")";
     			} else {
-    				return Messages.get("tiped");
+    				if (date.after(game.getKickoff())) {
+       					tip = gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
+        			} else {
+            			if (user.equals(gameTip.getUser())) {
+            				tip = gameTip.getHomeScore() + " : " + gameTip.getAwayScore();
+            			} else {
+            				tip = Messages.get("tiped");
+            			}
+        			}
     			}
     		}
     	}
 
-    	return "-";
-    }
-
-    public static String getGameTipPoints(GameTip gameTip) {
-    	if (gameTip != null && gameTip.getGame() != null && gameTip.getGame().isEnded()) {
-    		return " (" + gameTip.getPoints() + ")";
-    	}
-
-    	return "";
+    	return tip;   	
     }
 
     public static long getExtraTip(Extra extra) {

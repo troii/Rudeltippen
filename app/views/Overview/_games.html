@@ -41,7 +41,7 @@
 				#{/else}
 					<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
 				#{list items:user.value, as:'gameTip'}
-					<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTip()}${gameTip.getGameTipPoints()}</div></td>
+					<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTipAndPoints()}</div></td>
 				#{/list}
 			#{/list}
 		</tr>
