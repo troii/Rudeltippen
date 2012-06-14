@@ -143,8 +143,9 @@ public class MailService extends Mailer {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
+		notification = StringEscapeUtils.unescapeHtml(notification);
 		
-		List<User> users = User.find("Admin", true).fetch();
+		List<User> users = User.find("byNotification", true).fetch();
 		for (User user : users) {
 			if (ValidationUtils.isValidEmail(user.getUsername())) {
 				setReplyTo(replyto);
