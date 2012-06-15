@@ -96,7 +96,7 @@ public class Admin extends Root implements AppConstants {
 			}
 		}
 
-		redirect("/admin/index/" + playday);
+		redirect("/admin/playday/" + playday);
 	}
 
 	public static void updatesettings ( String name,
