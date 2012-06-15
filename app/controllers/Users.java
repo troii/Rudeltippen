@@ -219,10 +219,10 @@ public class Users extends Root {
 		} else {
 			User user = AppUtils.getConnectedUser();
 			try {
-			    //resize picture to 162x162 and save to user profie base64 encoded
+			    //resize picture to 162x162 and save to user profile base64 encoded
 		        Images.resize(picture, picture, 162, 162);
 				user.setPictureLarge(Images.toBase64(picture));
-				//resize picture to 54x54 and save to user profie base64 encoded
+				//resize picture to 54x54 and save to user profile base64 encoded
 	            Images.resize(picture, picture, 54, 54);
 	            user.setPicture(Images.toBase64(picture));
 				if (picture.delete()) {
