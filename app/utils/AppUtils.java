@@ -276,11 +276,18 @@ public class AppUtils implements AppConstants{
             return;
         }
 
+        boolean notify = false;
+        if (!game.isEnded()) {
+        	notify = true;
+        }
+        
         saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         
-        String notification = getNotificationMessage(game);
-        TwitterService.updateStatus(notification);
-        MailService.notifications(notification);
+        if (notify) {
+            String notification = getNotificationMessage(game);
+            TwitterService.updateStatus(notification);
+            MailService.notifications(notification);	
+        }
     }
 
 	public static String getNotificationMessage(Game game) {
