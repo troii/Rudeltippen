@@ -141,6 +141,10 @@ public class System extends Controller implements AppConstants {
 			user.setActive(true);
 			user.setAdmin(true);
 			user.setReminder(true);
+			user.setCorrectResults(0);
+			user.setCorrectDifferences(0);
+			user.setCorrectTrends(0);
+			user.setCorrectExtraTips(0);
 			user._save();
 
 			flash.put("infomessage", Messages.get("controller.setup.setup"));
