@@ -201,6 +201,11 @@ public class AppUtils implements AppConstants{
         for (User user : users) {
             List<Game> allGames = Game.find("SELECT g FROM Game g WHERE ended = ?", true).fetch();
             int points = 0;
+            int correctResults = 0;
+            int correctDifferences = 0;
+            int correctTrends = 0;
+            int correctExtraTips = 0;
+
             for (Game game : allGames) {
                 GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
                 if (gameTip == null) {
@@ -219,10 +224,20 @@ public class AppUtils implements AppConstants{
                 }
                 gameTip.setPoints(pointsForTipp);
                 gameTip._save();
-
+                if (pointsForTipp == settings.getPointsTip()) {
+                    correctResults++;
+                } else if (pointsForTipp == settings.getPointsTipDiff()) {
+                    correctDifferences++;
+                } else if (pointsForTipp == settings.getPointsTipTrend()) {
+                    correctTrends++;
+                }
                 points = points + pointsForTipp;
+
             }
             user.setTipPoints(points);
+            user.setCorrectResults(correctResults);
+            user.setCorrectDifferences(correctDifferences);
+            user.setCorrectTrends(correctTrends);
 
             int bonusPoints = 0;
             for (Extra extra : extras) {
@@ -233,18 +248,20 @@ public class AppUtils implements AppConstants{
                     if (bonusAnswer != null && userAnswer != null && bonusAnswer.equals(userAnswer)) {
                         int bPoints = extra.getPoints();
                         extraTip.setPoints(bPoints);
-                        extraTip._save();
+                        correctExtraTips++;
+			extraTip._save();
                         bonusPoints = bonusPoints + bPoints;
                     }
                 }
             }
             user.setExtraPoints(bonusPoints);
             user.setPoints(points + bonusPoints);
+            user.setCorrectExtraTips(correctExtraTips);
             user._save();
         }
 
         int i = 1;
-        users = User.find("ORDER BY points DESC").fetch();
+        users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
         for (User user : users) {
             user.setPlace(i);
             user._save();
