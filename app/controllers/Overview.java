@@ -26,7 +26,7 @@ public class Overview extends Root{
 
 	public static void extra(int number, String page) {
 		final Map pagination = ViewUtils.getPagination("user", page, "/overview/extra/");
-		final List<User> users = User.find("ORDER BY place DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
+		final List<User> users = User.find("ORDER BY place ASC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
 		final List<Extra> extras = Extra.findAll();
 		List<Map<User, List<ExtraTip>>> tips =  AppUtils.getExtraTips(users, extras);
 
@@ -43,7 +43,7 @@ public class Overview extends Root{
 		Playday playday = Playday.find("byNumber", number).first();
 
 		final Map pagination = ViewUtils.getPagination("user", page, "/overview/playday/");
-		final List<User> users = User.find("ORDER BY place DESC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
+		final List<User> users = User.find("ORDER BY place ASC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
 		List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
 
 		render(playday, tips, playdays, number, pagination);
