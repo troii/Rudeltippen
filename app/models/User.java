@@ -55,6 +55,10 @@ public class User extends Model{
 	private int extraPoints;
 	private int points;
 	private int place;
+	private int correctResults;
+	private int correctDifferences;
+	private int correctTrends;
+	private int correctExtraTips;
 
 	public String getUsername() {
 		return username;
@@ -211,4 +215,36 @@ public class User extends Model{
 	public void setNotification(boolean notification) {
 		this.notification = notification;
 	}
+
+	public int getCorrectResults() {
+		return correctResults;
+	}
+
+	public void setCorrectResults(int correctResults) {
+		this.correctResults = correctResults;
+	}
+
+	public int getCorrectDifferences() {
+                return correctDifferences;
+        }
+
+        public void setCorrectDifferences(int correctDifferences) {
+                this.correctDifferences = correctDifferences;
+        }
+
+	public int getCorrectTrends() {
+                return correctTrends;
+        }
+
+        public void setCorrectTrends(int correctTrends) {
+                this.correctTrends = correctTrends;
+        }
+
+        public int getCorrectExtraTips() {
+                return correctExtraTips;
+        }
+
+        public void setCorrectExtraTips(int correctExtraTips) {
+                this.correctExtraTips = correctExtraTips;
+        }
 }
