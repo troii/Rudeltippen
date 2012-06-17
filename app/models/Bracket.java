@@ -17,11 +17,13 @@ public class Bracket extends Model{
 	private String name;
 
 	@OneToMany(mappedBy = "bracket")
-	@OrderBy("points DESC, goalsDiff DESC, goalsFor DESC, place ASC")
+	@OrderBy("place ASC")
 	private List<Team> teams;
 
 	@Column(nullable=false)
 	private int number;
+
+	private boolean overridePlaces;
 
 	public String getName() {
 		return name;
@@ -46,7 +48,15 @@ public class Bracket extends Model{
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	
+
+	public boolean isOverridePlaces() {
+		return overridePlaces;
+	}
+
+	public void setOverridePlaces(boolean overridePlaces) {
+		this.overridePlaces = overridePlaces;
+	}
+
 	public Team getTeamByPlace(int place) {
 		int i = 1;
 		for (Team team : teams) {
@@ -55,7 +65,7 @@ public class Bracket extends Model{
 			}
 			i++;
 		}
-		
+
 		return null;
 	}
 }

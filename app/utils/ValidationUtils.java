@@ -69,7 +69,7 @@ public class ValidationUtils {
         final Matcher m = p.matcher(email);
         return m.matches();
     }
-    
+
     public static Validation getUserValidations(
     		Validation validation,
     		String username,
@@ -78,7 +78,7 @@ public class ValidationUtils {
     		String usernameConfirmation,
     		String userpassConfirmation,
     		boolean update) {
-    	
+
 		validation.required(username);
 		validation.required(userpass);
 		validation.required(nickname);
@@ -91,12 +91,12 @@ public class ValidationUtils {
 		validation.maxSize(nickname, 20);
 		if (!update) {
 			validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
-			validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.emailexists"));			
+			validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.emailexists"));
 		}
-		
+
 		return validation;
     }
-    
+
     public static Validation getSettingsValidations(
     			Validation validation,
     			String name,
@@ -114,7 +114,7 @@ public class ValidationUtils {
 				boolean countFinalResult,
 				boolean informOnNewTipper,
 				boolean enableRegistration) {
-    	
+
 		validation.required(name);
 		validation.required(timeZoneString);
 		validation.required(dateString);
@@ -126,7 +126,7 @@ public class ValidationUtils {
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
-    	
+
     	return validation;
     }
 }
