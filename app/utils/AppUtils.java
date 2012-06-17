@@ -326,7 +326,6 @@ public class AppUtils implements AppConstants{
 				}
     		}
     	}
-
 	}
 
 	public static void setGameScore(String gameId, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
