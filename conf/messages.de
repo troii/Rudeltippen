@@ -165,6 +165,7 @@ controller.users.changeduserpass     = Dein Passwort wurde erfolgreich ge&auml;n
 controller.users.emailexists         = Die eingegebene E-Mail-Adresse existiert bereits
 controller.users.forgotuserpass      = Ein neues Passwort wurde an Deine E-Mail-Adresse versendet.
 controller.users.invalidtoken        = Ung&uuml;ltiger Best&auml;tigungscode. Bitte versuche es noch einmal.
+controller.users.invalidnickname     = Es sind nur Gro&szlig;- und Kleinbuchstaben sowie Zahlen und die Zeichen "-" und "_" erlaubt.
 controller.users.nicknamexists       = Der eingegeben Nickname existiert bereits
 controller.users.setuperror          = YML-Datei wurde nicht gefunden.
 controller.users.twitter             = hat sich registriert

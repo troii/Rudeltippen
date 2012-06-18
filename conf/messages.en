@@ -165,6 +165,7 @@ controller.users.changeduserpass     = Your password was successfully changed. P
 controller.users.emailexists         = The email address already exists
 controller.users.forgotuserpass      = A new password has been sent to your email address.
 controller.users.invalidtoken        = Invalid confirmation code. Please try again.
+controller.users.invalidnickname     = Only uppercase and lowercase letters, numbers and the symbols "-" or "_" are allowed.
 controller.users.nicknamexists       = The Nickname already exists
 controller.users.setuperror          = YML-File not found
 controller.users.twitter             = has registered
