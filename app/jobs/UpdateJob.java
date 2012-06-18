@@ -1,5 +1,7 @@
 package jobs;
 
+import interfaces.AppConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +24,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 @Every("60min")
-public class UpdateJob extends Job{
-	private static final String APIURL = "http://api.rudeltippen.de";
-
+public class UpdateJob extends Job implements AppConstants{
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance() && AppUtils.automaticUpdates()) {

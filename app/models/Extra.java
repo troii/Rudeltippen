@@ -119,7 +119,7 @@ public class Extra extends Model{
 		this.answer = answer;
 	}
 	
-	public boolean isTippable() {
+	public boolean isTipable() {
 		final Date now = new Date();
 		if (now.getTime() >= ending.getTime()) {
 			return false;

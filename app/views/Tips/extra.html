@@ -16,7 +16,7 @@
                 <td class="hidden-phone">${extra.points}</td>
                 <td class="hidden-phone">${extra.ending.difference()}</td>
                 <td>
-                    #{if extra.tippable}
+                    #{if extra.tipable}
                         <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
                             #{if extra.getExtraTip() == 0}
                                 <option value="0" selected="selected">-- &{'pleasechoose'} --</option>

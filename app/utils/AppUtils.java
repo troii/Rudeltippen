@@ -37,10 +37,21 @@ import services.TwitterService;
 import controllers.Auth.Security;
 
 public class AppUtils implements AppConstants{
+	/**
+	 * Loads the currents settings from database
+	 * @return Settings object
+	 */
 	public static Settings getSettings() {
 		return Settings.find("byAppName", APPNAME).first();
 	}
 
+	/**
+	 * Hashes a given password with given salt using 1000000 rounds
+	 * 
+	 * @param userpass The password
+	 * @param usersalt The salt
+	 * @return SHA1 hashed string
+	 */
     public static String hashPassword(String userpass, String usersalt) {
         final String salt = AppUtils.getSettings().getAppSalt();
         String password = userpass + salt + usersalt;
@@ -51,9 +62,15 @@ public class AppUtils implements AppConstants{
         return password;
     }
 
-    public static boolean extrasTippable(List<Extra> extras) {
+    /**
+     * Checks if at least one extra tip in given list is tipable
+     * 
+     * @param extras List of extra tips
+     * @return true if at least one extra tip is tipable, false otherwise
+     */
+    public static boolean extrasTipable(List<Extra> extras) {
 		for (Extra extra : extras) {
-			if (extra.isTippable()) {
+			if (extra.isTipable()) {
 				return true;
 			}
 		}
@@ -61,6 +78,11 @@ public class AppUtils implements AppConstants{
 		return false;
     }
 
+    /**
+     * Sets the default application language defined in application.conf
+     * 
+     * Default: en
+     */
 	public static void setAppLanguage() {
 		String lang = Play.configuration.getProperty("default.language");
 		if (StringUtils.isBlank(lang)) {
@@ -69,6 +91,11 @@ public class AppUtils implements AppConstants{
 		Lang.change(lang);
 	}
 
+	/**
+	 * Finds the username in session and loads the user from the database
+	*
+	 * @return User object, null if not user is found
+	 */
     public static User getConnectedUser() {
         final String username = Security.connected();
         User connectedUser = null;
@@ -79,6 +106,12 @@ public class AppUtils implements AppConstants{
         return connectedUser;
     }
 
+    /**
+     * Generates a random string using RandomStringUtils.randomAlphanumeric
+     * 
+     * @param length The length of the password, max. 30 letters
+     * @return String with given length
+     */
     public static String generatePassword(int length) {
         if (length <= 0 || length > 30) {
             length = 30;
@@ -87,6 +120,11 @@ public class AppUtils implements AppConstants{
         return RandomStringUtils.randomAlphanumeric(length);
     }
 
+    /**
+     * Checks if the current application matches the defined job instance name
+     * 
+     * @return true if current instance is job instance, false otherwise
+     */
     public static boolean isJobInstance() {
         final String appName = Play.configuration.getProperty("application.name");
         final String jobInstance = Play.configuration.getProperty("app.jobinstance");
@@ -97,6 +135,11 @@ public class AppUtils implements AppConstants{
         return false;
     }
 
+    /**
+     * Flushes the database, loads the test data and creates 100 users
+     * 
+     * For TESTING purposes only!
+     */
 	public static void initApp() {
 		Fixtures.deleteAllModels();
 		Fixtures.deleteDatabase();
@@ -116,6 +159,9 @@ public class AppUtils implements AppConstants{
     	}
 	}
 
+	/**
+	 * Calculates scores for all brackets and games as well as all user points (game tips and extra tips)
+	 */
 	public static void calculateScoresAndPoints() {
         final Settings settings = AppUtils.getSettings();
         final int pointsWin = settings.getPointsGameWin();
@@ -215,12 +261,12 @@ public class AppUtils implements AppConstants{
                 int pointsForTipp = 0;
                 if (game.isOvertime()) {
                     if (settings.isCountFinalResult()) {
-                        pointsForTipp = AppUtils.getTippPoints(Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
+                        pointsForTipp = AppUtils.getTipPoints(Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
                     } else {
-                        pointsForTipp = AppUtils.getTippPointsTrend(Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
+                        pointsForTipp = AppUtils.getTipPointsTrend(Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
                     }
                 } else {
-                    pointsForTipp = AppUtils.getTippPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
+                    pointsForTipp = AppUtils.getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
                 }
                 gameTip.setPoints(pointsForTipp);
                 gameTip._save();
@@ -249,7 +295,7 @@ public class AppUtils implements AppConstants{
                         int bPoints = extra.getPoints();
                         extraTip.setPoints(bPoints);
                         correctExtraTips++;
-			extraTip._save();
+                        extraTip._save();
                         bonusPoints = bonusPoints + bPoints;
                     }
                 }
@@ -260,15 +306,22 @@ public class AppUtils implements AppConstants{
             user._save();
         }
 
-        int i = 1;
-        users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
+        setUserPlaces();
+        setPlayoffGames(settings);
+    }
+
+	private static void setUserPlaces() {
+		int i = 1;
+		List<User> users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
         for (User user : users) {
             user.setPlace(i);
             user._save();
             i++;
         }
+	}
 
-        if (settings.isPlayoffs()) {
+	private static void setPlayoffGames(final Settings settings) {
+		if (settings.isPlayoffs()) {
             List<Game> prePlayoffGames = Game.find("byPlayoffAndEnded", false, true).fetch();
             if (prePlayoffGames.size() == settings.getPrePlayoffGames()) {
                 List<Game> playoffGames = Game.find("byPlayoffAndEnded", true, false).fetch();
@@ -280,9 +333,20 @@ public class AppUtils implements AppConstants{
                     game._save();
                 }
             }
-        }
-    }
+		}
+	}
 
+	/**
+	 * Sets the score for a game
+	 * 
+	 * @param gameId The id of the game
+	 * @param homeScore The goals of the home team
+	 * @param awayScore The goals of the away team
+	 * @param extratime The name of the extratime
+	 * @param homeScoreExtratime The goals of the home team in extratime
+	 * @param awayScoreExtratime The goals of the away team in extratime
+	 */
+	
     public static void setGameScore(String gameId, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
         if (!ValidationUtils.isValidScore(homeScore, awayScore)) {
             return;
@@ -307,6 +371,12 @@ public class AppUtils implements AppConstants{
         }
     }
 
+    /**
+     * Generates a notifcation message for a given game
+     * 
+     * @param game The game
+     * @return The message
+     */
 	public static String getNotificationMessage(Game game) {
 		StringBuilder buffer = new StringBuilder();
     	buffer.append(Messages.get("helper.tweetscore"));
@@ -330,6 +400,11 @@ public class AppUtils implements AppConstants{
 		return buffer.toString();
 	}
 
+	/**
+	 * Checks if in current instance twitter configuration is enabled
+	 * 
+	 * @return true if enabled, false otherwise
+	 */
     public static boolean isTweetable() {
     	final String tweetable = Play.configuration.getProperty("twitter.enable");
     	if (StringUtils.isNotBlank(tweetable) && ("true").equals(tweetable)) {
@@ -339,6 +414,12 @@ public class AppUtils implements AppConstants{
     	return false;
     }
 
+    /**
+     * Checks if all games in given list have ended
+     * 
+     * @param games The games to check
+     * @return true if all games have ended, false otherweise
+     */
 	public static boolean allReferencedGamesEnded(List<Game> games) {
         if (games == null || games.size() <= 0) {
             return false;
@@ -353,6 +434,17 @@ public class AppUtils implements AppConstants{
         return true;
     }
 
+	/**
+	 * Loads a team from the database from a reference string
+	 * 
+	 * e.g.:
+	 * B-1-1  = Gets team from bracket 1 at place 1
+	 * G-12-W = Gets the winner team from game 12 
+	 * G-12-L = Gets the looser team from game 12 
+	 * 
+	 * @param reference A string reference
+	 * @return The team object
+	 */
     public static Team getTeamByReference(String reference) {
     	if (StringUtils.isBlank(reference)) {
     		return null;
@@ -371,7 +463,7 @@ public class AppUtils implements AppConstants{
             }
         } else if (("G").equals(references[0])) {
             Game aGame = Game.find("byNumber", Integer.parseInt(references[1])).first();
-            if (aGame != null) {
+            if (aGame != null && aGame.isEnded()) {
                 if ("W".equals(references[2])) {
                     team = aGame.getWinner();
                 } else if (("L").equals(references[2])) {
@@ -383,7 +475,16 @@ public class AppUtils implements AppConstants{
         return team;
     }
 
-    public static int getTippPoints(int homeScore, int awayScore, int homeScoreTipp, int awayScoreTipp) {
+    /**
+     * Returns the points for a given score and a given tip
+     * 
+     * @param homeScore The score of the home team
+     * @param awayScore The score of the away team
+     * @param homeScoreTipp The tip for the score of the home team
+     * @param awayScoreTipp The tip for the score of the away team
+     * @return
+     */
+    public static int getTipPoints(int homeScore, int awayScore, int homeScoreTipp, int awayScoreTipp) {
         final Settings settings = AppUtils.getSettings();
 
         if (homeScore == homeScoreTipp && awayScore == awayScoreTipp) {
@@ -394,10 +495,19 @@ public class AppUtils implements AppConstants{
         	return settings.getPointsTipDiff();
         }
 
-        return getTippPointsTrend(homeScore, awayScore, homeScoreTipp, awayScoreTipp);
+        return getTipPointsTrend(homeScore, awayScore, homeScoreTipp, awayScoreTipp);
     }
 
-    public static int getTippPointsTrend(int homeScore, int awayScore, int homeScoreTipp, int awayScoreTipp) {
+    /**
+     * Return the points for a trend if getTipPoints doenst find a previous match
+     * 
+     * @param homeScore The score of the home team
+     * @param awayScore The score of the away team
+     * @param homeScoreTipp The tip for the score of the home team
+     * @param awayScoreTipp The tip for the score of the away team
+     * @return
+     */
+    public static int getTipPointsTrend(int homeScore, int awayScore, int homeScoreTipp, int awayScoreTipp) {
     	final Settings settings = AppUtils.getSettings();
 
         if ((homeScore > awayScore) && (homeScoreTipp > awayScoreTipp)) {
@@ -409,6 +519,16 @@ public class AppUtils implements AppConstants{
         return 0;
     }
 
+    /**
+     * Saves a score to the database
+     * 
+     * @param game The game object
+     * @param homeScore The score of the home team
+     * @param awayScore The score of the away team
+     * @param extratime The name of the extratime
+     * @param homeScoreExtratime The score of the home team in extratime
+     * @param awayScoreExtratime The score of the away team in extratim
+     */
 	private static void saveScore(Game game, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
 		int[] points = AppUtils.getPoints(Integer.parseInt(homeScore), Integer.parseInt(awayScore));
         game.setHomePoints(points[0]);
@@ -429,6 +549,13 @@ public class AppUtils implements AppConstants{
         game._save();
 	}
 
+	/**
+	 * Calculates the points for the home and away team based on the score
+	 * 
+	 * @param homeScore The score of the home team
+	 * @param awayScore The score of the away team
+	 * @return Array containing the points for the home team [0] and the away team [1]
+	 */
     public static int[] getPoints(int homeScore, int awayScore) {
         final Settings settings = AppUtils.getSettings();
         int[] points = new int[2];
@@ -447,6 +574,13 @@ public class AppUtils implements AppConstants{
         return points;
     }
 
+    /**
+     * Saves a tip for the currently connected user to the database
+     * 
+     * @param game The game object
+     * @param homeScore The score of the home team
+     * @param awayScore The score of the away team
+     */
     public static void placeTip(Game game, int homeScore, int awayScore) {
         final User user = AppUtils.getConnectedUser();
         GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
@@ -464,6 +598,13 @@ public class AppUtils implements AppConstants{
         }
     }
 
+    /**
+     * Gathers the tips for a given playday for a given list of users
+     * 
+     * @param playday The playday object
+     * @param users List of users
+     * @return All tips for the users and the playday
+     */
 	public static List<Map<User, List<GameTip>>> getPlaydayTips(Playday playday, List<User> users) {
 		List<Map<User, List<GameTip>>> tips = new ArrayList<Map<User, List<GameTip>>>();
 
@@ -484,6 +625,13 @@ public class AppUtils implements AppConstants{
 		return tips;
 	}
 
+	/**
+	 * Gathers all extra tips for a given list of extra tips and a given user list
+	 * 
+	 * @param users The list of user
+	 * @param extras The list of extra tips
+	 * @return All extra tips for the given users
+	 */
 	public static List<Map<User, List<ExtraTip>>> getExtraTips(List<User> users, List<Extra> extras) {
 		List<Map<User, List<ExtraTip>>> tips = new ArrayList<Map<User, List<ExtraTip>>>();
 
@@ -504,6 +652,10 @@ public class AppUtils implements AppConstants{
 		return tips;
 	}
 
+	/**
+	 * Returns the number of the playday where NOW() >= playdayStart AND NOW() <= playdayEnd
+	 * @return The pladay number
+	 */
 	public static int getCurrentPlayday () {
 		final Playday playday = Playday.find("SELECT p FROM Playday p WHERE NOW() >= playdayStart AND NOW() <= playdayEnd").first();
 		if (playday != null && playday.getNumber() != 0) {
@@ -513,18 +665,32 @@ public class AppUtils implements AppConstants{
 		return 0;
 	}
 
+	/**
+	 * Gets all available timezones 
+	 * @return List of timezones
+	 */
 	public static List<String> getTimezones() {
 		String [] zonesArray = TimeZone.getAvailableIDs();
 		Arrays.sort(zonesArray);
 		return Arrays.asList(zonesArray);
 	}
 
+	/**
+	 * Gets all available languages
+	 * @return List of languages
+	 */
 	public static List<String> getLanguages() {
 		String [] localeArray = Locale.getISOLanguages();
 		Arrays.sort(localeArray);
 		return Arrays.asList(localeArray);
 	}
 
+	/**
+	 * Parses a game from OpenLigaDB stores it in the database
+	 * 
+	 * @param game The game object to store
+	 * @param wsResults WSResults object containing the data from the webservice
+	 */
     public static void setGameScoreFromWebService(Game game, final WSResults wsResults) {
         Map<String, WSResult> wsResult = wsResults.getWsResult();
 
@@ -556,6 +722,11 @@ public class AppUtils implements AppConstants{
         calculateScoresAndPoints();
     }
 
+    /**
+     * Checks if application uses the authenticity token
+     * 
+     * @return true if check.authenticity is set in application.conf, false otherwise
+     */
     public static boolean verifyAuthenticity() {
     	String check = Play.configuration.getProperty("check.authenticity");
     	if (!("false").equalsIgnoreCase(check)) {
@@ -565,6 +736,10 @@ public class AppUtils implements AppConstants{
     	return false;
     }
 
+    /**
+     * Checks if Rudeltippen update service is used or not
+     * @return true if automatic.updates is set in application.conf, false otherwise
+     */
     public static boolean automaticUpdates() {
     	String updates = Play.configuration.getProperty("automatic.updates");
     	if (("true").equalsIgnoreCase(updates)) {
@@ -574,6 +749,12 @@ public class AppUtils implements AppConstants{
     	return false;
     }
 
+    /**
+     * Returns the full localized path to a mail template
+     * 
+     * @param name The name of the template
+     * @return The full template name e.g. /services/MailServer/de/reminder.txt
+     */
     public static String getMailTemplate(String name) {
     	String lang = Play.configuration.getProperty("default.language");
     	if (StringUtils.isBlank(lang)) {

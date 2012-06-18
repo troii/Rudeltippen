@@ -43,7 +43,7 @@ public class Tips extends Root {
 	@Transactional(readOnly=true)
 	public static void extra() {
 		List<Extra> extras = Extra.findAll();
-		boolean tippable = AppUtils.extrasTippable(extras);
+		boolean tippable = AppUtils.extrasTipable(extras);
 
 		render(extras, tippable);
 	}
@@ -52,7 +52,7 @@ public class Tips extends Root {
 	public static void extras() {
 		List<Playday> playdays = Playday.findAll();
 		List<Extra> extras = Extra.findAll();
-		boolean tippable = AppUtils.extrasTippable(extras);
+		boolean tippable = AppUtils.extrasTipable(extras);
 
 		render(extras, playdays, tippable);
 	}
@@ -131,7 +131,7 @@ public class Tips extends Root {
 				}
 
 				Extra extra = Extra.findById(bonusTippId);
-				if (extra.isTippable()) {
+				if (extra.isTipable()) {
 					Team team = Team.findById(teamId);
 					User user = AppUtils.getConnectedUser();
 					if (team != null) {
