@@ -201,7 +201,7 @@ Upgrading
 Step 0
 ------------------
 
-Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf. If you have other files in the /conf folder, e.g. custom cert.txt or key.txt etc., which you edited after installation, you need to backup those files as well.
+Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf file and /conf/custom folder.
 
 Step 1
 ------------------
@@ -236,7 +236,7 @@ Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER
 Step 5
 ------------------
 
-In Step 0 you did copy the application.conf from your previous installation, didn't you? Copy this file to your INSTLLATIONFOLDER/conf and replace the existing file. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above). Also copy and replace all files you did copy in Step 1.
+In Step 0 you did copy the application.conf and /custom folder from your previous installation, didn't you? Copy application.conf and /custom folder your INSTLLATIONFOLDER/conf and replace the existing file and folder. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above) and re-customize your files in /conf/custom folder.
 
 Step 6
 ------------------
@@ -273,7 +273,7 @@ Advanced configuration
 SSL
 ------------------
 
-By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltippen you need a private key and a certificate (this may be self-signed). In INSTLLATIONFOLDER/conf you find two empty files:
+By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltippen you need a private key and a certificate (this may be self-signed). In INSTLLATIONFOLDER/conf/custom you find two empty files:
 
 ```bash
 cert.txt
@@ -285,8 +285,8 @@ Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
 
 ```bash
 #https.port=9904
-#%prod.certificate.key.file=conf/key.txt
-#%prod.certificate.file=conf/cert.txt
+#%prod.certificate.key.file=conf/custom/key.txt
+#%prod.certificate.file=conf/custom/cert.txt
 ```
 
 You need to restart Rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. Read the documentation of your HTTP-Server on how to configure SSL Proxy support.
@@ -305,6 +305,29 @@ Rudeltippen can automaticly post the following informations: daily top 3, result
 ```
 
 By default 'twitter.enable' is set to 'false'. Set it to 'true' to enable posting to the Twitter-Account.
+
+You need to restart Rudeltippen in order for the changes to take place.
+
+Log4j
+------------------
+If you want log4j Support for your Application you find and empty log4j configuration file in INSTLLATIONFOLDER/conf/custom. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
+
+```bash
+#%prod.application.log.path=/custom/log4j.prod.xml
+```
+
+You need to restart Rudeltippen in order for the changes to take place.
+
+Load Balancer
+------------------
+
+As mentioned [here][9] you can use a load balancer with multiple Rudeltippen applications. After you have set up your Front-End HTTP Server for this purpose you need to set a different port for each Rudeltippen Application and set thos ports in your Front-End HTTP Server configuration. 
+The Jobs Rudeltippen executes do not know about how many instances you run and will by default run in each instance. To avoid this, you can set the name of the application- and the job-instance. Rudeltippen will only execute Jobs in the instance where appname and jobinstance name match.
+
+```bash
+application.name=rudeltippen
+app.jobinstance=rudeltippen
+```
 
 You need to restart Rudeltippen in order for the changes to take place.
 
