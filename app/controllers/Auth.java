@@ -1,5 +1,6 @@
 package controllers;
 
+import interfaces.AppConstants;
 import interfaces.CheckAccess;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,9 +30,7 @@ import services.TwitterService;
 import utils.AppUtils;
 import utils.ValidationUtils;
 
-public class Auth extends Controller {
-	final static String confirmationPattern = "\\w{8,8}-\\w{4,4}-\\w{4,4}-\\w{4,4}-\\w{12,12}";
-
+public class Auth extends Controller implements AppConstants{
 	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm"})
     protected static void checkAccess() throws Throwable {
 		AppUtils.setAppLanguage();
@@ -74,7 +73,7 @@ public class Auth extends Controller {
 	public static void confirm(String token) throws Throwable {
 		Confirmation confirmation = null;
 		validation.required(token);
-		validation.match(token, confirmationPattern);
+		validation.match(token, CONFIRMATIONPATTERN);
 
 		if (validation.hasErrors()) {
 			flash.put("warningmessage", Messages.get("controller.users.invalidtoken"));
@@ -158,6 +157,7 @@ public class Auth extends Controller {
 		validation.maxSize(userpass, 32);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
+		validation.isTrue(ValidationUtils.isValidNickname(nickname)).key("nickname").message(Messages.get("controller.users.invalidnickname"));
 		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
 		validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.emailexists"));
 
