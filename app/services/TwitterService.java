@@ -25,10 +25,14 @@ public class TwitterService {
         if (AppUtils.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
             OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/statuses/update.json");
             request.addQuerystringParameter("status", message);
-            sendRequest(request);
-            settings.setLastTweet(message);
-            settings._save();
-            Logger.info("Updating Twitter-Status.");
+            try {
+                sendRequest(request);
+                settings.setLastTweet(message);
+                settings._save();
+                Logger.info("Updating Twitter status.");
+            } catch (Exception e) {
+            	Logger.error("Failed to update Twitter status: " + e.getMessage());
+            }
         } else if (StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
             settings.setLastTweet(message);
             settings._save();
