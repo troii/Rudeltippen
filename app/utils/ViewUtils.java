@@ -83,7 +83,7 @@ public class ViewUtils extends JavaExtensions{
 	public static String awayReferenceName (Game game) {
 		return getReference(game.getAwayReference());
 	}
-	
+
 	public static String getGameTipAndPoints(Game game) {
 		String tip = "-";
 		User user = AppUtils.getConnectedUser();
@@ -99,7 +99,7 @@ public class ViewUtils extends JavaExtensions{
 			}
 		}
 
-		return tip;		
+		return tip;
 	}
 
 	public static String getHomeScoreTip(Game game) {
@@ -267,11 +267,11 @@ public class ViewUtils extends JavaExtensions{
     	}
     	return "-";
     }
-    
+
     public static String getGameTipAndPoints(GameTip gameTip) {
     	String tip = "-";
     	Date date = new Date();
-    	
+
     	final User user = AppUtils.getConnectedUser();
     	if (gameTip != null) {
         	Game game = gameTip.getGame();
@@ -292,7 +292,7 @@ public class ViewUtils extends JavaExtensions{
     		}
     	}
 
-    	return tip;   	
+    	return tip;
     }
 
     public static long getExtraTip(Extra extra) {
@@ -336,8 +336,25 @@ public class ViewUtils extends JavaExtensions{
 
     	return "";
     }
-    
-    public static String htmlUnescape (String html) {
+
+    public static String htmlUnescape(String html) {
     	return StringEscapeUtils.unescapeHtml(html);
+    }
+
+    public static String getPlaceTrend(User user) {
+    	int currentPlace = user.getPlace();
+    	int previousPlace = user.getPreviousPlace();
+
+    	if (previousPlace > 0) {
+    		if (currentPlace < previousPlace) {
+    			return "<i class=\"icon-arrow-up\"></i>";
+    		} else if (currentPlace > previousPlace) {
+    			return "<i class=\"icon-arrow-down\"></i>";
+    		} else {
+    			return "<i class=\"icon-minus\"></i>";
+    		}
+    	}
+
+    	return "";
     }
 }

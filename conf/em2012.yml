@@ -1,18 +1,22 @@
 models.Bracket(a):
     name:          GroupA
     number:        1
+    overridePlaces: false
 
 models.Bracket(b):
     name:          GroupB
     number:        2
+    overridePlaces: false
 
 models.Bracket(c):
     name:          GroupC
     number:        3
+    overridePlaces: false
 
 models.Bracket(d):
     name:          GroupD
     number:        4
+    overridePlaces: false
 
 models.Team(polen):
     name:          Poland

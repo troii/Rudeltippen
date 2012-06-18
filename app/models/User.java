@@ -14,36 +14,36 @@ import javax.persistence.Table;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="rudeltippen_users")
-public class User extends Model{
-	@Column(nullable=false)
+@Table(name = "rudeltippen_users")
+public class User extends Model {
+	@Column(nullable = false)
 	private String username;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String userpass;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String nickname;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String salt;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date registered;
 
 	@Lob
 	private String picture;
 
 	@Lob
-    private String pictureLarge;
+	private String pictureLarge;
 
-	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<GameTip> gameTips;
 
-	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ExtraTip> extraTips;
 
-	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Confirmation> confirmations;
 
 	private Date lastLogin;
@@ -55,6 +55,7 @@ public class User extends Model{
 	private int extraPoints;
 	private int points;
 	private int place;
+	private int previousPlace;
 	private int correctResults;
 	private int correctDifferences;
 	private int correctTrends;
@@ -196,8 +197,9 @@ public class User extends Model{
 		this.extraPoints = extraPoints;
 	}
 
-    public static User connect(String username, String userpass) {
-	    return find("byUsernameAndUserpassAndActive", username, userpass, true).first();
+	public static User connect(String username, String userpass) {
+		return find("byUsernameAndUserpassAndActive", username, userpass, true)
+				.first();
 	}
 
 	public int getPlace() {
@@ -225,26 +227,34 @@ public class User extends Model{
 	}
 
 	public int getCorrectDifferences() {
-                return correctDifferences;
-        }
+		return correctDifferences;
+	}
 
-        public void setCorrectDifferences(int correctDifferences) {
-                this.correctDifferences = correctDifferences;
-        }
+	public void setCorrectDifferences(int correctDifferences) {
+		this.correctDifferences = correctDifferences;
+	}
 
 	public int getCorrectTrends() {
-                return correctTrends;
-        }
+		return correctTrends;
+	}
 
-        public void setCorrectTrends(int correctTrends) {
-                this.correctTrends = correctTrends;
-        }
+	public void setCorrectTrends(int correctTrends) {
+		this.correctTrends = correctTrends;
+	}
 
-        public int getCorrectExtraTips() {
-                return correctExtraTips;
-        }
+	public int getCorrectExtraTips() {
+		return correctExtraTips;
+	}
 
-        public void setCorrectExtraTips(int correctExtraTips) {
-                this.correctExtraTips = correctExtraTips;
-        }
+	public void setCorrectExtraTips(int correctExtraTips) {
+		this.correctExtraTips = correctExtraTips;
+	}
+
+	public int getPreviousPlace() {
+		return previousPlace;
+	}
+
+	public void setPreviousPlace(int previousPlace) {
+		this.previousPlace = previousPlace;
+	}
 }

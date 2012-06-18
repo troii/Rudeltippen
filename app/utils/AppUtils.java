@@ -47,7 +47,7 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Hashes a given password with given salt using 1000000 rounds
-	 * 
+	 *
 	 * @param userpass The password
 	 * @param usersalt The salt
 	 * @return SHA1 hashed string
@@ -64,7 +64,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Checks if at least one extra tip in given list is tipable
-     * 
+     *
      * @param extras List of extra tips
      * @return true if at least one extra tip is tipable, false otherwise
      */
@@ -80,7 +80,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Sets the default application language defined in application.conf
-     * 
+     *
      * Default: en
      */
 	public static void setAppLanguage() {
@@ -108,7 +108,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Generates a random string using RandomStringUtils.randomAlphanumeric
-     * 
+     *
      * @param length The length of the password, max. 30 letters
      * @return String with given length
      */
@@ -122,7 +122,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Checks if the current application matches the defined job instance name
-     * 
+     *
      * @return true if current instance is job instance, false otherwise
      */
     public static boolean isJobInstance() {
@@ -137,7 +137,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Flushes the database, loads the test data and creates 100 users
-     * 
+     *
      * For TESTING purposes only!
      */
 	public static void initApp() {
@@ -314,6 +314,7 @@ public class AppUtils implements AppConstants{
 		int i = 1;
 		List<User> users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
         for (User user : users) {
+        	user.setPreviousPlace(user.getPlace());
             user.setPlace(i);
             user._save();
             i++;
@@ -338,7 +339,7 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Sets the score for a game
-	 * 
+	 *
 	 * @param gameId The id of the game
 	 * @param homeScore The goals of the home team
 	 * @param awayScore The goals of the away team
@@ -346,7 +347,7 @@ public class AppUtils implements AppConstants{
 	 * @param homeScoreExtratime The goals of the home team in extratime
 	 * @param awayScoreExtratime The goals of the away team in extratime
 	 */
-	
+
     public static void setGameScore(String gameId, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
         if (!ValidationUtils.isValidScore(homeScore, awayScore)) {
             return;
@@ -361,19 +362,19 @@ public class AppUtils implements AppConstants{
         if (!game.isEnded()) {
         	notify = true;
         }
-        
+
         saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
-        
+
         if (notify) {
             String notification = getNotificationMessage(game);
             TwitterService.updateStatus(notification);
-            MailService.notifications(notification);	
+            MailService.notifications(notification);
         }
     }
 
     /**
      * Generates a notifcation message for a given game
-     * 
+     *
      * @param game The game
      * @return The message
      */
@@ -396,13 +397,13 @@ public class AppUtils implements AppConstants{
         	buffer.append(game.getAwayScore());
         }
         buffer.append(" - " + Messages.get(game.getPlayday().getName()));
-        
+
 		return buffer.toString();
 	}
 
 	/**
 	 * Checks if in current instance twitter configuration is enabled
-	 * 
+	 *
 	 * @return true if enabled, false otherwise
 	 */
     public static boolean isTweetable() {
@@ -416,7 +417,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Checks if all games in given list have ended
-     * 
+     *
      * @param games The games to check
      * @return true if all games have ended, false otherweise
      */
@@ -436,12 +437,12 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Loads a team from the database from a reference string
-	 * 
+	 *
 	 * e.g.:
 	 * B-1-1  = Gets team from bracket 1 at place 1
-	 * G-12-W = Gets the winner team from game 12 
-	 * G-12-L = Gets the looser team from game 12 
-	 * 
+	 * G-12-W = Gets the winner team from game 12
+	 * G-12-L = Gets the looser team from game 12
+	 *
 	 * @param reference A string reference
 	 * @return The team object
 	 */
@@ -477,7 +478,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Returns the points for a given score and a given tip
-     * 
+     *
      * @param homeScore The score of the home team
      * @param awayScore The score of the away team
      * @param homeScoreTipp The tip for the score of the home team
@@ -500,7 +501,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Return the points for a trend if getTipPoints doenst find a previous match
-     * 
+     *
      * @param homeScore The score of the home team
      * @param awayScore The score of the away team
      * @param homeScoreTipp The tip for the score of the home team
@@ -521,7 +522,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Saves a score to the database
-     * 
+     *
      * @param game The game object
      * @param homeScore The score of the home team
      * @param awayScore The score of the away team
@@ -551,7 +552,7 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Calculates the points for the home and away team based on the score
-	 * 
+	 *
 	 * @param homeScore The score of the home team
 	 * @param awayScore The score of the away team
 	 * @return Array containing the points for the home team [0] and the away team [1]
@@ -576,7 +577,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Saves a tip for the currently connected user to the database
-     * 
+     *
      * @param game The game object
      * @param homeScore The score of the home team
      * @param awayScore The score of the away team
@@ -600,7 +601,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Gathers the tips for a given playday for a given list of users
-     * 
+     *
      * @param playday The playday object
      * @param users List of users
      * @return All tips for the users and the playday
@@ -627,7 +628,7 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Gathers all extra tips for a given list of extra tips and a given user list
-	 * 
+	 *
 	 * @param users The list of user
 	 * @param extras The list of extra tips
 	 * @return All extra tips for the given users
@@ -666,7 +667,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Gets all available timezones 
+	 * Gets all available timezones
 	 * @return List of timezones
 	 */
 	public static List<String> getTimezones() {
@@ -687,7 +688,7 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Parses a game from OpenLigaDB stores it in the database
-	 * 
+	 *
 	 * @param game The game object to store
 	 * @param wsResults WSResults object containing the data from the webservice
 	 */
@@ -724,7 +725,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Checks if application uses the authenticity token
-     * 
+     *
      * @return true if check.authenticity is set in application.conf, false otherwise
      */
     public static boolean verifyAuthenticity() {
@@ -751,7 +752,7 @@ public class AppUtils implements AppConstants{
 
     /**
      * Returns the full localized path to a mail template
-     * 
+     *
      * @param name The name of the template
      * @return The full template name e.g. /services/MailServer/de/reminder.txt
      */
