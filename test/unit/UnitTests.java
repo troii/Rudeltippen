@@ -106,17 +106,17 @@ public class UnitTests extends UnitTest {
     	int pointsDiff = setting.getPointsTipDiff();
     	int pointsTrend = setting.getPointsTipTrend();
 
-    	assertEquals(AppUtils.getTippPoints(1, 0, 1, 0), pointsTipp);
-    	assertEquals(AppUtils.getTippPoints(0, 1, 0, 1), pointsTipp);
-    	assertEquals(AppUtils.getTippPoints(1, 1, 1, 1), pointsTipp);
-    	assertEquals(AppUtils.getTippPoints(2, 0, 5, 3), pointsDiff);
-    	assertEquals(AppUtils.getTippPoints(0, 2, 3, 5), pointsDiff);
-    	assertEquals(AppUtils.getTippPoints(2, 2, 1, 1), pointsDiff);
-    	assertEquals(AppUtils.getTippPoints(1, 0, 4, 0), pointsTrend);
-    	assertEquals(AppUtils.getTippPoints(0, 1, 0, 4), pointsTrend);
-    	assertEquals(AppUtils.getTippPointsTrend(1, 0, 3, 0), pointsTrend);
-    	assertEquals(AppUtils.getTippPointsTrend(4, 5, 3, 7), pointsTrend);
-    	assertEquals(AppUtils.getTippPointsTrend(1, 2, 2, 1), 0);
+    	assertEquals(AppUtils.getTipPoints(1, 0, 1, 0), pointsTipp);
+    	assertEquals(AppUtils.getTipPoints(0, 1, 0, 1), pointsTipp);
+    	assertEquals(AppUtils.getTipPoints(1, 1, 1, 1), pointsTipp);
+    	assertEquals(AppUtils.getTipPoints(2, 0, 5, 3), pointsDiff);
+    	assertEquals(AppUtils.getTipPoints(0, 2, 3, 5), pointsDiff);
+    	assertEquals(AppUtils.getTipPoints(2, 2, 1, 1), pointsDiff);
+    	assertEquals(AppUtils.getTipPoints(1, 0, 4, 0), pointsTrend);
+    	assertEquals(AppUtils.getTipPoints(0, 1, 0, 4), pointsTrend);
+    	assertEquals(AppUtils.getTipPointsTrend(1, 0, 3, 0), pointsTrend);
+    	assertEquals(AppUtils.getTipPointsTrend(4, 5, 3, 7), pointsTrend);
+    	assertEquals(AppUtils.getTipPointsTrend(1, 2, 2, 1), 0);
     }
 
     @Test
@@ -204,6 +204,11 @@ public class UnitTests extends UnitTest {
     	Settings settings = AppUtils.getSettings();
         long maxSize = settings.getMaxPictureSize();
 
+        
+        assertTrue(ValidationUtils.isValidNickname("ahf_bA-SS747"));
+        assertFalse(ValidationUtils.isValidNickname("ahf_bA-SS 747"));
+        assertFalse(ValidationUtils.isValidNickname("ahf_bA-SS/747"));
+        
         assertTrue(ValidationUtils.checkFileLength(maxSize));
         assertFalse(ValidationUtils.checkFileLength(maxSize + 1));
     	assertTrue(ValidationUtils.usernameExists("user1@rudeltippen.de"));
