@@ -201,6 +201,8 @@ Upgrading
 Step 0
 ------------------
 
+Please check the release notes (if available) before updating!
+
 Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf file and /conf/custom folder.
 
 Step 1
@@ -310,7 +312,7 @@ You need to restart Rudeltippen in order for the changes to take place.
 
 Log4j
 ------------------
-If you want log4j Support for your Application you find and empty log4j configuration file in INSTLLATIONFOLDER/conf/custom. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
+If you want log4j Support for your Application you find an empty log4j configuration file in INSTLLATIONFOLDER/conf/custom. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
 
 ```bash
 #%prod.application.log.path=/custom/log4j.prod.xml
@@ -318,11 +320,11 @@ If you want log4j Support for your Application you find and empty log4j configur
 
 You need to restart Rudeltippen in order for the changes to take place.
 
-Load Balancer
+Load balancer
 ------------------
 
-As mentioned [here][9] you can use a load balancer with multiple Rudeltippen applications. After you have set up your Front-End HTTP Server for this purpose you need to set a different port for each Rudeltippen Application and set thos ports in your Front-End HTTP Server configuration. 
-The Jobs Rudeltippen executes do not know about how many instances you run and will by default run in each instance. To avoid this, you can set the name of the application- and the job-instance. Rudeltippen will only execute Jobs in the instance where appname and jobinstance name match.
+As mentioned [in the Play documentation][9] you can use a load balancer with multiple Rudeltippen applications. You need to set a different port for each Rudeltippen application and set these ports in your Front-End HTTP Server configuration. 
+The jobs Rudeltippen executes do not know about how many instances you run and will by default run in each instance. To avoid this, you can set the name of the application- and the job-instance. Rudeltippen will only execute Jobs in an instance where the name of the appname and jobinstance matches.
 
 ```bash
 application.name=rudeltippen
