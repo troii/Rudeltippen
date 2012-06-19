@@ -230,6 +230,8 @@ public class AppUtils implements AppConstants{
             team._save();
         }
 
+        setTeamPlaces();
+
         List<Extra> extras = Extra.findAll();
         for (Extra extra : extras) {
             if (extra.getAnswer() == null) {
@@ -310,7 +312,7 @@ public class AppUtils implements AppConstants{
         }
 
         setUserPlaces();
-        setPlayoffGames(settings);
+        setPlayoffTeams(settings);
     }
 
 	private static void setUserPlaces() {
@@ -324,7 +326,7 @@ public class AppUtils implements AppConstants{
         }
 	}
 
-	private static void setPlayoffGames(final Settings settings) {
+	public static void setPlayoffTeams(final Settings settings) {
 		if (settings.isPlayoffs()) {
             List<Game> prePlayoffGames = Game.find("byPlayoffAndEnded", false, true).fetch();
             if (prePlayoffGames.size() == settings.getPrePlayoffGames()) {
@@ -340,18 +342,63 @@ public class AppUtils implements AppConstants{
 		}
 	}
 
-	/**
-	 * Sets the score for a game
-	 *
-	 * @param gameId The id of the game
-	 * @param homeScore The goals of the home team
-	 * @param awayScore The goals of the away team
-	 * @param extratime The name of the extratime
-	 * @param homeScoreExtratime The goals of the home team in extratime
-	 * @param awayScoreExtratime The goals of the away team in extratime
-	 */
+	private static void setTeamPlaces() {
+    	List<Bracket> brackets = Bracket.find("byOverridePlaces", false).fetch();
+    	for (Bracket bracket : brackets) {
+    		List<Team> teams = Team.find("SELECT t FROM Team t WHERE bracket_id = ? ORDER BY points DESC, goalsDiff DESC, goalsFor DESC", bracket.getId()).fetch();
+    		int place = 1;
+    		for (Team team : teams) {
+    			team.setPlace(place);
+    			team._save();
+    			place++;
+    		}
+    	}
 
-    public static void setGameScore(String gameId, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
+    	for (Bracket bracket : brackets) {
+    		List<Game> games = new ArrayList<Game>();
+    		List<Team> teams = Team.find("SELECT t FROM Team t WHERE bracket_id = ? ORDER BY points DESC", bracket.getId()).fetch();
+    		for (Team team : teams) {
+    			Team aTeam = Team.find("SELECT t FROM Team t WHERE id != ? AND points = ? AND bracket_id = ?", team.getId(), team.getPoints(), bracket.getId()).first();
+    			if (aTeam != null) {
+        			Game game = Game.find("SELECT g FROM Game g WHERE homeTeam_id = ? AND awayTeam_id = ? AND playoff = ?", team.getId(), aTeam.getId(), false).first();
+    				if (game != null) {
+    					games.add(game);
+    				}
+        			game = Game.find("SELECT g FROM Game g WHERE homeTeam_id = ? AND awayTeam_id = ? AND playoff = ?", aTeam.getId(), team.getId(), false).first();
+    				if (game != null) {
+    					games.add(game);
+    				}
+    			}
+    		}
+
+    		for (Game game : games) {
+				if (game != null) {
+					Team homeTeam = game.getHomeTeam();
+					Team awayTeam = game.getAwayTeam();
+    				Team winner = game.getWinner();
+    				if (winner != null) {
+    					if (winner.equals(homeTeam) && homeTeam.getPlace() > awayTeam.getPlace()) {
+    						int homeTeamPlace = homeTeam.getPlace();
+    						int awayTeamPlace = awayTeam.getPlace();
+    						homeTeam.setPlace(awayTeamPlace);
+    						homeTeam._save();
+    						awayTeam.setPlace(homeTeamPlace);
+    						awayTeam._save();
+    					} else if (winner.equals(awayTeam) && awayTeam.getPlace() > homeTeam.getPlace()) {
+    						int homeTeamPlace = homeTeam.getPlace();
+    						int awayTeamPlace = awayTeam.getPlace();
+    						homeTeam.setPlace(awayTeamPlace);
+    						homeTeam._save();
+    						awayTeam.setPlace(homeTeamPlace);
+    						awayTeam._save();
+    					}
+    				}
+				}
+    		}
+    	}
+	}
+
+	public static void setGameScore(String gameId, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
         if (!ValidationUtils.isValidScore(homeScore, awayScore)) {
             return;
         }

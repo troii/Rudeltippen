@@ -113,7 +113,7 @@ public class ValidationUtils implements AppConstants{
         final Matcher m = p.matcher(nickname);
         return m.matches();  	
     }
-    
+
     public static Validation getSettingsValidations(
     			Validation validation,
     			String name,
@@ -131,7 +131,7 @@ public class ValidationUtils implements AppConstants{
 				boolean countFinalResult,
 				boolean informOnNewTipper,
 				boolean enableRegistration) {
-    	
+
 		validation.required(name);
 		validation.required(timeZoneString);
 		validation.required(dateString);
@@ -143,7 +143,7 @@ public class ValidationUtils implements AppConstants{
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
-    	
+
     	return validation;
     }
 }
