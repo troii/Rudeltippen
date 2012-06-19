@@ -12,7 +12,6 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 
 import play.data.validation.Validation;
-import play.i18n.Messages;
 import play.libs.Crypto;
 
 public class ValidationUtils implements AppConstants{
