@@ -6,3 +6,6 @@ move them to /conf/custom and change your application.conf accordingly.
 
 This has the advantage that you can backup your application.conf and the complete /custom folder before installation a new version. 
 After installing the new version you can simple paste backup of application.conf and your /custom folder back to /conf.
+
+Also the sorting of the users has been changed. The users are now sorted after points, correct results, correct differences, correct trends and
+correct extra tips.
