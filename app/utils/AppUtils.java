@@ -314,7 +314,10 @@ public class AppUtils implements AppConstants{
         setUserPlaces();
         setPlayoffTeams(settings);
     }
-
+	
+	/**
+	 * Sets the places of the user
+	 */
 	private static void setUserPlaces() {
 		int i = 1;
 		List<User> users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
@@ -326,6 +329,10 @@ public class AppUtils implements AppConstants{
         }
 	}
 
+	/**
+	 * Sets the teams to the playoffs games
+	 * @param settings Settings object
+	 */
 	public static void setPlayoffTeams(final Settings settings) {
 		if (settings.isPlayoffs()) {
             List<Game> prePlayoffGames = Game.find("byPlayoffAndEnded", false, true).fetch();
@@ -342,6 +349,9 @@ public class AppUtils implements AppConstants{
 		}
 	}
 
+	/**
+	 * Sets the places of the teams in all brackets
+	 */
 	private static void setTeamPlaces() {
     	List<Bracket> brackets = Bracket.find("byOverridePlaces", false).fetch();
     	for (Bracket bracket : brackets) {
@@ -398,6 +408,16 @@ public class AppUtils implements AppConstants{
     	}
 	}
 
+	/**
+	 * Sets the score of a game
+	 * 
+	 * @param gameId The game id
+	 * @param homeScore The score of the home team
+	 * @param awayScore The score of the away team
+	 * @param extratime The type of extratime if the game has extratime
+	 * @param homeScoreExtratime The score of the home time in extratime
+	 * @param awayScoreExtratime The score of the away time in extratime
+	 */
 	public static void setGameScore(String gameId, String homeScore, String awayScore, String extratime, String homeScoreExtratime, String awayScoreExtratime) {
         if (!ValidationUtils.isValidScore(homeScore, awayScore)) {
             return;
