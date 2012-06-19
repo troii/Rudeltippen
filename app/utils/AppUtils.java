@@ -46,7 +46,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Hashes a given password with given salt using 1000000 rounds
+	 * Hashes a given clear-text password with a given salt using 100000 rounds
 	 *
 	 * @param userpass The password
 	 * @param usersalt The salt
@@ -244,8 +244,8 @@ public class AppUtils implements AppConstants{
         }
 
         List<User> users = User.findAll();
+        List<Game> allGames = Game.find("SELECT g FROM Game g WHERE ended = ?", true).fetch();
         for (User user : users) {
-            List<Game> allGames = Game.find("SELECT g FROM Game g WHERE ended = ?", true).fetch();
             int points = 0;
             int correctResults = 0;
             int correctDifferences = 0;
@@ -270,6 +270,7 @@ public class AppUtils implements AppConstants{
                 }
                 gameTip.setPoints(pointsForTipp);
                 gameTip._save();
+                
                 if (pointsForTipp == settings.getPointsTip()) {
                     correctResults++;
                 } else if (pointsForTipp == settings.getPointsTipDiff()) {
@@ -277,6 +278,7 @@ public class AppUtils implements AppConstants{
                 } else if (pointsForTipp == settings.getPointsTipTrend()) {
                     correctTrends++;
                 }
+                
                 points = points + pointsForTipp;
 
             }
@@ -300,6 +302,7 @@ public class AppUtils implements AppConstants{
                     }
                 }
             }
+            
             user.setExtraPoints(bonusPoints);
             user.setPoints(points + bonusPoints);
             user.setCorrectExtraTips(correctExtraTips);
