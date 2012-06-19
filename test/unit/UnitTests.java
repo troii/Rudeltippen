@@ -267,8 +267,8 @@ public class UnitTests extends UnitTest {
         assertTrue(wsResult.containsKey("90"));
         assertTrue(wsResult.containsKey("120"));
         assertTrue(wsResult.containsKey("121"));
-        assertEquals(wsResult.get("90").getHomeScore(), "5");
-        assertEquals(wsResult.get("90").getAwayScore(), "4");
+        assertEquals(wsResult.get("90").getHomeScore(), "0");
+        assertEquals(wsResult.get("90").getAwayScore(), "0");
         assertEquals(wsResult.get("120").getHomeScore(), "0");
         assertEquals(wsResult.get("120").getAwayScore(), "0");
         assertEquals(wsResult.get("121").getHomeScore(), "3");
