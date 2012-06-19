@@ -17,8 +17,8 @@
 					<td class="visible-desktop">${game.kickoff.formatted()}</td>
 					<td class="visible-desktop">${game.tippEnding.difference()}</td>
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-						<td><img class="flag" src="@{'/public/images/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
-						<td><img class="flag" src="@{'/public/images/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
+						<td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
+						<td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
 					#{/if}
 					#{else}
 						<td>${game.homeReferenceName()}</td>

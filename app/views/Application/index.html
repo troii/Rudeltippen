@@ -50,8 +50,8 @@
                 #{list items:previousGames, as:'previousGame'}
                     <tr>
                         <td class="hidden-phone">${previousGame.kickoff.formatted()}</td>
-                        <td><img class="flag" src="@{'/public/images/flags'}/${previousGame.homeTeam?.flag}">&{previousGame.homeTeam?.name}</td>
-                        <td><img class="flag" src="@{'/public/images/flags'}/${previousGame.awayTeam?.flag}">&{previousGame.awayTeam?.name}</td>
+                        <td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${previousGame.homeTeam?.flag}">&{previousGame.homeTeam?.name}</td>
+                        <td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${previousGame.awayTeam?.flag}">&{previousGame.awayTeam?.name}</td>
                         #{if previousGame.overtime}
                             <td>${previousGame.homeScoreOT} : ${previousGame.awayScoreOT} (&{previousGame.overtimeType})</td>
                         #{/if}
@@ -93,8 +93,8 @@
 					#{list items:nextGames, as:'nextGame'}
 						<tr>
 							<td class="hidden-phone">${nextGame.kickoff.formatted()}</td>
-							<td><img class="flag" src="@{'/public/images/flags'}/${nextGame.homeTeam?.flag}">&{nextGame.homeTeam?.name}</td>
-							<td><img class="flag" src="@{'/public/images/flags'}/${nextGame.awayTeam?.flag}">&{nextGame.awayTeam?.name}</td>
+							<td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${nextGame.homeTeam?.flag}">&{nextGame.homeTeam?.name}</td>
+							<td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${nextGame.awayTeam?.flag}">&{nextGame.awayTeam?.name}</td>
 							<td>${nextGame.getGameTipAndPoints()}</td>
 							<td class="visible-desktop">${nextGame.getTrend()}</td>
 						</tr>
