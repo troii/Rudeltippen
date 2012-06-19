@@ -157,10 +157,10 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. To solve this, download and install [PsExec from the PsTools][10] and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. To solve this, run the following VB-Script
 
 ```bash
-/path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/rudeltippen
+rudeltippen.vbs /start
 ```
 
 Step 5
@@ -192,7 +192,7 @@ shutdown.sh
 OR
 
 ```bash
-shutdown.bat
+rudeltippen.vbs /stop
 ```
 
 Upgrading
@@ -222,7 +222,7 @@ shutdown.sh
 OR
 
 ```bash
-shutdown.bat
+rudeltippen.vbs /stop
 ```
 
 Step 3
@@ -258,10 +258,10 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. Do solve this issue, download and install [PsExec from the PsTools][10] and start Rudeltippen with
+If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. To solve this, run the following VB-Script
 
 ```bash
-/path/to/psexec/psexec.exe /path/to/play/play.bat start /path/to/INSTLLATIONFOLDER
+rudeltippen.vbs /start
 ```
 
 Step 7
@@ -323,7 +323,7 @@ You need to restart Rudeltippen in order for the changes to take place.
 Load balancer
 ------------------
 
-As mentioned [in the Play documentation][9] you can use a load balancer with multiple Rudeltippen applications. You need to set a different port for each Rudeltippen application and set these ports in your Front-End HTTP Server configuration. 
+As mentioned [in the Play documentation][9] you can use a load balancer with multiple Rudeltippen applications. You need to set a different port for each Rudeltippen application and set these ports in your Front-End HTTP Server configuration.
 The jobs Rudeltippen executes do not know about how many instances you run and will by default run in each instance. To avoid this, you can set the name of the application- and the job-instance. Rudeltippen will only execute Jobs in an instance where the name of the appname and jobinstance matches.
 
 ```bash
@@ -360,7 +360,6 @@ Stuff
 [7]: http://twitter.github.com/bootstrap/
 [8]: http://twitter.com/rudeltippen
 [9]: http://www.playframework.org/documentation/1.2.4/production
-[10]: http://technet.microsoft.com/de-de/sysinternals/bb897553.aspx
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
 [12]: http://mail.google.com/
 [13]: https://picasaweb.google.com/108885060281225128504/Rudeltippen
