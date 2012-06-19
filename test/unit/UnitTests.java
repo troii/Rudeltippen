@@ -197,6 +197,27 @@ public class UnitTests extends UnitTest {
 
     	assertTrue(AppUtils.getTimezones().size() > 0);
     	assertTrue(AppUtils.getLanguages().size() > 0);
+    	
+    	User user = new User();
+    	user.setPlace(1);
+    	user.setPreviousPlace(0);
+    	
+    	assertEquals("", ViewUtils.getPlaceTrend(user));
+    	
+    	user.setPlace(2);
+    	user.setPreviousPlace(1);
+    
+    	assertEquals("<i class=\"icon-arrow-down\"></i>", ViewUtils.getPlaceTrend(user));
+    	
+    	user.setPlace(1);
+    	user.setPreviousPlace(2);
+    	
+    	assertEquals("<i class=\"icon-arrow-up\"></i>", ViewUtils.getPlaceTrend(user));
+    	
+    	user.setPreviousPlace(1);
+    	
+    	assertEquals("<i class=\"icon-minus\"></i>", ViewUtils.getPlaceTrend(user));
+    
     }
 
     @Test
