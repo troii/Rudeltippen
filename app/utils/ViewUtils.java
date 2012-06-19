@@ -347,11 +347,11 @@ public class ViewUtils extends JavaExtensions{
 
     	if (previousPlace > 0) {
     		if (currentPlace < previousPlace) {
-    			return "<i class=\"icon-arrow-up\"></i>";
+    			return "<i class=\"icon-arrow-up\"></i>" + " (" + previousPlace + ")";
     		} else if (currentPlace > previousPlace) {
-    			return "<i class=\"icon-arrow-down\"></i>";
+    			return "<i class=\"icon-arrow-down\"></i>" + " (" + previousPlace + ")";
     		} else {
-    			return "<i class=\"icon-minus\"></i>";
+    			return "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
     		}
     	}
 
