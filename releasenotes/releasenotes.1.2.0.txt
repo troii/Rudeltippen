@@ -9,3 +9,6 @@ After installing the new version you can simple paste backup of application.conf
 
 Also the sorting of the users has been changed. The users are now sorted after points, correct results, correct differences, correct trends and
 correct extra tips.
+
+If you are on Windows I have good news for you. I found a way to start and stop Rudeltippen without psexec.exe from PSTools. 
+Just run "rudeltippen.vbs /start" to start Rudeltippen or "rudeltippen.vbs /stop" to stop Rudeltippen.
