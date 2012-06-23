@@ -22,7 +22,7 @@ public class TwitterJob extends Job{
 	            int count = 1;
 	            StringBuilder buffer = new StringBuilder();
 
-	            final List<User> users = User.find("ORDER BY points DESC").fetch(3);
+	            final List<User> users = User.find("ORDER BY place ASC").fetch(3);
 	            for (User user : users) {
 	                if (count < 3) {
 	                    buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
