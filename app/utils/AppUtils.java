@@ -262,17 +262,13 @@ public class AppUtils implements AppConstants{
 
                 int pointsForTipp = 0;
                 if (game.isOvertime()) {
-                    if (settings.isCountFinalResult()) {
-                        pointsForTipp = AppUtils.getTipPoints(Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
-                    } else {
-                        pointsForTipp = AppUtils.getTipPointsTrend(Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
-                    }
+                	pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
                 } else {
-                    pointsForTipp = AppUtils.getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
+                    pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
                 }
                 gameTip.setPoints(pointsForTipp);
                 gameTip._save();
-                
+
                 if (pointsForTipp == settings.getPointsTip()) {
                     correctResults++;
                 } else if (pointsForTipp == settings.getPointsTipDiff()) {
@@ -280,7 +276,7 @@ public class AppUtils implements AppConstants{
                 } else if (pointsForTipp == settings.getPointsTipTrend()) {
                     correctTrends++;
                 }
-                
+
                 points = points + pointsForTipp;
 
             }
@@ -304,7 +300,7 @@ public class AppUtils implements AppConstants{
                     }
                 }
             }
-            
+
             user.setExtraPoints(bonusPoints);
             user.setPoints(points + bonusPoints);
             user.setCorrectExtraTips(correctExtraTips);
@@ -314,7 +310,7 @@ public class AppUtils implements AppConstants{
         setUserPlaces();
         setPlayoffTeams(settings);
     }
-	
+
 	/**
 	 * Sets the places of the user
 	 */
@@ -410,7 +406,7 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Sets the score of a game
-	 * 
+	 *
 	 * @param gameId The game id
 	 * @param homeScore The score of the home team
 	 * @param awayScore The score of the away team
@@ -588,6 +584,33 @@ public class AppUtils implements AppConstants{
         }
 
         return 0;
+    }
+
+    /**
+     * Return the points for a game in overtime
+     *
+     * @param homeScore The score of the home team
+     * @param awayScore The score of the away team
+     * @param homeScoreOT The score of the home team after overtime
+     * @param awayScoreOT The score of the away team after overtime
+     * @param homeScoreTipp The tip for the score of the home team
+     * @param awayScoreTipp The tip for the score of the away team
+     * @return
+     */
+    public static int getTipPointsOvertime(int homeScore, int awayScore, int homeScoreOT, int awayScoreOT, int homeScoreTipp, int awayScoreTipp) {
+    	final Settings settings = AppUtils.getSettings();
+
+    	if (settings.isCountFinalResult()) {
+    		return getTipPoints(homeScoreOT, awayScoreOT, homeScoreTipp, awayScoreTipp);
+    	} else {
+    		if (homeScore == awayScore && homeScore == homeScoreTipp && awayScore == awayScoreTipp) {
+    			return settings.getPointsTip();
+    		} else if (homeScore == awayScore && homeScoreTipp == awayScoreTipp) {
+    			return settings.getPointsTipDiff();
+    		} else {
+    			return getTipPointsTrend(homeScoreOT, awayScoreOT, homeScoreTipp, awayScoreTipp);
+    		}
+    	}
     }
 
     /**
