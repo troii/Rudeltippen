@@ -117,6 +117,25 @@ public class UnitTests extends UnitTest {
     	assertEquals(AppUtils.getTipPointsTrend(1, 0, 3, 0), pointsTrend);
     	assertEquals(AppUtils.getTipPointsTrend(4, 5, 3, 7), pointsTrend);
     	assertEquals(AppUtils.getTipPointsTrend(1, 2, 2, 1), 0);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 1), pointsTipp);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 0, 0), pointsDiff);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 0), pointsTrend);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 1), pointsTrend);
+    	
+    	setting.setCountFinalResult(true);
+    	setting._save();
+    	
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 1), 0);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 0, 0), 0);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 5, 4), pointsTipp);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 4, 5), pointsTipp);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 0), pointsDiff);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 1), pointsDiff);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 2, 0), pointsTrend);
+    	assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 2), pointsTrend);    	
+    	
+    	setting.setCountFinalResult(false);
+    	setting._save();
     }
 
     @Test
@@ -207,12 +226,12 @@ public class UnitTests extends UnitTest {
     	user.setPlace(2);
     	user.setPreviousPlace(1);
     
-    	assertEquals("<i class=\"icon-arrow-down\"></i> (1)", ViewUtils.getPlaceTrend(user));
+    	assertEquals("<i class=\"icon-arrow-down icon-red\"></i> (1)", ViewUtils.getPlaceTrend(user));
     	
     	user.setPlace(1);
     	user.setPreviousPlace(2);
     	
-    	assertEquals("<i class=\"icon-arrow-up\"></i> (2)", ViewUtils.getPlaceTrend(user));
+    	assertEquals("<i class=\"icon-arrow-up icon-green\"></i> (2)", ViewUtils.getPlaceTrend(user));
     	
     	user.setPreviousPlace(1);
     	
