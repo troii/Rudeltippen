@@ -35,6 +35,9 @@ public class Game extends Model{
 
 	@Column(nullable=false)
 	private Date kickoff;
+	
+	@Column(nullable=false)
+	private Date regularEnding;
 
 	@Column(nullable=false)
 	private int number;
@@ -220,6 +223,14 @@ public class Game extends Model{
 		this.awayScoreOT = awayScoreOT;
 	}
 
+	public Date getRegularEnding() {
+		return regularEnding;
+	}
+
+	public void setRegularEnding(Date regularEnding) {
+		this.regularEnding = regularEnding;
+	}
+	
 	public Team getWinner() {
 		String home, away;
 		if (this.overtime) {
