@@ -148,8 +148,11 @@ public class ViewUtils extends JavaExtensions{
 	}
 
 	public static String getTrend(Game game) {
+		if (game.getKickoff().before(new Date())) {
+			return Messages.get("model.game.notenoughtipps");
+		}
+		
 		final List<GameTip> gameTips = game.getGameTips();
-
 		if (gameTips == null || gameTips.size() < 4) {
 			return Messages.get("model.game.notenoughtipps");
 		}
