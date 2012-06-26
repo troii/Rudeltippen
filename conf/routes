@@ -5,6 +5,7 @@
 # Home page
 GET     /                                       Application.index
 
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
@@ -12,9 +13,9 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 GET     /robots.txt                             staticFile:public/robots.txt
 
-# Catch all
-GET     /{controller}		                    {controller}.index
+# App routes
 GET	    /auth/confirm/{token}			        auth.confirm
+GET		/tips									tips.index
 GET	    /tips/overview					        tips.overview
 GET	    /tips/extra					            tips.extra
 GET	    /tips/extras			            	tips.extras
@@ -22,6 +23,7 @@ GET	    /tips/{number}				            tips.index
 GET	    /tips/index/{number}				    tips.index
 GET	    /tips/games/{number}				    tips.games
 GET	    /tips/playday/{number}				    tips.playday
+GET		/overview								overview.index
 GET	    /overview/{number}/{page}				overview.index
 GET	    /overview/playday/{number}/{page}		overview.playday
 GET	    /overview/extra/{number}/{page}			overview.extra
@@ -31,5 +33,13 @@ GET	    /admin/changeadmin/{userid}				admin.changeadmin
 GET	    /admin/deleteuser/{userid}				admin.deleteuser
 GET	    /admin/results/{number}				    admin.results
 GET	    /users/show/{nickname}					users.show
+GET		/standings								standings.index
 GET	    /standings/{page}						standings.index
 *     	/{controller}/{action}                  {controller}.{action}
+
+# Messages extension
+GET     /@messages              				MessagesController.index
+POST    /@messages/update       				MessagesController.save
+POST    /@messages/apply        				MessagesController.applyChanges
+POST    /@messages/add          				MessagesController.addKey
+POST    /@messages/sources      				MessagesController.sources
