@@ -129,8 +129,11 @@
     <script src="@{'/public/javascripts/bootstrap-plugins.js'}"></script>
     <script src="@{'/public/javascripts/ie.js'}"></script>
     #{if request.action == "Application.index" }
-        #{i18n keys:['js.*'] /}
-    	<script src="@{'/public/javascripts/twitter.js'}"></script>
+    #{i18n keys:['js.*'] /}
+    <script src="@{'/public/javascripts/twitter.js'}"></script>
+    #{/if}
+    #{if request.action == "Admin.users" }
+    <script src="@{'/public/javascripts/datatables.js'}"></script>
     #{/if}
     <script src="@{'/public/javascripts/additional.js'}"></script>
   </body>

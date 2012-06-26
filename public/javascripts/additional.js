@@ -57,4 +57,15 @@ $(document).ready(function(){
 			window.scrollTo(0, 1);
 		}, 0);
 	});
+	if ($('.datatable').length != 0) {
+	    $('.datatable').dataTable( {
+	    	"bPaginate": false,
+	    	"bInfo": false,
+	    	"aaSorting": [[1,'asc']],
+	    	"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0,4,5,6 ] } ],
+	    	"oLanguage": {
+	            "sSearch": "<i class=\"icon-search\"></i>"
+	        }
+	    } );		
+	}
 });
