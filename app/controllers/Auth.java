@@ -98,8 +98,7 @@ public class Auth extends Controller implements AppConstants{
 
 	private static void doConfirmation(Confirmation confirmation, User user, ConfirmationType confirmationType) {
 		if ((ConfirmationType.ACTIVATION).equals(confirmationType)) {
-			user.setActive(true);
-			user._save();
+			activateAndSetAvatar(user);
 			Logger.info("User activated: " + user.getUsername());
 			flash.put("infomessage", Messages.get("controller.users.accountactivated"));
 			TwitterService.updateStatus(user.getNickname() + " " + Messages.get("controller.users.twitter"));
@@ -127,6 +126,20 @@ public class Auth extends Controller implements AppConstants{
 			flash.put("infomessage", Messages.get("controller.users.forgotuserpass"));
 		}
 		confirmation._delete();
+	}
+
+	private static void activateAndSetAvatar(User user) {
+		String avatar = AppUtils.getGravatarImage(user.getUsername(), "retro", 128);
+		String avatarSmall = AppUtils.getGravatarImage(user.getUsername(), "retro", 64);
+		if (StringUtils.isNotBlank(avatar)) {
+			user.setPictureLarge(avatar);
+		}
+		if (StringUtils.isNotBlank(avatarSmall)) {
+			user.setPicture(avatar);
+		}
+		
+		user.setActive(true);
+		user._save();
 	}
 
 	@Transactional(readOnly=true)

@@ -14,6 +14,7 @@ Features in a Nutshell
 - Automatic playing schedule updates
 - Fluid, themeable, responsive layout
 - Smartphone and tablet compatible
+- Gravatar support
 - Multilingual
 
 Requirements

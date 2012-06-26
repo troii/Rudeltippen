@@ -236,7 +236,12 @@ public class UnitTests extends UnitTest {
     	user.setPreviousPlace(1);
     	
     	assertEquals("<i class=\"icon-minus\"></i> (1)", ViewUtils.getPlaceTrend(user));
-    
+    	
+    	assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, 64));
+    	assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, 12));
+    	assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, 150));
+    	assertNotNull(AppUtils.getGravatarImage("bla@foobar5455fff.de", "mm", 64));
+    	assertNull(AppUtils.getGravatarImage("d@", null, 64));
     }
 
     @Test

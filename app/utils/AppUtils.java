@@ -2,6 +2,10 @@ package utils;
 
 import interfaces.AppConstants;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -31,6 +35,9 @@ import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.libs.Codec;
+import play.libs.Images;
+import play.libs.WS;
+import play.libs.WS.HttpResponse;
 import play.test.Fixtures;
 import services.MailService;
 import services.TwitterService;
@@ -856,5 +863,54 @@ public class AppUtils implements AppConstants{
     	}
 
     	return "services/MailService/" + lang + "/" + name;
+    }
+    
+    /**
+     * Returns a Base64 encoded Image from Gravatar if available
+     * 
+     * @param email The email adress to check
+     * @param d Return a default image if no email is available
+     * @return Base64 encoded Image, null if no image on gravatar exists
+     */
+    public static String getGravatarImage(String email, String d, int size) {
+    	String image = null;
+    	
+    	if (ValidationUtils.isValidEmail(email)) {
+        	HttpResponse response = null;
+        	String url = null;
+        	
+        	if (size <= 0 || size > 128) {
+        		size = 64;
+        	}
+        	
+        	if (StringUtils.isNotBlank(d)) {
+        		url = "https://secure.gravatar.com/avatar/" + Codec.hexMD5(email) + ".jpg?s=" + size + "&r=pg&d=" + d;
+        	} else {
+        		url = "https://secure.gravatar.com/avatar/" + Codec.hexMD5(email) + ".jpg?s=" + size + "&r=pg";
+        	}
+
+        	response = WS.url(url).get();
+        	if (response != null && response.success()) {
+        		try {
+        	    	File file = new File(Codec.UUID());
+                	InputStream inputStream = response.getStream();
+            		OutputStream out = new FileOutputStream(file);
+            		byte buf[] = new byte[1024];
+            		int len;
+            		while ((len = inputStream.read(buf)) > 0) {
+            			out.write(buf, 0, len);
+            		}
+            		out.close();
+            		inputStream.close();
+            		
+            		image = Images.toBase64(file);
+            		file.delete();
+        		} catch (Exception e) {
+        			Logger.error("Failed to get and convert Gravatar image for. " + e);
+        		}
+        	}
+    	}
+    	
+    	return image;
     }
 }
