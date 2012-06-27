@@ -37,6 +37,12 @@ GET		/standings								standings.index
 GET	    /standings/{page}						standings.index
 *     	/{controller}/{action}                  {controller}.{action}
 
+# API routes
+GET	    /api/user/{nickname}							api.user
+GET	    /api/playday/{number}							api.playday
+POST	/api/storetip/{gameid}/{homescore}/{awayscore}	api.storetip
+POST	/api/storeextratip/{extraid}/{teamid}			api.storetip
+
 # Messages extension
 GET     /@messages              				MessagesController.index
 POST    /@messages/update       				MessagesController.save

@@ -6,15 +6,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import models.Extra;
-import models.ExtraTip;
 import models.Game;
 import models.Playday;
 import models.Team;
-import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
-import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.With;
@@ -133,19 +130,7 @@ public class Tips extends Root {
 				Extra extra = Extra.findById(bonusTippId);
 				if (extra.isTipable()) {
 					Team team = Team.findById(teamId);
-					User user = AppUtils.getConnectedUser();
-					if (team != null) {
-						ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
-						if (extraTip == null) {
-							extraTip = new ExtraTip();
-						}
-
-						extraTip.setUser(user);
-						extraTip.setExtra(extra);
-						extraTip.setAnswer(team);
-						extraTip._save();
-						Logger.info("Stored extratip - " + user.getUsername() + " - " + extraTip);
-					}
+					AppUtils.placeExtraTip(extra, team);
 					flash.put("infomessage", Messages.get("controller.tipps.bonussaved"));
 					flash.keep();
 				}

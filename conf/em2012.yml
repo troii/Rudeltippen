@@ -249,6 +249,7 @@ models.Game(g1):
     homeTeam:      polen
     awayTeam:      griechenland
     kickoff:       2012-06-08 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       warschau
     playoff:       false
@@ -260,6 +261,7 @@ models.Game(g2):
     homeTeam:      russland
     awayTeam:      tschechien
     kickoff:       2012-06-08 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       breslau
     playoff:       false
@@ -271,6 +273,7 @@ models.Game(g3):
     homeTeam:      niederlande
     awayTeam:      danemark
     kickoff:       2012-06-09 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       charkiw
     playoff:       false
@@ -282,6 +285,7 @@ models.Game(g4):
     homeTeam:      deutschland
     awayTeam:      portugal
     kickoff:       2012-06-09 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       lemberg
     playoff:       false
@@ -293,6 +297,7 @@ models.Game(g5):
     homeTeam:      spanien
     awayTeam:      italien
     kickoff:       2012-06-10 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       danzig
     playoff:       false
@@ -304,6 +309,7 @@ models.Game(g6):
     homeTeam:      irland
     awayTeam:      kroatien
     kickoff:       2012-06-10 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       posen
     playoff:       false
@@ -315,6 +321,7 @@ models.Game(g7):
     homeTeam:      frankreich
     awayTeam:      england
     kickoff:       2012-06-11 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       donezk
     playoff:       false
@@ -326,6 +333,7 @@ models.Game(g8):
     homeTeam:      ukraine
     awayTeam:      schweden
     kickoff:       2012-06-11 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p1
     stadium:       kiew
     playoff:       false
@@ -337,6 +345,7 @@ models.Game(g9):
     homeTeam:      griechenland
     awayTeam:      tschechien
     kickoff:       2012-06-12 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       breslau
     playoff:       false
@@ -348,6 +357,7 @@ models.Game(g10):
     homeTeam:      polen
     awayTeam:      russland
     kickoff:       2012-06-12 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       warschau
     playoff:       false
@@ -359,6 +369,7 @@ models.Game(g11):
     homeTeam:      danemark
     awayTeam:      portugal
     kickoff:       2012-06-13 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       lemberg
     playoff:       false
@@ -370,6 +381,7 @@ models.Game(g12):
     homeTeam:      niederlande
     awayTeam:      deutschland
     kickoff:       2012-06-13 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       charkiw
     playoff:       false
@@ -381,6 +393,7 @@ models.Game(g13):
     homeTeam:      italien
     awayTeam:      kroatien
     kickoff:       2012-06-14 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       posen
     playoff:       false
@@ -392,6 +405,7 @@ models.Game(g14):
     homeTeam:      spanien
     awayTeam:      irland
     kickoff:       2012-06-14 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       danzig
     playoff:       false
@@ -403,6 +417,7 @@ models.Game(g15):
     homeTeam:      ukraine
     awayTeam:      frankreich
     kickoff:       2012-06-15 16:00:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       donezk
     playoff:       false
@@ -414,6 +429,7 @@ models.Game(g16):
     homeTeam:      schweden
     awayTeam:      england
     kickoff:       2012-06-15 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p2
     stadium:       kiew
     playoff:       false
@@ -425,6 +441,7 @@ models.Game(g17):
     homeTeam:      tschechien
     awayTeam:      polen
     kickoff:       2012-06-16 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       breslau
     playoff:       false
@@ -436,6 +453,7 @@ models.Game(g18):
     homeTeam:      griechenland
     awayTeam:      russland
     kickoff:       2012-06-16 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       warschau
     playoff:       false
@@ -447,6 +465,7 @@ models.Game(g19):
     homeTeam:      portugal
     awayTeam:      niederlande
     kickoff:       2012-06-17 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       charkiw
     playoff:       false
@@ -458,6 +477,7 @@ models.Game(g20):
     homeTeam:      danemark
     awayTeam:      deutschland
     kickoff:       2012-06-17 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       lemberg
     playoff:       false
@@ -469,6 +489,7 @@ models.Game(g21):
     homeTeam:      kroatien
     awayTeam:      spanien
     kickoff:       2012-06-18 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       danzig
     playoff:       false
@@ -480,6 +501,7 @@ models.Game(g22):
     homeTeam:      italien
     awayTeam:      irland
     kickoff:       2012-06-18 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       posen
     playoff:       false
@@ -491,6 +513,7 @@ models.Game(g23):
     homeTeam:      england
     awayTeam:      ukraine
     kickoff:       2012-06-19 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       donezk
     playoff:       false
@@ -502,6 +525,7 @@ models.Game(g24):
     homeTeam:      schweden
     awayTeam:      frankreich
     kickoff:       2012-06-19 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p3
     stadium:       kiew
     playoff:       false
@@ -511,6 +535,7 @@ models.Game(g24):
 models.Game(g25):
     number:    25
     kickoff:       2012-06-21 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p4
     stadium:       warschau
     homeReference: B-1-1
@@ -521,6 +546,7 @@ models.Game(g25):
 models.Game(g26):
     number:    26
     kickoff:       2012-06-22 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p4
     stadium:       danzig
     homeReference: B-2-1
@@ -531,6 +557,7 @@ models.Game(g26):
 models.Game(g27):
     number:    27
     kickoff:       2012-06-23 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p4
     stadium:       donezk
     homeReference: B-3-1
@@ -541,6 +568,7 @@ models.Game(g27):
 models.Game(g28):
     number:    28
     kickoff:       2012-06-23 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p4
     stadium:       kiew
     homeReference: B-4-1
@@ -551,6 +579,7 @@ models.Game(g28):
 models.Game(g29):
     number:    29
     kickoff:       2012-06-27 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p5
     stadium:       donezk
     homeReference: G-25-W
@@ -561,6 +590,7 @@ models.Game(g29):
 models.Game(g30):
     number:    30
     kickoff:       2012-06-28 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p5
     stadium:       warschau
     homeReference: G-26-W
@@ -571,6 +601,7 @@ models.Game(g30):
 models.Game(g31):
     number:    31
     kickoff:       2012-07-01 18:45:00
+    regularEnding: 2012-06-08 16:00:00
     playday:       p6
     stadium:       kiew
     homeReference: G-29-W

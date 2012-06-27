@@ -198,8 +198,7 @@ public class User extends Model {
 	}
 
 	public static User connect(String username, String userpass) {
-		return find("byUsernameAndUserpassAndActive", username, userpass, true)
-				.first();
+		return find("byUsernameAndUserpassAndActive", username, userpass, true).first();
 	}
 
 	public int getPlace() {
