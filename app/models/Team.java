@@ -45,6 +45,7 @@ public class Team extends Model{
 	private int gamesDraw;
 	private int gamesLost;
 	private int place;
+	private int previousPlace;
 
 	public String getName() {
 		return name;
@@ -156,6 +157,14 @@ public class Team extends Model{
 
 	public void setPlace(int place) {
 		this.place = place;
+	}
+
+	public int getPreviousPlace() {
+		return previousPlace;
+	}
+
+	public void setPreviousPlace(int previousPlace) {
+		this.previousPlace = previousPlace;
 	}
 	
 	public String nameUnescaped() {

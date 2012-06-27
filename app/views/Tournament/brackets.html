@@ -19,7 +19,7 @@
 	<tbody>
 		#{list items:bracket.teams, as:'team'}
 			<tr>
-				<td class="hidden-phone">${team_index}</td>
+				<td class="hidden-phone">${team_index} ${team.getPlaceTrend().raw()}</td>
 				#{if team.flag != null}
 					<td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${team.flag}"/>&{team.name}</td>
 				#{/if}

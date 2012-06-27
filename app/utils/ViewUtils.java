@@ -13,6 +13,7 @@ import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
+import models.Team;
 import models.User;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -347,6 +348,23 @@ public class ViewUtils extends JavaExtensions{
     public static String getPlaceTrend(User user) {
     	int currentPlace = user.getPlace();
     	int previousPlace = user.getPreviousPlace();
+
+    	if (previousPlace > 0) {
+    		if (currentPlace < previousPlace) {
+    			return "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
+    		} else if (currentPlace > previousPlace) {
+    			return "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
+    		} else {
+    			return "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
+    		}
+    	}
+
+    	return "";
+    }
+    
+    public static String getPlaceTrend(Team team) {
+    	int currentPlace = team.getPlace();
+    	int previousPlace = team.getPreviousPlace();
 
     	if (previousPlace > 0) {
     		if (currentPlace < previousPlace) {

@@ -20,6 +20,9 @@ import utils.AppUtils;
 public class Game extends Model{
 	@ManyToOne
 	private Playday playday;
+	
+	@ManyToOne
+	private Bracket bracket;
 
 	@ManyToOne
 	private Stadium stadium;
@@ -289,5 +292,13 @@ public class Game extends Model{
 		}
 
 		return false;
+	}
+
+	public Bracket getBracket() {
+		return bracket;
+	}
+
+	public void setBracket(Bracket bracket) {
+		this.bracket = bracket;
 	}
 }

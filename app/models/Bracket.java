@@ -20,10 +20,13 @@ public class Bracket extends Model{
 	@OrderBy("place ASC")
 	private List<Team> teams;
 
+	@OneToMany(mappedBy = "game")
+	private List<Game> games;
+	
 	@Column(nullable=false)
 	private int number;
 
-	private boolean overridePlaces;
+	private boolean override;
 
 	public String getName() {
 		return name;
@@ -49,12 +52,30 @@ public class Bracket extends Model{
 		this.number = number;
 	}
 
-	public boolean isOverridePlaces() {
-		return overridePlaces;
+	public boolean isOverride() {
+		return override;
 	}
 
-	public void setOverridePlaces(boolean overridePlaces) {
-		this.overridePlaces = overridePlaces;
+	public void setOverride(boolean override) {
+		this.override = override;
+	}
+	
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+	
+	public boolean allGamesEnded() {
+		for (Game game : games) {
+			if (!game.isEnded()) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	public Team getTeamByPlace(int place) {

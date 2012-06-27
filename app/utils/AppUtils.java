@@ -322,32 +322,39 @@ public class AppUtils implements AppConstants{
 	 * Sets the places of the user
 	 */
 	private static void setUserPlaces() {
-		int i = 1;
+		int place = 1;
 		List<User> users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
         for (User user : users) {
         	user.setPreviousPlace(user.getPlace());
-            user.setPlace(i);
+            user.setPlace(place);
             user._save();
-            i++;
+            place++;
         }
 	}
 
 	/**
-	 * Sets the teams to the playoffs games
+	 * Sets the teams to the playoff games
 	 * @param settings Settings object
 	 */
 	public static void setPlayoffTeams(final Settings settings) {
 		if (settings.isPlayoffs()) {
-            List<Game> prePlayoffGames = Game.find("byPlayoffAndEnded", false, true).fetch();
-            if (prePlayoffGames.size() == settings.getPrePlayoffGames()) {
-                List<Game> playoffGames = Game.find("byPlayoffAndEnded", true, false).fetch();
-                for (Game game : playoffGames) {
-                    Team home = AppUtils.getTeamByReference(game.getHomeReference());
-                    Team away = AppUtils.getTeamByReference(game.getAwayReference());
-                    game.setHomeTeam(home);
-                    game.setAwayTeam(away);
-                    game._save();
-                }
+            List<Game> playoffGames = Game.find("byPlayoffAndEnded", true, false).fetch();
+            for (Game game : playoffGames) {
+            	Team homeTeam = null;
+            	Team awayTeam = null;
+            	Bracket bracket = game.getBracket();
+            	if (bracket != null) {
+            		if (bracket.allGamesEnded()) {
+                    	homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
+                        awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
+            		}
+            	} else {
+                	homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
+                    awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
+            	}
+                game.setHomeTeam(homeTeam);
+                game.setAwayTeam(awayTeam);
+                game._save();	
             }
 		}
 	}
@@ -356,57 +363,15 @@ public class AppUtils implements AppConstants{
 	 * Sets the places of the teams in all brackets
 	 */
 	private static void setTeamPlaces() {
-    	List<Bracket> brackets = Bracket.find("byOverridePlaces", false).fetch();
+    	List<Bracket> brackets = Bracket.find("byOverride", false).fetch();
     	for (Bracket bracket : brackets) {
     		List<Team> teams = Team.find("SELECT t FROM Team t WHERE bracket_id = ? ORDER BY points DESC, goalsDiff DESC, goalsFor DESC", bracket.getId()).fetch();
     		int place = 1;
     		for (Team team : teams) {
+    			team.setPreviousPlace(team.getPlace());
     			team.setPlace(place);
     			team._save();
     			place++;
-    		}
-    	}
-
-    	for (Bracket bracket : brackets) {
-    		List<Game> games = new ArrayList<Game>();
-    		List<Team> teams = Team.find("SELECT t FROM Team t WHERE bracket_id = ? ORDER BY points DESC", bracket.getId()).fetch();
-    		for (Team team : teams) {
-    			Team aTeam = Team.find("SELECT t FROM Team t WHERE id != ? AND points = ? AND bracket_id = ?", team.getId(), team.getPoints(), bracket.getId()).first();
-    			if (aTeam != null) {
-        			Game game = Game.find("SELECT g FROM Game g WHERE homeTeam_id = ? AND awayTeam_id = ? AND playoff = ?", team.getId(), aTeam.getId(), false).first();
-    				if (game != null) {
-    					games.add(game);
-    				}
-        			game = Game.find("SELECT g FROM Game g WHERE homeTeam_id = ? AND awayTeam_id = ? AND playoff = ?", aTeam.getId(), team.getId(), false).first();
-    				if (game != null) {
-    					games.add(game);
-    				}
-    			}
-    		}
-
-    		for (Game game : games) {
-				if (game != null) {
-					Team homeTeam = game.getHomeTeam();
-					Team awayTeam = game.getAwayTeam();
-    				Team winner = game.getWinner();
-    				if (winner != null) {
-    					if (winner.equals(homeTeam) && homeTeam.getPlace() > awayTeam.getPlace()) {
-    						int homeTeamPlace = homeTeam.getPlace();
-    						int awayTeamPlace = awayTeam.getPlace();
-    						homeTeam.setPlace(awayTeamPlace);
-    						homeTeam._save();
-    						awayTeam.setPlace(homeTeamPlace);
-    						awayTeam._save();
-    					} else if (winner.equals(awayTeam) && awayTeam.getPlace() > homeTeam.getPlace()) {
-    						int homeTeamPlace = homeTeam.getPlace();
-    						int awayTeamPlace = awayTeam.getPlace();
-    						homeTeam.setPlace(awayTeamPlace);
-    						homeTeam._save();
-    						awayTeam.setPlace(homeTeamPlace);
-    						awayTeam._save();
-    					}
-    				}
-				}
     		}
     	}
 	}
@@ -913,4 +878,40 @@ public class AppUtils implements AppConstants{
     	
     	return image;
     }
+    
+    /**
+     * Checks if API is enabled in application.conf
+     * 
+     * @return true if enable, false otherwise
+     */
+    public static boolean isAPI() {
+    	String enabled = Play.configuration.getProperty("api.enabled");
+    	if (("true").equals(enabled)) {
+    		return true;
+    	}
+    	
+    	return true;
+    }
+    
+    /**
+     * Stores an extratip in the database
+     * 
+     * @param extra The extra object
+     * @param team The team which is the extra answer
+     */
+	public static void placeExtraTip(Extra extra, Team team) {
+		User user = AppUtils.getConnectedUser();
+		if (team != null) {
+			ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
+			if (extraTip == null) {
+				extraTip = new ExtraTip();
+			}
+
+			extraTip.setUser(user);
+			extraTip.setExtra(extra);
+			extraTip.setAnswer(team);
+			extraTip._save();
+			Logger.info("Stored extratip - " + user.getUsername() + " - " + extraTip);
+		}
+	}
 }
