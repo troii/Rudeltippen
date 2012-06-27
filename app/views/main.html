@@ -16,7 +16,7 @@
     <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
     <link href="@{'/public/stylesheets/bootstrap-responsive.css'}" rel="stylesheet">
   </head>
-  <body data-key="${play.configuration.get("dashboard.twitter.username")}">
+  <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -128,10 +128,6 @@
     <script src="@{'/public/javascripts/bootstrap.js'}"></script>
     <script src="@{'/public/javascripts/bootstrap-plugins.js'}"></script>
     <script src="@{'/public/javascripts/ie.js'}"></script>
-    #{if request.action == "Application.index" }
-    #{i18n keys:['js.*'] /}
-    <script src="@{'/public/javascripts/twitter.js'}"></script>
-    #{/if}
     #{if request.action == "Admin.users" }
     <script src="@{'/public/javascripts/datatables.js'}"></script>
     #{/if}

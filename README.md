@@ -126,12 +126,6 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-Set the Twitter-Feed which is displayed at the dashboard. Leave this blank, if you don't want this feature.
-
-```bash
-dashboard.twitter.username=mytwitterusername
-```
-
 By default Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for arroung 50 to 100 users. Change this, if required.
 
 ```bash
