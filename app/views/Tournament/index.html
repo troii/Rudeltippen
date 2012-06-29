@@ -2,9 +2,17 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-			<li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(1, '@{tournament.brackets()}');">&{'groups'}</a></li>
-			<li><a href="javascript:load(2, '@{tournament.preliminary()}');">&{'firstround'}</a></li>
-			<li><a href="javascript:load(3, '@{tournament.playoffs()}');">&{'playoffs'}</a></li>
+			#{if playoffs}
+				<li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(1, '@{tournament.brackets()}');">&{'groups'}</a></li>
+				<li><a href="javascript:load(2, '@{tournament.preliminary()}');">&{'firstround'}</a></li>
+				<li><a href="javascript:load(3, '@{tournament.playoffs()}');">&{'playoffs'}</a></li>
+			#{/if}
+			#{else}
+				<li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(1, '@{tournament.brackets()}');">&{'tables'}</a></li>
+				#{list items:playdays, as:'playday'}
+					<li><a href="javascript:load(${playday.number + 1}, '@{tournament.playday()}/${playday.number}');">&{playday.name}</a></li>
+				#{/list}
+			#{/else}
 		</ul>
 	</div>
 </div>

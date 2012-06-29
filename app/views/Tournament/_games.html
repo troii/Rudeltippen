@@ -13,46 +13,46 @@
 			<th>&{'result'}</th>
 		</tr>
 	</thead>
-		<tbody>
-			#{list items:playday.games, as:'game'}
-				<tr>
-					<td class="hidden-phone">${game.number}</td>
-					<td class="hidden-phone">${game.kickoff.formatted()}</td>
-					<td class="hidden-phone">&{game.stadium?.name}</td>
-					#{if game.homeTeam != null}
-						#{if game.homeTeam.flag != null}
-							<td><img class="flag" src="@{'/public/images/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
-						#{/if}
-						#{else}
-							<td>&{game.homeTeam?.name}</td>
-						#{/else}
+	<tbody>
+		#{list items:playday.games, as:'game'}
+			<tr>
+				<td class="hidden-phone">${game.number}</td>
+				<td class="hidden-phone">${game.kickoff.formatted()}</td>
+				<td class="hidden-phone">&{game.stadium?.name}</td>
+				#{if game.homeTeam != null}
+					#{if game.homeTeam.flag != null}
+						<td><img class="flag" src="@{'/public/images/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
 					#{/if}
 					#{else}
-						<td>${game.homeReferenceName()}</td>
+						<td>&{game.homeTeam?.name}</td>
 					#{/else}
-					#{if game.awayTeam != null}
-						#{if game.awayTeam.flag != null}
-							<td><img class="flag" src="@{'/public/images/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
-						#{/if}
-						#{else}
-							<td>&{game.awayTeam?.name}</td>
-						#{/else}
+				#{/if}
+				#{else}
+					<td>${game.homeReferenceName()}</td>
+				#{/else}
+				#{if game.awayTeam != null}
+					#{if game.awayTeam.flag != null}
+						<td><img class="flag" src="@{'/public/images/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
 					#{/if}
 					#{else}
-						<td>${game.awayReferenceName()}</td>
+						<td>&{game.awayTeam?.name}</td>
 					#{/else}
-					#{if !game.ended}
-						<td>- : -</td>
+				#{/if}
+				#{else}
+					<td>${game.awayReferenceName()}</td>
+				#{/else}
+				#{if !game.ended}
+					<td>- : -</td>
+				#{/if}
+				#{else}
+					#{if game.overtime}
+						<td>${game.homeScoreOT} : ${game.awayScoreOT} (&{game.overtimeType})</td>
 					#{/if}
 					#{else}
-						#{if game.overtime}
-							<td>${game.homeScoreOT} : ${game.awayScoreOT} (&{game.overtimeType})</td>
-						#{/if}
-						#{else}
-							<td>${game.homeScore} : ${game.awayScore}</td>
-						#{/else}
+						<td>${game.homeScore} : ${game.awayScore}</td>
 					#{/else}
-				</tr>
+				#{/else}
+			</tr>
 		#{/list}
 	</tbody>
 #{/list}

@@ -338,20 +338,29 @@ public class AppUtils implements AppConstants{
 	 */
 	public static void setPlayoffTeams(final Settings settings) {
 		if (settings.isPlayoffs()) {
-            List<Game> playoffGames = Game.find("byPlayoffAndEnded", true, false).fetch();
-            for (Game game : playoffGames) {
-            	Team homeTeam = null;
-            	Team awayTeam = null;
-            	Bracket bracket = game.getBracket();
-            	if (bracket != null) {
-            		if (bracket.allGamesEnded()) {
+        	Team homeTeam = null;
+        	Team awayTeam = null;
+        	
+			List<Bracket> brackets = Bracket.findAll();
+			for (Bracket bracket : brackets) {
+				if (bracket.allGamesEnded()) {
+					int number = bracket.getNumber();
+					String s = "B-" + number + "%";
+					List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayRefrence LIKE ?", s, s).fetch();
+					for (Game game : games) {
                     	homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
                         awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
-            		}
-            	} else {
-                	homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
-                    awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
-            	}
+                        game.setHomeTeam(homeTeam);
+                        game.setAwayTeam(awayTeam);
+                        game._save();	
+					}
+				}
+			}
+			
+            List<Game> playoffGames = Game.find("byPlayoffAndEndedAndBracket", true, false, null).fetch();
+            for (Game game : playoffGames) {
+            	homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
+                awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
                 game.setHomeTeam(homeTeam);
                 game.setAwayTeam(awayTeam);
                 game._save();	
