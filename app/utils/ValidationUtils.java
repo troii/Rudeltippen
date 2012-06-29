@@ -2,6 +2,7 @@ package utils;
 
 import interfaces.AppConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +13,7 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 
 import play.data.validation.Validation;
+import play.i18n.Messages;
 import play.libs.Crypto;
 
 public class ValidationUtils implements AppConstants{
@@ -128,6 +130,7 @@ public class ValidationUtils implements AppConstants{
 				String dateString,
 				String dateTimeLang,
 				String timeString,
+				String theme,
 				boolean countFinalResult,
 				boolean informOnNewTipper,
 				boolean enableRegistration) {
@@ -143,7 +146,17 @@ public class ValidationUtils implements AppConstants{
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
+		validation.isTrue(ValidationUtils.isValidTheme(theme)).key("theme").message(Messages.get("system.invalidtheme"));
 
     	return validation;
+    }
+    
+    public static boolean isValidTheme(String theme) {
+    	List<String> themes = ViewUtils.getThemes();
+    	if (themes.contains(theme)) {
+    		return true;
+    	}
+		
+    	return false;
     }
 }

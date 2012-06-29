@@ -1,6 +1,8 @@
 package utils;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ import models.User;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
+import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
@@ -377,5 +380,34 @@ public class ViewUtils extends JavaExtensions{
     	}
 
     	return "";
+    }
+    
+    public static List<String> getThemes() {
+    	List<String> themes = new ArrayList<String>();
+    	themes.add("amelia");
+    	themes.add("cerulean");
+    	themes.add("cyborg");
+    	themes.add("journal");
+    	themes.add("readable");
+    	themes.add("simplex");
+    	themes.add("slate");
+    	themes.add("spacelab");
+    	themes.add("spruce");
+    	themes.add("superhero");
+    	themes.add("united");
+    	
+    	return themes;
+    }
+    
+    public static String getTheme() {
+    	final Settings settings = AppUtils.getSettings();
+    	String theme = settings.getTheme();
+    	
+    	File file = Play.getFile("/public/stylesheets/" + theme + ".css");
+    	if (!file.exists()) {
+    		theme = "cerulean.css";
+    	}
+    	
+    	return theme;
     }
 }

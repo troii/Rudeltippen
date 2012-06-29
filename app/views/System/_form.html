@@ -133,6 +133,27 @@
 		</div>
 	</div>
 	<div class="control-group">
+		<label for="input01" class="control-label">&{'setup.theme'}</label>
+		<div class="controls">
+			<select id="theme" name="theme">
+				#{list items:themes, as:'theme'}
+					#{if theme == flash.mytheme}
+						<option selected value="${theme}">${theme.capitalize()}</option>
+					#{/if}
+					#{elseif flash.mytheme == null && theme == 'cerulean'}
+						<option selected value="cerulean">Cerulean</option>
+					#{/elseif}
+					#{else}
+    					<option value="${theme}">${theme.capitalize()}</option>
+    				#{/else}
+				#{/list}
+			</select>
+			#{ifError 'theme'}
+				<span class="help-inline">#{error 'theme' /}</span>
+			#{/ifError}
+		</div>
+	</div>	
+	<div class="control-group">
 		<label for="input01" class="control-label">&{'setup.countfinalresult'}</label>
 		<div class="controls">
 			<input type="radio" id="countFinalResult" value="false" name="countFinalResult" #{if flash.countFinalResult == null || flash.countFinalResult == 'false'} checked="checked" #{/if} class="input-medium"> &{'setup.ninetyminutes'}<br />

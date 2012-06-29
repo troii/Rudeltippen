@@ -30,6 +30,7 @@ public class Settings extends Model {
 	@Column(nullable=false)
 	private String dateTimeLang;
 
+	private String theme;
 	private String lastTweet;
 	private String dbName;
 	private int dbVersion;
@@ -248,5 +249,13 @@ public class Settings extends Model {
 
 	public void setDbVersion(int dbVersion) {
 		this.dbVersion = dbVersion;
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 }

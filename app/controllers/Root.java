@@ -4,6 +4,7 @@ import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 import utils.AppUtils;
+import utils.ViewUtils;
 
 public class Root extends Controller {
 	@Before
@@ -17,5 +18,6 @@ public class Root extends Controller {
 	    	renderArgs.put("connectedUser", null);
 	    }
 	    renderArgs.put("currentPlayday", AppUtils.getCurrentPlayday());
+	    renderArgs.put("theme", ViewUtils.getTheme());
 	}
 }

@@ -12,7 +12,12 @@
     <link rel="apple-touch-icon" sizes="72x72" href="@{'/public/images/touch-icon72x72.png'}" />
     <link rel="apple-touch-icon" href="@{'/public/images/touch-icon57x57.png'}"/>
     <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
-    <link href="@{'/public/stylesheets/bootstrap.css'}" rel="stylesheet">
+    #{if theme != null}
+    <link href="/public/stylesheets/${theme}.css" rel="stylesheet">
+    #{/if}
+    #{else}
+    <link href="@{'/public/stylesheets/cerulean.css'}" rel="stylesheet">
+    #{/else}
     <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
     <link href="@{'/public/stylesheets/bootstrap-responsive.css'}" rel="stylesheet">
   </head>
@@ -104,7 +109,6 @@
 	#{/if}
 	<div class="container-fluid">
 		<div class="row-fluid">#{doLayout /}</div>
-		<hr class="footer">
 		<footer class="footer">
 			<div class="modal hide fade" id="modalCredits">
 				<div class="modal-header">

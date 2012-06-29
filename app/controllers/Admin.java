@@ -24,6 +24,7 @@ import play.i18n.Messages;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
+import utils.ViewUtils;
 
 @With(Auth.class)
 @CheckAccess("admin")
@@ -111,6 +112,7 @@ public class Admin extends Root implements AppConstants {
 										String dateString,
 										String dateTimeLang,
 										String timeString,
+										String theme,
 										boolean countFinalResult,
 										boolean informOnNewTipper,
 										boolean enableRegistration
@@ -131,6 +133,7 @@ public class Admin extends Root implements AppConstants {
 				dateString,
 				dateTimeLang,
 				timeString,
+				theme,
 				countFinalResult,
 				informOnNewTipper,
 				enableRegistration);
@@ -152,6 +155,7 @@ public class Admin extends Root implements AppConstants {
 			settings.setCountFinalResult(countFinalResult);
 			settings.setEnableRegistration(enableRegistration);
 			settings.setMaxPictureSize(maxPictureSize);
+			settings.setTheme(theme);
 			settings._save();
 
 			flash.put("infomessage", Messages.get("setup.saved"));
@@ -168,6 +172,7 @@ public class Admin extends Root implements AppConstants {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
+		final List<String> themes = ViewUtils.getThemes();
 
 		flash.put("name", settings.getName());
 		flash.put("pointsGameWin", settings.getPointsGameWin());
@@ -185,8 +190,9 @@ public class Admin extends Root implements AppConstants {
 		flash.put("enableRegistration", settings.isEnableRegistration());
 		flash.put("maxPictureSize", settings.getMaxPictureSize());
 		flash.put("enableRegistration", settings.isEnableRegistration());
-
-		render(settings, timeZones, locales);
+		flash.put("mytheme", settings.getTheme());
+		
+		render(settings, timeZones, locales, themes);
 	}
 
 	public static void changeactive(long userid) {

@@ -17,6 +17,7 @@ import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
 import utils.ValidationUtils;
+import utils.ViewUtils;
 
 public class System extends Controller implements AppConstants {
 	@Before
@@ -38,8 +39,9 @@ public class System extends Controller implements AppConstants {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
+		final List<String> themes = ViewUtils.getThemes();
 
-		render(settings, timeZones, locales);
+		render(settings, timeZones, locales, themes);
 	}
 
 	public static void init(String name,
@@ -61,7 +63,8 @@ public class System extends Controller implements AppConstants {
 							String username,
 							String usernameConfirmation,
 							String userpass,
-							String userpassConfirmation
+							String userpassConfirmation,
+							String theme
 							) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
@@ -79,6 +82,7 @@ public class System extends Controller implements AppConstants {
 				dateString,
 				dateTimeLang,
 				timeString,
+				theme,
 				countFinalResult,
 				informOnNewTipper,
 				enableRegistration);
@@ -126,6 +130,7 @@ public class System extends Controller implements AppConstants {
 			settings.setCountFinalResult(countFinalResult);
 			settings.setEnableRegistration(enableRegistration);
 			settings.setMaxPictureSize(maxPictureSize);
+			settings.setTheme(theme);
 			settings._save();
 
 			User user = new User();
