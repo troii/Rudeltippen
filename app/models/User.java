@@ -51,6 +51,7 @@ public class User extends Model {
 	private boolean admin;
 	private boolean active;
 	private boolean notification;
+	private boolean sendStandings;
 	private int tipPoints;
 	private int extraPoints;
 	private int points;
@@ -255,5 +256,13 @@ public class User extends Model {
 
 	public void setPreviousPlace(int previousPlace) {
 		this.previousPlace = previousPlace;
+	}
+	
+	public boolean isSendStandings() {
+		return sendStandings;
+	}
+
+	public void setSendStandings(boolean sendStandings) {
+		this.sendStandings = sendStandings;
 	}
 }

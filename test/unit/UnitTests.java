@@ -8,7 +8,7 @@ import java.util.Map;
 import jobs.CleanupJob;
 import jobs.ReminderJob;
 import jobs.ResultsJob;
-import jobs.TwitterJob;
+import jobs.StandingsJob;
 import jobs.UpdateJob;
 import models.ConfirmationType;
 import models.Game;
@@ -304,7 +304,7 @@ public class UnitTests extends UnitTest {
     	new CleanupJob().now();
     	new ReminderJob().now();
     	new ResultsJob().now();
-    	new TwitterJob().now();
+    	new StandingsJob().now();
     	new UpdateJob().now();
     }
     

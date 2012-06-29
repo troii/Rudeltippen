@@ -588,10 +588,10 @@ public class AppUtils implements AppConstants{
     			return settings.getPointsTip();
     		} else if (homeScore == awayScore && homeScoreTipp == awayScoreTipp) {
     			return settings.getPointsTipDiff();
-    		} else {
-    			return getTipPointsTrend(homeScoreOT, awayScoreOT, homeScoreTipp, awayScoreTipp);
     		}
     	}
+    	
+    	return 0;
     }
 
     /**

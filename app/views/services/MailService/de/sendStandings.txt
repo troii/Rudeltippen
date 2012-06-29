@@ -1,0 +1,4 @@
+${message}
+
+---
+Du kannst diese Benachrichtigung jederzeit unter "Mein Profil" deaktivieren.

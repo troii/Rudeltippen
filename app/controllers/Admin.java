@@ -61,12 +61,12 @@ public class Admin extends Root implements AppConstants {
 		for (Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();
 			if (StringUtils.isNotBlank(key) && key.contains("game_") && (key.contains("_homeScore") || key.contains("_awayScore"))) {
-				key = key.replace("game_", "");
-				key = key.replace("_homeScore", "");
-				key = key.replace("_awayScore", "");
-				key = key.replace("_homeScore_et", "");
-				key = key.replace("_awayScore_et", "");
-				key = key.trim();
+				key = key.replace("game_", "")
+						 .replace("_homeScore", "")
+						 .replace("_awayScore", "")
+						 .replace("_homeScore_et", "")
+						 .replace("_awayScore_et", "")
+						 .trim();
 				keys.add(key);
 			}
 		}

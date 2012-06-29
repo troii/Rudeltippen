@@ -8,15 +8,18 @@ import play.Logger;
 import play.i18n.Messages;
 import play.jobs.Job;
 import play.jobs.On;
+import services.MailService;
 import services.TwitterService;
 import utils.AppUtils;
 
 @On("0 0 3 * * ?")
-public class TwitterJob extends Job{
+public class StandingsJob extends Job{
 	@Override
 	public void doJob() {
-		if (AppUtils.isJobInstance() && AppUtils.isTweetable()) {
-		    Logger.info("Running job: TwitterJob");
+		if (AppUtils.isJobInstance()) {
+		    Logger.info("Running job: StandingsJob");
+		    
+		    String message = "";
 		    final Game game = Game.find("byNumber", 1).first();
 		    if (game != null && game.isEnded()) {
 	            int count = 1;
@@ -31,8 +34,12 @@ public class TwitterJob extends Job{
 	                }
 	                count++;
 	            }
-	            TwitterService.updateStatus(Messages.get("topthree") + ": " + buffer.toString());
+	            message = Messages.get("topthree") + ": " + buffer.toString();		    	
 		    }
+		    if (AppUtils.isTweetable()) {
+		    	TwitterService.updateStatus(message);
+			}	
+		    MailService.sendStandings(message);
 		}
 	}
 }

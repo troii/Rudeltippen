@@ -170,12 +170,13 @@ public class Users extends Root {
         redirect("/users/profile");
 	}
 
-	public static void updatenotifications(boolean reminder, boolean notification) {
+	public static void updatenotifications(boolean reminder, boolean notification, boolean sendstandings) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		User user = AppUtils.getConnectedUser();
 		user.setReminder(reminder);
 		user.setNotification(notification);
+		user.setSendStandings(sendstandings);
 		user._save();
 
 		flash.put("infomessage", Messages.get("controller.profile.notifications"));

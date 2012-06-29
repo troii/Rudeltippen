@@ -16,7 +16,7 @@ public class ResultsJob extends Job{
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
 	        Logger.info("Running job: ResultsJob");
-		    List<Game> games = Game.find("SELECT g FROM Game g WHERE ended != 1 AND NOW() > kickoff AND homeTeam_id != '' AND awayTeam_id != '' AND webserviceID != ''").fetch();
+		    List<Game> games = Game.find("SELECT g FROM Game g WHERE ended != 1 AND ( TIMESTAMPDIFF(MINUTE,kickoff,now()) > 90 ) AND homeTeam_id != '' AND awayTeam_id != '' AND webserviceID != ''").fetch();
 			for (Game game : games) {
 				final WSResults wsResults = UpdateService.getResultsFromWebService(game);
 				if (wsResults != null && wsResults.isUpdated()) {

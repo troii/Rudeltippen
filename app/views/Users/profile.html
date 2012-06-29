@@ -107,7 +107,10 @@
 					</div>
 					<div class="controls">
 						<label class="checkbox"> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
-					</div>					
+					</div>	
+					<div class="controls">
+						<label class="checkbox"> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
+					</div>										
 				</div>
 				<div class="form-actions">
 					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>

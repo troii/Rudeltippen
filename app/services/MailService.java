@@ -158,4 +158,24 @@ public class MailService extends Mailer {
 			}	
 		}
 	}
+
+	public static void sendStandings(String message) {
+		final Settings settings = AppUtils.getSettings();
+		final String from = Play.configuration.getProperty("mailservice.from");
+		final String replyto = Play.configuration.getProperty("mailservice.replyto");
+		message = StringEscapeUtils.unescapeHtml(message);
+		
+		List<User> users = User.find("bySendStandings", true).fetch();
+		for (User user : users) {
+			if (ValidationUtils.isValidEmail(user.getUsername())) {
+				setReplyTo(replyto);
+				setFrom(from);
+				addRecipient(user.getUsername());
+				setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.standings")));
+				send(AppUtils.getMailTemplate("notifications"), message);
+			} else {
+				Logger.error("Tryed to sent standings, but recipient was invalid.");
+			}	
+		}
+	}
 }
