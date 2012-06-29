@@ -346,7 +346,7 @@ public class AppUtils implements AppConstants{
 				if (bracket.allGamesEnded()) {
 					int number = bracket.getNumber();
 					String s = "B-" + number + "%";
-					List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayRefrence LIKE ?", s, s).fetch();
+					List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayReference LIKE ?", s, s).fetch();
 					for (Game game : games) {
                     	homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
                         awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
