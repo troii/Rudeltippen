@@ -35,8 +35,6 @@ public class Users extends Root {
 		final User user = User.find("byNickname", nickname).first();
 
 		if (user != null) {
-            final Settings settings = AppUtils.getSettings();
-            final List<GameTip> tips = GameTip.find("byUser", user).fetch();
 		    Map<String, Integer> statistics = new HashMap<String, Integer>();
 
             final long extra = Extra.count();
@@ -45,26 +43,13 @@ public class Users extends Root {
 			statistics.put("extraTips", (int) extra);
 			statistics.put("correctExtraTips", correctExtraTips.size());
 
+            final List<GameTip> tips = GameTip.find("byUser", user).fetch();
 			int sumAllTipps = tips.size();
-			int sumTipps = 0;
-			int correctTipps = 0;
-			int correctTrend = 0;
-			int correctDifference = 0;
-			for (GameTip gameTip : tips) {
-				if (!gameTip.getGame().isEnded()) {
-					continue;
-				}
-
-				int points = gameTip.getPoints();
-				if (points == settings.getPointsTip()) {
-					correctTipps++;
-				} else if (points == settings.getPointsTipTrend()) {
-					correctTrend++;
-				} else if (points == settings.getPointsTipDiff()) {
-					correctDifference++;
-				}
-				sumTipps++;
-			}
+			int correctTipps = user.getCorrectResults();
+			int correctTrend = user.getCorrectTrends();
+			int correctDifference = user.getCorrectDifferences();
+			int sumTipps = correctTipps + correctTrend + correctDifference;
+			
 			statistics.put("sumGames", (int) Game.count());
 			statistics.put("sumTipps", sumAllTipps);
 			statistics.put("correctTipps", correctTipps);
