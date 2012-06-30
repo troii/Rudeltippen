@@ -1,18 +1,21 @@
 Rudeltippen
 ===========
 
-A betting game based on the Play Framework and Twitter Bootstrap. Ready to go for the Euro 2012.
+A football betting game based on the Play Framework and Twitter Bootstrap.
 
 Available leagues
 ===========
-- Euro 2012
+- 1. Bundesliga 2012/13
+- <del>Euro 2012</del>
 
 Features in a Nutshell
 ===========
 - Automatic results updates
 - Automatic tournament management
 - Automatic playing schedule updates
-- Fluid, themeable, responsive layout
+- JSON-API for 3rd party clients
+- Fluid responsive layout
+- Bulit-in themes from [Bootswatch][15]
 - Smartphone and tablet compatible
 - Gravatar support
 - Multilingual
@@ -21,7 +24,7 @@ Requirements
 ===========
 
 - [Java SDK 1.6+][1]
-- Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support (Apache recommended)
+- Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support
 - SMTP-Account (SSL/non-SSL, you can use e.g. [Gmail][12])
 - MySQL
 - Linux, Mac or Windows
@@ -359,3 +362,4 @@ Stuff
 [12]: http://mail.google.com/
 [13]: https://picasaweb.google.com/108885060281225128504/Rudeltippen
 [14]: https://github.com/svenkubiak/Rudeltippen/tags
+[15]: http://bootswatch.com/
