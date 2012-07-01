@@ -3,6 +3,8 @@ Rudeltippen
 
 A football betting game based on the Play Framework and Twitter Bootstrap.
 
+If you like Rudeltippen, [flattr][5] it. Thanks!
+
 Available leagues
 ===========
 - 1. Bundesliga 2012/13
@@ -15,18 +17,21 @@ Features in a Nutshell
 - Automatic playing schedule updates
 - JSON-API for 3rd party clients
 - Fluid responsive layout
-- Bulit-in themes from [Bootswatch][15]
+- Built-in themes from [Bootswatch][15]
 - Smartphone and tablet compatible
 - Gravatar support
+- Twitter support
 - Multilingual
+- SSL (optional)
+- Load balancer (optional)
 
 Requirements
 ===========
 
 - [Java SDK 1.6+][1]
 - Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support
-- SMTP-Account (SSL/non-SSL, you can use e.g. [Gmail][12])
-- MySQL
+- SMTP-Account (with SSL/non-SSL, e.g. [Gmail][12])
+- MySQL 5+
 - Linux, Mac or Windows
 
 Languages
@@ -73,7 +78,7 @@ Set your Rudeltippen URL
 %prod.app.register.url=http://www.yourdomain.com
 ```
 
-Set the username and password for inital setup (make it "secure")
+Set the username and password for initial setup (make it "secure")
 
 ```bash
 app.setup.username=admin
@@ -86,13 +91,13 @@ Set the language for Rudeltippen (currently de or en)
 default.language=de
 ```
 
-Since version 1.1.0 Rudeltippen has a feature which can automaticly updates your playing schedule. By default this feature is not enable. If you want to enable this feature set 'automatic.updates' to true
+Since version 1.1.0 Rudeltippen has a feature which can automatically updates your playing schedule. By default this feature is not enable. If you want to enable this feature set 'automatic.updates' to true
 
 ```bash
 %prod.automatic.updates=false
 ```
 
-Set the application key for rudeltippen (make it "secure")
+Set the application key for Rudeltippen (make it "secure"; e.g. use a key-generator)
 
 ```bash
 application.secret=yoursecretcryptographicskey
@@ -129,7 +134,7 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-By default Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for arroung 50 to 100 users. Change this, if required.
+By default Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for 50 to 100 users. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -140,7 +145,7 @@ Save application.conf.
 Step 3
 ------------------
 
-Follow the section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Fron-end HTTP Server with Rudeltippen.
+Follow the section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Front-end HTTP Server with Rudeltippen.
 
 > By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the port configuration in application.conf under 'Server configuration'.
 
@@ -155,10 +160,19 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. To solve this, run the following VB-Script
+If you’re on Windows, just calling 'startup.bat' would execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. You'll need PsExec from the [PsTools][16] to solve this issue.
+After you have downloaded PsTools and have PsExec installed, make sure that psexe.exe is available on your command line. Otherwise add it to your path variable in your system environment.
+You'll find an example file called "startupt.bat.example" in INSTLLATIONFOLDER. Open the file and change the last line according to your file system.
+
+Example:
+```bash
+call psexec /s c:\zeus\play-apps\rudeltippen\em\play\play.bat start c:\zeus\play-apps\rudeltippen\em
+```
+
+Save the file and rename it to startup.bat. Start Rudeltippen by executing:
 
 ```bash
-rudeltippen.vbs /start
+startup.bat
 ```
 
 Step 5
@@ -171,10 +185,10 @@ Open your browser and go to http://yourdomain.com/system/setup
 Step 6
 ------------------
 
-Change the default values if you want to and create an inital user.
+Change the default values if you want to and create an initial user.
 
-> The inital user will be an administrative user and automaticly activated.
-> After the setup is complete, Rudeltippen will automaticly load all data for the Euro 2012.
+> The initial user will be an administrative user and automatically activated.
+> After the setup is complete, Rudeltippen will automatically load all data for the selected league.
 
 Step 7
 ------------------
@@ -190,7 +204,7 @@ shutdown.sh
 OR
 
 ```bash
-rudeltippen.vbs /stop
+shutdown.bat
 ```
 
 Upgrading
@@ -220,13 +234,13 @@ shutdown.sh
 OR
 
 ```bash
-rudeltippen.vbs /stop
+shutdown.bat
 ```
 
 Step 3
 ------------------
 
-Completly delete your INSTLLATIONFOLDER
+Completely delete your INSTLLATIONFOLDER
 
 Step 4
 ------------------
@@ -241,7 +255,7 @@ In Step 0 you did copy the application.conf and /custom folder from your previou
 Step 6
 ------------------
 
-Since version 1.1.0 Rudeltippen has a feature which can automaticly updates your playing schedule. By default this feature is not enable. If you want to enable this feature and are upgrading from a version prior to 1.1.0 you need to add the following line to your application.conf:
+Since version 1.1.0 Rudeltippen has a feature which can automatically updates your playing schedule. By default this feature is not enable. If you want to enable this feature and are upgrading from a version prior to 1.1.0 you need to add the following line to your application.conf:
 
 ```bash
 %prod.automatic.updates=true
@@ -256,10 +270,8 @@ You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just r
 startup.sh
 ```
 
-If you’re on Windows, just calling 'startup.bat' will execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. To solve this, run the following VB-Script
-
 ```bash
-rudeltippen.vbs /start
+startup.bat
 ```
 
 Step 7
@@ -281,7 +293,7 @@ key.txt
 ```
 Paste you private key and your certificate in these files.
 
-Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
+Open INSTLLATIONFOLDER/conf/application.conf and uncomment the following lines:
 
 ```bash
 #https.port=9904
@@ -289,12 +301,12 @@ Open INSTLLATIONFOLDER/conf/application.conf and uncommend the following lines:
 #%prod.certificate.file=conf/custom/cert.txt
 ```
 
-You need to restart Rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Frontend Server settings accordingly. Edit or update your Proxy settings to connect to the new port. Read the documentation of your HTTP-Server on how to configure SSL Proxy support.
+You need to restart Rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Front-End Server settings accordingly. Edit or update your Proxy settings to connect to the new port. Read the documentation of your HTTP-Server on how to configure SSL Proxy support.
 
 Twitter
 ------------------
 
-Rudeltippen can automaticly post the following informations: daily top 3, results updated and new registration to a Twitter-Account. If you want to enable this feature you need a consumerkey, a consumersecret, a token and a secret. Open INSTLLATIONFOLDER/conf/application.conf, uncommend the following lines and paste your data:
+Rudeltippen can automatically post the following informations: daily top 3, results updated and new registration to a Twitter-Account. If you want to enable this feature you need a consumerkey, a consumersecret, a token and a secret. Open INSTLLATIONFOLDER/conf/application.conf, uncommend the following lines and paste your data:
 
 ```bash
 #%prod.twitter.consumerkey=
@@ -334,7 +346,9 @@ You need to restart Rudeltippen in order for the changes to take place.
 Support
 ===========
 
-If you need help, just visit the [Support-Page][6] and drop your Question (English or German). If you found a bug, please open an Issue on Github.
+If you need help, just visit the [Support-Page][6] and drop your question (English or German). If you found a bug or have a feature request, please open an issue on Github.
+
+If you like Rudeltippen, [flattr][5] it. Thanks!
 
 Licence
 ===========
@@ -344,10 +358,10 @@ Rudeltippen is distributed under [Apache 2 licence][11]
 Stuff
 ===========
 
-- [Author's Homepage (German)][4]
+- [Authors Homepage (German)][4]
 - Follow [@rudeltippen][8] for the latest development news
 - [flattr][5]
-- [Support-Page (German or Englisch)][6]
+- [Support page (German or Englisch)][6]
 
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [2]: http://www.playframework.org/download
@@ -363,3 +377,4 @@ Stuff
 [13]: https://picasaweb.google.com/108885060281225128504/Rudeltippen
 [14]: https://github.com/svenkubiak/Rudeltippen/tags
 [15]: http://bootswatch.com/
+[16]: http://technet.microsoft.com/de-de/sysinternals/bb896649.aspx
