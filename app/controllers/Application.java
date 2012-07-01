@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.List;
 
-import models.Game;
+import models.Playday;
 import models.Settings;
 import models.User;
 import play.db.jpa.Transactional;
@@ -12,17 +12,23 @@ import utils.AppUtils;
 @With(Auth.class)
 @Transactional(readOnly=true)
 public class Application extends Root {
-    public static void index() {
-    	final List<User> topUsers = User.find("ORDER BY place ASC").fetch(3);
-		final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE ended = 0 AND homeTeam_id != null AND awayTeam_id != null ORDER BY kickoff ASC").fetch(3);
-		final List<Game> previousGames = Game.find("SELECT g FROM Game g WHERE ended = 1 ORDER BY kickoff DESC").fetch(3);
+	public static void index() {
+		final User user = User.find("byPlace", 1).first();
+		int pointsDiff = 0;
+		if (user != null) {
+			final User connectedUser = AppUtils.getConnectedUser();
+			pointsDiff = user.getPoints() - connectedUser.getPoints();
+		}
+		final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
+		final Playday playday = AppUtils.getCurrentPlayday();
+		final List<User> topUsers = User.find("ORDER BY place ASC").fetch(3);
 		final long users = User.count();
 
-		render(topUsers, nextGames, previousGames, users);
-    }
+		render(topUsers, playday, users, diffToTop);
+	}
 
 	public static void rules() {
-		Settings settings = AppUtils.getSettings();
+		final Settings settings = AppUtils.getSettings();
 		render(settings);
 	}
 }

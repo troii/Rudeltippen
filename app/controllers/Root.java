@@ -8,16 +8,17 @@ import utils.ViewUtils;
 
 public class Root extends Controller {
 	@Before
-    protected static void init() {
+	protected static void init() {
 		AppUtils.setAppLanguage();
-		
-	    final User connectedUser = AppUtils.getConnectedUser();
-	    if (connectedUser != null) {
-	        renderArgs.put("connectedUser", connectedUser);
-	    } else {
-	    	renderArgs.put("connectedUser", null);
-	    }
-	    renderArgs.put("currentPlayday", AppUtils.getCurrentPlayday());
-	    renderArgs.put("theme", ViewUtils.getTheme());
+
+		final User connectedUser = AppUtils.getConnectedUser();
+		if (connectedUser != null) {
+			renderArgs.put("connectedUser", connectedUser);
+		} else {
+			renderArgs.put("connectedUser", null);
+		}
+
+		renderArgs.put("currentPlayday", AppUtils.getCurrentPlayday());
+		renderArgs.put("theme", ViewUtils.getTheme());
 	}
 }

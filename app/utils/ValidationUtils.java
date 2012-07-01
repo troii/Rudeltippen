@@ -22,9 +22,9 @@ public class ValidationUtils implements AppConstants{
 	 * @param username The username to check
 	 * @return true if username exists, false otherwise
 	 */
-	public static boolean usernameExists(String username) {
-		List<Confirmation> confirmations = Confirmation.findAll();
-		for (Confirmation confirmation : confirmations) {
+	public static boolean usernameExists(final String username) {
+		final List<Confirmation> confirmations = Confirmation.findAll();
+		for (final Confirmation confirmation : confirmations) {
 			String value = confirmation.getConfirmValue();
 			value = Crypto.decryptAES(value);
 
@@ -33,7 +33,7 @@ public class ValidationUtils implements AppConstants{
 			}
 		}
 
-		User user = User.find("byUsername", username).first();
+		final User user = User.find("byUsername", username).first();
 		return user != null;
 	}
 
@@ -43,8 +43,8 @@ public class ValidationUtils implements AppConstants{
 	 * @param nickname The nickname to check
 	 * @return true if nickname exists, false otherwise
 	 */
-	public static boolean nicknameExists(String nickname) {
-		User user = User.find("byNickname", nickname).first();
+	public static boolean nicknameExists(final String nickname) {
+		final User user = User.find("byNickname", nickname).first();
 		return user != null;
 	}
 
@@ -54,85 +54,85 @@ public class ValidationUtils implements AppConstants{
 	 * @param filesize The filesize to check
 	 * @return true if filesiize is lower or equal given filesize, false otherwise
 	 */
-    public static boolean checkFileLength(Long filesize) {
-    	if (filesize > 0 && (filesize <= AppUtils.getSettings().getMaxPictureSize())) {
-    		return true;
-        }
-        return false;
-    }
+	public static boolean checkFileLength(final Long filesize) {
+		if ((filesize > 0) && (filesize <= AppUtils.getSettings().getMaxPictureSize())) {
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * Checks if given homeScore and awayScore is castable to string and between 0 and 99
-     * 
-     * @param homeScore The homeScore to check
-     * @param awayScore The awayScore to check
-     * @return true if score is valid, false otherwise
-     */
-    public static boolean isValidScore(String homeScore, String awayScore) {
-        if (StringUtils.isBlank(homeScore) || StringUtils.isBlank(awayScore)) {
-            return false;
-        }
+	/**
+	 * Checks if given homeScore and awayScore is castable to string and between 0 and 99
+	 * 
+	 * @param homeScore The homeScore to check
+	 * @param awayScore The awayScore to check
+	 * @return true if score is valid, false otherwise
+	 */
+	public static boolean isValidScore(String homeScore, String awayScore) {
+		if (StringUtils.isBlank(homeScore) || StringUtils.isBlank(awayScore)) {
+			return false;
+		}
 
-        homeScore = homeScore.trim();
-        awayScore = awayScore.trim();
-        int home, away;
-        try {
-            home = Integer.parseInt(homeScore);
-            away = Integer.parseInt(awayScore);
-        } catch (Exception e) {
-        	e.printStackTrace();
-            return false;
-        }
+		homeScore = homeScore.trim();
+		awayScore = awayScore.trim();
+		int home, away;
+		try {
+			home = Integer.parseInt(homeScore);
+			away = Integer.parseInt(awayScore);
+		} catch (final Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
-        if (home >= 0 && home <= 99 && away >= 0 && away <= 99) {
-            return true;
-        }
+		if ((home >= 0) && (home <= 99) && (away >= 0) && (away <= 99)) {
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /**
-     * Checks if a given email is matching defined EMAILPATTERN
-     * 
-     * @param email The email to check
-     * @return true if email is valid, false otherwise
-     */
-    public static boolean isValidEmail(String email) {
-        final Pattern p = Pattern.compile(EMAILPATTERN);
-        final Matcher m = p.matcher(email);
-        return m.matches();
-    }
-    
-    /**
-     * Checks if a given nickname is matching defined USERNAMEPATTERN
-     * 
-     * @param username The username to check
-     * @return true if username is valid, false otherwise
-     */
-    public static boolean isValidNickname(String nickname) {
-        final Pattern p = Pattern.compile(USERNAMEPATTERN);
-        final Matcher m = p.matcher(nickname);
-        return m.matches();  	
-    }
+	/**
+	 * Checks if a given email is matching defined EMAILPATTERN
+	 * 
+	 * @param email The email to check
+	 * @return true if email is valid, false otherwise
+	 */
+	public static boolean isValidEmail(final String email) {
+		final Pattern p = Pattern.compile(EMAILPATTERN);
+		final Matcher m = p.matcher(email);
+		return m.matches();
+	}
 
-    public static Validation getSettingsValidations(
-    			Validation validation,
-    			String name,
-				int pointsGameWin,
-				int pointsGameDraw,
-				int pointsTip,
-				int pointsTipDiff,
-				int pointsTipTrend,
-				int minutesBeforeTip,
-				int maxPictureSize,
-				String timeZoneString,
-				String dateString,
-				String dateTimeLang,
-				String timeString,
-				String theme,
-				boolean countFinalResult,
-				boolean informOnNewTipper,
-				boolean enableRegistration) {
+	/**
+	 * Checks if a given nickname is matching defined USERNAMEPATTERN
+	 * 
+	 * @param username The username to check
+	 * @return true if username is valid, false otherwise
+	 */
+	public static boolean isValidNickname(final String nickname) {
+		final Pattern p = Pattern.compile(USERNAMEPATTERN);
+		final Matcher m = p.matcher(nickname);
+		return m.matches();
+	}
+
+	public static Validation getSettingsValidations(
+			final Validation validation,
+			final String name,
+			final int pointsGameWin,
+			final int pointsGameDraw,
+			final int pointsTip,
+			final int pointsTipDiff,
+			final int pointsTipTrend,
+			final int minutesBeforeTip,
+			final int maxPictureSize,
+			final String timeZoneString,
+			final String dateString,
+			final String dateTimeLang,
+			final String timeString,
+			final String theme,
+			final boolean countFinalResult,
+			final boolean informOnNewTipper,
+			final boolean enableRegistration) {
 
 		validation.required(name);
 		validation.required(timeZoneString);
@@ -147,15 +147,14 @@ public class ValidationUtils implements AppConstants{
 		validation.range(pointsTipTrend, 0, 99);
 		validation.isTrue(ValidationUtils.isValidTheme(theme)).key("theme").message(Messages.get("system.invalidtheme"));
 
-    	return validation;
-    }
-    
-    public static boolean isValidTheme(String theme) {
-    	List<String> themes = ViewUtils.getThemes();
-    	if (themes.contains(theme)) {
-    		return true;
-    	}
-		
-    	return false;
-    }
+		return validation;
+	}
+
+	public static boolean isValidTheme(final String theme) {
+		final List<String> themes = ViewUtils.getThemes();
+		if (themes.contains(theme)) {
+			return true;
+		}
+		return false;
+	}
 }

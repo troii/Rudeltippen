@@ -49,7 +49,7 @@ public class Admin extends Root implements AppConstants {
 
 	@Transactional(readOnly=true)
 	public static void users() {
-		List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
+		final List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
 		render(users);
 	}
 
@@ -57,22 +57,22 @@ public class Admin extends Root implements AppConstants {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final Map<String, String> map = params.allSimple();
-		Set<String> keys = new HashSet<String>();
-		for (Entry<String, String> entry : map.entrySet()) {
+		final Set<String> keys = new HashSet<String>();
+		for (final Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();
 			if (StringUtils.isNotBlank(key) && key.contains("game_") && (key.contains("_homeScore") || key.contains("_awayScore"))) {
 				key = key.replace("game_", "")
-						 .replace("_homeScore", "")
-						 .replace("_awayScore", "")
-						 .replace("_homeScore_et", "")
-						 .replace("_awayScore_et", "")
-						 .trim();
+						.replace("_homeScore", "")
+						.replace("_awayScore", "")
+						.replace("_homeScore_et", "")
+						.replace("_awayScore_et", "")
+						.trim();
 				keys.add(key);
 			}
 		}
 
 		String gamekey = null;
-		for (String key : keys) {
+		for (final String key : keys) {
 			gamekey = key;
 			final String homeScore = map.get("game_" + key + "_homeScore");
 			final String awayScore = map.get("game_" + key + "_awayScore");
@@ -87,11 +87,11 @@ public class Admin extends Root implements AppConstants {
 		flash.keep();
 
 		int playday = 1;
-		if (keys != null && keys.size() >= 1) {
+		if ((keys != null) && (keys.size() >= 1)) {
 			if (StringUtils.isNotBlank(gamekey)) {
 				gamekey = gamekey.replace("_et", "");
-				Game game = Game.findById(new Long(gamekey));
-				if (game != null && game.getPlayday() != null) {
+				final Game game = Game.findById(new Long(gamekey));
+				if ((game != null) && (game.getPlayday() != null)) {
 					playday = game.getPlayday().getNumber();
 				}
 			}
@@ -100,23 +100,23 @@ public class Admin extends Root implements AppConstants {
 		redirect("/admin/playday/" + playday);
 	}
 
-	public static void updatesettings ( String name,
-										int pointsGameWin,
-										int pointsGameDraw,
-										int pointsTip,
-										int pointsTipDiff,
-										int pointsTipTrend,
-										int minutesBeforeTip,
-										int maxPictureSize,
-										String timeZoneString,
-										String dateString,
-										String dateTimeLang,
-										String timeString,
-										String theme,
-										boolean countFinalResult,
-										boolean informOnNewTipper,
-										boolean enableRegistration
-										) {
+	public static void updatesettings ( final String name,
+			final int pointsGameWin,
+			final int pointsGameDraw,
+			final int pointsTip,
+			final int pointsTipDiff,
+			final int pointsTipTrend,
+			final int minutesBeforeTip,
+			final int maxPictureSize,
+			final String timeZoneString,
+			final String dateString,
+			final String dateTimeLang,
+			final String timeString,
+			final String theme,
+			final boolean countFinalResult,
+			final boolean informOnNewTipper,
+			final boolean enableRegistration
+			) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation = ValidationUtils.getSettingsValidations(
@@ -139,7 +139,7 @@ public class Admin extends Root implements AppConstants {
 				enableRegistration);
 
 		if (!validation.hasErrors()) {
-			Settings settings = Settings.find("byAppName", APPNAME).first();
+			final Settings settings = Settings.find("byAppName", APPNAME).first();
 			settings.setName(name);
 			settings.setPointsGameWin(pointsGameWin);
 			settings.setPointsGameDraw(pointsGameDraw);
@@ -159,7 +159,7 @@ public class Admin extends Root implements AppConstants {
 			settings._save();
 
 			flash.put("infomessage", Messages.get("setup.saved"));
-	    	flash.keep();
+			flash.keep();
 		}
 		params.flash();
 		validation.keep();
@@ -191,13 +191,13 @@ public class Admin extends Root implements AppConstants {
 		flash.put("maxPictureSize", settings.getMaxPictureSize());
 		flash.put("enableRegistration", settings.isEnableRegistration());
 		flash.put("mytheme", settings.getTheme());
-		
+
 		render(settings, timeZones, locales, themes);
 	}
 
-	public static void changeactive(long userid) {
+	public static void changeactive(final long userid) {
 		final User connectedUser = AppUtils.getConnectedUser();
-		User user = User.findById(userid);
+		final User user = User.findById(userid);
 
 		if (user != null) {
 			if (!connectedUser.equals(user)) {
@@ -208,7 +208,7 @@ public class Admin extends Root implements AppConstants {
 					activate = "deactivated";
 					message = Messages.get("info.change.deactivate", user.getUsername());
 				} else {
-					Confirmation confirmation = Confirmation.find("byConfirmTypeAndUser", ConfirmationType.ACTIVATION, user).first();
+					final Confirmation confirmation = Confirmation.find("byConfirmTypeAndUser", ConfirmationType.ACTIVATION, user).first();
 					if (confirmation != null) {
 						confirmation._delete();
 					}
@@ -230,9 +230,9 @@ public class Admin extends Root implements AppConstants {
 		redirect("/admin/users");
 	}
 
-	public static void changeadmin(long userid) {
+	public static void changeadmin(final long userid) {
 		final User connectedUser = AppUtils.getConnectedUser();
-		User user = User.findById(userid);
+		final User user = User.findById(userid);
 
 		if (user != null) {
 			if (!connectedUser.equals(user)) {
@@ -261,13 +261,13 @@ public class Admin extends Root implements AppConstants {
 		redirect("/admin/users");
 	}
 
-	public static void deleteuser(long userid) {
+	public static void deleteuser(final long userid) {
 		final User connectedUser = AppUtils.getConnectedUser();
-		User user = User.findById(userid);
+		final User user = User.findById(userid);
 
 		if (user != null) {
 			if (!connectedUser.equals(user)) {
-				String username = user.getUsername();
+				final String username = user.getUsername();
 				user._delete();
 				flash.put("infomessage", Messages.get("info.delete.user", username));
 				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
