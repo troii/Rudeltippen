@@ -3,7 +3,7 @@ Rudeltippen
 
 A football betting game based on the Play Framework and Twitter Bootstrap.
 
-If you like Rudeltippen, [flattr][5] it. Thanks!
+If you like Rudeltippen, [Flattr it][5]. Thanks!
 
 Available leagues
 ===========
@@ -162,7 +162,7 @@ startup.sh
 
 If you’re on Windows, just calling 'startup.bat' would execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. You'll need PsExec from the [PsTools][16] to solve this issue.
 After you have downloaded PsTools and have PsExec installed, make sure that psexe.exe is available on your command line. Otherwise add it to your path variable in your system environment.
-You'll find an example file called "startupt.bat.example" in INSTLLATIONFOLDER. Open the file and change the last line according to your file system.
+You'll find an example file called "startup.bat.example" in INSTLLATIONFOLDER. Open the file and change the last line according to your file system.
 
 Example:
 ```bash
@@ -348,7 +348,7 @@ Support
 
 If you need help, just visit the [Support-Page][6] and drop your question (English or German). If you found a bug or have a feature request, please open an issue on Github.
 
-If you like Rudeltippen, [flattr][5] it. Thanks!
+If you like Rudeltippen, [Flattr it][5]. Thanks!
 
 Licence
 ===========

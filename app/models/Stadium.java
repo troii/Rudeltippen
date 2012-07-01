@@ -20,16 +20,13 @@ public class Stadium extends Model{
 	private List<Game> games;
 
 	@Column(nullable=false)
-	private String capacity;
-
-	@Column(nullable=false)
 	private String city;
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -37,23 +34,15 @@ public class Stadium extends Model{
 		return games;
 	}
 
-	public void setGames(List<Game> games) {
+	public void setGames(final List<Game> games) {
 		this.games = games;
-	}
-
-	public String getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(String capacity) {
-		this.capacity = capacity;
 	}
 
 	public String getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
 }

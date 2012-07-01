@@ -1,0 +1,279 @@
+models.Bracket(a):
+    name:           table
+    number:         1
+    overridePlaces: false
+
+models.Team(bvb):
+    name:          borussiadortmund
+    flag:          bvb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fcb):
+    name:          fcbayernmunchen
+    flag:          fcb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(s04):
+    name:          fcschalke
+    flag:          s04.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(bmg):
+    name:          borussiamonchengladbach
+    flag:          bmg.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(b04):
+    name:          bayerleverkusen
+    flag:          bo4.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(vfb):
+    name:          vfbstuttgart
+    flag:          vfb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(h96):
+    name:          hannover
+    flag:          h96.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(vfl):
+    name:          vflwolfsburg
+    flag:          vfl.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(swb):
+    name:          werderbremen
+    flag:          swb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fcn):
+    name:          fcnurnburg
+    flag:          fcn.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(tsg):
+    name:          tsghoffenheim
+    flag:          tsg.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(scf):
+    name:          scfreiburg
+    flag:          scf.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(m05):
+    name:          fsvmainz
+    flag:          m05.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fca):
+    name:          fcaugsburg
+    flag:          fca.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(hsv):
+    name:          hamburgsv
+    flag:          hsv.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(sgf):
+    name:          spvgggreutherfurth
+    flag:          sgf.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(ef):
+    name:          eintrachtfrankfurt
+    flag:          ef.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fd):
+    name:          fortunadusseldorf
+    flag:          fd.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0    
+
+models.Stadium(s1):
+    name:          signalidunapark
+    city:          dortmund
+
+models.Stadium(s2):
+    name:          allianzarena
+    city:          munchen
+
+models.Stadium(s3):
+    name:          veltinsarena
+    city:          gelsenkirchen
+
+models.Stadium(s4):
+    name:          mercedesbenzarena
+    city:          stuttgart
+
+models.Stadium(s5):
+    name:          imtecharena
+    city:          hamburg
+
+models.Stadium(s6):
+    name:          espreitarena
+    city:          dusseldorf
+
+models.Stadium(s7):
+    name:          borussiapark
+    city:          monchengladbach
+
+models.Stadium(s8):
+    name:          commerzbankarena
+    city:          frankfurt
+    
+models.Stadium(s9):
+    name:          awdarena
+    city:          hannover
+
+models.Stadium(s10):
+    name:          easycreditstadion
+    city:          nurnberg
+
+models.Stadium(s11):
+    name:          weserstadion
+    city:          bremen
+
+models.Stadium(s13):
+    name:          cofacearena
+    city:          mainz
+
+models.Stadium(s14):
+    name:          shlarena
+    city:          augsburg
+
+models.Stadium(s15):
+    name:          bayarena
+    city:          leverkusen
+
+models.Stadium(s16):
+    name:          wirsolreihnneckararena
+    city:          hoffenheim
+
+models.Stadium(s17):
+    name:          magesolarstadion
+    city:          freibrg
+    
+models.Stadium(s18):
+    name:          trolliarena
+    city:          greutherfurth
+
+models.Playday(p1):
+    name:          1spieltag
+    playdayStart:  2012-01-01 00:00:00
+    playdayEnd:    2012-08-26 23:59:59
+    playoff:       false
+    number:        1
+
+models.Game(g1):
+    number:        1
+    homeTeam:      bvb
+    awayTeam:      swb
+    kickoff:       2012-08-24 18:30:00
+    playday:       p1
+    stadium:       s1
+    playoff:       false
+    ended:         false
+
+models.Extra(b1):
+   question:        WhowillbeChampion
+   extraReference:  B-1-1
+   gameReferences:
+                    - g306
+   questionShort:   champion
+   points:          5
+   ending:          2012-08-24 18:30:00
+   answers:
+                    - bvb
+                    - fcb
+                    - s04
+                    - bmg
+                    - b04
+                    - vfb
+                    - h96
+                    - vfl
+                    - swb
+                    - fcn
+                    - tsg
+                    - scf
+                    - m05
+                    - fca
+                    - hsv
+                    - sgf
+                    - ef
+                    - fd                    
