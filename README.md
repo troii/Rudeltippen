@@ -335,7 +335,7 @@ Rudeltippen is distributed under [Apache 2 licence][11]
 Stuff
 ------------------
 
-- Follow [@rudeltippen][8] for the latest development news
+- Follow [@rudeltippen][8] on Twitter for the latest development news
 - [Support page (German or Englisch)][6]
 
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
