@@ -728,12 +728,12 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Returns the current Playday where NOW() >= playdayStart AND NOW() <= playdayEnd or
+	 * Returns the current Playday where current = true or
 	 * the playday with number 1 when none other found
 	 * @return Playday object
 	 */
 	public static Playday getCurrentPlayday () {
-		Playday playday = Playday.find("SELECT p FROM Playday p WHERE NOW() >= playdayStart AND NOW() <= playdayEnd").first();
+		Playday playday = Playday.find("byCurrent", true).first();
 		if (playday == null) {
 			playday = Playday.find("byNumber", 1).first();
 		}

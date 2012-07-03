@@ -2,10 +2,10 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
+			<li class="active"><a href="javascript:load(0,'@{tips.extra()}');">&{'extratips'}</a></li>
 			#{list items:playdays, as:'aPlayday'}
 				<li><a href="javascript:load('${aPlayday.number}','@{tips.games()}/${aPlayday.number}');">&{aPlayday.name}</a></li>
 			#{/list}
-			<li class="active"><a href="javascript:load('${aPlayday.number + 1 }','@{tips.extra()}');">&{'extratips'}</a></li>
 		</ul>
 	</div>
 </div>

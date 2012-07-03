@@ -3,7 +3,7 @@
 	<div class="control-group #{ifError 'name'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.name'}</label>
 		<div class="controls">
-			<input type="text" id="name" value="#{if flash.name != null}${flash.name}#{/if}#{else}Rudeltippen EM 2012#{/else}" name="name" class="input-medium">
+			<input type="text" id="name" value="#{if flash.name != null}${flash.name}#{/if}#{else}Rudeltippen#{/else}" name="name" class="input-medium">
 			#{ifError 'name'}
 				<span class="help-inline">#{error 'name' /}</span>
 			#{/ifError}
@@ -132,6 +132,19 @@
 			#{/ifError}
 		</div>
 	</div>
+	<div class="control-group">
+		<label for="input01" class="control-label">&{'setup.tournament'}</label>
+		<div class="controls">
+			<select id="league" name="league">
+				<option value="0">&{'please.choose'}</option>
+				<option value="bl2012">1. Bundesliga 2012/13</option>
+				<option value="em2012">EURO 2012</option>
+			</select>
+			#{ifError 'tournament'}
+				<span class="help-inline">#{error 'tournament' /}</span>
+			#{/ifError}
+		</div>
+	</div>	
 	<div class="control-group">
 		<label for="input01" class="control-label">&{'setup.theme'}</label>
 		<div class="controls">

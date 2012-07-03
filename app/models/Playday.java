@@ -20,15 +20,18 @@ public class Playday extends Model{
 	private String name;
 
 	@Column(nullable=false)
-	private Date playdayStart;
-
-	@Column(nullable=false)
-	private Date playdayEnd;
-
-	@Column(nullable=false)
 	private int number;
 
 	private boolean playoff;
+	private boolean current;
+
+	public boolean isCurrent() {
+		return current;
+	}
+
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
 
 	public List<Game> getGames() {
 		return games;
@@ -44,22 +47,6 @@ public class Playday extends Model{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Date getPlaydayStart() {
-		return playdayStart;
-	}
-
-	public void setPlaydayStart(Date playdayStart) {
-		this.playdayStart = playdayStart;
-	}
-
-	public Date getPlaydayEnd() {
-		return playdayEnd;
-	}
-
-	public void setPlaydayEnd(Date playdayEnd) {
-		this.playdayEnd = playdayEnd;
 	}
 
 	public int getNumber() {
@@ -84,7 +71,15 @@ public class Playday extends Model{
 				return true;
 			}
 		}
-		
 		return false;
+	}
+	
+	public boolean allGamesEnded() {
+		for (Game game : this.games) {
+			if (!game.isEnded()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

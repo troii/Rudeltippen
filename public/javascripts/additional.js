@@ -1,9 +1,13 @@
 function load(item, url) {
 	$('.nav-list > li').each(function(index) {
-		if (item-1 == index) {
+		var navItem = $(this)[0].attributes[0].nodeValue;
+		$(this).removeClass('active');
+		if (item == 0) {
+			$('#nav-first').addClass('active');
+		} else if (item == 1) {
+			$('#nav-1').addClass('active');
+		} else if (navItem == "nav-" + item) {
 			$(this).addClass('active');
-		} else {
-			$(this).removeClass('active');
 		}
 	});
 	$('.footer').hide();
@@ -16,10 +20,14 @@ function load(item, url) {
 
 function loadJS(item, url) {
 	$('.nav-list > li').each(function(index) {
-		if (item-1 == index) {
+		var navItem = $(this)[0].attributes[0].nodeValue;
+		$(this).removeClass('active');
+		if (item == 0) {
+			$('#nav-first').addClass('active');
+		} else if (item == 1) {
+			$('#nav-1').addClass('active');
+		} else if (navItem == "nav-" + item) {
 			$(this).addClass('active');
-		} else {
-			$(this).removeClass('active');
 		}
 	});
 	$('.footer').hide();

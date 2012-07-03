@@ -3,6 +3,8 @@ package controllers;
 import interfaces.AppConstants;
 import interfaces.CheckAccess;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +19,15 @@ import models.Settings;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
+import play.libs.WS;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
@@ -52,6 +59,8 @@ public class Admin extends Root implements AppConstants {
 		final List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
 		render(users);
 	}
+	
+	
 
 	public static void storeresults() {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
@@ -100,7 +109,9 @@ public class Admin extends Root implements AppConstants {
 		redirect("/admin/playday/" + playday);
 	}
 
-	public static void updatesettings ( final String name,
+	public static void updatesettings (
+			final String name,
+			final String tournament,
 			final int pointsGameWin,
 			final int pointsGameDraw,
 			final int pointsTip,
@@ -121,6 +132,7 @@ public class Admin extends Root implements AppConstants {
 
 		validation = ValidationUtils.getSettingsValidations(
 				validation,
+				tournament,
 				name,
 				pointsGameWin,
 				pointsGameDraw,

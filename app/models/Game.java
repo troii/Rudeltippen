@@ -24,9 +24,6 @@ public class Game extends Model{
 	@ManyToOne
 	private Bracket bracket;
 
-	@ManyToOne
-	private Stadium stadium;
-
 	@OneToMany(mappedBy = "game", fetch=FetchType.LAZY)
 	private List<GameTip> gameTips;
 
@@ -62,14 +59,6 @@ public class Game extends Model{
 
 	public void setPlayday(Playday playday) {
 		this.playday = playday;
-	}
-
-	public Stadium getStadium() {
-		return stadium;
-	}
-
-	public void setStadium(Stadium stadium) {
-		this.stadium = stadium;
 	}
 
 	public List<GameTip> getGameTips() {

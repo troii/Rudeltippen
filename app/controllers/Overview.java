@@ -24,21 +24,18 @@ public class Overview extends Root{
 		renderWrapper(number, page);
 	}
 
-	public static void extra(int number, String page) {
+	public static void extra(String page) {
+		final int number = 0;
 		final Map pagination = ViewUtils.getPagination("user", page, "/overview/extra/");
 		final List<User> users = User.find("ORDER BY place ASC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
 		final List<Extra> extras = Extra.findAll();
 		List<Map<User, List<ExtraTip>>> tips =  AppUtils.getExtraTips(users, extras);
 
-		//TODO: Ugly workaround for setting the playday in /overview/extra for pagingation which requires a Playday object
-		Playday playday = new Playday();
-		playday.setNumber((int)Playday.count() + 1);
-
-		render(pagination, tips, playday, extras);
+		render(pagination, tips, extras, number);
 	}
 	
 	private static void renderWrapper(int number, String page) {
-		if (number <= 0) { number = 1; }
+		if (number <= 0) { number = 0; }
 		List<Playday> playdays = Playday.findAll();
 		Playday playday = Playday.find("byNumber", number).first();
 

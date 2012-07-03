@@ -117,6 +117,7 @@ public class ValidationUtils implements AppConstants{
 
 	public static Validation getSettingsValidations(
 			final Validation validation,
+			final String tournament,
 			final String name,
 			final int pointsGameWin,
 			final int pointsGameDraw,
@@ -139,12 +140,14 @@ public class ValidationUtils implements AppConstants{
 		validation.required(dateString);
 		validation.required(dateTimeLang);
 		validation.required(timeString);
+		validation.required(tournament);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsGameWin, 1, 99);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
+		validation.isTrue(!("0").equals(tournament)).key("tournament").message(Messages.get("system.invalidtournament"));
 		validation.isTrue(ValidationUtils.isValidTheme(theme)).key("theme").message(Messages.get("system.invalidtheme"));
 
 		return validation;
