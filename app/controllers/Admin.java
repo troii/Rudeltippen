@@ -3,8 +3,6 @@ package controllers;
 import interfaces.AppConstants;
 import interfaces.CheckAccess;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,15 +17,10 @@ import models.Settings;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
-import play.libs.WS;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
