@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import jobs.CalculationJob;
 import models.Confirmation;
 import models.ConfirmationType;
 import models.Game;
@@ -21,6 +22,7 @@ import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
+import play.libs.F.Promise;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
@@ -52,8 +54,8 @@ public class Admin extends Root implements AppConstants {
 		final List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
 		render(users);
 	}
-	
-	
+
+
 
 	public static void storeresults() {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
@@ -83,7 +85,9 @@ public class Admin extends Root implements AppConstants {
 			final String awayScoreExtratime = map.get("game_" + key + "_awayScore_et");
 			AppUtils.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 		}
-		AppUtils.calculateScoresAndPoints();
+
+		final Promise<String> calculation = new CalculationJob().now();
+		await(calculation);
 
 		flash.put("infomessage", Messages.get("controller.games.tippsstored"));
 		flash.keep();
@@ -276,7 +280,9 @@ public class Admin extends Root implements AppConstants {
 				user._delete();
 				flash.put("infomessage", Messages.get("info.delete.user", username));
 				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
-				AppUtils.calculateScoresAndPoints();
+
+				final Promise<String> calculation = new CalculationJob().now();
+				await(calculation);
 			} else {
 				flash.put("warningmessage", Messages.get("warning.delete.user"));
 			}

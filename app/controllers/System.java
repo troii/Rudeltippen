@@ -55,29 +55,29 @@ public class System extends Controller implements AppConstants {
 		render(settings, timeZones, locales, themes);
 	}
 
-	public static void init(String name,
-							int pointsGameWin,
-							int pointsGameDraw,
-							int pointsTip,
-							int pointsTipDiff,
-							int pointsTipTrend,
-							int minutesBeforeTip,
-							int maxPictureSize,
-							String timeZoneString,
-							String dateString,
-							String dateTimeLang,
-							String timeString,
-							String tournament,
-							boolean countFinalResult,
-							boolean informOnNewTipper,
-							boolean enableRegistration,
-							String nickname,
-							String username,
-							String usernameConfirmation,
-							String userpass,
-							String userpassConfirmation,
-							String theme
-							) {
+	public static void init(final String name,
+			final int pointsGameWin,
+			final int pointsGameDraw,
+			final int pointsTip,
+			final int pointsTipDiff,
+			final int pointsTipTrend,
+			final int minutesBeforeTip,
+			final int maxPictureSize,
+			final String timeZoneString,
+			final String dateString,
+			final String dateTimeLang,
+			final String timeString,
+			final String tournament,
+			final boolean countFinalResult,
+			final boolean informOnNewTipper,
+			final boolean enableRegistration,
+			final String nickname,
+			final String username,
+			final String usernameConfirmation,
+			final String userpass,
+			final String userpassConfirmation,
+			final String theme
+			) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation = ValidationUtils.getSettingsValidations(
@@ -108,19 +108,19 @@ public class System extends Controller implements AppConstants {
 		validation.maxSize(nickname, 20);
 
 		if (!validation.hasErrors()) {
-	    	session.clear();
-	        response.removeCookie("rememberme");
+			session.clear();
+			response.removeCookie("rememberme");
 
-	        loadInitalData(tournament);
+			loadInitalData(tournament);
 
-	    	List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
-	    	List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
-	    	boolean hasPlayoffs = false;
-	    	if (playoffGames != null && playoffGames.size() > 0) {
-	    		hasPlayoffs = true;
-	    	}
+			final List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
+			final List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
+			boolean hasPlayoffs = false;
+			if ((playoffGames != null) && (playoffGames.size() > 0)) {
+				hasPlayoffs = true;
+			}
 
-			Settings settings = new Settings();
+			final Settings settings = new Settings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
 			settings.setAppName(APPNAME);
 			settings.setName(name);
@@ -143,8 +143,8 @@ public class System extends Controller implements AppConstants {
 			settings.setTheme(theme);
 			settings._save();
 
-			User user = new User();
-			String salt = Codec.hexSHA1(Codec.UUID());
+			final User user = new User();
+			final String salt = Codec.hexSHA1(Codec.UUID());
 			user.setSalt(salt);
 			user.setUsername(username);
 			user.setNickname(nickname);
@@ -163,7 +163,7 @@ public class System extends Controller implements AppConstants {
 			user._save();
 
 			flash.put("infomessage", Messages.get("controller.setup.setup"));
-	    	flash.keep();
+			flash.keep();
 
 			redirect("/auth/login");
 		}
@@ -173,51 +173,49 @@ public class System extends Controller implements AppConstants {
 		setup();
 	}
 
-	private static void loadInitalData(String tournament) {
+	private static void loadInitalData(final String tournament) {
 		Fixtures.deleteAllModels();
 		Fixtures.deleteDatabase();
-		
-		if (("em2012").equals(tournament)) {
+
+		if (("bl2012").equals(tournament)) {
 			Fixtures.loadModels("bl2012.yml");
-		} else if (("bl2012").equals(tournament)) {
-			Fixtures.loadModels("em2012.yml");
 		} else {
 			Fixtures.loadModels("em2012.yml");
 		}
 	}
-	
+
 	@NoTransaction
 	public static void yamler() {
 		if (("true").equals(Play.configuration.getProperty("yamler"))) {
-			List<String> playdays = generatePlaydays(34);
-			List<String> games = getGamesFromWebService(34, "bl1", "2012");
-			render(playdays, games);			
+			final List<String> playdays = generatePlaydays(34);
+			final List<String> games = getGamesFromWebService(34, "bl1", "2012");
+			render(playdays, games);
 		}
 		notFound();
 	}
 
-	private static List<String> getGamesFromWebService(int playdays, String leagueShortcut, String leagueSaison) {
-		Map<String, String> teams = getBundesligaTeams();
-		
+	private static List<String> getGamesFromWebService(final int playdays, final String leagueShortcut, final String leagueSaison) {
+		final Map<String, String> teams = getBundesligaTeams();
+
 		int game = 1;
-		List<String> games = new ArrayList<String>();
+		final List<String> games = new ArrayList<String>();
 		for (int k=1; k <= playdays; k++) {
-			Document document = getDocumentFromWebService(String.valueOf(k), leagueShortcut, leagueSaison);
-			NodeList nodeList = document.getElementsByTagName("Matchdata");
+			final Document document = getDocumentFromWebService(String.valueOf(k), leagueShortcut, leagueSaison);
+			final NodeList nodeList = document.getElementsByTagName("Matchdata");
 			for (int i=0; i < nodeList.getLength(); i++) {
-				Node node = nodeList.item(i);
-				NodeList childs = node.getChildNodes();
-				
+				final Node node = nodeList.item(i);
+				final NodeList childs = node.getChildNodes();
+
 				String webserviceID = null;
 				String kickoff = null;
 				String homeTeam = null;
 				String awayTeam = null;
-				
+
 				for (int j=0; j < childs.getLength(); j++) {
-					Node childNode = childs.item(j);
-					String name = childNode.getNodeName();
+					final Node childNode = childs.item(j);
+					final String name = childNode.getNodeName();
 					String value = childNode.getTextContent();
-					
+
 					if ("matchID".equals(name)) {
 						webserviceID = value;
 					} else if (("matchDateTimeUTC").equals(name)) {
@@ -231,7 +229,7 @@ public class System extends Controller implements AppConstants {
 						awayTeam = teams.get(value);
 					}
 				}
-				
+
 				games.add("models.Game(g" + game + "):<br />");
 				games.add("&nbsp;&nbsp;&nbsp;&nbsp;number:        " + game + "<br />");
 				games.add("&nbsp;&nbsp;&nbsp;&nbsp;homeTeam:      " + homeTeam + "<br />");
@@ -243,14 +241,14 @@ public class System extends Controller implements AppConstants {
 				games.add("&nbsp;&nbsp;&nbsp;&nbsp;webserviceID:  " + webserviceID + "<br />");
 				games.add("<br />");
 				game++;
-			}	
+			}
 		}
-		
+
 		return games;
 	}
 
 	private static Map<String, String> getBundesligaTeams() {
-		Map<String, String> teams = new HashMap<String, String>();
+		final Map<String, String> teams = new HashMap<String, String>();
 		teams.put("7", "bvb");
 		teams.put("134", "swb");
 		teams.put("87", "bmg");
@@ -269,38 +267,38 @@ public class System extends Controller implements AppConstants {
 		teams.put("40", "fcb");
 		teams.put("91", "ef");
 		teams.put("6", "b04");
-		
+
 		return teams;
 	}
 
-    private static Document getDocumentFromWebService(String group, String leagueShortcut, String leagueSaison) {
-        final String WS_ENCODING = "UTF-8";
-        final String WS_CONTENT_TYPE = "application/soap+xml";
-        final String WS_URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx";
+	private static Document getDocumentFromWebService(final String group, final String leagueShortcut, final String leagueSaison) {
+		final String WS_ENCODING = "UTF-8";
+		final String WS_CONTENT_TYPE = "application/soap+xml";
+		final String WS_URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx";
 
-        StringBuilder buffer = new StringBuilder();
-        buffer.append("<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">");
-        buffer.append("<soap12:Body>");
-        buffer.append("<GetMatchdataByGroupLeagueSaison xmlns=\"http://msiggi.de/Sportsdata/Webservices\">");
-        buffer.append("<groupOrderID>" + group + "</groupOrderID>");
-        buffer.append("<leagueShortcut>" + leagueShortcut + "</leagueShortcut>");
-        buffer.append("<leagueSaison>" + leagueSaison + "</leagueSaison>");
-        buffer.append("</GetMatchdataByGroupLeagueSaison>");
-        buffer.append("</soap12:Body>");
-        buffer.append("</soap12:Envelope>");
+		final StringBuilder buffer = new StringBuilder();
+		buffer.append("<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">");
+		buffer.append("<soap12:Body>");
+		buffer.append("<GetMatchdataByGroupLeagueSaison xmlns=\"http://msiggi.de/Sportsdata/Webservices\">");
+		buffer.append("<groupOrderID>" + group + "</groupOrderID>");
+		buffer.append("<leagueShortcut>" + leagueShortcut + "</leagueShortcut>");
+		buffer.append("<leagueSaison>" + leagueSaison + "</leagueSaison>");
+		buffer.append("</GetMatchdataByGroupLeagueSaison>");
+		buffer.append("</soap12:Body>");
+		buffer.append("</soap12:Envelope>");
 
-        Document document = null;
-        try {
-        	document = WS.url(WS_URL).setHeader("Content-Type", WS_CONTENT_TYPE).setHeader("charset", WS_ENCODING).body(buffer.toString()).post().getXml();
-        } catch (Exception e) {
-        	e.printStackTrace();
-        }
-        
-        return document;
-    }
-	
-	private static List<String> generatePlaydays(int count) {
-		List<String> playdays = new ArrayList<String>();
+		Document document = null;
+		try {
+			document = WS.url(WS_URL).setHeader("Content-Type", WS_CONTENT_TYPE).setHeader("charset", WS_ENCODING).body(buffer.toString()).post().getXml();
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+
+		return document;
+	}
+
+	private static List<String> generatePlaydays(final int count) {
+		final List<String> playdays = new ArrayList<String>();
 		for (int i=1; i <= count; i++) {
 			playdays.add("models.Playday(p" + i +"):<br />");
 			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;name:          " + i + "spieltag<br />");
@@ -309,7 +307,7 @@ public class System extends Controller implements AppConstants {
 			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;number:        1<br />");
 			playdays.add("<br />");
 		}
-		
+
 		return playdays;
 	}
 }

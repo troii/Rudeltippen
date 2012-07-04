@@ -167,9 +167,108 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Calculates scores for all brackets and games as well as all user points (game tips and extra tips)
+	 * All calculations which need to be done, are called from this method
+	 * - Calculation of brackets
+	 * - Calculation of team places
+	 * - Calculation of user points
+	 * - Calculation of user places
+	 * - Calculation of playoff teams
+	 * - Calculation of current playdays
 	 */
-	public static void calculateScoresAndPoints() {
+	public static void calculations() {
+		calculateBrackets();
+		setTeamPlaces();
+		calculateUserPoints();
+		setUserPlaces();
+		setPlayoffTeams();
+		setCurrentPlayday();
+	}
+
+	/**
+	 * Calculation the points for each user based on game and extra tips
+	 */
+	private static void calculateUserPoints() {
+		final Settings settings = AppUtils.getSettings();
+
+		final List<Extra> extras = Extra.findAll();
+		for (final Extra extra : extras) {
+			if (extra.getAnswer() == null) {
+				if (AppUtils.allReferencedGamesEnded(extra.getGameReferences())) {
+					final Team team = AppUtils.getTeamByReference(extra.getExtraReference());
+					if (team != null) {
+						extra.setAnswer(team);
+						extra._save();
+					}
+				}
+			}
+		}
+
+		final List<User> users = User.findAll();
+		final List<Game> allGames = Game.find("SELECT g FROM Game g WHERE ended = ?", true).fetch();
+		for (final User user : users) {
+			int points = 0;
+			int correctResults = 0;
+			int correctDifferences = 0;
+			int correctTrends = 0;
+			int correctExtraTips = 0;
+
+			for (final Game game : allGames) {
+				final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
+				if (gameTip == null) {
+					continue;
+				}
+
+				int pointsForTipp = 0;
+				if (game.isOvertime()) {
+					pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
+				} else {
+					pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
+				}
+				gameTip.setPoints(pointsForTipp);
+				gameTip._save();
+
+				if (pointsForTipp == settings.getPointsTip()) {
+					correctResults++;
+				} else if (pointsForTipp == settings.getPointsTipDiff()) {
+					correctDifferences++;
+				} else if (pointsForTipp == settings.getPointsTipTrend()) {
+					correctTrends++;
+				}
+
+				points = points + pointsForTipp;
+			}
+			user.setTipPoints(points);
+			user.setCorrectResults(correctResults);
+			user.setCorrectDifferences(correctDifferences);
+			user.setCorrectTrends(correctTrends);
+
+			int bonusPoints = 0;
+			for (final Extra extra : extras) {
+				final ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
+				if (extraTip != null) {
+					final Team bonusAnswer = extra.getAnswer();
+					final Team userAnswer = extraTip.getAnswer();
+					if ((bonusAnswer != null) && (userAnswer != null) && bonusAnswer.equals(userAnswer)) {
+						final int bPoints = extra.getPoints();
+						extraTip.setPoints(bPoints);
+						correctExtraTips++;
+						extraTip._save();
+						bonusPoints = bonusPoints + bPoints;
+					}
+				}
+			}
+
+			user.setExtraPoints(bonusPoints);
+			user.setPoints(points + bonusPoints);
+			user.setCorrectExtraTips(correctExtraTips);
+			user._save();
+		}
+	}
+
+	/**
+	 * Calculates the points, goals, etc. for each bracket
+	 */
+	private static void calculateBrackets() {
 		final Settings settings = AppUtils.getSettings();
 		final int pointsWin = settings.getPointsGameWin();
 		final int pointsDraw = settings.getPointsGameDraw();
@@ -236,86 +335,6 @@ public class AppUtils implements AppConstants{
 			team.setGoalsDiff(goalsFor - goalsAgainst);
 			team._save();
 		}
-
-		setTeamPlaces();
-
-		final List<Extra> extras = Extra.findAll();
-		for (final Extra extra : extras) {
-			if (extra.getAnswer() == null) {
-				if (AppUtils.allReferencedGamesEnded(extra.getGameReferences())) {
-					final Team team = AppUtils.getTeamByReference(extra.getExtraReference());
-					if (team != null) {
-						extra.setAnswer(team);
-						extra._save();
-					}
-				}
-			}
-		}
-
-		final List<User> users = User.findAll();
-		final List<Game> allGames = Game.find("SELECT g FROM Game g WHERE ended = ?", true).fetch();
-		for (final User user : users) {
-			int points = 0;
-			int correctResults = 0;
-			int correctDifferences = 0;
-			int correctTrends = 0;
-			int correctExtraTips = 0;
-
-			for (final Game game : allGames) {
-				final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
-				if (gameTip == null) {
-					continue;
-				}
-
-				int pointsForTipp = 0;
-				if (game.isOvertime()) {
-					pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
-				} else {
-					pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
-				}
-				gameTip.setPoints(pointsForTipp);
-				gameTip._save();
-
-				if (pointsForTipp == settings.getPointsTip()) {
-					correctResults++;
-				} else if (pointsForTipp == settings.getPointsTipDiff()) {
-					correctDifferences++;
-				} else if (pointsForTipp == settings.getPointsTipTrend()) {
-					correctTrends++;
-				}
-
-				points = points + pointsForTipp;
-
-			}
-			user.setTipPoints(points);
-			user.setCorrectResults(correctResults);
-			user.setCorrectDifferences(correctDifferences);
-			user.setCorrectTrends(correctTrends);
-
-			int bonusPoints = 0;
-			for (final Extra extra : extras) {
-				final ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
-				if (extraTip != null) {
-					final Team bonusAnswer = extra.getAnswer();
-					final Team userAnswer = extraTip.getAnswer();
-					if ((bonusAnswer != null) && (userAnswer != null) && bonusAnswer.equals(userAnswer)) {
-						final int bPoints = extra.getPoints();
-						extraTip.setPoints(bPoints);
-						correctExtraTips++;
-						extraTip._save();
-						bonusPoints = bonusPoints + bPoints;
-					}
-				}
-			}
-
-			user.setExtraPoints(bonusPoints);
-			user.setPoints(points + bonusPoints);
-			user.setCorrectExtraTips(correctExtraTips);
-			user._save();
-		}
-
-		setUserPlaces();
-		setPlayoffTeams(settings);
 	}
 
 	/**
@@ -333,10 +352,25 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
+	 * Sets the current playday
+	 */
+	private static void setCurrentPlayday() {
+		final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
+		for (final Playday playday : playdays) {
+			if (!playday.allGamesEnded()) {
+				playday.setCurrent(false);
+				playday._save();
+				break;
+			}
+		}
+	}
+
+	/**
 	 * Sets the teams to the playoff games
 	 * @param settings Settings object
 	 */
-	public static void setPlayoffTeams(final Settings settings) {
+	public static void setPlayoffTeams() {
+		final Settings settings = AppUtils.getSettings();
 		if (settings.isPlayoffs()) {
 			Team homeTeam = null;
 			Team awayTeam = null;
@@ -795,7 +829,7 @@ public class AppUtils implements AppConstants{
 		Logger.info("Recieved from WebService - HomeScoreExtra: " + homeScoreExtratime + " AwayScoreExtra: " + awayScoreExtratime + " (" + extratime + ")");
 		Logger.info("Updating results from WebService. " + game);
 		setGameScore(String.valueOf(game.getId()), homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
-		calculateScoresAndPoints();
+		calculations();
 	}
 
 	/**
