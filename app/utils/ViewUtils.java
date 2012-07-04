@@ -404,7 +404,7 @@ public class ViewUtils extends JavaExtensions{
 
 		final File file = Play.getFile("/public/stylesheets/" + theme + ".css");
 		if (!file.exists()) {
-			theme = "cerulean.css";
+			theme = "cerulean";
 		}
 
 		return theme;
