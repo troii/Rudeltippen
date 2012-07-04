@@ -1,6 +1,9 @@
-<h3>&{playday.name}</h3>
 <table class="table">
 	<thead>
+		<tr>
+			<th colspan="4"><h2>&{playday.name}</h2></th>
+			<th colspan="8" style="text-align: right;">#{if previousPlayday != null}<a href="javascript:load(1, '@{overview.playday()}/${previousPlayday.number}/1');"><i class="icon-arrow-left"></i> &{previousPlayday.name}</a>#{/if}   #{if nextPlayday != null}<a href="javascript:load(1, '@{overview.playday()}/${nextPlayday.number}/1');">&{nextPlayday.name} <i class="icon-arrow-right"></i></a>#{/if}</th>
+		</tr>	
 		<tr>
 			<th class="hidden-phone"></th>
 			<th></th>

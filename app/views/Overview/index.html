@@ -2,11 +2,16 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-			<li id="nav-first"><a href="javascript:load(0,'@{tips.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
-			<li class="nav-header">&{'playdays'}</li>
-			#{list items:playdays, as:'aPlayday'}
-				<li id="nav-${aPlayday.number}" #{if aPlayday.number == number} class="active" #{/if}><a href="javascript:load('${aPlayday.number}','@{overview.playday()}/${aPlayday.number}/1');">&{aPlayday.name}</a></li>
-			#{/list}
+			<li id="nav-first"><a href="javascript:load(0,'@{overview.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
+			#{if playoffs}
+				<li class="nav-header">&{'playdays'}</li>
+				#{list items:playdays, as:'aPlayday'}
+					<li id="nav-1"><a href="javascript:load(1, '@{tournament.playday()}/${currentPlayday.number}');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
+				#{/list}
+			#{/if}
+			#{else}
+				<li id="nav-1" #{if request.action == "Overview.index" || request.action == "Overview.playday" } class="active" #{/if}><a href="javascript:load(1, '@{overview.playday()}/${currentPlayday.number}/1');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
+			#{/else}
 		</ul>
 	</div>
 </div>

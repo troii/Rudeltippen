@@ -17,8 +17,11 @@ public class Tournament extends Root {
 		final boolean playoffs = settings.isPlayoffs();
 		final List<Bracket> brackets = Bracket.findAll();
 		final List<Playday> playdays = Playday.findAll();
+		final Playday currentPlayday = AppUtils.getCurrentPlayday();
+		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 		
-		render(brackets, playdays, playoffs);
+		render(brackets, playdays, playoffs, currentPlayday, nextPlayday, previousPlayday);
 	}
 
 	public static void brackets() {
@@ -37,7 +40,20 @@ public class Tournament extends Root {
 	}
 	
 	public static void playday(int number) {
-		final Playday playday = Playday.find("byNumber", number).first();
-		render(playday);
+		playdayWrapper(number);
 	}
+	
+	public static void playdayJS(int number) {
+		playdayWrapper(number);
+	}
+
+	private static void playdayWrapper(int number) {
+		final List<Playday> playdays = Playday.find("byPlayoff", false).fetch();
+		final Playday playday = Playday.find("byNumber", number).first();
+		final Playday currentPlayday = playday;
+		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
+		
+		render(playday, playdays, nextPlayday, previousPlayday);
+	}	
 }

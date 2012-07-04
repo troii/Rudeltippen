@@ -38,11 +38,15 @@ public class Overview extends Root{
 		if (number <= 0) { number = 0; }
 		List<Playday> playdays = Playday.findAll();
 		Playday playday = Playday.find("byNumber", number).first();
+		
+		Playday currentPlayday = playday;
+		Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
 		final Map pagination = ViewUtils.getPagination("user", page, "/overview/playday/");
 		final List<User> users = User.find("ORDER BY place ASC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));
 		List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
 
-		render(playday, tips, playdays, number, pagination);
+		render(playday, tips, playdays, number, pagination, nextPlayday, previousPlayday);
 	}
 }

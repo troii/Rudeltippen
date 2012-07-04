@@ -25,16 +25,22 @@ public class Tips extends Root {
 		if (number <= 0) { number = 1; }
 		List<Playday> playdays = Playday.findAll();
 		Playday playday = Playday.find("byNumber", number).first();
+		Playday currentPlayday = playday;
+		Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
-		render(playdays, playday, number);
+		render(playdays, playday, number, currentPlayday, nextPlayday, previousPlayday);
 	}
 
 	@Transactional(readOnly=true)
 	public static void games(int number) {
 		if (number <= 0) { number = 1; }
 		Playday playday = Playday.find("byNumber", number).first();
+		Playday currentPlayday = playday;
+		Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
-		render(playday);
+		render(playday, currentPlayday, previousPlayday, nextPlayday);
 	}
 
 	@Transactional(readOnly=true)

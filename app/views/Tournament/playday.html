@@ -1,7 +1,8 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th colspan="5"><h2>&{playday.name}</h2></th>
+			<th colspan="3"><h2>&{playday.name}</h2></th>
+			<th style="text-align: right;">#{if previousPlayday != null}<a href="javascript:load(1, '@{tournament.playdayjs()}/${previousPlayday.number}');"><i class="icon-arrow-left"></i> &{previousPlayday.name}</a>#{/if}   #{if nextPlayday != null}<a href="javascript:load(1, '@{tournament.playdayjs()}/${nextPlayday.number}');">&{nextPlayday.name} <i class="icon-arrow-right"></i></a>#{/if}</th>
 		</tr>
 		<tr>
 			<th class="hidden-phone">&{'date'} - &{'time'}</th>

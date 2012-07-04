@@ -4,15 +4,13 @@
 		<ul class="nav nav-list">
 			#{if playoffs}
 				<li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(0, '@{tournament.brackets()}');"><i class="icon-th-list"></i>  &{'groups'}</a></li>
-				<li><a href="javascript:load(2, '@{tournament.preliminary()}');">&{'firstround'}</a></li>
-				<li><a href="javascript:load(3, '@{tournament.playoffs()}');">&{'playoffs'}</a></li>
+				<li class="nav-header">&{'playdays'}</li>
+				<li><a href="javascript:load(1, '@{tournament.preliminary()}');">&{'firstround'}</a></li>
+				<li><a href="javascript:load(2, '@{tournament.playoffs()}');">&{'playoffs'}</a></li>
 			#{/if}
 			#{else}
 				<li id="nav-first" #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(0, '@{tournament.brackets()}');"><i class="icon-th-list"></i>  &{'table'}</a></li>
-				<li class="nav-header">&{'playdays'}</li>
-				#{list items:playdays, as:'playday'}
-					<li id="nav-${playday.number}"><a href="javascript:load(${playday.number}, '@{tournament.playday()}/${playday.number}');">&{playday.name}</a></li>
-				#{/list}
+				<li id="nav-1"><a href="javascript:load(1, '@{tournament.playday()}/${currentPlayday.number}');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
 			#{/else}
 		</ul>
 	</div>
