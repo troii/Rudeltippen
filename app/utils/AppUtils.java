@@ -69,6 +69,16 @@ public class AppUtils implements AppConstants{
 		return password;
 	}
 
+	public static int getPointsToFirstPlace() {
+		final User user = User.find("byPlace", 1).first();
+		int pointsDiff = 0;
+		if (user != null) {
+			final User connectedUser = AppUtils.getConnectedUser();
+			pointsDiff = user.getPoints() - connectedUser.getPoints();
+		}
+		return pointsDiff;
+	}
+
 	/**
 	 * Checks if at least one extra tip in given list is tipable
 	 *
@@ -934,7 +944,7 @@ public class AppUtils implements AppConstants{
 			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	/**

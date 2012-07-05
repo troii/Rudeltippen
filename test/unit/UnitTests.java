@@ -35,7 +35,7 @@ public class UnitTests extends UnitTest {
 	@Before
 	public void init() {
     	Fixtures.deleteDatabase();
-    	Fixtures.loadModels("em2012.test.yml");
+    	Fixtures.loadModels("bl2012.test.yml");
 
     	for (int i=1; i <= 7; i++) {
     		User user = new User();
@@ -152,7 +152,7 @@ public class UnitTests extends UnitTest {
 
     @Test
     public void testGeneratePassword() {
-    	assertEquals(AppUtils.hashPassword("user22", "foo"), "e4c11ac853006b9633f99c6915a01af68fc383e9");
+    	assertEquals(AppUtils.hashPassword("user22", "foo"), "2d56a2593b5af39bb12082ad686b44bf9268c346");
     }
 
     @Test

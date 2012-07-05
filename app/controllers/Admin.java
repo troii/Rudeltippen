@@ -86,8 +86,8 @@ public class Admin extends Root implements AppConstants {
 			AppUtils.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 		}
 
-		final Promise<String> calculation = new CalculationJob().now();
-		await(calculation);
+		final Promise<String> calculations = new CalculationJob().now();
+		await(calculations);
 
 		flash.put("infomessage", Messages.get("controller.games.tippsstored"));
 		flash.keep();
@@ -281,8 +281,8 @@ public class Admin extends Root implements AppConstants {
 				flash.put("infomessage", Messages.get("info.delete.user", username));
 				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
 
-				final Promise<String> calculation = new CalculationJob().now();
-				await(calculation);
+				final Promise<String> calculations = new CalculationJob().now();
+				await(calculations);
 			} else {
 				flash.put("warningmessage", Messages.get("warning.delete.user"));
 			}

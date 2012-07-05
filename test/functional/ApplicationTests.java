@@ -148,7 +148,6 @@ public class ApplicationTests extends FunctionalTest {
         assertStatus(200, GET("/tips/games/2"));
         assertStatus(200, GET("/users/show/user1"));
         assertStatus(200, GET("/users/profile"));
-        assertStatus(200, GET("/overview"));
         assertStatus(200, GET("/tips/storeextra"));
         assertStatus(200, GET("/tips/storetips"));
         assertStatus(200, GET("/overview/1/1"));
@@ -156,9 +155,9 @@ public class ApplicationTests extends FunctionalTest {
         assertStatus(200, GET("/admin/playday/1"));
         assertStatus(200, GET("/admin/users"));
         assertStatus(200, GET("/admin/settings"));
+        assertStatus(200, GET("/admin/deleteuser/2"));
         assertStatus(302, GET("/admin/changeactive/3"));
         assertStatus(302, GET("/admin/changeadmin/3"));
-        assertStatus(302, GET("/admin/deleteuser/2"));
         
         response = GET("/users/updatenickname");
         assertStatus(302, GET("/users/updatenickname"));
@@ -183,6 +182,27 @@ public class ApplicationTests extends FunctionalTest {
         response = GET("/users/updatepicture");
         assertStatus(302, GET("/users/updatepicture"));
         assertEquals(response.getHeader("location"), "/users/profile");
+        
+    	response = GET("/api/standings");
+        assertStatus(200, response);
+
+        response = GET("/api/standings");
+        assertStatus(200, response);
+        
+        response = GET("/api/tournament");
+        assertStatus(200, response);
+    
+        response = GET("/api/user/user5");
+        assertStatus(200, response);
+        
+        response = GET("/api/user/userfoo");
+        assertStatus(501, response);
+        
+        response = GET("/api/playday/1");
+        assertStatus(200, response);
+        
+        response = GET("/api/playday/4242");
+        assertStatus(501, response);
     }
 
     @Test
@@ -195,5 +215,29 @@ public class ApplicationTests extends FunctionalTest {
         assertEquals(response.getHeader("location"), "/");
 
         assertStatus(403, POST("/admin/results"));
+    }
+    
+    @Test
+    public void testAPI() {
+    	Response response = GET("/api/standings");
+        assertStatus(401, response);
+
+        response = GET("/api/standings");
+        assertStatus(401, response);
+        
+        response = GET("/api/tournament");
+        assertStatus(401, response);
+    
+        response = GET("/api/user/user2");
+        assertStatus(401, response);
+        
+        response = GET("/api/user/userfoo");
+        assertStatus(401, response);
+        
+        response = GET("/api/playday/1");
+        assertStatus(401, response);
+        
+        response = GET("/api/playday/4242");
+        assertStatus(401, response);        
     }
 }

@@ -13,12 +13,7 @@ import utils.AppUtils;
 @Transactional(readOnly=true)
 public class Application extends Root {
 	public static void index() {
-		final User user = User.find("byPlace", 1).first();
-		int pointsDiff = 0;
-		if (user != null) {
-			final User connectedUser = AppUtils.getConnectedUser();
-			pointsDiff = user.getPoints() - connectedUser.getPoints();
-		}
+		int pointsDiff = AppUtils.getPointsToFirstPlace();
 		final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
 		final Playday playday = AppUtils.getCurrentPlayday();
 		final List<User> topUsers = User.find("ORDER BY place ASC").fetch(3);

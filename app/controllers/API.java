@@ -18,12 +18,15 @@ public class API extends Controller {
 	@Before
 	protected static void auth() {
 		if (AppUtils.isAPI()) {
-			String username = request.user;
-			String userpass = request.password;
+			final User connectedUser = AppUtils.getConnectedUser();
+			if (connectedUser == null) {
+				final String username = request.user;
+				final String userpass = request.password;
 
-			boolean allowed = authenticate(username, userpass);
-			if (!allowed) {
-				unauthorized("Rudeltippen API");
+				final boolean allowed = authenticate(username, userpass);
+				if (!allowed) {
+					unauthorized("Rudeltippen API");
+				}				
 			}
 		} else {
 			forbidden("Rudeltippen API is not enabled");
@@ -62,7 +65,7 @@ public class API extends Controller {
 	}
 	
 	public static void user(String nickname) {
-		User user = User.find("byNickname", nickname).first();
+		final User user = User.find("byNickname", nickname).first();
 		if (user != null) {
 			JSONSerializer userSerializer = new JSONSerializer()
 				.include("username", "nickname", "registered", "picture")
@@ -77,7 +80,7 @@ public class API extends Controller {
 	}
 	
 	public static void playday(int number) {
-		Playday playday = Playday.find("byNumber", number).first();
+		final Playday playday = Playday.find("byNumber", number).first();
 		if (playday != null) {
 			JSONSerializer playdaySerializer = new JSONSerializer()
 				.include("name", "number", "playoff", "playdayStart", "playdayEnd")
