@@ -400,11 +400,14 @@ public class ViewUtils extends JavaExtensions{
 
 	public static String getTheme() {
 		final Settings settings = AppUtils.getSettings();
-		String theme = settings.getTheme();
+		String theme = "cerulean";
+		if (settings != null) {
+			theme = settings.getTheme();
 
-		final File file = Play.getFile("/public/stylesheets/" + theme + ".css");
-		if (!file.exists()) {
-			theme = "cerulean";
+			final File file = Play.getFile("/public/stylesheets/" + theme + ".css");
+			if (!file.exists()) {
+				theme = "cerulean";
+			}
 		}
 
 		return theme;
