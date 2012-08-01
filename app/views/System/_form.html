@@ -132,7 +132,7 @@
 			#{/ifError}
 		</div>
 	</div>
-	<div class="control-group">
+	<div class="control-group #{ifError 'tournament'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.tournament'}</label>
 		<div class="controls">
 			<select id="tournament" name="tournament">
@@ -144,7 +144,7 @@
 			#{/ifError}
 		</div>
 	</div>	
-	<div class="control-group">
+	<div class="control-group #{ifError 'theme'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.theme'}</label>
 		<div class="controls">
 			<select id="theme" name="theme">
