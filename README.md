@@ -45,18 +45,6 @@ Screenshots
 
 You can find some screenshots of Rudeltippen [here][13]
 
-Demo application
-------------------
-You can find a Demo [here][3]. Login with the following credentials:
-
-
-Username: demo@rudeltippen.de
-
-Password: demo12345
-
-
-Please note that the above user is not an administrative user, so some features are not available. Also registration is not enabled.
-
 Installation guide
 ------------------
 
