@@ -2,7 +2,7 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-			<li id="nav-first"><a href="javascript:load(0,'@{tips.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
+			<li id="nav-first" #{if request.action == "Tips.extra" || request.action == "Tips.extras" } class="active" #{/if}><a href="javascript:load(0,'@{tips.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
 			#{if playoffs}
 				<li class="nav-header">&{'playdays'}</li>
 				#{list items:playdays, as:'aPlayday'}
