@@ -391,26 +391,6 @@ models.Game(g2):
 
 models.Game(g3):
     number: 3
-    homeTeam: vfb
-    awayTeam: vfl
-    kickoff: 2012-08-25 13:30:00
-    playday: p1
-    playoff: false
-    ended: false
-    webserviceID: 19704
-
-models.Game(g4):
-    number: 4
-    homeTeam: h96
-    awayTeam: s04
-    kickoff: 2012-08-25 13:30:00
-    playday: p1
-    playoff: false
-    ended: false
-    webserviceID: 19705
-
-models.Game(g5):
-    number: 5
     homeTeam: scf
     awayTeam: m05
     kickoff: 2012-08-25 13:30:00
@@ -419,8 +399,8 @@ models.Game(g5):
     ended: false
     webserviceID: 19706
 
-models.Game(g6):
-    number: 6
+models.Game(g4):
+    number: 4
     homeTeam: fca
     awayTeam: fd
     kickoff: 2012-08-25 13:30:00
@@ -429,8 +409,8 @@ models.Game(g6):
     ended: false
     webserviceID: 19707
 
-models.Game(g7):
-    number: 7
+models.Game(g5):
+    number: 5
     homeTeam: hsv
     awayTeam: fcn
     kickoff: 2012-08-25 13:30:00
@@ -439,8 +419,8 @@ models.Game(g7):
     ended: false
     webserviceID: 19708
 
-models.Game(g8):
-    number: 8
+models.Game(g6):
+    number: 6
     homeTeam: sgf
     awayTeam: fcb
     kickoff: 2012-08-25 13:30:00
@@ -449,25 +429,45 @@ models.Game(g8):
     ended: false
     webserviceID: 19709
 
-models.Game(g9):
-    number: 9
+models.Game(g7):
+    number: 7
     homeTeam: ef
     awayTeam: b04
-    kickoff: 2012-08-25 13:30:00
+    kickoff: 2012-08-25 16:30:00
     playday: p1
     playoff: false
     ended: false
     webserviceID: 19710
 
+models.Game(g8):
+    number: 8
+    homeTeam: vfb
+    awayTeam: vfl
+    kickoff: 2012-08-25 18:45:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19704
+
+models.Game(g9):
+    number: 9
+    homeTeam: h96
+    awayTeam: s04
+    kickoff: 2012-08-26 15:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19705
+
 models.Game(g10):
     number: 10
-    homeTeam: fcb
-    awayTeam: vfb
-    kickoff: 2012-09-01 13:30:00
+    homeTeam: m05
+    awayTeam: sgf
+    kickoff: 2012-08-31 18:30:00
     playday: p2
     playoff: false
     ended: false
-    webserviceID: 19711
+    webserviceID: 19718
 
 models.Game(g11):
     number: 11
@@ -491,16 +491,6 @@ models.Game(g12):
 
 models.Game(g13):
     number: 13
-    homeTeam: vfl
-    awayTeam: h96
-    kickoff: 2012-09-01 13:30:00
-    playday: p2
-    playoff: false
-    ended: false
-    webserviceID: 19714
-
-models.Game(g14):
-    number: 14
     homeTeam: swb
     awayTeam: hsv
     kickoff: 2012-09-01 13:30:00
@@ -509,8 +499,8 @@ models.Game(g14):
     ended: false
     webserviceID: 19715
 
-models.Game(g15):
-    number: 15
+models.Game(g14):
+    number: 14
     homeTeam: fcn
     awayTeam: bvb
     kickoff: 2012-09-01 13:30:00
@@ -519,8 +509,8 @@ models.Game(g15):
     ended: false
     webserviceID: 19716
 
-models.Game(g16):
-    number: 16
+models.Game(g15):
+    number: 15
     homeTeam: tsg
     awayTeam: ef
     kickoff: 2012-09-01 13:30:00
@@ -529,28 +519,48 @@ models.Game(g16):
     ended: false
     webserviceID: 19717
 
-models.Game(g17):
-    number: 17
-    homeTeam: m05
-    awayTeam: sgf
-    kickoff: 2012-09-01 13:30:00
-    playday: p2
-    playoff: false
-    ended: false
-    webserviceID: 19718
-
-models.Game(g18):
-    number: 18
+models.Game(g16):
+    number: 16
     homeTeam: fd
     awayTeam: bmg
-    kickoff: 2012-09-01 13:30:00
+    kickoff: 2012-09-01 16:30:00
     playday: p2
     playoff: false
     ended: false
     webserviceID: 19719
 
+models.Game(g17):
+    number: 17
+    homeTeam: vfl
+    awayTeam: h96
+    kickoff: 2012-09-02 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19714
+
+models.Game(g18):
+    number: 18
+    homeTeam: fcb
+    awayTeam: vfb
+    kickoff: 2012-09-02 15:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19711
+
 models.Game(g19):
     number: 19
+    homeTeam: fca
+    awayTeam: vfl
+    kickoff: 2012-09-14 18:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19726
+
+models.Game(g20):
+    number: 20
     homeTeam: bvb
     awayTeam: b04
     kickoff: 2012-09-15 13:30:00
@@ -559,8 +569,8 @@ models.Game(g19):
     ended: false
     webserviceID: 19720
 
-models.Game(g20):
-    number: 20
+models.Game(g21):
+    number: 21
     homeTeam: fcb
     awayTeam: m05
     kickoff: 2012-09-15 13:30:00
@@ -569,8 +579,8 @@ models.Game(g20):
     ended: false
     webserviceID: 19721
 
-models.Game(g21):
-    number: 21
+models.Game(g22):
+    number: 22
     homeTeam: bmg
     awayTeam: fcn
     kickoff: 2012-09-15 13:30:00
@@ -579,8 +589,8 @@ models.Game(g21):
     ended: false
     webserviceID: 19722
 
-models.Game(g22):
-    number: 22
+models.Game(g23):
+    number: 23
     homeTeam: vfb
     awayTeam: fd
     kickoff: 2012-09-15 13:30:00
@@ -589,8 +599,8 @@ models.Game(g22):
     ended: false
     webserviceID: 19723
 
-models.Game(g23):
-    number: 23
+models.Game(g24):
+    number: 24
     homeTeam: h96
     awayTeam: swb
     kickoff: 2012-09-15 13:30:00
@@ -599,41 +609,31 @@ models.Game(g23):
     ended: false
     webserviceID: 19724
 
-models.Game(g24):
-    number: 24
-    homeTeam: scf
-    awayTeam: tsg
-    kickoff: 2012-09-15 13:30:00
-    playday: p3
-    playoff: false
-    ended: false
-    webserviceID: 19725
-
 models.Game(g25):
     number: 25
-    homeTeam: fca
-    awayTeam: vfl
-    kickoff: 2012-09-15 13:30:00
-    playday: p3
-    playoff: false
-    ended: false
-    webserviceID: 19726
-
-models.Game(g26):
-    number: 26
     homeTeam: sgf
     awayTeam: s04
-    kickoff: 2012-09-15 13:30:00
+    kickoff: 2012-09-15 16:30:00
     playday: p3
     playoff: false
     ended: false
     webserviceID: 19727
 
+models.Game(g26):
+    number: 26
+    homeTeam: scf
+    awayTeam: tsg
+    kickoff: 2012-09-16 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19725
+
 models.Game(g27):
     number: 27
     homeTeam: ef
     awayTeam: hsv
-    kickoff: 2012-09-15 13:30:00
+    kickoff: 2012-09-16 15:30:00
     playday: p3
     playoff: false
     ended: false
@@ -641,66 +641,16 @@ models.Game(g27):
 
 models.Game(g28):
     number: 28
-    homeTeam: s04
-    awayTeam: fcb
-    kickoff: 2012-09-22 13:30:00
-    playday: p4
-    playoff: false
-    ended: false
-    webserviceID: 19729
-
-models.Game(g29):
-    number: 29
-    homeTeam: b04
-    awayTeam: bmg
-    kickoff: 2012-09-22 13:30:00
-    playday: p4
-    playoff: false
-    ended: false
-    webserviceID: 19730
-
-models.Game(g30):
-    number: 30
-    homeTeam: vfl
-    awayTeam: sgf
-    kickoff: 2012-09-22 13:30:00
-    playday: p4
-    playoff: false
-    ended: false
-    webserviceID: 19731
-
-models.Game(g31):
-    number: 31
-    homeTeam: swb
-    awayTeam: vfb
-    kickoff: 2012-09-22 13:30:00
-    playday: p4
-    playoff: false
-    ended: false
-    webserviceID: 19732
-
-models.Game(g32):
-    number: 32
     homeTeam: fcn
     awayTeam: ef
-    kickoff: 2012-09-22 13:30:00
+    kickoff: 2012-09-21 18:30:00
     playday: p4
     playoff: false
     ended: false
     webserviceID: 19733
 
-models.Game(g33):
-    number: 33
-    homeTeam: tsg
-    awayTeam: h96
-    kickoff: 2012-09-22 13:30:00
-    playday: p4
-    playoff: false
-    ended: false
-    webserviceID: 19734
-
-models.Game(g34):
-    number: 34
+models.Game(g29):
+    number: 29
     homeTeam: m05
     awayTeam: fca
     kickoff: 2012-09-22 13:30:00
@@ -709,8 +659,8 @@ models.Game(g34):
     ended: false
     webserviceID: 19735
 
-models.Game(g35):
-    number: 35
+models.Game(g30):
+    number: 30
     homeTeam: hsv
     awayTeam: bvb
     kickoff: 2012-09-22 13:30:00
@@ -719,8 +669,8 @@ models.Game(g35):
     ended: false
     webserviceID: 19736
 
-models.Game(g36):
-    number: 36
+models.Game(g31):
+    number: 31
     homeTeam: fd
     awayTeam: scf
     kickoff: 2012-09-22 13:30:00
@@ -729,11 +679,61 @@ models.Game(g36):
     ended: false
     webserviceID: 19737
 
+models.Game(g32):
+    number: 32
+    homeTeam: s04
+    awayTeam: fcb
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19729
+
+models.Game(g33):
+    number: 33
+    homeTeam: vfl
+    awayTeam: sgf
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19731
+
+models.Game(g34):
+    number: 34
+    homeTeam: b04
+    awayTeam: bmg
+    kickoff: 2012-09-23 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19730
+
+models.Game(g35):
+    number: 35
+    homeTeam: swb
+    awayTeam: vfb
+    kickoff: 2012-09-23 15:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19732
+
+models.Game(g36):
+    number: 36
+    homeTeam: tsg
+    awayTeam: h96
+    kickoff: 2012-09-23 15:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19734
+
 models.Game(g37):
     number: 37
     homeTeam: fcb
     awayTeam: vfl
-    kickoff: 2012-09-26 18:00:00
+    kickoff: 2012-09-25 18:00:00
     playday: p5
     playoff: false
     ended: false
@@ -743,7 +743,7 @@ models.Game(g38):
     number: 38
     homeTeam: s04
     awayTeam: m05
-    kickoff: 2012-09-26 18:00:00
+    kickoff: 2012-09-25 18:00:00
     playday: p5
     playoff: false
     ended: false
@@ -751,6 +751,26 @@ models.Game(g38):
 
 models.Game(g39):
     number: 39
+    homeTeam: sgf
+    awayTeam: fd
+    kickoff: 2012-09-25 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19745
+
+models.Game(g40):
+    number: 40
+    homeTeam: ef
+    awayTeam: bvb
+    kickoff: 2012-09-25 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19746
+
+models.Game(g41):
+    number: 41
     homeTeam: bmg
     awayTeam: hsv
     kickoff: 2012-09-26 18:00:00
@@ -759,8 +779,8 @@ models.Game(g39):
     ended: false
     webserviceID: 19740
 
-models.Game(g40):
-    number: 40
+models.Game(g42):
+    number: 42
     homeTeam: vfb
     awayTeam: tsg
     kickoff: 2012-09-26 18:00:00
@@ -769,8 +789,8 @@ models.Game(g40):
     ended: false
     webserviceID: 19741
 
-models.Game(g41):
-    number: 41
+models.Game(g43):
+    number: 43
     homeTeam: h96
     awayTeam: fcn
     kickoff: 2012-09-26 18:00:00
@@ -779,8 +799,8 @@ models.Game(g41):
     ended: false
     webserviceID: 19742
 
-models.Game(g42):
-    number: 42
+models.Game(g44):
+    number: 44
     homeTeam: scf
     awayTeam: swb
     kickoff: 2012-09-26 18:00:00
@@ -789,8 +809,8 @@ models.Game(g42):
     ended: false
     webserviceID: 19743
 
-models.Game(g43):
-    number: 43
+models.Game(g45):
+    number: 45
     homeTeam: fca
     awayTeam: b04
     kickoff: 2012-09-26 18:00:00
@@ -799,35 +819,15 @@ models.Game(g43):
     ended: false
     webserviceID: 19744
 
-models.Game(g44):
-    number: 44
-    homeTeam: sgf
-    awayTeam: fd
-    kickoff: 2012-09-26 18:00:00
-    playday: p5
-    playoff: false
-    ended: false
-    webserviceID: 19745
-
-models.Game(g45):
-    number: 45
-    homeTeam: ef
-    awayTeam: bvb
-    kickoff: 2012-09-26 18:00:00
-    playday: p5
-    playoff: false
-    ended: false
-    webserviceID: 19746
-
 models.Game(g46):
     number: 46
-    homeTeam: bvb
-    awayTeam: bmg
-    kickoff: 2012-09-29 13:30:00
+    homeTeam: fd
+    awayTeam: s04
+    kickoff: 2012-09-28 18:30:00
     playday: p6
     playoff: false
     ended: false
-    webserviceID: 19748
+    webserviceID: 19756
 
 models.Game(g47):
     number: 47
@@ -841,16 +841,6 @@ models.Game(g47):
 
 models.Game(g48):
     number: 48
-    homeTeam: vfl
-    awayTeam: m05
-    kickoff: 2012-09-29 13:30:00
-    playday: p6
-    playoff: false
-    ended: false
-    webserviceID: 19750
-
-models.Game(g49):
-    number: 49
     homeTeam: swb
     awayTeam: fcb
     kickoff: 2012-09-29 13:30:00
@@ -859,8 +849,8 @@ models.Game(g49):
     ended: false
     webserviceID: 19751
 
-models.Game(g50):
-    number: 50
+models.Game(g49):
+    number: 49
     homeTeam: fcn
     awayTeam: vfb
     kickoff: 2012-09-29 13:30:00
@@ -869,8 +859,8 @@ models.Game(g50):
     ended: false
     webserviceID: 19752
 
-models.Game(g51):
-    number: 51
+models.Game(g50):
+    number: 50
     homeTeam: tsg
     awayTeam: fca
     kickoff: 2012-09-29 13:30:00
@@ -879,8 +869,8 @@ models.Game(g51):
     ended: false
     webserviceID: 19753
 
-models.Game(g52):
-    number: 52
+models.Game(g51):
+    number: 51
     homeTeam: hsv
     awayTeam: h96
     kickoff: 2012-09-29 13:30:00
@@ -889,11 +879,21 @@ models.Game(g52):
     ended: false
     webserviceID: 19754
 
+models.Game(g52):
+    number: 52
+    homeTeam: bvb
+    awayTeam: bmg
+    kickoff: 2012-09-29 16:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19748
+
 models.Game(g53):
     number: 53
     homeTeam: ef
     awayTeam: scf
-    kickoff: 2012-09-29 13:30:00
+    kickoff: 2012-09-30 13:30:00
     playday: p6
     playoff: false
     ended: false
@@ -901,13 +901,13 @@ models.Game(g53):
 
 models.Game(g54):
     number: 54
-    homeTeam: fd
-    awayTeam: s04
-    kickoff: 2012-09-29 13:30:00
+    homeTeam: vfl
+    awayTeam: m05
+    kickoff: 2012-09-30 15:30:00
     playday: p6
     playoff: false
     ended: false
-    webserviceID: 19756
+    webserviceID: 19750
 
 models.Game(g55):
     number: 55
@@ -1091,6 +1091,16 @@ models.Game(g72):
 
 models.Game(g73):
     number: 73
+    homeTeam: fca
+    awayTeam: hsv
+    kickoff: 2012-10-27 10:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 20413
+
+models.Game(g74):
+    number: 74
     homeTeam: fcb
     awayTeam: b04
     kickoff: 2012-10-27 13:30:00
@@ -1099,8 +1109,8 @@ models.Game(g73):
     ended: false
     webserviceID: 19775
 
-models.Game(g74):
-    number: 74
+models.Game(g75):
+    number: 75
     homeTeam: s04
     awayTeam: fcn
     kickoff: 2012-10-27 13:30:00
@@ -1109,8 +1119,8 @@ models.Game(g74):
     ended: false
     webserviceID: 19776
 
-models.Game(g75):
-    number: 75
+models.Game(g76):
+    number: 76
     homeTeam: vfb
     awayTeam: ef
     kickoff: 2012-10-27 13:30:00
@@ -1119,8 +1129,8 @@ models.Game(g75):
     ended: false
     webserviceID: 19777
 
-models.Game(g76):
-    number: 76
+models.Game(g77):
+    number: 77
     homeTeam: h96
     awayTeam: bmg
     kickoff: 2012-10-27 13:30:00
@@ -1129,8 +1139,8 @@ models.Game(g76):
     ended: false
     webserviceID: 19778
 
-models.Game(g77):
-    number: 77
+models.Game(g78):
+    number: 78
     homeTeam: scf
     awayTeam: bvb
     kickoff: 2012-10-27 13:30:00
@@ -1139,8 +1149,8 @@ models.Game(g77):
     ended: false
     webserviceID: 19779
 
-models.Game(g78):
-    number: 78
+models.Game(g79):
+    number: 79
     homeTeam: m05
     awayTeam: tsg
     kickoff: 2012-10-27 13:30:00
@@ -1148,16 +1158,6 @@ models.Game(g78):
     playoff: false
     ended: false
     webserviceID: 19780
-
-models.Game(g79):
-    number: 79
-    homeTeam: fca
-    awayTeam: h96
-    kickoff: 2012-10-27 13:30:00
-    playday: p9
-    playoff: false
-    ended: false
-    webserviceID: 19781
 
 models.Game(g80):
     number: 80
@@ -1801,6 +1801,16 @@ models.Game(g143):
 
 models.Game(g144):
     number: 144
+    homeTeam: ef
+    awayTeam: swb
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 20412
+
+models.Game(g145):
+    number: 145
     homeTeam: fcb
     awayTeam: bmg
     kickoff: 2012-12-15 14:30:00
@@ -1809,8 +1819,8 @@ models.Game(g144):
     ended: false
     webserviceID: 19847
 
-models.Game(g145):
-    number: 145
+models.Game(g146):
+    number: 146
     homeTeam: s04
     awayTeam: scf
     kickoff: 2012-12-15 14:30:00
@@ -1819,8 +1829,8 @@ models.Game(g145):
     ended: false
     webserviceID: 19848
 
-models.Game(g146):
-    number: 146
+models.Game(g147):
+    number: 147
     homeTeam: b04
     awayTeam: hsv
     kickoff: 2012-12-15 14:30:00
@@ -1829,8 +1839,8 @@ models.Game(g146):
     ended: false
     webserviceID: 19849
 
-models.Game(g147):
-    number: 147
+models.Game(g148):
+    number: 148
     homeTeam: vfl
     awayTeam: ef
     kickoff: 2012-12-15 14:30:00
@@ -1839,8 +1849,8 @@ models.Game(g147):
     ended: false
     webserviceID: 19850
 
-models.Game(g148):
-    number: 148
+models.Game(g149):
+    number: 149
     homeTeam: swb
     awayTeam: fcn
     kickoff: 2012-12-15 14:30:00
@@ -1849,8 +1859,8 @@ models.Game(g148):
     ended: false
     webserviceID: 19851
 
-models.Game(g149):
-    number: 149
+models.Game(g150):
+    number: 150
     homeTeam: tsg
     awayTeam: bvb
     kickoff: 2012-12-15 14:30:00
@@ -1859,8 +1869,8 @@ models.Game(g149):
     ended: false
     webserviceID: 19852
 
-models.Game(g150):
-    number: 150
+models.Game(g151):
+    number: 151
     homeTeam: m05
     awayTeam: vfb
     kickoff: 2012-12-15 14:30:00
@@ -1869,8 +1879,8 @@ models.Game(g150):
     ended: false
     webserviceID: 19853
 
-models.Game(g151):
-    number: 151
+models.Game(g152):
+    number: 152
     homeTeam: sgf
     awayTeam: fca
     kickoff: 2012-12-15 14:30:00
@@ -1879,8 +1889,8 @@ models.Game(g151):
     ended: false
     webserviceID: 19854
 
-models.Game(g152):
-    number: 152
+models.Game(g153):
+    number: 153
     homeTeam: fd
     awayTeam: h96
     kickoff: 2012-12-15 14:30:00
@@ -1889,8 +1899,8 @@ models.Game(g152):
     ended: false
     webserviceID: 19855
 
-models.Game(g153):
-    number: 153
+models.Game(g154):
+    number: 154
     homeTeam: swb
     awayTeam: bvb
     kickoff: 2013-01-19 14:30:00
@@ -1899,8 +1909,8 @@ models.Game(g153):
     ended: false
     webserviceID: 19856
 
-models.Game(g154):
-    number: 154
+models.Game(g155):
+    number: 155
     homeTeam: b04
     awayTeam: ef
     kickoff: 2013-01-19 14:30:00
@@ -1909,8 +1919,8 @@ models.Game(g154):
     ended: false
     webserviceID: 19857
 
-models.Game(g155):
-    number: 155
+models.Game(g156):
+    number: 156
     homeTeam: tsg
     awayTeam: bmg
     kickoff: 2013-01-19 14:30:00
@@ -1919,8 +1929,8 @@ models.Game(g155):
     ended: false
     webserviceID: 19858
 
-models.Game(g156):
-    number: 156
+models.Game(g157):
+    number: 157
     homeTeam: vfl
     awayTeam: vfb
     kickoff: 2013-01-19 14:30:00
@@ -1929,8 +1939,8 @@ models.Game(g156):
     ended: false
     webserviceID: 19859
 
-models.Game(g157):
-    number: 157
+models.Game(g158):
+    number: 158
     homeTeam: s04
     awayTeam: h96
     kickoff: 2013-01-19 14:30:00
@@ -1939,8 +1949,8 @@ models.Game(g157):
     ended: false
     webserviceID: 19860
 
-models.Game(g158):
-    number: 158
+models.Game(g159):
+    number: 159
     homeTeam: m05
     awayTeam: scf
     kickoff: 2013-01-19 14:30:00
@@ -1949,8 +1959,8 @@ models.Game(g158):
     ended: false
     webserviceID: 19861
 
-models.Game(g159):
-    number: 159
+models.Game(g160):
+    number: 160
     homeTeam: fd
     awayTeam: fca
     kickoff: 2013-01-19 14:30:00
@@ -1959,8 +1969,8 @@ models.Game(g159):
     ended: false
     webserviceID: 19862
 
-models.Game(g160):
-    number: 160
+models.Game(g161):
+    number: 161
     homeTeam: fcn
     awayTeam: hsv
     kickoff: 2013-01-19 14:30:00
@@ -1969,8 +1979,8 @@ models.Game(g160):
     ended: false
     webserviceID: 19863
 
-models.Game(g161):
-    number: 161
+models.Game(g162):
+    number: 162
     homeTeam: fcb
     awayTeam: sgf
     kickoff: 2013-01-19 14:30:00
@@ -1979,8 +1989,8 @@ models.Game(g161):
     ended: false
     webserviceID: 19864
 
-models.Game(g162):
-    number: 162
+models.Game(g163):
+    number: 163
     homeTeam: sgf
     awayTeam: m05
     kickoff: 2013-01-26 14:30:00
@@ -1989,8 +1999,8 @@ models.Game(g162):
     ended: false
     webserviceID: 19865
 
-models.Game(g163):
-    number: 163
+models.Game(g164):
+    number: 164
     homeTeam: vfb
     awayTeam: fcb
     kickoff: 2013-01-26 14:30:00
@@ -1999,8 +2009,8 @@ models.Game(g163):
     ended: false
     webserviceID: 19866
 
-models.Game(g164):
-    number: 164
+models.Game(g165):
+    number: 165
     homeTeam: bmg
     awayTeam: fd
     kickoff: 2013-01-26 14:30:00
@@ -2009,8 +2019,8 @@ models.Game(g164):
     ended: false
     webserviceID: 19867
 
-models.Game(g165):
-    number: 165
+models.Game(g166):
+    number: 166
     homeTeam: fca
     awayTeam: s04
     kickoff: 2013-01-26 14:30:00
@@ -2019,8 +2029,8 @@ models.Game(g165):
     ended: false
     webserviceID: 19868
 
-models.Game(g166):
-    number: 166
+models.Game(g167):
+    number: 167
     homeTeam: scf
     awayTeam: b04
     kickoff: 2013-01-26 14:30:00
@@ -2029,8 +2039,8 @@ models.Game(g166):
     ended: false
     webserviceID: 19869
 
-models.Game(g167):
-    number: 167
+models.Game(g168):
+    number: 168
     homeTeam: h96
     awayTeam: vfl
     kickoff: 2013-01-26 14:30:00
@@ -2039,8 +2049,8 @@ models.Game(g167):
     ended: false
     webserviceID: 19870
 
-models.Game(g168):
-    number: 168
+models.Game(g169):
+    number: 169
     homeTeam: hsv
     awayTeam: swb
     kickoff: 2013-01-26 14:30:00
@@ -2049,8 +2059,8 @@ models.Game(g168):
     ended: false
     webserviceID: 19871
 
-models.Game(g169):
-    number: 169
+models.Game(g170):
+    number: 170
     homeTeam: bvb
     awayTeam: fcn
     kickoff: 2013-01-26 14:30:00
@@ -2059,8 +2069,8 @@ models.Game(g169):
     ended: false
     webserviceID: 19872
 
-models.Game(g170):
-    number: 170
+models.Game(g171):
+    number: 171
     homeTeam: ef
     awayTeam: tsg
     kickoff: 2013-01-26 14:30:00
@@ -2069,8 +2079,8 @@ models.Game(g170):
     ended: false
     webserviceID: 19873
 
-models.Game(g171):
-    number: 171
+models.Game(g172):
+    number: 172
     homeTeam: vfl
     awayTeam: fca
     kickoff: 2013-02-02 14:30:00
@@ -2079,8 +2089,8 @@ models.Game(g171):
     ended: false
     webserviceID: 19874
 
-models.Game(g172):
-    number: 172
+models.Game(g173):
+    number: 173
     homeTeam: s04
     awayTeam: sgf
     kickoff: 2013-02-02 14:30:00
@@ -2089,8 +2099,8 @@ models.Game(g172):
     ended: false
     webserviceID: 19875
 
-models.Game(g173):
-    number: 173
+models.Game(g174):
+    number: 174
     homeTeam: b04
     awayTeam: bvb
     kickoff: 2013-02-02 14:30:00
@@ -2099,8 +2109,8 @@ models.Game(g173):
     ended: false
     webserviceID: 19876
 
-models.Game(g174):
-    number: 174
+models.Game(g175):
+    number: 175
     homeTeam: hsv
     awayTeam: ef
     kickoff: 2013-02-02 14:30:00
@@ -2109,8 +2119,8 @@ models.Game(g174):
     ended: false
     webserviceID: 19877
 
-models.Game(g175):
-    number: 175
+models.Game(g176):
+    number: 176
     homeTeam: m05
     awayTeam: fcb
     kickoff: 2013-02-02 14:30:00
@@ -2119,8 +2129,8 @@ models.Game(g175):
     ended: false
     webserviceID: 19878
 
-models.Game(g176):
-    number: 176
+models.Game(g177):
+    number: 177
     homeTeam: fcn
     awayTeam: bmg
     kickoff: 2013-02-02 14:30:00
@@ -2129,8 +2139,8 @@ models.Game(g176):
     ended: false
     webserviceID: 19879
 
-models.Game(g177):
-    number: 177
+models.Game(g178):
+    number: 178
     homeTeam: fd
     awayTeam: vfb
     kickoff: 2013-02-02 14:30:00
@@ -2139,8 +2149,8 @@ models.Game(g177):
     ended: false
     webserviceID: 19880
 
-models.Game(g178):
-    number: 178
+models.Game(g179):
+    number: 179
     homeTeam: swb
     awayTeam: h96
     kickoff: 2013-02-02 14:30:00
@@ -2149,8 +2159,8 @@ models.Game(g178):
     ended: false
     webserviceID: 19881
 
-models.Game(g179):
-    number: 179
+models.Game(g180):
+    number: 180
     homeTeam: tsg
     awayTeam: scf
     kickoff: 2013-02-02 14:30:00
@@ -2159,8 +2169,8 @@ models.Game(g179):
     ended: false
     webserviceID: 19882
 
-models.Game(g180):
-    number: 180
+models.Game(g181):
+    number: 181
     homeTeam: h96
     awayTeam: tsg
     kickoff: 2013-02-09 14:30:00
@@ -2169,8 +2179,8 @@ models.Game(g180):
     ended: false
     webserviceID: 19883
 
-models.Game(g181):
-    number: 181
+models.Game(g182):
+    number: 182
     homeTeam: fca
     awayTeam: m05
     kickoff: 2013-02-09 14:30:00
@@ -2179,8 +2189,8 @@ models.Game(g181):
     ended: false
     webserviceID: 19884
 
-models.Game(g182):
-    number: 182
+models.Game(g183):
+    number: 183
     homeTeam: bvb
     awayTeam: hsv
     kickoff: 2013-02-09 14:30:00
@@ -2189,8 +2199,8 @@ models.Game(g182):
     ended: false
     webserviceID: 19885
 
-models.Game(g183):
-    number: 183
+models.Game(g184):
+    number: 184
     homeTeam: fcb
     awayTeam: s04
     kickoff: 2013-02-09 14:30:00
@@ -2199,8 +2209,8 @@ models.Game(g183):
     ended: false
     webserviceID: 19886
 
-models.Game(g184):
-    number: 184
+models.Game(g185):
+    number: 185
     homeTeam: scf
     awayTeam: fd
     kickoff: 2013-02-09 14:30:00
@@ -2209,8 +2219,8 @@ models.Game(g184):
     ended: false
     webserviceID: 19887
 
-models.Game(g185):
-    number: 185
+models.Game(g186):
+    number: 186
     homeTeam: bmg
     awayTeam: b04
     kickoff: 2013-02-09 14:30:00
@@ -2219,8 +2229,8 @@ models.Game(g185):
     ended: false
     webserviceID: 19888
 
-models.Game(g186):
-    number: 186
+models.Game(g187):
+    number: 187
     homeTeam: sgf
     awayTeam: vfl
     kickoff: 2013-02-09 14:30:00
@@ -2229,8 +2239,8 @@ models.Game(g186):
     ended: false
     webserviceID: 19889
 
-models.Game(g187):
-    number: 187
+models.Game(g188):
+    number: 188
     homeTeam: vfb
     awayTeam: swb
     kickoff: 2013-02-09 14:30:00
@@ -2239,8 +2249,8 @@ models.Game(g187):
     ended: false
     webserviceID: 19890
 
-models.Game(g188):
-    number: 188
+models.Game(g189):
+    number: 189
     homeTeam: ef
     awayTeam: fcn
     kickoff: 2013-02-09 14:30:00
@@ -2249,8 +2259,8 @@ models.Game(g188):
     ended: false
     webserviceID: 19891
 
-models.Game(g189):
-    number: 189
+models.Game(g190):
+    number: 190
     homeTeam: fcn
     awayTeam: h96
     kickoff: 2013-02-16 14:30:00
@@ -2259,8 +2269,8 @@ models.Game(g189):
     ended: false
     webserviceID: 19892
 
-models.Game(g190):
-    number: 190
+models.Game(g191):
+    number: 191
     homeTeam: swb
     awayTeam: scf
     kickoff: 2013-02-16 14:30:00
@@ -2269,8 +2279,8 @@ models.Game(g190):
     ended: false
     webserviceID: 19893
 
-models.Game(g191):
-    number: 191
+models.Game(g192):
+    number: 192
     homeTeam: b04
     awayTeam: fca
     kickoff: 2013-02-16 14:30:00
@@ -2279,8 +2289,8 @@ models.Game(g191):
     ended: false
     webserviceID: 19894
 
-models.Game(g192):
-    number: 192
+models.Game(g193):
+    number: 193
     homeTeam: fd
     awayTeam: sgf
     kickoff: 2013-02-16 14:30:00
@@ -2289,8 +2299,8 @@ models.Game(g192):
     ended: false
     webserviceID: 19895
 
-models.Game(g193):
-    number: 193
+models.Game(g194):
+    number: 194
     homeTeam: vfl
     awayTeam: fcb
     kickoff: 2013-02-16 14:30:00
@@ -2299,8 +2309,8 @@ models.Game(g193):
     ended: false
     webserviceID: 19896
 
-models.Game(g194):
-    number: 194
+models.Game(g195):
+    number: 195
     homeTeam: bvb
     awayTeam: ef
     kickoff: 2013-02-16 14:30:00
@@ -2309,8 +2319,8 @@ models.Game(g194):
     ended: false
     webserviceID: 19897
 
-models.Game(g195):
-    number: 195
+models.Game(g196):
+    number: 196
     homeTeam: m05
     awayTeam: s04
     kickoff: 2013-02-16 14:30:00
@@ -2319,8 +2329,8 @@ models.Game(g195):
     ended: false
     webserviceID: 19898
 
-models.Game(g196):
-    number: 196
+models.Game(g197):
+    number: 197
     homeTeam: hsv
     awayTeam: bmg
     kickoff: 2013-02-16 14:30:00
@@ -2329,8 +2339,8 @@ models.Game(g196):
     ended: false
     webserviceID: 19899
 
-models.Game(g197):
-    number: 197
+models.Game(g198):
+    number: 198
     homeTeam: tsg
     awayTeam: vfb
     kickoff: 2013-02-16 14:30:00
@@ -2339,8 +2349,8 @@ models.Game(g197):
     ended: false
     webserviceID: 19900
 
-models.Game(g198):
-    number: 198
+models.Game(g199):
+    number: 199
     homeTeam: fcb
     awayTeam: swb
     kickoff: 2013-02-23 14:30:00
@@ -2349,8 +2359,8 @@ models.Game(g198):
     ended: false
     webserviceID: 19901
 
-models.Game(g199):
-    number: 199
+models.Game(g200):
+    number: 200
     homeTeam: vfb
     awayTeam: fcn
     kickoff: 2013-02-23 14:30:00
@@ -2359,8 +2369,8 @@ models.Game(g199):
     ended: false
     webserviceID: 19902
 
-models.Game(g200):
-    number: 200
+models.Game(g201):
+    number: 201
     homeTeam: fca
     awayTeam: tsg
     kickoff: 2013-02-23 14:30:00
@@ -2369,8 +2379,8 @@ models.Game(g200):
     ended: false
     webserviceID: 19903
 
-models.Game(g201):
-    number: 201
+models.Game(g202):
+    number: 202
     homeTeam: h96
     awayTeam: hsv
     kickoff: 2013-02-23 14:30:00
@@ -2379,8 +2389,8 @@ models.Game(g201):
     ended: false
     webserviceID: 19904
 
-models.Game(g202):
-    number: 202
+models.Game(g203):
+    number: 203
     homeTeam: scf
     awayTeam: ef
     kickoff: 2013-02-23 14:30:00
@@ -2389,8 +2399,8 @@ models.Game(g202):
     ended: false
     webserviceID: 19905
 
-models.Game(g203):
-    number: 203
+models.Game(g204):
+    number: 204
     homeTeam: bmg
     awayTeam: bvb
     kickoff: 2013-02-23 14:30:00
@@ -2399,8 +2409,8 @@ models.Game(g203):
     ended: false
     webserviceID: 19906
 
-models.Game(g204):
-    number: 204
+models.Game(g205):
+    number: 205
     homeTeam: s04
     awayTeam: fd
     kickoff: 2013-02-23 14:30:00
@@ -2409,8 +2419,8 @@ models.Game(g204):
     ended: false
     webserviceID: 19907
 
-models.Game(g205):
-    number: 205
+models.Game(g206):
+    number: 206
     homeTeam: sgf
     awayTeam: b04
     kickoff: 2013-02-23 14:30:00
@@ -2419,8 +2429,8 @@ models.Game(g205):
     ended: false
     webserviceID: 19908
 
-models.Game(g206):
-    number: 206
+models.Game(g207):
+    number: 207
     homeTeam: m05
     awayTeam: vfl
     kickoff: 2013-02-23 14:30:00
@@ -2429,8 +2439,8 @@ models.Game(g206):
     ended: false
     webserviceID: 19909
 
-models.Game(g207):
-    number: 207
+models.Game(g208):
+    number: 208
     homeTeam: bvb
     awayTeam: h96
     kickoff: 2013-03-02 14:30:00
@@ -2439,8 +2449,8 @@ models.Game(g207):
     ended: false
     webserviceID: 19910
 
-models.Game(g208):
-    number: 208
+models.Game(g209):
+    number: 209
     homeTeam: b04
     awayTeam: vfb
     kickoff: 2013-03-02 14:30:00
@@ -2449,8 +2459,8 @@ models.Game(g208):
     ended: false
     webserviceID: 19911
 
-models.Game(g209):
-    number: 209
+models.Game(g210):
+    number: 210
     homeTeam: vfl
     awayTeam: s04
     kickoff: 2013-03-02 14:30:00
@@ -2459,8 +2469,8 @@ models.Game(g209):
     ended: false
     webserviceID: 19912
 
-models.Game(g210):
-    number: 210
+models.Game(g211):
+    number: 211
     homeTeam: swb
     awayTeam: fca
     kickoff: 2013-03-02 14:30:00
@@ -2469,8 +2479,8 @@ models.Game(g210):
     ended: false
     webserviceID: 19913
 
-models.Game(g211):
-    number: 211
+models.Game(g212):
+    number: 212
     homeTeam: ef
     awayTeam: bmg
     kickoff: 2013-03-02 14:30:00
@@ -2479,8 +2489,8 @@ models.Game(g211):
     ended: false
     webserviceID: 20157
 
-models.Game(g212):
-    number: 212
+models.Game(g213):
+    number: 213
     homeTeam: fcn
     awayTeam: scf
     kickoff: 2013-03-02 14:30:00
@@ -2489,8 +2499,8 @@ models.Game(g212):
     ended: false
     webserviceID: 20158
 
-models.Game(g213):
-    number: 213
+models.Game(g214):
+    number: 214
     homeTeam: fd
     awayTeam: m05
     kickoff: 2013-03-02 14:30:00
@@ -2499,8 +2509,8 @@ models.Game(g213):
     ended: false
     webserviceID: 20159
 
-models.Game(g214):
-    number: 214
+models.Game(g215):
+    number: 215
     homeTeam: tsg
     awayTeam: fcb
     kickoff: 2013-03-02 14:30:00
@@ -2509,8 +2519,8 @@ models.Game(g214):
     ended: false
     webserviceID: 20160
 
-models.Game(g215):
-    number: 215
+models.Game(g216):
+    number: 216
     homeTeam: hsv
     awayTeam: sgf
     kickoff: 2013-03-02 14:30:00
@@ -2519,8 +2529,8 @@ models.Game(g215):
     ended: false
     webserviceID: 20161
 
-models.Game(g216):
-    number: 216
+models.Game(g217):
+    number: 217
     homeTeam: m05
     awayTeam: b04
     kickoff: 2013-03-09 14:30:00
@@ -2529,8 +2539,8 @@ models.Game(g216):
     ended: false
     webserviceID: 20162
 
-models.Game(g217):
-    number: 217
+models.Game(g218):
+    number: 218
     homeTeam: scf
     awayTeam: vfl
     kickoff: 2013-03-09 14:30:00
@@ -2539,8 +2549,8 @@ models.Game(g217):
     ended: false
     webserviceID: 20163
 
-models.Game(g218):
-    number: 218
+models.Game(g219):
+    number: 219
     homeTeam: bmg
     awayTeam: swb
     kickoff: 2013-03-09 14:30:00
@@ -2549,8 +2559,8 @@ models.Game(g218):
     ended: false
     webserviceID: 20164
 
-models.Game(g219):
-    number: 219
+models.Game(g220):
+    number: 220
     homeTeam: fca
     awayTeam: fcn
     kickoff: 2013-03-09 14:30:00
@@ -2559,8 +2569,8 @@ models.Game(g219):
     ended: false
     webserviceID: 20165
 
-models.Game(g220):
-    number: 220
+models.Game(g221):
+    number: 221
     homeTeam: sgf
     awayTeam: tsg
     kickoff: 2013-03-09 14:30:00
@@ -2569,8 +2579,8 @@ models.Game(g220):
     ended: false
     webserviceID: 20166
 
-models.Game(g221):
-    number: 221
+models.Game(g222):
+    number: 222
     homeTeam: vfb
     awayTeam: hsv
     kickoff: 2013-03-09 14:30:00
@@ -2579,8 +2589,8 @@ models.Game(g221):
     ended: false
     webserviceID: 20167
 
-models.Game(g222):
-    number: 222
+models.Game(g223):
+    number: 223
     homeTeam: h96
     awayTeam: ef
     kickoff: 2013-03-09 14:30:00
@@ -2589,8 +2599,8 @@ models.Game(g222):
     ended: false
     webserviceID: 20168
 
-models.Game(g223):
-    number: 223
+models.Game(g224):
+    number: 224
     homeTeam: s04
     awayTeam: bvb
     kickoff: 2013-03-09 14:30:00
@@ -2599,8 +2609,8 @@ models.Game(g223):
     ended: false
     webserviceID: 20169
 
-models.Game(g224):
-    number: 224
+models.Game(g225):
+    number: 225
     homeTeam: fcb
     awayTeam: fd
     kickoff: 2013-03-09 14:30:00
@@ -2609,8 +2619,8 @@ models.Game(g224):
     ended: false
     webserviceID: 20170
 
-models.Game(g225):
-    number: 225
+models.Game(g226):
+    number: 226
     homeTeam: b04
     awayTeam: fcb
     kickoff: 2013-03-16 14:30:00
@@ -2619,8 +2629,8 @@ models.Game(g225):
     ended: false
     webserviceID: 20171
 
-models.Game(g226):
-    number: 226
+models.Game(g227):
+    number: 227
     homeTeam: vfl
     awayTeam: fd
     kickoff: 2013-03-16 14:30:00
@@ -2629,8 +2639,8 @@ models.Game(g226):
     ended: false
     webserviceID: 20172
 
-models.Game(g227):
-    number: 227
+models.Game(g228):
+    number: 228
     homeTeam: fcn
     awayTeam: s04
     kickoff: 2013-03-16 14:30:00
@@ -2639,8 +2649,8 @@ models.Game(g227):
     ended: false
     webserviceID: 20173
 
-models.Game(g228):
-    number: 228
+models.Game(g229):
+    number: 229
     homeTeam: ef
     awayTeam: vfb
     kickoff: 2013-03-16 14:30:00
@@ -2649,8 +2659,8 @@ models.Game(g228):
     ended: false
     webserviceID: 20174
 
-models.Game(g229):
-    number: 229
+models.Game(g230):
+    number: 230
     homeTeam: bmg
     awayTeam: h96
     kickoff: 2013-03-16 14:30:00
@@ -2659,8 +2669,8 @@ models.Game(g229):
     ended: false
     webserviceID: 20175
 
-models.Game(g230):
-    number: 230
+models.Game(g231):
+    number: 231
     homeTeam: bvb
     awayTeam: scf
     kickoff: 2013-03-16 14:30:00
@@ -2669,8 +2679,8 @@ models.Game(g230):
     ended: false
     webserviceID: 20176
 
-models.Game(g231):
-    number: 231
+models.Game(g232):
+    number: 232
     homeTeam: tsg
     awayTeam: m05
     kickoff: 2013-03-16 14:30:00
@@ -2679,8 +2689,8 @@ models.Game(g231):
     ended: false
     webserviceID: 20177
 
-models.Game(g232):
-    number: 232
+models.Game(g233):
+    number: 233
     homeTeam: hsv
     awayTeam: fca
     kickoff: 2013-03-16 14:30:00
@@ -2689,8 +2699,8 @@ models.Game(g232):
     ended: false
     webserviceID: 20178
 
-models.Game(g233):
-    number: 233
+models.Game(g234):
+    number: 234
     homeTeam: swb
     awayTeam: sgf
     kickoff: 2013-03-16 14:30:00
@@ -2699,8 +2709,8 @@ models.Game(g233):
     ended: false
     webserviceID: 20179
 
-models.Game(g234):
-    number: 234
+models.Game(g235):
+    number: 235
     homeTeam: fcb
     awayTeam: hsv
     kickoff: 2013-03-30 14:30:00
@@ -2709,8 +2719,8 @@ models.Game(g234):
     ended: false
     webserviceID: 20180
 
-models.Game(g235):
-    number: 235
+models.Game(g236):
+    number: 236
     homeTeam: vfb
     awayTeam: bvb
     kickoff: 2013-03-30 14:30:00
@@ -2719,8 +2729,8 @@ models.Game(g235):
     ended: false
     webserviceID: 20181
 
-models.Game(g236):
-    number: 236
+models.Game(g237):
+    number: 237
     homeTeam: sgf
     awayTeam: ef
     kickoff: 2013-03-30 14:30:00
@@ -2729,8 +2739,8 @@ models.Game(g236):
     ended: false
     webserviceID: 20182
 
-models.Game(g237):
-    number: 237
+models.Game(g238):
+    number: 238
     homeTeam: scf
     awayTeam: bmg
     kickoff: 2013-03-30 14:30:00
@@ -2739,8 +2749,8 @@ models.Game(g237):
     ended: false
     webserviceID: 20183
 
-models.Game(g238):
-    number: 238
+models.Game(g239):
+    number: 239
     homeTeam: fd
     awayTeam: b04
     kickoff: 2013-03-30 14:30:00
@@ -2749,8 +2759,8 @@ models.Game(g238):
     ended: false
     webserviceID: 20184
 
-models.Game(g239):
-    number: 239
+models.Game(g240):
+    number: 240
     homeTeam: fca
     awayTeam: h96
     kickoff: 2013-03-30 14:30:00
@@ -2759,8 +2769,8 @@ models.Game(g239):
     ended: false
     webserviceID: 20185
 
-models.Game(g240):
-    number: 240
+models.Game(g241):
+    number: 241
     homeTeam: m05
     awayTeam: swb
     kickoff: 2013-03-30 14:30:00
@@ -2769,8 +2779,8 @@ models.Game(g240):
     ended: false
     webserviceID: 20186
 
-models.Game(g241):
-    number: 241
+models.Game(g242):
+    number: 242
     homeTeam: vfl
     awayTeam: fcn
     kickoff: 2013-03-30 14:30:00
@@ -2779,8 +2789,8 @@ models.Game(g241):
     ended: false
     webserviceID: 20187
 
-models.Game(g242):
-    number: 242
+models.Game(g243):
+    number: 243
     homeTeam: s04
     awayTeam: tsg
     kickoff: 2013-03-30 14:30:00
@@ -2789,8 +2799,8 @@ models.Game(g242):
     ended: false
     webserviceID: 20188
 
-models.Game(g243):
-    number: 243
+models.Game(g244):
+    number: 244
     homeTeam: bvb
     awayTeam: fca
     kickoff: 2013-04-06 13:30:00
@@ -2799,8 +2809,8 @@ models.Game(g243):
     ended: false
     webserviceID: 20189
 
-models.Game(g244):
-    number: 244
+models.Game(g245):
+    number: 245
     homeTeam: bmg
     awayTeam: sgf
     kickoff: 2013-04-06 13:30:00
@@ -2809,8 +2819,8 @@ models.Game(g244):
     ended: false
     webserviceID: 20190
 
-models.Game(g245):
-    number: 245
+models.Game(g246):
+    number: 246
     homeTeam: ef
     awayTeam: fcb
     kickoff: 2013-04-06 13:30:00
@@ -2819,8 +2829,8 @@ models.Game(g245):
     ended: false
     webserviceID: 20191
 
-models.Game(g246):
-    number: 246
+models.Game(g247):
+    number: 247
     homeTeam: tsg
     awayTeam: fd
     kickoff: 2013-04-06 13:30:00
@@ -2829,8 +2839,8 @@ models.Game(g246):
     ended: false
     webserviceID: 20192
 
-models.Game(g247):
-    number: 247
+models.Game(g248):
+    number: 248
     homeTeam: swb
     awayTeam: s04
     kickoff: 2013-04-06 13:30:00
@@ -2839,8 +2849,8 @@ models.Game(g247):
     ended: false
     webserviceID: 20193
 
-models.Game(g248):
-    number: 248
+models.Game(g249):
+    number: 249
     homeTeam: h96
     awayTeam: vfb
     kickoff: 2013-04-06 13:30:00
@@ -2849,8 +2859,8 @@ models.Game(g248):
     ended: false
     webserviceID: 20194
 
-models.Game(g249):
-    number: 249
+models.Game(g250):
+    number: 250
     homeTeam: b04
     awayTeam: vfl
     kickoff: 2013-04-06 13:30:00
@@ -2859,8 +2869,8 @@ models.Game(g249):
     ended: false
     webserviceID: 20195
 
-models.Game(g250):
-    number: 250
+models.Game(g251):
+    number: 251
     homeTeam: hsv
     awayTeam: scf
     kickoff: 2013-04-06 13:30:00
@@ -2869,8 +2879,8 @@ models.Game(g250):
     ended: false
     webserviceID: 20196
 
-models.Game(g251):
-    number: 251
+models.Game(g252):
+    number: 252
     homeTeam: fcn
     awayTeam: m05
     kickoff: 2013-04-06 13:30:00
@@ -2879,8 +2889,8 @@ models.Game(g251):
     ended: false
     webserviceID: 20197
 
-models.Game(g252):
-    number: 252
+models.Game(g253):
+    number: 253
     homeTeam: fcb
     awayTeam: fcn
     kickoff: 2013-04-13 13:30:00
@@ -2889,8 +2899,8 @@ models.Game(g252):
     ended: false
     webserviceID: 20198
 
-models.Game(g253):
-    number: 253
+models.Game(g254):
+    number: 254
     homeTeam: vfl
     awayTeam: tsg
     kickoff: 2013-04-13 13:30:00
@@ -2899,8 +2909,8 @@ models.Game(g253):
     ended: false
     webserviceID: 20199
 
-models.Game(g254):
-    number: 254
+models.Game(g255):
+    number: 255
     homeTeam: m05
     awayTeam: hsv
     kickoff: 2013-04-13 13:30:00
@@ -2909,8 +2919,8 @@ models.Game(g254):
     ended: false
     webserviceID: 20200
 
-models.Game(g255):
-    number: 255
+models.Game(g256):
+    number: 256
     homeTeam: sgf
     awayTeam: bvb
     kickoff: 2013-04-13 13:30:00
@@ -2919,8 +2929,8 @@ models.Game(g255):
     ended: false
     webserviceID: 20201
 
-models.Game(g256):
-    number: 256
+models.Game(g257):
+    number: 257
     homeTeam: fca
     awayTeam: ef
     kickoff: 2013-04-13 13:30:00
@@ -2929,8 +2939,8 @@ models.Game(g256):
     ended: false
     webserviceID: 20202
 
-models.Game(g257):
-    number: 257
+models.Game(g258):
+    number: 258
     homeTeam: vfb
     awayTeam: bmg
     kickoff: 2013-04-13 13:30:00
@@ -2939,8 +2949,8 @@ models.Game(g257):
     ended: false
     webserviceID: 20203
 
-models.Game(g258):
-    number: 258
+models.Game(g259):
+    number: 259
     homeTeam: s04
     awayTeam: b04
     kickoff: 2013-04-13 13:30:00
@@ -2949,8 +2959,8 @@ models.Game(g258):
     ended: false
     webserviceID: 20204
 
-models.Game(g259):
-    number: 259
+models.Game(g260):
+    number: 260
     homeTeam: scf
     awayTeam: h96
     kickoff: 2013-04-13 13:30:00
@@ -2959,8 +2969,8 @@ models.Game(g259):
     ended: false
     webserviceID: 20205
 
-models.Game(g260):
-    number: 260
+models.Game(g261):
+    number: 261
     homeTeam: fd
     awayTeam: swb
     kickoff: 2013-04-13 13:30:00
@@ -2969,8 +2979,8 @@ models.Game(g260):
     ended: false
     webserviceID: 20206
 
-models.Game(g261):
-    number: 261
+models.Game(g262):
+    number: 262
     homeTeam: vfb
     awayTeam: scf
     kickoff: 2013-04-20 13:30:00
@@ -2979,8 +2989,8 @@ models.Game(g261):
     ended: false
     webserviceID: 20207
 
-models.Game(g262):
-    number: 262
+models.Game(g263):
+    number: 263
     homeTeam: bvb
     awayTeam: m05
     kickoff: 2013-04-20 13:30:00
@@ -2989,8 +2999,8 @@ models.Game(g262):
     ended: false
     webserviceID: 20208
 
-models.Game(g263):
-    number: 263
+models.Game(g264):
+    number: 264
     homeTeam: bmg
     awayTeam: fca
     kickoff: 2013-04-20 13:30:00
@@ -2999,8 +3009,8 @@ models.Game(g263):
     ended: false
     webserviceID: 20209
 
-models.Game(g264):
-    number: 264
+models.Game(g265):
+    number: 265
     homeTeam: fcn
     awayTeam: sgf
     kickoff: 2013-04-20 13:30:00
@@ -3009,8 +3019,8 @@ models.Game(g264):
     ended: false
     webserviceID: 20210
 
-models.Game(g265):
-    number: 265
+models.Game(g266):
+    number: 266
     homeTeam: h96
     awayTeam: fcb
     kickoff: 2013-04-20 13:30:00
@@ -3019,8 +3029,8 @@ models.Game(g265):
     ended: false
     webserviceID: 20211
 
-models.Game(g266):
-    number: 266
+models.Game(g267):
+    number: 267
     homeTeam: hsv
     awayTeam: fd
     kickoff: 2013-04-20 13:30:00
@@ -3029,8 +3039,8 @@ models.Game(g266):
     ended: false
     webserviceID: 20212
 
-models.Game(g267):
-    number: 267
+models.Game(g268):
+    number: 268
     homeTeam: ef
     awayTeam: s04
     kickoff: 2013-04-20 13:30:00
@@ -3039,8 +3049,8 @@ models.Game(g267):
     ended: false
     webserviceID: 20213
 
-models.Game(g268):
-    number: 268
+models.Game(g269):
+    number: 269
     homeTeam: swb
     awayTeam: vfl
     kickoff: 2013-04-20 13:30:00
@@ -3049,8 +3059,8 @@ models.Game(g268):
     ended: false
     webserviceID: 20214
 
-models.Game(g269):
-    number: 269
+models.Game(g270):
+    number: 270
     homeTeam: b04
     awayTeam: tsg
     kickoff: 2013-04-20 13:30:00
@@ -3059,8 +3069,8 @@ models.Game(g269):
     ended: false
     webserviceID: 20215
 
-models.Game(g270):
-    number: 270
+models.Game(g271):
+    number: 271
     homeTeam: sgf
     awayTeam: h96
     kickoff: 2013-04-27 13:30:00
@@ -3069,8 +3079,8 @@ models.Game(g270):
     ended: false
     webserviceID: 20216
 
-models.Game(g271):
-    number: 271
+models.Game(g272):
+    number: 272
     homeTeam: b04
     awayTeam: swb
     kickoff: 2013-04-27 13:30:00
@@ -3079,8 +3089,8 @@ models.Game(g271):
     ended: false
     webserviceID: 20217
 
-models.Game(g272):
-    number: 272
+models.Game(g273):
+    number: 273
     homeTeam: tsg
     awayTeam: fcn
     kickoff: 2013-04-27 13:30:00
@@ -3089,8 +3099,8 @@ models.Game(g272):
     ended: false
     webserviceID: 20218
 
-models.Game(g273):
-    number: 273
+models.Game(g274):
+    number: 274
     homeTeam: fcb
     awayTeam: scf
     kickoff: 2013-04-27 13:30:00
@@ -3099,8 +3109,8 @@ models.Game(g273):
     ended: false
     webserviceID: 20219
 
-models.Game(g274):
-    number: 274
+models.Game(g275):
+    number: 275
     homeTeam: s04
     awayTeam: hsv
     kickoff: 2013-04-27 13:30:00
@@ -3109,8 +3119,8 @@ models.Game(g274):
     ended: false
     webserviceID: 20220
 
-models.Game(g275):
-    number: 275
+models.Game(g276):
+    number: 276
     homeTeam: fd
     awayTeam: bvb
     kickoff: 2013-04-27 13:30:00
@@ -3119,8 +3129,8 @@ models.Game(g275):
     ended: false
     webserviceID: 20221
 
-models.Game(g276):
-    number: 276
+models.Game(g277):
+    number: 277
     homeTeam: m05
     awayTeam: ef
     kickoff: 2013-04-27 13:30:00
@@ -3129,8 +3139,8 @@ models.Game(g276):
     ended: false
     webserviceID: 20222
 
-models.Game(g277):
-    number: 277
+models.Game(g278):
+    number: 278
     homeTeam: vfl
     awayTeam: bmg
     kickoff: 2013-04-27 13:30:00
@@ -3139,8 +3149,8 @@ models.Game(g277):
     ended: false
     webserviceID: 20223
 
-models.Game(g278):
-    number: 278
+models.Game(g279):
+    number: 279
     homeTeam: fca
     awayTeam: vfb
     kickoff: 2013-04-27 13:30:00
@@ -3149,8 +3159,8 @@ models.Game(g278):
     ended: false
     webserviceID: 20224
 
-models.Game(g279):
-    number: 279
+models.Game(g280):
+    number: 280
     homeTeam: fcn
     awayTeam: b04
     kickoff: 2013-05-04 13:30:00
@@ -3159,8 +3169,8 @@ models.Game(g279):
     ended: false
     webserviceID: 20225
 
-models.Game(g280):
-    number: 280
+models.Game(g281):
+    number: 281
     homeTeam: hsv
     awayTeam: vfl
     kickoff: 2013-05-04 13:30:00
@@ -3169,8 +3179,8 @@ models.Game(g280):
     ended: false
     webserviceID: 20226
 
-models.Game(g281):
-    number: 281
+models.Game(g282):
+    number: 282
     homeTeam: swb
     awayTeam: tsg
     kickoff: 2013-05-04 13:30:00
@@ -3179,8 +3189,8 @@ models.Game(g281):
     ended: false
     webserviceID: 20227
 
-models.Game(g282):
-    number: 282
+models.Game(g283):
+    number: 283
     homeTeam: h96
     awayTeam: m05
     kickoff: 2013-05-04 13:30:00
@@ -3189,8 +3199,8 @@ models.Game(g282):
     ended: false
     webserviceID: 20228
 
-models.Game(g283):
-    number: 283
+models.Game(g284):
+    number: 284
     homeTeam: scf
     awayTeam: fca
     kickoff: 2013-05-04 13:30:00
@@ -3199,8 +3209,8 @@ models.Game(g283):
     ended: false
     webserviceID: 20229
 
-models.Game(g284):
-    number: 284
+models.Game(g285):
+    number: 285
     homeTeam: vfb
     awayTeam: sgf
     kickoff: 2013-05-04 13:30:00
@@ -3209,8 +3219,8 @@ models.Game(g284):
     ended: false
     webserviceID: 20230
 
-models.Game(g285):
-    number: 285
+models.Game(g286):
+    number: 286
     homeTeam: bvb
     awayTeam: fcb
     kickoff: 2013-05-04 13:30:00
@@ -3219,8 +3229,8 @@ models.Game(g285):
     ended: false
     webserviceID: 20231
 
-models.Game(g286):
-    number: 286
+models.Game(g287):
+    number: 287
     homeTeam: ef
     awayTeam: fd
     kickoff: 2013-05-04 13:30:00
@@ -3229,8 +3239,8 @@ models.Game(g286):
     ended: false
     webserviceID: 20232
 
-models.Game(g287):
-    number: 287
+models.Game(g288):
+    number: 288
     homeTeam: bmg
     awayTeam: s04
     kickoff: 2013-05-04 13:30:00
@@ -3239,8 +3249,8 @@ models.Game(g287):
     ended: false
     webserviceID: 20233
 
-models.Game(g288):
-    number: 288
+models.Game(g289):
+    number: 289
     homeTeam: m05
     awayTeam: bmg
     kickoff: 2013-05-11 13:30:00
@@ -3249,8 +3259,8 @@ models.Game(g288):
     ended: false
     webserviceID: 20234
 
-models.Game(g289):
-    number: 289
+models.Game(g290):
+    number: 290
     homeTeam: s04
     awayTeam: vfb
     kickoff: 2013-05-11 13:30:00
@@ -3259,8 +3269,8 @@ models.Game(g289):
     ended: false
     webserviceID: 20235
 
-models.Game(g290):
-    number: 290
+models.Game(g291):
+    number: 291
     homeTeam: b04
     awayTeam: h96
     kickoff: 2013-05-11 13:30:00
@@ -3269,8 +3279,8 @@ models.Game(g290):
     ended: false
     webserviceID: 20236
 
-models.Game(g291):
-    number: 291
+models.Game(g292):
+    number: 292
     homeTeam: fd
     awayTeam: fcn
     kickoff: 2013-05-11 13:30:00
@@ -3279,8 +3289,8 @@ models.Game(g291):
     ended: false
     webserviceID: 20237
 
-models.Game(g292):
-    number: 292
+models.Game(g293):
+    number: 293
     homeTeam: sgf
     awayTeam: scf
     kickoff: 2013-05-11 13:30:00
@@ -3289,8 +3299,8 @@ models.Game(g292):
     ended: false
     webserviceID: 20238
 
-models.Game(g293):
-    number: 293
+models.Game(g294):
+    number: 294
     homeTeam: fcb
     awayTeam: fca
     kickoff: 2013-05-11 13:30:00
@@ -3299,8 +3309,8 @@ models.Game(g293):
     ended: false
     webserviceID: 20239
 
-models.Game(g294):
-    number: 294
+models.Game(g295):
+    number: 295
     homeTeam: tsg
     awayTeam: hsv
     kickoff: 2013-05-11 13:30:00
@@ -3309,8 +3319,8 @@ models.Game(g294):
     ended: false
     webserviceID: 20240
 
-models.Game(g295):
-    number: 295
+models.Game(g296):
+    number: 296
     homeTeam: vfl
     awayTeam: bvb
     kickoff: 2013-05-11 13:30:00
@@ -3319,8 +3329,8 @@ models.Game(g295):
     ended: false
     webserviceID: 20241
 
-models.Game(g296):
-    number: 296
+models.Game(g297):
+    number: 297
     homeTeam: swb
     awayTeam: ef
     kickoff: 2013-05-11 13:30:00
@@ -3329,8 +3339,8 @@ models.Game(g296):
     ended: false
     webserviceID: 20242
 
-models.Game(g297):
-    number: 297
+models.Game(g298):
+    number: 298
     homeTeam: bmg
     awayTeam: fcb
     kickoff: 2013-05-18 13:30:00
@@ -3339,8 +3349,8 @@ models.Game(g297):
     ended: false
     webserviceID: 20243
 
-models.Game(g298):
-    number: 298
+models.Game(g299):
+    number: 299
     homeTeam: h96
     awayTeam: fd
     kickoff: 2013-05-18 13:30:00
@@ -3349,8 +3359,8 @@ models.Game(g298):
     ended: false
     webserviceID: 20244
 
-models.Game(g299):
-    number: 299
+models.Game(g300):
+    number: 300
     homeTeam: scf
     awayTeam: s04
     kickoff: 2013-05-18 13:30:00
@@ -3359,8 +3369,8 @@ models.Game(g299):
     ended: false
     webserviceID: 20245
 
-models.Game(g300):
-    number: 300
+models.Game(g301):
+    number: 301
     homeTeam: hsv
     awayTeam: b04
     kickoff: 2013-05-18 13:30:00
@@ -3369,8 +3379,8 @@ models.Game(g300):
     ended: false
     webserviceID: 20246
 
-models.Game(g301):
-    number: 301
+models.Game(g302):
+    number: 302
     homeTeam: ef
     awayTeam: vfl
     kickoff: 2013-05-18 13:30:00
@@ -3379,8 +3389,8 @@ models.Game(g301):
     ended: false
     webserviceID: 20247
 
-models.Game(g302):
-    number: 302
+models.Game(g303):
+    number: 303
     homeTeam: fcn
     awayTeam: swb
     kickoff: 2013-05-18 13:30:00
@@ -3389,8 +3399,8 @@ models.Game(g302):
     ended: false
     webserviceID: 20248
 
-models.Game(g303):
-    number: 303
+models.Game(g304):
+    number: 304
     homeTeam: bvb
     awayTeam: tsg
     kickoff: 2013-05-18 13:30:00
@@ -3399,8 +3409,8 @@ models.Game(g303):
     ended: false
     webserviceID: 20249
 
-models.Game(g304):
-    number: 304
+models.Game(g305):
+    number: 305
     homeTeam: vfb
     awayTeam: m05
     kickoff: 2013-05-18 13:30:00
@@ -3409,8 +3419,8 @@ models.Game(g304):
     ended: false
     webserviceID: 20250
 
-models.Game(g305):
-    number: 305
+models.Game(g306):
+    number: 306
     homeTeam: fca
     awayTeam: sgf
     kickoff: 2013-05-18 13:30:00
@@ -3423,7 +3433,16 @@ models.Extra(b1):
    question:        WhowillbeMaster
    extraReference:  B-1-1
    gameReferences:
+                    - g298
+                    - g299
+                    - g300
+                    - g301
+                    - g302
+                    - g303
+                    - g304
                     - g305
+                    - g306
+                                                                                                                                                                
    questionShort:   champion
    points:          10
    ending:          2012-08-24 18:30:00
@@ -3451,7 +3470,16 @@ models.Extra(b2):
    question:        WhowillbeSpringChampion
    extraReference:  B-1-1
    gameReferences:
-                    - g305
+                    - g145
+                    - g146
+                    - g147
+                    - g148
+                    - g149
+                    - g150
+                    - g151
+                    - g152
+                    - g153
+                    
    questionShort:   springchampion
    points:          5
    ending:          2012-08-24 18:30:00
@@ -3479,7 +3507,16 @@ models.Extra(b3):
    question:        Whowillbedowngraded
    extraReference:  B-1-18
    gameReferences:
+                    - g298
+                    - g299
+                    - g300
+                    - g301
+                    - g302
+                    - g303
+                    - g304
                     - g305
+                    - g306
+                    
    questionShort:   downgraded
    points:          5
    ending:          2012-08-24 18:30:00

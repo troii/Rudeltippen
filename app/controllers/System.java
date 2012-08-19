@@ -314,7 +314,7 @@ public class System extends Controller implements AppConstants {
 			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;name:          " + i + "spieltag<br />");
 			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;current:       false<br />");
 			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;playoff:       false<br />");
-			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;number:        1<br />");
+			playdays.add("&nbsp;&nbsp;&nbsp;&nbsp;number:        " + i + "<br />");
 			playdays.add("<br />");
 		}
 
