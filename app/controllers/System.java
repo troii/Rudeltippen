@@ -141,6 +141,8 @@ public class System extends Controller implements AppConstants {
 			settings.setEnableRegistration(enableRegistration);
 			settings.setMaxPictureSize(maxPictureSize);
 			settings.setTheme(theme);
+			settings.setDbVersion(0);
+			settings.setDbName(getDbName(tournament));
 			settings._save();
 
 			final User user = new User();
@@ -182,6 +184,14 @@ public class System extends Controller implements AppConstants {
 		} else {
 			Fixtures.loadModels("em2012.yml");
 		}
+	}
+
+	private static String getDbName(final String tournament) {
+		if (("bl2012").equals(tournament)) {
+			return "bl12";
+		}
+
+		return null;
 	}
 
 	@NoTransaction

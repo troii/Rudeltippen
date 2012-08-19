@@ -3420,11 +3420,39 @@ models.Game(g305):
     webserviceID: 20251
 
 models.Extra(b1):
-   question:        WhowillbeChampion
+   question:        WhowillbeMaster
    extraReference:  B-1-1
    gameReferences:
                     - g305
    questionShort:   champion
+   points:          10
+   ending:          2012-08-24 18:30:00
+   answers:
+                    - bvb
+                    - fcb
+                    - s04
+                    - bmg
+                    - b04
+                    - vfb
+                    - h96
+                    - vfl
+                    - swb
+                    - fcn
+                    - tsg
+                    - scf
+                    - m05
+                    - fca
+                    - hsv
+                    - sgf
+                    - ef
+                    - fd 
+                    
+models.Extra(b2):
+   question:        WhowillbeSpringChampion
+   extraReference:  B-1-1
+   gameReferences:
+                    - g305
+   questionShort:   springchampion
    points:          5
    ending:          2012-08-24 18:30:00
    answers:
@@ -3445,4 +3473,32 @@ models.Extra(b1):
                     - hsv
                     - sgf
                     - ef
-                    - fd                    
+                    - fd   
+                    
+models.Extra(b3):
+   question:        Whowillbedowngraded
+   extraReference:  B-1-18
+   gameReferences:
+                    - g305
+   questionShort:   downgraded
+   points:          5
+   ending:          2012-08-24 18:30:00
+   answers:
+                    - bvb
+                    - fcb
+                    - s04
+                    - bmg
+                    - b04
+                    - vfb
+                    - h96
+                    - vfl
+                    - swb
+                    - fcn
+                    - tsg
+                    - scf
+                    - m05
+                    - fca
+                    - hsv
+                    - sgf
+                    - ef
+                    - fd                                                           
