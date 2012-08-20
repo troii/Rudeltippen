@@ -35,11 +35,12 @@ public class StandingsJob extends Job{
 	                count++;
 	            }
 	            message = Messages.get("topthree") + ": " + buffer.toString();		    	
+	            
+			    if (AppUtils.isTweetable()) {
+			    	TwitterService.updateStatus(message);
+				}	
+			    MailService.sendStandings(message);
 		    }
-		    if (AppUtils.isTweetable()) {
-		    	TwitterService.updateStatus(message);
-			}	
-		    MailService.sendStandings(message);
 		}
 	}
 }
