@@ -1,0 +1,1 @@
+Version 1.3.0 had some minor changes in the data structure, so if you have a previous installation of Rudeltippen you have to completly re-install Rudeltippen.
