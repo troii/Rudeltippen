@@ -137,7 +137,7 @@ public class Auth extends Controller implements AppConstants{
 			user.setPictureLarge(avatar);
 		}
 		if (StringUtils.isNotBlank(avatarSmall)) {
-			user.setPicture(avatar);
+			user.setPicture(avatarSmall);
 		}
 		
 		user.setActive(true);
