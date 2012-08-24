@@ -34,6 +34,9 @@ import play.Logger;
 import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
+import play.jobs.Every;
+import play.jobs.Job;
+import play.jobs.On;
 import play.libs.Codec;
 import play.libs.Images;
 import play.libs.WS;
@@ -983,5 +986,47 @@ public class AppUtils implements AppConstants{
 		}
 
 		return "";
+	}
+
+	public static List<Job> getScheduledJobs() {
+		final List<Class<?>> jobs = new ArrayList<Class<?>>();
+		for (final Class clazz : Play.classloader.getAllClasses()) {
+			if (Job.class.isAssignableFrom(clazz)) {
+				jobs.add(clazz);
+			}
+		}
+
+		final List<Job> scheduledJobs = new ArrayList<Job>();
+		for (final Class<?> clazz : jobs) {
+			if (clazz.isAnnotationPresent(On.class)) {
+				Job<?> job = null;
+				try {
+					job = ((Job<?>) clazz.newInstance());
+				} catch (final InstantiationException e) {
+					Logger.error("Could not instantiate Class with annotation 'On'", e);
+				} catch (final IllegalAccessException e) {
+					Logger.error("Could not instantiate Class with annotation 'On'", e);
+				}
+				if (job != null) {
+					scheduledJobs.add(job);
+				}
+			}
+
+			if (clazz.isAnnotationPresent(Every.class)) {
+				Job<?> job = null;
+				try {
+					job = (Job) clazz.newInstance();
+				} catch (final InstantiationException e) {
+					Logger.error("Could not instantiate Class with annotation 'Every'", e);
+				} catch (final IllegalAccessException e) {
+					Logger.error("Could not instantiate Class with annotation 'Every'", e);
+				}
+				if (job != null) {
+					scheduledJobs.add(job);
+				}
+			}
+		}
+
+		return scheduledJobs;
 	}
 }

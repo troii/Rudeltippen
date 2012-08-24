@@ -22,6 +22,7 @@ import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
+import play.jobs.Job;
 import play.libs.F.Promise;
 import play.mvc.With;
 import utils.AppUtils;
@@ -292,5 +293,10 @@ public class Admin extends Root implements AppConstants {
 
 		flash.keep();
 		redirect("/admin/users");
+	}
+
+	public static void jobs() {
+		final List<Job> jobs = AppUtils.getScheduledJobs();
+		render(jobs);
 	}
 }
