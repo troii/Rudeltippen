@@ -17,30 +17,34 @@ public class StandingsJob extends Job{
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
-		    Logger.info("Running job: StandingsJob");
-		    
-		    String message = "";
-		    final Game game = Game.find("byNumber", 1).first();
-		    if (game != null && game.isEnded()) {
-	            int count = 1;
-	            StringBuilder buffer = new StringBuilder();
+			Logger.info("Running job: StandingsJob");
 
-	            final List<User> users = User.find("ORDER BY place ASC").fetch(3);
-	            for (User user : users) {
-	                if (count < 3) {
-	                    buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
-	                } else {
-	                    buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + ")");
-	                }
-	                count++;
-	            }
-	            message = Messages.get("topthree") + ": " + buffer.toString();		    	
-	            
-			    if (AppUtils.isTweetable()) {
-			    	TwitterService.updateStatus(message);
-				}	
-			    MailService.sendStandings(message);
-		    }
+			String message = "";
+			final Game game = Game.find("byNumber", 1).first();
+			if ((game != null) && game.isEnded()) {
+				int count = 1;
+				final StringBuilder buffer = new StringBuilder();
+
+				List<User> users = User.find("ORDER BY place ASC").fetch(3);
+				for (final User user : users) {
+					if (count < 3) {
+						buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
+					} else {
+						buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + ")");
+					}
+					count++;
+				}
+				message = Messages.get("topthree") + ": " + buffer.toString();
+
+				if (AppUtils.isTweetable()) {
+					TwitterService.updateStatus(message);
+				}
+
+				users = User.find("bySendStandings", true).fetch();
+				for (final User user : users) {
+					MailService.sendStandings(message, user.getUsername());
+				}
+			}
 		}
 	}
 }

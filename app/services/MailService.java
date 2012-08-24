@@ -18,7 +18,7 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 
 public class MailService extends Mailer {
-	public static void updates(User user, List<String> statements) {
+	public static void updates(final User user, final List<String> statements) {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final Settings settings = AppUtils.getSettings();
@@ -35,12 +35,12 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void reminder(User user, List<Game> games, List<Extra> extras) {
+	public static void reminder(final User user, final List<Game> games, final List<Extra> extras) {
 		final Settings settings = AppUtils.getSettings();
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String recipient = user.getUsername();
-		
+
 		if (ValidationUtils.isValidEmail(recipient)) {
 			setFrom(from);
 			setReplyTo(replyto);
@@ -52,13 +52,13 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void confirm(User user, String token, ConfirmationType confirmationType) {
+	public static void confirm(final User user, final String token, final ConfirmationType confirmationType) {
 		final Settings settings = AppUtils.getSettings();
 		final String appUrl = Play.configuration.getProperty("app.register.url");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 
-		if (user != null && ValidationUtils.isValidEmail(user.getUsername())) {
+		if ((user != null) && ValidationUtils.isValidEmail(user.getUsername())) {
 			String subject = "";
 			String message = "";
 
@@ -86,13 +86,13 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void newuserpass(User user, String userpass) {
+	public static void newuserpass(final User user, final String userpass) {
 		final Settings settings = AppUtils.getSettings();
 		final String appUrl = Play.configuration.getProperty("app.register.url");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 
-		String recipient = user.getUsername();
+		final String recipient = user.getUsername();
 		if (ValidationUtils.isValidEmail(recipient)) {
 			setReplyTo(replyto);
 			setFrom(from);
@@ -104,7 +104,7 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void newuser(User user, User admin) {
+	public static void newuser(final User user, final User admin) {
 		final Settings settings = AppUtils.getSettings();
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
@@ -120,62 +120,53 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void webserviceError(String response) {
+	public static void webserviceError(final String response, final String recipient) {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 
-		List<User> users = User.find("Admin", true).fetch();
-		for (User user : users) {
-			if (ValidationUtils.isValidEmail(user.getUsername())) {
-				setReplyTo(replyto);
-				setFrom(from);
-				addRecipient(user.getUsername());
-				setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed")));
-				send(AppUtils.getMailTemplate("webserviceError"), response);
-			} else {
-				Logger.error("Tryed to sent info on webservice, but recipient was invalid.");
-			}
+		if (ValidationUtils.isValidEmail(recipient)) {
+			setReplyTo(replyto);
+			setFrom(from);
+			addRecipient(recipient);
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed")));
+			send(AppUtils.getMailTemplate("webserviceError"), response);
+		} else {
+			Logger.error("Tryed to sent info on webservice, but recipient was invalid.");
 		}
 	}
 
-	public static void notifications(String notification) {
+	public static void notifications(String notification, final String recipient) {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		notification = StringEscapeUtils.unescapeHtml(notification);
-		
-		List<User> users = User.find("byNotification", true).fetch();
-		for (User user : users) {
-			if (ValidationUtils.isValidEmail(user.getUsername())) {
-				setReplyTo(replyto);
-				setFrom(from);
-				addRecipient(user.getUsername());
-				setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.notification")));
-				send(AppUtils.getMailTemplate("notifications"), notification);
-			} else {
-				Logger.error("Tryed to sent result notification, but recipient was invalid.");
-			}	
+
+		if (ValidationUtils.isValidEmail(recipient)) {
+			setReplyTo(replyto);
+			setFrom(from);
+			addRecipient(recipient);
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.notification")));
+			send(AppUtils.getMailTemplate("notifications"), notification);
+		} else {
+			Logger.error("Tryed to sent result notification, but recipient was invalid.");
 		}
 	}
 
-	public static void sendStandings(String message) {
+	public static void sendStandings(String message, final String recipient) {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		message = StringEscapeUtils.unescapeHtml(message);
-		
-		List<User> users = User.find("bySendStandings", true).fetch();
-		for (User user : users) {
-			if (ValidationUtils.isValidEmail(user.getUsername())) {
-				setReplyTo(replyto);
-				setFrom(from);
-				addRecipient(user.getUsername());
-				setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.standings")));
-				send(AppUtils.getMailTemplate("notifications"), message);
-			} else {
-				Logger.error("Tryed to sent standings, but recipient was invalid.");
-			}	
+
+		if (ValidationUtils.isValidEmail(recipient)) {
+			setReplyTo(replyto);
+			setFrom(from);
+			addRecipient(recipient);
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.standings")));
+			send(AppUtils.getMailTemplate("notifications"), message);
+		} else {
+			Logger.error("Tryed to sent standings, but recipient was invalid.");
 		}
 	}
 }

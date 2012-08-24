@@ -459,7 +459,11 @@ public class AppUtils implements AppConstants{
 		if (notify) {
 			final String notification = getNotificationMessage(game);
 			TwitterService.updateStatus(notification);
-			MailService.notifications(notification);
+
+			final List<User> users = User.find("byNotification", true).fetch();
+			for (final User user : users) {
+				MailService.notifications(notification, user.getUsername());
+			}
 		}
 	}
 
