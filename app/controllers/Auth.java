@@ -33,24 +33,24 @@ import utils.ViewUtils;
 
 public class Auth extends Controller implements AppConstants{
 	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm"})
-    protected static void checkAccess() throws Throwable {
+	protected static void checkAccess() throws Throwable {
 		AppUtils.setAppLanguage();
 
-    	if (!session.contains("username")) {
-            flash.put("url", "/");
-            login();
-        }
+		if (!session.contains("username")) {
+			flash.put("url", "/");
+			login();
+		}
 
-    	CheckAccess check = getActionAnnotation(CheckAccess.class);
-    	if (check != null) {
-            check(check);
-    	}
+		CheckAccess check = getActionAnnotation(CheckAccess.class);
+		if (check != null) {
+			check(check);
+		}
 
-    	check = getControllerInheritedAnnotation(CheckAccess.class);
-        if (check != null) {
-            check(check);
-        }
-    }
+		check = getControllerInheritedAnnotation(CheckAccess.class);
+		if (check != null) {
+			check(check);
+		}
+	}
 
 	@Before
 	protected static void registration() {
@@ -63,16 +63,16 @@ public class Auth extends Controller implements AppConstants{
 		renderArgs.put("theme", ViewUtils.getTheme());
 	}
 
-    private static void check(CheckAccess check) throws Throwable {
-        for (String profile : check.value()) {
-            final boolean hasProfile = (Boolean) Security.invoke("check", profile);
-            if (!hasProfile) {
-                Security.invoke("onCheckFailed", profile);
-            }
-        }
-    }
+	private static void check(final CheckAccess check) throws Throwable {
+		for (final String profile : check.value()) {
+			final boolean hasProfile = (Boolean) Security.invoke("check", profile);
+			if (!hasProfile) {
+				Security.invoke("onCheckFailed", profile);
+			}
+		}
+	}
 
-	public static void confirm(String token) throws Throwable {
+	public static void confirm(final String token) throws Throwable {
 		Confirmation confirmation = null;
 		validation.required(token);
 		validation.match(token, CONFIRMATIONPATTERN);
@@ -83,10 +83,10 @@ public class Auth extends Controller implements AppConstants{
 			confirmation = Confirmation.find("byToken", token).first();
 		}
 
-		if (confirmation != null && !validation.hasErrors()) {
-			User user = confirmation.getUser();
+		if ((confirmation != null) && !validation.hasErrors()) {
+			final User user = confirmation.getUser();
 			if (user != null) {
-				ConfirmationType confirmationType = confirmation.getConfirmType();
+				final ConfirmationType confirmationType = confirmation.getConfirmType();
 				doConfirmation(confirmation, user, confirmationType);
 			} else {
 				flash.put("warningmessage", Messages.get("controller.users.invalidtoken"));
@@ -98,7 +98,7 @@ public class Auth extends Controller implements AppConstants{
 		redirect("/auth/login");
 	}
 
-	private static void doConfirmation(Confirmation confirmation, User user, ConfirmationType confirmationType) {
+	private static void doConfirmation(final Confirmation confirmation, final User user, final ConfirmationType confirmationType) {
 		if ((ConfirmationType.ACTIVATION).equals(confirmationType)) {
 			activateAndSetAvatar(user);
 			Logger.info("User activated: " + user.getUsername());
@@ -130,37 +130,37 @@ public class Auth extends Controller implements AppConstants{
 		confirmation._delete();
 	}
 
-	private static void activateAndSetAvatar(User user) {
-		String avatar = AppUtils.getGravatarImage(user.getUsername(), "retro", 128);
-		String avatarSmall = AppUtils.getGravatarImage(user.getUsername(), "retro", 64);
+	private static void activateAndSetAvatar(final User user) {
+		final String avatar = AppUtils.getGravatarImage(user.getUsername(), "retro", PICTURELARGE);
+		final String avatarSmall = AppUtils.getGravatarImage(user.getUsername(), "retro", PICTURESMALL);
 		if (StringUtils.isNotBlank(avatar)) {
 			user.setPictureLarge(avatar);
 		}
 		if (StringUtils.isNotBlank(avatarSmall)) {
 			user.setPicture(avatarSmall);
 		}
-		
+
 		user.setActive(true);
 		user._save();
 	}
 
 	@Transactional(readOnly=true)
-    public static void register() {
-    	final Settings settings = AppUtils.getSettings();
-    	if (!settings.isEnableRegistration()) {
-    		redirect("/");
-    	}
+	public static void register() {
+		final Settings settings = AppUtils.getSettings();
+		if (!settings.isEnableRegistration()) {
+			redirect("/");
+		}
 
-    	render();
-    }
+		render();
+	}
 
-    public static void create(String nickname, String username, String usernameConfirmation, String userpass, String userpassConfirmation) {
-    	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+	public static void create(final String nickname, final String username, final String usernameConfirmation, final String userpass, final String userpassConfirmation) {
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-    	final Settings settings = AppUtils.getSettings();
-    	if (!settings.isEnableRegistration()) {
-    		redirect("/");
-    	}
+		final Settings settings = AppUtils.getSettings();
+		if (!settings.isEnableRegistration()) {
+			redirect("/");
+		}
 
 		validation.required(username);
 		validation.required(userpass);
@@ -181,8 +181,8 @@ public class Auth extends Controller implements AppConstants{
 			validation.keep();
 			register();
 		} else {
-			String salt = Codec.hexSHA1(Codec.UUID());
-		    User user = new User();
+			final String salt = Codec.hexSHA1(Codec.UUID());
+			final User user = new User();
 			user.setRegistered(new Date());
 			user.setNickname(nickname);
 			user.setUsername(username);
@@ -195,8 +195,8 @@ public class Auth extends Controller implements AppConstants{
 			user._save();
 
 			final String token = Codec.UUID();
-			ConfirmationType confirmType = ConfirmationType.ACTIVATION;
-			Confirmation confirmation = new Confirmation();
+			final ConfirmationType confirmType = ConfirmationType.ACTIVATION;
+			final Confirmation confirmation = new Confirmation();
 			confirmation.setConfirmType(confirmType);
 			confirmation.setConfirmValue(Crypto.encryptAES(Codec.UUID()));
 			confirmation.setCreated(new Date());
@@ -206,8 +206,8 @@ public class Auth extends Controller implements AppConstants{
 
 			MailService.confirm(user, token, confirmType);
 			if (settings.isInformOnNewTipper()) {
-				List<User> admins = User.find("byAdmin", true).fetch();
-				for (User admin : admins) {
+				final List<User> admins = User.find("byAdmin", true).fetch();
+				for (final User admin : admins) {
 					MailService.newuser(user, admin);
 				}
 			}
@@ -216,176 +216,176 @@ public class Auth extends Controller implements AppConstants{
 		render(settings);
 	}
 
-    public static void login() {
-    	if (session.contains("username")) {
-    		redirect("/application/index");
-    	}
+	public static void login() {
+		if (session.contains("username")) {
+			redirect("/application/index");
+		}
 
-        final Http.Cookie remember = request.cookies.get("rememberme");
-        if (remember != null && remember.value.indexOf("-") > 0) {
-            final String sign = remember.value.substring(0, remember.value.indexOf("-"));
-            final String username = remember.value.substring(remember.value.indexOf("-") + 1);
-            if (sign != null && username != null && Crypto.sign(username).equals(sign)) {
-                session.put("username", username);
-                redirectToOriginalURL();
-            }
-        }
-        flash.keep("url");
-        render();
-    }
+		final Http.Cookie remember = request.cookies.get("rememberme");
+		if ((remember != null) && (remember.value.indexOf("-") > 0)) {
+			final String sign = remember.value.substring(0, remember.value.indexOf("-"));
+			final String username = remember.value.substring(remember.value.indexOf("-") + 1);
+			if ((sign != null) && (username != null) && Crypto.sign(username).equals(sign)) {
+				session.put("username", username);
+				redirectToOriginalURL();
+			}
+		}
+		flash.keep("url");
+		render();
+	}
 
-    public static void resend(String username) throws Throwable {
-    	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+	public static void resend(final String username) throws Throwable {
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-    	validation.required(username);
+		validation.required(username);
 		validation.isTrue(ValidationUtils.usernameExists(username)).key("username").message("validation.userNotExists");
 		validation.email(username);
 
 		if (validation.hasErrors()) {
-    		flash.put("errormessage", Messages.get("controller.auth.resenderror"));
-    		validation.keep();
-    		params.flash();
-    		forgotten();
+			flash.put("errormessage", Messages.get("controller.auth.resenderror"));
+			validation.keep();
+			params.flash();
+			forgotten();
 		} else {
-        	User user = User.find("byUsername", username).first();
-        	if (user != null) {
-        		final String token = Codec.UUID();
-        		ConfirmationType confirmType = ConfirmationType.FORGOTUSERPASS;
-        		Confirmation confirmation = new Confirmation();
-        		confirmation.setUser(user);
-        		confirmation.setToken(token);
-        		confirmation.setConfirmType(confirmType);
-        		confirmation.setConfirmValue(Crypto.encryptAES(Codec.UUID()));
-        		confirmation.setCreated(new Date());
-        		confirmation._save();
+			final User user = User.find("byUsername", username).first();
+			if (user != null) {
+				final String token = Codec.UUID();
+				final ConfirmationType confirmType = ConfirmationType.FORGOTUSERPASS;
+				final Confirmation confirmation = new Confirmation();
+				confirmation.setUser(user);
+				confirmation.setToken(token);
+				confirmation.setConfirmType(confirmType);
+				confirmation.setConfirmValue(Crypto.encryptAES(Codec.UUID()));
+				confirmation.setCreated(new Date());
+				confirmation._save();
 
-        		MailService.confirm(user, token, confirmType);
-        		flash.put("infomessage", Messages.get("confirm.message"));
-        		login();
-        	}
+				MailService.confirm(user, token, confirmType);
+				flash.put("infomessage", Messages.get("confirm.message"));
+				login();
+			}
 		}
 		flash.keep();
 		redirect("/");
-    }
+	}
 
-    @Transactional(readOnly=true)
-    public static void forgotten() {
-    	render();
-    }
+	@Transactional(readOnly=true)
+	public static void forgotten() {
+		render();
+	}
 
-    public static void authenticate(String username, String userpass, boolean remember) {
-    	if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+	public static void authenticate(final String username, final String userpass, final boolean remember) {
+		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        Boolean allowed = false;
-        try {
-            allowed = (Boolean) Security.invoke("authenticate", username, userpass);
-            validation.isTrue(allowed);
-            validation.required(username);
-            validation.required(userpass);
-            validation.email(username);
-        } catch (UnsupportedOperationException e) {
-        	Logger.error("UnsupportedOperationException while authenticating", e);
-        } catch (Throwable e) {
-            Logger.error("Authentication exception", e);
-        }
+		Boolean allowed = false;
+		try {
+			allowed = (Boolean) Security.invoke("authenticate", username, userpass);
+			validation.isTrue(allowed);
+			validation.required(username);
+			validation.required(userpass);
+			validation.email(username);
+		} catch (final UnsupportedOperationException e) {
+			Logger.error("UnsupportedOperationException while authenticating", e);
+		} catch (final Throwable e) {
+			Logger.error("Authentication exception", e);
+		}
 
-        if (!allowed || validation.hasErrors()) {
-            flash.keep("url");
-            flash.put("errormessage", Messages.get("validation.invalidLogin"));
-            params.flash();
-            Validation.keep();
-            login();
-        } else {
-        	session.put("username", username);
-            if (remember) {
-                response.setCookie("rememberme", Crypto.sign(username) + "-" + username, "7d");
-            }
-        }
+		if (!allowed || validation.hasErrors()) {
+			flash.keep("url");
+			flash.put("errormessage", Messages.get("validation.invalidLogin"));
+			params.flash();
+			Validation.keep();
+			login();
+		} else {
+			session.put("username", username);
+			if (remember) {
+				response.setCookie("rememberme", Crypto.sign(username) + "-" + username, "7d");
+			}
+		}
 
-        redirectToOriginalURL();
-    }
+		redirectToOriginalURL();
+	}
 
-    @Transactional(readOnly=true)
-    public static void logout() throws Throwable {
-        Security.invoke("onDisconnected");
-    	session.clear();
-        response.removeCookie("rememberme");
+	@Transactional(readOnly=true)
+	public static void logout() throws Throwable {
+		Security.invoke("onDisconnected");
+		session.clear();
+		response.removeCookie("rememberme");
 
-        flash.put("infomessage", Messages.get("controller.auth.logout"));
-        flash.keep();
+		flash.put("infomessage", Messages.get("controller.auth.logout"));
+		flash.keep();
 
-        login();
-    }
+		login();
+	}
 
-    static void redirectToOriginalURL() {
-        try {
-            Security.invoke("onAuthenticated");
-        } catch (Throwable e) {
-             Logger.error("Failed to onvoke onAuthenticated", e);
-        }
-        String url = flash.get("url");
+	static void redirectToOriginalURL() {
+		try {
+			Security.invoke("onAuthenticated");
+		} catch (final Throwable e) {
+			Logger.error("Failed to onvoke onAuthenticated", e);
+		}
+		String url = flash.get("url");
 
-        if (StringUtils.isBlank(url)) {
-            url = "/";
-        }
+		if (StringUtils.isBlank(url)) {
+			url = "/";
+		}
 
-        redirect(url);
-    }
+		redirect(url);
+	}
 
-    public static class Security extends Controller {
-        static boolean authenticate(String username, String userpass) {
-        	String usersalt = null;
-        	User user = User.find("byUsername", username).first();
-        	if (user != null) {
-        		usersalt = user.getSalt();
-        		return User.connect(username, AppUtils.hashPassword(userpass, usersalt)) != null;
-        	}
+	public static class Security extends Controller {
+		static boolean authenticate(final String username, final String userpass) {
+			String usersalt = null;
+			final User user = User.find("byUsername", username).first();
+			if (user != null) {
+				usersalt = user.getSalt();
+				return User.connect(username, AppUtils.hashPassword(userpass, usersalt)) != null;
+			}
 
-        	return false;
-        }
+			return false;
+		}
 
-        static boolean check(String profile) {
-            User user = User.find("byUsername", connected()).first();
-            if (user == null) {
-                return false;
-            }
+		static boolean check(final String profile) {
+			final User user = User.find("byUsername", connected()).first();
+			if (user == null) {
+				return false;
+			}
 
-            return user.isAdmin();
-        }
+			return user.isAdmin();
+		}
 
-        public static String connected() {
-            return session.get("username");
-        }
+		public static String connected() {
+			return session.get("username");
+		}
 
-        static boolean isConnected() {
-            return session.contains("username");
-        }
+		static boolean isConnected() {
+			return session.contains("username");
+		}
 
-        static void onAuthenticated() {
-            Logger.info("User logged in: " + Security.connected());
-        }
+		static void onAuthenticated() {
+			Logger.info("User logged in: " + Security.connected());
+		}
 
-        static void onDisconnected() {
-        	Logger.info("User logged out: " + Security.connected());
-        }
+		static void onDisconnected() {
+			Logger.info("User logged out: " + Security.connected());
+		}
 
-        static void onCheckFailed(String profile) {
-            forbidden();
-        }
+		static void onCheckFailed(final String profile) {
+			forbidden();
+		}
 
-        private static Object invoke(String m, Object... args) throws Throwable {
-            Class security = null;
-            List<Class> classes = Play.classloader.getAssignableClasses(Security.class);
-            if (classes.size() == 0) {
-                security = Security.class;
-            } else {
-                security = classes.get(0);
-            }
-            try {
-                return Java.invokeStaticOrParent(security, m, args);
-            } catch (InvocationTargetException e) {
-                throw e.getTargetException();
-            }
-        }
-    }
+		private static Object invoke(final String m, final Object... args) throws Throwable {
+			Class security = null;
+			final List<Class> classes = Play.classloader.getAssignableClasses(Security.class);
+			if (classes.size() == 0) {
+				security = Security.class;
+			} else {
+				security = classes.get(0);
+			}
+			try {
+				return Java.invokeStaticOrParent(security, m, args);
+			} catch (final InvocationTargetException e) {
+				throw e.getTargetException();
+			}
+		}
+	}
 }

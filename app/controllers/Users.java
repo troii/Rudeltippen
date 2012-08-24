@@ -1,5 +1,7 @@
 package controllers;
 
+import interfaces.AppConstants;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -29,41 +31,41 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 
 @With(Auth.class)
-public class Users extends Root {
+public class Users extends Root implements AppConstants{
 	@Transactional(readOnly=true)
-	public static void show(String nickname) {
+	public static void show(final String nickname) {
 		final User user = User.find("byNickname", nickname).first();
 
 		if (user != null) {
-		    Map<String, Integer> statistics = new HashMap<String, Integer>();
+			final Map<String, Integer> statistics = new HashMap<String, Integer>();
 
-            final long extra = Extra.count();
-            final List<ExtraTip> correctExtraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
+			final long extra = Extra.count();
+			final List<ExtraTip> correctExtraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
 
 			statistics.put("extraTips", (int) extra);
 			statistics.put("correctExtraTips", correctExtraTips.size());
 
-            final List<GameTip> tips = GameTip.find("byUser", user).fetch();
-			int sumAllTipps = tips.size();
-			int correctTipps = user.getCorrectResults();
-			int correctTrend = user.getCorrectTrends();
-			int correctDifference = user.getCorrectDifferences();
-			int sumTipps = correctTipps + correctTrend + correctDifference;
-			
+			final List<GameTip> tips = GameTip.find("byUser", user).fetch();
+			final int sumAllTipps = tips.size();
+			final int correctTipps = user.getCorrectResults();
+			final int correctTrend = user.getCorrectTrends();
+			final int correctDifference = user.getCorrectDifferences();
+			final int sumTipps = correctTipps + correctTrend + correctDifference;
+
 			statistics.put("sumGames", (int) Game.count());
 			statistics.put("sumTipps", sumAllTipps);
 			statistics.put("correctTipps", correctTipps);
 			statistics.put("correctTrend", correctTrend);
 			statistics.put("correctDifference", correctDifference);
-			float pointsTipp = (float) user.getPoints() / (float) sumTipps;
+			final float pointsTipp = (float) user.getPoints() / (float) sumTipps;
 			String pointsPerTipp = "0";
 			if (pointsTipp > 0) {
-			    DecimalFormat df = new DecimalFormat( "0.00" );
-			    pointsPerTipp = df.format( pointsTipp );
+				final DecimalFormat df = new DecimalFormat( "0.00" );
+				pointsPerTipp = df.format( pointsTipp );
 			}
 
 			if (sumTipps > 0) {
-				statistics.put("tippQuote", 100 / sumTipps * correctTipps);
+				statistics.put("tippQuote", (100 / sumTipps) * correctTipps);
 			} else {
 				statistics.put("tippQuote", 0);
 			}
@@ -81,31 +83,31 @@ public class Users extends Root {
 		render(user, settings);
 	}
 
-	public static void updatenickname(String nickname) {
+	public static void updatenickname(final String nickname) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(nickname);
 		validation.minSize(nickname, 3);
 		validation.maxSize(nickname, 20);
-	    validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
+		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
 
-	    if (validation.hasErrors()) {
+		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
 		} else {
-			User user = AppUtils.getConnectedUser();
+			final User user = AppUtils.getConnectedUser();
 			user.setNickname(nickname);
 			user._save();
 
 			flash.put("infomessage", Messages.get("controller.profile.updatenickname"));
 			Logger.info("Nickname updated: " + user.getUsername() + " / " + nickname);
 		}
-        flash.keep();
+		flash.keep();
 
-	    redirect("/users/profile");
+		redirect("/users/profile");
 	}
 
-	public static void updateusername(String username, String usernameConfirmation) {
+	public static void updateusername(final String username, final String usernameConfirmation) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(username);
@@ -118,18 +120,18 @@ public class Users extends Root {
 			validation.keep();
 		} else {
 			final String token = Codec.UUID();
-			User user = AppUtils.getConnectedUser();
+			final User user = AppUtils.getConnectedUser();
 			if (user != null) {
-	            ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
-	            Confirmation confirmation = new Confirmation();
-	            confirmation.setConfirmType(confirmationType);
-	            confirmation.setConfirmValue(Crypto.encryptAES(username));
-	            confirmation.setCreated(new Date());
-	            confirmation.setToken(token);
-	            confirmation.setUser(user);
-	            confirmation._save();
-	            MailService.confirm(user, token, confirmationType);
-	            flash.put("infomessage", Messages.get("confirm.message"));
+				final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
+				final Confirmation confirmation = new Confirmation();
+				confirmation.setConfirmType(confirmationType);
+				confirmation.setConfirmValue(Crypto.encryptAES(username));
+				confirmation.setCreated(new Date());
+				confirmation.setToken(token);
+				confirmation.setUser(user);
+				confirmation._save();
+				MailService.confirm(user, token, confirmationType);
+				flash.put("infomessage", Messages.get("confirm.message"));
 			}
 		}
 		flash.keep();
@@ -137,43 +139,43 @@ public class Users extends Root {
 		redirect("/users/profile");
 	}
 
-	public static void updatepassword(String userpass, String userpassConfirmation) {
+	public static void updatepassword(final String userpass, final String userpassConfirmation) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(userpass);
 		validation.equals(userpass, userpassConfirmation);
-        validation.minSize(userpass, 6);
-        validation.maxSize(userpass, 30);
+		validation.minSize(userpass, 6);
+		validation.maxSize(userpass, 30);
 
 		if (Validation.hasErrors()) {
 			params.flash();
 			validation.keep();
 		} else {
-            final String token = Codec.UUID();
-		    User user = AppUtils.getConnectedUser();
-		    if (user != null) {
-                ConfirmationType confirmationType = ConfirmationType.CHANGEUSERPASS;
-                Confirmation confirm = new Confirmation();
-                confirm.setConfirmType(confirmationType);
-                confirm.setConfirmValue(Crypto.encryptAES(AppUtils.hashPassword(userpass, user.getSalt())));
-                confirm.setCreated(new Date());
-                confirm.setToken(token);
-                confirm.setUser(user);
-                confirm._save();
-                MailService.confirm(user, token, confirmationType);
-                flash.put("infomessage", Messages.get("confirm.message"));
-                Logger.info("Password updated: " + user.getUsername());
-		    }
+			final String token = Codec.UUID();
+			final User user = AppUtils.getConnectedUser();
+			if (user != null) {
+				final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERPASS;
+				final Confirmation confirm = new Confirmation();
+				confirm.setConfirmType(confirmationType);
+				confirm.setConfirmValue(Crypto.encryptAES(AppUtils.hashPassword(userpass, user.getSalt())));
+				confirm.setCreated(new Date());
+				confirm.setToken(token);
+				confirm.setUser(user);
+				confirm._save();
+				MailService.confirm(user, token, confirmationType);
+				flash.put("infomessage", Messages.get("confirm.message"));
+				Logger.info("Password updated: " + user.getUsername());
+			}
 		}
-        flash.keep();
+		flash.keep();
 
-        redirect("/users/profile");
+		redirect("/users/profile");
 	}
 
-	public static void updatenotifications(boolean reminder, boolean notification, boolean sendstandings) {
+	public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		User user = AppUtils.getConnectedUser();
+		final User user = AppUtils.getConnectedUser();
 		user.setReminder(reminder);
 		user.setNotification(notification);
 		user.setSendStandings(sendstandings);
@@ -186,14 +188,14 @@ public class Users extends Root {
 		redirect("/users/profile");
 	}
 
-	public static void updatepicture(File picture) {
+	public static void updatepicture(final File picture) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(picture);
 
 		if (picture != null) {
-			int size = AppUtils.getSettings().getMaxPictureSize();
-			String message = Messages.get("profile.maxpicturesize", size / 1024);
+			final int size = AppUtils.getSettings().getMaxPictureSize();
+			final String message = Messages.get("profile.maxpicturesize", size / 1024);
 			validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
 		} else {
 			validation.isTrue(false);
@@ -203,12 +205,12 @@ public class Users extends Root {
 			params.flash();
 			validation.keep();
 		} else {
-			User user = AppUtils.getConnectedUser();
+			final User user = AppUtils.getConnectedUser();
 			try {
-		        Images.resize(picture, picture, 128, 128);
+				Images.resize(picture, picture, PICTURELARGE, PICTURELARGE);
 				user.setPictureLarge(Images.toBase64(picture));
-	            Images.resize(picture, picture, 64, 64);
-	            user.setPicture(Images.toBase64(picture));
+				Images.resize(picture, picture, PICTURESMALL, PICTURESMALL);
+				user.setPicture(Images.toBase64(picture));
 				if (picture.delete()) {
 					Logger.warn("User-Picutre could not be deleted after upload.");
 				} else {
@@ -218,7 +220,7 @@ public class Users extends Root {
 				user._save();
 				flash.put("infomessage", Messages.get("controller.profile.updatepicture"));
 				Logger.info("Picture updated: " + user.getUsername());
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				flash.put("warningmessage", Messages.get("controller.profile.updatepicturefail"));
 				Logger.error("Failed to save user picture", e);
 			}
@@ -229,7 +231,7 @@ public class Users extends Root {
 	}
 
 	public static void deletepicture() {
-		User user = AppUtils.getConnectedUser();
+		final User user = AppUtils.getConnectedUser();
 		user.setPicture(null);
 		user.setPictureLarge(null);
 		user._save();

@@ -898,8 +898,8 @@ public class AppUtils implements AppConstants{
 			HttpResponse response = null;
 			String url = null;
 
-			if ((size <= 0) || (size > 128)) {
-				size = 64;
+			if ((size <= 0) || (size > PICTURELARGE)) {
+				size = PICTURESMALL;
 			}
 
 			if (StringUtils.isNotBlank(d)) {
