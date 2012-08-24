@@ -151,7 +151,7 @@ public class ViewUtils extends JavaExtensions{
 	}
 
 	public static String getTrend(final Game game) {
-		if (game.getKickoff().before(new Date())) {
+		if (game.getKickoff().after(new Date())) {
 			return Messages.get("model.game.notenoughtipps");
 		}
 
