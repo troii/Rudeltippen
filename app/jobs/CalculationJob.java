@@ -1,9 +1,8 @@
 package jobs;
 
-import play.jobs.Job;
 import utils.AppUtils;
 
-public class CalculationJob extends Job{
+public class CalculationJob extends AppJob{
 	@Override
 	public void doJob() {
 		AppUtils.calculations();

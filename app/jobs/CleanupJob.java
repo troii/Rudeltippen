@@ -8,12 +8,17 @@ import models.ExtraTip;
 import models.GameTip;
 import models.User;
 import play.Logger;
-import play.jobs.Job;
 import play.jobs.On;
 import utils.AppUtils;
 
 @On("0 0 2 * * ?")
-public class CleanupJob extends Job {
+public class CleanupJob extends AppJob {
+
+	public CleanupJob() {
+		this.setDescription("Cleans up the database by removing users which did not activate their account within 48 hours after registration.");
+		this.setExecuted("Runs daily at 02:00");
+	}
+
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {

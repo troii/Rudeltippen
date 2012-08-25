@@ -424,4 +424,9 @@ public class ViewUtils extends JavaExtensions{
 
 		return "- : -";
 	}
+
+	public static String formatTimestamp(final Long timestamp) {
+		final SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		return df.format(new Date(timestamp));
+	}
 }

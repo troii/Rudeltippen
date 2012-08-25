@@ -32,6 +32,7 @@ GET	    /admin/changeactive/{userid}			admin.changeactive
 GET	    /admin/changeadmin/{userid}				admin.changeadmin
 GET	    /admin/deleteuser/{userid}				admin.deleteuser
 GET	    /admin/results/{number}				    admin.results
+GET     /admin/runjob/{name}                    admin.runjob
 GET	    /users/show/{nickname}					users.show
 GET		/standings								standings.index
 GET	    /standings/{page}						standings.index
