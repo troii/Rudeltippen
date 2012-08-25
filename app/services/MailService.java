@@ -9,6 +9,7 @@ import models.Settings;
 import models.User;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
 import play.Play;
@@ -24,7 +25,7 @@ public class MailService extends Mailer {
 		final Settings settings = AppUtils.getSettings();
 		final String recipient = user.getUsername();
 
-		if (ValidationUtils.isValidEmail(recipient)) {
+		if (ValidationUtils.isValidEmail(recipient) && (statements != null)) {
 			setFrom(from);
 			addRecipient(recipient);
 			setReplyTo(replyto);
@@ -58,7 +59,7 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 
-		if ((user != null) && ValidationUtils.isValidEmail(user.getUsername())) {
+		if ((user != null) && ValidationUtils.isValidEmail(user.getUsername()) && StringUtils.isNotBlank(token) && (confirmationType != null)) {
 			String subject = "";
 			String message = "";
 
@@ -93,7 +94,7 @@ public class MailService extends Mailer {
 		final String from = Play.configuration.getProperty("mailservice.from");
 
 		final String recipient = user.getUsername();
-		if (ValidationUtils.isValidEmail(recipient)) {
+		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotBlank(userpass)) {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
@@ -125,7 +126,7 @@ public class MailService extends Mailer {
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 
-		if (ValidationUtils.isValidEmail(recipient)) {
+		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotBlank(response)) {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
@@ -142,7 +143,7 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		notification = StringEscapeUtils.unescapeHtml(notification);
 
-		if (ValidationUtils.isValidEmail(recipient)) {
+		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotEmpty(notification)) {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
@@ -159,7 +160,7 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		message = StringEscapeUtils.unescapeHtml(message);
 
-		if (ValidationUtils.isValidEmail(recipient)) {
+		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotBlank(message)) {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
