@@ -55,7 +55,7 @@ public class UpdateService {
 		} catch (final Exception e) {
 			final List<User> users = User.find("Admin", true).fetch();
 			for (final User user : users) {
-				MailService.webserviceError(e.getMessage(), user.getUsername());
+				MailService.error(e.getMessage(), user.getUsername());
 			}
 			Logger.error("Updating of results from WebService failed", e);
 		}

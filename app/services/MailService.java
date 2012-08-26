@@ -121,7 +121,7 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void webserviceError(final String response, final String recipient) {
+	public static void error(final String response, final String recipient) {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
@@ -131,7 +131,7 @@ public class MailService extends Mailer {
 			setFrom(from);
 			addRecipient(recipient);
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed")));
-			send(AppUtils.getMailTemplate("webserviceError"), response);
+			send(AppUtils.getMailTemplate("error"), response);
 		} else {
 			Logger.error("Tryed to sent info on webservice, but recipient was invalid.");
 		}
@@ -148,26 +148,10 @@ public class MailService extends Mailer {
 			setFrom(from);
 			addRecipient(recipient);
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.notification")));
+			System.out.println("---> " + notification);
 			send(AppUtils.getMailTemplate("notifications"), notification);
 		} else {
 			Logger.error("Tryed to sent result notification, but recipient was invalid.");
-		}
-	}
-
-	public static void sendStandings(String message, final String recipient) {
-		final Settings settings = AppUtils.getSettings();
-		final String from = Play.configuration.getProperty("mailservice.from");
-		final String replyto = Play.configuration.getProperty("mailservice.replyto");
-		message = StringEscapeUtils.unescapeHtml(message);
-
-		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotBlank(message)) {
-			setReplyTo(replyto);
-			setFrom(from);
-			addRecipient(recipient);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.standings")));
-			send(AppUtils.getMailTemplate("notifications"), message);
-		} else {
-			Logger.error("Tryed to sent standings, but recipient was invalid.");
 		}
 	}
 }

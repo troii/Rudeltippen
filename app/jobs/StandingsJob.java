@@ -42,7 +42,7 @@ public class StandingsJob extends Job{
 
 				users = User.find("bySendStandings", true).fetch();
 				for (final User user : users) {
-					MailService.sendStandings(message, user.getUsername());
+					MailService.notifications(message, user.getUsername());
 				}
 			}
 		}
