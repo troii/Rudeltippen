@@ -332,9 +332,9 @@ public class UnitTests extends UnitTest implements AppConstants{
 		MailService.confirm(user, token, confirmationType);
 		MailService.newuser(user, admin);
 		MailService.newuserpass(user, userpass);
-		MailService.notifications(notification);
+		MailService.notifications(notification, "foo@bar.com");
 		MailService.updates(user, statements);
-		MailService.webserviceError(response);
+		MailService.error(response, "foo@bar.com");
 		TwitterService.updateStatus(message);
 	}
 }

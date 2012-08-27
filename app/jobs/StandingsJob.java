@@ -30,7 +30,7 @@ public class StandingsJob extends AppJob {
 				int count = 1;
 				final StringBuilder buffer = new StringBuilder();
 
-				final List<User> users = User.find("ORDER BY place ASC").fetch(3);
+				List<User> users = User.find("ORDER BY place ASC").fetch(3);
 				for (final User user : users) {
 					if (count < 3) {
 						buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
@@ -44,7 +44,11 @@ public class StandingsJob extends AppJob {
 				if (AppUtils.isTweetable()) {
 					TwitterService.updateStatus(message);
 				}
-				MailService.sendStandings(message);
+
+				users = User.find("bySendStandings", true).fetch();
+				for (final User user : users) {
+					MailService.notifications(message, user.getUsername());
+				}
 			}
 		}
 	}
