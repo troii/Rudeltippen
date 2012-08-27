@@ -53,12 +53,13 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Hashes a given clear-text password with a given salt using 100000 rounds
+	 * Hashes a given clear-text password with a given salt using 1.000.000 rounds
 	 *
 	 * @param userpass The password
 	 * @param usersalt The salt
 	 * @return SHA1 hashed string
 	 */
+	@Deprecated
 	public static String hashPassword(final String userpass, final String usersalt) {
 		final String salt = AppUtils.getSettings().getAppSalt();
 		String password = userpass + salt + usersalt;
@@ -69,6 +70,28 @@ public class AppUtils implements AppConstants{
 		return password;
 	}
 
+	/**
+	 * Hashes a given clear-text password with a given salt using 1.000.000 rounds
+	 *
+	 * @param userpass The password
+	 * @param usersalt The salt
+	 * @return SHA1 hashed string
+	 */
+	public static String hashUserpassword(final String userpass, final String usersalt) {
+		final String salt = AppUtils.getSettings().getAppSalt();
+		String hash = "";
+		for (int i = 1; i <= 1000000; i++) {
+			hash = Codec.hexSHA1(hash + salt + userpass + usersalt);
+		}
+
+		return hash;
+	}
+
+	/**
+	 * Calculates the difference points between the logged in player and the first place
+	 * 
+	 * @return The difference
+	 */
 	public static int getPointsToFirstPlace() {
 		final User user = User.find("byPlace", 1).first();
 		int pointsDiff = 0;

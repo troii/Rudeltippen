@@ -1,1 +1,1 @@
-call ./play/play.bat stop
+play stop

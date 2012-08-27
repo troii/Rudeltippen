@@ -1,3 +1,3 @@
-call ./play/play.bat clean
-call ./play/play.bat deps --sync
-call psexec /s FULL_PATH_TO_RUDELTIPPEN\play\play.bat start FULL_PATH_TO_RUDELTIPPEN
+call play clean
+call play --sync
+call psexec /s FULL_PATH_TO_PLAY\play.bat start FULL_PATH_TO_RUDELTIPPEN
