@@ -22,7 +22,7 @@ public class Bracket extends Model{
 
 	@OneToMany(mappedBy = "bracket")
 	private List<Game> games;
-	
+
 	@Column(nullable=false)
 	private int number;
 
@@ -32,7 +32,7 @@ public class Bracket extends Model{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -40,7 +40,7 @@ public class Bracket extends Model{
 		return teams;
 	}
 
-	public void setTeams(List<Team> teams) {
+	public void setTeams(final List<Team> teams) {
 		this.teams = teams;
 	}
 
@@ -48,7 +48,7 @@ public class Bracket extends Model{
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(final int number) {
 		this.number = number;
 	}
 
@@ -56,31 +56,31 @@ public class Bracket extends Model{
 		return override;
 	}
 
-	public void setOverride(boolean override) {
+	public void setOverride(final boolean override) {
 		this.override = override;
 	}
-	
+
 	public List<Game> getGames() {
 		return games;
 	}
 
-	public void setGames(List<Game> games) {
+	public void setGames(final List<Game> games) {
 		this.games = games;
 	}
-	
+
 	public boolean allGamesEnded() {
-		for (Game game : games) {
+		for (final Game game : games) {
 			if (!game.isEnded()) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
-	public Team getTeamByPlace(int place) {
+	public Team getTeamByPlace(final int place) {
 		int i = 1;
-		for (Team team : teams) {
+		for (final Team team : teams) {
 			if  (i == place) {
 				return team;
 			}

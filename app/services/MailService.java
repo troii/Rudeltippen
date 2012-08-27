@@ -32,7 +32,7 @@ public class MailService extends Mailer {
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updates")));
 			send(AppUtils.getMailTemplate("updates"), user, statements);
 		} else {
-			Logger.error("Tryed to sent updates mail, but recipient was invalid.");
+			Logger.error("Tryed to sent updates mail, but recipient was invalid or statements was null.");
 		}
 	}
 
@@ -83,7 +83,7 @@ public class MailService extends Mailer {
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + subject));
 			send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
 		} else {
-			Logger.error("Tryed to sent confirmation e-mail, but user was null or recipient e-mail invalid.");
+			Logger.error("Tryed to sent confirmation e-mail, but user or confirmType was null or recipient e-mail was invalid.");
 		}
 	}
 
@@ -101,7 +101,7 @@ public class MailService extends Mailer {
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.newpassword")));
 			send(AppUtils.getMailTemplate("newuserpass"), user, userpass, appUrl);
 		} else {
-			Logger.error("Tryed to sent new passwort, but recipient was invalid.");
+			Logger.error("Tryed to sent new passwort, but recipient was invalid or userpass was null.");
 		}
 	}
 
@@ -110,14 +110,14 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 
-		if (ValidationUtils.isValidEmail(admin.getUsername())) {
+		if (ValidationUtils.isValidEmail(admin.getUsername()) && (user != null)) {
 			setFrom(from);
 			setReplyTo(replyto);
 			addRecipient(admin.getUsername());
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.newuser")));
 			send(AppUtils.getMailTemplate("newuser"), user, settings);
 		} else {
-			Logger.error("Tryed to sent new user e-mail to admin, but recipient was invalid.");
+			Logger.error("Tryed to sent new user e-mail to admin, but recipient was invalid or user was null.");
 		}
 	}
 
@@ -133,7 +133,7 @@ public class MailService extends Mailer {
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed")));
 			send(AppUtils.getMailTemplate("error"), response);
 		} else {
-			Logger.error("Tryed to sent info on webservice, but recipient was invalid.");
+			Logger.error("Tryed to sent info on webservice, but recipient was invalid or response was null.");
 		}
 	}
 
@@ -148,10 +148,9 @@ public class MailService extends Mailer {
 			setFrom(from);
 			addRecipient(recipient);
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.notification")));
-			System.out.println("---> " + notification);
 			send(AppUtils.getMailTemplate("notifications"), notification);
 		} else {
-			Logger.error("Tryed to sent result notification, but recipient was invalid.");
+			Logger.error("Tryed to sent result notification, but recipient was invalid or notification was null.");
 		}
 	}
 }

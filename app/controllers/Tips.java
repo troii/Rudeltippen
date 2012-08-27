@@ -23,11 +23,11 @@ public class Tips extends Root {
 	@Transactional(readOnly=true)
 	public static void index(int number) {
 		if (number <= 0) { number = 1; }
-		List<Playday> playdays = Playday.findAll();
-		Playday playday = Playday.find("byNumber", number).first();
-		Playday currentPlayday = playday;
-		Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
-		Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
+		final List<Playday> playdays = Playday.findAll();
+		final Playday playday = Playday.find("byNumber", number).first();
+		final Playday currentPlayday = playday;
+		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
 		render(playdays, playday, number, currentPlayday, nextPlayday, previousPlayday);
 	}
@@ -35,27 +35,27 @@ public class Tips extends Root {
 	@Transactional(readOnly=true)
 	public static void games(int number) {
 		if (number <= 0) { number = 1; }
-		Playday playday = Playday.find("byNumber", number).first();
-		Playday currentPlayday = playday;
-		Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
-		Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
+		final Playday playday = Playday.find("byNumber", number).first();
+		final Playday currentPlayday = playday;
+		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
+		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
 		render(playday, currentPlayday, previousPlayday, nextPlayday);
 	}
 
 	@Transactional(readOnly=true)
 	public static void extra() {
-		List<Extra> extras = Extra.findAll();
-		boolean tippable = AppUtils.extrasTipable(extras);
+		final List<Extra> extras = Extra.findAll();
+		final boolean tippable = AppUtils.extrasTipable(extras);
 
 		render(extras, tippable);
 	}
 
 	@Transactional(readOnly=true)
 	public static void extras() {
-		List<Playday> playdays = Playday.findAll();
-		List<Extra> extras = Extra.findAll();
-		boolean tippable = AppUtils.extrasTipable(extras);
+		final List<Playday> playdays = Playday.findAll();
+		final List<Extra> extras = Extra.findAll();
+		final boolean tippable = AppUtils.extrasTipable(extras);
 
 		render(extras, playdays, tippable);
 	}
@@ -65,9 +65,9 @@ public class Tips extends Root {
 
 		int tipped = 0;
 		int playday = 1;
-		List<String> keys = new ArrayList<String>();
+		final List<String> keys = new ArrayList<String>();
 		final Map<String, String> map = params.allSimple();
-		for (Entry<String, String> entry : map.entrySet()) {
+		for (final Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();
 			if (StringUtils.isNotBlank(key) && key.contains("game_") && (key.contains("_homeScore") || key.contains("_awayScore"))) {
 				key = key.replace("game_", "");
@@ -79,14 +79,14 @@ public class Tips extends Root {
 					continue;
 				}
 
-				String homeScore = map.get("game_" + key + "_homeScore");
-				String awayScore = map.get("game_" + key + "_awayScore");
+				final String homeScore = map.get("game_" + key + "_homeScore");
+				final String awayScore = map.get("game_" + key + "_awayScore");
 
 				if (!ValidationUtils.isValidScore(homeScore, awayScore)) {
 					continue;
 				}
 
-				Game game = Game.findById(Long.parseLong(key));
+				final Game game = Game.findById(Long.parseLong(key));
 				if (game == null) {
 					continue;
 				}
@@ -94,7 +94,7 @@ public class Tips extends Root {
 				AppUtils.placeTip(game, Integer.parseInt(homeScore), Integer.parseInt(awayScore));
 				keys.add(key);
 				tipped++;
-				
+
 				playday = game.getPlayday().getNumber();
 			}
 		}
@@ -112,7 +112,7 @@ public class Tips extends Root {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final Map<String, String> map = params.allSimple();
-		for (Entry<String, String> entry : map.entrySet()) {
+		for (final Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();
 
 			if (StringUtils.isNotBlank(key) && key.contains("bonus_") && key.contains("_teamId")) {
@@ -121,8 +121,8 @@ public class Tips extends Root {
 				key = key.replace("_teamId", "");
 				key = key.trim();
 
-				String bId = key;
-				String tId = teamdId;
+				final String bId = key;
+				final String tId = teamdId;
 				Long bonusTippId = null;
 				Long teamId = null;
 
@@ -133,9 +133,9 @@ public class Tips extends Root {
 					extras();
 				}
 
-				Extra extra = Extra.findById(bonusTippId);
+				final Extra extra = Extra.findById(bonusTippId);
 				if (extra.isTipable()) {
-					Team team = Team.findById(teamId);
+					final Team team = Team.findById(teamId);
 					AppUtils.placeExtraTip(extra, team);
 					flash.put("infomessage", Messages.get("controller.tipps.bonussaved"));
 					flash.keep();

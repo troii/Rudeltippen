@@ -57,8 +57,6 @@ public class Admin extends Root implements AppConstants {
 		render(users);
 	}
 
-
-
 	public static void storeresults() {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
