@@ -22,6 +22,8 @@ import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
+import play.jobs.Job;
+import play.jobs.JobsPlugin;
 import play.libs.F.Promise;
 import play.mvc.With;
 import utils.AppUtils;
@@ -54,8 +56,6 @@ public class Admin extends Root implements AppConstants {
 		final List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
 		render(users);
 	}
-
-
 
 	public static void storeresults() {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
@@ -292,5 +292,22 @@ public class Admin extends Root implements AppConstants {
 
 		flash.keep();
 		redirect("/admin/users");
+	}
+
+	public static void jobs() {
+		final List<Job> jobs = JobsPlugin.scheduledJobs;
+		render(jobs);
+	}
+
+	public static void runjob(final String name) {
+		if (StringUtils.isNotBlank(name)) {
+			final List<Job> jobs = JobsPlugin.scheduledJobs;
+			for (final Job job : jobs) {
+				if (name.equalsIgnoreCase(job.getClass().getSimpleName())) {
+					job.now();
+				}
+			}
+		}
+		jobs();
 	}
 }

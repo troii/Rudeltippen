@@ -115,6 +115,30 @@ public class ValidationUtils implements AppConstants{
 		return m.matches();
 	}
 
+	/**
+	 * Creates a vliadtion object with the given
+	 * 
+	 * @param validation
+	 * @param tournament
+	 * @param name
+	 * @param pointsGameWin
+	 * @param pointsGameDraw
+	 * @param pointsTip
+	 * @param pointsTipDiff
+	 * @param pointsTipTrend
+	 * @param minutesBeforeTip
+	 * @param maxPictureSize
+	 * @param timeZoneString
+	 * @param dateString
+	 * @param dateTimeLang
+	 * @param timeString
+	 * @param theme
+	 * @param countFinalResult
+	 * @param informOnNewTipper
+	 * @param enableRegistration
+	 * 
+	 * @return The validatiob object
+	 */
 	public static Validation getSettingsValidations(
 			final Validation validation,
 			final String tournament,
@@ -153,6 +177,12 @@ public class ValidationUtils implements AppConstants{
 		return validation;
 	}
 
+	/**
+	 * Checks if a given theme exists
+	 * 
+	 * @param theme The name of the theme
+	 * @return true if the theme exists, false otherwise
+	 */
 	public static boolean isValidTheme(final String theme) {
 		final List<String> themes = ViewUtils.getThemes();
 		if (themes.contains(theme)) {

@@ -24,6 +24,7 @@ Features in a Nutshell
 - SSL support
 - Load balancer support
 - Multilingual
+- Runs on - Linux, Mac or Windows
 
 Requirements
 ------------------
@@ -32,7 +33,6 @@ Requirements
 - Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support
 - SMTP-Account (with SSL/non-SSL, e.g. [Gmail][12])
 - MySQL 5+
-- Linux, Mac or Windows
 
 Available Languages
 ------------------
@@ -49,6 +49,10 @@ Installation guide
 ------------------
 
 This installation guide assumes that you already have JDK 1.6+ installed and have your database- and SMTP credentials right beside you.
+
+### Step 0
+
+Download and install the [Play Framework 1.2.x][17]
 
 ### Step 1
 
@@ -177,7 +181,7 @@ Change the default values if you want to and create an initial user.
 
 Login with your just created user and enjoy Rudeltippen!
 
-If you need to stop Rudeltippen. Got to your INSTLLATIONFOLDER and call
+If you need to stop Rudeltippen. Go to your INSTLLATIONFOLDER and call
 
 ```bash
 shutdown.sh
@@ -320,12 +324,6 @@ Licence
 
 Rudeltippen is distributed under [Apache 2 licence][11]
 
-Stuff
-------------------
-
-- Follow [@rudeltippen][8] on Twitter for the latest development news
-- [Support page (German or Englisch)][6]
-
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [2]: http://www.playframework.org/download
 [3]: http://demo.rudeltippen.de
@@ -341,3 +339,4 @@ Stuff
 [14]: https://github.com/svenkubiak/Rudeltippen/tags
 [15]: http://bootswatch.com/
 [16]: http://technet.microsoft.com/de-de/sysinternals/bb896649.aspx
+[17]: http://www.playframework.org/documentation/1.2.5/install

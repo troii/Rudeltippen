@@ -13,7 +13,6 @@ import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.DB;
 import play.jobs.Every;
-import play.jobs.Job;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import services.MailService;
@@ -24,7 +23,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 @Every("60min")
-public class UpdateJob extends Job implements AppConstants{
+public class UpdateJob extends AppJob implements AppConstants{
+
+	public UpdateJob() {
+		this.setDescription("Calls the Rudeltippen update service to check if new updates for the curretn league are available.");
+		this.setExecuted("Runs every 60 minutes");
+	}
+
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance() && AppUtils.automaticUpdates()) {

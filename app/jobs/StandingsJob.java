@@ -6,14 +6,19 @@ import models.Game;
 import models.User;
 import play.Logger;
 import play.i18n.Messages;
-import play.jobs.Job;
 import play.jobs.On;
 import services.MailService;
 import services.TwitterService;
 import utils.AppUtils;
 
 @On("0 0 3 * * ?")
-public class StandingsJob extends Job{
+public class StandingsJob extends AppJob {
+
+	public StandingsJob() {
+		this.setDescription("Sends the current Top 3 to every user whos has this notification activated.");
+		this.setExecuted("Runs daily at 03:00");
+	}
+
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {

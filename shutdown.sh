@@ -1,2 +1,2 @@
 #!/bin/bash
-./play/play stop
+play stop

@@ -1,4 +1,4 @@
 #!/bin/bash
-./play/play clean
-./play/play deps --sync
-./play/play start
+play clean
+play deps --sync
+play start
