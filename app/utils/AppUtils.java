@@ -390,8 +390,11 @@ public class AppUtils implements AppConstants{
 	private static void setCurrentPlayday() {
 		final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
 		for (final Playday playday : playdays) {
-			if (!playday.allGamesEnded()) {
+			if (playday.allGamesEnded()) {
 				playday.setCurrent(false);
+				playday._save();
+			} else {
+				playday.setCurrent(true);
 				playday._save();
 				break;
 			}
