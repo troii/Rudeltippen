@@ -38,6 +38,7 @@ GET		/standings								standings.index
 GET	    /standings/{page}						standings.index
 GET	    /tournament/playday/{number}			tournament.playday
 GET	    /tournament/playdayjs/{number}			tournament.playdayjs
+GET     /system/updatekickoff/{number}          system.updatekickoff
 *     	/{controller}/{action}                  {controller}.{action}
 
 # API routes

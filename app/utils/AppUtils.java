@@ -1014,4 +1014,14 @@ public class AppUtils implements AppConstants{
 
 		return "";
 	}
+
+	public static String getCurrentTimeZone() {
+		final Settings settings = getSettings();
+		String timeZone = settings.getTimeZoneString();
+		if (StringUtils.isBlank(timeZone)) {
+			timeZone = "Europe/Berlin";
+		}
+
+		return timeZone;
+	}
 }
