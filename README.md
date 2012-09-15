@@ -52,7 +52,7 @@ This installation guide assumes that you already have JDK 1.6+ installed and hav
 
 ### Step 0
 
-Download and install the [Play Framework 1.2.x][17]
+Download and install [Play Framework 1.2.x][17]
 
 ### Step 1
 
