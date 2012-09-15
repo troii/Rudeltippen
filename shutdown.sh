@@ -1,2 +1,0 @@
-#!/bin/bash
-play stop
