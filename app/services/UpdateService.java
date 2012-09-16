@@ -24,7 +24,7 @@ public class UpdateService {
 		final String matchID = game.getWebserviceID();
 		if (StringUtils.isNotBlank(matchID)) {
 			final Document document = getDocumentFromWebService(matchID);
-			if (document != null) {
+			if ((document != null) && (document.getElementsByTagName("matchIsFinished").getLength() > 0)) {
 				final String matchIsFinished = document.getElementsByTagName("matchIsFinished").item(0).getTextContent();
 				if (("true").equalsIgnoreCase(matchIsFinished)) {
 					wsResults = getEndResult(wsResults, document);
