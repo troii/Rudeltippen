@@ -14,3 +14,4 @@ play/
 precompiled/
 server.pid
 .DS_Store
+/conf/application.conf
