@@ -21,6 +21,7 @@ public class Bracket extends Model{
 	private List<Team> teams;
 
 	@OneToMany(mappedBy = "bracket")
+	@OrderBy("number ASC")
 	private List<Game> games;
 
 	@Column(nullable=false)

@@ -26,11 +26,11 @@ public class Team extends Model{
 	private Bracket bracket;
 
 	@OneToMany(mappedBy = "homeTeam", fetch=FetchType.LAZY)
-	@OrderBy("kickoff")
+	@OrderBy("kickoff ASC")
 	private List<Game> homeGames;
 
 	@OneToMany(mappedBy = "awayTeam", fetch=FetchType.LAZY)
-	@OrderBy("kickoff")
+	@OrderBy("kickoff ASC")
 	private List<Game> awayGames;
 
 	@Column(nullable=false)
@@ -51,7 +51,7 @@ public class Team extends Model{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -59,7 +59,7 @@ public class Team extends Model{
 		return bracket;
 	}
 
-	public void setBracket(Bracket bracket) {
+	public void setBracket(final Bracket bracket) {
 		this.bracket = bracket;
 	}
 
@@ -67,7 +67,7 @@ public class Team extends Model{
 		return homeGames;
 	}
 
-	public void setHomeGames(List<Game> homeGames) {
+	public void setHomeGames(final List<Game> homeGames) {
 		this.homeGames = homeGames;
 	}
 
@@ -75,7 +75,7 @@ public class Team extends Model{
 		return awayGames;
 	}
 
-	public void setAwayGames(List<Game> awayGames) {
+	public void setAwayGames(final List<Game> awayGames) {
 		this.awayGames = awayGames;
 	}
 
@@ -83,7 +83,7 @@ public class Team extends Model{
 		return flag;
 	}
 
-	public void setFlag(String flag) {
+	public void setFlag(final String flag) {
 		this.flag = flag;
 	}
 
@@ -91,7 +91,7 @@ public class Team extends Model{
 		return points;
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(final int points) {
 		this.points = points;
 	}
 
@@ -99,7 +99,7 @@ public class Team extends Model{
 		return goalsFor;
 	}
 
-	public void setGoalsFor(int goalsFor) {
+	public void setGoalsFor(final int goalsFor) {
 		this.goalsFor = goalsFor;
 	}
 
@@ -107,7 +107,7 @@ public class Team extends Model{
 		return goalsAgainst;
 	}
 
-	public void setGoalsAgainst(int goalsAgainst) {
+	public void setGoalsAgainst(final int goalsAgainst) {
 		this.goalsAgainst = goalsAgainst;
 	}
 
@@ -115,7 +115,7 @@ public class Team extends Model{
 		return goalsDiff;
 	}
 
-	public void setGoalsDiff(int goalsDiff) {
+	public void setGoalsDiff(final int goalsDiff) {
 		this.goalsDiff = goalsDiff;
 	}
 
@@ -123,7 +123,7 @@ public class Team extends Model{
 		return gamesPlayed;
 	}
 
-	public void setGamesPlayed(int gamesPlayed) {
+	public void setGamesPlayed(final int gamesPlayed) {
 		this.gamesPlayed = gamesPlayed;
 	}
 
@@ -131,7 +131,7 @@ public class Team extends Model{
 		return gamesWon;
 	}
 
-	public void setGamesWon(int gamesWon) {
+	public void setGamesWon(final int gamesWon) {
 		this.gamesWon = gamesWon;
 	}
 
@@ -139,7 +139,7 @@ public class Team extends Model{
 		return gamesDraw;
 	}
 
-	public void setGamesDraw(int gamesDraw) {
+	public void setGamesDraw(final int gamesDraw) {
 		this.gamesDraw = gamesDraw;
 	}
 
@@ -147,7 +147,7 @@ public class Team extends Model{
 		return gamesLost;
 	}
 
-	public void setGamesLost(int gamesLost) {
+	public void setGamesLost(final int gamesLost) {
 		this.gamesLost = gamesLost;
 	}
 
@@ -155,7 +155,7 @@ public class Team extends Model{
 		return place;
 	}
 
-	public void setPlace(int place) {
+	public void setPlace(final int place) {
 		this.place = place;
 	}
 
@@ -163,16 +163,16 @@ public class Team extends Model{
 		return previousPlace;
 	}
 
-	public void setPreviousPlace(int previousPlace) {
+	public void setPreviousPlace(final int previousPlace) {
 		this.previousPlace = previousPlace;
 	}
-	
+
 	public String nameUnescaped() {
 		if (StringUtils.isNotBlank(this.name)) {
 			String name = Messages.get(this.name);
 			return StringEscapeUtils.unescapeHtml(name);
 		}
-		
+
 		return "";
 	}
 }
