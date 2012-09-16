@@ -1,5 +1,5 @@
 /* =========================================================
- * bootstrap-modal.js v2.1.0
+ * bootstrap-modal.js v2.1.1
  * http://twitter.github.com/bootstrap/javascript.html#modals
  * =========================================================
  * Copyright 2012 Twitter, Inc.
@@ -238,8 +238,9 @@
 
 }(window.jQuery);
 
+
 /* ===========================================================
- * bootstrap-tooltip.js v2.1.0
+ * bootstrap-tooltip.js v2.1.1
  * http://twitter.github.com/bootstrap/javascript.html#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ===========================================================
