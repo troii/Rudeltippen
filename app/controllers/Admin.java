@@ -294,11 +294,13 @@ public class Admin extends Root implements AppConstants {
 		redirect("/admin/users");
 	}
 
+	@Transactional(readOnly=true)
 	public static void jobs() {
 		final List<Job> jobs = JobsPlugin.scheduledJobs;
 		render(jobs);
 	}
 
+	@Transactional(readOnly=true)
 	public static void runjob(final String name) {
 		if (StringUtils.isNotBlank(name)) {
 			final List<Job> jobs = JobsPlugin.scheduledJobs;

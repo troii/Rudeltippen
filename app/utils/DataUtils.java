@@ -1,5 +1,7 @@
 package utils;
 
+import interfaces.AppConstants;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import play.Logger;
 import play.libs.WS;
 import play.test.Fixtures;
 
-public class DataUtils {
+public class DataUtils implements AppConstants{
 	public static List<String> getGamesFromWebService(final int playdays, final String leagueShortcut, final String leagueSaison) {
 		final Map<String, String> teams = getBundesligaTeams();
 
@@ -96,10 +98,6 @@ public class DataUtils {
 	}
 
 	public static Document getDocumentFromWebService(final String group, final String leagueShortcut, final String leagueSaison) {
-		final String WS_ENCODING = "UTF-8";
-		final String WS_CONTENT_TYPE = "application/soap+xml";
-		final String WS_URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx";
-
 		final StringBuilder buffer = new StringBuilder();
 		buffer.append("<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">");
 		buffer.append("<soap12:Body>");

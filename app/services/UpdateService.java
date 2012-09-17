@@ -1,5 +1,7 @@
 package services;
 
+import interfaces.AppConstants;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,7 @@ import org.w3c.dom.NodeList;
 import play.Logger;
 import play.libs.WS;
 
-public class UpdateService {
+public class UpdateService implements AppConstants {
 	public static WSResults getResultsFromWebService(final Game game) {
 		WSResults wsResults = new WSResults();
 		wsResults.setUpdated(false);
@@ -36,10 +38,6 @@ public class UpdateService {
 	}
 
 	public static Document getDocumentFromWebService(final String matchID) {
-		final String WS_ENCODING = "UTF-8";
-		final String WS_CONTENT_TYPE = "application/soap+xml";
-		final String WS_URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx";
-
 		final StringBuilder buffer = new StringBuilder();
 		buffer.append("<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">");
 		buffer.append("<soap12:Body>");

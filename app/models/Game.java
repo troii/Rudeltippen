@@ -39,6 +39,10 @@ public class Game extends Model{
 	@Column(nullable=false)
 	private int number;
 
+	private String overtimeType;
+	private String homeReference;
+	private String awayReference;
+	private String webserviceID;
 	private String homeScore;
 	private String awayScore;
 	private String homeScoreOT;
@@ -48,11 +52,7 @@ public class Game extends Model{
 	private boolean overtime;
 	private boolean playoff;
 	private boolean ended;
-	private String overtimeType;
-	private String homeReference;
-	private String awayReference;
-	private String webserviceID;
-
+	
 	public Playday getPlayday() {
 		return playday;
 	}
@@ -212,6 +212,14 @@ public class Game extends Model{
 		this.awayScoreOT = awayScoreOT;
 	}
 
+	public Bracket getBracket() {
+		return bracket;
+	}
+
+	public void setBracket(Bracket bracket) {
+		this.bracket = bracket;
+	}
+
 	public Team getWinner() {
 		String home, away;
 		if (this.overtime) {
@@ -270,13 +278,5 @@ public class Game extends Model{
 		}
 
 		return false;
-	}
-
-	public Bracket getBracket() {
-		return bracket;
-	}
-
-	public void setBracket(Bracket bracket) {
-		this.bracket = bracket;
 	}
 }

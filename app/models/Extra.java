@@ -120,8 +120,7 @@ public class Extra extends Model{
 	}
 	
 	public boolean isTipable() {
-		final Date now = new Date();
-		if (now.getTime() >= ending.getTime()) {
+		if (new Date().getTime() >= ending.getTime()) {
 			return false;
 		}
 		

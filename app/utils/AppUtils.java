@@ -200,7 +200,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * All calculations which need to be done, are called from this method
+	 * All calculations are called from this method
 	 * - Calculation of brackets
 	 * - Calculation of team places
 	 * - Calculation of user points
@@ -385,7 +385,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Sets the current playday
+	 * Sets the current playday based on all games played on a playday
 	 */
 	private static void setCurrentPlayday() {
 		final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
@@ -403,7 +403,6 @@ public class AppUtils implements AppConstants{
 
 	/**
 	 * Sets the teams to the playoff games
-	 * @param settings Settings object
 	 */
 	public static void setPlayoffTeams() {
 		final Settings settings = AppUtils.getSettings();
@@ -816,7 +815,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Gets all available timezones
+	 * Gets all available timezones on the current system
 	 * @return List of timezones
 	 */
 	public static List<String> getTimezones() {
@@ -826,7 +825,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Gets all available languages
+	 * Gets all available languages on the current system
 	 * @return List of languages
 	 */
 	public static List<String> getLanguages() {
@@ -955,7 +954,7 @@ public class AppUtils implements AppConstants{
 					image = Images.toBase64(file);
 					file.delete();
 				} catch (final Exception e) {
-					Logger.error("Failed to get and convert Gravatar image for. " + e);
+					Logger.error("Failed to get and convert gravatar image. " + e);
 				}
 			}
 		}

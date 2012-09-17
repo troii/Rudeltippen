@@ -38,14 +38,9 @@ public class Users extends Root implements AppConstants{
 
 		if (user != null) {
 			final Map<String, Integer> statistics = new HashMap<String, Integer>();
-
-			final long extra = Extra.count();
 			final List<ExtraTip> correctExtraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
-
-			statistics.put("extraTips", (int) extra);
-			statistics.put("correctExtraTips", correctExtraTips.size());
-
 			final List<GameTip> tips = GameTip.find("byUser", user).fetch();
+			final long extra = Extra.count();
 			final int sumAllTipps = tips.size();
 			final int correctTipps = user.getCorrectResults();
 			final int correctTrend = user.getCorrectTrends();
@@ -57,6 +52,9 @@ public class Users extends Root implements AppConstants{
 			statistics.put("correctTipps", correctTipps);
 			statistics.put("correctTrend", correctTrend);
 			statistics.put("correctDifference", correctDifference);
+			statistics.put("extraTips", (int) extra);
+			statistics.put("correctExtraTips", correctExtraTips.size());
+			
 			final float pointsTipp = (float) user.getPoints() / (float) sumTipps;
 			String pointsPerTipp = "0";
 			if (pointsTipp > 0) {

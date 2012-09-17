@@ -8,6 +8,7 @@ import models.Game;
 import models.Playday;
 import models.Team;
 import models.User;
+import play.db.jpa.Transactional;
 import play.mvc.Before;
 import play.mvc.Controller;
 import utils.AppUtils;
@@ -33,6 +34,7 @@ public class API extends Controller {
 		}
 	}
 	
+	@Transactional(readOnly=true)
 	public static void standings() {
 		List<User> users = User.find("ORDER BY place ASC").fetch();
 		if (users != null) {
@@ -48,6 +50,7 @@ public class API extends Controller {
 		error(501, "Could not find any users");
 	}
 	
+	@Transactional(readOnly=true)
 	public static void tournament() {
 		List<Bracket> brackets = Bracket.findAll();
 		if (brackets != null) {
@@ -64,6 +67,7 @@ public class API extends Controller {
 		error(501, "Could not find any bracksts");
 	}
 	
+	@Transactional(readOnly=true)
 	public static void user(String nickname) {
 		final User user = User.find("byNickname", nickname).first();
 		if (user != null) {
@@ -79,6 +83,7 @@ public class API extends Controller {
 		error(501, "Could not finde user: " + nickname);
 	}
 	
+	@Transactional(readOnly=true)
 	public static void playday(int number) {
 		final Playday playday = Playday.find("byNumber", number).first();
 		if (playday != null) {

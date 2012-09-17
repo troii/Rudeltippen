@@ -30,11 +30,6 @@ public class Settings extends Model {
 	@Column(nullable=false)
 	private String dateTimeLang;
 
-	private String theme;
-	private String lastTweet;
-	private String dbName;
-	private int dbVersion;
-	
 	@Column(nullable=false)
 	private int maxPictureSize;
 
@@ -62,6 +57,10 @@ public class Settings extends Model {
 	@Column(nullable=false)
 	private int playoffTeams;
 
+	private String theme;
+	private String lastTweet;
+	private String dbName;
+	private int dbVersion;
 	private boolean informOnNewTipper;
 	private boolean playoffs;
 	private boolean countFinalResult;
