@@ -60,8 +60,9 @@ Download the [latest tagged version of Rudeltippen][14] and unzip to your INSTLL
 
 ### Step 2
 
+Rename INSTLLATIONFOLDER/conf/application.conf.example to application.conf
 
-Open INSTLLATIONFOLDER/conf/application.conf
+Open application.conf
 
 Set your Rudeltippen URL
 
@@ -69,7 +70,7 @@ Set your Rudeltippen URL
 %prod.app.register.url=http://www.yourdomain.com
 ```
 
-Set the username and password for initial setup (make it "secure")
+Set username and password for initial setup (make it "secure")
 
 ```bash
 app.setup.username=admin
@@ -82,19 +83,19 @@ Set the language for Rudeltippen (currently de or en)
 default.language=de
 ```
 
-Since version 1.1.0 Rudeltippen has a feature which can automatically updates your playing schedule. By default this feature is not enable. If you want to enable this feature set 'automatic.updates' to true
+Rudeltippen has a feature which can automatically updates your playing schedule. By default this feature is not enable. If you want to enable this feature set 'automatic.updates' to true
 
 ```bash
 %prod.automatic.updates=false
 ```
 
-Set the application key for Rudeltippen (make it "secure"; e.g. use a key-generator)
+Set the application key for Rudeltippen (make it "secure")
 
 ```bash
 application.secret=yoursecretcryptographicskey
 ```
 
-Set you database connection. For a simple MySQL connection this will be something like this
+Set you MySQL database connection.
 
 ```bash
 %prod.db=mysql://user:pwd@host/database
@@ -118,20 +119,20 @@ If you have a Gmail account, just enter your SMTP credentials as follows
 %prod.mail.smtp.channel=ssl
 ```
 
-Set your E-Mail-Sender and reply-to address
+Set your eMail-Sender and reply-to address
 
 ```bash
 mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-By default Rudeltippen runs with -Xmx=128m -Xmx64m. This just be enough for 50 to 100 users. Change this, if required.
+By default, Rudeltippen runs with -Xmx=128m -Xmx64m. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
 ```
 
-Save application.conf.
+Save application.conf
 
 ### Step 3
 
@@ -141,38 +142,21 @@ Follow the section ['Front-end HTTP server' on the Play Framework Documentation]
 
 ### Step 4
 
-> It will most likely be required to make startup.sh, shutdown.sh and INSTLLATIONFOLDER/play/play executable if you are on UNIX or Mac
-
-You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
+Start Rudeltippen by executing the following command in your INSTLLATIONFOLDER:
 
 ```bash
-startup.sh
-```
-
-If you’re on Windows, just calling 'startup.bat' would execute Rudeltippen in the current command window. Thus, closing the window will close Rudeltippen. You'll need PsExec from the [PsTools][16] to solve this issue.
-After you have downloaded PsTools and have PsExec installed, make sure that psexe.exe is available on your command line. Otherwise add it to your path variable in your system environment.
-You'll find an example file called "startup.bat.example" in INSTLLATIONFOLDER. Open the file and change the last line according to your file system.
-
-Example:
-```bash
-call psexec /s c:\zeus\play-apps\rudeltippen\em\play\play.bat start c:\zeus\play-apps\rudeltippen\em
-```
-
-Save the file and rename it to startup.bat. Start Rudeltippen by executing:
-
-```bash
-startup.bat
+play start
 ```
 
 ### Step 5
 
-Open your browser and go to http://yourdomain.com/system/setup
+Open a Browser and go to http://www.yourdomain.com/system/setup
 
-> You did set username and password in application.conf (see step 3)
+> You did set username and password in application.conf (see Step 3)
 
 ### Step 6
 
-Change the default values if you want to and create an initial user.
+Change the default values if you want and create an initial user.
 
 > The initial user will be an administrative user and automatically activated.
 > After the setup is complete, Rudeltippen will automatically load all data for the selected league.
@@ -181,26 +165,14 @@ Change the default values if you want to and create an initial user.
 
 Login with your just created user and enjoy Rudeltippen!
 
-If you need to stop Rudeltippen. Go to your INSTLLATIONFOLDER and call
+If you need to stop Rudeltippen. Go to your INSTLLATIONFOLDER and execute the followin command
 
 ```bash
-shutdown.sh
-```
-
-OR
-
-```bash
-shutdown.bat
+play stop
 ```
 
 Upgrading
 ------------------
-
-### Step 0
-
-Please check the release notes (if available) before updating!
-
-Go to your INSTLLATIONFOLDER and make a copy of /conf/application.conf file and /conf/custom folder.
 
 ### Step 1
 
@@ -208,48 +180,26 @@ Download the [latest tagged version of Rudeltippen][14]
 
 ### Step 2
 
-Go to your INSTLLATIONFOLDER and run
+Go to your INSTLLATIONFOLDER and stop Rudeltippen by calling the following command
 
 ```bash
-shutdown.sh
-```
-
-OR
-
-```bash
-shutdown.bat
+play stop
 ```
 
 ### Step 3
 
-Delete your INSTLLATIONFOLDER
+Delete everything in INSTLLATIONFOLDER except the /conf folder and any custom script you may have created
 
 ### Step 4
 
-Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER
+Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER and replace every every existing file.
 
 ### Step 5
-
-In Step 0 you did copy the application.conf and /custom folder from your previous installation, didn't you? Copy application.conf and /custom folder your INSTLLATIONFOLDER/conf and replace the existing file and folder. If you did not make a copy of application.conf, even though you were told to, you need to rerun Step 2 (and only step 2!) of the installation guide (see above) and re-customize your files in /conf/custom folder.
-
-### Step 6
-
-Rudeltippen has a feature which can automatically updates your playing schedule. By default this feature is not enable. If you want to enable this feature and are upgrading from a version prior to 1.1.0 you need to add the following line to your application.conf:
-
-```bash
-%prod.automatic.updates=true
-```
-
-### Step 7
 
 You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
 ```bash
-startup.sh
-```
-
-```bash
-startup.bat
+play start
 ```
 
 Advanced configuration
@@ -257,12 +207,15 @@ Advanced configuration
 
 ### SSL
 
-By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltippen you need a private key and a certificate (this may be self-signed). In INSTLLATIONFOLDER/conf/custom you find two empty files:
+By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltippen you need a private key and a certificate. In INSTLLATIONFOLDER/conf you find two empty files:
 
 ```bash
-cert.txt
-key.txt
+cert.txt.example
+key.txt.example
 ```
+
+Rename both files by removing .example
+
 Paste you private key and your certificate in these files.
 
 Open INSTLLATIONFOLDER/conf/application.conf and uncomment the following lines:
@@ -296,7 +249,7 @@ You need to restart Rudeltippen in order for the changes to take place.
 If you want log4j Support for your Application you find an empty log4j configuration file in INSTLLATIONFOLDER/conf/custom. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
 
 ```bash
-#%prod.application.log.path=/custom/log4j.prod.xml
+#%prod.application.log.path=/log4j.prod.xml
 ```
 
 You need to restart Rudeltippen in order for the changes to take place.
