@@ -48,7 +48,6 @@ public class DataUtils implements AppConstants{
 						value = value.replace("T", " ");
 						value = value.replace("Z", "");
 						kickoff = value;
-						Logger.info("matchDateTimeUTC: " + value);
 					} else if (("idTeam1").equals(name)) {
 						homeTeam = teams.get(value);
 					} else if (("idTeam2").equals(name)) {
@@ -161,7 +160,6 @@ public class DataUtils implements AppConstants{
 				String kickoff = nodeList.item(0).getTextContent();
 				kickoff = kickoff.replace("T", " ");
 				kickoff = kickoff.replace("Z", "");
-				Logger.info("ws: " + kickoff);
 				final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 				df.setTimeZone(TimeZone.getTimeZone("UTC"));
 				try {
