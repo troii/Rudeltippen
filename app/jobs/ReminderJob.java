@@ -17,7 +17,7 @@ import utils.AppUtils;
 public class ReminderJob extends AppJob {
 
 	public ReminderJob() {
-		this.setDescription("Sends a reminder e-mail to every activated user, reminding them of tips for game tips and extra tips.");
+		this.setDescription("Sends a reminder email to every activated user, reminding them of tips for games and extra.");
 		this.setExecuted("Runs daily at 01:00");
 	}
 

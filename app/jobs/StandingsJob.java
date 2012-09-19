@@ -15,7 +15,7 @@ import utils.AppUtils;
 public class StandingsJob extends AppJob {
 
 	public StandingsJob() {
-		this.setDescription("Sends the current Top 3 to every user whos has this notification activated.");
+		this.setDescription("Sends the current Top 3 to every user who has this notification activated.");
 		this.setExecuted("Runs daily at 03:00");
 	}
 

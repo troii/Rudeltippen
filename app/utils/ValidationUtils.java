@@ -34,6 +34,7 @@ public class ValidationUtils implements AppConstants{
 		}
 
 		final User user = User.find("byUsername", username).first();
+		
 		return user != null;
 	}
 

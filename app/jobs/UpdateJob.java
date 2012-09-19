@@ -26,7 +26,7 @@ import com.google.gson.JsonObject;
 public class UpdateJob extends AppJob implements AppConstants{
 
 	public UpdateJob() {
-		this.setDescription("Calls the Rudeltippen update service to check if new updates for the curretn league are available.");
+		this.setDescription("Calls the Rudeltippen update service to check if new updates for the current league are available.");
 		this.setExecuted("Runs every 60 minutes");
 	}
 

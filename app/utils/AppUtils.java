@@ -99,6 +99,7 @@ public class AppUtils implements AppConstants{
 			final User connectedUser = AppUtils.getConnectedUser();
 			pointsDiff = user.getPoints() - connectedUser.getPoints();
 		}
+		
 		return pointsDiff;
 	}
 
@@ -109,13 +110,14 @@ public class AppUtils implements AppConstants{
 	 * @return true if at least one extra tip is tipable, false otherwise
 	 */
 	public static boolean extrasTipable(final List<Extra> extras) {
+		boolean tippable = false;
 		for (final Extra extra : extras) {
 			if (extra.isTipable()) {
-				return true;
+				tippable = true;
 			}
 		}
 
-		return false;
+		return tippable;
 	}
 
 	/**
@@ -166,13 +168,14 @@ public class AppUtils implements AppConstants{
 	 * @return true if current instance is job instance, false otherwise
 	 */
 	public static boolean isJobInstance() {
+		boolean isInstance = false;
 		final String appName = Play.configuration.getProperty("application.name");
 		final String jobInstance = Play.configuration.getProperty("app.jobinstance");
 		if (StringUtils.isNotBlank(appName) && StringUtils.isNotBlank(jobInstance) && appName.equalsIgnoreCase(jobInstance)) {
-			return true;
+			isInstance = true;
 		}
 
-		return false;
+		return isInstance;
 	}
 
 	/**
@@ -527,12 +530,13 @@ public class AppUtils implements AppConstants{
 	 * @return true if enabled, false otherwise
 	 */
 	public static boolean isTweetable() {
+		boolean isTweetable = false;
 		final String tweetable = Play.configuration.getProperty("twitter.enable");
 		if (StringUtils.isNotBlank(tweetable) && ("true").equals(tweetable)) {
-			return true;
+			isTweetable = true;
 		}
 
-		return false;
+		return isTweetable;
 	}
 
 	/**
@@ -542,13 +546,15 @@ public class AppUtils implements AppConstants{
 	 * @return true if all games have ended, false otherweise
 	 */
 	public static boolean allReferencedGamesEnded(final List<Game> games) {
+		boolean ended = true;
 		if ((games == null) || (games.size() <= 0)) {
-			return false;
+			ended = false;
 		}
 
 		for (final Game game : games) {
 			if (!game.isEnded()) {
-				return false;
+				ended = false;
+				break;
 			}
 		}
 
@@ -567,16 +573,17 @@ public class AppUtils implements AppConstants{
 	 * @return The team object
 	 */
 	public static Team getTeamByReference(final String reference) {
+		Team team = null;
+		
 		if (StringUtils.isBlank(reference)) {
-			return null;
+			return team;
 		}
 
 		final String[] references = reference.split("-");
 		if ((references == null) || (references.length != 3)) {
-			return null;
+			return team;
 		}
 
-		Team team = null;
 		if (("B").equals(references[0])) {
 			final Bracket bracket = Bracket.find("byNumber", Integer.parseInt(references[1])).first();
 			if (bracket != null) {
@@ -607,7 +614,7 @@ public class AppUtils implements AppConstants{
 	 */
 	public static int getTipPoints(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
 		final Settings settings = AppUtils.getSettings();
-
+		
 		if ((homeScore == homeScoreTipp) && (awayScore == awayScoreTipp)) {
 			return settings.getPointsTip();
 		} else if ((homeScore - awayScore) == (homeScoreTipp - awayScoreTipp)) {
@@ -630,14 +637,15 @@ public class AppUtils implements AppConstants{
 	 */
 	public static int getTipPointsTrend(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
 		final Settings settings = AppUtils.getSettings();
+		int points = 0;
 
 		if ((homeScore > awayScore) && (homeScoreTipp > awayScoreTipp)) {
-			return settings.getPointsTipTrend();
+			points = settings.getPointsTipTrend();
 		} else if ((homeScore < awayScore) && (homeScoreTipp < awayScoreTipp)) {
-			return settings.getPointsTipTrend();
+			points = settings.getPointsTipTrend();
 		}
 
-		return 0;
+		return points;
 	}
 
 	/**
@@ -653,18 +661,19 @@ public class AppUtils implements AppConstants{
 	 */
 	public static int getTipPointsOvertime(final int homeScore, final int awayScore, final int homeScoreOT, final int awayScoreOT, final int homeScoreTipp, final int awayScoreTipp) {
 		final Settings settings = AppUtils.getSettings();
+		int points = 0;
 
 		if (settings.isCountFinalResult()) {
-			return getTipPoints(homeScoreOT, awayScoreOT, homeScoreTipp, awayScoreTipp);
+			points = getTipPoints(homeScoreOT, awayScoreOT, homeScoreTipp, awayScoreTipp);
 		} else {
 			if ((homeScore == awayScore) && (homeScore == homeScoreTipp) && (awayScore == awayScoreTipp)) {
-				return settings.getPointsTip();
+				points = settings.getPointsTip();
 			} else if ((homeScore == awayScore) && (homeScoreTipp == awayScoreTipp)) {
-				return settings.getPointsTipDiff();
+				points = settings.getPointsTipDiff();
 			}
 		}
 
-		return 0;
+		return points;
 	}
 
 	/**
@@ -878,11 +887,13 @@ public class AppUtils implements AppConstants{
 	 */
 	public static boolean verifyAuthenticity() {
 		final String check = Play.configuration.getProperty("check.authenticity");
+		boolean verify = false;
+		
 		if (!("false").equalsIgnoreCase(check)) {
-			return true;
+			verify = true;
 		}
 
-		return false;
+		return verify;
 	}
 
 	/**
@@ -891,11 +902,12 @@ public class AppUtils implements AppConstants{
 	 */
 	public static boolean automaticUpdates() {
 		final String updates = Play.configuration.getProperty("automatic.updates");
+		boolean update = false;
 		if (("true").equalsIgnoreCase(updates)) {
-			return true;
+			update = true;
 		}
 
-		return false;
+		return update;
 	}
 
 	/**
@@ -969,11 +981,13 @@ public class AppUtils implements AppConstants{
 	 */
 	public static boolean isAPI() {
 		final String enabled = Play.configuration.getProperty("api.enabled");
+		boolean api = false;
+		
 		if (("true").equals(enabled)) {
-			return true;
+			api = true;
 		}
 
-		return false;
+		return api;
 	}
 
 	/**
@@ -1005,15 +1019,20 @@ public class AppUtils implements AppConstants{
 	 * @return Message with difference or empty string
 	 */
 	public static String getDiffToTop(final int pointsDiff) {
+		String message = "";
 		if (pointsDiff == 1) {
-			return Messages.get("points.to.top.one", pointsDiff);
+			message = Messages.get("points.to.top.one", pointsDiff);
 		} else if (pointsDiff > 1) {
-			return Messages.get("points.to.top.many", pointsDiff);
+			message = Messages.get("points.to.top.many", pointsDiff);
 		}
 
-		return "";
+		return message;
 	}
 
+	/**
+	 * Returns the current timezine from the settings
+	 * @return The timezone String (e.g. "Europe/Berlin")
+	 */
 	public static String getCurrentTimeZone() {
 		final Settings settings = getSettings();
 		String timeZone = settings.getTimeZoneString();
