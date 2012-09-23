@@ -1,5 +1,7 @@
 package utils;
 
+import interfaces.AppConstants;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +28,8 @@ import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
 
-public class ViewUtils extends JavaExtensions{
+public class ViewUtils extends JavaExtensions implements AppConstants{
+
 	public static String difference (final Date date) {
 		final int MIN = 60;
 		final int HOUR = MIN * 60;
@@ -35,32 +38,35 @@ public class ViewUtils extends JavaExtensions{
 		final int YEAR = DAY * 365;
 
 		final Date now = new Date();
+		String message;
 		if (date.after(now)) {
 			final long delta = (date.getTime() - now.getTime()) / 1000;
 			if (delta < 60) {
-				return Messages.get("in.second" + pluralize(delta), delta);
+				message = Messages.get("in.second" + pluralize(delta), delta);
 			}
 			if (delta < HOUR) {
 				final long minutes = delta / MIN;
-				return Messages.get("in.minute" + pluralize(minutes), minutes);
+				message = Messages.get("in.minute" + pluralize(minutes), minutes);
 			}
 			if (delta < DAY) {
 				final long hours = delta / HOUR;
-				return Messages.get("in.hour" + pluralize(hours), hours);
+				message = Messages.get("in.hour" + pluralize(hours), hours);
 			}
 			if (delta < MONTH) {
 				final long days = delta / DAY;
-				return Messages.get("in.day" + pluralize(days), days);
+				message = Messages.get("in.day" + pluralize(days), days);
 			}
 			if (delta < YEAR) {
 				final long months = delta / MONTH;
-				return Messages.get("in.month" + pluralize(months), months);
+				message = Messages.get("in.month" + pluralize(months), months);
 			}
 			final long years = delta / YEAR;
-			return Messages.get("in.year" + pluralize(years), years);
+			message = Messages.get("in.year" + pluralize(years), years);
 		} else {
-			return Messages.get("in.ended");
+			message = Messages.get("in.ended");
 		}
+
+		return message;
 	}
 
 	public static String formatted (final Date date) {
@@ -151,79 +157,84 @@ public class ViewUtils extends JavaExtensions{
 	}
 
 	public static String getTrend(final Game game) {
-		if (game.getKickoff().after(new Date())) {
-			return Messages.get("model.game.notenoughtipps");
-		}
+		String trend = "";
+		if ((game == null) || game.getKickoff().after(new Date())) {
+			trend = Messages.get("model.game.notenoughtipps");
+		} else {
+			final List<GameTip> gameTips = game.getGameTips();
+			if ((gameTips == null) || (gameTips.size() < 4)) {
+				trend = Messages.get("model.game.notenoughtipps");
+			} else {
+				int tipsHome = 0;
+				int tipsDraw = 0;
+				int tipsAway = 0;
 
-		final List<GameTip> gameTips = game.getGameTips();
-		if ((gameTips == null) || (gameTips.size() < 4)) {
-			return Messages.get("model.game.notenoughtipps");
-		}
+				for (final GameTip gameTip : gameTips) {
+					final int homeScore = gameTip.getHomeScore();
+					final int awayScore = gameTip.getAwayScore();
 
-		int tipsHome = 0;
-		int tipsDraw = 0;
-		int tipsAway = 0;
+					if (homeScore == awayScore) {
+						tipsDraw++;
+					} else if (homeScore > awayScore) {
+						tipsHome++;
+					} else if (homeScore < awayScore) {
+						tipsAway++;
+					}
+				}
 
-		for (final GameTip gameTip : gameTips) {
-			final int homeScore = gameTip.getHomeScore();
-			final int awayScore = gameTip.getAwayScore();
-
-			if (homeScore == awayScore) {
-				tipsDraw++;
-			} else if (homeScore > awayScore) {
-				tipsHome++;
-			} else if (homeScore < awayScore) {
-				tipsAway++;
+				trend = tipsHome + " / " + tipsDraw + " / " + tipsAway;
 			}
 		}
 
-		return tipsHome + " / " + tipsDraw + " / " + tipsAway;
+		return trend;
 	}
 
 	private static String getReference(final String reference) {
 		final String [] references = reference.split("-");
+		String message = "";
 		if (("G").equals(references[0])) {
 			if ("W".equals(references[2])) {
-				return Messages.get("model.game.winnergame") + " " + references[1];
+				message = Messages.get("model.game.winnergame") + " " + references[1];
 			} else if (("L").equals(references[2])) {
-				return Messages.get("model.game.losergame") + " " + references[1];
+				message = Messages.get("model.game.losergame") + " " + references[1];
 			}
 		} else if (("B").equals(references[0])) {
 			final Bracket bracket = Bracket.find("byNumber", Integer.parseInt(references[1])).first();
 			final String groupName = bracket.getName();
 			final String placeName = getPlaceName(Integer.parseInt(references[2]));
 
-			return placeName + " " + Messages.get(groupName);
+			message = placeName + " " + Messages.get(groupName);
 		}
 
-		return "";
+		return message;
 	}
 
 	public static String getPlaceName(final int place) {
-		switch (place) {
-		case 1:
-			return Messages.get("helper.first");
-		case 2:
-			return Messages.get("helper.second");
-		case 3:
-			return Messages.get("helper.third");
-		case 4:
-			return Messages.get("helper.fourth");
-		case 5:
-			return Messages.get("helper.fifth");
-		case 6:
-			return Messages.get("helper.six");
-		case 7:
-			return Messages.get("helper.seventh");
-		case 8:
-			return Messages.get("helper.eight");
-		case 9:
-			return Messages.get("helper.ninth");
-		case 10:
-			return Messages.get("helper.tenth");
-		default:
-			return "";
+		String message = "";
+
+		if (place == 1) {
+			message = Messages.get("helper.first");
+		} else if (place == 2){
+			message = Messages.get("helper.second");
+		} else if (place == 3){
+			message = Messages.get("helper.third");
+		} else if (place == 4){
+			message = Messages.get("helper.fourth");
+		} else if (place == 5){
+			message = Messages.get("helper.fifth");
+		} else if (place == 6){
+			message = Messages.get("helper.six");
+		} else if (place == 7){
+			message = Messages.get("helper.seventh");
+		} else if (place == 8){
+			message = Messages.get("helper.eight");
+		} else if (place == 9){
+			message = Messages.get("helper.ninth");
+		} else if (place == 10){
+			message = Messages.get("helper.tenth");
 		}
+
+		return message;
 	}
 
 	public static Map getPagination(final String object, final String page, final String url) {
@@ -264,14 +275,16 @@ public class ViewUtils extends JavaExtensions{
 	}
 
 	public static String getResult(final Game game) {
+		String result = "-";
 		if (game.isEnded()) {
 			if (game.isOvertime()) {
-				return game.getHomeScoreOT() + " : " + game.getAwayScoreOT() + " (" + Messages.get(game.getOvertimeType()) + ")";
+				result = game.getHomeScoreOT() + " : " + game.getAwayScoreOT() + " (" + Messages.get(game.getOvertimeType()) + ")";
 			} else {
-				return game.getHomeScore() + " : " + game.getAwayScore();
+				result = game.getHomeScore() + " : " + game.getAwayScore();
 			}
 		}
-		return "-";
+
+		return result;
 	}
 
 	public static String getGameTipAndPoints(final GameTip gameTip) {
@@ -304,43 +317,47 @@ public class ViewUtils extends JavaExtensions{
 	public static long getExtraTip(final Extra extra) {
 		final User user = AppUtils.getConnectedUser();
 		final ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
+		long id = 0;
 
 		if ((extraTip != null) && (extraTip.getAnswer() != null)) {
-			return extraTip.getAnswer().getId();
+			id = extraTip.getAnswer().getId();
 		}
 
-		return 0;
+		return id;
 	}
 
 	public static String getAnswer(final Extra extra) {
 		final User user = AppUtils.getConnectedUser();
 		final ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
+		String answer = "";
 
 		if ((extraTip != null) && (extraTip.getAnswer() != null)) {
-			return Messages.get(extraTip.getAnswer().getName());
+			answer = Messages.get(extraTip.getAnswer().getName());
 		}
 
-		return "";
+		return answer;
 	}
 
 	public static String getExtraTipAnswer(final ExtraTip extraTip) {
+		String answer = "-";
 		if (extraTip.getAnswer() != null) {
 			if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
-				return Messages.get(extraTip.getAnswer().getName());
+				answer = Messages.get(extraTip.getAnswer().getName());
 			} else {
-				return Messages.get("model.user.tipped");
+				answer = Messages.get("model.user.tipped");
 			}
 		}
 
-		return "-";
+		return answer;
 	}
 
 	public static String getExtraTipPoints(final ExtraTip extraTip) {
+		String points = "";
 		if ((extraTip != null) && (extraTip.getExtra() != null) && (extraTip.getExtra().getAnswer() != null)) {
-			return " ("+ extraTip.getPoints() + ")";
+			points = " ("+ extraTip.getPoints() + ")";
 		}
 
-		return "";
+		return points;
 	}
 
 	public static String htmlUnescape(final String html) {
@@ -350,35 +367,37 @@ public class ViewUtils extends JavaExtensions{
 	public static String getPlaceTrend(final User user) {
 		final int currentPlace = user.getPlace();
 		final int previousPlace = user.getPreviousPlace();
+		String trend = "";
 
 		if (previousPlace > 0) {
 			if (currentPlace < previousPlace) {
-				return "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
+				trend = "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
 			} else if (currentPlace > previousPlace) {
-				return "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
+				trend = "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
 			} else {
-				return "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
+				trend = "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
 			}
 		}
 
-		return "";
+		return trend;
 	}
 
 	public static String getPlaceTrend(final Team team) {
 		final int currentPlace = team.getPlace();
 		final int previousPlace = team.getPreviousPlace();
+		String trend = "";
 
 		if (previousPlace > 0) {
 			if (currentPlace < previousPlace) {
-				return "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
+				trend = "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
 			} else if (currentPlace > previousPlace) {
-				return "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
+				trend = "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
 			} else {
-				return "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
+				trend = "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
 			}
 		}
 
-		return "";
+		return trend;
 	}
 
 	public static List<String> getThemes() {
@@ -414,19 +433,20 @@ public class ViewUtils extends JavaExtensions{
 	}
 
 	public static String getScore(final Game game) {
+		String score = "- : -";
 		if (game.isEnded()) {
 			if (game.isOvertime()) {
-				return game.getHomeScore() + " : " + game.getAwayScore() + " / " + game.getHomeScoreOT() + ":" + game.getAwayScoreOT() + " (" + game.getOvertimeType() + ")";
+				score = game.getHomeScore() + " : " + game.getAwayScore() + " / " + game.getHomeScoreOT() + ":" + game.getAwayScoreOT() + " (" + game.getOvertimeType() + ")";
 			} else {
-				return game.getHomeScore() + " : " + game.getAwayScore();
+				score = game.getHomeScore() + " : " + game.getAwayScore();
 			}
 		}
 
-		return "- : -";
+		return score;
 	}
 
 	public static String formatTimestamp(final Long timestamp) {
-		final SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		final SimpleDateFormat df = new SimpleDateFormat(DEFAULT_TIMESTMAP);
 		return df.format(new Date(timestamp));
 	}
 }

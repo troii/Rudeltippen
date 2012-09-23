@@ -71,7 +71,7 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Hashes a given clear-text password with a given salt using 1.000.000 rounds
+	 * Hashes a given clear-text password with a given salt using 500.000 rounds
 	 *
 	 * @param userpass The password
 	 * @param usersalt The salt
@@ -80,7 +80,7 @@ public class AppUtils implements AppConstants{
 	public static String hashUserpassword(final String userpass, final String usersalt) {
 		final String salt = AppUtils.getSettings().getAppSalt();
 		String hash = "";
-		for (int i = 1; i <= 1000000; i++) {
+		for (int i = 1; i <= 500000; i++) {
 			hash = Codec.hexSHA1(hash + salt + userpass + usersalt);
 		}
 
@@ -99,7 +99,7 @@ public class AppUtils implements AppConstants{
 			final User connectedUser = AppUtils.getConnectedUser();
 			pointsDiff = user.getPoints() - connectedUser.getPoints();
 		}
-		
+
 		return pointsDiff;
 	}
 
@@ -114,6 +114,7 @@ public class AppUtils implements AppConstants{
 		for (final Extra extra : extras) {
 			if (extra.isTipable()) {
 				tippable = true;
+				break;
 			}
 		}
 
@@ -417,8 +418,8 @@ public class AppUtils implements AppConstants{
 			for (final Bracket bracket : brackets) {
 				if (bracket.allGamesEnded()) {
 					final int number = bracket.getNumber();
-					final String s = "B-" + number + "%";
-					final List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayReference LIKE ?", s, s).fetch();
+					final String bracketString = "B-" + number + "%";
+					final List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayReference LIKE ?", bracketString, bracketString).fetch();
 					for (final Game game : games) {
 						homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
 						awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
@@ -468,29 +469,19 @@ public class AppUtils implements AppConstants{
 	 * @param awayScoreExtratime The score of the away time in extratime
 	 */
 	public static void setGameScore(final String gameId, final String homeScore, final String awayScore, final String extratime, final String homeScoreExtratime, final String awayScoreExtratime) {
-		if (!ValidationUtils.isValidScore(homeScore, awayScore)) {
-			return;
-		}
+		if (ValidationUtils.isValidScore(homeScore, awayScore)) {
+			final Game game = Game.findById(Long.parseLong(gameId));
+			if (game != null) {
+				if (!game.isEnded()) {
+					final String notification = getNotificationMessage(game);
+					TwitterService.updateStatus(notification);
 
-		final Game game = Game.findById(Long.parseLong(gameId));
-		if (game == null) {
-			return;
-		}
-
-		boolean notify = false;
-		if (!game.isEnded()) {
-			notify = true;
-		}
-
-		saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
-
-		if (notify) {
-			final String notification = getNotificationMessage(game);
-			TwitterService.updateStatus(notification);
-
-			final List<User> users = User.find("byNotification", true).fetch();
-			for (final User user : users) {
-				MailService.notifications(notification, user.getUsername());
+					final List<User> users = User.find("byNotification", true).fetch();
+					for (final User user : users) {
+						MailService.notifications(notification, user.getUsername());
+					}
+				}
+				saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 			}
 		}
 	}
@@ -532,7 +523,7 @@ public class AppUtils implements AppConstants{
 	public static boolean isTweetable() {
 		boolean isTweetable = false;
 		final String tweetable = Play.configuration.getProperty("twitter.enable");
-		if (StringUtils.isNotBlank(tweetable) && ("true").equals(tweetable)) {
+		if (StringUtils.isNotBlank(tweetable) && "true".equals(tweetable)) {
 			isTweetable = true;
 		}
 
@@ -547,18 +538,16 @@ public class AppUtils implements AppConstants{
 	 */
 	public static boolean allReferencedGamesEnded(final List<Game> games) {
 		boolean ended = true;
-		if ((games == null) || (games.size() <= 0)) {
-			ended = false;
-		}
-
-		for (final Game game : games) {
-			if (!game.isEnded()) {
-				ended = false;
-				break;
+		if ((games != null) && (games.size() > 0)) {
+			for (final Game game : games) {
+				if (!game.isEnded()) {
+					ended = false;
+					break;
+				}
 			}
 		}
 
-		return true;
+		return ended;
 	}
 
 	/**
@@ -574,28 +563,23 @@ public class AppUtils implements AppConstants{
 	 */
 	public static Team getTeamByReference(final String reference) {
 		Team team = null;
-		
-		if (StringUtils.isBlank(reference)) {
-			return team;
-		}
-
-		final String[] references = reference.split("-");
-		if ((references == null) || (references.length != 3)) {
-			return team;
-		}
-
-		if (("B").equals(references[0])) {
-			final Bracket bracket = Bracket.find("byNumber", Integer.parseInt(references[1])).first();
-			if (bracket != null) {
-				team = bracket.getTeamByPlace(Integer.parseInt(references[2]));
-			}
-		} else if (("G").equals(references[0])) {
-			final Game aGame = Game.find("byNumber", Integer.parseInt(references[1])).first();
-			if ((aGame != null) && aGame.isEnded()) {
-				if ("W".equals(references[2])) {
-					team = aGame.getWinner();
-				} else if (("L").equals(references[2])) {
-					team = aGame.getLoser();
+		if (StringUtils.isNotBlank(reference)) {
+			final String[] references = reference.split("-");
+			if ((references != null) && (references.length == 3)) {
+				if ("B".equals(references[0])) {
+					final Bracket bracket = Bracket.find("byNumber", Integer.parseInt(references[1])).first();
+					if (bracket != null) {
+						team = bracket.getTeamByPlace(Integer.parseInt(references[2]));
+					}
+				} else if ("G".equals(references[0])) {
+					final Game aGame = Game.find("byNumber", Integer.parseInt(references[1])).first();
+					if ((aGame != null) && aGame.isEnded()) {
+						if ("W".equals(references[2])) {
+							team = aGame.getWinner();
+						} else if ("L".equals(references[2])) {
+							team = aGame.getLoser();
+						}
+					}
 				}
 			}
 		}
@@ -614,16 +598,19 @@ public class AppUtils implements AppConstants{
 	 */
 	public static int getTipPoints(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
 		final Settings settings = AppUtils.getSettings();
-		
+		int points = 0;
+
 		if ((homeScore == homeScoreTipp) && (awayScore == awayScoreTipp)) {
-			return settings.getPointsTip();
+			points = settings.getPointsTip();
 		} else if ((homeScore - awayScore) == (homeScoreTipp - awayScoreTipp)) {
-			return settings.getPointsTipDiff();
+			points = settings.getPointsTipDiff();
 		} else if ((awayScore - homeScore) == (awayScoreTipp - homeScoreTipp)) {
-			return settings.getPointsTipDiff();
+			points = settings.getPointsTipDiff();
+		} else {
+			points = getTipPointsTrend(homeScore, awayScore, homeScoreTipp, awayScoreTipp);
 		}
 
-		return getTipPointsTrend(homeScore, awayScore, homeScoreTipp, awayScoreTipp);
+		return points;
 	}
 
 	/**
@@ -888,7 +875,7 @@ public class AppUtils implements AppConstants{
 	public static boolean verifyAuthenticity() {
 		final String check = Play.configuration.getProperty("check.authenticity");
 		boolean verify = false;
-		
+
 		if (!("false").equalsIgnoreCase(check)) {
 			verify = true;
 		}
@@ -982,8 +969,8 @@ public class AppUtils implements AppConstants{
 	public static boolean isAPI() {
 		final String enabled = Play.configuration.getProperty("api.enabled");
 		boolean api = false;
-		
-		if (("true").equals(enabled)) {
+
+		if ("true".equals(enabled)) {
 			api = true;
 		}
 
@@ -1037,7 +1024,7 @@ public class AppUtils implements AppConstants{
 		final Settings settings = getSettings();
 		String timeZone = settings.getTimeZoneString();
 		if (StringUtils.isBlank(timeZone)) {
-			timeZone = "Europe/Berlin";
+			timeZone = DEFAULT_TIMEZONE;
 		}
 
 		return timeZone;

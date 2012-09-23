@@ -1,6 +1,8 @@
 package interfaces;
 
 public interface AppConstants {
+	public static final String DEFAULT_TIMESTMAP = "MM/dd/yyyy HH:mm:ss";
+	public static final String DEFAULT_TIMEZONE = "Europe/Berlin";
 	public static final String WS_ENCODING = "UTF-8";
 	public static final String WS_CONTENT_TYPE = "application/soap+xml";
 	public static final String WS_URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx";

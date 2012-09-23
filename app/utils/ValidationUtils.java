@@ -11,6 +11,7 @@ import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
+import play.Logger;
 import play.data.validation.Validation;
 import play.i18n.Messages;
 import play.libs.Crypto;
@@ -23,19 +24,25 @@ public class ValidationUtils implements AppConstants{
 	 * @return true if username exists, false otherwise
 	 */
 	public static boolean usernameExists(final String username) {
+		boolean exists = false;
 		final List<Confirmation> confirmations = Confirmation.findAll();
 		for (final Confirmation confirmation : confirmations) {
 			String value = confirmation.getConfirmValue();
 			value = Crypto.decryptAES(value);
 
 			if (value.equalsIgnoreCase(username)) {
-				return true;
+				exists = true;
 			}
 		}
 
-		final User user = User.find("byUsername", username).first();
-		
-		return user != null;
+		if (!exists) {
+			final User user = User.find("byUsername", username).first();
+			if (user != null) {
+				exists = true;
+			}
+		}
+
+		return exists;
 	}
 
 	/**
@@ -56,10 +63,12 @@ public class ValidationUtils implements AppConstants{
 	 * @return true if filesiize is lower or equal given filesize, false otherwise
 	 */
 	public static boolean checkFileLength(final Long filesize) {
+		boolean check = false;
 		if ((filesize > 0) && (filesize <= AppUtils.getSettings().getMaxPictureSize())) {
-			return true;
+			check = true;
 		}
-		return false;
+
+		return check;
 	}
 
 	/**
@@ -70,26 +79,24 @@ public class ValidationUtils implements AppConstants{
 	 * @return true if score is valid, false otherwise
 	 */
 	public static boolean isValidScore(String homeScore, String awayScore) {
-		if (StringUtils.isBlank(homeScore) || StringUtils.isBlank(awayScore)) {
-			return false;
+		boolean valid = false;
+		if (StringUtils.isNotBlank(homeScore) && StringUtils.isNotBlank(awayScore)) {
+			homeScore = homeScore.trim();
+			awayScore = awayScore.trim();
+			int home, away;
+			try {
+				home = Integer.parseInt(homeScore);
+				away = Integer.parseInt(awayScore);
+
+				if ((home >= 0) && (home <= 99) && (away >= 0) && (away <= 99)) {
+					valid = true;
+				}
+			} catch (final Exception e) {
+				Logger.error("Invalid store given",  e);
+			}
 		}
 
-		homeScore = homeScore.trim();
-		awayScore = awayScore.trim();
-		int home, away;
-		try {
-			home = Integer.parseInt(homeScore);
-			away = Integer.parseInt(awayScore);
-		} catch (final Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-
-		if ((home >= 0) && (home <= 99) && (away >= 0) && (away <= 99)) {
-			return true;
-		}
-
-		return false;
+		return valid;
 	}
 
 	/**
@@ -185,10 +192,12 @@ public class ValidationUtils implements AppConstants{
 	 * @return true if the theme exists, false otherwise
 	 */
 	public static boolean isValidTheme(final String theme) {
+		boolean valid = false;
 		final List<String> themes = ViewUtils.getThemes();
 		if (themes.contains(theme)) {
-			return true;
+			valid = true;
 		}
-		return false;
+
+		return valid;
 	}
 }
