@@ -36,17 +36,17 @@
 	            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 	            	<i class="icon-user"></i> ${connectedUser.nickname} <span class="caret"></span>
 	            </a>
-	            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-	              <li><a tabindex="-1" href="@{users.profile()}">&{'myprofile'}</a></li>
+	            <ul class="dropdown-menu">
+	              <li><a href="@{users.profile()}">&{'myprofile'}</a></li>
 	              #{if connectedUser.admin}
 	              		<li class="divider"></li>
-	              		<li><a tabindex="-1" href="@{admin.users()}">&{'usermanagement'}</a></li>
-	              		<li><a tabindex="-1" href="@{admin.settings()}">&{'settings'}</a></li>
-	              		<li><a tabindex="-1" href="@{admin.playday()}/${currentPlayday.number}">&{'results'}</a></li>
-	              		<li><a tabindex="-1" href="@{admin.jobs()}">Jobs</a></li>
+	              		<li><a href="@{admin.users()}">&{'usermanagement'}</a></li>
+	              		<li><a href="@{admin.settings()}">&{'settings'}</a></li>
+	              		<li><a href="@{admin.playday()}/${currentPlayday.number}">&{'results'}</a></li>
+	              		<li><a href="@{admin.jobs()}">Jobs</a></li>
 	              #{/if}
 	              <li class="divider"></li>
-	              <li><a tabindex="-1" href="@{auth.logout()}">&{'logout'}</a></li>
+	              <li><a href="@{auth.logout()}">&{'logout'}</a></li>
 	            </ul>
 	          </div>
 	          <div class="nav-collapse">

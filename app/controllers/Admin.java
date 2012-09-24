@@ -108,7 +108,6 @@ public class Admin extends Root implements AppConstants {
 
 	public static void updatesettings (
 			final String name,
-			final String tournament,
 			final int pointsGameWin,
 			final int pointsGameDraw,
 			final int pointsTip,
@@ -129,7 +128,7 @@ public class Admin extends Root implements AppConstants {
 
 		validation = ValidationUtils.getSettingsValidations(
 				validation,
-				tournament,
+				"tournament",
 				name,
 				pointsGameWin,
 				pointsGameDraw,

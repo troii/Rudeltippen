@@ -132,6 +132,7 @@
 			#{/ifError}
 		</div>
 	</div>
+	#{if request.action == "System.setup" }
 	<div class="control-group #{ifError 'tournament'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.tournament'}</label>
 		<div class="controls">
@@ -144,6 +145,7 @@
 			#{/ifError}
 		</div>
 	</div>	
+	#{/if}
 	<div class="control-group #{ifError 'theme'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.theme'}</label>
 		<div class="controls">
