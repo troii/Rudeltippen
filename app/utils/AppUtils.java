@@ -473,15 +473,6 @@ public class AppUtils implements AppConstants{
 			final Game game = Game.findById(Long.parseLong(gameId));
 			if (game != null) {
 				saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
-				if (!game.isEnded()) {
-					final String notification = getNotificationMessage(game);
-					TwitterService.updateStatus(notification);
-
-					final List<User> users = User.find("byNotification", true).fetch();
-					for (final User user : users) {
-						MailService.notifications(notification, user.getUsername());
-					}
-				}
 			}
 		}
 	}
@@ -689,8 +680,26 @@ public class AppUtils implements AppConstants{
 		} else {
 			game.setOvertime(false);
 		}
+		sendNotfications(game);
+		
 		game.setEnded(true);
 		game._save();
+	}
+	
+	/**
+	 * Sends notification to twitter and every user who wants to be informed on new results
+	 * @param game The game object
+	 */
+	private static void sendNotfications(Game game) {
+		if (!game.isEnded()) {
+			final String notification = getNotificationMessage(game);
+			TwitterService.updateStatus(notification);
+
+			final List<User> users = User.find("byNotification", true).fetch();
+			for (final User user : users) {
+				MailService.notifications(notification, user.getUsername());
+			}
+		}
 	}
 
 	/**
