@@ -38,35 +38,32 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 		final int YEAR = DAY * 365;
 
 		final Date now = new Date();
-		String message;
+		String difference = null;
 		if (date.after(now)) {
 			final long delta = (date.getTime() - now.getTime()) / 1000;
 			if (delta < 60) {
-				message = Messages.get("in.second" + pluralize(delta), delta);
-			}
-			if (delta < HOUR) {
+				difference = Messages.get("in.second" + pluralize(delta), delta);
+			} else if (delta < HOUR) {
 				final long minutes = delta / MIN;
-				message = Messages.get("in.minute" + pluralize(minutes), minutes);
-			}
-			if (delta < DAY) {
+				difference = Messages.get("in.minute" + pluralize(minutes), minutes);
+			} else if (delta < DAY) {
 				final long hours = delta / HOUR;
-				message = Messages.get("in.hour" + pluralize(hours), hours);
-			}
-			if (delta < MONTH) {
+				difference = Messages.get("in.hour" + pluralize(hours), hours);
+			} else if (delta < MONTH) {
 				final long days = delta / DAY;
-				message = Messages.get("in.day" + pluralize(days), days);
-			}
-			if (delta < YEAR) {
+				difference = Messages.get("in.day" + pluralize(days), days);
+			} else if (delta < YEAR) {
 				final long months = delta / MONTH;
-				message = Messages.get("in.month" + pluralize(months), months);
+				difference = Messages.get("in.month" + pluralize(months), months);
+			} else {
+				final long years = delta / YEAR;
+				difference = Messages.get("in.year" + pluralize(years), years);				
 			}
-			final long years = delta / YEAR;
-			message = Messages.get("in.year" + pluralize(years), years);
 		} else {
-			message = Messages.get("in.ended");
+			difference = Messages.get("in.ended");
 		}
 
-		return message;
+		return difference;
 	}
 
 	public static String formatted (final Date date) {
