@@ -472,6 +472,7 @@ public class AppUtils implements AppConstants{
 		if (ValidationUtils.isValidScore(homeScore, awayScore)) {
 			final Game game = Game.findById(Long.parseLong(gameId));
 			if (game != null) {
+				saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 				if (!game.isEnded()) {
 					final String notification = getNotificationMessage(game);
 					TwitterService.updateStatus(notification);
@@ -481,7 +482,6 @@ public class AppUtils implements AppConstants{
 						MailService.notifications(notification, user.getUsername());
 					}
 				}
-				saveScore(game, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 			}
 		}
 	}
