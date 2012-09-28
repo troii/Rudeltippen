@@ -71,7 +71,7 @@ public class Users extends Root implements AppConstants{
 
 			String tippQuote = "0 %";
 			if (tippedGames > 0) {
-				double quote = (100 / tippedGames) * (double) correctTipps;
+				double quote = (100.00 / (double) tippedGames) * (double) correctTipps;
 				tippQuote = df.format( quote );
 			}
 
