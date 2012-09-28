@@ -29,6 +29,10 @@
 			<td>&{'placedbets.value', statistics?.sumTipps, statistics?.sumGames}</td>
 		</tr>
 		<tr>
+			<td><b>&{'correct.extratips'}</b></td>
+			<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
+		</tr>		
+		<tr>
 			<td><b>&{'correctresults'}</b></td>
 			<td>${statistics?.correctTipps}</td>
 		</tr>
@@ -40,13 +44,9 @@
 			<td><b>&{'correcttendence'}</b></td>
 			<td>${statistics?.correctTrend}</td>
 		</tr>
-		<tr>
-			<td><b>&{'correct.extratips'}</b></td>
-			<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
-		</tr>
         <tr>
             <td><b>&{'betquote'}</b></td>
-            <td>${statistics?.tippQuote} % &{'correctresultsquote'}</td>
+            <td>${tippQuote} &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
         </tr>
 	</tbody>
 </table>

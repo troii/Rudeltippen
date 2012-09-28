@@ -38,7 +38,7 @@ public class Users extends Root implements AppConstants{
 
 		if (user != null) {
 			final Map<String, Integer> statistics = new HashMap<String, Integer>();
-			final List<ExtraTip> correctExtraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
+			final List<ExtraTip> extraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
 			final List<GameTip> tips = GameTip.find("byUser", user).fetch();
 			final long extra = Extra.count();
 			final int sumAllTipps = tips.size();
@@ -46,6 +46,7 @@ public class Users extends Root implements AppConstants{
 			final int correctTrend = user.getCorrectTrends();
 			final int correctDifference = user.getCorrectDifferences();
 			final int sumTipps = correctTipps + correctTrend + correctDifference;
+			final DecimalFormat df = new DecimalFormat( "0.00" );
 
 			statistics.put("sumGames", (int) Game.count());
 			statistics.put("sumTipps", sumAllTipps);
@@ -53,22 +54,28 @@ public class Users extends Root implements AppConstants{
 			statistics.put("correctTrend", correctTrend);
 			statistics.put("correctDifference", correctDifference);
 			statistics.put("extraTips", (int) extra);
-			statistics.put("correctExtraTips", correctExtraTips.size());
+			statistics.put("correctExtraTips", extraTips.size());
 			
 			final float pointsTipp = (float) user.getPoints() / (float) sumTipps;
 			String pointsPerTipp = "0";
 			if (pointsTipp > 0) {
-				final DecimalFormat df = new DecimalFormat( "0.00" );
 				pointsPerTipp = df.format( pointsTipp );
 			}
-
-			if (sumTipps > 0) {
-				statistics.put("tippQuote", (100 / sumTipps) * correctTipps);
-			} else {
-				statistics.put("tippQuote", 0);
+			
+			int tippedGames = 0;
+			for (GameTip tip : tips) {
+				if (tip.getGame().isEnded()) {
+					tippedGames++;
+				}
 			}
 
-			render(user, statistics, pointsPerTipp);
+			String tippQuote = "0 %";
+			if (tippedGames > 0) {
+				double quote = (100 / tippedGames) * (double) correctTipps;
+				tippQuote = df.format( quote );
+			}
+
+			render(user, statistics, pointsPerTipp, tippQuote, tippedGames);
 		} else {
 			redirect("/");
 		}
