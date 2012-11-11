@@ -45,7 +45,6 @@ public class Users extends Root implements AppConstants{
 			final int correctTipps = user.getCorrectResults();
 			final int correctTrend = user.getCorrectTrends();
 			final int correctDifference = user.getCorrectDifferences();
-			final int sumTipps = correctTipps + correctTrend + correctDifference;
 			final DecimalFormat df = new DecimalFormat( "0.00" );
 
 			statistics.put("sumGames", (int) Game.count());
@@ -55,13 +54,7 @@ public class Users extends Root implements AppConstants{
 			statistics.put("correctDifference", correctDifference);
 			statistics.put("extraTips", (int) extra);
 			statistics.put("correctExtraTips", extraTips.size());
-			
-			final float pointsTipp = (float) user.getPoints() / (float) sumTipps;
-			String pointsPerTipp = "0";
-			if (pointsTipp > 0) {
-				pointsPerTipp = df.format( pointsTipp );
-			}
-			
+
 			int tippedGames = 0;
 			for (GameTip tip : tips) {
 				if (tip.getGame().isEnded()) {
@@ -71,8 +64,14 @@ public class Users extends Root implements AppConstants{
 
 			String tippQuote = "0 %";
 			if (tippedGames > 0) {
-				double quote = (100.00 / (double) tippedGames) * (double) correctTipps;
+				double quote = (100.00 / tippedGames) * correctTipps;
 				tippQuote = df.format( quote );
+			}
+
+			final float pointsTipp = (float) user.getPoints() / (float) tippedGames;
+			String pointsPerTipp = "0";
+			if (pointsTipp > 0) {
+				pointsPerTipp = df.format( pointsTipp );
 			}
 
 			render(user, statistics, pointsPerTipp, tippQuote, tippedGames);
