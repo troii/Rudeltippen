@@ -19,22 +19,6 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 
 public class MailService extends Mailer {
-	public static void updates(final User user, final List<String> statements) {
-		final String replyto = Play.configuration.getProperty("mailservice.replyto");
-		final String from = Play.configuration.getProperty("mailservice.from");
-		final Settings settings = AppUtils.getSettings();
-		final String recipient = user.getUsername();
-
-		if (ValidationUtils.isValidEmail(recipient) && (statements != null)) {
-			setFrom(from);
-			addRecipient(recipient);
-			setReplyTo(replyto);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updates")));
-			send(AppUtils.getMailTemplate("updates"), user, statements);
-		} else {
-			Logger.error("Tryed to sent updates mail, but recipient was invalid or statements was null.");
-		}
-	}
 
 	public static void reminder(final User user, final List<Game> games, final List<Extra> extras) {
 		final Settings settings = AppUtils.getSettings();
@@ -137,17 +121,17 @@ public class MailService extends Mailer {
 		}
 	}
 
-	public static void notifications(String notification, final String recipient) {
+	public static void notifications(final String subject, String notification, final User user) {
 		final Settings settings = AppUtils.getSettings();
 		final String from = Play.configuration.getProperty("mailservice.from");
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		notification = StringEscapeUtils.unescapeHtml(notification);
 
-		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotEmpty(notification)) {
+		if (ValidationUtils.isValidEmail(user.getUsername()) && StringUtils.isNotEmpty(notification)) {
 			setReplyTo(replyto);
 			setFrom(from);
-			addRecipient(recipient);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.notification")));
+			addRecipient(user.getUsername());
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + subject));
 			send(AppUtils.getMailTemplate("notifications"), notification);
 		} else {
 			Logger.error("Tryed to sent result notification, but recipient was invalid or notification was null.");

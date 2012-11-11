@@ -483,7 +483,7 @@ public class AppUtils implements AppConstants{
 	 * @param game The game
 	 * @return The message
 	 */
-	public static String getNotificationMessage(final Game game) {
+	public static String getTwitterNotificationMessage(final Game game) {
 		final StringBuilder buffer = new StringBuilder();
 		buffer.append(Messages.get("helper.tweetscore"));
 		buffer.append(" ");
@@ -502,6 +502,39 @@ public class AppUtils implements AppConstants{
 			buffer.append(game.getAwayScore());
 		}
 		buffer.append(" - " + Messages.get(game.getPlayday().getName()));
+
+		return buffer.toString();
+	}
+
+	/**
+	 * Generates a notifcation message for a given game
+	 *
+	 * @param game The game
+	 * @return The message
+	 */
+	public static String getEmailNotificationMessage(final User user, final Game game) {
+		final StringBuilder buffer = new StringBuilder();
+		final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
+
+		buffer.append(Messages.get("helper.tweetscore"));
+		buffer.append(" ");
+		buffer.append(Messages.get(game.getHomeTeam().getName()));
+		buffer.append(" - ");
+		buffer.append(Messages.get(game.getAwayTeam().getName()));
+		buffer.append(" ");
+		if (game.isOvertime()) {
+			buffer.append(game.getHomeScoreOT());
+			buffer.append(":");
+			buffer.append(game.getAwayScoreOT());
+			buffer.append(" (" + Messages.get(game.getOvertimeType()) + ")");
+		} else {
+			buffer.append(game.getHomeScore());
+			buffer.append(":");
+			buffer.append(game.getAwayScore());
+		}
+		buffer.append(" - " + Messages.get(game.getPlayday().getName()));
+		buffer.append("\n\n");
+		buffer.append(Messages.get("yourbet") + " " + gameTip.getHomeScore() + " : " + gameTip.getAwayScore() + " (" + gameTip.getPoints() + ")");
 
 		return buffer.toString();
 	}
@@ -681,23 +714,22 @@ public class AppUtils implements AppConstants{
 			game.setOvertime(false);
 		}
 		sendNotfications(game);
-		
+
 		game.setEnded(true);
 		game._save();
 	}
-	
+
 	/**
 	 * Sends notification to twitter and every user who wants to be informed on new results
 	 * @param game The game object
 	 */
-	private static void sendNotfications(Game game) {
+	private static void sendNotfications(final Game game) {
 		if (!game.isEnded()) {
-			final String notification = getNotificationMessage(game);
-			TwitterService.updateStatus(notification);
+			TwitterService.updateStatus(getTwitterNotificationMessage(game));
 
 			final List<User> users = User.find("byNotification", true).fetch();
 			for (final User user : users) {
-				MailService.notifications(notification, user.getUsername());
+				MailService.notifications(Messages.get("mails.subject.notification"), getEmailNotificationMessage(user, game), user);
 			}
 		}
 	}

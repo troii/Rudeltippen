@@ -11,7 +11,6 @@ import jobs.CleanupJob;
 import jobs.ReminderJob;
 import jobs.ResultsJob;
 import jobs.StandingsJob;
-import jobs.UpdateJob;
 import models.ConfirmationType;
 import models.Game;
 import models.Settings;
@@ -308,7 +307,6 @@ public class UnitTests extends UnitTest implements AppConstants{
 		new ReminderJob().now();
 		new ResultsJob().now();
 		new StandingsJob().now();
-		new UpdateJob().now();
 	}
 
 	@Test
@@ -332,8 +330,7 @@ public class UnitTests extends UnitTest implements AppConstants{
 		MailService.confirm(user, token, confirmationType);
 		MailService.newuser(user, admin);
 		MailService.newuserpass(user, userpass);
-		MailService.notifications(notification, "foo@bar.com");
-		MailService.updates(user, statements);
+		MailService.notifications(notification, "foo@bar.com", admin);
 		MailService.error(response, "foo@bar.com");
 		TwitterService.updateStatus(message);
 	}

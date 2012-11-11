@@ -47,7 +47,7 @@ public class StandingsJob extends AppJob {
 
 				users = User.find("bySendStandings", true).fetch();
 				for (final User user : users) {
-					MailService.notifications(message, user.getUsername());
+					MailService.notifications(Messages.get("mails.top3.subject"), message, user);
 				}
 			}
 		}
