@@ -695,7 +695,7 @@ public class AppUtils implements AppConstants{
 	 * @param awayScore The score of the away team
 	 * @param extratime The name of the extratime
 	 * @param homeScoreExtratime The score of the home team in extratime
-	 * @param awayScoreExtratime The score of the away team in extratim
+	 * @param awayScoreExtratime The score of the away team in extratime
 	 */
 	private static void saveScore(final Game game, final String homeScore, final String awayScore, final String extratime, String homeScoreExtratime, String awayScoreExtratime) {
 		final int[] points = AppUtils.getPoints(Integer.parseInt(homeScore), Integer.parseInt(awayScore));
@@ -713,10 +713,10 @@ public class AppUtils implements AppConstants{
 		} else {
 			game.setOvertime(false);
 		}
-		sendNotfications(game);
-
 		game.setEnded(true);
 		game._save();
+
+		sendNotfications(game);
 	}
 
 	/**

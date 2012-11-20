@@ -19,6 +19,7 @@
 				</div>
 			</th>
 			#{/list}
+			<th></th>
 		</tr>
 		<tr class="hidden-phone">
 			<th>&{'tendence'}</th>
@@ -30,6 +31,7 @@
 				</div>
 			</th>
 			#{/list}
+			<th></th>
 		</tr>		
 	</thead>
 	<tbody>
@@ -43,9 +45,12 @@
 					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
 				#{/else}
 					<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+				%{ points = 0 }%
 				#{list items:user.value, as:'gameTip'}
 					<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTipAndPoints()}</div></td>
+					%{ points = points + gameTip.points }%
 				#{/list}
+				<td style="vertical-align: middle;"><div align="center">%{ out.print(points); }%</div></td>
 			#{/list}
 		</tr>
 		#{/list}
