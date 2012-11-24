@@ -713,10 +713,12 @@ public class AppUtils implements AppConstants{
 		} else {
 			game.setOvertime(false);
 		}
-		game.setEnded(true);
-		game._save();
 
-		sendNotfications(game);
+		if (!game.isEnded()) {
+			sendNotfications(game);
+			game.setEnded(true);
+		}
+		game._save();
 	}
 
 	/**
