@@ -534,7 +534,7 @@ public class AppUtils implements AppConstants{
 		}
 		buffer.append(" - " + Messages.get(game.getPlayday().getName()));
 		buffer.append("\n\n");
-		buffer.append(Messages.get("yourbet") + " " + gameTip.getHomeScore() + " : " + gameTip.getAwayScore() + " (" + gameTip.getPoints() + ")");
+		buffer.append(Messages.get("yourbet") + " " + gameTip.getHomeScore() + " : " + gameTip.getAwayScore());
 
 		return buffer.toString();
 	}
@@ -713,6 +713,7 @@ public class AppUtils implements AppConstants{
 		} else {
 			game.setOvertime(false);
 		}
+		
 		if (!game.isEnded()) {
 			sendNotfications(game);
 			game.setEnded(true);
