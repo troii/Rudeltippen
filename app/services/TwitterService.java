@@ -29,7 +29,7 @@ public class TwitterService {
                 sendRequest(request);
                 settings.setLastTweet(message);
                 settings._save();
-                Logger.info("Updating Twitter status.");
+                Logger.info("Updated Twitter status.");
             } catch (Exception e) {
             	Logger.error("Failed to update Twitter status: " + e.getMessage());
             }

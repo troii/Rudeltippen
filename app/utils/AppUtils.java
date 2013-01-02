@@ -276,7 +276,7 @@ public class AppUtils implements AppConstants{
 
 					pointsOnPlayday = pointsOnPlayday + pointsForTipp;
 				}
-				Statistic statistic = Statistic.find("byUserAndPlayday", user, playday).first();
+				Statistic statistic = Statistic.find("byUserAndPlayday", user, playday.getNumber()).first();
 				if (statistic == null) {
 					statistic = new Statistic();
 					statistic.setUser(user);
@@ -1025,7 +1025,7 @@ public class AppUtils implements AppConstants{
 		final String enabled = Play.configuration.getProperty("api.enabled");
 		boolean api = false;
 
-		if ("true".equals(enabled)) {
+		if ( ("true").equals(enabled) ) {
 			api = true;
 		}
 
