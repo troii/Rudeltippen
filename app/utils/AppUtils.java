@@ -244,19 +244,23 @@ public class AppUtils implements AppConstants{
 		final List<User> users = User.findAll();
 		final List<Playday> playdays = Playday.findAll();
 		for (final User user : users) {
-			int pointsOnPlayday = 0;
 			int correctResults = 0;
 			int correctDifferences = 0;
 			int correctTrends = 0;
 			int correctExtraTips = 0;
 
 			for (final Playday playday : playdays) {
+				int pointsOnPlayday = 0;
 				for (final Game game : playday.getGames()) {
 					final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
 					if (gameTip == null) {
 						continue;
 					}
 
+					if (!game.isEnded()) {
+						continue;
+					}
+					
 					int pointsForTipp = 0;
 					if (game.isOvertime()) {
 						pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
