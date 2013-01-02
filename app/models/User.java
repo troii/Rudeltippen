@@ -45,6 +45,9 @@ public class User extends Model {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Confirmation> confirmations;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Statistic> statistics;	
 
 	private Date lastLogin;
 	private boolean reminder;
@@ -264,5 +267,13 @@ public class User extends Model {
 
 	public void setSendStandings(boolean sendStandings) {
 		this.sendStandings = sendStandings;
+	}
+
+	public List<Statistic> getStatistics() {
+		return statistics;
+	}
+
+	public void setStatistics(List<Statistic> statistics) {
+		this.statistics = statistics;
 	}
 }

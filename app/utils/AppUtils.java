@@ -22,6 +22,7 @@ import models.Game;
 import models.GameTip;
 import models.Playday;
 import models.Settings;
+import models.Statistic;
 import models.Team;
 import models.User;
 import models.WSResult;
@@ -241,44 +242,56 @@ public class AppUtils implements AppConstants{
 		}
 
 		final List<User> users = User.findAll();
-		final List<Game> allGames = Game.find("SELECT g FROM Game g WHERE ended = ?", true).fetch();
+		final List<Playday> playdays = Playday.findAll();
 		for (final User user : users) {
-			int points = 0;
+			int pointsOnPlayday = 0;
 			int correctResults = 0;
 			int correctDifferences = 0;
 			int correctTrends = 0;
 			int correctExtraTips = 0;
 
-			for (final Game game : allGames) {
-				final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
-				if (gameTip == null) {
-					continue;
-				}
+			for (final Playday playday : playdays) {
+				for (final Game game : playday.getGames()) {
+					final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
+					if (gameTip == null) {
+						continue;
+					}
 
-				int pointsForTipp = 0;
-				if (game.isOvertime()) {
-					pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
-				} else {
-					pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
-				}
-				gameTip.setPoints(pointsForTipp);
-				gameTip._save();
+					int pointsForTipp = 0;
+					if (game.isOvertime()) {
+						pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
+					} else {
+						pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
+					}
+					gameTip.setPoints(pointsForTipp);
+					gameTip._save();
 
-				if (pointsForTipp == settings.getPointsTip()) {
-					correctResults++;
-				} else if (pointsForTipp == settings.getPointsTipDiff()) {
-					correctDifferences++;
-				} else if (pointsForTipp == settings.getPointsTipTrend()) {
-					correctTrends++;
-				}
+					if (pointsForTipp == settings.getPointsTip()) {
+						correctResults++;
+					} else if (pointsForTipp == settings.getPointsTipDiff()) {
+						correctDifferences++;
+					} else if (pointsForTipp == settings.getPointsTipTrend()) {
+						correctTrends++;
+					}
 
-				points = points + pointsForTipp;
+					pointsOnPlayday = pointsOnPlayday + pointsForTipp;
+				}
+				Statistic statistic = Statistic.find("byUserAndPlayday", user, playday).first();
+				if (statistic == null) {
+					statistic = new Statistic();
+					statistic.setUser(user);
+					statistic.setPlayday(playday.getNumber());
+				}
+				statistic.setPoints(pointsOnPlayday);
+				statistic._save();
+				
+				user.setTipPoints(pointsOnPlayday + user.getTipPoints());
+				user.setCorrectResults(correctResults + user.getCorrectResults());
+				user.setCorrectDifferences(correctDifferences + user.getCorrectDifferences());
+				user.setCorrectTrends(correctTrends + user.getCorrectTrends());	
+				user.setPoints(pointsOnPlayday + user.getPoints());
 			}
-			user.setTipPoints(points);
-			user.setCorrectResults(correctResults);
-			user.setCorrectDifferences(correctDifferences);
-			user.setCorrectTrends(correctTrends);
-
+			
 			int bonusPoints = 0;
 			for (final Extra extra : extras) {
 				final ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
@@ -294,9 +307,8 @@ public class AppUtils implements AppConstants{
 					}
 				}
 			}
-
 			user.setExtraPoints(bonusPoints);
-			user.setPoints(points + bonusPoints);
+			user.setPoints(bonusPoints + user.getPoints());
 			user.setCorrectExtraTips(correctExtraTips);
 			user._save();
 		}
