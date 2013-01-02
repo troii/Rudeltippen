@@ -17,6 +17,7 @@ import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
+import models.Statistic;
 import models.User;
 import play.Logger;
 import play.data.validation.Validation;
@@ -74,7 +75,9 @@ public class Users extends Root implements AppConstants{
 				pointsPerTipp = df.format( pointsTipp );
 			}
 
-			render(user, statistics, pointsPerTipp, tippQuote, tippedGames);
+			List<Statistic> playdayStats = Statistic.find("byUser", user).fetch();
+			
+			render(user, statistics, pointsPerTipp, tippQuote, tippedGames, playdayStats);
 		} else {
 			redirect("/");
 		}

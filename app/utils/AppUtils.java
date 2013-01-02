@@ -248,6 +248,7 @@ public class AppUtils implements AppConstants{
 			int correctDifferences = 0;
 			int correctTrends = 0;
 			int correctExtraTips = 0;
+			int userTipPoints = 0;
 
 			for (final Playday playday : playdays) {
 				int pointsOnPlayday = 0;
@@ -289,11 +290,12 @@ public class AppUtils implements AppConstants{
 				statistic.setPoints(pointsOnPlayday);
 				statistic._save();
 				
-				user.setTipPoints(pointsOnPlayday + user.getTipPoints());
-				user.setCorrectResults(correctResults + user.getCorrectResults());
-				user.setCorrectDifferences(correctDifferences + user.getCorrectDifferences());
-				user.setCorrectTrends(correctTrends + user.getCorrectTrends());	
-				user.setPoints(pointsOnPlayday + user.getPoints());
+				userTipPoints = userTipPoints + pointsOnPlayday;
+				user.setTipPoints(userTipPoints);
+				user.setCorrectResults(correctResults);
+				user.setCorrectDifferences(correctDifferences);
+				user.setCorrectTrends(correctTrends);	
+				user.setPoints(pointsOnPlayday);
 			}
 			
 			int bonusPoints = 0;
@@ -312,7 +314,7 @@ public class AppUtils implements AppConstants{
 				}
 			}
 			user.setExtraPoints(bonusPoints);
-			user.setPoints(bonusPoints + user.getPoints());
+			user.setPoints(bonusPoints + userTipPoints);
 			user.setCorrectExtraTips(correctExtraTips);
 			user._save();
 		}
