@@ -35,15 +35,15 @@ import utils.ViewUtils;
 public class Admin extends Root implements AppConstants {
 	@Transactional(readOnly=true)
 	public static void playday(int number) {
-		if (number <= 0) { number = 1; }
-		final List<Playday> playdays = Playday.findAll();
-		final Playday playday = Playday.find("byNumber", number).first();
-
-		render(playdays, playday, number);
+		renderWrapper(number);
 	}
 
 	@Transactional(readOnly=true)
 	public static void results(int number) {
+		renderWrapper(number);
+	}
+
+	private static void renderWrapper(int number) {
 		if (number <= 0) { number = 1; }
 		final List<Playday> playdays = Playday.findAll();
 		final Playday playday = Playday.find("byNumber", number).first();

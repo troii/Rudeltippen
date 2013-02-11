@@ -10,7 +10,7 @@ import play.mvc.With;
 @Transactional(readOnly=true)
 public class Standings extends Root {
 	public static void index() {
-		final List<User> users = User.find("SELECT u FROM User u ORDER BY place ASC").fetch();
+		final List<User> users = User.find("ORDER BY place ASC").fetch();
 		render(users);
 	}
 }

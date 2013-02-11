@@ -1,5 +1,6 @@
 package services;
 
+import interfaces.AppConstants;
 import models.Settings;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -18,12 +19,12 @@ import play.libs.Codec;
 import play.mvc.Http;
 import utils.AppUtils;
 
-public class TwitterService {
-    public static void updateStatus(String message) {
+public class TwitterService implements AppConstants{
+	public static void updateStatus(String message) {
     	Settings settings = AppUtils.getSettings();
     	message = StringEscapeUtils.unescapeHtml(message);
         if (AppUtils.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
-            OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/statuses/update.json");
+            OAuthRequest request = new OAuthRequest(Verb.POST, TWITTER_API_URL);
             request.addQuerystringParameter("status", message);
             try {
                 sendRequest(request);

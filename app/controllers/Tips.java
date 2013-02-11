@@ -22,6 +22,25 @@ import utils.ValidationUtils;
 public class Tips extends Root {
 	@Transactional(readOnly=true)
 	public static void index(int number) {
+		renderWrapper(number);
+	}
+
+	@Transactional(readOnly=true)
+	public static void games(int number) {
+		renderWrapper(number);
+	}
+
+	@Transactional(readOnly=true)
+	public static void extra() {
+		renderWrapper();
+	}
+
+	@Transactional(readOnly=true)
+	public static void extras() {
+		renderWrapper();
+	}
+
+	private static void renderWrapper(int number) {
 		if (number <= 0) { number = 1; }
 		final List<Playday> playdays = Playday.findAll();
 		final Playday playday = Playday.find("byNumber", number).first();
@@ -30,29 +49,9 @@ public class Tips extends Root {
 		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
 		render(playdays, playday, number, currentPlayday, nextPlayday, previousPlayday);
-	}
+	}	
 
-	@Transactional(readOnly=true)
-	public static void games(int number) {
-		if (number <= 0) { number = 1; }
-		final Playday playday = Playday.find("byNumber", number).first();
-		final Playday currentPlayday = playday;
-		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
-		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
-
-		render(playday, currentPlayday, previousPlayday, nextPlayday);
-	}
-
-	@Transactional(readOnly=true)
-	public static void extra() {
-		final List<Extra> extras = Extra.findAll();
-		final boolean tippable = AppUtils.extrasTipable(extras);
-
-		render(extras, tippable);
-	}
-
-	@Transactional(readOnly=true)
-	public static void extras() {
+	private static void renderWrapper() {
 		final List<Playday> playdays = Playday.findAll();
 		final List<Extra> extras = Extra.findAll();
 		final boolean tippable = AppUtils.extrasTipable(extras);
