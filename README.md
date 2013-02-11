@@ -83,12 +83,6 @@ Set the language for Rudeltippen (currently de or en)
 default.language=de
 ```
 
-Rudeltippen has a feature which can automatically updates your playing schedule. By default this feature is not enable. If you want to enable this feature set 'automatic.updates' to true
-
-```bash
-%prod.automatic.updates=false
-```
-
 Set the application key for Rudeltippen (make it "secure")
 
 ```bash
@@ -126,7 +120,7 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-By default, Rudeltippen runs with -Xmx=128m -Xmx64m. Change this, if required.
+By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 25 users. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -138,7 +132,7 @@ Save application.conf
 
 Follow the section ['Front-end HTTP server' on the Play Framework Documentation][9] to set up your Front-end HTTP Server with Rudeltippen.
 
-> By default Rudeltippen runs on Port 1904. If you need to change this, you'll find the port configuration in application.conf under 'Server configuration'.
+> By default Rudeltippen runs on port 1904. If you need to change this, you'll find the port configuration in application.conf under 'Server configuration'.
 
 ### Step 4
 
@@ -147,6 +141,8 @@ Start Rudeltippen by executing the following command in your INSTLLATIONFOLDER:
 ```bash
 play start
 ```
+
+> Note: play start and play stop will only work correctly under Linus and Mac. If you close the command prompt on windows, the Play application will stop also. I recommend using PsExec for running the Play application in the background. You'll find an example script [here][18].
 
 ### Step 5
 
@@ -293,3 +289,4 @@ Rudeltippen is distributed under [Apache 2 licence][11]
 [15]: http://bootswatch.com/
 [16]: http://technet.microsoft.com/de-de/sysinternals/bb896649.aspx
 [17]: http://www.playframework.org/documentation/1.2.5/install
+[18]: http://pastebin.com/Aqby1atw 
