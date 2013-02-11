@@ -182,30 +182,4 @@ public class System extends Controller implements AppConstants {
 		}
 		notFound();
 	}
-
-	public static void updatekickoff(final int number) {
-		final Playday playday = Playday.find("byNumber", number).first();
-		int updated = 0;
-		if (playday != null) {
-			final List<Game> games = playday.getGames();
-			for (final Game game : games) {
-				final String matchID = game.getWebserviceID();
-				if (StringUtils.isNotBlank(matchID)) {
-					final Document document = UpdateService.getDocumentFromWebService(matchID);
-					final Date kickoff = DataUtils.getKickoffFromDocument(document);
-					final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-					df.setTimeZone(TimeZone.getTimeZone(AppUtils.getCurrentTimeZone()));
-
-					game.setKickoff(kickoff);
-					game._save();
-
-					updated++;
-				}
-			}
-
-			render(updated);
-		}
-
-		badRequest();
-	}
 }
