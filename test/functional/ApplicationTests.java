@@ -182,27 +182,6 @@ public class ApplicationTests extends FunctionalTest {
         response = GET("/users/updatepicture");
         assertStatus(302, GET("/users/updatepicture"));
         assertEquals(response.getHeader("location"), "/users/profile");
-        
-    	response = GET("/api/standings");
-        assertStatus(200, response);
-
-        response = GET("/api/standings");
-        assertStatus(200, response);
-        
-        response = GET("/api/tournament");
-        assertStatus(200, response);
-    
-        response = GET("/api/user/user5");
-        assertStatus(200, response);
-        
-        response = GET("/api/user/userfoo");
-        assertStatus(501, response);
-        
-        response = GET("/api/playday/1");
-        assertStatus(200, response);
-        
-        response = GET("/api/playday/4242");
-        assertStatus(501, response);
     }
 
     @Test
@@ -215,29 +194,5 @@ public class ApplicationTests extends FunctionalTest {
         assertEquals(response.getHeader("location"), "/");
 
         assertStatus(403, POST("/admin/results"));
-    }
-    
-    @Test
-    public void testAPI() {
-    	Response response = GET("/api/standings");
-        assertStatus(401, response);
-
-        response = GET("/api/standings");
-        assertStatus(401, response);
-        
-        response = GET("/api/tournament");
-        assertStatus(401, response);
-    
-        response = GET("/api/user/user2");
-        assertStatus(401, response);
-        
-        response = GET("/api/user/userfoo");
-        assertStatus(401, response);
-        
-        response = GET("/api/playday/1");
-        assertStatus(401, response);
-        
-        response = GET("/api/playday/4242");
-        assertStatus(401, response);        
     }
 }
