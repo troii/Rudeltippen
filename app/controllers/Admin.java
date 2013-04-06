@@ -34,12 +34,12 @@ import utils.ViewUtils;
 @CheckAccess("admin")
 public class Admin extends Root implements AppConstants {
 	@Transactional(readOnly=true)
-	public static void playday(int number) {
+	public static void playday(final int number) {
 		renderWrapper(number);
 	}
 
 	@Transactional(readOnly=true)
-	public static void results(int number) {
+	public static void results(final int number) {
 		renderWrapper(number);
 	}
 
@@ -181,7 +181,7 @@ public class Admin extends Root implements AppConstants {
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
 		final List<String> themes = ViewUtils.getThemes();
-		
+
 		flash.put("name", settings.getName());
 		flash.put("pointsGameWin", settings.getPointsGameWin());
 		flash.put("pointsGameDraw", settings.getPointsGameDraw());
