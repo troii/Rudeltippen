@@ -54,34 +54,16 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Hashes a given clear-text password with a given salt using 1.000.000 rounds
-	 *
-	 * @param userpass The password
-	 * @param usersalt The salt
-	 * @return SHA1 hashed string
-	 */
-	@Deprecated
-	public static String hashPassword(final String userpass, final String usersalt) {
-		final String salt = AppUtils.getSettings().getAppSalt();
-		String password = userpass + salt + usersalt;
-		for (int i = 0; i <= 1000000; i++) {
-			password = Codec.hexSHA1(password + salt + usersalt);
-		}
-
-		return password;
-	}
-
-	/**
 	 * Hashes a given clear-text password with a given salt using 500.000 rounds
 	 *
 	 * @param userpass The password
 	 * @param usersalt The salt
 	 * @return SHA1 hashed string
 	 */
-	public static String hashUserpassword(final String userpass, final String usersalt) {
+	public static String hashPassword(final String userpass, final String usersalt) {
 		final String salt = AppUtils.getSettings().getAppSalt();
 		String hash = "";
-		for (int i = 1; i <= 500000; i++) {
+		for (int i = 1; i <= 100000; i++) {
 			hash = Codec.hexSHA1(hash + salt + userpass + usersalt);
 		}
 
@@ -261,7 +243,7 @@ public class AppUtils implements AppConstants{
 					if (!game.isEnded()) {
 						continue;
 					}
-					
+
 					int pointsForTipp = 0;
 					if (game.isOvertime()) {
 						pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
@@ -289,15 +271,15 @@ public class AppUtils implements AppConstants{
 				}
 				statistic.setPoints(pointsOnPlayday);
 				statistic._save();
-				
+
 				userTipPoints = userTipPoints + pointsOnPlayday;
 				user.setTipPoints(userTipPoints);
 				user.setCorrectResults(correctResults);
 				user.setCorrectDifferences(correctDifferences);
-				user.setCorrectTrends(correctTrends);	
+				user.setCorrectTrends(correctTrends);
 				user.setPoints(pointsOnPlayday);
 			}
-			
+
 			int bonusPoints = 0;
 			for (final Extra extra : extras) {
 				final ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
@@ -731,7 +713,7 @@ public class AppUtils implements AppConstants{
 		} else {
 			game.setOvertime(false);
 		}
-		
+
 		if (!game.isEnded()) {
 			sendNotfications(game);
 			game.setEnded(true);
