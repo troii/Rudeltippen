@@ -13,7 +13,6 @@ import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
 import play.data.validation.Validation;
-import play.i18n.Messages;
 import play.libs.Crypto;
 
 public class ValidationUtils implements AppConstants{
@@ -128,7 +127,6 @@ public class ValidationUtils implements AppConstants{
 	 * 
 	 * @param validation
 	 * @param tournament
-	 * @param name
 	 * @param pointsGameWin
 	 * @param pointsGameDraw
 	 * @param pointsTip
@@ -136,11 +134,6 @@ public class ValidationUtils implements AppConstants{
 	 * @param pointsTipTrend
 	 * @param minutesBeforeTip
 	 * @param maxPictureSize
-	 * @param timeZoneString
-	 * @param dateString
-	 * @param dateTimeLang
-	 * @param timeString
-	 * @param theme
 	 * @param countFinalResult
 	 * @param informOnNewTipper
 	 * @param enableRegistration
@@ -150,7 +143,6 @@ public class ValidationUtils implements AppConstants{
 	public static Validation getSettingsValidations(
 			final Validation validation,
 			final String tournament,
-			final String name,
 			final int pointsGameWin,
 			final int pointsGameDraw,
 			final int pointsTip,
@@ -158,20 +150,10 @@ public class ValidationUtils implements AppConstants{
 			final int pointsTipTrend,
 			final int minutesBeforeTip,
 			final int maxPictureSize,
-			final String timeZoneString,
-			final String dateString,
-			final String dateTimeLang,
-			final String timeString,
-			final String theme,
 			final boolean countFinalResult,
 			final boolean informOnNewTipper,
 			final boolean enableRegistration) {
 
-		validation.required(name);
-		validation.required(timeZoneString);
-		validation.required(dateString);
-		validation.required(dateTimeLang);
-		validation.required(timeString);
 		validation.required(tournament);
 		validation.range(pointsGameDraw, 0, 99);
 		validation.range(pointsGameWin, 1, 99);
@@ -179,25 +161,7 @@ public class ValidationUtils implements AppConstants{
 		validation.range(pointsTip, 0, 99);
 		validation.range(pointsTipDiff, 0, 99);
 		validation.range(pointsTipTrend, 0, 99);
-		validation.isTrue(!("0").equals(tournament)).key("tournament").message(Messages.get("system.invalidtournament"));
-		validation.isTrue(ValidationUtils.isValidTheme(theme)).key("theme").message(Messages.get("system.invalidtheme"));
 
 		return validation;
-	}
-
-	/**
-	 * Checks if a given theme exists
-	 * 
-	 * @param theme The name of the theme
-	 * @return true if the theme exists, false otherwise
-	 */
-	public static boolean isValidTheme(final String theme) {
-		boolean valid = false;
-		final List<String> themes = ViewUtils.getThemes();
-		if (themes.contains(theme)) {
-			valid = true;
-		}
-
-		return valid;
 	}
 }

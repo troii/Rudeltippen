@@ -63,66 +63,6 @@
 			#{/ifError}
 		</div>
 	</div>
-	<div class="control-group #{ifError 'timeZoneString'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.timezone'}</label>
-		<div class="controls">
-			<select name="timeZoneString">
-				#{list items:timeZones, as:'timezone'}
-					#{if timezone == flash.timeZoneString}
-    					<option selected value="${timezone}">${timezone}</option>
-    				#{/if}
-    				#{elseif flash.timezone == null && timezone == 'Europe/Berlin'}
-    					<option selected value="${timezone}">${timezone}</option>
-    				#{/elseif}
-    				#{else}
-    					<option value="${timezone}">${timezone}</option>
-    				#{/else}
-				#{/list}
-			</select>
-			#{ifError 'timeZoneString'}
-				<span class="help-inline">#{error 'timeZoneString' /}</span>
-			#{/ifError}
-		</div>
-	</div>
-	<div class="control-group #{ifError 'dateTimeLang'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.timezonelang'}</label>
-		<div class="controls">
-			<select name="dateTimeLang">
-				#{list items:locales, as:'locale'}
-					#{if locale == flash.dateTimeLang}
-						<option selected value="${locale}">${locale}</option>
-					#{/if}
-					#{elseif flash.dateTimeLang == null && locale == 'de'}
-						<option selected value="${locale}">${locale}</option>
-					#{/elseif}
-					#{else}
-    					<option value="${locale}">${locale}</option>
-    				#{/else}
-				#{/list}
-			</select>
-			#{ifError 'dateTimeLang'}
-				<span class="help-inline">#{error 'dateTimeLang' /}</span>
-			#{/ifError}
-		</div>
-	</div>
-	<div class="control-group #{ifError 'dateString'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.datestring'}</label>
-		<div class="controls">
-			<input type="text" id="dateString" value="#{if flash.dateString != null}${flash.dateString}#{/if}#{else}dd. MMMM yyyy#{/else}" name="dateString" class="input-medium">
-			#{ifError 'dateString'}
-				<span class="help-inline">#{error 'dateString' /}</span>
-			#{/ifError}
-		</div>
-	</div>
-	<div class="control-group #{ifError 'timeString'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.timestring'}</label>
-		<div class="controls">
-			<input type="text" id="timeString" value="#{if flash.timeString != null}${flash.timeString}#{/if}#{else}HH:mm#{/else}" name="timeString" class="input-medium">
-			#{ifError 'timeString'}
-				<span class="help-inline">#{error 'timeString' /}</span>
-			#{/ifError}
-		</div>
-	</div>
 	<div class="control-group #{ifError 'maxPictureSize'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'setup.maxpicturesize'}</label>
 		<div class="controls">
@@ -132,41 +72,6 @@
 			#{/ifError}
 		</div>
 	</div>
-	#{if request.action == "System.setup" }
-	<div class="control-group #{ifError 'tournament'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.tournament'}</label>
-		<div class="controls">
-			<select id="tournament" name="tournament">
-				<option value="0">&{'pleasechoose'}</option>
-				<option value="bl2012">1. Bundesliga 2012/13</option>
-			</select>
-			#{ifError 'tournament'}
-				<span class="help-inline">#{error 'tournament' /}</span>
-			#{/ifError}
-		</div>
-	</div>	
-	#{/if}
-	<div class="control-group #{ifError 'theme'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'setup.theme'}</label>
-		<div class="controls">
-			<select id="theme" name="theme">
-				#{list items:themes, as:'theme'}
-					#{if theme == flash.mytheme}
-						<option selected value="${theme}">${theme.capitalize()}</option>
-					#{/if}
-					#{elseif flash.mytheme == null && theme == 'cerulean'}
-						<option selected value="cerulean">Cerulean</option>
-					#{/elseif}
-					#{else}
-    					<option value="${theme}">${theme.capitalize()}</option>
-    				#{/else}
-				#{/list}
-			</select>
-			#{ifError 'theme'}
-				<span class="help-inline">#{error 'theme' /}</span>
-			#{/ifError}
-		</div>
-	</div>	
 	<div class="control-group">
 		<label for="input01" class="control-label">&{'setup.countfinalresult'}</label>
 		<div class="controls">

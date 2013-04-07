@@ -4,12 +4,15 @@ import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 import utils.AppUtils;
-import utils.ViewUtils;
 
 public class Root extends Controller {
 	@Before
 	protected static void init() {
 		AppUtils.setAppLanguage();
+
+		if (!AppUtils.appIsInizialized()) {
+			redirect("/system/setup");
+		}
 
 		final User connectedUser = AppUtils.getConnectedUser();
 		if (connectedUser != null) {
@@ -19,6 +22,5 @@ public class Root extends Controller {
 		}
 
 		renderArgs.put("currentPlayday", AppUtils.getCurrentPlayday());
-		renderArgs.put("theme", ViewUtils.getTheme());
 	}
 }

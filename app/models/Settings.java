@@ -16,19 +16,7 @@ public class Settings extends Model {
 	private String appName;
 
 	@Column(nullable=false)
-	private String name;
-
-	@Column(nullable=false)
-	private String timeZoneString;
-
-	@Column(nullable=false)
-	private String dateString;
-
-	@Column(nullable=false)
-	private String timeString;
-
-	@Column(nullable=false)
-	private String dateTimeLang;
+	private String gameName;
 
 	@Column(nullable=false)
 	private int maxPictureSize;
@@ -52,15 +40,12 @@ public class Settings extends Model {
 	private int minutesBeforeTip;
 
 	@Column(nullable=false)
-	private int prePlayoffGames;
+	private int numPrePlayoffGames;
 
 	@Column(nullable=false)
-	private int playoffTeams;
+	private int numPlayoffTeams;
 
-	private String theme;
 	private String lastTweet;
-	private String dbName;
-	private int dbVersion;
 	private boolean informOnNewTipper;
 	private boolean playoffs;
 	private boolean countFinalResult;
@@ -70,71 +55,31 @@ public class Settings extends Model {
 		return appSalt;
 	}
 
-	public void setAppSalt(String appSalt) {
+	public void setAppSalt(final String appSalt) {
 		this.appSalt = appSalt;
 	}
 
-	public String getName() {
-		return name;
+	public String getGameName() {
+		return gameName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setGameName(final String gameName) {
+		this.gameName = gameName;
 	}
 
 	public int getMaxPictureSize() {
 		return maxPictureSize;
 	}
 
-	public void setMaxPictureSize(int maxPictureSize) {
+	public void setMaxPictureSize(final int maxPictureSize) {
 		this.maxPictureSize = maxPictureSize;
-	}
-
-	public String getAppName() {
-		return appName;
-	}
-
-	public void setAppName(String appName) {
-		this.appName = appName;
-	}
-
-	public String getTimeZoneString() {
-		return timeZoneString;
-	}
-
-	public void setTimeZoneString(String timeZoneString) {
-		this.timeZoneString = timeZoneString;
-	}
-
-	public String getDateString() {
-		return dateString;
-	}
-
-	public void setDateString(String dateString) {
-		this.dateString = dateString;
-	}
-
-	public String getTimeString() {
-		return timeString;
-	}
-
-	public void setTimeString(String timeString) {
-		this.timeString = timeString;
-	}
-
-	public String getDateTimeLang() {
-		return dateTimeLang;
-	}
-
-	public void setDateTimeLang(String dateTimeLang) {
-		this.dateTimeLang = dateTimeLang;
 	}
 
 	public int getPointsGameWin() {
 		return pointsGameWin;
 	}
 
-	public void setPointsGameWin(int pointsGameWin) {
+	public void setPointsGameWin(final int pointsGameWin) {
 		this.pointsGameWin = pointsGameWin;
 	}
 
@@ -142,7 +87,7 @@ public class Settings extends Model {
 		return pointsGameDraw;
 	}
 
-	public void setPointsGameDraw(int pointsGameDraw) {
+	public void setPointsGameDraw(final int pointsGameDraw) {
 		this.pointsGameDraw = pointsGameDraw;
 	}
 
@@ -150,7 +95,7 @@ public class Settings extends Model {
 		return pointsTip;
 	}
 
-	public void setPointsTip(int pointsTip) {
+	public void setPointsTip(final int pointsTip) {
 		this.pointsTip = pointsTip;
 	}
 
@@ -158,7 +103,7 @@ public class Settings extends Model {
 		return pointsTipDiff;
 	}
 
-	public void setPointsTipDiff(int pointsTipDiff) {
+	public void setPointsTipDiff(final int pointsTipDiff) {
 		this.pointsTipDiff = pointsTipDiff;
 	}
 
@@ -166,7 +111,7 @@ public class Settings extends Model {
 		return pointsTipTrend;
 	}
 
-	public void setPointsTipTrend(int pointsTipTrend) {
+	public void setPointsTipTrend(final int pointsTipTrend) {
 		this.pointsTipTrend = pointsTipTrend;
 	}
 
@@ -174,31 +119,39 @@ public class Settings extends Model {
 		return minutesBeforeTip;
 	}
 
-	public void setMinutesBeforeTip(int minutesBeforeTip) {
+	public void setMinutesBeforeTip(final int minutesBeforeTip) {
 		this.minutesBeforeTip = minutesBeforeTip;
 	}
 
-	public int getPrePlayoffGames() {
-		return prePlayoffGames;
+	public int getNumPrePlayoffGames() {
+		return numPrePlayoffGames;
 	}
 
-	public void setPrePlayoffGames(int prePlayoffGames) {
-		this.prePlayoffGames = prePlayoffGames;
+	public void setNumPrePlayoffGames(final int numPrePlayoffGames) {
+		this.numPrePlayoffGames = numPrePlayoffGames;
 	}
 
-	public int getPlayoffTeams() {
-		return playoffTeams;
+	public int getNumPlayoffTeams() {
+		return numPlayoffTeams;
 	}
 
-	public void setPlayoffTeams(int playoffTeams) {
-		this.playoffTeams = playoffTeams;
+	public void setNumPlayoffTeams(final int numPlayoffTeams) {
+		this.numPlayoffTeams = numPlayoffTeams;
+	}
+
+	public String getLastTweet() {
+		return lastTweet;
+	}
+
+	public void setLastTweet(final String lastTweet) {
+		this.lastTweet = lastTweet;
 	}
 
 	public boolean isInformOnNewTipper() {
 		return informOnNewTipper;
 	}
 
-	public void setInformOnNewTipper(boolean informOnNewTipper) {
+	public void setInformOnNewTipper(final boolean informOnNewTipper) {
 		this.informOnNewTipper = informOnNewTipper;
 	}
 
@@ -206,7 +159,7 @@ public class Settings extends Model {
 		return playoffs;
 	}
 
-	public void setPlayoffs(boolean playoffs) {
+	public void setPlayoffs(final boolean playoffs) {
 		this.playoffs = playoffs;
 	}
 
@@ -214,7 +167,7 @@ public class Settings extends Model {
 		return countFinalResult;
 	}
 
-	public void setCountFinalResult(boolean countFinalResult) {
+	public void setCountFinalResult(final boolean countFinalResult) {
 		this.countFinalResult = countFinalResult;
 	}
 
@@ -222,39 +175,15 @@ public class Settings extends Model {
 		return enableRegistration;
 	}
 
-	public void setEnableRegistration(boolean enableRegistration) {
+	public void setEnableRegistration(final boolean enableRegistration) {
 		this.enableRegistration = enableRegistration;
 	}
 
-	public String getLastTweet() {
-		return lastTweet;
+	public String getAppName() {
+		return appName;
 	}
 
-	public void setLastTweet(String lastTweet) {
-		this.lastTweet = lastTweet;
-	}
-
-	public String getDbName() {
-		return dbName;
-	}
-
-	public void setDbName(String dbName) {
-		this.dbName = dbName;
-	}
-
-	public int getDbVersion() {
-		return dbVersion;
-	}
-
-	public void setDbVersion(int dbVersion) {
-		this.dbVersion = dbVersion;
-	}
-
-	public String getTheme() {
-		return theme;
-	}
-
-	public void setTheme(String theme) {
-		this.theme = theme;
+	public void setAppName(final String appName) {
+		this.appName = appName;
 	}
 }

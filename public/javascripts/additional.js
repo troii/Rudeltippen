@@ -11,7 +11,7 @@ function load(item, url) {
 		}
 	});
 	$('.footer').hide();
-	$('.span9').html('<p><img src="/public/images/ajax-loader.gif" border="0"/></p>');
+	$('.span9').html('<p><img src="/public/img/ajax-loader.gif" border="0"/></p>');
 	$('.span9').load(url, function() {
 		$('.span9').fadeIn('slow');
 	});
@@ -31,7 +31,7 @@ function loadJS(item, url) {
 		}
 	});
 	$('.footer').hide();
-	$('.span9').html('<p><img src="/public/images/ajax-loader.gif" border="0"/></p>');
+	$('.span9').html('<p><img src="/public/img/ajax-loader.gif" border="0"/></p>');
 	$('.span9').load(url, function() {
 		$('.span9').fadeIn('slow');
 	});

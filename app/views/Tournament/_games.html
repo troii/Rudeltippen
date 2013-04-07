@@ -19,7 +19,7 @@
 				<td class="hidden-phone">${game.kickoff.formatted()}</td>
 				#{if game.homeTeam != null}
 					#{if game.homeTeam.flag != null}
-						<td><img class="flag" src="@{'/public/images/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
+						<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
 					#{/if}
 					#{else}
 						<td>&{game.homeTeam?.name}</td>
@@ -30,7 +30,7 @@
 				#{/else}
 				#{if game.awayTeam != null}
 					#{if game.awayTeam.flag != null}
-						<td><img class="flag" src="@{'/public/images/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
+						<td><img class="flag" src="@{'/public/img/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
 					#{/if}
 					#{else}
 						<td>&{game.awayTeam?.name}</td>

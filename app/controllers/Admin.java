@@ -28,7 +28,6 @@ import play.libs.F.Promise;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
-import utils.ViewUtils;
 
 @With(Auth.class)
 @CheckAccess("admin")
@@ -129,7 +128,6 @@ public class Admin extends Root implements AppConstants {
 		validation = ValidationUtils.getSettingsValidations(
 				validation,
 				"tournament",
-				name,
 				pointsGameWin,
 				pointsGameDraw,
 				pointsTip,
@@ -137,18 +135,13 @@ public class Admin extends Root implements AppConstants {
 				pointsTipTrend,
 				minutesBeforeTip,
 				maxPictureSize,
-				timeZoneString,
-				dateString,
-				dateTimeLang,
-				timeString,
-				theme,
 				countFinalResult,
 				informOnNewTipper,
 				enableRegistration);
 
 		if (!validation.hasErrors()) {
 			final Settings settings = Settings.find("byAppName", APPNAME).first();
-			settings.setName(name);
+			settings.setGameName(name);
 			settings.setPointsGameWin(pointsGameWin);
 			settings.setPointsGameDraw(pointsGameDraw);
 			settings.setPointsTip(pointsTip);
@@ -156,14 +149,9 @@ public class Admin extends Root implements AppConstants {
 			settings.setPointsTipTrend(pointsTipTrend);
 			settings.setMinutesBeforeTip(minutesBeforeTip);
 			settings.setInformOnNewTipper(informOnNewTipper);
-			settings.setTimeZoneString(timeZoneString);
-			settings.setDateString(dateString);
-			settings.setDateTimeLang(dateTimeLang);
-			settings.setTimeString(timeString);
 			settings.setCountFinalResult(countFinalResult);
 			settings.setEnableRegistration(enableRegistration);
 			settings.setMaxPictureSize(maxPictureSize);
-			settings.setTheme(theme);
 			settings._save();
 
 			flash.put("infomessage", Messages.get("setup.saved"));
@@ -180,9 +168,8 @@ public class Admin extends Root implements AppConstants {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
-		final List<String> themes = ViewUtils.getThemes();
 
-		flash.put("name", settings.getName());
+		flash.put("name", settings.getGameName());
 		flash.put("pointsGameWin", settings.getPointsGameWin());
 		flash.put("pointsGameDraw", settings.getPointsGameDraw());
 		flash.put("pointsTip", settings.getPointsTip());
@@ -190,17 +177,12 @@ public class Admin extends Root implements AppConstants {
 		flash.put("pointsTipTrend", settings.getPointsTipTrend());
 		flash.put("minutesBeforeTip", settings.getMinutesBeforeTip());
 		flash.put("informOnNewTipper", settings.isInformOnNewTipper());
-		flash.put("timeZoneString", settings.getTimeZoneString());
-		flash.put("dateString", settings.getDateString());
-		flash.put("dateTimeLang", settings.getDateTimeLang());
-		flash.put("timeString", settings.getTimeString());
 		flash.put("countFinalResult", settings.isCountFinalResult());
 		flash.put("enableRegistration", settings.isEnableRegistration());
 		flash.put("maxPictureSize", settings.getMaxPictureSize());
 		flash.put("enableRegistration", settings.isEnableRegistration());
-		flash.put("mytheme", settings.getTheme());
 
-		render(settings, timeZones, locales, themes);
+		render(settings, timeZones, locales);
 	}
 
 	public static void changeactive(final long userid) {

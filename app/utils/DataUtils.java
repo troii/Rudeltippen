@@ -133,23 +133,10 @@ public class DataUtils implements AppConstants{
 	}
 
 
-	public static void loadInitalData(final String tournament) {
+	public static void loadInitalData() {
 		Fixtures.deleteAllModels();
 		Fixtures.deleteDatabase();
-
-		if (("bl2012").equals(tournament)) {
-			Fixtures.loadModels("bl2012.yml");
-		} else {
-			Fixtures.loadModels("em2012.yml");
-		}
-	}
-
-	public static String getDbName(final String tournament) {
-		if (("bl2012").equals(tournament)) {
-			return "bl12";
-		}
-
-		return null;
+		Fixtures.loadModels("bl2012.yml");
 	}
 
 	public static Date getKickoffFromDocument(final Document document) {

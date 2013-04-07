@@ -17,7 +17,7 @@
 				#{list items:topUsers, as:'topUser'}
 					<tr>
 						#{if topUser.picture == null}
-							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" width="54" height="54" /></a></td>
+							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}
 						#{else}
 							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
@@ -54,8 +54,8 @@
                 #{list items:playday?.games, as:'game'}
                     <tr>
                         <td class="hidden-phone">${game.kickoff.formatted()}</td>
-                        <td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
-                        <td><img class="flag hidden-phone" src="@{'/public/images/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
+                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
+                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
                         <td>${game.getScore()}</td>
                         <td>${game.getGameTipAndPoints()}</td>
                         <td class="visible-desktop">${game.getTrend()}</td>

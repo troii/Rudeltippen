@@ -14,7 +14,7 @@
 		<tr #{if extraTips.entrySet().key.nickname == [connectedUser.nickname]} class="connecteduser" #{/if}>
 			#{list items:extraTips.entrySet(), as:'user'}
 				#{if user.key.picture == null}
-					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/images/user_placeholder.gif'}" /></a></td>
+					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" /></a></td>
 				#{/if}
 				#{else}
 					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>

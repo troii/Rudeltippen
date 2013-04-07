@@ -2,19 +2,12 @@ package controllers;
 
 import interfaces.AppConstants;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import models.Game;
-import models.Playday;
 import models.Settings;
 import models.User;
-
-import org.apache.commons.lang.StringUtils;
-import org.w3c.dom.Document;
-
 import play.Play;
 import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
@@ -22,11 +15,9 @@ import play.i18n.Messages;
 import play.libs.Codec;
 import play.mvc.Before;
 import play.mvc.Controller;
-import services.UpdateService;
 import utils.AppUtils;
 import utils.DataUtils;
 import utils.ValidationUtils;
-import utils.ViewUtils;
 
 public class System extends Controller implements AppConstants {
 	@Before
@@ -38,7 +29,7 @@ public class System extends Controller implements AppConstants {
 		final String appUsername = Play.configuration.getProperty("app.setup.username");
 		final String appUserpass = Play.configuration.getProperty("app.setup.password");
 
-		if (!appUsername.equals(requestUsername) || !appUserpass.equals(requestUserpass)) {
+		if (AppUtils.appIsInizialized() && (!appUsername.equals(requestUsername) || !appUserpass.equals(requestUserpass))) {
 			unauthorized("Rudeltippen Setup");
 		}
 	}
@@ -48,9 +39,8 @@ public class System extends Controller implements AppConstants {
 		final Settings settings = AppUtils.getSettings();
 		final List<String> timeZones = AppUtils.getTimezones();
 		final List<String> locales = AppUtils.getLanguages();
-		final List<String> themes = ViewUtils.getThemes();
 
-		render(settings, timeZones, locales, themes);
+		render(settings, timeZones, locales);
 	}
 
 	public static void init(final String name,
@@ -61,11 +51,6 @@ public class System extends Controller implements AppConstants {
 			final int pointsTipTrend,
 			final int minutesBeforeTip,
 			final int maxPictureSize,
-			final String timeZoneString,
-			final String dateString,
-			final String dateTimeLang,
-			final String timeString,
-			final String tournament,
 			final boolean countFinalResult,
 			final boolean informOnNewTipper,
 			final boolean enableRegistration,
@@ -73,14 +58,12 @@ public class System extends Controller implements AppConstants {
 			final String username,
 			final String usernameConfirmation,
 			final String userpass,
-			final String userpassConfirmation,
-			final String theme
+			final String userpassConfirmation
 			) {
 		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation = ValidationUtils.getSettingsValidations(
 				validation,
-				tournament,
 				usernameConfirmation,
 				pointsGameWin,
 				pointsGameDraw,
@@ -89,11 +72,6 @@ public class System extends Controller implements AppConstants {
 				pointsTipTrend,
 				minutesBeforeTip,
 				maxPictureSize,
-				timeZoneString,
-				dateString,
-				dateTimeLang,
-				timeString,
-				theme,
 				countFinalResult,
 				informOnNewTipper,
 				enableRegistration);
@@ -109,7 +87,7 @@ public class System extends Controller implements AppConstants {
 			session.clear();
 			response.removeCookie("rememberme");
 
-			DataUtils.loadInitalData(tournament);
+			DataUtils.loadInitalData();
 
 			final List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
 			final List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
@@ -121,7 +99,7 @@ public class System extends Controller implements AppConstants {
 			final Settings settings = new Settings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
 			settings.setAppName(APPNAME);
-			settings.setName(name);
+			settings.setGameName(name);
 			settings.setPointsGameWin(pointsGameWin);
 			settings.setPointsGameDraw(pointsGameDraw);
 			settings.setPointsTip(pointsTip);
@@ -129,18 +107,11 @@ public class System extends Controller implements AppConstants {
 			settings.setPointsTipTrend(pointsTipTrend);
 			settings.setMinutesBeforeTip(minutesBeforeTip);
 			settings.setInformOnNewTipper(informOnNewTipper);
-			settings.setTimeZoneString(timeZoneString);
-			settings.setDateString(dateString);
-			settings.setDateTimeLang(dateTimeLang);
-			settings.setTimeString(timeString);
 			settings.setPlayoffs(hasPlayoffs);
-			settings.setPrePlayoffGames(prePlayoffGames.size());
+			settings.setNumPrePlayoffGames(prePlayoffGames.size());
 			settings.setCountFinalResult(countFinalResult);
 			settings.setEnableRegistration(enableRegistration);
 			settings.setMaxPictureSize(maxPictureSize);
-			settings.setTheme(theme);
-			settings.setDbVersion(0);
-			settings.setDbName(DataUtils.getDbName(tournament));
 			settings._save();
 
 			final User user = new User();

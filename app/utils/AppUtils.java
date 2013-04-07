@@ -1059,17 +1059,12 @@ public class AppUtils implements AppConstants{
 		return message;
 	}
 
-	/**
-	 * Returns the current timezine from the settings
-	 * @return The timezone String (e.g. "Europe/Berlin")
-	 */
 	public static String getCurrentTimeZone() {
-		final Settings settings = getSettings();
-		String timeZone = settings.getTimeZoneString();
-		if (StringUtils.isBlank(timeZone)) {
-			timeZone = DEFAULT_TIMEZONE;
-		}
+		//TODO need to put this in the config file
+		return Play.configuration.getProperty("TimeZone");
+	}
 
-		return timeZone;
+	public static boolean appIsInizialized() {
+		return getSettings() != null ? true : false;
 	}
 }

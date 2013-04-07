@@ -2,9 +2,7 @@ package utils;
 
 import interfaces.AppConstants;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,14 +14,12 @@ import models.Extra;
 import models.ExtraTip;
 import models.Game;
 import models.GameTip;
-import models.Settings;
 import models.Team;
 import models.User;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
-import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
@@ -57,7 +53,7 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 				difference = Messages.get("in.month" + pluralize(months), months);
 			} else {
 				final long years = delta / YEAR;
-				difference = Messages.get("in.year" + pluralize(years), years);				
+				difference = Messages.get("in.year" + pluralize(years), years);
 			}
 		} else {
 			difference = Messages.get("in.ended");
@@ -67,9 +63,9 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 	}
 
 	public static String formatted (final Date date) {
-		final Settings settings = AppUtils.getSettings();
-		final String dateString = settings.getDateString();
-		final String timeString = settings.getTimeString();
+		//TODO Need to put this in the configuration file
+		final String dateString = "dd.mm.yyyy";
+		final String timeString = "hh:mm:ss";
 
 		String lang = Lang.get();
 		if (StringUtils.isBlank(lang)) {
@@ -395,38 +391,6 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 		}
 
 		return trend;
-	}
-
-	public static List<String> getThemes() {
-		final List<String> themes = new ArrayList<String>();
-		themes.add("amelia");
-		themes.add("cerulean");
-		themes.add("cyborg");
-		themes.add("journal");
-		themes.add("readable");
-		themes.add("simplex");
-		themes.add("slate");
-		themes.add("spacelab");
-		themes.add("spruce");
-		themes.add("superhero");
-		themes.add("united");
-
-		return themes;
-	}
-
-	public static String getTheme() {
-		final Settings settings = AppUtils.getSettings();
-		String theme = "cerulean";
-		if (settings != null) {
-			theme = settings.getTheme();
-
-			final File file = Play.getFile("/public/stylesheets/" + theme + ".css");
-			if (!file.exists()) {
-				theme = "cerulean";
-			}
-		}
-
-		return theme;
 	}
 
 	public static String getScore(final Game game) {

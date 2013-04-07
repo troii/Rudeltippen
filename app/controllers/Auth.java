@@ -29,9 +29,8 @@ import services.MailService;
 import services.TwitterService;
 import utils.AppUtils;
 import utils.ValidationUtils;
-import utils.ViewUtils;
 
-public class Auth extends Controller implements AppConstants{
+public class Auth extends Root implements AppConstants{
 	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm"})
 	protected static void checkAccess() throws Throwable {
 		AppUtils.setAppLanguage();
@@ -60,7 +59,6 @@ public class Auth extends Controller implements AppConstants{
 		} else {
 			renderArgs.put("isEnableRegistration", settings.isEnableRegistration());
 		}
-		renderArgs.put("theme", ViewUtils.getTheme());
 	}
 
 	private static void check(final CheckAccess check) throws Throwable {

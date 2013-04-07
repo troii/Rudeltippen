@@ -30,7 +30,7 @@ public class MailService extends Mailer {
 			setFrom(from);
 			setReplyTo(replyto);
 			addRecipient(recipient);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.reminder")));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.reminder")));
 			send(AppUtils.getMailTemplate("reminder"), user, games, settings, extras);
 		} else {
 			Logger.error("Tryed to sent reminder, but recipient was invalid.");
@@ -64,7 +64,7 @@ public class MailService extends Mailer {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(user.getUsername());
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + subject));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
 			send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
 		} else {
 			Logger.error("Tryed to sent confirmation e-mail, but user or confirmType was null or recipient e-mail was invalid.");
@@ -82,7 +82,7 @@ public class MailService extends Mailer {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.newpassword")));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.newpassword")));
 			send(AppUtils.getMailTemplate("newuserpass"), user, userpass, appUrl);
 		} else {
 			Logger.error("Tryed to sent new passwort, but recipient was invalid or userpass was null.");
@@ -98,7 +98,7 @@ public class MailService extends Mailer {
 			setFrom(from);
 			setReplyTo(replyto);
 			addRecipient(admin.getUsername());
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.newuser")));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.newuser")));
 			send(AppUtils.getMailTemplate("newuser"), user, settings);
 		} else {
 			Logger.error("Tryed to sent new user e-mail to admin, but recipient was invalid or user was null.");
@@ -114,7 +114,7 @@ public class MailService extends Mailer {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(recipient);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + Messages.get("mails.subject.updatefailed")));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.updatefailed")));
 			send(AppUtils.getMailTemplate("error"), response);
 		} else {
 			Logger.error("Tryed to sent info on webservice, but recipient was invalid or response was null.");
@@ -131,7 +131,7 @@ public class MailService extends Mailer {
 			setReplyTo(replyto);
 			setFrom(from);
 			addRecipient(user.getUsername());
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getName() + "] " + subject));
+			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
 			send(AppUtils.getMailTemplate("notifications"), notification);
 		} else {
 			Logger.error("Tryed to sent result notification, but recipient was invalid or notification was null.");
