@@ -320,7 +320,6 @@ public class UnitTests extends UnitTest implements AppConstants{
 		final String response = "foobar";
 		final String message = "foobar";
 		final String token = "foobar";
-		final String userpass = "foobar";
 		final String notification = "foobar";
 		final ConfirmationType confirmationType = ConfirmationType.ACTIVATION;
 
@@ -329,7 +328,6 @@ public class UnitTests extends UnitTest implements AppConstants{
 
 		MailService.confirm(user, token, confirmationType);
 		MailService.newuser(user, admin);
-		MailService.newuserpass(user, userpass);
 		MailService.notifications(notification, "foo@bar.com", admin);
 		MailService.error(response, "foo@bar.com");
 		TwitterService.updateStatus(message);

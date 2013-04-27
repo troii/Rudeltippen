@@ -6,10 +6,10 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="hidden-phone">&{'tipper'}</th>
+						<th>&{'tipper'}</th>
 						<th>&{'nickname'}</th>
-						<th class="visible-desktop">&{'points'}</th>
-						<th class="visible-desktop">&{'extrapoints'}</th>
+						<th>&{'points'}</th>
+						<th>&{'extrapoints'}</th>
 						<th>&{'totalpoints'}</th>
 					</tr>
 				</thead>
@@ -17,14 +17,14 @@
 				#{list items:topUsers, as:'topUser'}
 					<tr>
 						#{if topUser.picture == null}
-							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+							<td><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}
 						#{else}
-							<td class="hidden-phone"><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
+							<td><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
 						#{/else}
 						<td><b><a href="@{users.show()}/${topUser.nickname}">${topUser.nickname}</a></b></td>
-						<td class="visible-desktop">${topUser.tipPoints}</td>
-						<td class="visible-desktop">${topUser.extraPoints}</td>
+						<td>${topUser.tipPoints}</td>
+						<td>${topUser.extraPoints}</td>
 						<td><b>${topUser.points}</b></td>
 					</tr>
 				#{/list}
@@ -42,23 +42,23 @@
 			<table class="table">
             <thead>
                 <tr>
-                    <th class="hidden-phone">&{'date'}</th>
+                    <th>&{'date'}</th>
                     <th>&{'hometeam'}</th>
                     <th>&{'awayteam'}</th>
                     <th>&{'result'}</th>
                     <th>&{'yourbet'}</th>
-                    <th class="visible-desktop">&{'tendence'}</th>
+                    <th>&{'tendence'}</th>
                 </tr>
             </thead>
             <tbody>
                 #{list items:playday?.games, as:'game'}
                     <tr>
-                        <td class="hidden-phone">${game.kickoff.formatted()}</td>
-                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
-                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
+                        <td>${game.kickoff.formatted()}</td>
+                        <td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
+                        <td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
                         <td>${game.getScore()}</td>
                         <td>${game.getGameTipAndPoints()}</td>
-                        <td class="visible-desktop">${game.getTrend()}</td>
+                        <td>${game.getTrend()}</td>
                     </tr>
                 #{/list}
                 #{else}

@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 <div class="span">
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span4">
 			<h2>&{'changenickname'}</h2>
 			#{form @Users.updatenickname(), class:'form-horizontal well'}
 				<div class="control-group #{ifError 'nickname'} error #{/ifError}">
@@ -18,7 +18,7 @@
 				</div>
 			#{/form}
 		</div>
-		<div class="span6 visible-desktop">
+		<div class="span4 visible-desktop">
 			<h2>&{'changepicture'}</h2>
 			#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
 				<div class="control-group #{ifError 'picture'} error #{/ifError}">
@@ -42,35 +42,35 @@
 				</div>
 			#{/form}
 		</div>
+        <div class="span4">
+            <h2>&{'changepassword'}</h2>
+            #{form @Users.updatepassword(), class:'form-horizontal well'}
+                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
+                    <label for="userpass" class="control-label">&{'newpassword'}</label>
+                    <div class="controls">
+                        <input type="password" value="" id="userpass" name="userpass" class="input-medium">
+                        #{ifError 'userpass'}
+                            <span class="help-inline">#{error 'userpass' /}</span>
+                        #{/ifError}
+                    </div>
+                </div>
+                <div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
+                    <label for="userpassConfirmation" class="control-label">&{'newpasswordconfirm'}</label>
+                    <div class="controls">
+                        <input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
+                        #{ifError 'userpassConfirmation'}
+                            <span class="help-inline">#{error 'userpassConfirmation' /}</span>
+                        #{/ifError}
+                    </div>
+                </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
+            </div>
+            #{/form}
+        </div>		
 	</div>
 	<div class="row-fluid">
-		<div class="span6">
-			<h2>&{'changepassword'}</h2>
-			#{form @Users.updatepassword(), class:'form-horizontal well'}
-				<div class="control-group #{ifError 'userpass'} error #{/ifError}">
-					<label for="userpass" class="control-label">&{'newpassword'}</label>
-					<div class="controls">
-						<input type="password" value="" id="userpass" name="userpass" class="input-medium">
-						#{ifError 'userpass'}
-							<span class="help-inline">#{error 'userpass' /}</span>
-						#{/ifError}
-					</div>
-				</div>
-				<div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
-					<label for="userpassConfirmation" class="control-label">&{'newpasswordconfirm'}</label>
-					<div class="controls">
-						<input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
-						#{ifError 'userpassConfirmation'}
-							<span class="help-inline">#{error 'userpassConfirmation' /}</span>
-						#{/ifError}
-					</div>
-				</div>
-			<div class="form-actions">
-				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
-			</div>
-			#{/form}
-		</div>
-		<div class="span6">
+		<div class="span4">
 			<h2>&{'changeemail'}</h2>
 			#{form @Users.updateusername(), class:'form-horizontal well'}
 				<div class="control-group #{ifError 'username'} error #{/ifError}">
@@ -96,26 +96,24 @@
 				</div>
 			#{/form}
 		</div>
-	</div>
-	<div class="row-fluid">
-		<div class="span6">
-			<h2>&{'changenotifications'}</h2>
-			#{form @Users.updatenotifications(), class:'form-horizontal well'}
-				<div class="control-group">
-					<div class="controls">
-						<label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
-					</div>
-					<div class="controls">
-						<label class="checkbox"> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
-					</div>	
-					<div class="controls">
-						<label class="checkbox"> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
-					</div>										
-				</div>
-				<div class="form-actions">
-					<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
-				</div>
-			#{/form}
-		</div>
+        <div class="span4">
+            <h2>&{'changenotifications'}</h2>
+            #{form @Users.updatenotifications(), class:'form-horizontal well'}
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
+                    </div>
+                    <div class="controls">
+                        <label class="checkbox"> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
+                    </div>  
+                    <div class="controls">
+                        <label class="checkbox"> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
+                    </div>                                      
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
+                </div>
+            #{/form}
+        </div>		
 	</div>
 </div>

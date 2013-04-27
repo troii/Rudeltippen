@@ -22,6 +22,9 @@ public class Team extends Model{
 	@Column(nullable=false)
 	private String name;
 
+	@Column(nullable=false)
+	private String showrtName;
+
 	@ManyToOne
 	private Bracket bracket;
 
@@ -48,7 +51,7 @@ public class Team extends Model{
 	private int previousPlace;
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(final String name) {
@@ -56,7 +59,7 @@ public class Team extends Model{
 	}
 
 	public Bracket getBracket() {
-		return bracket;
+		return this.bracket;
 	}
 
 	public void setBracket(final Bracket bracket) {
@@ -64,7 +67,7 @@ public class Team extends Model{
 	}
 
 	public List<Game> getHomeGames() {
-		return homeGames;
+		return this.homeGames;
 	}
 
 	public void setHomeGames(final List<Game> homeGames) {
@@ -72,7 +75,7 @@ public class Team extends Model{
 	}
 
 	public List<Game> getAwayGames() {
-		return awayGames;
+		return this.awayGames;
 	}
 
 	public void setAwayGames(final List<Game> awayGames) {
@@ -80,7 +83,7 @@ public class Team extends Model{
 	}
 
 	public String getFlag() {
-		return flag;
+		return this.flag;
 	}
 
 	public void setFlag(final String flag) {
@@ -88,7 +91,7 @@ public class Team extends Model{
 	}
 
 	public int getPoints() {
-		return points;
+		return this.points;
 	}
 
 	public void setPoints(final int points) {
@@ -96,7 +99,7 @@ public class Team extends Model{
 	}
 
 	public int getGoalsFor() {
-		return goalsFor;
+		return this.goalsFor;
 	}
 
 	public void setGoalsFor(final int goalsFor) {
@@ -104,7 +107,7 @@ public class Team extends Model{
 	}
 
 	public int getGoalsAgainst() {
-		return goalsAgainst;
+		return this.goalsAgainst;
 	}
 
 	public void setGoalsAgainst(final int goalsAgainst) {
@@ -112,7 +115,7 @@ public class Team extends Model{
 	}
 
 	public int getGoalsDiff() {
-		return goalsDiff;
+		return this.goalsDiff;
 	}
 
 	public void setGoalsDiff(final int goalsDiff) {
@@ -120,7 +123,7 @@ public class Team extends Model{
 	}
 
 	public int getGamesPlayed() {
-		return gamesPlayed;
+		return this.gamesPlayed;
 	}
 
 	public void setGamesPlayed(final int gamesPlayed) {
@@ -128,7 +131,7 @@ public class Team extends Model{
 	}
 
 	public int getGamesWon() {
-		return gamesWon;
+		return this.gamesWon;
 	}
 
 	public void setGamesWon(final int gamesWon) {
@@ -136,7 +139,7 @@ public class Team extends Model{
 	}
 
 	public int getGamesDraw() {
-		return gamesDraw;
+		return this.gamesDraw;
 	}
 
 	public void setGamesDraw(final int gamesDraw) {
@@ -144,7 +147,7 @@ public class Team extends Model{
 	}
 
 	public int getGamesLost() {
-		return gamesLost;
+		return this.gamesLost;
 	}
 
 	public void setGamesLost(final int gamesLost) {
@@ -152,7 +155,7 @@ public class Team extends Model{
 	}
 
 	public int getPlace() {
-		return place;
+		return this.place;
 	}
 
 	public void setPlace(final int place) {
@@ -160,7 +163,7 @@ public class Team extends Model{
 	}
 
 	public int getPreviousPlace() {
-		return previousPlace;
+		return this.previousPlace;
 	}
 
 	public void setPreviousPlace(final int previousPlace) {
@@ -169,10 +172,18 @@ public class Team extends Model{
 
 	public String nameUnescaped() {
 		if (StringUtils.isNotBlank(this.name)) {
-			String name = Messages.get(this.name);
+			final String name = Messages.get(this.name);
 			return StringEscapeUtils.unescapeHtml(name);
 		}
 
 		return "";
+	}
+
+	public String getShowrtName() {
+		return this.showrtName;
+	}
+
+	public void setShowrtName(final String showrtName) {
+		this.showrtName = showrtName;
 	}
 }

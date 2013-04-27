@@ -77,3 +77,7 @@ $(document).ready(function(){
 	    } );		
 	}
 });
+
+$(function() {
+  $('.table').footable();
+});

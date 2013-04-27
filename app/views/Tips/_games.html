@@ -3,11 +3,11 @@
 		<thead>
 			<tr>
 				<th colspan="4"><h2>&{playday.name}</h2></th>
-				<th colspan="4" style="text-align: right;">#{if previousPlayday != null}<a href="javascript:load(1, '@{tips.games()}/${previousPlayday.number}');"><i class="icon-arrow-left"></i> <span class="visible-desktop">&{previousPlayday.name}</span></a>#{/if}   #{if nextPlayday != null}<a href="javascript:load(1, '@{tips.games()}/${nextPlayday.number}');"><span class="visible-desktop">&{nextPlayday.name}</span> <i class="icon-arrow-right"></i></a>#{/if}</th>
+				<th colspan="4" style="text-align: right;">#{if previousPlayday != null}<a href="javascript:load(1, '@{tips.games()}/${previousPlayday.number}');"><i class="icon-arrow-left"></i> <span>&{previousPlayday.name}</span></a>#{/if}   #{if nextPlayday != null}<a href="javascript:load(1, '@{tips.games()}/${nextPlayday.number}');"><span>&{nextPlayday.name}</span> <i class="icon-arrow-right"></i></a>#{/if}</th>
 			</tr>
 			<tr>
-				<th class="visible-desktop">&{'date'} - &{'time'}</th>
-				<th class="visible-desktop">&{'betending'}</th>
+				<th>&{'date'} - &{'time'}</th>
+				<th>&{'betending'}</th>
 				<th>&{'hometeam'}</th>
 				<th>&{'awayteam'}</th>
 				<th class="hidden-phone">&{'result'}</div></th>
@@ -17,8 +17,8 @@
 		<tbody>
 			#{list items:playday?.games, as:'game'}
 				<tr>
-					<td class="visible-desktop">${game.kickoff.formatted()}</td>
-					<td class="visible-desktop">${game.tippEnding.difference()}</td>
+					<td>${game.kickoff.formatted()}</td>
+					<td>${game.tippEnding.difference()}</td>
 					#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
 						<td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
 						<td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
