@@ -1,3 +1,0 @@
-Version 1.3.0 had some major changes in the data structure, so if you have a previous installation of Rudeltippen you have to completly re-install Rudeltippen.
-
-Also the configuration has changed. So the a complete reinstall and resetup is required.
