@@ -8,6 +8,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import models.enums.ConfirmationType;
+
 import play.db.jpa.Model;
 
 @Entity

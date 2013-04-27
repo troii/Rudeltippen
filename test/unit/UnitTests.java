@@ -11,13 +11,13 @@ import jobs.CleanupJob;
 import jobs.ReminderJob;
 import jobs.ResultsJob;
 import jobs.StandingsJob;
-import models.ConfirmationType;
 import models.Game;
 import models.Settings;
 import models.Team;
 import models.User;
 import models.WSResult;
 import models.WSResults;
+import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;

@@ -15,6 +15,7 @@ GET     /robots.txt                             staticFile:public/robots.txt
 
 # App routes
 GET	    /auth/confirm/{token}			        auth.confirm
+GET     /auth/password/{token}                  auth.password
 GET		/tips									tips.index
 GET	    /tips/overview					        tips.overview
 GET	    /tips/extra					            tips.extra

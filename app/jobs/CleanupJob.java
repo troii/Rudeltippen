@@ -3,10 +3,10 @@ package jobs;
 import java.util.List;
 
 import models.Confirmation;
-import models.ConfirmationType;
 import models.ExtraTip;
 import models.GameTip;
 import models.User;
+import models.enums.ConfirmationType;
 import play.Logger;
 import play.jobs.On;
 import utils.AppUtils;

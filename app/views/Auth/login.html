@@ -30,6 +30,9 @@
 		<div class="form-actions">
 			<button class="btn btn-primary" data-loading-text="&{'login'}..." id="fat-btn" type="submit" data-toggle="button">&{'login'}</button>
 			<br />
+			#{if isEnableRegistration}
+			<br /><a href="@{auth.register()}">Bist Du neu bei Rudeltippen?</a>
+			#{/if}
 			<br /><a href="@{auth.forgotten()}">&{'forgotten'}</a>
 		</div>
 	</fieldset>

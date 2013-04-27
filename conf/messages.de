@@ -439,4 +439,5 @@ werderbremen=Werder Bremen
 wroclaw=Breslau
 yes=Ja
 youranswer=Deine Tipp
-yourbet=Dein Tipp
+yourbet=Dein Tippnewpassword=Bitte gib ein neues Passwort ein
+controller.auth.passwordreset=Dein Passwort wurde erfolgreich zurückgesetzt!

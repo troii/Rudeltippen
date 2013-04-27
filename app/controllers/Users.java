@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import models.Confirmation;
-import models.ConfirmationType;
 import models.Extra;
 import models.ExtraTip;
 import models.Game;
@@ -19,6 +18,7 @@ import models.GameTip;
 import models.Settings;
 import models.Statistic;
 import models.User;
+import models.enums.ConfirmationType;
 import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.Transactional;

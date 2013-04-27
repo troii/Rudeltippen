@@ -1,5 +1,5 @@
 body {
-    padding-top: 60px;
+    padding-top: 80px;
     padding-bottom: 40px;
 }
 
@@ -22,6 +22,10 @@ body {
 
 .connecteduser {
     background-color: #EDEBE1;
+}
+
+.form-actions {
+	background-color: inherit;;
 }
 
 .icon-red{background-image:url("../img/glyphicons-halflings-red.png");}

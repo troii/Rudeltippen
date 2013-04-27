@@ -57,16 +57,6 @@
 	            </ul>
 	      </div>
 	      #{/if}
-	      #{else}
-	      <div class="nav-collapse">
-	        <ul class="nav">
-	            <li #{if request.action == "Auth.login" } class="active" #{/if}><a href="@{auth.login()}">&{'login'}</a></li>
-	            #{if isEnableRegistration}
-	            	<li #{if request.action == "Auth.register" } class="active" #{/if}><a href="@{auth.register()}">&{'registration'}</a></li>
-	        	#{/if}
-	      	</ul>
-	      </div>
-	      #{/else}
         </div>
       </div>
     </div>

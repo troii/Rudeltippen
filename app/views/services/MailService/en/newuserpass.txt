@@ -1,5 +1,0 @@
-Hello ${user.nickname}!
-
-Your password has been reset and you can now login with the following password:
-
-${userpass}

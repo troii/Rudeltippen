@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import models.Confirmation;
-import models.ConfirmationType;
 import models.Settings;
 import models.User;
+import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,7 +31,7 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 
 public class Auth extends Root implements AppConstants{
-	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm"})
+	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm", "password", "reset", "renew"})
 	protected static void checkAccess() throws Throwable {
 		AppUtils.setAppLanguage();
 
@@ -68,6 +68,53 @@ public class Auth extends Root implements AppConstants{
 				Security.invoke("onCheckFailed", profile);
 			}
 		}
+	}
+
+	public static void password(final String token) {
+		final Confirmation confirmation = Confirmation.find("byToken", token).first();
+		if (confirmation == null) {
+			flash.put("warningmessage", Messages.get("controller.users.invalidtoken"));
+			flash.keep();
+			redirect("/auth/login");
+		}
+
+		render(token);
+	}
+
+	public static void reset(final String username) {
+		if (AppUtils.verifyAuthenticity()) {
+			checkAuthenticity();
+		}
+
+		validation.required(username);
+		validation.isTrue(ValidationUtils.usernameExists(username)).key("username").message("validation.userNotExists");
+		validation.email(username);
+
+		if (validation.hasErrors()) {
+			flash.put("errormessage", Messages.get("controller.auth.resenderror"));
+			validation.keep();
+			params.flash();
+			forgotten();
+		} else {
+			final User user = User.find("byUsername", username).first();
+			if (user != null) {
+				final String token = Codec.UUID();
+				final ConfirmationType confirmType = ConfirmationType.NEWUSERPASS;
+				final Confirmation confirmation = new Confirmation();
+				confirmation.setUser(user);
+				confirmation.setToken(token);
+				confirmation.setConfirmType(confirmType);
+				confirmation.setConfirmValue(Crypto.encryptAES(Codec.UUID()));
+				confirmation.setCreated(new Date());
+				confirmation._save();
+
+				MailService.confirm(user, token, confirmType);
+				flash.put("infomessage", Messages.get("confirm.message"));
+				login();
+			}
+		}
+		flash.keep();
+		redirect("/");
 	}
 
 	public static void confirm(final String token) throws Throwable {
@@ -116,14 +163,6 @@ public class Auth extends Root implements AppConstants{
 			session.remove("username");
 			Logger.info(user.getUsername() + " changed his password");
 			flash.put("infomessage", Messages.get("controller.users.changeduserpass"));
-		} else if ((ConfirmationType.FORGOTUSERPASS).equals(confirmationType)) {
-			final String userpass = AppUtils.generatePassword(12);
-			user.setUserpass(AppUtils.hashPassword(userpass, user.getSalt()));
-			user._save();
-			session.remove("username");
-			MailService.newuserpass(user, userpass);
-			Logger.info("New password was send to: " + user.getUsername());
-			flash.put("infomessage", Messages.get("controller.users.forgotuserpass"));
 		}
 		confirmation._delete();
 	}
@@ -232,43 +271,40 @@ public class Auth extends Root implements AppConstants{
 		render();
 	}
 
-	public static void resend(final String username) throws Throwable {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
-
-		validation.required(username);
-		validation.isTrue(ValidationUtils.usernameExists(username)).key("username").message("validation.userNotExists");
-		validation.email(username);
-
-		if (validation.hasErrors()) {
-			flash.put("errormessage", Messages.get("controller.auth.resenderror"));
-			validation.keep();
-			params.flash();
-			forgotten();
-		} else {
-			final User user = User.find("byUsername", username).first();
-			if (user != null) {
-				final String token = Codec.UUID();
-				final ConfirmationType confirmType = ConfirmationType.FORGOTUSERPASS;
-				final Confirmation confirmation = new Confirmation();
-				confirmation.setUser(user);
-				confirmation.setToken(token);
-				confirmation.setConfirmType(confirmType);
-				confirmation.setConfirmValue(Crypto.encryptAES(Codec.UUID()));
-				confirmation.setCreated(new Date());
-				confirmation._save();
-
-				MailService.confirm(user, token, confirmType);
-				flash.put("infomessage", Messages.get("confirm.message"));
-				login();
-			}
-		}
-		flash.keep();
-		redirect("/");
-	}
-
 	@Transactional(readOnly=true)
 	public static void forgotten() {
 		render();
+	}
+
+	public static void renew(final String token, final String userpass, final String userpassConfirmation) {
+		validation.required(token);
+		validation.match(token, CONFIRMATIONPATTERN);
+		validation.required(userpass);
+		validation.equals(userpass, userpassConfirmation);
+		validation.minSize(userpass, 8);
+		validation.maxSize(userpass, 32);
+
+		final Confirmation confirmation = Confirmation.find("byToken", token).first();
+		if (confirmation == null) {
+			flash.put("warningmessage", Messages.get("controller.users.invalidtoken"));
+			flash.keep();
+			redirect("/auth/login");
+		}
+
+		if (validation.hasErrors()) {
+			Validation.keep();
+			password(token);
+		} else {
+			final User user = confirmation.getUser();
+			final String password = AppUtils.hashPassword(userpass, user.getSalt());
+			user.setUserpass(password);
+			user._save();
+
+			confirmation._delete();
+			flash.put("infomessage", Messages.get("controller.auth.passwordreset"));
+			flash.keep();
+			redirect("/auth/login");
+		}
 	}
 
 	public static void authenticate(final String username, final String userpass, final boolean remember) {

@@ -11,11 +11,11 @@ import java.util.Set;
 
 import jobs.CalculationJob;
 import models.Confirmation;
-import models.ConfirmationType;
 import models.Game;
 import models.Playday;
 import models.Settings;
 import models.User;
+import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringUtils;
 

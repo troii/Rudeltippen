@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{form @Auth.resend(), class:'form-horizontal well'}
+#{form @Auth.reset(), class:'form-horizontal well'}
 	<fieldset>
 		<legend>&{'forgotten'}</legend>
 		<div class="control-group #{if errors[0] != null} error #{/if}">

@@ -2,11 +2,11 @@ package services;
 
 import java.util.List;
 
-import models.ConfirmationType;
 import models.Extra;
 import models.Game;
 import models.Settings;
 import models.User;
+import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
@@ -56,7 +56,7 @@ public class MailService extends Mailer {
 			} else if (ConfirmationType.CHANGEUSERPASS.equals(confirmationType)) {
 				subject = Messages.get("mails.subject.changeuserpass");
 				message = Messages.get("mails.message.changeuserpass");
-			} else if (ConfirmationType.FORGOTUSERPASS.equals(confirmationType)) {
+			} else if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
 				subject = Messages.get("mails.subject.forgotuserpass");
 				message = Messages.get("mails.message.forgotuserpass");
 			}
@@ -65,27 +65,13 @@ public class MailService extends Mailer {
 			setFrom(from);
 			addRecipient(user.getUsername());
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
-			send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+			if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
+				send(AppUtils.getMailTemplate("password"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+			} else {
+				send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+			}
 		} else {
 			Logger.error("Tryed to sent confirmation e-mail, but user or confirmType was null or recipient e-mail was invalid.");
-		}
-	}
-
-	public static void newuserpass(final User user, final String userpass) {
-		final Settings settings = AppUtils.getSettings();
-		final String appUrl = Play.configuration.getProperty("app.register.url");
-		final String replyto = Play.configuration.getProperty("mailservice.replyto");
-		final String from = Play.configuration.getProperty("mailservice.from");
-
-		final String recipient = user.getUsername();
-		if (ValidationUtils.isValidEmail(recipient) && StringUtils.isNotBlank(userpass)) {
-			setReplyTo(replyto);
-			setFrom(from);
-			addRecipient(recipient);
-			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.newpassword")));
-			send(AppUtils.getMailTemplate("newuserpass"), user, userpass, appUrl);
-		} else {
-			Logger.error("Tryed to sent new passwort, but recipient was invalid or userpass was null.");
 		}
 	}
 
