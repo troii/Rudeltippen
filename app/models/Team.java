@@ -22,9 +22,6 @@ public class Team extends Model{
 	@Column(nullable=false)
 	private String name;
 
-	@Column(nullable=false)
-	private String showrtName;
-
 	@ManyToOne
 	private Bracket bracket;
 
@@ -39,6 +36,7 @@ public class Team extends Model{
 	@Column(nullable=false)
 	private String flag;
 
+	private String showrtName;
 	private int points;
 	private int goalsFor;
 	private int goalsAgainst;

@@ -28,7 +28,6 @@ import models.User;
 import models.WSResult;
 import models.WSResults;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
@@ -39,9 +38,6 @@ import play.libs.Codec;
 import play.libs.Images;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
-import play.test.Fixtures;
-import services.MailService;
-import services.TwitterService;
 import controllers.Auth.Security;
 
 public class AppUtils implements AppConstants{
@@ -133,20 +129,6 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Generates a random string using RandomStringUtils.randomAlphanumeric
-	 *
-	 * @param length The length of the password, max. 30 letters
-	 * @return String with given length
-	 */
-	public static String generatePassword(int length) {
-		if ((length <= 0) || (length > 30)) {
-			length = 30;
-		}
-
-		return RandomStringUtils.randomAlphanumeric(length);
-	}
-
-	/**
 	 * Checks if the current application matches the defined job instance name
 	 *
 	 * @return true if current instance is job instance, false otherwise
@@ -160,30 +142,6 @@ public class AppUtils implements AppConstants{
 		}
 
 		return isInstance;
-	}
-
-	/**
-	 * Flushes the database, loads the test data and creates 100 users
-	 *
-	 * For TESTING purposes only!
-	 */
-	public static void initApp() {
-		Fixtures.deleteAllModels();
-		Fixtures.deleteDatabase();
-		Fixtures.loadModels("em2012.test.yml");
-
-		final String salt = "foo";
-		for (int i=1; i <= 100; i++) {
-			final User user = new User();
-			user.setAdmin(true);
-			user.setUsername("user" + i + "@rudeltippen.de");
-			user.setNickname("user" + i);
-			user.setRegistered(new Date());
-			user.setActive(true);
-			user.setSalt(salt);
-			user.setUserpass(AppUtils.hashPassword("user" + i, salt));
-			user._save();
-		}
 	}
 
 	/**
@@ -478,83 +436,6 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Generates a notifcation message for a given game
-	 *
-	 * @param game The game
-	 * @return The message
-	 */
-	public static String getTwitterNotificationMessage(final Game game) {
-		final StringBuilder buffer = new StringBuilder();
-		buffer.append(Messages.get("helper.tweetscore"));
-		buffer.append(" ");
-		buffer.append(Messages.get(game.getHomeTeam().getName()));
-		buffer.append(" - ");
-		buffer.append(Messages.get(game.getAwayTeam().getName()));
-		buffer.append(" ");
-		if (game.isOvertime()) {
-			buffer.append(game.getHomeScoreOT());
-			buffer.append(":");
-			buffer.append(game.getAwayScoreOT());
-			buffer.append(" (" + Messages.get(game.getOvertimeType()) + ")");
-		} else {
-			buffer.append(game.getHomeScore());
-			buffer.append(":");
-			buffer.append(game.getAwayScore());
-		}
-		buffer.append(" - " + Messages.get(game.getPlayday().getName()));
-
-		return buffer.toString();
-	}
-
-	/**
-	 * Generates a notifcation message for a given game
-	 *
-	 * @param game The game
-	 * @return The message
-	 */
-	public static String getEmailNotificationMessage(final User user, final Game game) {
-		final StringBuilder buffer = new StringBuilder();
-		final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
-
-		buffer.append(Messages.get("helper.tweetscore"));
-		buffer.append(" ");
-		buffer.append(Messages.get(game.getHomeTeam().getName()));
-		buffer.append(" - ");
-		buffer.append(Messages.get(game.getAwayTeam().getName()));
-		buffer.append(" ");
-		if (game.isOvertime()) {
-			buffer.append(game.getHomeScoreOT());
-			buffer.append(":");
-			buffer.append(game.getAwayScoreOT());
-			buffer.append(" (" + Messages.get(game.getOvertimeType()) + ")");
-		} else {
-			buffer.append(game.getHomeScore());
-			buffer.append(":");
-			buffer.append(game.getAwayScore());
-		}
-		buffer.append(" - " + Messages.get(game.getPlayday().getName()));
-		buffer.append("\n\n");
-		buffer.append(Messages.get("yourbet") + " " + gameTip.getHomeScore() + " : " + gameTip.getAwayScore());
-
-		return buffer.toString();
-	}
-
-	/**
-	 * Checks if in current instance twitter configuration is enabled
-	 *
-	 * @return true if enabled, false otherwise
-	 */
-	public static boolean isTweetable() {
-		boolean isTweetable = false;
-		final String tweetable = Play.configuration.getProperty("twitter.enable");
-		if (StringUtils.isNotBlank(tweetable) && "true".equals(tweetable)) {
-			isTweetable = true;
-		}
-
-		return isTweetable;
-	}
-
-	/**
 	 * Checks if all games in given list have ended
 	 *
 	 * @param games The games to check
@@ -715,25 +596,10 @@ public class AppUtils implements AppConstants{
 		}
 
 		if (!game.isEnded()) {
-			sendNotfications(game);
+			NotificationUtils.sendNotfications(game);
 			game.setEnded(true);
 		}
 		game._save();
-	}
-
-	/**
-	 * Sends notification to twitter and every user who wants to be informed on new results
-	 * @param game The game object
-	 */
-	private static void sendNotfications(final Game game) {
-		if (!game.isEnded()) {
-			TwitterService.updateStatus(getTwitterNotificationMessage(game));
-
-			final List<User> users = User.find("byNotification", true).fetch();
-			for (final User user : users) {
-				MailService.notifications(Messages.get("mails.subject.notification"), getEmailNotificationMessage(user, game), user);
-			}
-		}
 	}
 
 	/**
@@ -908,22 +774,6 @@ public class AppUtils implements AppConstants{
 		Logger.info("Updating results from WebService. " + game);
 		setGameScore(String.valueOf(game.getId()), homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
 		calculations();
-	}
-
-	/**
-	 * Checks if application uses the authenticity token
-	 *
-	 * @return true if check.authenticity is set in application.conf, false otherwise
-	 */
-	public static boolean verifyAuthenticity() {
-		final String check = Play.configuration.getProperty("check.authenticity");
-		boolean verify = false;
-
-		if (!("false").equalsIgnoreCase(check)) {
-			verify = true;
-		}
-
-		return verify;
 	}
 
 	/**

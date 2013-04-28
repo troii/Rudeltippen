@@ -82,7 +82,7 @@ public class Auth extends Root implements AppConstants{
 	}
 
 	public static void reset(final String username) {
-		if (AppUtils.verifyAuthenticity()) {
+		if (ValidationUtils.verifyAuthenticity()) {
 			checkAuthenticity();
 		}
 
@@ -192,7 +192,7 @@ public class Auth extends Root implements AppConstants{
 	}
 
 	public static void create(final String nickname, final String username, final String usernameConfirmation, final String userpass, final String userpassConfirmation) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final Settings settings = AppUtils.getSettings();
 		if (!settings.isEnableRegistration()) {
@@ -308,7 +308,7 @@ public class Auth extends Root implements AppConstants{
 	}
 
 	public static void authenticate(final String username, final String userpass, final boolean remember) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		Boolean allowed = false;
 		try {

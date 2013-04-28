@@ -65,7 +65,7 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 	public static String formatted (final Date date) {
 		//TODO Need to put this in the configuration file
 		final String dateString = "dd.mm.yyyy";
-		final String timeString = "hh:mm:ss";
+		final String timeString = "hh:mm";
 
 		String lang = Lang.get();
 		if (StringUtils.isBlank(lang)) {

@@ -16,7 +16,7 @@ public class Application extends Root {
 		final int pointsDiff = AppUtils.getPointsToFirstPlace();
 		final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
 		final Playday playday = AppUtils.getCurrentPlayday();
-		final List<User> topUsers = User.find("ORDER BY place ASC").fetch(3);
+		final List<User> topUsers = User.find("ORDER BY place ASC").fetch(5);
 		final long users = User.count();
 
 		render(topUsers, playday, users, diffToTop);

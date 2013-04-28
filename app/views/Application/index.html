@@ -9,8 +9,6 @@
 						<th>&{'tipper'}</th>
 						<th>&{'nickname'}</th>
 						<th>&{'points'}</th>
-						<th>&{'extrapoints'}</th>
-						<th>&{'totalpoints'}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,8 +21,6 @@
 							<td><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
 						#{/else}
 						<td><b><a href="@{users.show()}/${topUser.nickname}">${topUser.nickname}</a></b></td>
-						<td>${topUser.tipPoints}</td>
-						<td>${topUser.extraPoints}</td>
 						<td><b>${topUser.points}</b></td>
 					</tr>
 				#{/list}
@@ -39,7 +35,7 @@
 		</div>
 		<div class="span7">
 			<h2>&{playday.name}</h2>
-			<table class="table">
+			<table class="table table-striped">
             <thead>
                 <tr>
                     <th>&{'date'}</th>
@@ -47,18 +43,16 @@
                     <th>&{'awayteam'}</th>
                     <th>&{'result'}</th>
                     <th>&{'yourbet'}</th>
-                    <th>&{'tendence'}</th>
                 </tr>
             </thead>
             <tbody>
                 #{list items:playday?.games, as:'game'}
                     <tr>
                         <td>${game.kickoff.formatted()}</td>
-                        <td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
-                        <td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
+                        <td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&nbsp;&nbsp;&{game.homeTeam?.name}</td>
+                        <td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&nbsp;&nbsp;&{game.awayTeam?.name}</td>
                         <td>${game.getScore()}</td>
                         <td>${game.getGameTipAndPoints()}</td>
-                        <td>${game.getTrend()}</td>
                     </tr>
                 #{/list}
                 #{else}

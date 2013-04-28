@@ -10,6 +10,7 @@ import play.jobs.On;
 import services.MailService;
 import services.TwitterService;
 import utils.AppUtils;
+import utils.NotificationUtils;
 
 @On("0 0 3 * * ?")
 public class StandingsJob extends AppJob {
@@ -41,7 +42,7 @@ public class StandingsJob extends AppJob {
 				}
 				message = Messages.get("topthree") + ": " + buffer.toString();
 
-				if (AppUtils.isTweetable()) {
+				if (NotificationUtils.isTweetable()) {
 					TwitterService.updateStatus(message);
 				}
 

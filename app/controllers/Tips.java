@@ -21,12 +21,12 @@ import utils.ValidationUtils;
 @With(Auth.class)
 public class Tips extends Root {
 	@Transactional(readOnly=true)
-	public static void index(int number) {
+	public static void index(final int number) {
 		renderWrapper(number);
 	}
 
 	@Transactional(readOnly=true)
-	public static void games(int number) {
+	public static void games(final int number) {
 		renderWrapper(number);
 	}
 
@@ -49,7 +49,7 @@ public class Tips extends Root {
 		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
 
 		render(playdays, playday, number, currentPlayday, nextPlayday, previousPlayday);
-	}	
+	}
 
 	private static void renderWrapper() {
 		final List<Playday> playdays = Playday.findAll();
@@ -60,7 +60,7 @@ public class Tips extends Root {
 	}
 
 	public static void storetips() {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		int tipped = 0;
 		int playday = 1;
@@ -108,7 +108,7 @@ public class Tips extends Root {
 	}
 
 	public static void storeextratips() {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final Map<String, String> map = params.allSimple();
 		for (final Entry<String, String> entry : map.entrySet()) {

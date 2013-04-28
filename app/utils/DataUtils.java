@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import models.User;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -158,5 +160,24 @@ public class DataUtils implements AppConstants{
 		}
 
 		return date;
+	}
+
+	public static void initApp() {
+		Fixtures.deleteAllModels();
+		Fixtures.deleteDatabase();
+		Fixtures.loadModels("em2012.test.yml");
+
+		final String salt = "foo";
+		for (int i=1; i <= 100; i++) {
+			final User user = new User();
+			user.setAdmin(true);
+			user.setUsername("user" + i + "@rudeltippen.de");
+			user.setNickname("user" + i);
+			user.setRegistered(new Date());
+			user.setActive(true);
+			user.setSalt(salt);
+			user.setUserpass(AppUtils.hashPassword("user" + i, salt));
+			user._save();
+		}
 	}
 }

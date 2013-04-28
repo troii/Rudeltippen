@@ -57,7 +57,7 @@ public class Admin extends Root implements AppConstants {
 	}
 
 	public static void storeresults() {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final Map<String, String> map = params.allSimple();
 		final Set<String> keys = new HashSet<String>();
@@ -123,7 +123,7 @@ public class Admin extends Root implements AppConstants {
 			final boolean informOnNewTipper,
 			final boolean enableRegistration
 			) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation = ValidationUtils.getSettingsValidations(
 				validation,

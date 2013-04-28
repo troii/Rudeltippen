@@ -60,7 +60,7 @@ public class System extends Controller implements AppConstants {
 			final String userpass,
 			final String userpassConfirmation
 			) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation = ValidationUtils.getSettingsValidations(
 				validation,

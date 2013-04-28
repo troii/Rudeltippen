@@ -19,7 +19,6 @@ import models.WSResult;
 import models.WSResults;
 import models.enums.ConfirmationType;
 
-import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -198,8 +197,6 @@ public class UnitTests extends UnitTest implements AppConstants{
 	public void testAppUtils() {
 		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
 		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
-		assertTrue(!StringUtils.isNumeric(AppUtils.generatePassword(6)));
-		assertNotNull(AppUtils.generatePassword(6));
 		final Game g1 = new Game();
 		final Game g2 = new Game();
 		g1.setEnded(true);

@@ -57,7 +57,7 @@ public class Users extends Root implements AppConstants{
 			statistics.put("correctExtraTips", extraTips.size());
 
 			int tippedGames = 0;
-			for (GameTip tip : tips) {
+			for (final GameTip tip : tips) {
 				if (tip.getGame().isEnded()) {
 					tippedGames++;
 				}
@@ -65,7 +65,7 @@ public class Users extends Root implements AppConstants{
 
 			String tippQuote = "0 %";
 			if (tippedGames > 0) {
-				double quote = (100.00 / tippedGames) * correctTipps;
+				final double quote = (100.00 / tippedGames) * correctTipps;
 				tippQuote = df.format( quote );
 			}
 
@@ -75,8 +75,8 @@ public class Users extends Root implements AppConstants{
 				pointsPerTipp = df.format( pointsTipp );
 			}
 
-			List<Statistic> playdayStats = Statistic.find("byUser", user).fetch();
-			
+			final List<Statistic> playdayStats = Statistic.find("byUser", user).fetch();
+
 			render(user, statistics, pointsPerTipp, tippQuote, tippedGames, playdayStats);
 		} else {
 			redirect("/");
@@ -91,7 +91,7 @@ public class Users extends Root implements AppConstants{
 	}
 
 	public static void updatenickname(final String nickname) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(nickname);
 		validation.minSize(nickname, 3);
@@ -115,7 +115,7 @@ public class Users extends Root implements AppConstants{
 	}
 
 	public static void updateusername(final String username, final String usernameConfirmation) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(username);
 		validation.email(username);
@@ -147,7 +147,7 @@ public class Users extends Root implements AppConstants{
 	}
 
 	public static void updatepassword(final String userpass, final String userpassConfirmation) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(userpass);
 		validation.equals(userpass, userpassConfirmation);
@@ -180,7 +180,7 @@ public class Users extends Root implements AppConstants{
 	}
 
 	public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final User user = AppUtils.getConnectedUser();
 		user.setReminder(reminder);
@@ -196,7 +196,7 @@ public class Users extends Root implements AppConstants{
 	}
 
 	public static void updatepicture(final File picture) {
-		if (AppUtils.verifyAuthenticity()) { checkAuthenticity(); }
+		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		validation.required(picture);
 

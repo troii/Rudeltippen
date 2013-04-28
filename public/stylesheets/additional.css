@@ -41,3 +41,7 @@ table.table thead .sorting_asc { background: url('/public/img/datatables/sort_as
 table.table thead .sorting_desc { background: url('/public/img/datatables/sort_desc.png') no-repeat center right; }
 table.table thead .sorting_asc_disabled { background: url('/public/img/datatables/sort_asc_disabled.png') no-repeat center right; }
 table.table thead .sorting_desc_disabled { background: url('/public/img/datatables/sort_desc_disabled.png') no-repeat center right; }
+
+.pagination {
+    margin: 0px 0;
+}

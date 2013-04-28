@@ -1,20 +1,4 @@
 #{extends 'main.html' /}
-<div class="span3">
-	<div class="well sidebar-nav">
-		<ul class="nav nav-list">
-			#{if playoffs}
-				<li #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(0, '@{tournament.brackets()}');"><i class="icon-th-list"></i>  &{'groups'}</a></li>
-				<li class="nav-header">&{'playdays'}</li>
-				<li><a href="javascript:load(1, '@{tournament.preliminary()}');">&{'firstround'}</a></li>
-				<li><a href="javascript:load(2, '@{tournament.playoffs()}');">&{'playoffs'}</a></li>
-			#{/if}
-			#{else}
-				<li id="nav-first" #{if request.action == "Tournament.index" } class="active" #{/if}><a href="javascript:load(0, '@{tournament.brackets()}');"><i class="icon-th-list"></i>  &{'table'}</a></li>
-				<li id="nav-1"><a href="javascript:load(1, '@{tournament.playday()}/${currentPlayday.number}');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
-			#{/else}
-		</ul>
-	</div>
-</div>
-<div class="span9">
+<div class="span">
 	#{include '/Tournament/brackets.html' /}
 </div>

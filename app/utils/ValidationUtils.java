@@ -12,6 +12,7 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
+import play.Play;
 import play.data.validation.Validation;
 import play.libs.Crypto;
 
@@ -163,5 +164,21 @@ public class ValidationUtils implements AppConstants{
 		validation.range(pointsTipTrend, 0, 99);
 
 		return validation;
+	}
+
+	/**
+	 * Checks if application uses the authenticity token
+	 *
+	 * @return true if check.authenticity is set in application.conf, false otherwise
+	 */
+	public static boolean verifyAuthenticity() {
+		final String check = Play.configuration.getProperty("check.authenticity");
+		boolean verify = false;
+
+		if (!("false").equalsIgnoreCase(check)) {
+			verify = true;
+		}
+
+		return verify;
 	}
 }

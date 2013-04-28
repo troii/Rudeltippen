@@ -1,20 +1,4 @@
 #{extends 'main.html' /}
-<div class="span3">
-	<div class="well sidebar-nav">
-		<ul class="nav nav-list">
-			<li id="nav-first" #{if request.action == "Tips.extra" || request.action == "Tips.extras" } class="active" #{/if}><a href="javascript:load(0,'@{tips.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
-			#{if playoffs}
-				<li class="nav-header">&{'playdays'}</li>
-				#{list items:playdays, as:'aPlayday'}
-					<li id="nav-${aPlayday.number}" #{if aPlayday.number == number} class="active" #{/if}><a href="javascript:load('${aPlayday.number}','@{tips.games()}/${aPlayday.number}');">&{aPlayday.name}</a></li>
-				#{/list}
-			#{/if}
-			#{else}
-				<li id="nav-1" #{if request.action == "Tips.index" || request.action == "Tips.games" } class="active" #{/if}><a href="javascript:load(1, '@{tips.games()}/${currentPlayday.number}');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
-			#{/else}
-		</ul>
-	</div>
-</div>
-<div class="span9">
+<div class="span">
 	#{include '/Tips/_games.html' /}
 </div>

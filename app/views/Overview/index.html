@@ -1,21 +1,5 @@
 #{extends 'main.html' /}
-<div class="span3">
-	<div class="well sidebar-nav">
-		<ul class="nav nav-list">
-			<li id="nav-first"><a href="javascript:load(0,'@{overview.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
-			#{if playoffs}
-				<li class="nav-header">&{'playdays'}</li>
-				#{list items:playdays, as:'aPlayday'}
-					<li id="nav-1"><a href="javascript:load(1, '@{tournament.playday()}/${currentPlayday.number}');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
-				#{/list}
-			#{/if}
-			#{else}
-				<li id="nav-1" #{if request.action == "Overview.index" || request.action == "Overview.playday" } class="active" #{/if}><a href="javascript:load(1, '@{overview.playday()}/${currentPlayday.number}/1');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
-			#{/else}
-		</ul>
-	</div>
-</div>
-<div class="span9">
+<div class="span">
 	#{include '/Overview/_games.html' /}
 	#{include '/Tags/paginationJS.html' /}
 </div>
