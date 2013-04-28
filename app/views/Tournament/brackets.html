@@ -1,40 +1,43 @@
+#{extends 'main.html' /}
+<div class="span">
 <table class="table table-bordered table-striped">
 #{list items:brackets, as:'bracket'}
-	<thead>
-		<tr>
-			<th colspan="9"><h2>&{bracket.name}</h2></th>
-		</tr>
-		<tr>
-			<th class="hidden-phone">#</th>
-			<th>&{'team'}</th>
-			<th>&{'games'}</th>
-			<th>&{'gameswon'}</th>
-			<th>&{'gamesdraw'}</th>
-			<th>&{'gameslost'}</th>
-			<th>&{'goals'}</th>
-			<th>&{'goalsdiff'}</th>
-			<th>&{'points'}</th>
-		</tr>
-	</thead>
-	<tbody>
-		#{list items:bracket.teams, as:'team'}
-			<tr>
-				<td class="hidden-phone">${team_index} ${team.getPlaceTrend().raw()}</td>
-				#{if team.flag != null}
-					<td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${team.flag}"/>&{team.name}</td>
-				#{/if}
-				#{else}
-					<td>${team.name}</td>
-				#{/else}
-				<td>${team.gamesPlayed}</td>
-				<td>${team.gamesWon}</td>
-				<td>${team.gamesDraw}</td>
-				<td>${team.gamesLost}</td>
-				<td>${team.goalsFor} : ${team.goalsAgainst}</td>
-				<td>${team.goalsDiff}</td>
-				<td>${team.points}</td>
-			</tr>
-		#{/list}
-	</tbody>
+    <thead>
+        <tr>
+            <th colspan="9"><h2>&{bracket.name}</h2></th>
+        </tr>
+        <tr>
+            <th class="hidden-phone">#</th>
+            <th>&{'team'}</th>
+            <th>&{'games'}</th>
+            <th>&{'gameswon'}</th>
+            <th>&{'gamesdraw'}</th>
+            <th>&{'gameslost'}</th>
+            <th>&{'goals'}</th>
+            <th>&{'goalsdiff'}</th>
+            <th>&{'points'}</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:bracket.teams, as:'team'}
+            <tr>
+                <td class="hidden-phone">${team_index} ${team.getPlaceTrend().raw()}</td>
+                #{if team.flag != null}
+                    <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${team.flag}"/>&{team.name}</td>
+                #{/if}
+                #{else}
+                    <td>${team.name}</td>
+                #{/else}
+                <td>${team.gamesPlayed}</td>
+                <td>${team.gamesWon}</td>
+                <td>${team.gamesDraw}</td>
+                <td>${team.gamesLost}</td>
+                <td>${team.goalsFor} : ${team.goalsAgainst}</td>
+                <td>${team.goalsDiff}</td>
+                <td>${team.points}</td>
+            </tr>
+        #{/list}
+    </tbody>
 #{/list}
 </table>
+</div>

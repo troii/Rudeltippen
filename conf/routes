@@ -1,10 +1,5 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
 # Home page
 GET     /                                       Application.index
-
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -14,39 +9,25 @@ GET     /public/                                staticDir:public
 GET     /robots.txt                             staticFile:public/robots.txt
 
 # App routes
-GET	    /auth/confirm/{token}			        auth.confirm
-GET     /auth/password/{token}                  auth.password
-GET		/tips									tips.index
-GET	    /tips/overview					        tips.overview
-GET	    /tips/extra					            tips.extra
-GET	    /tips/extras			            	tips.extras
-GET	    /tips/{number}				            tips.index
-GET	    /tips/index/{number}				    tips.index
-GET	    /tips/games/{number}				    tips.games
-GET	    /tips/playday/{number}				    tips.playday
-GET		/overview								overview.index
-GET	    /overview/{number}/{page}				overview.index
-GET	    /overview/playday/{number}/{page}		overview.playday
-GET	    /overview/extra/{number}/{page}			overview.extra
-GET	    /admin/playday/{number}				    admin.playday
-GET	    /admin/changeactive/{userid}			admin.changeactive
-GET	    /admin/changeadmin/{userid}				admin.changeadmin
-GET	    /admin/deleteuser/{userid}				admin.deleteuser
-GET	    /admin/results/{number}				    admin.results
-GET     /admin/runjob/{name}                    admin.runjob
-GET	    /users/show/{nickname}					users.show
-GET		/standings								standings.index
-GET	    /standings/{page}						standings.index
-GET	    /tournament/playday/{number}			tournament.playday
-GET	    /tournament/playdayjs/{number}			tournament.playdayjs
-GET     /system/updatekickoff/{number}          system.updatekickoff
-*     	/{controller}/{action}                  {controller}.{action}
-
-# API routes
-GET	    /api/user/{nickname}							api.user
-GET	    /api/playday/{number}							api.playday
-POST	/api/storetip/{gameid}/{homescore}/{awayscore}	api.storetip
-POST	/api/storeextratip/{extraid}/{teamid}			api.storetip
+GET     /rules                          application.rules
+GET	    /auth/confirm/{token}			auth.confirm
+GET     /auth/password/{token}          auth.password
+GET	    /tips/extras			        tips.extras
+GET	    /tips/playday/{number}			tips.playday
+GET	    /overview/playday/{number}	    overview.playday
+GET	    /overview/extras/{number}		overview.extras
+GET	    /admin/playday/{number}			admin.playday
+GET	    /admin/changeactive/{userid}	admin.changeactive
+GET	    /admin/changeadmin/{userid}		admin.changeadmin
+GET	    /admin/deleteuser/{userid}		admin.deleteuser
+GET	    /admin/results/{number}			admin.results
+GET     /admin/runjob/{name}            admin.runjob
+GET	    /users/show/{nickname}			users.show
+GET		/standings						standings.index
+GET     /tournament/brackets            tournament.brackets
+GET	    /tournament/playday/{number}	tournament.playday
+GET     /system/updatekickoff/{number}  system.updatekickoff
+*     	/{controller}/{action}          {controller}.{action}
 
 # Messages extension
 GET     /@messages              				MessagesController.index

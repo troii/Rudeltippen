@@ -53,22 +53,22 @@
 	              <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">&{'tournament'} <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="@{tournament.index()}">&{'table'}</a></li>
+                        <li><a href="@{tournament.brackets()}">&{'table'}</a></li>
                         <li><a href="@{tournament.playday()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
                       </ul>
                   </li>
                   <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">&{'tips'} <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="@{tips.index()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
-                        <li><a href="@{tips.extra()}">&{'extratips'}</a></li>
+                        <li><a href="@{tips.playday()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
+                        <li><a href="@{tips.extras()}">&{'extratips'}</a></li>
                       </ul>
                   </li>            
                   <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">&{'overview'} <b class="caret"></b></a>
                       <ul class="dropdown-menu">
-                        <li><a href="@{overview.index()}/${currentPlayday.number}/1">&{currentPlayday.name}</a></li>
-                        <li><a href="@{overview.extra()}">&{'extratips'}</a></li>
+                        <li><a href="@{overview.playday()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
+                        <li><a href="@{overview.extras()}">&{'extratips'}</a></li>
                       </ul>
                   </li>                          
 	              <li #{if request.action == "Standings.index" } class="active" #{/if}><a href="@{standings.index()}">&{'standings'}</a></li>

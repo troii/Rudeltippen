@@ -21,18 +21,8 @@ import utils.ValidationUtils;
 @With(Auth.class)
 public class Tips extends Root {
 	@Transactional(readOnly=true)
-	public static void index(final int number) {
+	public static void playday(final int number) {
 		renderWrapper(number);
-	}
-
-	@Transactional(readOnly=true)
-	public static void games(final int number) {
-		renderWrapper(number);
-	}
-
-	@Transactional(readOnly=true)
-	public static void extra() {
-		renderWrapper();
 	}
 
 	@Transactional(readOnly=true)

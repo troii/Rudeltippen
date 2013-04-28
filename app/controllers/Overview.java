@@ -16,15 +16,11 @@ import utils.ViewUtils;
 @With(Auth.class)
 @Transactional(readOnly=true)
 public class Overview extends Root{
-	public static void index(final int number, final String page) {
-		renderWrapper(number, page);
-	}
-
 	public static void playday(final int number, final String page) {
 		renderWrapper(number, page);
 	}
 
-	public static void extra(final String page) {
+	public static void extras(final String page) {
 		final int number = 0;
 		final Map pagination = ViewUtils.getPagination("user", page, "/overview/extra/");
 		final List<User> users = User.find("ORDER BY place ASC").from((Integer) pagination.get("from")).fetch((Integer) pagination.get("fetch"));

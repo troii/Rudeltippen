@@ -1,20 +1,48 @@
 #{extends 'main.html' /}
-<div class="span3">
-    <div class="well sidebar-nav">
-        <ul class="nav nav-list">
-            <li id="nav-first" #{if request.action == "Tips.extra" || request.action == "Tips.extras" } class="active" #{/if}><a href="javascript:load(0,'@{tips.extra()}');"><i class="icon-th-list"></i>  &{'extratips'}</a></li>
-            #{if playoffs}
-                <li class="nav-header">&{'playdays'}</li>
-                #{list items:playdays, as:'aPlayday'}
-                    <li id="nav-${aPlayday.number}" #{if aPlayday.number == number} class="active" #{/if}><a href="javascript:load('${aPlayday.number}','@{tips.games()}/${aPlayday.number}');">&{aPlayday.name}</a></li>
-                #{/list}
-            #{/if}
-            #{else}
-                <li id="nav-1" #{if request.action == "Tips.index" || request.action == "Tips.games" } class="active" #{/if}><a href="javascript:load(1, '@{tips.games()}/${currentPlayday.number}');"><i class="icon-refresh"></i> &{'playdays'}</a></li>
-            #{/else}
-        </ul>
-    </div>
-</div>
-<div class="span9">
-	#{include '/Tips/extra.html' /}
+<div class="span">
+<h3>&{'extratips'}</h3>
+#{form @tips.storeextratips(), class:'form-horizontal well'}
+<table class="table">
+    <thead>
+        <tr>
+            <th>&{'extraquestion'}</th>
+            <th class="hidden-phone">&{'points'}</th>
+            <th class="hidden-phone">&{'betending'}</th>
+            <th>&{'youranswer'}</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:extras, as:'extra'}
+            <tr>
+                <td>&{extra.question}</td>
+                <td class="hidden-phone">${extra.points}</td>
+                <td class="hidden-phone">${extra.ending.difference()}</td>
+                <td>
+                    #{if extra.tipable}
+                        <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
+                            #{if extra.getExtraTip() == 0}
+                                <option value="0" selected="selected">-- &{'pleasechoose'} --</option>
+                            #{/if}
+                            #{list items:extra.answers, as:'team'}
+                                #{if extra.getExtraTip() == team.id}
+                                    <option value="${team.id}" selected="selected">&{team.name}</option>
+                                #{/if}
+                                #{else}
+                                    <option value="${team.id}">&{team.name}</option>
+                                #{/else}
+                            #{/list}
+                        </select>
+                    #{/if}
+                    #{else}
+                        ${extra.getAnswer().raw()}
+                    #{/else}
+                </td>
+            </tr>
+        #{/list}
+    </tbody>
+</table>
+#{if tippable}
+	<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+#{/if}
+#{/form}
 </div>
