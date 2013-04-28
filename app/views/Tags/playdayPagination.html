@@ -1,0 +1,22 @@
+<div class="pagination">
+	<ul>
+		#{if plage != 1}
+			<li><a name="page1" href="@{standings.index()}/1">&laquo;&nbsp;&{'firstpage'}</a></li>
+			<li><a name="page" href="@{standings.index()}/}">&lsaquo;&nbsp;&{'pageback'}</a></li>
+		#{/if}
+		#{list items:playdays, as:'playday'}
+			#{if page <= playdays.size}
+				#{if page == playday.number}
+					<li class="active"><a name="page${page}">${page}</a></li>
+				#{/if}
+				#{else}
+					<li><a name="page${page}" href="@{standings.index()}/${page}">${page}</a></li>
+				#{/else}
+			#{/if}
+		#{/list}
+		#{if page != playdays.size}
+			<li><a name="page${page}" href="@{standings.index()}/${page}">&{'pagebefore'}&nbsp;&rsaquo;</a></li>
+			<li><a name="page${playdays.size + 1}" href="@{standings.index()}/${page}">&{'lastpage'}&nbsp;&raquo;</a></li>
+		#{/if}
+	</ul>
+</div>

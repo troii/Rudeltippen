@@ -4,10 +4,8 @@ import interfaces.AppConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import models.Bracket;
 import models.Extra;
@@ -228,43 +226,6 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 		}
 
 		return message;
-	}
-
-	public static Map getPagination(final String object, final String page, final String url) {
-		final Map pagination = new HashMap();
-		final int rowsPerPage = 10;
-		final int offset = 5;
-		int currentPage = 1;
-		long rows = 0;
-
-		if (StringUtils.isNotBlank(page)) {
-			currentPage = Integer.parseInt(page);
-		}
-
-		if (("user").equals(object)) {
-			rows = User.count();
-		}
-
-		if (rows > rowsPerPage) {
-			pagination.put("showControls", true);
-		} else {
-			pagination.put("showControls", false);
-		}
-
-		if ((currentPage - 2) > 0) {
-			pagination.put("offsetstart", currentPage - 2);
-			pagination.put("offset", currentPage + 2);
-		} else {
-			pagination.put("offsetstart", 1);
-			pagination.put("offset", offset);
-		}
-		pagination.put("pages", (int) Math.ceil(rows / rowsPerPage));
-		pagination.put("currentPage", currentPage);
-		pagination.put("from", (currentPage - 1) * rowsPerPage);
-		pagination.put("fetch", rowsPerPage);
-		pagination.put("url", url);
-
-		return pagination;
 	}
 
 	public static String getResult(final Game game) {
