@@ -5,7 +5,6 @@ function showCredits() {
 $(document).ready(function(){
 	$('.alert-info').delay(4000).slideToggle();
 	$('.alert-success').delay(4000).slideToggle();
-	helpify();
 	window.addEventListener("load", function() {
 		setTimeout(function() {
 			window.scrollTo(0, 1);
@@ -30,9 +29,10 @@ $(window).data('ajaxready', true).scroll(function(e) {
         $('#ajaxloader').show();
         $(window).data('ajaxready', false);
         var start =	$('#lazyTable tr').length;
+        var playday = $('#ajaxplayday').text()
         $.ajax({
             cache: false,
-            url: '/standings/lazy/' + start,
+            url: '/overview/playday/' + playday + '/' + start,
             success: function(html) {
                 if (html) {
                     $('#lazyTable tr:last').after(html);

@@ -10,6 +10,7 @@ import models.Game;
 import models.Pagination;
 import models.Playday;
 import models.Team;
+import models.User;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -121,5 +122,10 @@ public class Tips extends Root {
 			}
 		}
 		extras();
+	}
+	
+	public static void standings() {
+		final List<User> users = User.find("ORDER BY place ASC").fetch();
+		render(users);
 	}
 }

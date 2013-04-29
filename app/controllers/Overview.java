@@ -28,10 +28,18 @@ public class Overview extends Root{
 	}
 
 	public static void extras() {
-		final List<User> users = User.find("ORDER BY place ASC").from(0).fetch(15);
+		final List<User> users = User.find("ORDER BY place ASC").fetch();
 		final List<Extra> extras = Extra.findAll();
 		final List<Map<User, List<ExtraTip>>> tips =  AppUtils.getExtraTips(users, extras);
 
 		render(tips, extras);
+	}
+	
+	public static void lazy(long number, int start) {
+		final Playday playday = Playday.find("byNumber", 32).first();
+		final List<User> users = User.find("ORDER BY place ASC").from(start).fetch(15);
+		final List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
+		
+		render(tips);
 	}
 }

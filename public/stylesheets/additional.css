@@ -12,6 +12,10 @@ body {
     padding-left: 50%;
 }
 
+#ajaxplayday {
+	display: none;	
+}
+
 .input-xmini{
     width:40px;
 }

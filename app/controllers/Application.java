@@ -14,6 +14,7 @@ import utils.AppUtils;
 @With(Auth.class)
 @Transactional(readOnly=true)
 public class Application extends Root {
+	
 	public static void index() {
 		final int pointsDiff = AppUtils.getPointsToFirstPlace();
 		final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
