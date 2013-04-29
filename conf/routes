@@ -23,6 +23,7 @@ GET	    /admin/results/{number}			admin.results
 GET     /admin/runjob/{name}            admin.runjob
 GET	    /users/show/{nickname}			users.show
 GET		/standings						standings.index
+GET		/standings/lazy/{start}			standings.lazy
 GET     /tournament/brackets            tournament.brackets
 GET	    /tournament/playday/{number}	tournament.playday
 GET     /system/updatekickoff/{number}  system.updatekickoff

@@ -1,64 +1,10 @@
-function load(item, url) {
-	$('.nav-list > li').each(function(index) {
-		var navItem = $(this)[0].attributes[0].nodeValue;
-		$(this).removeClass('active');
-		if (item == 0) {
-			$('#nav-first').addClass('active');
-		} else if (item == 1) {
-			$('#nav-1').addClass('active');
-		} else if (navItem == "nav-" + item) {
-			$(this).addClass('active');
-		}
-	});
-	$('.footer').hide();
-	$('.span9').html('<p><img src="/public/img/ajax-loader.gif" border="0"/></p>');
-	$('.span9').load(url, function() {
-		$('.span9').fadeIn('slow');
-	});
-	$('.footer').delay(800).fadeIn('slow');
-}
-
-function loadJS(item, url) {
-	$('.nav-list > li').each(function(index) {
-		var navItem = $(this)[0].attributes[0].nodeValue;
-		$(this).removeClass('active');
-		if (item == 0) {
-			$('#nav-first').addClass('active');
-		} else if (item == 1) {
-			$('#nav-1').addClass('active');
-		} else if (navItem == "nav-" + item) {
-			$(this).addClass('active');
-		}
-	});
-	$('.footer').hide();
-	$('.span9').html('<p><img src="/public/img/ajax-loader.gif" border="0"/></p>');
-	$('.span9').load(url, function() {
-		$('.span9').fadeIn('slow');
-	});
-	$('.footer').delay(800).fadeIn('slow');
-}
-
-function helpify() {
-	$('.btn-primary').click(function() {
-		var btn = $(this)
-		btn.button('loading')
-	});
-	$('.stadium').on().tooltip();
-	$('img').on().tooltip();
-	$('.admintooltip').on().tooltip();
-}
-
 function showCredits() {
 	$('#modalCredits').modal('show');
 }
 
-$(document).on('DOMNodeInserted', function(e) {
-	helpify();
-});
-
 $(document).ready(function(){
-	$('.alert-info').delay(5000).slideToggle();
-	$('.alert-success').delay(5000).slideToggle();
+	$('.alert-info').delay(4000).slideToggle();
+	$('.alert-success').delay(4000).slideToggle();
 	helpify();
 	window.addEventListener("load", function() {
 		setTimeout(function() {
@@ -78,6 +24,22 @@ $(document).ready(function(){
 	}
 });
 
-$(function() {
-  $('.table').footable();
+$(window).data('ajaxready', true).scroll(function(e) {
+	if ($(window).data('ajaxready') == false) return;
+    if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {
+        $('#ajaxloader').show();
+        $(window).data('ajaxready', false);
+        var start =	$('#lazyTable tr').length;
+        $.ajax({
+            cache: false,
+            url: '/standings/lazy/' + start,
+            success: function(html) {
+                if (html) {
+                    $('#lazyTable tr:last').after(html);
+                }
+                $('#ajaxloader').hide();
+                $(window).data('ajaxready', true);
+            }
+        });
+    }
 });

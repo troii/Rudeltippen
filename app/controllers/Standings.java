@@ -10,7 +10,13 @@ import play.mvc.With;
 @Transactional(readOnly=true)
 public class Standings extends Root {
 	public static void index() {
-		final List<User> users = User.find("ORDER BY place ASC").fetch();
-		render(users);
+		int start = 1;
+		final List<User> users = User.find("ORDER BY place ASC").from(0).fetch(15);
+		render(users, start);
+	}
+	
+	public static void lazy(int start) {
+		final List<User> users = User.find("ORDER BY place ASC").from(start).fetch(15);
+		render(users, start);		
 	}
 }
