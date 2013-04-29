@@ -12,6 +12,7 @@ import java.util.Set;
 import jobs.CalculationJob;
 import models.Confirmation;
 import models.Game;
+import models.Pagination;
 import models.Playday;
 import models.Settings;
 import models.User;
@@ -28,27 +29,20 @@ import play.libs.F.Promise;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
+import utils.ViewUtils;
 
 @With(Auth.class)
 @CheckAccess("admin")
 public class Admin extends Root implements AppConstants {
-	@Transactional(readOnly=true)
-	public static void playday(final int number) {
-		renderWrapper(number);
-	}
 
 	@Transactional(readOnly=true)
-	public static void results(final int number) {
-		renderWrapper(number);
+	public static void results(final long number) {
+		Pagination pagination = ViewUtils.getPagination(number, "/admin/results/");
+		final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
+
+		render(playday, pagination);
 	}
 
-	private static void renderWrapper(int number) {
-		if (number <= 0) { number = 1; }
-		final List<Playday> playdays = Playday.findAll();
-		final Playday playday = Playday.find("byNumber", number).first();
-
-		render(playdays, playday, number);
-	}
 
 	@Transactional(readOnly=true)
 	public static void users() {

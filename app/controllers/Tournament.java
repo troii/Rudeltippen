@@ -3,9 +3,11 @@ package controllers;
 import java.util.List;
 
 import models.Bracket;
+import models.Pagination;
 import models.Playday;
 import play.db.jpa.Transactional;
 import play.mvc.With;
+import utils.ViewUtils;
 
 @With(Auth.class)
 @Transactional(readOnly=true)
@@ -15,13 +17,10 @@ public class Tournament extends Root {
 		render(brackets);
 	}
 
-	public static void playday(final int number) {
-		final List<Playday> playdays = Playday.find("byPlayoff", false).fetch();
-		final Playday playday = Playday.find("byNumber", number).first();
-		final Playday currentPlayday = playday;
-		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
-		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
+	public static void playday(final long number) {
+		final Pagination pagination = ViewUtils.getPagination(number, "/tournament/playday/");
+		final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
 
-		render(playday, playdays, nextPlayday, previousPlayday);
+		render(playday, pagination);
 	}
 }

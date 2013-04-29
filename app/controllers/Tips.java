@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import models.Extra;
 import models.Game;
+import models.Pagination;
 import models.Playday;
 import models.Team;
 
@@ -17,36 +18,24 @@ import play.i18n.Messages;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
+import utils.ViewUtils;
 
 @With(Auth.class)
 public class Tips extends Root {
 	@Transactional(readOnly=true)
 	public static void playday(final int number) {
-		renderWrapper(number);
+		Pagination pagination = ViewUtils.getPagination(number, "/tips/playday/");
+		final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
+
+		render(playday, number,pagination);
 	}
 
 	@Transactional(readOnly=true)
 	public static void extras() {
-		renderWrapper();
-	}
-
-	private static void renderWrapper(int number) {
-		if (number <= 0) { number = 1; }
-		final List<Playday> playdays = Playday.findAll();
-		final Playday playday = Playday.find("byNumber", number).first();
-		final Playday currentPlayday = playday;
-		final Playday nextPlayday = Playday.find("byNumber", currentPlayday.getNumber() + 1).first();
-		final Playday previousPlayday = Playday.find("byNumber", currentPlayday.getNumber() - 1).first();
-
-		render(playdays, playday, number, currentPlayday, nextPlayday, previousPlayday);
-	}
-
-	private static void renderWrapper() {
-		final List<Playday> playdays = Playday.findAll();
 		final List<Extra> extras = Extra.findAll();
 		final boolean tippable = AppUtils.extrasTipable(extras);
 
-		render(extras, playdays, tippable);
+		render(extras, tippable);
 	}
 
 	public static void storetips() {

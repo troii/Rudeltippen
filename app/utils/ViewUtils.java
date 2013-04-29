@@ -4,14 +4,18 @@ import interfaces.AppConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import models.Bracket;
 import models.Extra;
 import models.ExtraTip;
 import models.Game;
 import models.GameTip;
+import models.Pagination;
+import models.Playday;
 import models.Team;
 import models.User;
 
@@ -370,5 +374,35 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 	public static String formatTimestamp(final Long timestamp) {
 		final SimpleDateFormat df = new SimpleDateFormat(DEFAULT_TIMESTMAP);
 		return df.format(new Date(timestamp));
+	}
+
+	public static Pagination getPagination(long number, String url) {
+		Pagination pagination = new Pagination();
+		
+		long offsetEnd = Playday.count();
+		if (number <= 0) {
+			number = 1;
+		} else if (number > offsetEnd) {
+			number = offsetEnd;
+		}
+		
+		long offsetStart = number - 2;
+		long offset = number + 2;
+		
+		if (offsetStart <= 0) {
+			offsetStart = 1;
+		}
+		
+		if (offset > offsetEnd) {
+			offset = offsetEnd;
+		}
+		
+		pagination.setNumber(number);
+		pagination.setOffsetStart(offsetStart);
+		pagination.setOffset(offset);
+		pagination.setOffsetEnd(offsetEnd);
+		pagination.setUrl(url);
+		
+		return pagination;
 	}
 }
