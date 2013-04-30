@@ -1,7 +1,17 @@
 #{extends 'main.html' /}
 <div class="span">
-<table class="table table-bordered table-striped">
+#{if bracket?.size >= 3}
+<div class="subnav">
+	<ul class="nav nav-pills">
+		#{list items:brackets, as:'bracket'}
+		<li #{if bracket_isFirst} class="active" #{/if} #{else} class="" #{/else} ><a href="#bracket${bracket_index}">&{bracket.name}</a></li>
+		#{/list}
+	</ul>
+</div>
+#{/if}
 #{list items:brackets, as:'bracket'}
+<section id="bracket${bracket_index}">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th colspan="9"><h2>&{bracket.name}</h2></th>
@@ -38,6 +48,7 @@
             </tr>
         #{/list}
     </tbody>
-#{/list}
 </table>
+</section>
+#{/list}
 </div>

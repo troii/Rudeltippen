@@ -13,7 +13,6 @@ import org.w3c.dom.Document;
 
 import play.Logger;
 import play.jobs.On;
-
 import services.UpdateService;
 import utils.AppUtils;
 import utils.DataUtils;
