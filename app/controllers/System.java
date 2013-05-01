@@ -11,34 +11,57 @@ import models.User;
 import play.Logger;
 import play.Play;
 import play.db.jpa.NoTransaction;
+import play.db.jpa.Transactional;
+import play.i18n.Messages;
 import play.libs.Codec;
+import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
 import utils.DataUtils;
+import utils.ValidationUtils;
 
 public class System extends Controller implements AppConstants {
 
 	public static void setup() {
 		render();
 	}
-
+	
 	public static void init() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			Logger.error("Failed while trying to sleep in system/init", e);
+		}
+
+		Fixtures.deleteAllModels();
+		Fixtures.deleteDatabase();
+		Fixtures.loadModels(YAMLFILE);
+		
 		Settings settings = AppUtils.getSettings();
 		if (settings == null) {
 			session.clear();
 			response.removeCookie("rememberme");
 
-			try {
-				Thread.sleep(5000);
-			} catch (final InterruptedException e) {
-				Logger.error("Failed while trying to sleep in system/init", e);
-			}
-
-			Fixtures.deleteAllModels();
-			Fixtures.deleteDatabase();
-			Fixtures.loadModels(YAMLFILE);
-
+			User user = new User();
+			final String salt = Codec.hexSHA1(Codec.UUID());
+			user.setSalt(salt);
+			user.setEmail("admin@foo.bar");
+			user.setUsername("admin");
+			user.setUserpass(AppUtils.hashPassword("admin", salt));
+			user.setRegistered(new Date());
+			user.setExtraPoints(0);
+			user.setTipPoints(0);
+			user.setPoints(0);
+			user.setActive(true);
+			user.setAdmin(true);
+			user.setReminder(true);
+			user.setCorrectResults(0);
+			user.setCorrectDifferences(0);
+			user.setCorrectTrends(0);
+			user.setCorrectExtraTips(0);
+			user._save();
+			
 			final List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
 			final List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
 			boolean hasPlayoffs = false;
@@ -58,25 +81,6 @@ public class System extends Controller implements AppConstants {
 			settings.setInformOnNewTipper(true);
 			settings.setEnableRegistration(true);
 			settings._save();
-
-			final User user = new User();
-			final String salt = Codec.hexSHA1(Codec.UUID());
-			user.setSalt(salt);
-			user.setEmail("admin@foo.bar");
-			user.setUsername("admin");
-			user.setUserpass(AppUtils.hashPassword("admin", salt));
-			user.setRegistered(new Date());
-			user.setExtraPoints(0);
-			user.setTipPoints(0);
-			user.setPoints(0);
-			user.setActive(true);
-			user.setAdmin(true);
-			user.setReminder(true);
-			user.setCorrectResults(0);
-			user.setCorrectDifferences(0);
-			user.setCorrectTrends(0);
-			user.setCorrectExtraTips(0);
-			user._save();
 		}
 		ok();
 	}
