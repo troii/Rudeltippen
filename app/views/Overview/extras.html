@@ -13,15 +13,15 @@
 	</thead>
 	<tbody>
 		#{list items:tips, as:'extraTips'}
-		<tr #{if extraTips.entrySet().key.nickname == [connectedUser.nickname]} class="connecteduser" #{/if}>
+		<tr #{if extraTips.entrySet().key.username == [connectedUser.username]} class="connecteduser" #{/if}>
 			#{list items:extraTips.entrySet(), as:'user'}
 				#{if user.key.picture == null}
-					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" /></a></td>
+					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" /></a></td>
 				#{/if}
 				#{else}
-					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
+					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
 				#{/else}
-					<td><br /><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+					<td><br /><b><a href="@{users.show()}/${user.key.username}">${user.key.username}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
 				#{list items:user.value, as:'extraTip'}
 					<td>&{extraTip.getExtraTipAnswer()}${extraTip?.getExtraTipPoints()}</td>
 				#{/list}

@@ -1,4 +1,4 @@
 Soeben hat sich ein neuer benutzer angemeldet.
 
-&{'nickname'}: ${user.nickname}
 &{'username'}: ${user.username}
+&{'email'}: ${user.email}

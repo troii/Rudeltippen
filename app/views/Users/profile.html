@@ -40,7 +40,7 @@
 								<a href="@{users.deletepicture()}" onclick="return confirm(&{'delete.picture.confirm'})">&{'delete'}</a>
 			            	</div>
 						#{/if}
-			            <label for="fileInput" class="control-label">&{'newprofilepicture'}<br />&{'maxprofile', settings.maxPictureSize / 1024}</label>
+			            <label for="fileInput" class="control-label">&{'newprofilepicture'}<br />&{'maxprofile', 100}</label>
 			            <div class="controls">
 			              <input type="file" id="picture" name="picture" class="input-file">
 			              #{ifError 'picture'}

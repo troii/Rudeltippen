@@ -1,13 +1,13 @@
 #{list items:tips, as:'userTips'}
-<tr #{if userTips.entrySet().key.nickname == [connectedUser.nickname]} class="connecteduser" #{/if}>
+<tr #{if userTips.entrySet().key.username == [connectedUser.username]} class="connecteduser" #{/if}>
 	#{list items:userTips.entrySet(), as:'user'}
 		#{if user.key.picture == null}
-			<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+			<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
 		#{/if}
 		#{else}
-			<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.nickname}"><img src="${user.key.picture}" /></a></td>
+			<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
 		#{/else}
-			<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.nickname}">${user.key.nickname}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+			<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.username}">${user.key.username}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
 		%{ points = 0 }%
 		#{list items:user.value, as:'gameTip'}
 			<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTipAndPoints()}</div></td>

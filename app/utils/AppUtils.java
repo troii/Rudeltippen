@@ -46,7 +46,7 @@ public class AppUtils implements AppConstants{
 	 * @return Settings object
 	 */
 	public static Settings getSettings() {
-		return Settings.find("byAppName", APPNAME).first();
+		return Settings.find("byAppName", "rudeltippen").first();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class AppUtils implements AppConstants{
 		final String username = Security.connected();
 		User connectedUser = null;
 		if (StringUtils.isNotBlank(username)) {
-			connectedUser = User.find("byUsername", username).first();
+			connectedUser = User.find("SELECT u FROM User u WHERE username = ? OR email = ?", username, username).first();
 		}
 
 		return connectedUser;
@@ -647,7 +647,7 @@ public class AppUtils implements AppConstants{
 			gameTip.setHomeScore(homeScore);
 			gameTip.setAwayScore(awayScore);
 			gameTip._save();
-			Logger.info("Tipp placed - " + user.getUsername() + " - " + gameTip);
+			Logger.info("Tipp placed - " + user.getEmail() + " - " + gameTip);
 		}
 	}
 
@@ -888,7 +888,7 @@ public class AppUtils implements AppConstants{
 			extraTip.setExtra(extra);
 			extraTip.setAnswer(team);
 			extraTip._save();
-			Logger.info("Stored extratip - " + user.getUsername() + " - " + extraTip);
+			Logger.info("Stored extratip - " + user.getEmail() + " - " + extraTip);
 		}
 	}
 
@@ -914,7 +914,16 @@ public class AppUtils implements AppConstants{
 		return Play.configuration.getProperty("TimeZone");
 	}
 
-	public static boolean appIsInizialized() {
+	public static boolean rudeltippenIsInizialized() {
 		return getSettings() != null ? true : false;
+	}
+
+	public static User connectUser(final String username, final String userpass) {
+		User user = User.find("byUsernameAndUserpassAndActive", username, userpass, true).first();
+		if (user == null) {
+			user = User.find("byEmailAndUserpassAndActive", username, userpass, true).first();
+		}
+
+		return user;
 	}
 }

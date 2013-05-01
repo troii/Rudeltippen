@@ -1,11 +1,11 @@
 <fieldset>
 	<legend>&{'login.legend'}</legend>
-	<div class="control-group #{ifError 'nickname'} error #{/ifError}">
-		<label for="input01" class="control-label">&{'nickname'}</label>
+	<div class="control-group #{ifError 'username'} error #{/ifError}">
+		<label for="input01" class="control-label">&{'username'}</label>
 		<div class="controls">
-			<input type="text" id="nickname" value="${flash.nickname}" name="nickname" class="input-xlarge">
-			#{ifError 'nickname'}
-				<span class="help-inline">#{error 'nickname' /}</span>
+			<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
+			#{ifError 'username'}
+				<span class="help-inline">#{error 'username' /}</span>
 			#{/ifError}
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-Hello ${user.nickname}!
+Hello ${user.username}!
 
 You want to be reminded when tips need to be submitted.
 

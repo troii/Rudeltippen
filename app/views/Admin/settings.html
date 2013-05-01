@@ -1,5 +1,73 @@
 #{extends 'main.html' /}
 #{form @admin.updatesettings(), class:'form-horizontal well'}
-	#{include '/System/_form.html' /}
+<fieldset>
+    <legend>&{'setup.legend'}</legend>
+    <div class="control-group #{ifError 'name'} error #{/ifError}">
+        <label for="input01" class="control-label">&{'setup.name'}</label>
+        <div class="controls">
+            <input type="text" id="name" value="#{if flash.name != null}${flash.name}#{/if}#{else}Rudeltippen#{/else}" name="name" class="input-medium">
+            #{ifError 'name'}
+                <span class="help-inline">#{error 'name' /}</span>
+            #{/ifError}
+        </div>
+    </div>
+    <div class="control-group #{ifError 'pointsTip'} error #{/ifError}">
+        <label for="input01" class="control-label">&{'setup.pointsbet'}</label>
+        <div class="controls">
+            <input type="text" id="pointsTip" value="#{if flash.pointsTip != null}${flash.pointsTip}#{/if}#{else}4#{/else}" name="pointsTip" class="input-medium">
+            #{ifError 'pointsTip'}
+                <span class="help-inline">#{error 'pointsTip' /}</span>
+            #{/ifError}
+        </div>
+    </div>
+    <div class="control-group #{ifError 'pointsTipDiff'} error #{/ifError}">
+        <label for="input01" class="control-label">&{'setup.pointsbetdiff'}</label>
+        <div class="controls">
+            <input type="text" id="pointsTipDiff" value="#{if flash.pointsTipDiff != null}${flash.pointsTipDiff}#{/if}#{else}2#{/else}" name="pointsTipDiff" class="input-medium">
+            #{ifError 'pointsTipDiff'}
+                <span class="help-inline">#{error 'pointsTipDiff' /}</span>
+            #{/ifError}
+        </div>
+    </div>
+    <div class="control-group #{ifError 'pointsTipTrend'} error #{/ifError}">
+        <label for="input01" class="control-label">&{'setup.pointsbettrend'}</label>
+        <div class="controls">
+            <input type="text" id="pointsTipTrend" value="#{if flash.pointsTipTrend != null}${flash.pointsTipTrend}#{/if}#{else}1#{/else}" name="pointsTipTrend" class="input-medium">
+            #{ifError 'pointsTipTrend'}
+                <span class="help-inline">#{error 'pointsTipTrend' /}</span>
+            #{/ifError}
+        </div>
+    </div>
+    <div class="control-group #{ifError 'minutesBeforeTip'} error #{/ifError}">
+        <label for="input01" class="control-label">&{'setup.minutesbefore'}</label>
+        <div class="controls">
+            <input type="text" id="minutesBeforeTip" value="#{if flash.minutesBeforeTip != null}${flash.minutesBeforeTip}#{/if}#{else}10#{/else}" name="minutesBeforeTip" class="input-medium">
+            #{ifError 'minutesBeforeTip'}
+                <span class="help-inline">#{error 'minutesBeforeTip' /}</span>
+            #{/ifError}
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="input01" class="control-label">&{'setup.countfinalresult'}</label>
+        <div class="controls">
+            <input type="radio" id="countFinalResult" value="false" name="countFinalResult" #{if flash.countFinalResult == null || flash.countFinalResult == 'false'} checked="checked" #{/if} class="input-medium"> &{'setup.ninetyminutes'}<br />
+            <input type="radio" id="countFinalResult" value="true" name="countFinalResult" #{if flash.countFinalResult == 'true'} checked="checked" #{/if} class="input-medium"> &{'setup.finalresult'}
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="input01" class="control-label">&{'setup.informontipper'}</label>
+        <div class="controls">
+            <input type="radio" id="informOnNewTipper" value="true" name="informOnNewTipper" #{if flash.informOnNewTipper == null || flash.informOnNewTipper == 'true'} checked="checked" #{/if} class="input-medium"> &{'yes'}<br />
+            <input type="radio" id="informOnNewTipper" value="false" name="informOnNewTipper" #{if flash.informOnNewTipper == 'false'} checked="checked" #{/if} class="input-medium"> &{'no'}
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="input01" class="control-label">&{'setup.enableregistration'}</label>
+        <div class="controls">
+            <input type="radio" id="enableRegistration" value="true" name="enableRegistration" #{if flash.enableRegistration == null || flash.enableRegistration == 'true'} checked="checked" #{/if}  class="input-medium"> &{'yes'}<br />
+            <input type="radio" id="enableRegistration" value="false" name="enableRegistration" #{if flash.enableRegistration == 'false'} checked="checked" #{/if} class="input-medium"> &{'no'}
+        </div>
+    </div>
+</fieldset>
 	<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
 #{/form}

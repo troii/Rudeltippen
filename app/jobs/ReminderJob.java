@@ -49,7 +49,7 @@ public class ReminderJob extends AppJob {
 
 				if ((reminderGames.size() > 0) || (reminderBonus.size() > 0)) {
 					MailService.reminder(user, reminderGames, reminderBonus);
-					Logger.info("Reminder send to: " + user.getUsername());
+					Logger.info("Reminder send to: " + user.getEmail());
 				}
 			}
 		}

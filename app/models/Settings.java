@@ -9,48 +9,25 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="rudeltippen_settings")
 public class Settings extends Model {
-	@Column(nullable=false)
-	private String appSalt;
+	private String appSalt;//No
+	private String appName;//No
+	private String gameName;//Yes
+	private String lastTweet;//No
+	
+	private int pointsGameWin;//No
+	private int pointsGameDraw;//No
+	private int pointsTip;//Yes
+	private int pointsTipDiff;//Yes
+	private int pointsTipTrend;//Yes
+	private int minutesBeforeTip;//Yes
+	private int numPrePlayoffGames;//No
+	private int numPlayoffTeams;//No
 
-	@Column(nullable=false)
-	private String appName;
-
-	@Column(nullable=false)
-	private String gameName;
-
-	@Column(nullable=false)
-	private int maxPictureSize;
-
-	@Column(nullable=false)
-	private int pointsGameWin;
-
-	@Column(nullable=false)
-	private int pointsGameDraw;
-
-	@Column(nullable=false)
-	private int pointsTip;
-
-	@Column(nullable=false)
-	private int pointsTipDiff;
-
-	@Column(nullable=false)
-	private int pointsTipTrend;
-
-	@Column(nullable=false)
-	private int minutesBeforeTip;
-
-	@Column(nullable=false)
-	private int numPrePlayoffGames;
-
-	@Column(nullable=false)
-	private int numPlayoffTeams;
-
-	private String lastTweet;
-	private boolean informOnNewTipper;
-	private boolean playoffs;
-	private boolean countFinalResult;
-	private boolean enableRegistration;
-
+	private boolean informOnNewTipper;//Yes
+	private boolean playoffs;//No
+	private boolean countFinalResult;//Yes
+	private boolean enableRegistration;//Yes
+	
 	public String getAppSalt() {
 		return appSalt;
 	}
@@ -65,14 +42,6 @@ public class Settings extends Model {
 
 	public void setGameName(final String gameName) {
 		this.gameName = gameName;
-	}
-
-	public int getMaxPictureSize() {
-		return maxPictureSize;
-	}
-
-	public void setMaxPictureSize(final int maxPictureSize) {
-		this.maxPictureSize = maxPictureSize;
 	}
 
 	public int getPointsGameWin() {

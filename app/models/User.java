@@ -17,13 +17,13 @@ import play.db.jpa.Model;
 @Table(name = "rudeltippen_users")
 public class User extends Model {
 	@Column(nullable = false)
-	private String username;
-
-	@Column(nullable = false)
 	private String userpass;
 
 	@Column(nullable = false)
-	private String nickname;
+	private String username;
+
+	@Column(nullable = false)
+	private String email;
 
 	@Column(nullable = false)
 	private String salt;
@@ -45,9 +45,9 @@ public class User extends Model {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Confirmation> confirmations;
-	
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Statistic> statistics;	
+	private List<Statistic> statistics;
 
 	private Date lastLogin;
 	private boolean reminder;
@@ -65,215 +65,211 @@ public class User extends Model {
 	private int correctTrends;
 	private int correctExtraTips;
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(final String email) {
+		this.email = email;
 	}
 
 	public String getUserpass() {
-		return userpass;
+		return this.userpass;
 	}
 
-	public void setUserpass(String userpass) {
+	public void setUserpass(final String userpass) {
 		this.userpass = userpass;
 	}
 
 	public String getSalt() {
-		return salt;
+		return this.salt;
 	}
 
-	public void setSalt(String salt) {
+	public void setSalt(final String salt) {
 		this.salt = salt;
 	}
 
 	public Date getRegistered() {
-		return registered;
+		return this.registered;
 	}
 
-	public void setRegistered(Date registered) {
+	public void setRegistered(final Date registered) {
 		this.registered = registered;
 	}
 
 	public String getPicture() {
-		return picture;
+		return this.picture;
 	}
 
-	public void setPicture(String picture) {
+	public void setPicture(final String picture) {
 		this.picture = picture;
 	}
 
 	public String getPictureLarge() {
-		return pictureLarge;
+		return this.pictureLarge;
 	}
 
-	public void setPictureLarge(String pictureLarge) {
+	public void setPictureLarge(final String pictureLarge) {
 		this.pictureLarge = pictureLarge;
 	}
 
 	public List<GameTip> getGameTips() {
-		return gameTips;
+		return this.gameTips;
 	}
 
-	public void setGameTips(List<GameTip> gameTips) {
+	public void setGameTips(final List<GameTip> gameTips) {
 		this.gameTips = gameTips;
 	}
 
 	public List<ExtraTip> getExtraTips() {
-		return extraTips;
+		return this.extraTips;
 	}
 
-	public void setExtraTips(List<ExtraTip> extraTips) {
+	public void setExtraTips(final List<ExtraTip> extraTips) {
 		this.extraTips = extraTips;
 	}
 
 	public List<Confirmation> getConfirmations() {
-		return confirmations;
+		return this.confirmations;
 	}
 
-	public void setConfirmations(List<Confirmation> confirmations) {
+	public void setConfirmations(final List<Confirmation> confirmations) {
 		this.confirmations = confirmations;
 	}
 
 	public boolean isReminder() {
-		return reminder;
+		return this.reminder;
 	}
 
-	public void setReminder(boolean reminder) {
+	public void setReminder(final boolean reminder) {
 		this.reminder = reminder;
 	}
 
 	public boolean isAdmin() {
-		return admin;
+		return this.admin;
 	}
 
-	public void setAdmin(boolean admin) {
+	public void setAdmin(final boolean admin) {
 		this.admin = admin;
 	}
 
 	public boolean isActive() {
-		return active;
+		return this.active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(final boolean active) {
 		this.active = active;
 	}
 
 	public Date getLastLogin() {
-		return lastLogin;
+		return this.lastLogin;
 	}
 
-	public void setLastLogin(Date lastLogin) {
+	public void setLastLogin(final Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setUsername(final String username) {
+		this.username = username;
 	}
 
 	public int getPoints() {
-		return points;
+		return this.points;
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(final int points) {
 		this.points = points;
 	}
 
 	public int getTipPoints() {
-		return tipPoints;
+		return this.tipPoints;
 	}
 
-	public void setTipPoints(int tipPoints) {
+	public void setTipPoints(final int tipPoints) {
 		this.tipPoints = tipPoints;
 	}
 
 	public int getExtraPoints() {
-		return extraPoints;
+		return this.extraPoints;
 	}
 
-	public void setExtraPoints(int extraPoints) {
+	public void setExtraPoints(final int extraPoints) {
 		this.extraPoints = extraPoints;
 	}
 
-	public static User connect(String username, String userpass) {
-		return find("byUsernameAndUserpassAndActive", username, userpass, true).first();
-	}
-
 	public int getPlace() {
-		return place;
+		return this.place;
 	}
 
-	public void setPlace(int place) {
+	public void setPlace(final int place) {
 		this.place = place;
 	}
 
 	public boolean isNotification() {
-		return notification;
+		return this.notification;
 	}
 
-	public void setNotification(boolean notification) {
+	public void setNotification(final boolean notification) {
 		this.notification = notification;
 	}
 
 	public int getCorrectResults() {
-		return correctResults;
+		return this.correctResults;
 	}
 
-	public void setCorrectResults(int correctResults) {
+	public void setCorrectResults(final int correctResults) {
 		this.correctResults = correctResults;
 	}
 
 	public int getCorrectDifferences() {
-		return correctDifferences;
+		return this.correctDifferences;
 	}
 
-	public void setCorrectDifferences(int correctDifferences) {
+	public void setCorrectDifferences(final int correctDifferences) {
 		this.correctDifferences = correctDifferences;
 	}
 
 	public int getCorrectTrends() {
-		return correctTrends;
+		return this.correctTrends;
 	}
 
-	public void setCorrectTrends(int correctTrends) {
+	public void setCorrectTrends(final int correctTrends) {
 		this.correctTrends = correctTrends;
 	}
 
 	public int getCorrectExtraTips() {
-		return correctExtraTips;
+		return this.correctExtraTips;
 	}
 
-	public void setCorrectExtraTips(int correctExtraTips) {
+	public void setCorrectExtraTips(final int correctExtraTips) {
 		this.correctExtraTips = correctExtraTips;
 	}
 
 	public int getPreviousPlace() {
-		return previousPlace;
+		return this.previousPlace;
 	}
 
-	public void setPreviousPlace(int previousPlace) {
+	public void setPreviousPlace(final int previousPlace) {
 		this.previousPlace = previousPlace;
 	}
-	
+
 	public boolean isSendStandings() {
-		return sendStandings;
+		return this.sendStandings;
 	}
 
-	public void setSendStandings(boolean sendStandings) {
+	public void setSendStandings(final boolean sendStandings) {
 		this.sendStandings = sendStandings;
 	}
 
 	public List<Statistic> getStatistics() {
-		return statistics;
+		return this.statistics;
 	}
 
-	public void setStatistics(List<Statistic> statistics) {
+	public void setStatistics(final List<Statistic> statistics) {
 		this.statistics = statistics;
 	}
 }

@@ -13,10 +13,7 @@
     <link href="@{'/public/img/touch-icon-ipad.png'}" rel="apple-touch-icon" sizes="72x72" />
     <link href="@{'/public/img/touch-icon-iphone-retina.png'}" rel="apple-touch-icon" sizes="114x114" />
     <link href="@{'/public/img/touch-icon-ipad-retina.png'}" rel="apple-touch-icon" sizes="144x144" />   
-    <link href="@{'/public/stylesheets/bootstrap.min.css'}" rel="stylesheet">
-    <link href="@{'/public/stylesheets/bootstrap-responsive.min.css'}" rel="stylesheet">
-    <link href="@{'/public/stylesheets/bootswatch.css'}" rel="stylesheet">
-    <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
+    <link href="@{'/public/stylesheets/stylesheets.min.css'}" rel="stylesheet">
   </head>
   <body data-spy="scroll" data-target=".subnav">
     <div class="navbar navbar-fixed-top">
@@ -31,7 +28,7 @@
           #{if connectedUser != null}
 	      <div class="btn-group pull-right">
 	            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-	            	<i class="icon-user"></i> ${connectedUser.nickname} <span class="caret"></span>
+	            	<i class="icon-user"></i> ${connectedUser.username} <span class="caret"></span>
 	            </a>
 	            <ul class="dropdown-menu">
 	              <li><a href="@{users.profile()}">&{'myprofile'}</a></li>
@@ -135,17 +132,9 @@
         	<p><a href="https://github.com/svenkubiak/rudeltippen" target="_blank">Rudeltippen 2.0.0</a> | <a href="javascript:showCredits();">Credits</a> | <a href="https://flattr.com/thing/680536/Rudeltippen" target="_blank">Flattr</a></p>
      	</footer>
     </div>
-    <script src="@{'/public/javascripts/jquery.min.js'}"></script>
+    <script src="@{'/public/javascripts/javascript.min.js'}"></script>
     #{if request.action == "Admin.users" }
     <script src="@{'/public/javascripts/datatables.min.js'}"></script>
     #{/if}
-    #{if request.action == "Tournament.brackets" }
-    <script src="@{'/public/javascripts/jquery.smooth-scroll.min.js'}"></script>
-    #{/if}
-    <script src="@{'/public/javascripts/bootstrap.min.js'}"></script>
-    #{if request.action == "Tournament.brackets" }
-    <script src="@{'/public/javascripts/bootswatch.js'}"></script>
-    #{/if}
-    <script src="@{'/public/javascripts/additional.js'}"></script>
   </body>
 </html>

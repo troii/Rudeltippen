@@ -13,7 +13,6 @@ import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
 import play.Play;
-import play.data.validation.Validation;
 import play.libs.Crypto;
 
 public class ValidationUtils implements AppConstants{
@@ -64,7 +63,7 @@ public class ValidationUtils implements AppConstants{
 	 */
 	public static boolean checkFileLength(final Long filesize) {
 		boolean check = false;
-		if ((filesize > 0) && (filesize <= AppUtils.getSettings().getMaxPictureSize())) {
+		if ((filesize > 0) && (filesize <= 102400)) {
 			check = true;
 		}
 
@@ -121,49 +120,6 @@ public class ValidationUtils implements AppConstants{
 		final Pattern p = Pattern.compile(USERNAMEPATTERN);
 		final Matcher m = p.matcher(nickname);
 		return m.matches();
-	}
-
-	/**
-	 * Creates a vliadtion object with the given
-	 * 
-	 * @param validation
-	 * @param tournament
-	 * @param pointsGameWin
-	 * @param pointsGameDraw
-	 * @param pointsTip
-	 * @param pointsTipDiff
-	 * @param pointsTipTrend
-	 * @param minutesBeforeTip
-	 * @param maxPictureSize
-	 * @param countFinalResult
-	 * @param informOnNewTipper
-	 * @param enableRegistration
-	 * 
-	 * @return The validatiob object
-	 */
-	public static Validation getSettingsValidations(
-			final Validation validation,
-			final String tournament,
-			final int pointsGameWin,
-			final int pointsGameDraw,
-			final int pointsTip,
-			final int pointsTipDiff,
-			final int pointsTipTrend,
-			final int minutesBeforeTip,
-			final int maxPictureSize,
-			final boolean countFinalResult,
-			final boolean informOnNewTipper,
-			final boolean enableRegistration) {
-
-		validation.required(tournament);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsGameWin, 1, 99);
-		validation.range(pointsGameDraw, 0, 99);
-		validation.range(pointsTip, 0, 99);
-		validation.range(pointsTipDiff, 0, 99);
-		validation.range(pointsTipTrend, 0, 99);
-
-		return validation;
 	}
 
 	/**

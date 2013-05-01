@@ -7,20 +7,10 @@
 # Example www.mydomain.com
 %prod.app.register.url=http://www.yourdomain.com
 
-# Setup
-# ~~~~~
-# Set your Username and Password for Application Setup
-app.setup.username=admin
-app.setup.password=admin
-
-# Default langue
+# Default language
 # ~~~~~
 # Set your default language (currently supported: de and en)
 default.language=de
-
-# Automatic playing schedule update
-# ~~~~~
-%prod.automatic.updates=false
 
 # Secret key
 # ~~~~~

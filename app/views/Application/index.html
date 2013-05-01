@@ -15,12 +15,12 @@
 				#{list items:topUsers, as:'topUser'}
 					<tr>
 						#{if topUser.picture == null}
-							<td><a href="@{users.show()}/${topUser.nickname}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+							<td><a href="@{users.show()}/${topUser.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}
 						#{else}
-							<td><a href="@{users.show()}/${topUser.nickname}"><img src="${topUser.picture}" /></a></td>
+							<td><a href="@{users.show()}/${topUser.username}"><img src="${topUser.picture}" /></a></td>
 						#{/else}
-						<td><b><a href="@{users.show()}/${topUser.nickname}">${topUser.nickname}</a></b></td>
+						<td><b><a href="@{users.show()}/${topUser.username}">${topUser.username}</a></b></td>
 						<td><b>${topUser.points}</b></td>
 					</tr>
 				#{/list}

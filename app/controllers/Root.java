@@ -10,7 +10,7 @@ public class Root extends Controller {
 	protected static void init() {
 		AppUtils.setAppLanguage();
 
-		if (!AppUtils.appIsInizialized()) {
+		if (!AppUtils.rudeltippenIsInizialized()) {
 			redirect("/system/setup");
 		}
 

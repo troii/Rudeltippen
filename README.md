@@ -7,24 +7,20 @@ If you like Rudeltippen, [Flattr it][5]. Thanks!
 
 Available tournaments
 ------------------
-- 1. Bundesliga 2012/13
-- <del>Euro 2012</del>
+- 1. Bundesliga 2013/14
 
 Features in a Nutshell
 ------------------
 - Automatic results updates
 - Automatic tournament management
 - Automatic playing schedule updates
-- JSON-API for 3rd party clients
-- Fluid responsive layout
-- Built-in themes from [Bootswatch][15]
+- Fluid responsive layout using Twitter Bootstrap
 - Smartphone and tablet compatible
 - Gravatar support
 - Twitter support
 - SSL support
 - Load balancer support
 - Multilingual
-- Runs on - Linux, Mac or Windows
 
 Requirements
 ------------------
@@ -70,14 +66,7 @@ Set your Rudeltippen URL
 %prod.app.register.url=http://www.yourdomain.com
 ```
 
-Set username and password for initial setup (make it "secure")
-
-```bash
-app.setup.username=admin
-app.setup.password=admin
-```
-
-Set the language for Rudeltippen (currently de or en)
+Set the language for Rudeltippen (de or en)
 
 ```bash
 default.language=de
@@ -101,7 +90,7 @@ Set your SMTP credentials (uncomment %prod.mail.smtp.channel if you want to use 
 %prod.mail.smtp.host=127.0.0.1
 %prod.mail.smtp.user=admin
 %prod.mail.smtp.pass=
-#%prod.mail.smtp.channel=ssl
+%prod.mail.smtp.channel=ssl
 ```
 
 If you have a Gmail account, just enter your SMTP credentials as follows
@@ -126,7 +115,7 @@ By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memor
 jvm.memory=-Xmx128m -Xms64m
 ```
 
-Save application.conf
+Rename application.conf.example to application.conf and save application.conf
 
 ### Step 3
 
@@ -142,26 +131,24 @@ Start Rudeltippen by executing the following command in your INSTLLATIONFOLDER:
 play start
 ```
 
-> Note: play start and play stop will only work correctly under Linus and Mac. If you close the command prompt on windows, the Play application will stop also. I recommend using PsExec for running the Play application in the background. You'll find an example script [here][18].
+> Note: play start and play stop will only work correctly under Linus and Mac. If you close your command prompt on windows, the Play application will stop also. I recommend using PsExec for running the Play application in the background. You'll find an example script [here][18].
 
 ### Step 5
 
-Open a Browser and go to http://www.yourdomain.com/system/setup
+Open a Browser and go to http://www.yourdomain.com
 
-> You did set username and password in application.conf (see Step 3)
-
-### Step 6
-
-Change the default values if you want and create an initial user.
-
-> The initial user will be an administrative user and automatically activated.
-> After the setup is complete, Rudeltippen will automatically load all data for the selected league.
+The application will now be setup and the initial data will be loaded. After setup has finished you will be redirect to the login page.
 
 ### Step 7
 
-Login with your just created user and enjoy Rudeltippen!
+You can now login with the following default credentials.
 
-If you need to stop Rudeltippen. Go to your INSTLLATIONFOLDER and execute the followin command
+Username: admin
+Passwort: admin
+
+WARNING: You need to change the default credentials by going to your settings in your profile!
+
+If you need to stop Rudeltippen at any time. Go to your INSTLLATIONFOLDER and execute the followin command
 
 ```bash
 play stop
