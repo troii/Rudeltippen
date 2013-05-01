@@ -8,6 +8,7 @@ import java.util.List;
 import models.Game;
 import models.Settings;
 import models.User;
+import play.Logger;
 import play.Play;
 import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
@@ -15,111 +16,39 @@ import play.i18n.Messages;
 import play.libs.Codec;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.test.Fixtures;
 import utils.AppUtils;
 import utils.DataUtils;
 import utils.ValidationUtils;
 
 public class System extends Controller implements AppConstants {
-	@Before
-	protected static void auth() {
-		AppUtils.setAppLanguage();
 
-		final String requestUsername = request.user;
-		final String requestUserpass = request.password;
-		final String appUsername = Play.configuration.getProperty("app.setup.username");
-		final String appUserpass = Play.configuration.getProperty("app.setup.password");
-
-		if (AppUtils.appIsInizialized() && (!appUsername.equals(requestUsername) || !appUserpass.equals(requestUserpass))) {
-			unauthorized("Rudeltippen Setup");
-		}
-	}
-
-	@Transactional(readOnly=true)
 	public static void setup() {
-		final Settings settings = AppUtils.getSettings();
-		final List<String> timeZones = AppUtils.getTimezones();
-		final List<String> locales = AppUtils.getLanguages();
-
-		render(settings, timeZones, locales);
+		render();
 	}
+	
+	public static void init() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			Logger.error("Failed while trying to sleep in system/init", e);
+		}
 
-	public static void init(final String name,
-			final int pointsGameWin,
-			final int pointsGameDraw,
-			final int pointsTip,
-			final int pointsTipDiff,
-			final int pointsTipTrend,
-			final int minutesBeforeTip,
-			final int maxPictureSize,
-			final boolean countFinalResult,
-			final boolean informOnNewTipper,
-			final boolean enableRegistration,
-			final String nickname,
-			final String username,
-			final String usernameConfirmation,
-			final String userpass,
-			final String userpassConfirmation
-			) {
-		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
-
-		validation = ValidationUtils.getSettingsValidations(
-				validation,
-				usernameConfirmation,
-				pointsGameWin,
-				pointsGameDraw,
-				pointsTip,
-				pointsTipDiff,
-				pointsTipTrend,
-				minutesBeforeTip,
-				maxPictureSize,
-				countFinalResult,
-				informOnNewTipper,
-				enableRegistration);
-		validation.email(username);
-		validation.equals(username, usernameConfirmation);
-		validation.equals(userpass, userpassConfirmation);
-		validation.minSize(userpass, 8);
-		validation.maxSize(userpass, 32);
-		validation.minSize(nickname, 3);
-		validation.maxSize(nickname, 20);
-
-		if (!validation.hasErrors()) {
+		Fixtures.deleteAllModels();
+		Fixtures.deleteDatabase();
+		Fixtures.loadModels(YAMLFILE);
+		
+		Settings settings = AppUtils.getSettings();
+		if (settings == null) {
 			session.clear();
 			response.removeCookie("rememberme");
 
-			DataUtils.loadInitalData();
-
-			final List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
-			final List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
-			boolean hasPlayoffs = false;
-			if ((playoffGames != null) && (playoffGames.size() > 0)) {
-				hasPlayoffs = true;
-			}
-
-			final Settings settings = new Settings();
-			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
-			settings.setAppName(APPNAME);
-			settings.setGameName(name);
-			settings.setPointsGameWin(pointsGameWin);
-			settings.setPointsGameDraw(pointsGameDraw);
-			settings.setPointsTip(pointsTip);
-			settings.setPointsTipDiff(pointsTipDiff);
-			settings.setPointsTipTrend(pointsTipTrend);
-			settings.setMinutesBeforeTip(minutesBeforeTip);
-			settings.setInformOnNewTipper(informOnNewTipper);
-			settings.setPlayoffs(hasPlayoffs);
-			settings.setNumPrePlayoffGames(prePlayoffGames.size());
-			settings.setCountFinalResult(countFinalResult);
-			settings.setEnableRegistration(enableRegistration);
-			settings.setMaxPictureSize(maxPictureSize);
-			settings._save();
-
-			final User user = new User();
+			User user = new User();
 			final String salt = Codec.hexSHA1(Codec.UUID());
 			user.setSalt(salt);
-			user.setUsername(username);
-			user.setNickname(nickname);
-			user.setUserpass(AppUtils.hashPassword(userpass, salt));
+			user.setEmail("admin@foo.bar");
+			user.setUsername("admin");
+			user.setUserpass(AppUtils.hashPassword("admin", salt));
 			user.setRegistered(new Date());
 			user.setExtraPoints(0);
 			user.setTipPoints(0);
@@ -132,16 +61,28 @@ public class System extends Controller implements AppConstants {
 			user.setCorrectTrends(0);
 			user.setCorrectExtraTips(0);
 			user._save();
+			
+			final List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
+			final List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
+			boolean hasPlayoffs = false;
+			if ((playoffGames != null) && (playoffGames.size() > 0)) {
+				hasPlayoffs = true;
+			}
 
-			flash.put("infomessage", Messages.get("controller.setup.setup"));
-			flash.keep();
-
-			redirect("/auth/login");
+			settings = AppUtils.getSettings();
+			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
+			settings.setGameName("Rudeltippen");
+			settings.setPointsTip(4);
+			settings.setPointsTipDiff(2);
+			settings.setPointsTipTrend(1);
+			settings.setMinutesBeforeTip(5);
+			settings.setPlayoffs(hasPlayoffs);
+			settings.setNumPrePlayoffGames(prePlayoffGames.size());
+			settings.setInformOnNewTipper(true);
+			settings.setEnableRegistration(true);
+			settings._save();
 		}
-		params.flash();
-		validation.keep();
-
-		setup();
+		ok();
 	}
 
 	@NoTransaction

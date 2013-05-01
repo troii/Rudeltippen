@@ -17,14 +17,14 @@ import play.db.jpa.Model;
 @Table(name = "rudeltippen_users")
 public class User extends Model {
 	@Column(nullable = false)
-	private String username;
-
-	@Column(nullable = false)
 	private String userpass;
 
 	@Column(nullable = false)
-	private String nickname;
+	private String username;
 
+	@Column(nullable = false)
+	private String email;
+	
 	@Column(nullable = false)
 	private String salt;
 
@@ -65,12 +65,12 @@ public class User extends Model {
 	private int correctTrends;
 	private int correctExtraTips;
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUserpass() {
@@ -169,12 +169,12 @@ public class User extends Model {
 		this.lastLogin = lastLogin;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getPoints() {

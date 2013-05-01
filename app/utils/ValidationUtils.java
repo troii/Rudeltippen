@@ -64,7 +64,7 @@ public class ValidationUtils implements AppConstants{
 	 */
 	public static boolean checkFileLength(final Long filesize) {
 		boolean check = false;
-		if ((filesize > 0) && (filesize <= AppUtils.getSettings().getMaxPictureSize())) {
+		if ((filesize > 0) && (filesize <= 102400)) {
 			check = true;
 		}
 

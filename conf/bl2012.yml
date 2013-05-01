@@ -1,3 +1,8 @@
+models.Settings(appsettings):
+   appName:         rudeltippen
+   pointsGameWin:   3
+   pointsGameDraw:  1
+
 models.Bracket(a):
     name:           table
     number:         1

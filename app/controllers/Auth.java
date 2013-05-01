@@ -146,13 +146,13 @@ public class Auth extends Root implements AppConstants{
 	private static void doConfirmation(final Confirmation confirmation, final User user, final ConfirmationType confirmationType) {
 		if ((ConfirmationType.ACTIVATION).equals(confirmationType)) {
 			activateAndSetAvatar(user);
-			Logger.info("User activated: " + user.getUsername());
+			Logger.info("User activated: " + user.getEmail());
 			flash.put("infomessage", Messages.get("controller.users.accountactivated"));
-			TwitterService.updateStatus(user.getNickname() + " " + Messages.get("controller.users.twitter"));
+			TwitterService.updateStatus(user.getUsername() + " " + Messages.get("controller.users.twitter"));
 		} else if ((ConfirmationType.CHANGEUSERNAME).equals(confirmationType)) {
-			final String oldusername = user.getUsername();
+			final String oldusername = user.getEmail();
 			final String newusername = Crypto.decryptAES(confirmation.getConfirmValue());
-			user.setUsername(newusername);
+			user.setEmail(newusername);
 			user._save();
 			session.remove("username");
 			Logger.info("User changed username... old username: " + oldusername + " - " + "new username: " + newusername);
@@ -161,15 +161,15 @@ public class Auth extends Root implements AppConstants{
 			user.setUserpass(Crypto.decryptAES(confirmation.getConfirmValue()));
 			user._save();
 			session.remove("username");
-			Logger.info(user.getUsername() + " changed his password");
+			Logger.info(user.getEmail() + " changed his password");
 			flash.put("infomessage", Messages.get("controller.users.changeduserpass"));
 		}
 		confirmation._delete();
 	}
 
 	private static void activateAndSetAvatar(final User user) {
-		final String avatar = AppUtils.getGravatarImage(user.getUsername(), "retro", PICTURELARGE);
-		final String avatarSmall = AppUtils.getGravatarImage(user.getUsername(), "retro", PICTURESMALL);
+		final String avatar = AppUtils.getGravatarImage(user.getEmail(), "retro", PICTURELARGE);
+		final String avatarSmall = AppUtils.getGravatarImage(user.getEmail(), "retro", PICTURESMALL);
 		if (StringUtils.isNotBlank(avatar)) {
 			user.setPictureLarge(avatar);
 		}
@@ -221,8 +221,8 @@ public class Auth extends Root implements AppConstants{
 			final String salt = Codec.hexSHA1(Codec.UUID());
 			final User user = new User();
 			user.setRegistered(new Date());
-			user.setNickname(nickname);
-			user.setUsername(username);
+			user.setUsername(nickname);
+			user.setEmail(username);
 			user.setActive(false);
 			user.setReminder(true);
 			user.setAdmin(false);
@@ -248,7 +248,7 @@ public class Auth extends Root implements AppConstants{
 					MailService.newuser(user, admin);
 				}
 			}
-			Logger.info("User registered: " + user.getUsername());
+			Logger.info("User registered: " + user.getEmail());
 		}
 		render(settings);
 	}
@@ -316,7 +316,6 @@ public class Auth extends Root implements AppConstants{
 			validation.isTrue(allowed);
 			validation.required(username);
 			validation.required(userpass);
-			validation.email(username);
 		} catch (final UnsupportedOperationException e) {
 			Logger.error("UnsupportedOperationException while authenticating", e);
 		} catch (final Throwable e) {

@@ -46,7 +46,7 @@ public class AppUtils implements AppConstants{
 	 * @return Settings object
 	 */
 	public static Settings getSettings() {
-		return Settings.find("byAppName", APPNAME).first();
+		return Settings.find("byAppName", "rudeltippen").first();
 	}
 
 	/**
@@ -647,7 +647,7 @@ public class AppUtils implements AppConstants{
 			gameTip.setHomeScore(homeScore);
 			gameTip.setAwayScore(awayScore);
 			gameTip._save();
-			Logger.info("Tipp placed - " + user.getUsername() + " - " + gameTip);
+			Logger.info("Tipp placed - " + user.getEmail() + " - " + gameTip);
 		}
 	}
 
@@ -888,7 +888,7 @@ public class AppUtils implements AppConstants{
 			extraTip.setExtra(extra);
 			extraTip.setAnswer(team);
 			extraTip._save();
-			Logger.info("Stored extratip - " + user.getUsername() + " - " + extraTip);
+			Logger.info("Stored extratip - " + user.getEmail() + " - " + extraTip);
 		}
 	}
 

@@ -40,8 +40,8 @@ public class UnitTests extends UnitTest implements AppConstants{
 		for (int i=1; i <= 7; i++) {
 			final User user = new User();
 			user.setAdmin(true);
-			user.setUsername("user" + i + "@rudeltippen.de");
-			user.setNickname("user" + i);
+			user.setEmail("user" + i + "@rudeltippen.de");
+			user.setUsername("user" + i);
 			user.setRegistered(new Date());
 			user.setReminder(true);
 			user.setActive(true);
@@ -51,8 +51,8 @@ public class UnitTests extends UnitTest implements AppConstants{
 		}
 		User user = new User();
 		user.setAdmin(false);
-		user.setUsername("user8@rudeltippen.de");
-		user.setNickname("user8");
+		user.setEmail("user8@rudeltippen.de");
+		user.setUsername("user8");
 		user.setRegistered(new Date());
 		user.setReminder(true);
 		user.setActive(true);
@@ -62,8 +62,8 @@ public class UnitTests extends UnitTest implements AppConstants{
 
 		user = new User();
 		user.setAdmin(false);
-		user.setUsername("user555@rudeltippen.de");
-		user.setNickname("user555");
+		user.setEmail("user555@rudeltippen.de");
+		user.setUsername("user555");
 		user.setRegistered(new Date());
 		user.setReminder(true);
 		user.setActive(false);
@@ -245,9 +245,7 @@ public class UnitTests extends UnitTest implements AppConstants{
 
 	@Test
 	public void testValidationUtils() {
-		final Settings settings = AppUtils.getSettings();
-		final long maxSize = settings.getMaxPictureSize();
-
+		final long maxSize = 102400;
 
 		assertTrue(ValidationUtils.isValidNickname("ahf_bA-SS747"));
 		assertFalse(ValidationUtils.isValidNickname("ahf_bA-SS 747"));
@@ -311,8 +309,8 @@ public class UnitTests extends UnitTest implements AppConstants{
 		final User user = new User();
 		final User admin = new User();
 
-		user.setUsername("foo@bar.com");
-		admin.setUsername("foo@bar.com");
+		user.setEmail("foo@bar.com");
+		admin.setEmail("foo@bar.com");
 
 		final String response = "foobar";
 		final String message = "foobar";

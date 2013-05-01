@@ -134,13 +134,6 @@ public class DataUtils implements AppConstants{
 		return playdays;
 	}
 
-
-	public static void loadInitalData() {
-		Fixtures.deleteAllModels();
-		Fixtures.deleteDatabase();
-		Fixtures.loadModels("bl2012.yml");
-	}
-
 	public static Date getKickoffFromDocument(final Document document) {
 		Date date = new Date();
 		if (document != null) {
@@ -171,8 +164,8 @@ public class DataUtils implements AppConstants{
 		for (int i=1; i <= 100; i++) {
 			final User user = new User();
 			user.setAdmin(true);
-			user.setUsername("user" + i + "@rudeltippen.de");
-			user.setNickname("user" + i);
+			user.setEmail("user" + i + "@rudeltippen.de");
+			user.setUsername("user" + i);
 			user.setRegistered(new Date());
 			user.setActive(true);
 			user.setSalt(salt);

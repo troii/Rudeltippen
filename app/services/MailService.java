@@ -24,7 +24,7 @@ public class MailService extends Mailer {
 		final Settings settings = AppUtils.getSettings();
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
-		final String recipient = user.getUsername();
+		final String recipient = user.getEmail();
 
 		if (ValidationUtils.isValidEmail(recipient)) {
 			setFrom(from);
@@ -43,7 +43,7 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 
-		if ((user != null) && ValidationUtils.isValidEmail(user.getUsername()) && StringUtils.isNotBlank(token) && (confirmationType != null)) {
+		if ((user != null) && ValidationUtils.isValidEmail(user.getEmail()) && StringUtils.isNotBlank(token) && (confirmationType != null)) {
 			String subject = "";
 			String message = "";
 
@@ -63,7 +63,7 @@ public class MailService extends Mailer {
 
 			setReplyTo(replyto);
 			setFrom(from);
-			addRecipient(user.getUsername());
+			addRecipient(user.getEmail());
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
 			if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
 				send(AppUtils.getMailTemplate("password"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
@@ -80,10 +80,10 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		final String from = Play.configuration.getProperty("mailservice.from");
 
-		if (ValidationUtils.isValidEmail(admin.getUsername()) && (user != null)) {
+		if (ValidationUtils.isValidEmail(admin.getEmail()) && (user != null)) {
 			setFrom(from);
 			setReplyTo(replyto);
-			addRecipient(admin.getUsername());
+			addRecipient(admin.getEmail());
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.newuser")));
 			send(AppUtils.getMailTemplate("newuser"), user, settings);
 		} else {
@@ -113,10 +113,10 @@ public class MailService extends Mailer {
 		final String replyto = Play.configuration.getProperty("mailservice.replyto");
 		notification = StringEscapeUtils.unescapeHtml(notification);
 
-		if (ValidationUtils.isValidEmail(user.getUsername()) && StringUtils.isNotEmpty(notification)) {
+		if (ValidationUtils.isValidEmail(user.getEmail()) && StringUtils.isNotEmpty(notification)) {
 			setReplyTo(replyto);
 			setFrom(from);
-			addRecipient(user.getUsername());
+			addRecipient(user.getEmail());
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
 			send(AppUtils.getMailTemplate("notifications"), notification);
 		} else {

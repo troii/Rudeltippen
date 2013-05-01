@@ -134,10 +134,8 @@ public class Admin extends Root implements AppConstants {
 				enableRegistration);
 
 		if (!validation.hasErrors()) {
-			final Settings settings = Settings.find("byAppName", APPNAME).first();
+			final Settings settings = Settings.find("byAppName", "rudeltippen").first();
 			settings.setGameName(name);
-			settings.setPointsGameWin(pointsGameWin);
-			settings.setPointsGameDraw(pointsGameDraw);
 			settings.setPointsTip(pointsTip);
 			settings.setPointsTipDiff(pointsTipDiff);
 			settings.setPointsTipTrend(pointsTipTrend);
@@ -145,7 +143,6 @@ public class Admin extends Root implements AppConstants {
 			settings.setInformOnNewTipper(informOnNewTipper);
 			settings.setCountFinalResult(countFinalResult);
 			settings.setEnableRegistration(enableRegistration);
-			settings.setMaxPictureSize(maxPictureSize);
 			settings._save();
 
 			flash.put("infomessage", Messages.get("setup.saved"));
@@ -173,8 +170,6 @@ public class Admin extends Root implements AppConstants {
 		flash.put("informOnNewTipper", settings.isInformOnNewTipper());
 		flash.put("countFinalResult", settings.isCountFinalResult());
 		flash.put("enableRegistration", settings.isEnableRegistration());
-		flash.put("maxPictureSize", settings.getMaxPictureSize());
-		flash.put("enableRegistration", settings.isEnableRegistration());
 
 		render(settings, timeZones, locales);
 	}
@@ -190,7 +185,7 @@ public class Admin extends Root implements AppConstants {
 				if (user.isActive()) {
 					user.setActive(false);
 					activate = "deactivated";
-					message = Messages.get("info.change.deactivate", user.getUsername());
+					message = Messages.get("info.change.deactivate", user.getEmail());
 				} else {
 					final Confirmation confirmation = Confirmation.find("byConfirmTypeAndUser", ConfirmationType.ACTIVATION, user).first();
 					if (confirmation != null) {
@@ -198,11 +193,11 @@ public class Admin extends Root implements AppConstants {
 					}
 					user.setActive(true);
 					activate = "activated";
-					message = Messages.get("info.change.activate", user.getUsername());
+					message = Messages.get("info.change.activate", user.getEmail());
 				}
 				user._save();
 				flash.put("infomessage", message);
-				Logger.info("User " + user.getUsername() + " has been " + activate + " - by " + connectedUser.getUsername());
+				Logger.info("User " + user.getEmail() + " has been " + activate + " - by " + connectedUser.getEmail());
 			} else {
 				flash.put("warningmessage", Messages.get("warning.change.active"));
 			}
@@ -223,17 +218,17 @@ public class Admin extends Root implements AppConstants {
 				String message;
 				String admin;
 				if (user.isAdmin()) {
-					message = Messages.get("info.change.deadmin", user.getUsername());
+					message = Messages.get("info.change.deadmin", user.getEmail());
 					admin = "is now admin";
 					user.setAdmin(false);
 				} else {
-					message = Messages.get("info.change.admin", user.getUsername());
+					message = Messages.get("info.change.admin", user.getEmail());
 					admin = "is not admin anymore";
 					user.setAdmin(true);
 				}
 				user._save();
 				flash.put("infomessage", message);
-				Logger.info("User " + user.getUsername() + " " + admin + " - by " + connectedUser.getUsername());
+				Logger.info("User " + user.getEmail() + " " + admin + " - by " + connectedUser.getEmail());
 			} else {
 				flash.put("warningmessage", Messages.get("warning.change.admin"));
 			}
@@ -251,10 +246,10 @@ public class Admin extends Root implements AppConstants {
 
 		if (user != null) {
 			if (!connectedUser.equals(user)) {
-				final String username = user.getUsername();
+				final String username = user.getEmail();
 				user._delete();
 				flash.put("infomessage", Messages.get("info.delete.user", username));
-				Logger.info("User " + username + " has been deleted - by " + connectedUser.getUsername());
+				Logger.info("User " + username + " has been deleted - by " + connectedUser.getEmail());
 
 				final Promise<String> calculations = new CalculationJob().now();
 				await(calculations);

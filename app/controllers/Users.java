@@ -103,11 +103,11 @@ public class Users extends Root implements AppConstants{
 			validation.keep();
 		} else {
 			final User user = AppUtils.getConnectedUser();
-			user.setNickname(nickname);
+			user.setUsername(nickname);
 			user._save();
 
 			flash.put("infomessage", Messages.get("controller.profile.updatenickname"));
-			Logger.info("Nickname updated: " + user.getUsername() + " / " + nickname);
+			Logger.info("Nickname updated: " + user.getEmail() + " / " + nickname);
 		}
 		flash.keep();
 
@@ -171,7 +171,7 @@ public class Users extends Root implements AppConstants{
 				confirm._save();
 				MailService.confirm(user, token, confirmationType);
 				flash.put("infomessage", Messages.get("confirm.message"));
-				Logger.info("Password updated: " + user.getUsername());
+				Logger.info("Password updated: " + user.getEmail());
 			}
 		}
 		flash.keep();
@@ -190,7 +190,7 @@ public class Users extends Root implements AppConstants{
 
 		flash.put("infomessage", Messages.get("controller.profile.notifications"));
 		flash.keep();
-		Logger.info("Notifications updated: " + user.getUsername());
+		Logger.info("Notifications updated: " + user.getEmail());
 
 		redirect("/users/profile");
 	}
@@ -201,8 +201,7 @@ public class Users extends Root implements AppConstants{
 		validation.required(picture);
 
 		if (picture != null) {
-			final int size = AppUtils.getSettings().getMaxPictureSize();
-			final String message = Messages.get("profile.maxpicturesize", size / 1024);
+			final String message = Messages.get("profile.maxpicturesize", 100);
 			validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
 		} else {
 			validation.isTrue(false);
@@ -226,7 +225,7 @@ public class Users extends Root implements AppConstants{
 
 				user._save();
 				flash.put("infomessage", Messages.get("controller.profile.updatepicture"));
-				Logger.info("Picture updated: " + user.getUsername());
+				Logger.info("Picture updated: " + user.getEmail());
 			} catch (final IOException e) {
 				flash.put("warningmessage", Messages.get("controller.profile.updatepicturefail"));
 				Logger.error("Failed to save user picture", e);

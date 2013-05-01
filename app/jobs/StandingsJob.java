@@ -34,9 +34,9 @@ public class StandingsJob extends AppJob {
 				List<User> users = User.find("ORDER BY place ASC").fetch(3);
 				for (final User user : users) {
 					if (count < 3) {
-						buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
+						buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
 					} else {
-						buffer.append(user.getNickname() + " (" + user.getPoints() + " " + Messages.get("points") + ")");
+						buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + ")");
 					}
 					count++;
 				}

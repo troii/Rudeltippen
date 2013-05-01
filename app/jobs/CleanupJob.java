@@ -30,7 +30,7 @@ public class CleanupJob extends AppJob {
 					final List<GameTip> gameTips = user.getGameTips();
 					final List<ExtraTip> extraTips = user.getExtraTips();
 					if ( ((gameTips == null) || (gameTips.size() <= 0)) && ((extraTips == null) || (extraTips.size() <= 0)) ) {
-						Logger.info("Deleting user: '" + user.getNickname() + " (" + user.getUsername() + ")' - User did not activate within 2 days after registration and has no game tips and no extra tips.");
+						Logger.info("Deleting user: '" + user.getUsername() + " (" + user.getEmail() + ")' - User did not activate within 2 days after registration and has no game tips and no extra tips.");
 						user._delete();
 					}
 				}
