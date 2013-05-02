@@ -155,11 +155,7 @@ public class DataUtils implements AppConstants{
 		return date;
 	}
 
-	public static void initApp() {
-		Fixtures.deleteAllModels();
-		Fixtures.deleteDatabase();
-		Fixtures.loadModels("em2012.test.yml");
-
+	public static void loadTestUser() {
 		final String salt = "foo";
 		for (int i=1; i <= 100; i++) {
 			final User user = new User();

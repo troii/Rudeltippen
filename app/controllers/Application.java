@@ -8,6 +8,7 @@ import models.User;
 import play.db.jpa.Transactional;
 import play.mvc.With;
 import utils.AppUtils;
+import utils.DataUtils;
 
 @With(Auth.class)
 @Transactional(readOnly=true)

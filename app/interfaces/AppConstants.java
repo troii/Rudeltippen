@@ -1,6 +1,7 @@
 package interfaces;
 
 public interface AppConstants {
+	public static final String APPNAME = "rudeltippen";
 	public static final String YAMLFILE = "bl2012.yml";
 	public static final String DEFAULT_TIMESTMAP = "MM/dd/yyyy HH:mm:ss";
 	public static final String DEFAULT_TIMEZONE = "Europe/Berlin";

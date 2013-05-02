@@ -247,16 +247,16 @@ public class UnitTests extends UnitTest implements AppConstants{
 	public void testValidationUtils() {
 		final long maxSize = 102400;
 
-		assertTrue(ValidationUtils.isValidNickname("ahf_bA-SS747"));
-		assertFalse(ValidationUtils.isValidNickname("ahf_bA-SS 747"));
-		assertFalse(ValidationUtils.isValidNickname("ahf_bA-SS/747"));
+		assertTrue(ValidationUtils.isValidUsername("ahf_bA-SS747"));
+		assertFalse(ValidationUtils.isValidUsername("ahf_bA-SS 747"));
+		assertFalse(ValidationUtils.isValidUsername("ahf_bA-SS/747"));
 
 		assertTrue(ValidationUtils.checkFileLength(maxSize));
 		assertFalse(ValidationUtils.checkFileLength(maxSize + 1));
-		assertTrue(ValidationUtils.usernameExists("user1@rudeltippen.de"));
+		assertTrue(ValidationUtils.emailExists("user1@rudeltippen.de"));
 		assertTrue(ValidationUtils.isValidEmail("user1@rudeltippen.de"));
-		assertFalse(ValidationUtils.usernameExists("foobar555@bar.com"));
-		assertTrue(ValidationUtils.nicknameExists("user5"));
+		assertFalse(ValidationUtils.emailExists("foobar555@bar.com"));
+		assertTrue(ValidationUtils.usernameExists("user5"));
 		assertTrue(ValidationUtils.isValidScore("0", "0"));
 		assertTrue(ValidationUtils.isValidScore("99", "99"));
 		assertFalse(ValidationUtils.isValidScore("-1", "-1"));

@@ -46,7 +46,7 @@ public class AppUtils implements AppConstants{
 	 * @return Settings object
 	 */
 	public static Settings getSettings() {
-		return Settings.find("byAppName", "rudeltippen").first();
+		return Settings.find("byAppName", APPNAME).first();
 	}
 
 	/**

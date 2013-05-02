@@ -87,7 +87,7 @@ public class Auth extends Root implements AppConstants{
 		}
 
 		validation.required(username);
-		validation.isTrue(ValidationUtils.usernameExists(username)).key("username").message("validation.userNotExists");
+		validation.isTrue(ValidationUtils.emailExists(username)).key("username").message("validation.userNotExists");
 		validation.email(username);
 
 		if (validation.hasErrors()) {
@@ -191,7 +191,7 @@ public class Auth extends Root implements AppConstants{
 		render();
 	}
 
-	public static void create(final String nickname, final String username, final String usernameConfirmation, final String userpass, final String userpassConfirmation) {
+	public static void create(final String username, final String email, final String emailConfirmation, final String userpass, final String userpassConfirmation) {
 		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
 		final Settings settings = AppUtils.getSettings();
@@ -199,19 +199,19 @@ public class Auth extends Root implements AppConstants{
 			redirect("/");
 		}
 
-		validation.required(username);
+		validation.required(email);
 		validation.required(userpass);
-		validation.required(nickname);
-		validation.email(username);
-		validation.equals(username, usernameConfirmation);
+		validation.required(username);
+		validation.email(email);
+		validation.equals(email, emailConfirmation);
 		validation.equals(userpass, userpassConfirmation);
 		validation.minSize(userpass, 8);
 		validation.maxSize(userpass, 32);
-		validation.minSize(nickname, 3);
-		validation.maxSize(nickname, 20);
-		validation.isTrue(ValidationUtils.isValidNickname(nickname)).key("nickname").message(Messages.get("controller.users.invalidnickname"));
-		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
-		validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.emailexists"));
+		validation.minSize(username, 3);
+		validation.maxSize(username, 20);
+		validation.isTrue(ValidationUtils.isValidUsername(username)).key("username").message(Messages.get("controller.users.invalidusername"));
+		validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.usernamexists"));
+		validation.isTrue(!ValidationUtils.emailExists(email)).key("username").message(Messages.get("controller.users.emailexists"));
 
 		if (validation.hasErrors()) {
 			params.flash();
@@ -221,8 +221,8 @@ public class Auth extends Root implements AppConstants{
 			final String salt = Codec.hexSHA1(Codec.UUID());
 			final User user = new User();
 			user.setRegistered(new Date());
-			user.setUsername(nickname);
-			user.setEmail(username);
+			user.setUsername(username);
+			user.setEmail(email);
 			user.setActive(false);
 			user.setReminder(true);
 			user.setAdmin(false);
@@ -378,12 +378,13 @@ public class Auth extends Root implements AppConstants{
 		}
 
 		static boolean check(final String profile) {
-			final User user = User.find("byUsername", connected()).first();
-			if (user == null) {
-				return false;
+			boolean valid = false;
+			final User user = User.find("SELECT u FROM User u WHERE username = ? OR email = ?", connected(), connected()).first();
+			if (user != null) {
+				valid = user.isAdmin();
 			}
-
-			return user.isAdmin();
+			
+			return valid;
 		}
 
 		public static String connected() {

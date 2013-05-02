@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 <div class="span">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#A">Nickname</a></li>
+        <li class="active"><a data-toggle="tab" href="#A">Benutzername</a></li>
         <li><a data-toggle="tab" href="#B">Profilbild</a></li>
         <li><a data-toggle="tab" href="#C">Passwort</a></li>
         <li><a data-toggle="tab" href="#D">E-Mail-Adresse</a></li>
@@ -11,14 +11,14 @@
         <div class="tab-content">
           <div id="A" class="tab-pane active">
 			<div class="span4">
-				<h2>&{'changenickname'}</h2>
-				#{form @Users.updatenickname(), class:'form-horizontal well'}
-					<div class="control-group #{ifError 'nickname'} error #{/ifError}">
-						<label for="input01" class="control-label">&{'newnickname'}</label>
+				#{form @Users.updateusername(), class:'form-horizontal well'}
+				<h2>&{'changeusername'}</h2>
+					<div class="control-group #{ifError 'username'} error #{/ifError}">
+						<label for="input01" class="control-label">&{'newusername'}</label>
 						<div class="controls">
-							<input type="text" id="nickname" name="nickname" value="" class="input-medium">
-							#{ifError 'nickname'}
-								<span class="help-inline">#{error 'nickname' /}</span>
+							<input type="text" id="username" name="username" value="" class="input-medium">
+							#{ifError 'username'}
+								<span class="help-inline">#{error 'username' /}</span>
 							#{/ifError}
 						</div>
 					</div>
@@ -30,8 +30,8 @@
           </div>
           <div id="B" class="tab-pane">
 			<div class="span4 visible-desktop">
-				<h2>&{'changepicture'}</h2>
 				#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
+				<h2>&{'changepicture'}</h2>
 					<div class="control-group #{ifError 'picture'} error #{/ifError}">
 						#{if user.picture != null}
 							<label for="currentpicture" class="control-label">&{'current.profilepicture'}</label>
@@ -56,8 +56,8 @@
           </div>
           <div id="C" class="tab-pane">
 			<div class="span4">
-	            <h2>&{'changepassword'}</h2>
 	            #{form @Users.updatepassword(), class:'form-horizontal well'}
+	            <h2>&{'changepassword'}</h2>
 	                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
 	                    <label for="userpass" class="control-label">&{'newpassword'}</label>
 	                    <div class="controls">
@@ -84,8 +84,8 @@
           </div>
           <div id="D" class="tab-pane">
 			<div class="span4">
-				<h2>&{'changeemail'}</h2>
 				#{form @Users.updateusername(), class:'form-horizontal well'}
+				<h2>&{'changeemail'}</h2>
 					<div class="control-group #{ifError 'username'} error #{/ifError}">
 						<label for="username" class="control-label">&{'newemail'}</label>
 						<div class="controls">
@@ -112,8 +112,8 @@
           </div>    
           <div id="E" class="tab-pane">
 			<div class="span4">
-	            <h2>&{'changenotifications'}</h2>
 	            #{form @Users.updatenotifications(), class:'form-horizontal well'}
+	            <h2>&{'changenotifications'}</h2>
 	                <div class="control-group">
 	                    <div class="controls">
 	                        <label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>

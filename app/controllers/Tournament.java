@@ -5,6 +5,7 @@ import java.util.List;
 import models.Bracket;
 import models.Pagination;
 import models.Playday;
+import models.User;
 import play.db.jpa.Transactional;
 import play.mvc.With;
 import utils.ViewUtils;

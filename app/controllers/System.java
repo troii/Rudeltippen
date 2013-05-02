@@ -28,39 +28,20 @@ public class System extends Controller implements AppConstants {
 	}
 	
 	public static void init() {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			Logger.error("Failed while trying to sleep in system/init", e);
-		}
-
-		Fixtures.deleteAllModels();
-		Fixtures.deleteDatabase();
-		Fixtures.loadModels(YAMLFILE);
-		
 		Settings settings = AppUtils.getSettings();
 		if (settings == null) {
 			session.clear();
 			response.removeCookie("rememberme");
 
-			User user = new User();
-			final String salt = Codec.hexSHA1(Codec.UUID());
-			user.setSalt(salt);
-			user.setEmail("admin@foo.bar");
-			user.setUsername("admin");
-			user.setUserpass(AppUtils.hashPassword("admin", salt));
-			user.setRegistered(new Date());
-			user.setExtraPoints(0);
-			user.setTipPoints(0);
-			user.setPoints(0);
-			user.setActive(true);
-			user.setAdmin(true);
-			user.setReminder(true);
-			user.setCorrectResults(0);
-			user.setCorrectDifferences(0);
-			user.setCorrectTrends(0);
-			user.setCorrectExtraTips(0);
-			user._save();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				Logger.error("Failed while trying to sleep in system/init", e);
+			}
+
+			Fixtures.deleteAllModels();
+			Fixtures.deleteDatabase();
+			Fixtures.loadModels(YAMLFILE);
 			
 			final List<Game> prePlayoffGames = Game.find("byPlayoff", false).fetch();
 			final List<Game> playoffGames = Game.find("byPlayoff", true).fetch();
@@ -81,6 +62,27 @@ public class System extends Controller implements AppConstants {
 			settings.setInformOnNewTipper(true);
 			settings.setEnableRegistration(true);
 			settings._save();
+
+			User user = new User();
+			final String salt = Codec.hexSHA1(Codec.UUID());
+			user.setSalt(salt);
+			user.setEmail("admin@foo.bar");
+			user.setUsername("admin");
+			user.setUserpass(AppUtils.hashPassword("admin", salt));
+			user.setRegistered(new Date());
+			user.setExtraPoints(0);
+			user.setTipPoints(0);
+			user.setPoints(0);
+			user.setActive(true);
+			user.setAdmin(true);
+			user.setReminder(true);
+			user.setCorrectResults(0);
+			user.setCorrectDifferences(0);
+			user.setCorrectTrends(0);
+			user.setCorrectExtraTips(0);
+			user._save();
+			
+			DataUtils.loadTestUser();
 		}
 		ok();
 	}

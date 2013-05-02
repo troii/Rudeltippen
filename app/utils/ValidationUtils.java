@@ -22,7 +22,7 @@ public class ValidationUtils implements AppConstants{
 	 * @param username The username to check
 	 * @return true if username exists, false otherwise
 	 */
-	public static boolean usernameExists(final String username) {
+	public static boolean emailExists(final String username) {
 		boolean exists = false;
 		final List<Confirmation> confirmations = Confirmation.findAll();
 		for (final Confirmation confirmation : confirmations) {
@@ -45,13 +45,13 @@ public class ValidationUtils implements AppConstants{
 	}
 
 	/**
-	 * Checks in the database if a nickname already exists
+	 * Checks in the database if a username already exists
 	 * 
-	 * @param nickname The nickname to check
-	 * @return true if nickname exists, false otherwise
+	 * @param username The username to check
+	 * @return true if username exists, false otherwise
 	 */
-	public static boolean nicknameExists(final String nickname) {
-		final User user = User.find("byNickname", nickname).first();
+	public static boolean usernameExists(final String username) {
+		final User user = User.find("byUsername", username).first();
 		return user != null;
 	}
 
@@ -111,14 +111,14 @@ public class ValidationUtils implements AppConstants{
 	}
 
 	/**
-	 * Checks if a given nickname is matching defined USERNAMEPATTERN
+	 * Checks if a given username is matching defined USERNAMEPATTERN
 	 * 
 	 * @param username The username to check
 	 * @return true if username is valid, false otherwise
 	 */
-	public static boolean isValidNickname(final String nickname) {
+	public static boolean isValidUsername(final String username) {
 		final Pattern p = Pattern.compile(USERNAMEPATTERN);
-		final Matcher m = p.matcher(nickname);
+		final Matcher m = p.matcher(username);
 		return m.matches();
 	}
 

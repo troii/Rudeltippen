@@ -1,24 +1,4 @@
 #{extends 'main.html' /}
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-  google.load("visualization", "1", {packages:["corechart"]});
-  google.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Spieltag', 'Punkte'],
-      #{list items:playdayStats, as:'playdayStat'}
-      	['${playdayStat.playday}', ${playdayStat.points}] ${playdayStat_isLast ? '' : ',' }
-      #{/list}
-    ]);
-
-    var options = {
-      chartArea:{left:20,top:5}
-    };
-
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-  }
-</script>
 <div class="span4">
 #{if user?.pictureLarge != null}
     <img src="${user?.pictureLarge}" />
@@ -66,9 +46,8 @@
 		</tr>
         <tr>
             <td><b>&{'betquote'}</b></td>
-            <td>${tippQuote} % &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
+            <td>${tippQuote} &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
         </tr>      
 	</tbody>
 </table>
-<div id="chart_div" style="width: 600px; height: 800px;"></div>
 </div>

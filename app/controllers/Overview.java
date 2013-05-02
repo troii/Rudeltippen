@@ -12,6 +12,7 @@ import models.User;
 import play.db.jpa.Transactional;
 import play.mvc.With;
 import utils.AppUtils;
+import utils.DataUtils;
 import utils.ViewUtils;
 
 @With(Auth.class)
@@ -23,8 +24,9 @@ public class Overview extends Root{
 		final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
 		final List<User> users = User.find("ORDER BY place ASC").from(0).fetch(15);
 		final List<Map<User, List<GameTip>>> tips = AppUtils.getPlaydayTips(playday, users);
+		final long usersCount = User.count();
 		
-		render(playday, tips, pagination);
+		render(playday, tips, pagination, usersCount);
 	}
 
 	public static void extras() {

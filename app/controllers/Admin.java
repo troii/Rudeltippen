@@ -35,7 +35,7 @@ import utils.ViewUtils;
 @CheckAccess("admin")
 public class Admin extends Root implements AppConstants {
 
-    @Transactional(readOnly=true)
+	@Transactional(readOnly=true)
     public static void results(final long number) {
         final Pagination pagination = ViewUtils.getPagination(number, "/admin/results/");
         final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
@@ -46,7 +46,7 @@ public class Admin extends Root implements AppConstants {
 
     @Transactional(readOnly=true)
     public static void users() {
-        final List<User> users = User.find("SELECT u FROM User u ORDER BY nickname ASC").fetch();
+        final List<User> users = User.find("SELECT u FROM User u ORDER BY username ASC").fetch();
         render(users);
     }
 
@@ -107,7 +107,7 @@ public class Admin extends Root implements AppConstants {
         validation.range(pointsTipTrend, 0, 99);
 
         if (!validation.hasErrors()) {
-            final Settings settings = Settings.find("byAppName", "rudeltippen").first();
+            final Settings settings = Settings.find("byAppName", APPNAME).first();
             settings.setGameName(name);
             settings.setPointsTip(pointsTip);
             settings.setPointsTipDiff(pointsTipDiff);

@@ -4,7 +4,7 @@
 		<legend>&{'pleaselogin'}</legend>
 		<div class="control-group">
 			<div class="control-group #{ifError 'username'} error #{/ifError}">
-				<label for="input01" class="control-label">&{'email'} / &{'nickname'}</label>
+				<label for="input01" class="control-label">&{'email'} / &{'username'}</label>
 				<div class="controls">
 					<input type="text" id="username" name="username" value="${flash.username}" class="input-xlarge">
 					#{ifError 'username'}

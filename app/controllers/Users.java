@@ -90,24 +90,24 @@ public class Users extends Root implements AppConstants{
         render(user, settings);
     }
 
-    public static void updatenickname(final String nickname) {
+    public static void updateusername(final String username) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        validation.required(nickname);
-        validation.minSize(nickname, 3);
-        validation.maxSize(nickname, 20);
-        validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
+        validation.required(username);
+        validation.minSize(username, 3);
+        validation.maxSize(username, 20);
+        validation.isTrue(!ValidationUtils.usernameExists(username)).key("username").message(Messages.get("controller.users.usernamexists"));
 
         if (validation.hasErrors()) {
             params.flash();
             validation.keep();
         } else {
             final User user = AppUtils.getConnectedUser();
-            user.setUsername(nickname);
+            user.setUsername(username);
             user._save();
 
-            flash.put("infomessage", Messages.get("controller.profile.updatenickname"));
-            Logger.info("Nickname updated: " + user.getEmail() + " / " + nickname);
+            flash.put("infomessage", Messages.get("controller.profile.updateusername"));
+            Logger.info("username updated: " + user.getEmail() + " / " + username);
         }
         flash.keep();
 
@@ -120,7 +120,7 @@ public class Users extends Root implements AppConstants{
         validation.required(username);
         validation.email(username);
         validation.equals(username, usernameConfirmation);
-        validation.equals(ValidationUtils.usernameExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
+        validation.equals(ValidationUtils.emailExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
 
         if (validation.hasErrors()) {
             params.flash();

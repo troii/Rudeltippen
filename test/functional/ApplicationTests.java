@@ -63,8 +63,8 @@ public class ApplicationTests extends FunctionalTest {
     }
 
     @Test
-    public void testProfileUpdatenickname() {
-        Response response = GET("/users/updatenickname");
+    public void testProfileUpdateUsername() {
+        Response response = GET("/users/updateusername");
         assertStatus(302, response);
         assertEquals(response.getHeader("location"), "/auth/login");
     }
@@ -159,8 +159,8 @@ public class ApplicationTests extends FunctionalTest {
         assertStatus(302, GET("/admin/changeactive/3"));
         assertStatus(302, GET("/admin/changeadmin/3"));
         
-        response = GET("/users/updatenickname");
-        assertStatus(302, GET("/users/updatenickname"));
+        response = GET("/users/updateusername");
+        assertStatus(302, GET("/users/updateusername"));
         assertEquals(response.getHeader("location"), "/users/profile");
 
         response = GET("/users/updatenotifications");
