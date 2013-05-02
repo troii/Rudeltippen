@@ -16,7 +16,6 @@ import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
-import models.Statistic;
 import models.User;
 import models.enums.ConfirmationType;
 import play.Logger;
@@ -30,6 +29,8 @@ import play.mvc.With;
 import services.MailService;
 import utils.AppUtils;
 import utils.ValidationUtils;
+
+import com.sun.org.glassfish.external.statistics.Statistic;
 
 @With(Auth.class)
 public class Users extends Root implements AppConstants{
@@ -75,9 +76,7 @@ public class Users extends Root implements AppConstants{
                 pointsPerTipp = df.format( pointsTipp );
             }
 
-            final List<Statistic> playdayStats = Statistic.find("byUser", user).fetch();
-
-            render(user, statistics, pointsPerTipp, tippQuote, tippedGames, playdayStats);
+            render(user, statistics, pointsPerTipp, tippQuote, tippedGames);
         } else {
             redirect("/");
         }

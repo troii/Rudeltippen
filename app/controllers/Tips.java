@@ -84,7 +84,7 @@ public class Tips extends Root {
 		}
 		flash.keep();
 
-		redirect("/tips/index/" + playday);
+		redirect("/tips/playday/" + playday);
 	}
 
 	public static void storeextratips() {

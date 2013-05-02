@@ -22,7 +22,6 @@ import models.Game;
 import models.GameTip;
 import models.Playday;
 import models.Settings;
-import models.Statistic;
 import models.Team;
 import models.User;
 import models.WSResult;
@@ -38,6 +37,9 @@ import play.libs.Codec;
 import play.libs.Images;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
+
+import com.sun.org.glassfish.external.statistics.Statistic;
+
 import controllers.Auth.Security;
 
 public class AppUtils implements AppConstants{
@@ -182,61 +184,44 @@ public class AppUtils implements AppConstants{
 		}
 
 		final List<User> users = User.find("SELECT u FROM User u WHERE active = ?", true).fetch();
-		final List<Playday> playdays = Playday.findAll();
 		for (final User user : users) {
 			int correctResults = 0;
 			int correctDifferences = 0;
 			int correctTrends = 0;
 			int correctExtraTips = 0;
 			int userTipPoints = 0;
-
-			for (final Playday playday : playdays) {
-				int pointsOnPlayday = 0;
-				for (final Game game : playday.getGames()) {
-					final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
-					if (gameTip == null) {
-						continue;
-					}
-
-					if (!game.isEnded()) {
-						continue;
-					}
-
-					int pointsForTipp = 0;
-					if (game.isOvertime()) {
-						pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
-					} else {
-						pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
-					}
-					gameTip.setPoints(pointsForTipp);
-					gameTip._save();
-
-					if (pointsForTipp == settings.getPointsTip()) {
-						correctResults++;
-					} else if (pointsForTipp == settings.getPointsTipDiff()) {
-						correctDifferences++;
-					} else if (pointsForTipp == settings.getPointsTipTrend()) {
-						correctTrends++;
-					}
-
-					pointsOnPlayday = pointsOnPlayday + pointsForTipp;
+			
+			final List<GameTip> gameTips = GameTip.find("byUser", user).fetch();
+			for (GameTip gameTip : gameTips) {
+				Game game = gameTip.getGame();
+				
+				if (!game.isEnded()) {
+					continue;
 				}
-				Statistic statistic = Statistic.find("byUserAndPlayday", user, playday.getNumber()).first();
-				if (statistic == null) {
-					statistic = new Statistic();
-					statistic.setUser(user);
-					statistic.setPlayday(playday.getNumber());
-				}
-				statistic.setPoints(pointsOnPlayday);
-				statistic._save();
 
-				userTipPoints = userTipPoints + pointsOnPlayday;
-				user.setTipPoints(userTipPoints);
-				user.setCorrectResults(correctResults);
-				user.setCorrectDifferences(correctDifferences);
-				user.setCorrectTrends(correctTrends);
-				user.setPoints(pointsOnPlayday);
+				int pointsForTipp = 0;
+				if (game.isOvertime()) {
+					pointsForTipp = getTipPointsOvertime(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), Integer.parseInt(game.getHomeScoreOT()), Integer.parseInt(game.getAwayScoreOT()), gameTip.getHomeScore(), gameTip.getAwayScore());
+				} else {
+					pointsForTipp = getTipPoints(Integer.parseInt(game.getHomeScore()), Integer.parseInt(game.getAwayScore()), gameTip.getHomeScore(), gameTip.getAwayScore());
+				}
+				gameTip.setPoints(pointsForTipp);
+				gameTip._save();
+
+				if (pointsForTipp == settings.getPointsTip()) {
+					correctResults++;
+				} else if (pointsForTipp == settings.getPointsTipDiff()) {
+					correctDifferences++;
+				} else if (pointsForTipp == settings.getPointsTipTrend()) {
+					correctTrends++;
+				}
+				
+				userTipPoints = userTipPoints + pointsForTipp;
 			}
+			user.setTipPoints(userTipPoints);
+			user.setCorrectResults(correctResults);
+			user.setCorrectDifferences(correctDifferences);
+			user.setCorrectTrends(correctTrends);
 
 			int bonusPoints = 0;
 			for (final Extra extra : extras) {
@@ -253,6 +238,7 @@ public class AppUtils implements AppConstants{
 					}
 				}
 			}
+			
 			user.setExtraPoints(bonusPoints);
 			user.setPoints(bonusPoints + userTipPoints);
 			user.setCorrectExtraTips(correctExtraTips);
