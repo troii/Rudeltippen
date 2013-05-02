@@ -183,7 +183,7 @@ public class AppUtils implements AppConstants{
 			}
 		}
 
-		final List<User> users = User.find("SELECT u FROM User u WHERE active = ?", true).fetch();
+		final List<User> users = User.find("byActive", true).fetch();
 		for (final User user : users) {
 			int correctResults = 0;
 			int correctDifferences = 0;
@@ -763,20 +763,6 @@ public class AppUtils implements AppConstants{
 	}
 
 	/**
-	 * Checks if Rudeltippen update service is used or not
-	 * @return true if automatic.updates is set in application.conf, false otherwise
-	 */
-	public static boolean automaticUpdates() {
-		final String updates = Play.configuration.getProperty("automatic.updates");
-		boolean update = false;
-		if (("true").equalsIgnoreCase(updates)) {
-			update = true;
-		}
-
-		return update;
-	}
-
-	/**
 	 * Returns the full localized path to a mail template
 	 *
 	 * @param name The name of the template
@@ -838,22 +824,6 @@ public class AppUtils implements AppConstants{
 		}
 
 		return image;
-	}
-
-	/**
-	 * Checks if API is enabled in application.conf
-	 * 
-	 * @return true if enable, false otherwise
-	 */
-	public static boolean isAPI() {
-		final String enabled = Play.configuration.getProperty("api.enabled");
-		boolean api = false;
-
-		if ( ("true").equals(enabled) ) {
-			api = true;
-		}
-
-		return api;
 	}
 
 	/**

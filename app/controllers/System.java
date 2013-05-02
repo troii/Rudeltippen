@@ -28,12 +28,14 @@ public class System extends Controller implements AppConstants {
 		AppUtils.setAppLanguage();
 	}
 	public static void setup() {
+		if (AppUtils.rudeltippenIsInizialized()) {
+			redirect("/");
+		}
 		render();
 	}
 	
 	public static void init() {
-		Settings settings = AppUtils.getSettings();
-		if (settings == null) {
+		if (!AppUtils.rudeltippenIsInizialized()) {
 			session.clear();
 			response.removeCookie("rememberme");
 
@@ -54,6 +56,7 @@ public class System extends Controller implements AppConstants {
 				hasPlayoffs = true;
 			}
 
+			Settings settings = AppUtils.getSettings();
 			settings = AppUtils.getSettings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
 			settings.setGameName("Rudeltippen");
@@ -85,10 +88,9 @@ public class System extends Controller implements AppConstants {
 			user.setCorrectTrends(0);
 			user.setCorrectExtraTips(0);
 			user._save();
-			
-			DataUtils.loadTestUser();
+			ok();
 		}
-		ok();
+		redirect("/");
 	}
 
 	@NoTransaction
