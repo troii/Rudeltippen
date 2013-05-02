@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import jobs.CalculationJob;
 import models.Confirmation;
 import models.Game;
 import models.Pagination;
@@ -25,7 +24,6 @@ import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
-import play.libs.F.Promise;
 import play.mvc.With;
 import utils.AppUtils;
 import utils.ValidationUtils;
@@ -42,7 +40,6 @@ public class Admin extends Root implements AppConstants {
 
         render(playday, pagination);
     }
-
 
     @Transactional(readOnly=true)
     public static void users() {
@@ -79,8 +76,7 @@ public class Admin extends Root implements AppConstants {
             AppUtils.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         }
 
-        final Promise<String> calculations = new CalculationJob().now();
-        await(calculations);
+        AppUtils.calculations();
 
         flash.put("infomessage", Messages.get("controller.games.tippsstored"));
         flash.keep();
@@ -96,7 +92,7 @@ public class Admin extends Root implements AppConstants {
             }
         }
 
-        redirect("/admin/playday/" + playday);
+        redirect("/admin/results/" + playday);
     }
 
     public static void updatesettings (final String name, final int pointsTip, final int pointsTipDiff, final int pointsTipTrend, final int minutesBeforeTip, final boolean countFinalResult, final boolean informOnNewTipper, final boolean enableRegistration) {
@@ -220,8 +216,7 @@ public class Admin extends Root implements AppConstants {
                 flash.put("infomessage", Messages.get("info.delete.user", username));
                 Logger.info("User " + username + " has been deleted - by " + connectedUser.getEmail());
 
-                final Promise<String> calculations = new CalculationJob().now();
-                await(calculations);
+                AppUtils.calculations();
             } else {
                 flash.put("warningmessage", Messages.get("warning.delete.user"));
             }

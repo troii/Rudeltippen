@@ -12,6 +12,13 @@
 # Set your default language (currently supported: de and en)
 default.language=de
 
+# Date and Time Format
+# ~~~~~
+# Set your default language (currently supported: de and en)
+app.timezone=Europe/Berlin
+app.dateformat=dd.MM.yyyy
+app.timeformat=kk:mm
+
 # Secret key
 # ~~~~~
 # The secret key is used to secure cryptographics functions

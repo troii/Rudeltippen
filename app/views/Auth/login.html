@@ -4,7 +4,7 @@
 		<legend>&{'pleaselogin'}</legend>
 		<div class="control-group">
 			<div class="control-group #{ifError 'username'} error #{/ifError}">
-				<label for="input01" class="control-label">&{'email'} / &{'username'}</label>
+				<label for="input01" class="control-label">&{'email'} &{'or'} &{'username'}</label>
 				<div class="controls">
 					<input type="text" id="username" name="username" value="${flash.username}" class="input-xlarge">
 					#{ifError 'username'}
@@ -31,7 +31,7 @@
 			<button class="btn btn-primary" data-loading-text="&{'login'}..." id="fat-btn" type="submit" data-toggle="button">&{'login'}</button>
 			<br />
 			#{if isEnableRegistration}
-			<br /><a href="@{auth.register()}">Bist Du neu bei Rudeltippen?</a>
+			<br /><a href="@{auth.register()}">&{'areyounew'}</a>
 			#{/if}
 			<br /><a href="@{auth.forgotten()}">&{'forgotten'}</a>
 		</div>

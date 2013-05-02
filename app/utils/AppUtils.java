@@ -181,7 +181,7 @@ public class AppUtils implements AppConstants{
 			}
 		}
 
-		final List<User> users = User.findAll();
+		final List<User> users = User.find("SELECT u FROM User u WHERE active = ?", true).fetch();
 		final List<Playday> playdays = Playday.findAll();
 		for (final User user : users) {
 			int correctResults = 0;
@@ -910,8 +910,11 @@ public class AppUtils implements AppConstants{
 	}
 
 	public static String getCurrentTimeZone() {
-		//TODO need to put this in the config file
-		return Play.configuration.getProperty("TimeZone");
+		String timezone = Play.configuration.getProperty("app.timezone");
+		if (StringUtils.isBlank(timezone)) {
+			timezone = DEFAULT_TIMEZONE;
+		}
+		return timezone;
 	}
 
 	public static boolean rudeltippenIsInizialized() {

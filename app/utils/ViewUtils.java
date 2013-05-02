@@ -20,6 +20,7 @@ import models.User;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
+import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
@@ -63,9 +64,16 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 	}
 
 	public static String formatted (final Date date) {
-		//TODO Need to put this in the configuration file
-		final String dateString = "dd.mm.yyyy";
-		final String timeString = "hh:mm";
+		String dateString = Play.configuration.getProperty("app.dateformat");
+		String timeString = Play.configuration.getProperty("app.timeformat");
+		
+		if (StringUtils.isBlank(dateString)) {
+			dateString = DEFAULT_DATEFORMAT;
+		}
+		
+		if (StringUtils.isBlank(timeString)) {
+			timeString = DEFAULT_TIMEFORMAT;
+		}
 
 		String lang = Lang.get();
 		if (StringUtils.isBlank(lang)) {
@@ -370,7 +378,7 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 	}
 
 	public static String formatTimestamp(final Long timestamp) {
-		final SimpleDateFormat df = new SimpleDateFormat(DEFAULT_TIMESTMAP);
+		final SimpleDateFormat df = new SimpleDateFormat(DEFAULT_DATEFORMAT + " - " + DEFAULT_TIMEFORMAT);
 		return df.format(new Date(timestamp));
 	}
 

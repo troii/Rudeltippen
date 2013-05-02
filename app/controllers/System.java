@@ -22,7 +22,11 @@ import utils.DataUtils;
 import utils.ValidationUtils;
 
 public class System extends Controller implements AppConstants {
-
+	
+	@Before()
+	protected static void before() {
+		AppUtils.setAppLanguage();
+	}
 	public static void setup() {
 		render();
 	}

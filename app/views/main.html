@@ -44,21 +44,21 @@
 	          <div class="nav-collapse">
 	            <ul class="nav">
 	              <li #{if request.action == "Application.index" } class="active" #{/if}><a href="@{application.index()}">&{'dashboard'}</a></li>
-	              <li class="dropdown">
+	              <li #{if request.action == "Tournament.brackets" || request.action == "Tournament.playday" } class="active dropdown" #{/if} #{else} class="dropdown" #{/else}>
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">&{'tournament'} <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="@{tournament.brackets()}">&{'table'}</a></li>
                         <li><a href="@{tournament.playday()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
                       </ul>
                   </li>
-                  <li class="dropdown">
+                  <li #{if request.action == "Tips.playday" || request.action == "Tips.extras" } class="active dropdown" #{/if} #{else} class="dropdown" #{/else}>
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">&{'tips'} <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="@{tips.playday()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
                         <li><a href="@{tips.extras()}">&{'extratips'}</a></li>
                       </ul>
                   </li>            
-                  <li class="dropdown">
+                  <li #{if request.action == "Overview.playday" || request.action == "Overview.extras" } class="active dropdown" #{/if} #{else} class="dropdown" #{/else}>
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">&{'overview'} <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="@{overview.playday()}/${currentPlayday.number}">&{currentPlayday.name}</a></li>
