@@ -33,218 +33,218 @@ import utils.ValidationUtils;
 
 @With(Auth.class)
 public class Users extends Root implements AppConstants{
-	@Transactional(readOnly=true)
-	public static void show(final String nickname) {
-		final User user = User.find("byNickname", nickname).first();
+    @Transactional(readOnly=true)
+    public static void show(final String username) {
+        final User user = User.find("byUsername", username).first();
 
-		if (user != null) {
-			final Map<String, Integer> statistics = new HashMap<String, Integer>();
-			final List<ExtraTip> extraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
-			final List<GameTip> tips = GameTip.find("byUser", user).fetch();
-			final long extra = Extra.count();
-			final int sumAllTipps = tips.size();
-			final int correctTipps = user.getCorrectResults();
-			final int correctTrend = user.getCorrectTrends();
-			final int correctDifference = user.getCorrectDifferences();
-			final DecimalFormat df = new DecimalFormat( "0.00" );
+        if (user != null) {
+            final Map<String, Integer> statistics = new HashMap<String, Integer>();
+            final List<ExtraTip> extraTips = ExtraTip.find("SELECT e FROM ExtraTip e WHERE user = ? AND points > 0", user).fetch();
+            final List<GameTip> tips = GameTip.find("byUser", user).fetch();
+            final long extra = Extra.count();
+            final int sumAllTipps = tips.size();
+            final int correctTipps = user.getCorrectResults();
+            final int correctTrend = user.getCorrectTrends();
+            final int correctDifference = user.getCorrectDifferences();
+            final DecimalFormat df = new DecimalFormat( "0.00" );
 
-			statistics.put("sumGames", (int) Game.count());
-			statistics.put("sumTipps", sumAllTipps);
-			statistics.put("correctTipps", correctTipps);
-			statistics.put("correctTrend", correctTrend);
-			statistics.put("correctDifference", correctDifference);
-			statistics.put("extraTips", (int) extra);
-			statistics.put("correctExtraTips", extraTips.size());
+            statistics.put("sumGames", (int) Game.count());
+            statistics.put("sumTipps", sumAllTipps);
+            statistics.put("correctTipps", correctTipps);
+            statistics.put("correctTrend", correctTrend);
+            statistics.put("correctDifference", correctDifference);
+            statistics.put("extraTips", (int) extra);
+            statistics.put("correctExtraTips", extraTips.size());
 
-			int tippedGames = 0;
-			for (final GameTip tip : tips) {
-				if (tip.getGame().isEnded()) {
-					tippedGames++;
-				}
-			}
+            int tippedGames = 0;
+            for (final GameTip tip : tips) {
+                if (tip.getGame().isEnded()) {
+                    tippedGames++;
+                }
+            }
 
-			String tippQuote = "0 %";
-			if (tippedGames > 0) {
-				final double quote = (100.00 / tippedGames) * correctTipps;
-				tippQuote = df.format( quote );
-			}
+            String tippQuote = "0 %";
+            if (tippedGames > 0) {
+                final double quote = (100.00 / tippedGames) * correctTipps;
+                tippQuote = df.format( quote );
+            }
 
-			final float pointsTipp = (float) user.getPoints() / (float) tippedGames;
-			String pointsPerTipp = "0";
-			if (pointsTipp > 0) {
-				pointsPerTipp = df.format( pointsTipp );
-			}
+            final float pointsTipp = (float) user.getPoints() / (float) tippedGames;
+            String pointsPerTipp = "0";
+            if (pointsTipp > 0) {
+                pointsPerTipp = df.format( pointsTipp );
+            }
 
-			final List<Statistic> playdayStats = Statistic.find("byUser", user).fetch();
+            final List<Statistic> playdayStats = Statistic.find("byUser", user).fetch();
 
-			render(user, statistics, pointsPerTipp, tippQuote, tippedGames, playdayStats);
-		} else {
-			redirect("/");
-		}
-	}
+            render(user, statistics, pointsPerTipp, tippQuote, tippedGames, playdayStats);
+        } else {
+            redirect("/");
+        }
+    }
 
-	@Transactional(readOnly=true)
-	public static void profile() {
-		final User user = AppUtils.getConnectedUser();
-		final Settings settings = AppUtils.getSettings();
-		render(user, settings);
-	}
+    @Transactional(readOnly=true)
+    public static void profile() {
+        final User user = AppUtils.getConnectedUser();
+        final Settings settings = AppUtils.getSettings();
+        render(user, settings);
+    }
 
-	public static void updatenickname(final String nickname) {
-		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
+    public static void updatenickname(final String nickname) {
+        if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(nickname);
-		validation.minSize(nickname, 3);
-		validation.maxSize(nickname, 20);
-		validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
+        validation.required(nickname);
+        validation.minSize(nickname, 3);
+        validation.maxSize(nickname, 20);
+        validation.isTrue(!ValidationUtils.nicknameExists(nickname)).key("nickname").message(Messages.get("controller.users.nicknamexists"));
 
-		if (validation.hasErrors()) {
-			params.flash();
-			validation.keep();
-		} else {
-			final User user = AppUtils.getConnectedUser();
-			user.setUsername(nickname);
-			user._save();
+        if (validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+        } else {
+            final User user = AppUtils.getConnectedUser();
+            user.setUsername(nickname);
+            user._save();
 
-			flash.put("infomessage", Messages.get("controller.profile.updatenickname"));
-			Logger.info("Nickname updated: " + user.getEmail() + " / " + nickname);
-		}
-		flash.keep();
+            flash.put("infomessage", Messages.get("controller.profile.updatenickname"));
+            Logger.info("Nickname updated: " + user.getEmail() + " / " + nickname);
+        }
+        flash.keep();
 
-		redirect("/users/profile");
-	}
+        redirect("/users/profile");
+    }
 
-	public static void updateusername(final String username, final String usernameConfirmation) {
-		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
+    public static void updateusername(final String username, final String usernameConfirmation) {
+        if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(username);
-		validation.email(username);
-		validation.equals(username, usernameConfirmation);
-		validation.equals(ValidationUtils.usernameExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
+        validation.required(username);
+        validation.email(username);
+        validation.equals(username, usernameConfirmation);
+        validation.equals(ValidationUtils.usernameExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
 
-		if (validation.hasErrors()) {
-			params.flash();
-			validation.keep();
-		} else {
-			final String token = Codec.UUID();
-			final User user = AppUtils.getConnectedUser();
-			if (user != null) {
-				final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
-				final Confirmation confirmation = new Confirmation();
-				confirmation.setConfirmType(confirmationType);
-				confirmation.setConfirmValue(Crypto.encryptAES(username));
-				confirmation.setCreated(new Date());
-				confirmation.setToken(token);
-				confirmation.setUser(user);
-				confirmation._save();
-				MailService.confirm(user, token, confirmationType);
-				flash.put("infomessage", Messages.get("confirm.message"));
-			}
-		}
-		flash.keep();
+        if (validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+        } else {
+            final String token = Codec.UUID();
+            final User user = AppUtils.getConnectedUser();
+            if (user != null) {
+                final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
+                final Confirmation confirmation = new Confirmation();
+                confirmation.setConfirmType(confirmationType);
+                confirmation.setConfirmValue(Crypto.encryptAES(username));
+                confirmation.setCreated(new Date());
+                confirmation.setToken(token);
+                confirmation.setUser(user);
+                confirmation._save();
+                MailService.confirm(user, token, confirmationType);
+                flash.put("infomessage", Messages.get("confirm.message"));
+            }
+        }
+        flash.keep();
 
-		redirect("/users/profile");
-	}
+        redirect("/users/profile");
+    }
 
-	public static void updatepassword(final String userpass, final String userpassConfirmation) {
-		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
+    public static void updatepassword(final String userpass, final String userpassConfirmation) {
+        if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(userpass);
-		validation.equals(userpass, userpassConfirmation);
-		validation.minSize(userpass, 6);
-		validation.maxSize(userpass, 30);
+        validation.required(userpass);
+        validation.equals(userpass, userpassConfirmation);
+        validation.minSize(userpass, 6);
+        validation.maxSize(userpass, 30);
 
-		if (Validation.hasErrors()) {
-			params.flash();
-			validation.keep();
-		} else {
-			final String token = Codec.UUID();
-			final User user = AppUtils.getConnectedUser();
-			if (user != null) {
-				final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERPASS;
-				final Confirmation confirm = new Confirmation();
-				confirm.setConfirmType(confirmationType);
-				confirm.setConfirmValue(Crypto.encryptAES(AppUtils.hashPassword(userpass, user.getSalt())));
-				confirm.setCreated(new Date());
-				confirm.setToken(token);
-				confirm.setUser(user);
-				confirm._save();
-				MailService.confirm(user, token, confirmationType);
-				flash.put("infomessage", Messages.get("confirm.message"));
-				Logger.info("Password updated: " + user.getEmail());
-			}
-		}
-		flash.keep();
+        if (Validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+        } else {
+            final String token = Codec.UUID();
+            final User user = AppUtils.getConnectedUser();
+            if (user != null) {
+                final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERPASS;
+                final Confirmation confirm = new Confirmation();
+                confirm.setConfirmType(confirmationType);
+                confirm.setConfirmValue(Crypto.encryptAES(AppUtils.hashPassword(userpass, user.getSalt())));
+                confirm.setCreated(new Date());
+                confirm.setToken(token);
+                confirm.setUser(user);
+                confirm._save();
+                MailService.confirm(user, token, confirmationType);
+                flash.put("infomessage", Messages.get("confirm.message"));
+                Logger.info("Password updated: " + user.getEmail());
+            }
+        }
+        flash.keep();
 
-		redirect("/users/profile");
-	}
+        redirect("/users/profile");
+    }
 
-	public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
-		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
+    public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
+        if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		final User user = AppUtils.getConnectedUser();
-		user.setReminder(reminder);
-		user.setNotification(notification);
-		user.setSendStandings(sendstandings);
-		user._save();
+        final User user = AppUtils.getConnectedUser();
+        user.setReminder(reminder);
+        user.setNotification(notification);
+        user.setSendStandings(sendstandings);
+        user._save();
 
-		flash.put("infomessage", Messages.get("controller.profile.notifications"));
-		flash.keep();
-		Logger.info("Notifications updated: " + user.getEmail());
+        flash.put("infomessage", Messages.get("controller.profile.notifications"));
+        flash.keep();
+        Logger.info("Notifications updated: " + user.getEmail());
 
-		redirect("/users/profile");
-	}
+        redirect("/users/profile");
+    }
 
-	public static void updatepicture(final File picture) {
-		if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
+    public static void updatepicture(final File picture) {
+        if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-		validation.required(picture);
+        validation.required(picture);
 
-		if (picture != null) {
-			final String message = Messages.get("profile.maxpicturesize", 100);
-			validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
-		} else {
-			validation.isTrue(false);
-		}
+        if (picture != null) {
+            final String message = Messages.get("profile.maxpicturesize", 100);
+            validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
+        } else {
+            validation.isTrue(false);
+        }
 
-		if (validation.hasErrors()) {
-			params.flash();
-			validation.keep();
-		} else {
-			final User user = AppUtils.getConnectedUser();
-			try {
-				Images.resize(picture, picture, PICTURELARGE, PICTURELARGE);
-				user.setPictureLarge(Images.toBase64(picture));
-				Images.resize(picture, picture, PICTURESMALL, PICTURESMALL);
-				user.setPicture(Images.toBase64(picture));
-				if (picture.delete()) {
-					Logger.warn("User-Picutre could not be deleted after upload.");
-				} else {
-					Logger.info("User-Picture deleted after upload.");
-				}
+        if (validation.hasErrors()) {
+            params.flash();
+            validation.keep();
+        } else {
+            final User user = AppUtils.getConnectedUser();
+            try {
+                Images.resize(picture, picture, PICTURELARGE, PICTURELARGE);
+                user.setPictureLarge(Images.toBase64(picture));
+                Images.resize(picture, picture, PICTURESMALL, PICTURESMALL);
+                user.setPicture(Images.toBase64(picture));
+                if (picture.delete()) {
+                    Logger.warn("User-Picutre could not be deleted after upload.");
+                } else {
+                    Logger.info("User-Picture deleted after upload.");
+                }
 
-				user._save();
-				flash.put("infomessage", Messages.get("controller.profile.updatepicture"));
-				Logger.info("Picture updated: " + user.getEmail());
-			} catch (final IOException e) {
-				flash.put("warningmessage", Messages.get("controller.profile.updatepicturefail"));
-				Logger.error("Failed to save user picture", e);
-			}
-		}
+                user._save();
+                flash.put("infomessage", Messages.get("controller.profile.updatepicture"));
+                Logger.info("Picture updated: " + user.getEmail());
+            } catch (final IOException e) {
+                flash.put("warningmessage", Messages.get("controller.profile.updatepicturefail"));
+                Logger.error("Failed to save user picture", e);
+            }
+        }
 
-		flash.keep();
-		redirect("/users/profile");
-	}
+        flash.keep();
+        redirect("/users/profile");
+    }
 
-	public static void deletepicture() {
-		final User user = AppUtils.getConnectedUser();
-		user.setPicture(null);
-		user.setPictureLarge(null);
-		user._save();
+    public static void deletepicture() {
+        final User user = AppUtils.getConnectedUser();
+        user.setPicture(null);
+        user.setPictureLarge(null);
+        user._save();
 
-		flash.put("infomessage", Messages.get("controller.profile.deletedpicture"));
-		flash.keep();
+        flash.put("infomessage", Messages.get("controller.profile.deletedpicture"));
+        flash.keep();
 
-		redirect("/users/profile");
-	}
+        redirect("/users/profile");
+    }
 }
