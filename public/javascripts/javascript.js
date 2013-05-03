@@ -89,7 +89,7 @@ $(document).ready(function(){
 	    } );		
 	}
     $('#fat-btn-loading').click(function() { 
-        $.blockUI();
+    	$.blockUI({ message: '<h2>Calculating points...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
         setTimeout($.unblockUI, 60000); 
     }); 
 });

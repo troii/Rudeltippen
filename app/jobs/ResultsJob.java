@@ -20,14 +20,14 @@ public class ResultsJob extends AppJob {
 	@Override
 	public void doJob() {
 		if (AppUtils.isJobInstance()) {
-			Logger.info("Running job: ResultsJob");
-			final List<Game> games = Game.find("SELECT g FROM Game g WHERE ended != 1 AND ( TIMESTAMPDIFF(MINUTE,kickoff,now()) > 90 ) AND homeTeam_id != '' AND awayTeam_id != '' AND webserviceID != ''").fetch();
-			for (final Game game : games) {
-				final WSResults wsResults = UpdateService.getResultsFromWebService(game);
-				if ((wsResults != null) && wsResults.isUpdated()) {
-					AppUtils.setGameScoreFromWebService(game, wsResults);
-				}
-			}
+//			Logger.info("Running job: ResultsJob");
+//			final List<Game> games = Game.find("SELECT g FROM Game g WHERE ended != 1 AND ( TIMESTAMPDIFF(MINUTE,kickoff,now()) > 90 ) AND homeTeam_id != '' AND awayTeam_id != '' AND webserviceID != ''").fetch();
+//			for (final Game game : games) {
+//				final WSResults wsResults = UpdateService.getResultsFromWebService(game);
+//				if ((wsResults != null) && wsResults.isUpdated()) {
+//					AppUtils.setGameScoreFromWebService(game, wsResults);
+//				}
+//			}
 		}
 	}
 }

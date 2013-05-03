@@ -28,16 +28,9 @@
         </div>
       </div>
     </div>
-	<div class="container-fluid">
-		<div class="row-fluid">
-				<h4>Setting up Rudeltippen and loading initial data... This may take a minute!</h4>
-				<div class="progress progress-info progress-striped active">
-        			<div style="width: 100%" class="bar"></div>
-      			</div>	
-		</div>
-    </div>
     <script src="@{'/public/javascripts/javascript.min.js'}"></script>
-    <script type="text/javascript"> 
+    <script type="text/javascript">
+    $.blockUI({ message: '<h2>Setting up Rudeltippen...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
 	$.ajax({
 		url: "/system/init",
 		context: document.body
