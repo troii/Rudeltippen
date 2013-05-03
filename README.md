@@ -36,10 +36,6 @@ Available Languages
 - German
 - English
 
-Screenshots
-------------------
-
-You can find some screenshots of Rudeltippen [here][13]
 
 Installation guide
 ------------------
