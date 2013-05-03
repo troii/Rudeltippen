@@ -1,17 +1,17 @@
 #{extends 'main.html' /}
 <div class="span">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#A">Benutzername</a></li>
-        <li><a data-toggle="tab" href="#B">Profilbild</a></li>
-        <li><a data-toggle="tab" href="#C">Passwort</a></li>
-        <li><a data-toggle="tab" href="#D">E-Mail-Adresse</a></li>
-        <li><a data-toggle="tab" href="#E">Benachrichtigungen</a></li>
+        <li class="active"><a data-toggle="tab" href="#username">Benutzername</a></li>
+        <li><a data-toggle="tab" href="#picture">Profilbild</a></li>
+        <li><a data-toggle="tab" href="#password">Passwort</a></li>
+        <li><a data-toggle="tab" href="#email">E-Mail-Adresse</a></li>
+        <li><a data-toggle="tab" href="#notification">Benachrichtigungen</a></li>
       </ul>
       <div class="tabbable">
         <div class="tab-content">
-          <div id="A" class="tab-pane active">
+          <div id="username" class="tab-pane active">
 			<div class="span4">
-				#{form @Users.updateusername(), class:'form-horizontal well'}
+				<form action="/users/updateusername#username" class='form-horizontal well'>
 				<h2>&{'changeusername'}</h2>
 					<div class="control-group #{ifError 'username'} error #{/ifError}">
 						<label for="input01" class="control-label">&{'newusername'}</label>
@@ -25,12 +25,13 @@
 					<div class="form-actions">
 						<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button1" type="submit" data-toggle="button">&{'save'}</button>
 					</div>
-				#{/form}
+					#{authenticityToken /}
+				</form>
 			</div>
           </div>
-          <div id="B" class="tab-pane">
+          <div id="picture" class="tab-pane">
 			<div class="span4 visible-desktop">
-				#{form @Users.updatepicture(), class:'form-horizontal well', enctype:'multipart/form-data'}
+				<form action="/users/updatepicture#picture" class='form-horizontal well' enctype="multipart/form-data">
 				<h2>&{'changepicture'}</h2>
 					<div class="control-group #{ifError 'picture'} error #{/ifError}">
 						#{if user.picture != null}
@@ -51,12 +52,13 @@
 					<div class="form-actions">
 						<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button2" type="submit" data-toggle="button">&{'save'}</button>
 					</div>
-				#{/form}
+					#{authenticityToken /}
+				</form>
 			</div>
           </div>
-          <div id="C" class="tab-pane">
+          <div id="password" class="tab-pane">
 			<div class="span4">
-	            #{form @Users.updatepassword(), class:'form-horizontal well'}
+	            <form action="/users/updatepassword#password" class='form-horizontal well'>
 	            <h2>&{'changepassword'}</h2>
 	                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
 	                    <label for="userpass" class="control-label">&{'newpassword'}</label>
@@ -76,15 +78,16 @@
 	                        #{/ifError}
 	                    </div>
 	                </div>
-	            <div class="form-actions">
-	                <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
-	            </div>
-	            #{/form}
+		            <div class="form-actions">
+		                <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
+		            </div>
+	            #{authenticityToken /}
+	           </form>
 	        </div>          
           </div>
-          <div id="D" class="tab-pane">
+          <div id="email" class="tab-pane">
 			<div class="span4">
-				#{form @Users.updateusername(), class:'form-horizontal well'}
+				<form action="/users/updateusername#username" class='form-horizontal well'>
 				<h2>&{'changeemail'}</h2>
 					<div class="control-group #{ifError 'username'} error #{/ifError}">
 						<label for="username" class="control-label">&{'newemail'}</label>
@@ -107,12 +110,13 @@
 					<div class="form-actions">
 						<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button4" type="submit" data-toggle="button">&{'save'}</button>
 					</div>
-				#{/form}
+					#{authenticityToken /}
+				</form>
 			</div>          
           </div>    
-          <div id="E" class="tab-pane">
+          <div id="notification" class="tab-pane">
 			<div class="span4">
-	            #{form @Users.updatenotifications(), class:'form-horizontal well'}
+	            <form action="/users/updatenotifications#notification" class='form-horizontal well'>
 	            <h2>&{'changenotifications'}</h2>
 	                <div class="control-group">
 	                    <div class="controls">
@@ -128,7 +132,8 @@
 	                <div class="form-actions">
 	                    <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
 	                </div>
-	            #{/form}
+	                #{authenticityToken /}
+				</form>
 	        </div>	          
           </div>                
         </div>
