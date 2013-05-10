@@ -1,14 +1,5 @@
 #{extends 'main.html' /}
 <div class="span">
-#{if bracket?.size >= 3}
-<div class="subnav">
-	<ul class="nav nav-pills">
-		#{list items:brackets, as:'bracket'}
-		<li #{if bracket_isFirst} class="active" #{/if} #{else} class="" #{/else} ><a href="#bracket${bracket_index}">&{bracket.name}</a></li>
-		#{/list}
-	</ul>
-</div>
-#{/if}
 #{list items:brackets, as:'bracket'}
 <section id="bracket${bracket_index}">
 <table class="table table-bordered">
