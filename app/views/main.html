@@ -16,7 +16,7 @@
     <link href="@{'/public/stylesheets/stylesheets.min.css'}" rel="stylesheet">
     <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
   </head>
-  <body data-spy="scroll" data-target=".subnav">
+  <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -135,9 +135,7 @@
     #{if request.action == "Admin.users" || request.action == "Tips.standings" }
     <script src="@{'/public/javascripts/datatables.min.js'}"></script>
     #{/if}
-    #{if request.action == "Users.profile" }
     <script src="@{'/public/javascripts/urlparser.js'}"></script>
-    #{/if}    
     <script src="@{'/public/javascripts/additional.js'}"></script>
   </body>
 </html>

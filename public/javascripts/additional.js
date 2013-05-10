@@ -56,60 +56,27 @@ $(document).ready(function(){
     }); 
 });
 
-$('.navbar a, .subnav a').smoothScroll();
-
-(function ($) {
-	$(function(){
-		var $win = $(window),
-				$body = $('body'),
-				$nav = $('.subnav'),
-				navHeight = $('.navbar').first().height(),
-				subnavHeight = $('.subnav').first().height(),
-				subnavTop = $('.subnav').length && $('.subnav').offset().top - navHeight,
-				marginTop = parseInt($body.css('margin-top'), 10);
-				isFixed = 0;
-
-		processScroll();
-		$win.on('scroll', processScroll);
-		function processScroll() {
-			var i, scrollTop = $win.scrollTop();
-			if (scrollTop >= subnavTop && !isFixed) {
-				isFixed = 1;
-				$nav.addClass('subnav-fixed');
-				$body.css('margin-top', marginTop + subnavHeight + 'px');
-			} else if (scrollTop <= subnavTop && isFixed) {
-				isFixed = 0;
-				$nav.removeClass('subnav-fixed');
-				$body.css('margin-top', marginTop + 'px');
-			}
-		}
-	});
-})(window.jQuery);
-
-$(window).data('ajaxready', true).scroll(function(e) {
-	if ($(window).data('ajaxready') == false) return;
-    if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {
-        $(window).data('ajaxready', false);
-        var start =	$('#lazyTable tr').length;
-        var users = $('#ajaxusers').text();
-        
-        if (start < users) {
-        	$('#ajaxloader').show();
-        	var playday = $('#ajaxplayday').text();
-            $.ajax({
-                cache: false,
-                url: '/overview/playday/' + playday + '/' + start,
-                success: function(html) {
-                    if (html) {
-                        $('#lazyTable tr:last').after(html);
-                    }
-                    $(window).data('ajaxready', true);
-                }
-            });
-            $('#ajaxloader').hide();
-        }
-    }
-});
+function lazy() {
+	 var start = $('#lazyTable tr').length;
+     var users = $('#ajaxusers').text();
+     
+     if (start < users) {
+    	$('#lazybutton').hide();
+     	$('#ajaxloader').show();
+     	var playday = $('#ajaxplayday').text();
+         $.ajax({
+             cache: false,
+             url: '/overview/playday/' + playday + '/' + start,
+             success: function(html) {
+                 if (html) {
+                     $('#lazyTable tr:last').after(html);
+                 }
+                 $('#ajaxloader').hide();
+                 $('#lazybutton').show();
+             }
+         });
+     }	
+}
 
 var url = $.url(); 
 var tab = url.attr('fragment');
