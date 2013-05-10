@@ -2,7 +2,7 @@
 <div class="span">
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#username">Benutzername</a></li>
-        <li><a data-toggle="tab" href="#picture">Profilbild</a></li>
+        <li class="visible-desktop"><a data-toggle="tab" href="#picture">Profilbild</a></li>
         <li><a data-toggle="tab" href="#password">Passwort</a></li>
         <li><a data-toggle="tab" href="#email">E-Mail-Adresse</a></li>
         <li><a data-toggle="tab" href="#notification">Benachrichtigungen</a></li>
@@ -10,7 +10,7 @@
       <div class="tabbable">
         <div class="tab-content">
           <div id="username" class="tab-pane active">
-			<div class="span4">
+			<div class="span">
 				<form action="/users/updateusername#username" class='form-horizontal well'>
 				<h2>&{'changeusername'}</h2>
 					<div class="control-group #{ifError 'username'} error #{/ifError}">
@@ -30,7 +30,7 @@
 			</div>
           </div>
           <div id="picture" class="tab-pane">
-			<div class="span4 visible-desktop">
+			<div class="span visible-desktop">
 				<form action="/users/updatepicture#picture" class='form-horizontal well' enctype="multipart/form-data">
 				<h2>&{'changepicture'}</h2>
 					<div class="control-group #{ifError 'picture'} error #{/ifError}">
@@ -57,7 +57,7 @@
 			</div>
           </div>
           <div id="password" class="tab-pane">
-			<div class="span4">
+			<div class="span">
 	            <form action="/users/updatepassword#password" class='form-horizontal well'>
 	            <h2>&{'changepassword'}</h2>
 	                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
@@ -86,24 +86,24 @@
 	        </div>          
           </div>
           <div id="email" class="tab-pane">
-			<div class="span4">
-				<form action="/users/updateusername#username" class='form-horizontal well'>
+			<div class="span">
+				<form action="/users/updateemail#email" class='form-horizontal well'>
 				<h2>&{'changeemail'}</h2>
-					<div class="control-group #{ifError 'username'} error #{/ifError}">
-						<label for="username" class="control-label">&{'newemail'}</label>
+					<div class="control-group #{ifError 'email'} error #{/ifError}">
+						<label for="email" class="control-label">&{'newemail'}</label>
 						<div class="controls">
-							<input type="text" value="" id="username" name="username" class="input-medium">
-							#{ifError 'username'}
-								<span class="help-inline">#{error 'username' /}</span>
+							<input type="text" value="" id="email" name="email" class="input-medium">
+							#{ifError 'email'}
+								<span class="help-inline">#{error 'email' /}</span>
 							#{/ifError}
 						</div>
 					</div>
-					<div class="control-group #{ifError 'usernameConfirmation'} error #{/ifError}">
-						<label for="usernameConfirmation" class="control-label">&{'newemailconfirm'}</label>
+					<div class="control-group #{ifError 'emailConfirmation'} error #{/ifError}">
+						<label for="emailConfirmation" class="control-label">&{'newemailconfirm'}</label>
 						<div class="controls">
-							<input type="text" value="" id="usernameConfirmation" name="usernameConfirmation" class="input-medium">
-							#{ifError 'usernameConfirmation'}
-								<span class="help-inline">#{error 'usernameConfirmation' /}</span>
+							<input type="text" value="" id="emailConfirmation" name="emailConfirmation" class="input-medium">
+							#{ifError 'emailConfirmation'}
+								<span class="help-inline">#{error 'emailConfirmation' /}</span>
 							#{/ifError}
 						</div>
 					</div>
@@ -115,7 +115,7 @@
 			</div>          
           </div>    
           <div id="notification" class="tab-pane">
-			<div class="span4">
+			<div class="span">
 	            <form action="/users/updatenotifications#notification" class='form-horizontal well'>
 	            <h2>&{'changenotifications'}</h2>
 	                <div class="control-group">

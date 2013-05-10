@@ -74,12 +74,6 @@ jvm.memory=-Xmx128m -Xms64m
 # Advanced application settings 												#
 #################################################################################
 
-# SSL settings
-# ~~~~~~~~~~~~~~~~~~~~
-#https.port=9904
-#%prod.certificate.key.file=conf/key.txt
-#%prod.certificate.file=conf/cert.txt
-
 # Twitter connection
 # ~~~~~~~~~~~~~~~~~~~~
 #%prod.twitter.consumerkey=

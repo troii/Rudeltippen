@@ -30,8 +30,6 @@ import services.MailService;
 import utils.AppUtils;
 import utils.ValidationUtils;
 
-import com.sun.org.glassfish.external.statistics.Statistic;
-
 @With(Auth.class)
 public class Users extends Root implements AppConstants{
     @Transactional(readOnly=true)
@@ -107,19 +105,21 @@ public class Users extends Root implements AppConstants{
 
             flash.put("infomessage", Messages.get("controller.profile.updateusername"));
             Logger.info("username updated: " + user.getEmail() + " / " + username);
+
+            session.put("username", username);
         }
         flash.keep();
 
         redirect("/users/profile");
     }
 
-    public static void updateusername(final String username, final String usernameConfirmation) {
+    public static void updateemail(final String email, final String emailConfirmation) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        validation.required(username);
-        validation.email(username);
-        validation.equals(username, usernameConfirmation);
-        validation.equals(ValidationUtils.emailExists(username), false).key("username").message(Messages.get("controller.users.emailexists"));
+        validation.required(email);
+        validation.email(email);
+        validation.equals(email, emailConfirmation);
+        validation.equals(ValidationUtils.emailExists(email), false).key("email").message(Messages.get("controller.users.emailexists"));
 
         if (validation.hasErrors()) {
             params.flash();
@@ -131,7 +131,7 @@ public class Users extends Root implements AppConstants{
                 final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
                 final Confirmation confirmation = new Confirmation();
                 confirmation.setConfirmType(confirmationType);
-                confirmation.setConfirmValue(Crypto.encryptAES(username));
+                confirmation.setConfirmValue(Crypto.encryptAES(email));
                 confirmation.setCreated(new Date());
                 confirmation.setToken(token);
                 confirmation.setUser(user);

@@ -11,21 +11,21 @@
 			#{/ifError}
 		</div>
 	</div>
-	<div class="control-group #{ifError 'username'} error #{/ifError}">
+	<div class="control-group #{ifError 'email'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'email'}</label>
 		<div class="controls">
-			<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
-			#{ifError 'username'}
-				<span class="help-inline">#{error 'username' /}</span>
+			<input type="text" id="email" value="${flash.email}" name="email" class="input-xlarge">
+			#{ifError 'email'}
+				<span class="help-inline">#{error 'email' /}</span>
 			#{/ifError}
 		</div>
 	</div>
-	<div class="control-group #{ifError 'usernameConfirmation'} error #{/ifError}">
+	<div class="control-group #{ifError 'emailConfirmation'} error #{/ifError}">
 		<label for="input01" class="control-label">&{'emailconfirmation'}</label>
 		<div class="controls">
-			<input type="text" id="usernameConfirmation" value="${flash.usernameConfirmation}" name="usernameConfirmation" class="input-xlarge">
-			#{ifError 'usernameConfirmation'}
-				<span class="help-inline">#{error 'usernameConfirmation' /}</span>
+			<input type="text" id="emailConfirmation" value="${flash.emailConfirmation}" name="emailConfirmation" class="input-xlarge">
+			#{ifError 'emailConfirmation'}
+				<span class="help-inline">#{error 'emailConfirmation' /}</span>
 			#{/ifError}
 		</div>
 	</div>
