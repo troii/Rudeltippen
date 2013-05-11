@@ -26,33 +26,40 @@ public class StatisticsJob extends AppJob {
             final List<Playday> playdays = Playday.findAll();
             for (final Playday playday : playdays) {
                 if (playday.allGamesEnded()) {
-                    final Map<String, Integer> scores = new HashMap<String, Integer>();
-
-                    final List<Game> games = playday.getGames();
-                    for (final Game game : games) {
-                        final List<GameTip> gameTips = GameTip.find("byGame", game).fetch();
-                        for (final GameTip gameTip : gameTips) {
-                            final String score = gameTip.getHomeScore() + ":" + gameTip.getAwayScore();
-                            if (!scores.containsKey(score)) {
-                                scores.put(score, 1);
-                            } else {
-                                scores.put(score, scores.get(score) + 1);
-                            }
-                        }
-                    }
-
-                    for (final Entry entry : scores.entrySet()) {
-                        PlaydayStatistic playdayStatistic = PlaydayStatistic.find("byPlayday", playday).first();
-                        if (playdayStatistic == null) {
-                            playdayStatistic = new PlaydayStatistic();
-                            playdayStatistic.setPlayday(playday);
-                        }
-                        playdayStatistic.setGameResult((String) entry.getKey());
-                        playdayStatistic.setResoultCount((int) entry.getValue());
-
-                    }
+                    final Map<String, Integer> scores = this.getScores(playday);
+                    this.setPlaydayStatistics(playday, scores);
                 }
             }
+        }
+    }
+
+    private Map<String, Integer> getScores(final Playday playday) {
+        final Map<String, Integer> scores = new HashMap<String, Integer>();
+
+        final List<Game> games = playday.getGames();
+        for (final Game game : games) {
+            final List<GameTip> gameTips = GameTip.find("byGame", game).fetch();
+            for (final GameTip gameTip : gameTips) {
+                final String score = gameTip.getHomeScore() + ":" + gameTip.getAwayScore();
+                if (!scores.containsKey(score)) {
+                    scores.put(score, 1);
+                } else {
+                    scores.put(score, scores.get(score) + 1);
+                }
+            }
+        }
+        return scores;
+    }
+
+    private void setPlaydayStatistics(final Playday playday, final Map<String, Integer> scores) {
+        for (final Entry entry : scores.entrySet()) {
+            PlaydayStatistic playdayStatistic = PlaydayStatistic.find("byPlayday", playday).first();
+            if (playdayStatistic == null) {
+                playdayStatistic = new PlaydayStatistic();
+                playdayStatistic.setPlayday(playday);
+            }
+            playdayStatistic.setGameResult((String) entry.getKey());
+            playdayStatistic.setResoultCount((Integer) entry.getValue());
         }
     }
 }

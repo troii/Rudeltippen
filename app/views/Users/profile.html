@@ -11,7 +11,7 @@
         <div class="tab-content">
           <div id="username" class="tab-pane active">
 			<div class="span">
-				<form action="/users/updateusername#username" class='form-horizontal well'>
+				<form action="/users/updateusername#username" class="form-horizontal well" method="post">
 				<h2>&{'changeusername'}</h2>
 					<div class="control-group #{ifError 'username'} error #{/ifError}">
 						<label for="input01" class="control-label">&{'newusername'}</label>
@@ -31,7 +31,7 @@
           </div>
           <div id="picture" class="tab-pane">
 			<div class="span visible-desktop">
-				<form action="/users/updatepicture#picture" class='form-horizontal well' enctype="multipart/form-data">
+				<form action="/users/updatepicture#picture" class="form-horizontal well" method="post" enctype="multipart/form-data">
 				<h2>&{'changepicture'}</h2>
 					<div class="control-group #{ifError 'picture'} error #{/ifError}">
 						#{if user.picture != null}
@@ -58,7 +58,7 @@
           </div>
           <div id="password" class="tab-pane">
 			<div class="span">
-	            <form action="/users/updatepassword#password" class='form-horizontal well'>
+	            <form action="/users/updatepassword#password" class="form-horizontal well" method="post">
 	            <h2>&{'changepassword'}</h2>
 	                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
 	                    <label for="userpass" class="control-label">&{'newpassword'}</label>
@@ -87,7 +87,7 @@
           </div>
           <div id="email" class="tab-pane">
 			<div class="span">
-				<form action="/users/updateemail#email" class='form-horizontal well'>
+				<form action="/users/updateemail#email" class="form-horizontal well" method="post">
 				<h2>&{'changeemail'}</h2>
 					<div class="control-group #{ifError 'email'} error #{/ifError}">
 						<label for="email" class="control-label">&{'newemail'}</label>
@@ -116,7 +116,7 @@
           </div>    
           <div id="notification" class="tab-pane">
 			<div class="span">
-	            <form action="/users/updatenotifications#notification" class='form-horizontal well'>
+	            <form action="/users/updatenotifications#notification" class="form-horizontal well" method="post">
 	            <h2>&{'changenotifications'}</h2>
 	                <div class="control-group">
 	                    <div class="controls">

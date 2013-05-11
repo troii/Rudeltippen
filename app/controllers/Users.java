@@ -203,7 +203,6 @@ public class Users extends Root implements AppConstants{
             final String message = Messages.get("profile.maxpicturesize", 100);
             validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
         } else {
-            Logger.info("-empty-> ");
             validation.isTrue(false);
         }
 
@@ -233,7 +232,7 @@ public class Users extends Root implements AppConstants{
         }
 
         flash.keep();
-        redirect("/users/profile");
+        redirect("/users/profile#picture");
     }
 
     public static void deletepicture() {
@@ -245,6 +244,6 @@ public class Users extends Root implements AppConstants{
         flash.put("infomessage", Messages.get("controller.profile.deletedpicture"));
         flash.keep();
 
-        redirect("/users/profile");
+        redirect("/users/profile#picture");
     }
 }
