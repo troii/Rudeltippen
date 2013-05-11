@@ -203,6 +203,7 @@ public class Users extends Root implements AppConstants{
             final String message = Messages.get("profile.maxpicturesize", 100);
             validation.isTrue(ValidationUtils.checkFileLength(picture.length())).key("picture").message(message);
         } else {
+            Logger.info("-empty-> ");
             validation.isTrue(false);
         }
 

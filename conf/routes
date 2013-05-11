@@ -14,6 +14,7 @@ GET	    /auth/confirm/{token}				auth.confirm
 GET     /auth/password/{token}          	auth.password
 GET	    /tips/extras			        	tips.extras
 GET	    /tips/playday/{number}				tips.playday
+GET     /standings                          tips.standings
 GET	    /overview/playday/{number}	    	overview.playday
 GET	    /overview/playday/{number}/{start}	overview.lazy
 GET	    /overview/extras/{number}			overview.extras
@@ -23,7 +24,7 @@ GET	    /admin/deleteuser/{userid}			admin.deleteuser
 GET	    /admin/results/{number}				admin.results
 GET     /admin/runjob/{name}            	admin.runjob
 GET	    /users/show/{username}				users.show
-GET		/standings							tips.standings
+POST    /users/updatepicture/{picture}      users.updatepicture
 GET     /tournament/brackets            	tournament.brackets
 GET	    /tournament/playday/{number}		tournament.playday
 GET     /system/updatekickoff/{number}  	system.updatekickoff

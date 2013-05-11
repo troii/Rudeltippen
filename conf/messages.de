@@ -126,7 +126,6 @@ controller.profile.updateusername=Dein Benutzername wurde erfolgreich ge&auml;nd
 controller.profile.updatepassword=Dein Passwort wurde erfolgreich ge&auml;ndert.
 controller.profile.updatepicture=Dein Profilbild wurde erfolgreich aktualisiert.
 controller.profile.updatepicturefail=Beim speichern Deines Profilbilds ist ein Fehler aufgetreten. Bitte versuche es noch einmal\!
-controller.profile.updateusername=Informationen zum &auml;ndern Deiner E-Mail-Adresse wurde an Deine neue E-Mail-Adresse versendet.
 controller.setup.dateerror=BonusTipp Endatum muss im Format yyyy-MM-dd HH\:mm\:ss angegeben werden.
 controller.setup.setup=Initiales Setup wurde erfolgreich durchgef&uuml;hrt.
 controller.tipps.bonussaved=Deine Bonus-Tipps wurden erfolgreich gespeichert\!
