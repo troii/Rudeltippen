@@ -27,7 +27,7 @@ public class StatisticsJob extends AppJob {
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
-            Logger.info("Running job: StatisticsJob");
+            Logger.info("Started Job: StatisticsJob");
 
             final List<Playday> playdays = Playday.findAll();
             final List<User> users = User.findAll();
@@ -43,13 +43,14 @@ public class StatisticsJob extends AppJob {
                     this.setPlaydayPlaces(playday);
                 }
             }
+            Logger.info("Finished Job: StatisticsJob");
         }
     }
 
     private void setPlaydayPlaces(final Playday playday) {
         final List<UserStatistic> userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE playday = ? ORDER BY points DESC", playday).fetch();
+        int place = 1;
         for (final UserStatistic userStatistic : userStatistics) {
-            int place = 1;
             userStatistic.setPlace(place);
             userStatistic._save();
             place++;
@@ -113,7 +114,7 @@ public class StatisticsJob extends AppJob {
 
     private void setPlaydayStatistics(final Playday playday, final Map<String, Integer> scores) {
         for (final Entry entry : scores.entrySet()) {
-            PlaydayStatistic playdayStatistic = PlaydayStatistic.find("byPlayday", playday).first();
+            PlaydayStatistic playdayStatistic = PlaydayStatistic.find("byPlaydayAndGameResult", playday, entry.getKey()).first();
             if (playdayStatistic == null) {
                 playdayStatistic = new PlaydayStatistic();
                 playdayStatistic.setPlayday(playday);

@@ -63,7 +63,6 @@ public class ValidationUtils implements AppConstants{
      */
     public static boolean checkFileLength(final Long filesize) {
         boolean check = false;
-        System.out.println("---> " + filesize);
         if ((filesize > 0) && (filesize <= 102400)) {
             check = true;
         }

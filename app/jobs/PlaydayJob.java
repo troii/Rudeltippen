@@ -28,6 +28,7 @@ public class PlaydayJob extends AppJob{
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
+            Logger.info("Started Job: PlaydayJob");
             int number = AppUtils.getCurrentPlayday().getNumber();
             for (int i=0; i <= 3; i++) {
                 final Playday playday = Playday.find("byNumber", number).first();
@@ -50,6 +51,7 @@ public class PlaydayJob extends AppJob{
                 }
                 number++;
             }
+            Logger.info("Finished Job: PlaydayJob");
         }
     }
 }

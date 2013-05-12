@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -18,8 +17,8 @@ public class Playday extends Model{
     @OrderBy("kickoff ASC")
     private List<Game> games;
 
-    @OneToOne(mappedBy = "playday")
-    private PlaydayStatistic playdayStatistic;
+    @OneToMany(mappedBy = "playday")
+    private List<UserStatistic> userStatistics;
 
     @Column(nullable=false)
     private String name;

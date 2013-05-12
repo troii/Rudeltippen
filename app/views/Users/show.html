@@ -51,3 +51,41 @@
 	</tbody>
 </table>
 </div>
+<div class="span">
+    <canvas id="points" width="800" height="400"></canvas>
+</div>
+<div class="span">
+    <canvas id="places" width="800" height="400"></canvas>
+</div>
+<script src="@{'/public/javascripts/chartjs.min.js'}"></script>
+<script type="text/javascript">
+var points = {
+        labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
+        datasets : [
+            {
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.points}${userStatistic_isLast ? '' : ','}#{/list}]
+            }
+        ]
+    }
+var ctx = document.getElementById("points").getContext("2d");
+var points = new Chart(ctx).Line(points);
+
+var places = {
+        labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
+        datasets : [
+            {
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.place}${userStatistic_isLast ? '' : ','}#{/list}]
+            }
+        ]
+    }
+var ctx = document.getElementById("places").getContext("2d");
+var places = new Chart(ctx).Line(places);
+</script>

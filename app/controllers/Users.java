@@ -17,6 +17,7 @@ import models.Game;
 import models.GameTip;
 import models.Settings;
 import models.User;
+import models.UserStatistic;
 import models.enums.ConfirmationType;
 import play.Logger;
 import play.data.validation.Validation;
@@ -74,7 +75,9 @@ public class Users extends Root implements AppConstants{
                 pointsPerTipp = df.format( pointsTipp );
             }
 
-            render(user, statistics, pointsPerTipp, tippQuote, tippedGames);
+            final List<UserStatistic> userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE user = ? ORDER BY playday ASC", user).fetch();
+
+            render(user, statistics, pointsPerTipp, tippQuote, tippedGames, userStatistics);
         } else {
             redirect("/");
         }
