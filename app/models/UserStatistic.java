@@ -17,6 +17,9 @@ public class UserStatistic extends Model {
 
     private int place;
     private int points;
+    private int correctTips;
+    private int correctTrends;
+    private int correctDiffs;
 
     public Playday getPlayday() {
         return this.playday;
@@ -48,5 +51,29 @@ public class UserStatistic extends Model {
 
     public void setPoints(final int points) {
         this.points = points;
+    }
+
+    public int getCorrectTips() {
+        return this.correctTips;
+    }
+
+    public void setCorrectTips(final int correctTips) {
+        this.correctTips = correctTips;
+    }
+
+    public int getCorrectTrends() {
+        return this.correctTrends;
+    }
+
+    public void setCorrectTrends(final int correctTrends) {
+        this.correctTrends = correctTrends;
+    }
+
+    public int getCorrectDiffs() {
+        return this.correctDiffs;
+    }
+
+    public void setCorrectDiffs(final int correctDiffs) {
+        this.correctDiffs = correctDiffs;
     }
 }

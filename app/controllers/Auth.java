@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 
+import jobs.StatisticsJob;
 import models.Confirmation;
 import models.Settings;
 import models.User;
@@ -254,6 +255,8 @@ public class Auth extends Root implements AppConstants{
     }
 
     public static void login() {
+        final StatisticsJob job = new StatisticsJob();
+        job.now();
         if (session.contains("username")) {
             redirect("/application/index");
         }

@@ -9,6 +9,10 @@ import models.Game;
 import models.GameTip;
 import models.Playday;
 import models.PlaydayStatistic;
+import models.Settings;
+import models.User;
+import models.UserStatistic;
+import play.Logger;
 import play.jobs.On;
 import utils.AppUtils;
 
@@ -16,21 +20,77 @@ import utils.AppUtils;
 public class StatisticsJob extends AppJob {
 
     public StatisticsJob() {
-        this.setDescription("All long taking calculations for users and playday are executed in this job.");
+        this.setDescription("All long taking calculations for user and playday statistics are executed in this job.");
         this.setExecuted("Runs daily at 04:00");
     }
 
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
+            Logger.info("Running job: StatisticsJob");
+
             final List<Playday> playdays = Playday.findAll();
+            final List<User> users = User.findAll();
             for (final Playday playday : playdays) {
                 if (playday.allGamesEnded()) {
                     final Map<String, Integer> scores = this.getScores(playday);
                     this.setPlaydayStatistics(playday, scores);
+
+                    for (final User user : users) {
+                        this.setPlaydayPoints(playday, user);
+                    }
+
+                    this.setPlaydayPlaces(playday);
                 }
             }
         }
+    }
+
+    private void setPlaydayPlaces(final Playday playday) {
+        final List<UserStatistic> userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE playday = ? ORDER BY points DESC", playday).fetch();
+        for (final UserStatistic userStatistic : userStatistics) {
+            int place = 1;
+            userStatistic.setPlace(place);
+            userStatistic._save();
+            place++;
+        }
+    }
+
+    private void setPlaydayPoints(final Playday playday, final User user) {
+        int playdayPoints = 0;
+        int correctTips = 0;
+        int correctDiffs = 0;
+        int correctTrends = 0;
+
+        final Settings settings = AppUtils.getSettings();
+        final List<Game> games = playday.getGames();
+        for (final Game game : games) {
+            final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
+            if (gameTip != null) {
+                final int points = gameTip.getPoints();
+
+                if (points == settings.getPointsTip()) {
+                    correctTips++;
+                } else if (points == settings.getPointsTipDiff()) {
+                    correctDiffs++;
+                } else if (points == settings.getPointsTipTrend()) {
+                    correctTrends++;
+                }
+                playdayPoints = playdayPoints + points;
+            }
+        }
+
+        UserStatistic userStatistic = UserStatistic.find("byUserAndPlayday", user, playday).first();
+        if (userStatistic == null) {
+            userStatistic = new UserStatistic();
+            userStatistic.setPlayday(playday);
+            userStatistic.setUser(user);
+        }
+        userStatistic.setPoints(playdayPoints);
+        userStatistic.setCorrectTips(correctTips);
+        userStatistic.setCorrectDiffs(correctDiffs);
+        userStatistic.setCorrectTrends(correctTrends);
+        userStatistic._save();
     }
 
     private Map<String, Integer> getScores(final Playday playday) {
@@ -60,6 +120,7 @@ public class StatisticsJob extends AppJob {
             }
             playdayStatistic.setGameResult((String) entry.getKey());
             playdayStatistic.setResoultCount((Integer) entry.getValue());
+            playdayStatistic._save();
         }
     }
 }

@@ -1,8 +1,7 @@
 #{extends 'main.html' /}
 <div class="span">
+<table class="table">
 #{list items:brackets, as:'bracket'}
-<section id="bracket${bracket_index}">
-<table class="table table-bordered">
     <thead>
         <tr>
             <th colspan="9"><h2>&{bracket.name}</h2></th>
@@ -39,7 +38,6 @@
             </tr>
         #{/list}
     </tbody>
-</table>
-</section>
 #{/list}
+</table>
 </div>
