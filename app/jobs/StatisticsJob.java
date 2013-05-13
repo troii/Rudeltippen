@@ -13,6 +13,7 @@ import models.Settings;
 import models.User;
 import models.UserStatistic;
 import play.Logger;
+import play.db.jpa.JPA;
 import play.jobs.On;
 import utils.AppUtils;
 
@@ -29,7 +30,7 @@ public class StatisticsJob extends AppJob {
         if (AppUtils.isJobInstance()) {
             Logger.info("Started Job: StatisticsJob");
 
-            final List<Playday> playdays = Playday.findAll();
+            final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
             final List<User> users = User.findAll();
             for (final Playday playday : playdays) {
                 if (playday.allGamesEnded()) {
@@ -38,18 +39,74 @@ public class StatisticsJob extends AppJob {
 
                     for (final User user : users) {
                         this.setPlaydayPoints(playday, user);
+                        this.setAscendingPlaydayPoints(playday, user);
                     }
 
                     this.setPlaydayPlaces(playday);
                 }
             }
+
             Logger.info("Finished Job: StatisticsJob");
         }
     }
 
+    private void setAscendingPlaydayPoints(final Playday playday, final User user) {
+        final UserStatistic userStatistic = UserStatistic.find("byPlaydayAndUser", playday, user).first();
+
+        Object result = JPA.em()
+                .createQuery("SELECT SUM(playdayPoints) AS points FROM UserStatistic u WHERE u.playday.id <= :playdayID AND u.user.id = :userID")
+                .setParameter("playdayID", playday.getId())
+                .setParameter("userID", user.getId())
+                .getSingleResult();
+
+        if (result != null) {
+            userStatistic.setPoints(((Long) result).intValue());
+        }
+
+        result = JPA.em()
+                .createQuery("SELECT SUM(playdayCorrectTips) AS correctTips FROM UserStatistic u WHERE u.playday.id <= :playdayID AND u.user.id = :userID")
+                .setParameter("playdayID", playday.getId())
+                .setParameter("userID", user.getId())
+                .getSingleResult();
+
+        if (result != null) {
+            userStatistic.setCorrectTips(((Long) result).intValue());
+        }
+
+        result = JPA.em()
+                .createQuery("SELECT SUM(playdayCorrectDiffs) AS correctDiffs FROM UserStatistic u WHERE u.playday.id <= :playdayID AND u.user.id = :userID")
+                .setParameter("playdayID", playday.getId())
+                .setParameter("userID", user.getId())
+                .getSingleResult();
+
+        if (result != null) {
+            userStatistic.setCorrectDiffs(((Long) result).intValue());
+        }
+
+        result = JPA.em()
+                .createQuery("SELECT SUM(playdayCorrectTrends) AS correctTrends FROM UserStatistic u WHERE u.playday.id <= :playdayID AND u.user.id = :userID")
+                .setParameter("playdayID", playday.getId())
+                .setParameter("userID", user.getId())
+                .getSingleResult();
+
+        if (result != null) {
+            userStatistic.setCorrectTrends(((Long) result).intValue());
+        }
+
+        userStatistic._save();
+    }
+
     private void setPlaydayPlaces(final Playday playday) {
-        final List<UserStatistic> userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE playday = ? ORDER BY points DESC", playday).fetch();
+        List<UserStatistic> userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE playday = ? ORDER BY playdayPoints DESC", playday).fetch();
         int place = 1;
+        for (final UserStatistic userStatistic : userStatistics) {
+            userStatistic.setPlaydayPlace(place);
+            userStatistic._save();
+            place++;
+        }
+
+        userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE playday = ? ORDER BY points DESC", playday).fetch();
+        place = 1;
         for (final UserStatistic userStatistic : userStatistics) {
             userStatistic.setPlace(place);
             userStatistic._save();
@@ -87,10 +144,10 @@ public class StatisticsJob extends AppJob {
             userStatistic.setPlayday(playday);
             userStatistic.setUser(user);
         }
-        userStatistic.setPoints(playdayPoints);
-        userStatistic.setCorrectTips(correctTips);
-        userStatistic.setCorrectDiffs(correctDiffs);
-        userStatistic.setCorrectTrends(correctTrends);
+        userStatistic.setPlaydayPoints(playdayPoints);
+        userStatistic.setPlaydayCorrectTips(correctTips);
+        userStatistic.setPlaydayCorrectDiffs(correctDiffs);
+        userStatistic.setPlaydayCorrectTrends(correctTrends);
         userStatistic._save();
     }
 
