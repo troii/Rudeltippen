@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -17,9 +18,12 @@ public class Playday extends Model{
     @OrderBy("kickoff ASC")
     private List<Game> games;
 
-    @OneToMany(mappedBy = "playday")
+    @OneToMany(mappedBy = "playday", fetch = FetchType.LAZY)
     private List<UserStatistic> userStatistics;
-
+    
+    @OneToMany(mappedBy = "playday", fetch = FetchType.LAZY)
+    private List<GameTipStatistic> gameTipStatistics;
+    
     @Column(nullable=false)
     private String name;
 

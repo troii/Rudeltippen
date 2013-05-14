@@ -16,7 +16,7 @@ public class PlaydayStatistic extends Model {
     @Column(nullable=false)
     private String gameResult;
 
-    private int resoultCount;
+    private int resultCount;
 
     public Playday getPlayday() {
         return this.playday;
@@ -34,11 +34,11 @@ public class PlaydayStatistic extends Model {
         this.gameResult = gameResult;
     }
 
-    public int getResoultCount() {
-        return this.resoultCount;
-    }
+	public int getResultCount() {
+		return resultCount;
+	}
 
-    public void setResoultCount(final int resoultCount) {
-        this.resoultCount = resoultCount;
-    }
+	public void setResultCount(int resultCount) {
+		this.resultCount = resultCount;
+	}
 }

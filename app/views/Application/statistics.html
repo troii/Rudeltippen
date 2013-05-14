@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+<table class="table">
+#{list items:results, as:'result'}
+	<tr>
+   	#{list items:result, as:'r'}
+    	<td>${r}</td>
+	#{/list}
+	</tr>
+#{/list}
+</table>
