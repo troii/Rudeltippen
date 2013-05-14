@@ -7,15 +7,18 @@ import java.util.Map.Entry;
 
 import models.Game;
 import models.GameTip;
-import models.GameTipStatistic;
 import models.Playday;
-import models.PlaydayStatistic;
 import models.Settings;
 import models.User;
-import models.UserStatistic;
+import models.statistic.GameStatistic;
+import models.statistic.GameTipStatistic;
+import models.statistic.PlaydayStatistic;
+import models.statistic.ResultStatistic;
+import models.statistic.UserStatistic;
 import play.Logger;
 import play.db.jpa.JPA;
 import play.jobs.On;
+import services.DataService;
 import utils.AppUtils;
 
 @On("0 0 4 * * ?")
@@ -45,12 +48,74 @@ public class StatisticsJob extends AppJob {
 
                     this.setPlaydayPlaces(playday);
                     this.setGameTipStatistics(playday);
+                    this.setGameStatistic(playday);
                 }
+            }
+            
+            for (User user : users) {
+            	this.setResultStatistic(user);
             }
 
             Logger.info("Finished Job: StatisticsJob");
         }
     }
+
+	private void setResultStatistic(User user) {
+		ResultStatistic.delete("user = ?", user);
+		
+		final Settings settings = AppUtils.getSettings();
+		List<GameTip> gameTips = GameTip.find("byUser", user).fetch();
+		for (GameTip gameTip : gameTips) {
+			Game game = gameTip.getGame();
+			if (game != null && game.isEnded()) {
+				final String score = gameTip.getHomeScore() + ":" + gameTip.getAwayScore();
+				ResultStatistic resultStatistic = ResultStatistic.find("byUserAndResult", user, score).first();
+				if (resultStatistic == null) {
+					resultStatistic = new ResultStatistic();
+					resultStatistic.setUser(user);
+					resultStatistic.setResult(score);
+				}
+
+				final int points = gameTip.getPoints();
+				if (points == settings.getPointsTip()) {
+					resultStatistic.setCorrectTips( resultStatistic.getCorrectTips() + 1 );
+				} else if (points == settings.getPointsTipDiff()) {
+					resultStatistic.setCorrectDiffs( resultStatistic.getCorrectDiffs() + 1 );
+				} else if (points == settings.getPointsTipTrend()) {
+					resultStatistic.setCorrectTrends( resultStatistic.getCorrectTrends() + 1 );
+				}
+				 
+				 resultStatistic._save();
+			}
+		}
+	}
+
+	private void setGameStatistic(Playday playday) {
+		final Map<String, Integer> scores = new HashMap<String, Integer>();
+		List<Game> games = playday.getGames();
+		for (Game game : games) {
+			if (game != null && game.isEnded()) {
+                final String score = game.getHomeScore() + ":" + game.getAwayScore();
+                if (!scores.containsKey(score)) {
+                    scores.put(score, 1);
+                } else {
+                    scores.put(score, scores.get(score) + 1);
+                }
+            }
+		}
+		
+        for (final Entry entry : scores.entrySet()) {
+    		GameStatistic gameStatistic = GameStatistic.find("byPlaydayAndGameResult", playday, entry.getKey()).first();
+    		if (gameStatistic == null) {
+    			gameStatistic = new GameStatistic();
+    			gameStatistic.setPlayday(playday);
+    		}
+    		
+        	gameStatistic.setGameResult((String) entry.getKey());
+        	gameStatistic.setResultCount((Integer) entry.getValue());
+    		gameStatistic._save();
+        }
+	}
 
 	private void setGameTipStatistics(Playday playday) {
 		GameTipStatistic gameTipStatistic = GameTipStatistic.find("byPlayday", playday).first();
@@ -59,24 +124,13 @@ public class StatisticsJob extends AppJob {
 			gameTipStatistic.setPlayday(playday);
 		}
 
-        Object result = JPA.em()
-                .createQuery("SELECT " +
-                		"SUM(playdayPoints) AS points, " +
-                		"SUM(playdayCorrectTips) AS tips, " +
-                		"SUM(playdayCorrectDiffs) AS diffs," +
-                		"SUM(playdayCorrectTrends) AS trends, " +
-                		"ROUND(AVG(playdayPoints)) AS avgPoints " +
-                		"FROM UserStatistic u WHERE u.playday.id = :playdayID")
-                .setParameter("playdayID", playday.getId())
-                .getSingleResult();
-        
-        if (result != null) {
-        	Object [] values = (Object[]) result;
-        	gameTipStatistic.setPoints(((Long) values [0]).intValue());
-        	gameTipStatistic.setCorrectTips(((Long) values [1]).intValue());
-        	gameTipStatistic.setCorrectDiffs(((Long) values [2]).intValue());
-        	gameTipStatistic.setCorrectTrends(((Long) values [3]).intValue());
-        	gameTipStatistic.setAvgPoints(((Double) values [4]).intValue());
+		Object [] statistics = DataService.getPlaydayStatistics(playday);
+        if (statistics != null && statistics.length == 5) {
+        	gameTipStatistic.setPoints(((Long) statistics [0]).intValue());
+        	gameTipStatistic.setCorrectTips(((Long) statistics [1]).intValue());
+        	gameTipStatistic.setCorrectDiffs(((Long) statistics [2]).intValue());
+        	gameTipStatistic.setCorrectTrends(((Long) statistics [3]).intValue());
+        	gameTipStatistic.setAvgPoints(((Double) statistics [4]).intValue());
         }
 		
 		gameTipStatistic._save();
@@ -85,25 +139,12 @@ public class StatisticsJob extends AppJob {
 	private void setAscendingPlaydayPoints(final Playday playday, final User user) {
         final UserStatistic userStatistic = UserStatistic.find("byPlaydayAndUser", playday, user).first();
 
-        Object result = JPA.em()
-                .createQuery(
-                		"SELECT " +
-                		"SUM(playdayPoints) AS points, " +
-                		"SUM(playdayCorrectTips) AS correctTips, " +
-                		"SUM(playdayCorrectDiffs) AS correctDiffs, " +
-                		"SUM(playdayCorrectTrends) AS correctTrends " +
-                		"FROM UserStatistic u " +
-                		"WHERE u.playday.id <= :playdayID AND u.user.id = :userID")
-                .setParameter("playdayID", playday.getId())
-                .setParameter("userID", user.getId())
-                .getSingleResult();
-
-        if (result != null) {
-        	Object [] values = (Object[]) result;
-            userStatistic.setPoints(((Long) values [0]).intValue());
-            userStatistic.setCorrectTips(((Long) values [1]).intValue());
-            userStatistic.setCorrectDiffs(((Long) values [2]).intValue());
-            userStatistic.setCorrectTrends(((Long) values [3]).intValue());
+        Object [] statistics = DataService.getAscendingStatistics(playday, user);
+        if (statistics != null && statistics.length == 4) {
+            userStatistic.setPoints(((Long) statistics [0]).intValue());
+            userStatistic.setCorrectTips(((Long) statistics [1]).intValue());
+            userStatistic.setCorrectDiffs(((Long) statistics [2]).intValue());
+            userStatistic.setCorrectTrends(((Long) statistics [3]).intValue());
         }
 
         userStatistic._save();

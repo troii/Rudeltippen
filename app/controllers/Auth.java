@@ -1,7 +1,7 @@
 package controllers;
 
-import interfaces.AppConstants;
-import interfaces.CheckAccess;
+import interfaces.IAppConstants;
+import interfaces.ICheckAccess;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -10,9 +10,9 @@ import java.util.List;
 import jobs.StatisticsJob;
 
 import models.Confirmation;
+import models.ConfirmationType;
 import models.Settings;
 import models.User;
-import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -32,7 +32,7 @@ import services.TwitterService;
 import utils.AppUtils;
 import utils.ValidationUtils;
 
-public class Auth extends Root implements AppConstants{
+public class Auth extends Root implements IAppConstants{
     @Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm", "password", "reset", "renew"})
     protected static void checkAccess() throws Throwable {
         AppUtils.setAppLanguage();
@@ -42,12 +42,12 @@ public class Auth extends Root implements AppConstants{
             login();
         }
 
-        CheckAccess check = getActionAnnotation(CheckAccess.class);
+        ICheckAccess check = getActionAnnotation(ICheckAccess.class);
         if (check != null) {
             check(check);
         }
 
-        check = getControllerInheritedAnnotation(CheckAccess.class);
+        check = getControllerInheritedAnnotation(ICheckAccess.class);
         if (check != null) {
             check(check);
         }
@@ -63,7 +63,7 @@ public class Auth extends Root implements AppConstants{
         }
     }
 
-    private static void check(final CheckAccess check) throws Throwable {
+    private static void check(final ICheckAccess check) throws Throwable {
         for (final String profile : check.value()) {
             final boolean hasProfile = (Boolean) Security.invoke("check", profile);
             if (!hasProfile) {
@@ -256,8 +256,6 @@ public class Auth extends Root implements AppConstants{
     }
 
     public static void login() {
-    	StatisticsJob job = new StatisticsJob();
-    	job.now();
         if (session.contains("username")) {
             redirect("/application/index");
         }

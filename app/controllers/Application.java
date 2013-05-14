@@ -7,9 +7,11 @@ import java.util.List;
 import models.Playday;
 import models.Settings;
 import models.User;
+import models.statistic.GameTipStatistic;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.With;
+import services.DataService;
 import utils.AppUtils;
 import utils.DataUtils;
 
@@ -33,8 +35,10 @@ public class Application extends Root {
 	}
 	
 	public static void statistics() {
-        List<Object []> results = JPA.em().createQuery("SELECT SUM(p.resultCount) AS counts, p.gameResult AS result FROM PlaydayStatistic p GROUP BY p.gameResult ORDER BY counts DESC").getResultList();
+		List<Object[]> games = DataService.getGameStatistics();
+        List<Object[]> results = DataService.getResultsStatistic();
+        List<GameTipStatistic> gameTipStatistics = GameTipStatistic.find("ORDER BY playday ASC").fetch();
         
-		render(results);
+		render(results, gameTipStatistics, games);
 	}
 }

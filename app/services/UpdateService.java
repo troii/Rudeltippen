@@ -1,6 +1,6 @@
 package services;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 import play.Logger;
 import play.libs.WS;
 
-public class UpdateService implements AppConstants {
+public class UpdateService implements IAppConstants {
 	public static WSResults getResultsFromWebService(final Game game) {
 		WSResults wsResults = new WSResults();
 		wsResults.setUpdated(false);

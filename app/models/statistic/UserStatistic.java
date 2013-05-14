@@ -1,8 +1,11 @@
-package models;
+package models.statistic;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import models.Playday;
+import models.User;
 
 import play.db.jpa.Model;
 

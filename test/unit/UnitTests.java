@@ -1,6 +1,6 @@
 package unit;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,13 +11,13 @@ import jobs.CleanupJob;
 import jobs.ReminderJob;
 import jobs.ResultsJob;
 import jobs.StandingsJob;
+import models.ConfirmationType;
 import models.Game;
 import models.Settings;
 import models.Team;
 import models.User;
 import models.WSResult;
 import models.WSResults;
-import models.enums.ConfirmationType;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
-public class UnitTests extends UnitTest implements AppConstants{
+public class UnitTests extends UnitTest implements IAppConstants{
 	@Before
 	public void init() {
 		Fixtures.deleteDatabase();

@@ -1,6 +1,6 @@
 package controllers;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 import models.Confirmation;
+import models.ConfirmationType;
 import models.Extra;
 import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.Settings;
 import models.User;
-import models.UserStatistic;
-import models.enums.ConfirmationType;
+import models.statistic.UserStatistic;
 import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.Transactional;
@@ -32,7 +32,7 @@ import utils.AppUtils;
 import utils.ValidationUtils;
 
 @With(Auth.class)
-public class Users extends Root implements AppConstants{
+public class Users extends Root implements IAppConstants{
     @Transactional(readOnly=true)
     public static void show(final String username) {
         final User user = User.find("byUsername", username).first();

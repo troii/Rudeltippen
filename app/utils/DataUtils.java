@@ -1,6 +1,6 @@
 package utils;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +21,7 @@ import play.Logger;
 import play.libs.WS;
 import play.test.Fixtures;
 
-public class DataUtils implements AppConstants{
+public class DataUtils implements IAppConstants{
 	public static List<String> getGamesFromWebService(final int playdays, final String leagueShortcut, final String leagueSaison) {
 		final Map<String, String> teams = getBundesligaTeams();
 

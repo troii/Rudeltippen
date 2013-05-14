@@ -1,6 +1,6 @@
 package utils;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,7 +39,7 @@ import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import controllers.Auth.Security;
 
-public class AppUtils implements AppConstants{
+public class AppUtils implements IAppConstants{
     /**
      * Loads the currents settings from database
      * @return Settings object
