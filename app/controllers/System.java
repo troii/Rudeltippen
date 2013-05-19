@@ -1,6 +1,6 @@
 package controllers;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.util.Date;
 import java.util.List;
@@ -21,7 +21,7 @@ import utils.AppUtils;
 import utils.DataUtils;
 import utils.ValidationUtils;
 
-public class System extends Controller implements AppConstants {
+public class System extends Controller implements IAppConstants {
 	
 	@Before()
 	protected static void before() {

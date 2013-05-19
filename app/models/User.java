@@ -11,6 +11,9 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import models.statistic.ResultStatistic;
+import models.statistic.UserStatistic;
+
 import play.db.jpa.Model;
 
 @Entity
@@ -48,6 +51,9 @@ public class User extends Model {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UserStatistic> userStatistics;
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ResultStatistic> resultStatistic;
 
     private Date lastLogin;
     private boolean reminder;
@@ -264,4 +270,20 @@ public class User extends Model {
     public void setSendStandings(final boolean sendStandings) {
         this.sendStandings = sendStandings;
     }
+
+	public List<UserStatistic> getUserStatistics() {
+		return userStatistics;
+	}
+
+	public void setUserStatistics(List<UserStatistic> userStatistics) {
+		this.userStatistics = userStatistics;
+	}
+
+	public List<ResultStatistic> getResultStatistic() {
+		return resultStatistic;
+	}
+
+	public void setResultStatistic(List<ResultStatistic> resultStatistic) {
+		this.resultStatistic = resultStatistic;
+	}
 }

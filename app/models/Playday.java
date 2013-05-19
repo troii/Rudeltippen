@@ -4,9 +4,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+
+import models.statistic.GameStatistic;
+import models.statistic.GameTipStatistic;
+import models.statistic.UserStatistic;
 
 import play.db.jpa.Model;
 
@@ -17,9 +22,15 @@ public class Playday extends Model{
     @OrderBy("kickoff ASC")
     private List<Game> games;
 
-    @OneToMany(mappedBy = "playday")
+    @OneToMany(mappedBy = "playday", fetch = FetchType.LAZY)
     private List<UserStatistic> userStatistics;
-
+    
+    @OneToMany(mappedBy = "playday", fetch = FetchType.LAZY)
+    private List<GameTipStatistic> gameTipStatistics;
+    
+    @OneToMany(mappedBy = "playday", fetch = FetchType.LAZY)
+    private List<GameStatistic> gameStatistic;
+    
     @Column(nullable=false)
     private String name;
 
@@ -86,4 +97,28 @@ public class Playday extends Model{
         }
         return true;
     }
+
+	public List<UserStatistic> getUserStatistics() {
+		return userStatistics;
+	}
+
+	public void setUserStatistics(List<UserStatistic> userStatistics) {
+		this.userStatistics = userStatistics;
+	}
+
+	public List<GameTipStatistic> getGameTipStatistics() {
+		return gameTipStatistics;
+	}
+
+	public void setGameTipStatistics(List<GameTipStatistic> gameTipStatistics) {
+		this.gameTipStatistics = gameTipStatistics;
+	}
+
+	public List<GameStatistic> getGameStatistic() {
+		return gameStatistic;
+	}
+
+	public void setGameStatistic(List<GameStatistic> gameStatistic) {
+		this.gameStatistic = gameStatistic;
+	}
 }

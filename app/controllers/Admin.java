@@ -1,7 +1,7 @@
 package controllers;
 
-import interfaces.AppConstants;
-import interfaces.CheckAccess;
+import interfaces.IAppConstants;
+import interfaces.ICheckAccess;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import models.Confirmation;
+import models.ConfirmationType;
 import models.Game;
 import models.Pagination;
 import models.Playday;
 import models.Settings;
 import models.User;
-import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -30,8 +30,8 @@ import utils.ValidationUtils;
 import utils.ViewUtils;
 
 @With(Auth.class)
-@CheckAccess("admin")
-public class Admin extends Root implements AppConstants {
+@ICheckAccess("admin")
+public class Admin extends Root implements IAppConstants {
 
     @Transactional(readOnly=true)
     public static void results(final long number) {

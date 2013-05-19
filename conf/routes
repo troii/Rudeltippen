@@ -10,6 +10,7 @@ GET     /robots.txt                             staticFile:public/robots.txt
 
 # App routes
 GET     /rules                          	application.rules
+GET     /statistics                        	application.statistics
 GET	    /auth/confirm/{token}				auth.confirm
 GET     /auth/password/{token}          	auth.password
 GET	    /tips/extras			        	tips.extras

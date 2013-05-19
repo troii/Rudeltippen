@@ -1,0 +1,48 @@
+#{extends 'main.html' /}
+
+<table class="table">
+	<thead>
+		<th>Spieltag</th>
+		<th>Richtige Tipps</th>
+		<th>Richtige Differenzen</th>
+		<th>Richtige Tendenzen</th>
+		<th>Gesamtpunkte</th>
+		<th>Durchschnit</th>
+	</thead>
+	#{list items:gameTipStatistics, as:'gameTipStatistic'}
+	<tr>
+		<td>${gameTipStatistic.playday.number}</td>
+		<td>${gameTipStatistic.correctTips}</td>
+		<td>${gameTipStatistic.correctDiffs}</td>
+		<td>${gameTipStatistic.correctTrends}</td>
+		<td>${gameTipStatistic.points}</td>
+		<td>${gameTipStatistic.avgPoints}</td>
+	</tr>
+	#{/list}
+</table>
+<table class="table">
+	<thead>
+		<th>Anzahl getippt</th>
+		<th>Ergebnis</th>
+	</thead>
+	#{list items:results, as:'result'}
+		<tr>
+	   	#{list items:result, as:'r'}
+	    	<td>${r}</td>
+		#{/list}
+		</tr>
+	#{/list}
+</table>
+<table class="table">
+	<thead>
+		<th>Anzah</th>
+		<th>Ergebnis</th>
+	</thead>
+	#{list items:games, as:'game'}
+		<tr>
+	   	#{list items:game, as:'g'}
+	    	<td>${g}</td>
+		#{/list}
+		</tr>
+	#{/list}
+</table>

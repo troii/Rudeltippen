@@ -2,11 +2,11 @@ package services;
 
 import java.util.List;
 
+import models.ConfirmationType;
 import models.Extra;
 import models.Game;
 import models.Settings;
 import models.User;
-import models.enums.ConfirmationType;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;

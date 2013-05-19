@@ -1,6 +1,6 @@
 package utils;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +25,7 @@ import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
 
-public class ViewUtils extends JavaExtensions implements AppConstants{
+public class ViewUtils extends JavaExtensions implements IAppConstants{
 
     public static String difference (final Date date) {
         final int MIN = 60;

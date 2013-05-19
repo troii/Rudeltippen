@@ -1,6 +1,6 @@
 package services;
 
-import interfaces.AppConstants;
+import interfaces.IAppConstants;
 import models.Settings;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -20,7 +20,7 @@ import play.mvc.Http;
 import utils.AppUtils;
 import utils.NotificationUtils;
 
-public class TwitterService implements AppConstants{
+public class TwitterService implements IAppConstants{
 	public static void updateStatus(String message) {
 		final Settings settings = AppUtils.getSettings();
 		message = StringEscapeUtils.unescapeHtml(message);

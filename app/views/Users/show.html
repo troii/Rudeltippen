@@ -63,11 +63,11 @@ var points = {
         labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
         datasets : [
             {
-                fillColor : "rgba(220,220,220,0.5)",
+                fillColor : "rgba(151,187,205,0.5)",
                 strokeColor : "rgba(220,220,220,1)",
                 pointColor : "rgba(220,220,220,1)",
                 pointStrokeColor : "#fff",
-                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.points}${userStatistic_isLast ? '' : ','}#{/list}]
+                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.playdayPoints}${userStatistic_isLast ? '' : ','}#{/list}]
             }
         ]
     }
@@ -78,7 +78,7 @@ var places = {
         labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
         datasets : [
             {
-                fillColor : "rgba(220,220,220,0.5)",
+                fillColor : "rgba(151,187,205,0.5)",
                 strokeColor : "rgba(220,220,220,1)",
                 pointColor : "rgba(220,220,220,1)",
                 pointStrokeColor : "#fff",

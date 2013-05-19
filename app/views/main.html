@@ -68,6 +68,7 @@
                       </ul>
                   </li>                          
 	              <li #{if request.action == "Tips.standings" } class="active" #{/if}><a href="@{tips.standings()}">&{'standings'}</a></li>
+	              <li #{if request.action == "Application.statistics" } class="active" #{/if}><a href="@{application.statistics()}">&{'statistics'}</a></li>
 	              <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}">&{'rules'}</a></li>
 	            </ul>
 	      </div>
