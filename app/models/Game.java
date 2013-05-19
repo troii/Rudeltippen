@@ -3,16 +3,12 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import models.statistic.GameStatistic;
-import models.statistic.UserStatistic;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -22,22 +18,26 @@ import utils.AppUtils;
 @Entity
 @Table(name="rudeltippen_games")
 public class Game extends Model{
-
-
-
-
-
     @ManyToOne
     private Team homeTeam;
 
     @ManyToOne
     private Team awayTeam;
 
+    @ManyToOne
+    private Bracket bracket;
+
+    @ManyToOne
+    private Playday playday;
+
     @Column(nullable=false)
     private Date kickoff;
 
     @Column(nullable=false)
     private int number;
+
+    @OneToMany(mappedBy = "game", fetch=FetchType.LAZY)
+    private List<GameTip> gameTips;
 
     private String overtimeType;
     private String homeReference;
