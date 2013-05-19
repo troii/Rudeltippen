@@ -1,0 +1,16 @@
+Hallo ${user.username}!
+
+Anbei findest du eine Übersicht abgegebener Tipps für laufende Begegnungen.
+
+#{list items:games, as:'game'}
+-----------------------------------------------------------
+&{game.homeTeam.name} : &{game.awayTeam.name}
+
+#{list items:game.gameTips, as:'gameTip'}
+${gameTip.user.username} - ${gameTip.homeScore } : ${gameTip.awayScore }
+#{/list}
+-----------------------------------------------------------  
+#{/list}
+
+---
+Du kannst diese Benachrichtigung jederzeit unter "Mein Profil" deaktivieren.

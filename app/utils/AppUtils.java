@@ -882,4 +882,13 @@ public class AppUtils implements AppConstants{
 
         return user;
     }
+
+    public static List<User> getAllActiveUsers() {
+        List<User> users = User.find("byActive", true).fetch();
+        if (users == null) {
+            users = new ArrayList<User>();
+        }
+
+        return users;
+    }
 }

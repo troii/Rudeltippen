@@ -18,265 +18,274 @@ import utils.AppUtils;
 @Entity
 @Table(name="rudeltippen_games")
 public class Game extends Model{
-	@ManyToOne
-	private Playday playday;
-	
-	@ManyToOne
-	private Bracket bracket;
+    @ManyToOne
+    private Playday playday;
 
-	@OneToMany(mappedBy = "game", fetch=FetchType.LAZY)
-	private List<GameTip> gameTips;
+    @ManyToOne
+    private Bracket bracket;
 
-	@ManyToOne
-	private Team homeTeam;
+    @OneToMany(mappedBy = "game", fetch=FetchType.LAZY)
+    private List<GameTip> gameTips;
 
-	@ManyToOne
-	private Team awayTeam;
+    @ManyToOne
+    private Team homeTeam;
 
-	@Column(nullable=false)
-	private Date kickoff;
-	
-	@Column(nullable=false)
-	private int number;
+    @ManyToOne
+    private Team awayTeam;
 
-	private String overtimeType;
-	private String homeReference;
-	private String awayReference;
-	private String webserviceID;
-	private String homeScore;
-	private String awayScore;
-	private String homeScoreOT;
-	private String awayScoreOT;
-	private int homePoints;
-	private int awayPoints;
-	private boolean overtime;
-	private boolean playoff;
-	private boolean ended;
-	
-	public Playday getPlayday() {
-		return playday;
-	}
+    @Column(nullable=false)
+    private Date kickoff;
 
-	public void setPlayday(Playday playday) {
-		this.playday = playday;
-	}
+    @Column(nullable=false)
+    private int number;
 
-	public List<GameTip> getGameTips() {
-		return gameTips;
-	}
+    private String overtimeType;
+    private String homeReference;
+    private String awayReference;
+    private String webserviceID;
+    private String homeScore;
+    private String awayScore;
+    private String homeScoreOT;
+    private String awayScoreOT;
+    private int homePoints;
+    private int awayPoints;
+    private boolean overtime;
+    private boolean playoff;
+    private boolean ended;
+    private boolean informed;
 
-	public void setGameTips(List<GameTip> gameTips) {
-		this.gameTips = gameTips;
-	}
+    public Playday getPlayday() {
+        return this.playday;
+    }
 
-	public Team getHomeTeam() {
-		return homeTeam;
-	}
+    public void setPlayday(final Playday playday) {
+        this.playday = playday;
+    }
 
-	public void setHomeTeam(Team homeTeam) {
-		this.homeTeam = homeTeam;
-	}
+    public List<GameTip> getGameTips() {
+        return this.gameTips;
+    }
 
-	public Team getAwayTeam() {
-		return awayTeam;
-	}
+    public void setGameTips(final List<GameTip> gameTips) {
+        this.gameTips = gameTips;
+    }
 
-	public void setAwayTeam(Team awayTeam) {
-		this.awayTeam = awayTeam;
-	}
+    public Team getHomeTeam() {
+        return this.homeTeam;
+    }
 
-	public Date getKickoff() {
-		return kickoff;
-	}
+    public void setHomeTeam(final Team homeTeam) {
+        this.homeTeam = homeTeam;
+    }
 
-	public void setKickoff(Date kickoff) {
-		this.kickoff = kickoff;
-	}
+    public Team getAwayTeam() {
+        return this.awayTeam;
+    }
 
-	public int getNumber() {
-		return number;
-	}
+    public void setAwayTeam(final Team awayTeam) {
+        this.awayTeam = awayTeam;
+    }
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
+    public Date getKickoff() {
+        return this.kickoff;
+    }
 
-	public boolean isOvertime() {
-		return overtime;
-	}
+    public void setKickoff(final Date kickoff) {
+        this.kickoff = kickoff;
+    }
 
-	public void setOvertime(boolean overtime) {
-		this.overtime = overtime;
-	}
+    public int getNumber() {
+        return this.number;
+    }
 
-	public boolean isPlayoff() {
-		return playoff;
-	}
+    public void setNumber(final int number) {
+        this.number = number;
+    }
 
-	public void setPlayoff(boolean playoff) {
-		this.playoff = playoff;
-	}
+    public boolean isOvertime() {
+        return this.overtime;
+    }
 
-	public String getOvertimeType() {
-		return overtimeType;
-	}
+    public void setOvertime(final boolean overtime) {
+        this.overtime = overtime;
+    }
 
-	public void setOvertimeType(String overtimeType) {
-		this.overtimeType = overtimeType;
-	}
+    public boolean isPlayoff() {
+        return this.playoff;
+    }
 
-	public String getHomeReference() {
-		return homeReference;
-	}
+    public void setPlayoff(final boolean playoff) {
+        this.playoff = playoff;
+    }
 
-	public void setHomeReference(String homeReference) {
-		this.homeReference = homeReference;
-	}
+    public String getOvertimeType() {
+        return this.overtimeType;
+    }
 
-	public String getAwayReference() {
-		return awayReference;
-	}
+    public void setOvertimeType(final String overtimeType) {
+        this.overtimeType = overtimeType;
+    }
 
-	public void setAwayReference(String awayReference) {
-		this.awayReference = awayReference;
-	}
+    public String getHomeReference() {
+        return this.homeReference;
+    }
 
-	public String getWebserviceID() {
-		return webserviceID;
-	}
+    public void setHomeReference(final String homeReference) {
+        this.homeReference = homeReference;
+    }
 
-	public void setWebserviceID(String webserviceID) {
-		this.webserviceID = webserviceID;
-	}
+    public String getAwayReference() {
+        return this.awayReference;
+    }
 
-	public boolean isEnded() {
-		return ended;
-	}
+    public void setAwayReference(final String awayReference) {
+        this.awayReference = awayReference;
+    }
 
-	public void setEnded(boolean ended) {
-		this.ended = ended;
-	}
+    public String getWebserviceID() {
+        return this.webserviceID;
+    }
 
-	public Date getTippEnding() {
-		final long time = kickoff.getTime();
-		final int offset = AppUtils.getSettings().getMinutesBeforeTip() * 60000 ;
+    public void setWebserviceID(final String webserviceID) {
+        this.webserviceID = webserviceID;
+    }
 
-		return new Date (time - offset);
-	}
+    public boolean isEnded() {
+        return this.ended;
+    }
 
-	public int getHomePoints() {
-		return homePoints;
-	}
+    public void setEnded(final boolean ended) {
+        this.ended = ended;
+    }
 
-	public void setHomePoints(int homePoints) {
-		this.homePoints = homePoints;
-	}
+    public Date getTippEnding() {
+        final long time = this.kickoff.getTime();
+        final int offset = AppUtils.getSettings().getMinutesBeforeTip() * 60000 ;
 
-	public int getAwayPoints() {
-		return awayPoints;
-	}
+        return new Date (time - offset);
+    }
 
-	public void setAwayPoints(int awayPoints) {
-		this.awayPoints = awayPoints;
-	}
+    public int getHomePoints() {
+        return this.homePoints;
+    }
 
-	public String getHomeScore() {
-		return homeScore;
-	}
+    public void setHomePoints(final int homePoints) {
+        this.homePoints = homePoints;
+    }
 
-	public void setHomeScore(String homeScore) {
-		this.homeScore = homeScore;
-	}
+    public int getAwayPoints() {
+        return this.awayPoints;
+    }
 
-	public String getAwayScore() {
-		return awayScore;
-	}
+    public void setAwayPoints(final int awayPoints) {
+        this.awayPoints = awayPoints;
+    }
 
-	public void setAwayScore(String awayScore) {
-		this.awayScore = awayScore;
-	}
+    public String getHomeScore() {
+        return this.homeScore;
+    }
 
-	public String getHomeScoreOT() {
-		return homeScoreOT;
-	}
+    public void setHomeScore(final String homeScore) {
+        this.homeScore = homeScore;
+    }
 
-	public void setHomeScoreOT(String homeScoreOT) {
-		this.homeScoreOT = homeScoreOT;
-	}
+    public String getAwayScore() {
+        return this.awayScore;
+    }
 
-	public String getAwayScoreOT() {
-		return awayScoreOT;
-	}
+    public void setAwayScore(final String awayScore) {
+        this.awayScore = awayScore;
+    }
 
-	public void setAwayScoreOT(String awayScoreOT) {
-		this.awayScoreOT = awayScoreOT;
-	}
+    public String getHomeScoreOT() {
+        return this.homeScoreOT;
+    }
 
-	public Bracket getBracket() {
-		return bracket;
-	}
+    public void setHomeScoreOT(final String homeScoreOT) {
+        this.homeScoreOT = homeScoreOT;
+    }
 
-	public void setBracket(Bracket bracket) {
-		this.bracket = bracket;
-	}
+    public String getAwayScoreOT() {
+        return this.awayScoreOT;
+    }
 
-	public Team getWinner() {
-		String home, away;
-		if (this.overtime) {
-			home = this.getHomeScoreOT();
-			away = this.getAwayScoreOT();
-		} else {
-			home = this.getHomeScore();
-			away = this.getAwayScore();
-		}
+    public void setAwayScoreOT(final String awayScoreOT) {
+        this.awayScoreOT = awayScoreOT;
+    }
 
-		if (StringUtils.isNotBlank(home) && StringUtils.isNotBlank(away)) {
-			int homeScore = Integer.parseInt(home);
-			int awayScore = Integer.parseInt(away);
-			if (homeScore > awayScore) {
-				return homeTeam;
-			} else {
-				return awayTeam;
-			}
-		}
+    public Bracket getBracket() {
+        return this.bracket;
+    }
 
-		return null;
-	}
+    public void setBracket(final Bracket bracket) {
+        this.bracket = bracket;
+    }
 
-	public Team getLoser() {
-		String home, away;
-		if (this.overtime) {
-			home = this.getHomeScoreOT();
-			away = this.getAwayScoreOT();
-		} else {
-			home = this.getHomeScore();
-			away = this.getAwayScore();
-		}
+    public boolean isInformed() {
+        return this.informed;
+    }
 
-		if (StringUtils.isNotBlank(home) && StringUtils.isNotBlank(away)) {
-			int homeScore = Integer.parseInt(home);
-			int awayScore = Integer.parseInt(away);
-			if (homeScore > awayScore) {
-				return awayTeam;
-			} else {
-				return homeTeam;
-			}
-		}
+    public void setInformed(final boolean informed) {
+        this.informed = informed;
+    }
 
-		return null;
-	}
+    public Team getWinner() {
+        String home, away;
+        if (this.overtime) {
+            home = this.getHomeScoreOT();
+            away = this.getAwayScoreOT();
+        } else {
+            home = this.getHomeScore();
+            away = this.getAwayScore();
+        }
 
-	public boolean isTippable() {
-		final Date now = new Date();
-		final Settings settings = AppUtils.getSettings();
-		final int secondsBefore = settings.getMinutesBeforeTip() * 60000;
+        if (StringUtils.isNotBlank(home) && StringUtils.isNotBlank(away)) {
+            final int homeScore = Integer.parseInt(home);
+            final int awayScore = Integer.parseInt(away);
+            if (homeScore > awayScore) {
+                return this.homeTeam;
+            } else {
+                return this.awayTeam;
+            }
+        }
 
-		if (this.ended) {
-			return false;
-		} else if (((kickoff.getTime() - secondsBefore) > now.getTime()) && homeTeam != null && awayTeam != null) {
-			return true;
-		}
+        return null;
+    }
 
-		return false;
-	}
+    public Team getLoser() {
+        String home, away;
+        if (this.overtime) {
+            home = this.getHomeScoreOT();
+            away = this.getAwayScoreOT();
+        } else {
+            home = this.getHomeScore();
+            away = this.getAwayScore();
+        }
+
+        if (StringUtils.isNotBlank(home) && StringUtils.isNotBlank(away)) {
+            final int homeScore = Integer.parseInt(home);
+            final int awayScore = Integer.parseInt(away);
+            if (homeScore > awayScore) {
+                return this.awayTeam;
+            } else {
+                return this.homeTeam;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean isTippable() {
+        final Date now = new Date();
+        final Settings settings = AppUtils.getSettings();
+        final int secondsBefore = settings.getMinutesBeforeTip() * 60000;
+
+        if (this.ended) {
+            return false;
+        } else if (((this.kickoff.getTime() - secondsBefore) > now.getTime()) && (this.homeTeam != null) && (this.awayTeam != null)) {
+            return true;
+        }
+
+        return false;
+    }
 }

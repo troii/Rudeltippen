@@ -8,7 +8,7 @@ public class ResultsJob extends AppJob {
 
     public ResultsJob() {
         this.setDescription("Checks if games have started and if results for this games are available.");
-        this.setExecuted("Runs every 1 minute");
+        this.setExecuted("Runs every minute");
     }
 
     @Override

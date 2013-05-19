@@ -33,7 +33,7 @@ import utils.ViewUtils;
 @CheckAccess("admin")
 public class Admin extends Root implements AppConstants {
 
-	@Transactional(readOnly=true)
+    @Transactional(readOnly=true)
     public static void results(final long number) {
         final Pagination pagination = ViewUtils.getPagination(number, "/admin/results/");
         final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
@@ -246,4 +246,15 @@ public class Admin extends Root implements AppConstants {
         }
         jobs();
     }
+
+    @Transactional(readOnly=true)
+    public static void rudelmail() {
+        render();
+    }
+
+    @Transactional(readOnly=true)
+    public static void send(final String subject, final String message) {
+        rudelmail();
+    }
+
 }

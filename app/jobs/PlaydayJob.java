@@ -22,7 +22,7 @@ public class PlaydayJob extends AppJob{
 
     public PlaydayJob() {
         this.setDescription("Updates the Kickoff time and MatchID of the current and the next three Playdays from OpenLiga.de");
-        this.setExecuted("Runs daily at 06:00");
+        this.setExecuted("Runs daily at 05:00");
     }
 
     @Override
