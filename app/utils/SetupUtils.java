@@ -21,7 +21,7 @@ import play.Logger;
 import play.libs.WS;
 import play.test.Fixtures;
 
-public class DataUtils implements IAppConstants{
+public class SetupUtils implements IAppConstants{
 	public static List<String> getGamesFromWebService(final int playdays, final String leagueShortcut, final String leagueSaison) {
 		final Map<String, String> teams = getBundesligaTeams();
 

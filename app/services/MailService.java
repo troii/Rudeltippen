@@ -139,4 +139,21 @@ public class MailService extends Mailer {
             Logger.error("Tryed to sent gametips mail, but recipient was invalid or games list was empty.");
         }
     }
+
+    public static void sendRudelmail(final String subject, final String message, final Object [] recipients) {
+        final Settings settings = AppUtils.getSettings();
+        final String from = Play.configuration.getProperty("mailservice.from");
+        final String replyto = Play.configuration.getProperty("mailservice.replyto");
+
+        if (StringUtils.isNotBlank(subject) && StringUtils.isNotBlank(message) && (recipients != null)) {
+            setReplyTo(replyto);
+            setFrom(from);
+            addRecipient(AppUtils.getConnectedUser().getEmail());
+            addBcc(recipients);
+            setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
+            send(AppUtils.getMailTemplate("rudelmail"), message);
+        } else {
+            Logger.error("Tryed to sent rudelmail, but subject, messages or recipients was empty");
+        }
+    }
 }

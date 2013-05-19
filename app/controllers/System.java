@@ -18,7 +18,7 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
-import utils.DataUtils;
+import utils.SetupUtils;
 import utils.ValidationUtils;
 
 public class System extends Controller implements IAppConstants {
@@ -96,8 +96,8 @@ public class System extends Controller implements IAppConstants {
 	@NoTransaction
 	public static void yamler() {
 		if (("true").equals(Play.configuration.getProperty("yamler"))) {
-			final List<String> playdays = DataUtils.generatePlaydays(34);
-			final List<String> games = DataUtils.getGamesFromWebService(34, "bl1", "2012");
+			final List<String> playdays = SetupUtils.generatePlaydays(34);
+			final List<String> games = SetupUtils.getGamesFromWebService(34, "bl1", "2012");
 			render(playdays, games);
 		}
 		notFound();

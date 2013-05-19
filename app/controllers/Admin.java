@@ -3,6 +3,7 @@ package controllers;
 import interfaces.IAppConstants;
 import interfaces.ICheckAccess;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import play.i18n.Messages;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
 import play.mvc.With;
+import services.MailService;
 import utils.AppUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
@@ -254,7 +256,25 @@ public class Admin extends Root implements IAppConstants {
 
     @Transactional(readOnly=true)
     public static void send(final String subject, final String message) {
+        validation.required(subject);
+        validation.required(message);
+
+        if (!validation.hasErrors()) {
+            final List<String> recipients = new ArrayList<String>();
+            final List<User> users = AppUtils.getAllActiveUsers();
+            for (final User user : users) {
+                recipients.add(user.getEmail());
+            }
+
+            MailService.sendRudelmail(subject, message, recipients.toArray());
+            flash.put("infomessage", Messages.get("info.rudelmail.send"));
+        } else {
+            flash.put("errormessage", Messages.get("error.rudelmail.send"));
+            params.flash();
+            validation.keep();
+        }
+        flash.keep();
+
         rudelmail();
     }
-
 }

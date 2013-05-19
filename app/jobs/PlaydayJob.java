@@ -15,7 +15,7 @@ import play.Logger;
 import play.jobs.On;
 import services.UpdateService;
 import utils.AppUtils;
-import utils.DataUtils;
+import utils.SetupUtils;
 
 @On("0 0 5 * * ?")
 public class PlaydayJob extends AppJob{
@@ -38,7 +38,7 @@ public class PlaydayJob extends AppJob{
                         final String matchID = game.getWebserviceID();
                         if (StringUtils.isNotBlank(matchID)) {
                             final Document document = UpdateService.getDocumentFromWebService(matchID);
-                            final Date kickoff = DataUtils.getKickoffFromDocument(document);
+                            final Date kickoff = SetupUtils.getKickoffFromDocument(document);
                             final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
                             df.setTimeZone(TimeZone.getTimeZone(AppUtils.getCurrentTimeZone()));
 

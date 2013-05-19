@@ -862,6 +862,12 @@ public class AppUtils implements IAppConstants{
         return message;
     }
 
+    /**
+     * Returns the current timezone configured in application.conf or
+     * the default timezone defined in IAppConstants
+     * 
+     * @return The String value of the timezone
+     */
     public static String getCurrentTimeZone() {
         String timezone = Play.configuration.getProperty("app.timezone");
         if (StringUtils.isBlank(timezone)) {
@@ -870,10 +876,23 @@ public class AppUtils implements IAppConstants{
         return timezone;
     }
 
+    /**
+     * Checks if rudeltippen is inizialized
+     * 
+     * @return True if initialized, false otherwise
+     */
     public static boolean rudeltippenIsInizialized() {
         return getSettings() != null ? true : false;
     }
 
+    /**
+     * Checks if the user with a given username and userpass
+     * matches an entry in the database
+     * 
+     * @param username The username
+     * @param userpass The hashed passowrd of the user
+     * @return The User object, if found in database
+     */
     public static User connectUser(final String username, final String userpass) {
         User user = User.find("byUsernameAndUserpassAndActive", username, userpass, true).first();
         if (user == null) {
@@ -883,6 +902,11 @@ public class AppUtils implements IAppConstants{
         return user;
     }
 
+    /**
+     * Return a list with all active users
+     * 
+     * @return A List of all active Users
+     */
     public static List<User> getAllActiveUsers() {
         List<User> users = User.find("byActive", true).fetch();
         if (users == null) {
