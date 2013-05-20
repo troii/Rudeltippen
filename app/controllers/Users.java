@@ -1,6 +1,6 @@
 package controllers;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,12 +27,12 @@ import play.libs.Codec;
 import play.libs.Crypto;
 import play.libs.Images;
 import play.mvc.With;
+import services.AppService;
 import services.MailService;
-import utils.AppUtils;
 import utils.ValidationUtils;
 
 @With(Auth.class)
-public class Users extends Root implements IAppConstants{
+public class Users extends Root implements AppConstants{
     @Transactional(readOnly=true)
     public static void show(final String username) {
         final User user = User.find("byUsername", username).first();
@@ -85,8 +85,8 @@ public class Users extends Root implements IAppConstants{
 
     @Transactional(readOnly=true)
     public static void profile() {
-        final User user = AppUtils.getConnectedUser();
-        final Settings settings = AppUtils.getSettings();
+        final User user = AppService.getConnectedUser();
+        final Settings settings = AppService.getSettings();
         render(user, settings);
     }
 
@@ -102,7 +102,7 @@ public class Users extends Root implements IAppConstants{
             params.flash();
             validation.keep();
         } else {
-            final User user = AppUtils.getConnectedUser();
+            final User user = AppService.getConnectedUser();
             user.setUsername(username);
             user._save();
 
@@ -129,7 +129,7 @@ public class Users extends Root implements IAppConstants{
             validation.keep();
         } else {
             final String token = Codec.UUID();
-            final User user = AppUtils.getConnectedUser();
+            final User user = AppService.getConnectedUser();
             if (user != null) {
                 final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
                 final Confirmation confirmation = new Confirmation();
@@ -161,12 +161,12 @@ public class Users extends Root implements IAppConstants{
             validation.keep();
         } else {
             final String token = Codec.UUID();
-            final User user = AppUtils.getConnectedUser();
+            final User user = AppService.getConnectedUser();
             if (user != null) {
                 final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERPASS;
                 final Confirmation confirm = new Confirmation();
                 confirm.setConfirmType(confirmationType);
-                confirm.setConfirmValue(Crypto.encryptAES(AppUtils.hashPassword(userpass, user.getSalt())));
+                confirm.setConfirmValue(Crypto.encryptAES(AppService.hashPassword(userpass, user.getSalt())));
                 confirm.setCreated(new Date());
                 confirm.setToken(token);
                 confirm.setUser(user);
@@ -184,7 +184,7 @@ public class Users extends Root implements IAppConstants{
     public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         user.setReminder(reminder);
         user.setNotification(notification);
         user.setSendStandings(sendstandings);
@@ -213,7 +213,7 @@ public class Users extends Root implements IAppConstants{
             params.flash();
             validation.keep();
         } else {
-            final User user = AppUtils.getConnectedUser();
+            final User user = AppService.getConnectedUser();
             try {
                 Images.resize(picture, picture, PICTURELARGE, PICTURELARGE);
                 user.setPictureLarge(Images.toBase64(picture));
@@ -239,7 +239,7 @@ public class Users extends Root implements IAppConstants{
     }
 
     public static void deletepicture() {
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         user.setPicture(null);
         user.setPictureLarge(null);
         user._save();

@@ -3,24 +3,24 @@ package controllers;
 import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
-import utils.AppUtils;
+import services.AppService;
 
 public class Root extends Controller {
 	@Before
 	protected static void init() {
-		AppUtils.setAppLanguage();
+		AppService.setAppLanguage();
 
-		if (!AppUtils.rudeltippenIsInizialized()) {
+		if (!AppService.rudeltippenIsInizialized()) {
 			redirect("/system/setup");
 		}
 
-		final User connectedUser = AppUtils.getConnectedUser();
+		final User connectedUser = AppService.getConnectedUser();
 		if (connectedUser != null) {
 			renderArgs.put("connectedUser", connectedUser);
 		} else {
 			renderArgs.put("connectedUser", null);
 		}
 
-		renderArgs.put("currentPlayday", AppUtils.getCurrentPlayday());
+		renderArgs.put("currentPlayday", AppService.getCurrentPlayday());
 	}
 }

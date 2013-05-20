@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface IAppConstants {
+public interface AppConstants {
 	public static final String APPNAME = "rudeltippen";
 	public static final String YAMLFILE = "bl2012.yml";
 	public static final String DEFAULT_DATEFORMAT = "dd.MM.yyyy";

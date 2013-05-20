@@ -1,6 +1,6 @@
 package utils;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,7 +15,7 @@ import play.Logger;
 import play.Play;
 import play.libs.Crypto;
 
-public class ValidationUtils implements IAppConstants{
+public class ValidationUtils implements AppConstants{
     /**
      * Checks in the database and pending confirmations if a given username already exists
      * 

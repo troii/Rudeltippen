@@ -1,6 +1,6 @@
 package services;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 import models.Settings;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -17,12 +17,11 @@ import play.Logger;
 import play.Play;
 import play.libs.Codec;
 import play.mvc.Http;
-import utils.AppUtils;
 import utils.NotificationUtils;
 
-public class TwitterService implements IAppConstants{
+public class TwitterService implements AppConstants{
 	public static void updateStatus(String message) {
-		final Settings settings = AppUtils.getSettings();
+		final Settings settings = AppService.getSettings();
 		message = StringEscapeUtils.unescapeHtml(message);
 		if (NotificationUtils.isTweetable() && StringUtils.isNotBlank(message) && !Codec.hexMD5(message).equalsIgnoreCase(settings.getLastTweet())) {
 			final OAuthRequest request = new OAuthRequest(Verb.POST, TWITTER_API_URL);

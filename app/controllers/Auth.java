@@ -1,13 +1,11 @@
 package controllers;
 
-import interfaces.IAppConstants;
-import interfaces.ICheckAccess;
+import interfaces.AppConstants;
+import interfaces.CheckAccess;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
-
-import jobs.StatisticsJob;
 
 import models.Confirmation;
 import models.ConfirmationType;
@@ -27,27 +25,27 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.utils.Java;
+import services.AppService;
 import services.MailService;
 import services.TwitterService;
-import utils.AppUtils;
 import utils.ValidationUtils;
 
-public class Auth extends Root implements IAppConstants{
+public class Auth extends Root implements AppConstants{
     @Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm", "password", "reset", "renew"})
     protected static void checkAccess() throws Throwable {
-        AppUtils.setAppLanguage();
+        AppService.setAppLanguage();
 
         if (!session.contains("username")) {
             flash.put("url", "/");
             login();
         }
 
-        ICheckAccess check = getActionAnnotation(ICheckAccess.class);
+        CheckAccess check = getActionAnnotation(CheckAccess.class);
         if (check != null) {
             check(check);
         }
 
-        check = getControllerInheritedAnnotation(ICheckAccess.class);
+        check = getControllerInheritedAnnotation(CheckAccess.class);
         if (check != null) {
             check(check);
         }
@@ -55,7 +53,7 @@ public class Auth extends Root implements IAppConstants{
 
     @Before
     protected static void registration() {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         if (settings == null) {
             renderArgs.put("isEnableRegistration", false);
         } else {
@@ -63,7 +61,7 @@ public class Auth extends Root implements IAppConstants{
         }
     }
 
-    private static void check(final ICheckAccess check) throws Throwable {
+    private static void check(final CheckAccess check) throws Throwable {
         for (final String profile : check.value()) {
             final boolean hasProfile = (Boolean) Security.invoke("check", profile);
             if (!hasProfile) {
@@ -170,8 +168,8 @@ public class Auth extends Root implements IAppConstants{
     }
 
     private static void activateAndSetAvatar(final User user) {
-        final String avatar = AppUtils.getGravatarImage(user.getEmail(), "retro", PICTURELARGE);
-        final String avatarSmall = AppUtils.getGravatarImage(user.getEmail(), "retro", PICTURESMALL);
+        final String avatar = AppService.getGravatarImage(user.getEmail(), "retro", PICTURELARGE);
+        final String avatarSmall = AppService.getGravatarImage(user.getEmail(), "retro", PICTURESMALL);
         if (StringUtils.isNotBlank(avatar)) {
             user.setPictureLarge(avatar);
         }
@@ -185,7 +183,7 @@ public class Auth extends Root implements IAppConstants{
 
     @Transactional(readOnly=true)
     public static void register() {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         if (!settings.isEnableRegistration()) {
             redirect("/");
         }
@@ -196,7 +194,7 @@ public class Auth extends Root implements IAppConstants{
     public static void create(final String username, final String email, final String emailConfirmation, final String userpass, final String userpassConfirmation) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         if (!settings.isEnableRegistration()) {
             redirect("/");
         }
@@ -229,7 +227,7 @@ public class Auth extends Root implements IAppConstants{
             user.setReminder(true);
             user.setAdmin(false);
             user.setSalt(salt);
-            user.setUserpass(AppUtils.hashPassword(userpass, salt));
+            user.setUserpass(AppService.hashPassword(userpass, salt));
             user.setPoints(0);
             user._save();
 
@@ -298,7 +296,7 @@ public class Auth extends Root implements IAppConstants{
             password(token);
         } else {
             final User user = confirmation.getUser();
-            final String password = AppUtils.hashPassword(userpass, user.getSalt());
+            final String password = AppService.hashPassword(userpass, user.getSalt());
             user.setUserpass(password);
             user._save();
 
@@ -370,10 +368,10 @@ public class Auth extends Root implements IAppConstants{
     public static class Security extends Controller {
         static boolean authenticate(final String username, final String userpass) {
             String usersalt = null;
-            final User user = User.find("SELECT u FROM User u WHERE username = ? OR email = ?", username, username).first();
+            final User user = User.find("SELECT u FROM User u WHERE active = true AND username = ? OR email = ?", username, username).first();
             if (user != null) {
                 usersalt = user.getSalt();
-                return AppUtils.connectUser(username, AppUtils.hashPassword(userpass, usersalt)) != null;
+                return AppService.connectUser(username, AppService.hashPassword(userpass, usersalt)) != null;
             }
 
             return false;
@@ -381,7 +379,7 @@ public class Auth extends Root implements IAppConstants{
 
         static boolean check(final String profile) {
             boolean valid = false;
-            final User user = User.find("SELECT u FROM User u WHERE username = ? OR email = ?", connected(), connected()).first();
+            final User user = User.find("SELECT u FROM User u WHERE active = true AND username = ? OR email = ?", connected(), connected()).first();
             if (user != null) {
                 valid = user.isAdmin();
             }

@@ -1,6 +1,6 @@
 package unit;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,14 +24,14 @@ import org.junit.Test;
 
 import play.test.Fixtures;
 import play.test.UnitTest;
+import services.AppService;
 import services.MailService;
 import services.TwitterService;
 import services.UpdateService;
-import utils.AppUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
-public class UnitTests extends UnitTest implements IAppConstants{
+public class UnitTests extends UnitTest implements AppConstants{
 	@Before
 	public void init() {
 		Fixtures.deleteDatabase();
@@ -46,7 +46,7 @@ public class UnitTests extends UnitTest implements IAppConstants{
 			user.setReminder(true);
 			user.setActive(true);
 			user.setSalt("foo");
-			user.setUserpass(AppUtils.hashPassword("user" + i, "foo"));
+			user.setUserpass(AppService.hashPassword("user" + i, "foo"));
 			user._save();
 		}
 		User user = new User();
@@ -57,7 +57,7 @@ public class UnitTests extends UnitTest implements IAppConstants{
 		user.setReminder(true);
 		user.setActive(true);
 		user.setSalt("foo");
-		user.setUserpass(AppUtils.hashPassword("user8", "foo"));
+		user.setUserpass(AppService.hashPassword("user8", "foo"));
 		user._save();
 
 		user = new User();
@@ -68,31 +68,31 @@ public class UnitTests extends UnitTest implements IAppConstants{
 		user.setReminder(true);
 		user.setActive(false);
 		user.setSalt("foo");
-		user.setUserpass(AppUtils.hashPassword("user555", "foo"));
+		user.setUserpass(AppService.hashPassword("user555", "foo"));
 		user._save();
 	}
 
 	@Test
 	public void testGetPoints() {
-		final Settings settings = AppUtils.getSettings();
+		final Settings settings = AppService.getSettings();
 		assertNotNull(settings);
 
 		final int pointsWin = settings.getPointsGameWin();
 		final int pointsDraw = settings.getPointsGameDraw();
 
-		int [] points = AppUtils.getPoints(0, 0);
+		int [] points = AppService.getPoints(0, 0);
 
 		assertEquals(points.length, 2);
 		assertEquals(points[0], pointsDraw);
 		assertEquals(points[1], pointsDraw);
 
-		points = AppUtils.getPoints(1, 0);
+		points = AppService.getPoints(1, 0);
 
 		assertEquals(points.length, 2);
 		assertEquals(points[0], pointsWin);
 		assertEquals(points[1], 0);
 
-		points = AppUtils.getPoints(0, 1);
+		points = AppService.getPoints(0, 1);
 
 		assertEquals(points.length, 2);
 		assertEquals(points[0], 0);
@@ -101,38 +101,38 @@ public class UnitTests extends UnitTest implements IAppConstants{
 
 	@Test
 	public void testGetTippPoints() {
-		final Settings setting = AppUtils.getSettings();
+		final Settings setting = AppService.getSettings();
 		final int pointsTipp = setting.getPointsTip();
 		final int pointsDiff = setting.getPointsTipDiff();
 		final int pointsTrend = setting.getPointsTipTrend();
 
-		assertEquals(AppUtils.getTipPoints(1, 0, 1, 0), pointsTipp);
-		assertEquals(AppUtils.getTipPoints(0, 1, 0, 1), pointsTipp);
-		assertEquals(AppUtils.getTipPoints(1, 1, 1, 1), pointsTipp);
-		assertEquals(AppUtils.getTipPoints(2, 0, 5, 3), pointsDiff);
-		assertEquals(AppUtils.getTipPoints(0, 2, 3, 5), pointsDiff);
-		assertEquals(AppUtils.getTipPoints(2, 2, 1, 1), pointsDiff);
-		assertEquals(AppUtils.getTipPoints(1, 0, 4, 0), pointsTrend);
-		assertEquals(AppUtils.getTipPoints(0, 1, 0, 4), pointsTrend);
-		assertEquals(AppUtils.getTipPointsTrend(1, 0, 3, 0), pointsTrend);
-		assertEquals(AppUtils.getTipPointsTrend(4, 5, 3, 7), pointsTrend);
-		assertEquals(AppUtils.getTipPointsTrend(1, 2, 2, 1), 0);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 1), pointsTipp);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 0, 0), pointsDiff);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 0), 0);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 1), 0);
+		assertEquals(AppService.getTipPoints(1, 0, 1, 0), pointsTipp);
+		assertEquals(AppService.getTipPoints(0, 1, 0, 1), pointsTipp);
+		assertEquals(AppService.getTipPoints(1, 1, 1, 1), pointsTipp);
+		assertEquals(AppService.getTipPoints(2, 0, 5, 3), pointsDiff);
+		assertEquals(AppService.getTipPoints(0, 2, 3, 5), pointsDiff);
+		assertEquals(AppService.getTipPoints(2, 2, 1, 1), pointsDiff);
+		assertEquals(AppService.getTipPoints(1, 0, 4, 0), pointsTrend);
+		assertEquals(AppService.getTipPoints(0, 1, 0, 4), pointsTrend);
+		assertEquals(AppService.getTipPointsTrend(1, 0, 3, 0), pointsTrend);
+		assertEquals(AppService.getTipPointsTrend(4, 5, 3, 7), pointsTrend);
+		assertEquals(AppService.getTipPointsTrend(1, 2, 2, 1), 0);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 1), pointsTipp);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 0, 0), pointsDiff);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 0), 0);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 0, 1), 0);
 
 		setting.setCountFinalResult(true);
 		setting._save();
 
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 1), 0);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 0, 0), 0);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 5, 4), pointsTipp);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 4, 5), pointsTipp);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 0), pointsDiff);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 1), pointsDiff);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 2, 0), pointsTrend);
-		assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 2), pointsTrend);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 1), 0);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 0, 0), 0);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 5, 4), pointsTipp);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 4, 5), pointsTipp);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 0), pointsDiff);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 0, 1), pointsDiff);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 2, 0), pointsTrend);
+		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 0, 2), pointsTrend);
 
 		setting.setCountFinalResult(false);
 		setting._save();
@@ -152,7 +152,7 @@ public class UnitTests extends UnitTest implements IAppConstants{
 
 	@Test
 	public void testGeneratePassword() {
-		assertEquals(AppUtils.hashPassword("user22", "foo"), "2d56a2593b5af39bb12082ad686b44bf9268c346");
+		assertEquals(AppService.hashPassword("user22", "foo"), "2d56a2593b5af39bb12082ad686b44bf9268c346");
 	}
 
 	@Test
@@ -195,8 +195,8 @@ public class UnitTests extends UnitTest implements IAppConstants{
 
 	@Test
 	public void testAppUtils() {
-		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
-		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+		assertNotNull(AppService.getTeamByReference("B-1-1"));
+		assertNotNull(AppService.getTeamByReference("B-1-1"));
 		final Game g1 = new Game();
 		final Game g2 = new Game();
 		g1.setEnded(true);
@@ -206,14 +206,14 @@ public class UnitTests extends UnitTest implements IAppConstants{
 		games.add(g1);
 		games.add(g2);
 
-		assertTrue(AppUtils.allReferencedGamesEnded(games));
+		assertTrue(AppService.allReferencedGamesEnded(games));
 
 		g1.setEnded(false);
 
-		assertFalse(AppUtils.allReferencedGamesEnded(games));
+		assertFalse(AppService.allReferencedGamesEnded(games));
 
-		assertTrue(AppUtils.getTimezones().size() > 0);
-		assertTrue(AppUtils.getLanguages().size() > 0);
+		assertTrue(AppService.getTimezones().size() > 0);
+		assertTrue(AppService.getLanguages().size() > 0);
 
 		final User user = new User();
 		user.setPlace(1);
@@ -235,12 +235,12 @@ public class UnitTests extends UnitTest implements IAppConstants{
 
 		assertEquals("<i class=\"icon-minus\"></i> (1)", ViewUtils.getPlaceTrend(user));
 
-		assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, PICTURESMALL));
-		assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, PICTURELARGE));
-		assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, -12));
-		assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, 150));
-		assertNotNull(AppUtils.getGravatarImage("bla@foobar5455fff.de", "mm", PICTURESMALL));
-		assertNull(AppUtils.getGravatarImage("d@", null, PICTURESMALL));
+		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, PICTURESMALL));
+		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, PICTURELARGE));
+		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, -12));
+		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, 150));
+		assertNotNull(AppService.getGravatarImage("bla@foobar5455fff.de", "mm", PICTURESMALL));
+		assertNull(AppService.getGravatarImage("d@", null, PICTURESMALL));
 	}
 
 	@Test

@@ -9,7 +9,7 @@ import models.GameTip;
 import models.User;
 import play.Logger;
 import play.jobs.On;
-import utils.AppUtils;
+import services.AppService;
 
 @On("0 0 2 * * ?")
 public class CleanupJob extends AppJob {
@@ -21,7 +21,7 @@ public class CleanupJob extends AppJob {
 
     @Override
     public void doJob() {
-        if (AppUtils.isJobInstance()) {
+        if (AppService.isJobInstance()) {
             Logger.info("Started Job: CleanupJob");
             final List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE confirmType = ? AND DATE(NOW()) > (DATE(created) + 2)", ConfirmationType.ACTIVATION).fetch();
             for (final Confirmation confirmation : confirmations) {

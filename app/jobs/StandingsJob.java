@@ -7,9 +7,9 @@ import models.User;
 import play.Logger;
 import play.i18n.Messages;
 import play.jobs.On;
+import services.AppService;
 import services.MailService;
 import services.TwitterService;
-import utils.AppUtils;
 import utils.NotificationUtils;
 
 @On("0 0 3 * * ?")
@@ -22,7 +22,7 @@ public class StandingsJob extends AppJob {
 
     @Override
     public void doJob() {
-        if (AppUtils.isJobInstance()) {
+        if (AppService.isJobInstance()) {
             Logger.info("Started Job: StandingsJob");
 
             String message = "";
@@ -31,7 +31,7 @@ public class StandingsJob extends AppJob {
                 int count = 1;
                 final StringBuilder buffer = new StringBuilder();
 
-                List<User> users = User.find("ORDER BY place ASC").fetch(3);
+                List<User> users = User.find("SELECT u FROM User u WHERE active = true ORDER BY place ASC").fetch(3);
                 for (final User user : users) {
                     if (count < 3) {
                         buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");

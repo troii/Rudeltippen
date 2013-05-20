@@ -1,7 +1,7 @@
 package controllers;
 
-import interfaces.IAppConstants;
-import interfaces.ICheckAccess;
+import interfaces.AppConstants;
+import interfaces.CheckAccess;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,14 +26,14 @@ import play.i18n.Messages;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
 import play.mvc.With;
+import services.AppService;
 import services.MailService;
-import utils.AppUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
 @With(Auth.class)
-@ICheckAccess("admin")
-public class Admin extends Root implements IAppConstants {
+@CheckAccess("admin")
+public class Admin extends Root implements AppConstants {
 
     @Transactional(readOnly=true)
     public static void results(final long number) {
@@ -75,10 +75,10 @@ public class Admin extends Root implements IAppConstants {
             final String extratime = map.get("extratime_" + key);
             final String homeScoreExtratime = map.get("game_" + key + "_homeScore_et");
             final String awayScoreExtratime = map.get("game_" + key + "_awayScore_et");
-            AppUtils.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
+            AppService.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         }
 
-        AppUtils.calculations();
+        AppService.calculations();
 
         flash.put("infomessage", Messages.get("controller.games.tippsstored"));
         flash.keep();
@@ -127,7 +127,7 @@ public class Admin extends Root implements IAppConstants {
 
     @Transactional(readOnly=true)
     public static void settings() {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
 
         flash.put("name", settings.getGameName());
         flash.put("pointsTip", settings.getPointsTip());
@@ -142,7 +142,7 @@ public class Admin extends Root implements IAppConstants {
     }
 
     public static void changeactive(final long userid) {
-        final User connectedUser = AppUtils.getConnectedUser();
+        final User connectedUser = AppService.getConnectedUser();
         final User user = User.findById(userid);
 
         if (user != null) {
@@ -177,7 +177,7 @@ public class Admin extends Root implements IAppConstants {
     }
 
     public static void changeadmin(final long userid) {
-        final User connectedUser = AppUtils.getConnectedUser();
+        final User connectedUser = AppService.getConnectedUser();
         final User user = User.findById(userid);
 
         if (user != null) {
@@ -208,7 +208,7 @@ public class Admin extends Root implements IAppConstants {
     }
 
     public static void deleteuser(final long userid) {
-        final User connectedUser = AppUtils.getConnectedUser();
+        final User connectedUser = AppService.getConnectedUser();
         final User user = User.findById(userid);
 
         if (user != null) {
@@ -218,7 +218,7 @@ public class Admin extends Root implements IAppConstants {
                 flash.put("infomessage", Messages.get("info.delete.user", username));
                 Logger.info("User " + username + " has been deleted - by " + connectedUser.getEmail());
 
-                AppUtils.calculations();
+                AppService.calculations();
             } else {
                 flash.put("warningmessage", Messages.get("warning.delete.user"));
             }
@@ -261,7 +261,7 @@ public class Admin extends Root implements IAppConstants {
 
         if (!validation.hasErrors()) {
             final List<String> recipients = new ArrayList<String>();
-            final List<User> users = AppUtils.getAllActiveUsers();
+            final List<User> users = AppService.getAllActiveUsers();
             for (final User user : users) {
                 recipients.add(user.getEmail());
             }

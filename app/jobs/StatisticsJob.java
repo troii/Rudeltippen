@@ -17,8 +17,8 @@ import models.statistic.ResultStatistic;
 import models.statistic.UserStatistic;
 import play.Logger;
 import play.jobs.On;
+import services.AppService;
 import services.DataService;
-import utils.AppUtils;
 
 @On("0 0 4 * * ?")
 public class StatisticsJob extends AppJob {
@@ -30,11 +30,11 @@ public class StatisticsJob extends AppJob {
 
     @Override
     public void doJob() {
-        if (AppUtils.isJobInstance()) {
+        if (AppService.isJobInstance()) {
             Logger.info("Started Job: StatisticsJob");
 
             final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
-            final List<User> users = AppUtils.getAllActiveUsers();
+            final List<User> users = AppService.getAllActiveUsers();
             for (final Playday playday : playdays) {
                 if (playday.allGamesEnded()) {
                     final Map<String, Integer> scores = this.getScores(playday);
@@ -62,7 +62,7 @@ public class StatisticsJob extends AppJob {
     private void setResultStatistic(final User user) {
         ResultStatistic.delete("user = ?", user);
 
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final List<GameTip> gameTips = GameTip.find("byUser", user).fetch();
         for (final GameTip gameTip : gameTips) {
             final Game game = gameTip.getGame();
@@ -173,7 +173,7 @@ public class StatisticsJob extends AppJob {
         int correctDiffs = 0;
         int correctTrends = 0;
 
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final List<Game> games = playday.getGames();
         for (final Game game : games) {
             final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();

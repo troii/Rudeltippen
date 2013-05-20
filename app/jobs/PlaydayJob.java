@@ -13,8 +13,8 @@ import org.w3c.dom.Document;
 
 import play.Logger;
 import play.jobs.On;
+import services.AppService;
 import services.UpdateService;
-import utils.AppUtils;
 import utils.SetupUtils;
 
 @On("0 0 5 * * ?")
@@ -27,9 +27,9 @@ public class PlaydayJob extends AppJob{
 
     @Override
     public void doJob() {
-        if (AppUtils.isJobInstance()) {
+        if (AppService.isJobInstance()) {
             Logger.info("Started Job: PlaydayJob");
-            int number = AppUtils.getCurrentPlayday().getNumber();
+            int number = AppService.getCurrentPlayday().getNumber();
             for (int i=0; i <= 3; i++) {
                 final Playday playday = Playday.find("byNumber", number).first();
                 if (playday != null) {
@@ -40,7 +40,7 @@ public class PlaydayJob extends AppJob{
                             final Document document = UpdateService.getDocumentFromWebService(matchID);
                             final Date kickoff = SetupUtils.getKickoffFromDocument(document);
                             final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-                            df.setTimeZone(TimeZone.getTimeZone(AppUtils.getCurrentTimeZone()));
+                            df.setTimeZone(TimeZone.getTimeZone(AppService.getCurrentTimeZone()));
 
                             game.setKickoff(kickoff);
                             game._save();

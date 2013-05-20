@@ -1,6 +1,6 @@
 package utils;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,8 +24,9 @@ import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.templates.JavaExtensions;
+import services.AppService;
 
-public class ViewUtils extends JavaExtensions implements IAppConstants{
+public class ViewUtils extends JavaExtensions implements AppConstants{
 
     public static String difference (final Date date) {
         final int MIN = 60;
@@ -96,7 +97,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
 
     public static String getGameTipAndPoints(final Game game) {
         String tip = "-";
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         final GameTip gameTip = GameTip.find("byGameAndUser", game, user).first();
 
         if (gameTip != null) {
@@ -114,7 +115,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
 
     public static String getHomeScoreTip(final Game game) {
         String homeScore = "";
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         final List<GameTip> gameTips = game.getGameTips();
 
         for (final GameTip gameTip : gameTips) {
@@ -129,7 +130,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
 
     public static String getAwayScoreTip(final Game game) {
         String awayScore = "";
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         final List<GameTip> gameTips = game.getGameTips();
 
         for (final GameTip gameTip : gameTips) {
@@ -144,7 +145,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
 
     public static String getPoints(final Game game) {
         String points = "-";
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         final List<GameTip> gameTips = game.getGameTips();
 
         for (final GameTip gameTip : gameTips) {
@@ -249,7 +250,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
         String tip = "-";
         final Date date = new Date();
 
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         if (gameTip != null) {
             final Game game = gameTip.getGame();
             if (game != null) {
@@ -271,7 +272,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
     }
 
     public static long getExtraTip(final Extra extra) {
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         final ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
         long id = 0;
 
@@ -283,7 +284,7 @@ public class ViewUtils extends JavaExtensions implements IAppConstants{
     }
 
     public static String getAnswer(final Extra extra) {
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         final ExtraTip extraTip = ExtraTip.find("byExtraAndUser", extra, user).first();
         String answer = "";
 

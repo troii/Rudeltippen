@@ -15,13 +15,12 @@ import play.Logger;
 import play.Play;
 import play.i18n.Messages;
 import play.mvc.Mailer;
-import utils.AppUtils;
 import utils.ValidationUtils;
 
 public class MailService extends Mailer {
 
     public static void reminder(final User user, final List<Game> games, final List<Extra> extras) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
         final String from = Play.configuration.getProperty("mailservice.from");
         final String recipient = user.getEmail();
@@ -31,14 +30,14 @@ public class MailService extends Mailer {
             setReplyTo(replyto);
             addRecipient(recipient);
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.reminder")));
-            send(AppUtils.getMailTemplate("reminder"), user, games, settings, extras);
+            send(AppService.getMailTemplate("reminder"), user, games, settings, extras);
         } else {
             Logger.error("Tryed to sent reminder, but recipient was invalid.");
         }
     }
 
     public static void confirm(final User user, final String token, final ConfirmationType confirmationType) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String appUrl = Play.configuration.getProperty("app.register.url");
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
         final String from = Play.configuration.getProperty("mailservice.from");
@@ -66,9 +65,9 @@ public class MailService extends Mailer {
             addRecipient(user.getEmail());
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
             if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
-                send(AppUtils.getMailTemplate("password"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+                send(AppService.getMailTemplate("password"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
             } else {
-                send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+                send(AppService.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
             }
         } else {
             Logger.error("Tryed to sent confirmation e-mail, but user or confirmType was null or recipient e-mail was invalid.");
@@ -76,7 +75,7 @@ public class MailService extends Mailer {
     }
 
     public static void newuser(final User user, final User admin) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
         final String from = Play.configuration.getProperty("mailservice.from");
 
@@ -85,14 +84,14 @@ public class MailService extends Mailer {
             setReplyTo(replyto);
             addRecipient(admin.getEmail());
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.newuser")));
-            send(AppUtils.getMailTemplate("newuser"), user, settings);
+            send(AppService.getMailTemplate("newuser"), user, settings);
         } else {
             Logger.error("Tryed to sent new user e-mail to admin, but recipient was invalid or user was null.");
         }
     }
 
     public static void error(final String response, final String recipient) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String from = Play.configuration.getProperty("mailservice.from");
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
 
@@ -101,14 +100,14 @@ public class MailService extends Mailer {
             setFrom(from);
             addRecipient(recipient);
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.updatefailed")));
-            send(AppUtils.getMailTemplate("error"), response);
+            send(AppService.getMailTemplate("error"), response);
         } else {
             Logger.error("Tryed to sent info on webservice, but recipient was invalid or response was null.");
         }
     }
 
     public static void notifications(final String subject, String notification, final User user) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String from = Play.configuration.getProperty("mailservice.from");
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
         notification = StringEscapeUtils.unescapeHtml(notification);
@@ -118,14 +117,14 @@ public class MailService extends Mailer {
             setFrom(from);
             addRecipient(user.getEmail());
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
-            send(AppUtils.getMailTemplate("notifications"), notification);
+            send(AppService.getMailTemplate("notifications"), notification);
         } else {
             Logger.error("Tryed to sent result notification, but recipient was invalid or notification was null.");
         }
     }
 
     public static void sendGameTips(final User user, final List<Game> games) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String from = Play.configuration.getProperty("mailservice.from");
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
 
@@ -134,24 +133,24 @@ public class MailService extends Mailer {
             setFrom(from);
             addRecipient(user.getEmail());
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("overview")));
-            send(AppUtils.getMailTemplate("gametips"), games, user);
+            send(AppService.getMailTemplate("gametips"), games, user);
         } else {
             Logger.error("Tryed to sent gametips mail, but recipient was invalid or games list was empty.");
         }
     }
 
     public static void sendRudelmail(final String subject, final String message, final Object [] recipients) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final String from = Play.configuration.getProperty("mailservice.from");
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
 
         if (StringUtils.isNotBlank(subject) && StringUtils.isNotBlank(message) && (recipients != null)) {
             setReplyTo(replyto);
             setFrom(from);
-            addRecipient(AppUtils.getConnectedUser().getEmail());
+            addRecipient(AppService.getConnectedUser().getEmail());
             addBcc(recipients);
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
-            send(AppUtils.getMailTemplate("rudelmail"), message);
+            send(AppService.getMailTemplate("rudelmail"), message);
         } else {
             Logger.error("Tryed to sent rudelmail, but subject, messages or recipients was empty");
         }

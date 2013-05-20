@@ -1,6 +1,6 @@
 package controllers;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.util.Date;
 import java.util.List;
@@ -17,25 +17,25 @@ import play.libs.Codec;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
-import utils.AppUtils;
+import services.AppService;
 import utils.SetupUtils;
 import utils.ValidationUtils;
 
-public class System extends Controller implements IAppConstants {
+public class System extends Controller implements AppConstants {
 	
 	@Before()
 	protected static void before() {
-		AppUtils.setAppLanguage();
+		AppService.setAppLanguage();
 	}
 	public static void setup() {
-		if (AppUtils.rudeltippenIsInizialized()) {
+		if (AppService.rudeltippenIsInizialized()) {
 			redirect("/");
 		}
 		render();
 	}
 	
 	public static void init() {
-		if (!AppUtils.rudeltippenIsInizialized()) {
+		if (!AppService.rudeltippenIsInizialized()) {
 			session.clear();
 			response.removeCookie("rememberme");
 
@@ -56,8 +56,8 @@ public class System extends Controller implements IAppConstants {
 				hasPlayoffs = true;
 			}
 
-			Settings settings = AppUtils.getSettings();
-			settings = AppUtils.getSettings();
+			Settings settings = AppService.getSettings();
+			settings = AppService.getSettings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
 			settings.setGameName("Rudeltippen");
 			settings.setPointsTip(4);
@@ -75,7 +75,7 @@ public class System extends Controller implements IAppConstants {
 			user.setSalt(salt);
 			user.setEmail("admin@foo.bar");
 			user.setUsername("admin");
-			user.setUserpass(AppUtils.hashPassword("admin", salt));
+			user.setUserpass(AppService.hashPassword("admin", salt));
 			user.setRegistered(new Date());
 			user.setExtraPoints(0);
 			user.setTipPoints(0);

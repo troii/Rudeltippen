@@ -1,6 +1,6 @@
 package utils;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,8 +20,9 @@ import org.w3c.dom.NodeList;
 import play.Logger;
 import play.libs.WS;
 import play.test.Fixtures;
+import services.AppService;
 
-public class SetupUtils implements IAppConstants{
+public class SetupUtils implements AppConstants{
 	public static List<String> getGamesFromWebService(final int playdays, final String leagueShortcut, final String leagueSaison) {
 		final Map<String, String> teams = getBundesligaTeams();
 
@@ -165,7 +166,7 @@ public class SetupUtils implements IAppConstants{
 			user.setRegistered(new Date());
 			user.setActive(true);
 			user.setSalt(salt);
-			user.setUserpass(AppUtils.hashPassword("user" + i, salt));
+			user.setUserpass(AppService.hashPassword("user" + i, salt));
 			user._save();
 		}
 	}

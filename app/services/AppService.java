@@ -1,6 +1,6 @@
-package utils;
+package services;
 
-import interfaces.IAppConstants;
+import interfaces.AppConstants;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,9 +37,11 @@ import play.libs.Codec;
 import play.libs.Images;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
+import utils.NotificationUtils;
+import utils.ValidationUtils;
 import controllers.Auth.Security;
 
-public class AppUtils implements IAppConstants{
+public class AppService implements AppConstants {
     /**
      * Loads the currents settings from database
      * @return Settings object
@@ -56,7 +58,7 @@ public class AppUtils implements IAppConstants{
      * @return SHA1 hashed string
      */
     public static String hashPassword(final String userpass, final String usersalt) {
-        final String salt = AppUtils.getSettings().getAppSalt();
+        final String salt = AppService.getSettings().getAppSalt();
         String hash = "";
         for (int i = 1; i <= 100000; i++) {
             hash = Codec.hexSHA1(hash + salt + userpass + usersalt);
@@ -74,7 +76,7 @@ public class AppUtils implements IAppConstants{
         final User user = User.find("byPlace", 1).first();
         int pointsDiff = 0;
         if (user != null) {
-            final User connectedUser = AppUtils.getConnectedUser();
+            final User connectedUser = AppService.getConnectedUser();
             pointsDiff = user.getPoints() - connectedUser.getPoints();
         }
 
@@ -121,7 +123,7 @@ public class AppUtils implements IAppConstants{
         final String username = Security.connected();
         User connectedUser = null;
         if (StringUtils.isNotBlank(username)) {
-            connectedUser = User.find("SELECT u FROM User u WHERE username = ? OR email = ?", username, username).first();
+            connectedUser = User.find("SELECT u FROM User u WHERE active = true AND username = ? OR email = ?", username, username).first();
         }
 
         return connectedUser;
@@ -165,13 +167,13 @@ public class AppUtils implements IAppConstants{
      * Calculation the points for each user based on game and extra tips
      */
     private static void calculateUserPoints() {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
 
         final List<Extra> extras = Extra.findAll();
         for (final Extra extra : extras) {
             if (extra.getAnswer() == null) {
-                if (AppUtils.allReferencedGamesEnded(extra.getGameReferences())) {
-                    final Team team = AppUtils.getTeamByReference(extra.getExtraReference());
+                if (AppService.allReferencedGamesEnded(extra.getGameReferences())) {
+                    final Team team = AppService.getTeamByReference(extra.getExtraReference());
                     if (team != null) {
                         extra.setAnswer(team);
                         extra._save();
@@ -247,7 +249,7 @@ public class AppUtils implements IAppConstants{
      * Calculates the points, goals, etc. for each bracket
      */
     private static void calculateBrackets() {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final int pointsWin = settings.getPointsGameWin();
         final int pointsDraw = settings.getPointsGameDraw();
 
@@ -320,7 +322,7 @@ public class AppUtils implements IAppConstants{
      */
     private static void setUserPlaces() {
         int place = 1;
-        final List<User> users = User.find("ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
+        final List<User> users = User.find("SELECT u FROM User u WHERE active = true ORDER BY points DESC, correctResults DESC, correctDifferences DESC, correctTrends DESC, correctExtraTips DESC").fetch();
         for (final User user : users) {
             user.setPreviousPlace(user.getPlace());
             user.setPlace(place);
@@ -350,7 +352,7 @@ public class AppUtils implements IAppConstants{
      * Sets the teams to the playoff games
      */
     public static void setPlayoffTeams() {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         if (settings.isPlayoffs()) {
             Team homeTeam = null;
             Team awayTeam = null;
@@ -362,8 +364,8 @@ public class AppUtils implements IAppConstants{
                     final String bracketString = "B-" + number + "%";
                     final List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayReference LIKE ?", bracketString, bracketString).fetch();
                     for (final Game game : games) {
-                        homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
-                        awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
+                        homeTeam = AppService.getTeamByReference(game.getHomeReference());
+                        awayTeam = AppService.getTeamByReference(game.getAwayReference());
                         game.setHomeTeam(homeTeam);
                         game.setAwayTeam(awayTeam);
                         game._save();
@@ -373,8 +375,8 @@ public class AppUtils implements IAppConstants{
 
             final List<Game> playoffGames = Game.find("byPlayoffAndEndedAndBracket", true, false, null).fetch();
             for (final Game game : playoffGames) {
-                homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
-                awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
+                homeTeam = AppService.getTeamByReference(game.getHomeReference());
+                awayTeam = AppService.getTeamByReference(game.getAwayReference());
                 game.setHomeTeam(homeTeam);
                 game.setAwayTeam(awayTeam);
                 game._save();
@@ -485,7 +487,7 @@ public class AppUtils implements IAppConstants{
      * @return
      */
     public static int getTipPoints(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         int points = 0;
 
         if ((homeScore == homeScoreTipp) && (awayScore == awayScoreTipp)) {
@@ -511,7 +513,7 @@ public class AppUtils implements IAppConstants{
      * @return
      */
     public static int getTipPointsTrend(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         int points = 0;
 
         if ((homeScore > awayScore) && (homeScoreTipp > awayScoreTipp)) {
@@ -535,7 +537,7 @@ public class AppUtils implements IAppConstants{
      * @return
      */
     public static int getTipPointsOvertime(final int homeScore, final int awayScore, final int homeScoreOT, final int awayScoreOT, final int homeScoreTipp, final int awayScoreTipp) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         int points = 0;
 
         if (settings.isCountFinalResult()) {
@@ -562,7 +564,7 @@ public class AppUtils implements IAppConstants{
      * @param awayScoreExtratime The score of the away team in extratime
      */
     private static void saveScore(final Game game, final String homeScore, final String awayScore, final String extratime, String homeScoreExtratime, String awayScoreExtratime) {
-        final int[] points = AppUtils.getPoints(Integer.parseInt(homeScore), Integer.parseInt(awayScore));
+        final int[] points = AppService.getPoints(Integer.parseInt(homeScore), Integer.parseInt(awayScore));
         game.setHomePoints(points[0]);
         game.setAwayPoints(points[1]);
         game.setHomeScore(homeScore);
@@ -593,7 +595,7 @@ public class AppUtils implements IAppConstants{
      * @return Array containing the points for the home team [0] and the away team [1]
      */
     public static int[] getPoints(final int homeScore, final int awayScore) {
-        final Settings settings = AppUtils.getSettings();
+        final Settings settings = AppService.getSettings();
         final int[] points = new int[2];
 
         if (homeScore == awayScore) {
@@ -618,7 +620,7 @@ public class AppUtils implements IAppConstants{
      * @param awayScore The score of the away team
      */
     public static void placeTip(final Game game, final int homeScore, final int awayScore) {
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
         if (game.isTippable() && ValidationUtils.isValidScore(String.valueOf(homeScore), String.valueOf(awayScore))) {
             if (gameTip == null) {
@@ -830,7 +832,7 @@ public class AppUtils implements IAppConstants{
      * @param team The team which is the extra answer
      */
     public static void placeExtraTip(final Extra extra, final Team team) {
-        final User user = AppUtils.getConnectedUser();
+        final User user = AppService.getConnectedUser();
         if (team != null) {
             ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
             if (extraTip == null) {
