@@ -1,48 +1,62 @@
 #{extends 'main.html' /}
-
-<table class="table">
-	<thead>
-		<th>Spieltag</th>
-		<th>Richtige Tipps</th>
-		<th>Richtige Differenzen</th>
-		<th>Richtige Tendenzen</th>
-		<th>Gesamtpunkte</th>
-		<th>Durchschnit</th>
-	</thead>
-	#{list items:gameTipStatistics, as:'gameTipStatistic'}
-	<tr>
-		<td>${gameTipStatistic.playday.number}</td>
-		<td>${gameTipStatistic.correctTips}</td>
-		<td>${gameTipStatistic.correctDiffs}</td>
-		<td>${gameTipStatistic.correctTrends}</td>
-		<td>${gameTipStatistic.points}</td>
-		<td>${gameTipStatistic.avgPoints}</td>
-	</tr>
-	#{/list}
-</table>
-<table class="table">
-	<thead>
-		<th>Anzahl getippt</th>
-		<th>Ergebnis</th>
-	</thead>
-	#{list items:results, as:'result'}
-		<tr>
-	   	#{list items:result, as:'r'}
-	    	<td>${r}</td>
-		#{/list}
-		</tr>
-	#{/list}
-</table>
-<table class="table">
-	<thead>
-		<th>Anzah</th>
-		<th>Ergebnis</th>
-	</thead>
-	#{list items:games, as:'game'}
-		<tr>
-	   	#{list items:game, as:'g'}
-	    	<td>${g}</td>
-		#{/list}
-		</tr>
-	#{/list}
-</table>
+<div class="span6">
+	<div class="well">
+		<h2>Spieltags&uuml;bersicht</h2>
+		<table class="table">
+			<thead>
+				<th>Spieltag</th>
+				<th>Tipps</th>
+				<th>Differenzen</th>
+				<th>Tendenzen</th>
+				<th>Punkte</th>
+				<th>Schnitt</th>
+			</thead>
+			#{list items:gameTipStatistics, as:'gameTipStatistic'}
+			<tr>
+				<td>${gameTipStatistic.playday.number}</td>
+				<td>${gameTipStatistic.correctTips}</td>
+				<td>${gameTipStatistic.correctDiffs}</td>
+				<td>${gameTipStatistic.correctTrends}</td>
+				<td>${gameTipStatistic.points}</td>
+				<td>${gameTipStatistic.avgPoints}</td>
+			</tr>
+			#{/list}
+		</table>
+	</div>
+</div>
+<div class="span3">
+	<div class="well">
+		<h2>Getippte Ergebnisse</h2>
+		<table class="table">
+			<thead>
+				<th>Anzahl</th>
+				<th>Ergebnis</th>
+			</thead>
+			#{list items:results, as:'result'}
+				<tr>
+			   	#{list items:result, as:'r'}
+			    	<td>${r}</td>
+				#{/list}
+				</tr>
+			#{/list}
+		</table>
+	</div>
+</div>
+<div class="span3">
+	<div class="well">
+		<h2>Gespielte Ergebnisse</h2>
+		<table class="table">
+			<thead>
+				<th>Anzahl</th>
+				<th>Ergebnis</th>
+			</thead>
+			#{list items:games, as:'game'}
+				<tr>
+			   	#{list items:game, as:'g'}
+			    	<td>${g}</td>
+				#{/list}
+				</tr>
+			#{/list}
+		</table>
+	</div>
+</div>

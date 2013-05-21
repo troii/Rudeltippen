@@ -1,91 +1,143 @@
 #{extends 'main.html' /}
-<div class="span4">
-#{if user?.pictureLarge != null}
-    <img src="${user?.pictureLarge}" />
-#{/if}
-#{else}
-   <img src="@{'/public/img/user_placeholder_large.gif'}" width="162" height="162"/>
-#{/else}
-<table class="table">
-    <tbody>
-        <tr>
-            <td><b>&{'username'}</b></td>
-            <td>${user?.username}</td>
-        </tr>
-        <tr>
-            <td><b>&{'place'}</b></td>
-            <td>${user?.place}</td>
-        </tr>
-		<tr>
-			<td><b>&{'points'}</b></td>
-			<td>${user?.points}</td>
-		</tr>
-           <tr>
-               <td><b>&{'pointsperbet'}</b></td>
-               <td>${pointsPerTipp}</td>
-           </tr>
-		<tr>
-			<td><b>&{'placedbets'}</b></td>
-			<td>&{'placedbets.value', statistics?.sumTipps, statistics?.sumGames}</td>
-		</tr>
-		<tr>
-			<td><b>&{'correct.extratips'}</b></td>
-			<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
-		</tr>		
-		<tr>
-			<td><b>&{'correctresults'}</b></td>
-			<td>${statistics?.correctTipps}</td>
-		</tr>
-		<tr>
-			<td><b>&{'correctdifferences'}</b></td>
-			<td>${statistics?.correctDifference}</td>
-		</tr>
-		<tr>
-			<td><b>&{'correcttendence'}</b></td>
-			<td>${statistics?.correctTrend}</td>
-		</tr>
-        <tr>
-            <td><b>&{'betquote'}</b></td>
-            <td>${tippQuote} &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
-        </tr>      
-	</tbody>
-</table>
-</div>
 <div class="span">
-    <canvas id="points" width="800" height="400"></canvas>
+	<ul class="nav nav-tabs">
+	  <li class="active"><a data-toggle="tab" href="#user">&{'user'}</a></li>
+	  <li><a data-toggle="tab" href="#pointsperplayday">&{'pointsperplayday'}</a></li>
+	  <li><a data-toggle="tab" href="#tableplaces">&{'tableplaces'}</a></li>
+	  <li><a data-toggle="tab" href="#tipstatistic">&{'tipstatistic'}</a></li>
+	</ul>
+	<div class="tabbable">
+    	<div class="tab-content">
+        	<div id="user" class="tab-pane active">
+        		<div class="span4">
+					#{if user?.pictureLarge != null}
+					    <img src="${user?.pictureLarge}" />
+					#{/if}
+					#{else}
+					   <img src="@{'/public/img/user_placeholder_large.gif'}" width="162" height="162"/>
+					#{/else}
+					<table class="table">
+					    <tbody>
+					        <tr>
+					            <td><b>&{'username'}</b></td>
+					            <td>${user?.username}</td>
+					        </tr>
+					        <tr>
+					            <td><b>&{'place'}</b></td>
+					            <td>${user?.place}</td>
+					        </tr>
+							<tr>
+								<td><b>&{'points'}</b></td>
+								<td>${user?.points}</td>
+							</tr>
+					           <tr>
+					               <td><b>&{'pointsperbet'}</b></td>
+					               <td>${pointsPerTipp}</td>
+					           </tr>
+							<tr>
+								<td><b>&{'placedbets'}</b></td>
+								<td>&{'placedbets.value', statistics?.sumTipps, statistics?.sumGames}</td>
+							</tr>
+							<tr>
+								<td><b>&{'correct.extratips'}</b></td>
+								<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
+							</tr>		
+							<tr>
+								<td><b>&{'correctresults'}</b></td>
+								<td>${statistics?.correctTipps}</td>
+							</tr>
+							<tr>
+								<td><b>&{'correctdifferences'}</b></td>
+								<td>${statistics?.correctDifference}</td>
+							</tr>
+							<tr>
+								<td><b>&{'correcttendence'}</b></td>
+								<td>${statistics?.correctTrend}</td>
+							</tr>
+					        <tr>
+					            <td><b>&{'betquote'}</b></td>
+					            <td>${tippQuote} &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
+					        </tr>      
+						</tbody>
+					</table>
+					</div>
+				</div>
+				<div id="pointsperplayday" class="tab-pane">
+					<div class="span">
+	    				<canvas id="points" width="800" height="400"></canvas>
+						<script type="text/javascript">
+						var points = {
+						        labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
+								datasets : [
+						            {
+						                fillColor : "rgba(151,187,205,0.5)",
+						                strokeColor : "rgba(220,220,220,1)",
+						                pointColor : "rgba(220,220,220,1)",
+						                pointStrokeColor : "#fff",
+						                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.playdayPoints}${userStatistic_isLast ? '' : ','}#{/list}]
+						            }
+						        ]
+						    }
+						var pointsOptions = {
+						        scaleOverride : true,
+						    	scaleSteps : 20,
+						    	scaleStepWidth : 1,
+						    	scaleStartValue : 0,
+						}
+						var ctx = document.getElementById("points").getContext("2d");
+						var points = new Chart(ctx).Line(points, pointsOptions);
+						</script>
+					</div>
+				</div>
+				<div id="tableplaces" class="tab-pane">
+					<div class="span">
+	    				<canvas id="places" width="800" height="400"></canvas>
+	    				<script type="text/javascript">
+						var places = {
+						        labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
+						        datasets : [
+						            {
+						                fillColor : "rgba(151,187,205,0.5)",
+						                strokeColor : "rgba(220,220,220,1)",
+						                pointColor : "rgba(220,220,220,1)",
+						                pointStrokeColor : "#fff",
+						                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.place}${userStatistic_isLast ? '' : ','}#{/list}]
+						            }
+						        ]
+						    }
+						var placesOptions = {
+						        scaleOverride : true,
+						    	scaleSteps : 6,
+						    	scaleStepWidth : -1,
+						    	scaleStartValue : 7,
+						}
+						var ctx = document.getElementById("places").getContext("2d");
+						var places = new Chart(ctx).Line(places, placesOptions);
+						</script>
+					</div>
+				</div>	
+				<div id="tipstatistic" class="tab-pane">
+					<div class="span4">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Spieltag</th>
+									<th>Richtige Tipps</th>
+									<th>Richtige Differenzen</th>
+									<th>Richtige Tendenzen</th>
+								</tr>
+							</thead>
+	    					#{list items:userStatistics, as:'userStatistic'}
+	    						<tr>
+	    							<td>${userStatistic.playday.number}</td>
+	    							<td>${userStatistic.playdayCorrectTips}</td>
+	    							<td>${userStatistic.playdayCorrectDiffs}</td>
+	    							<td>${userStatistic.playdayCorrectTrends}</td>
+	    						</tr>
+	    					#{/list}							
+						</table>
+					</div>
+				</div>								
+			</div>
+		</div>
 </div>
-<div class="span">
-    <canvas id="places" width="800" height="400"></canvas>
-</div>
-<script src="@{'/public/javascripts/chartjs.min.js'}"></script>
-<script type="text/javascript">
-var points = {
-        labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
-        datasets : [
-            {
-                fillColor : "rgba(151,187,205,0.5)",
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
-                pointStrokeColor : "#fff",
-                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.playdayPoints}${userStatistic_isLast ? '' : ','}#{/list}]
-            }
-        ]
-    }
-var ctx = document.getElementById("points").getContext("2d");
-var points = new Chart(ctx).Line(points);
-
-var places = {
-        labels : [#{list items:userStatistics, as:'userStatistic'}"${userStatistic.playday.number}"${userStatistic_isLast ? '' : ','}#{/list}],
-        datasets : [
-            {
-                fillColor : "rgba(151,187,205,0.5)",
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
-                pointStrokeColor : "#fff",
-                data : [#{list items:userStatistics, as:'userStatistic'}${userStatistic.place}${userStatistic_isLast ? '' : ','}#{/list}]
-            }
-        ]
-    }
-var ctx = document.getElementById("places").getContext("2d");
-var places = new Chart(ctx).Line(places);
-</script>
