@@ -1,62 +1,82 @@
 #{extends 'main.html' /}
-<div class="span6">
-	<div class="well">
-		<h2>Spieltags&uuml;bersicht</h2>
-		<table class="table">
-			<thead>
-				<th>Spieltag</th>
-				<th>Tipps</th>
-				<th>Differenzen</th>
-				<th>Tendenzen</th>
-				<th>Punkte</th>
-				<th>Schnitt</th>
-			</thead>
-			#{list items:gameTipStatistics, as:'gameTipStatistic'}
-			<tr>
-				<td>${gameTipStatistic.playday.number}</td>
-				<td>${gameTipStatistic.correctTips}</td>
-				<td>${gameTipStatistic.correctDiffs}</td>
-				<td>${gameTipStatistic.correctTrends}</td>
-				<td>${gameTipStatistic.points}</td>
-				<td>${gameTipStatistic.avgPoints}</td>
-			</tr>
-			#{/list}
-		</table>
-	</div>
+<div class="span">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#username">&{'username'}</a></li>
+        <li><a data-toggle="tab" href="#picture">&{'profilepicture'}</a></li>
+        <li><a data-toggle="tab" href="#password">&{'password'}</a></li>
+      </ul>
+      <div class="tabbable">
+        <div class="tab-content">
+          <div id="username" class="tab-pane active">
+            <div class="span">
+                <div class="well">
+			        <h2>Spieltags&uuml;bersicht</h2>
+			        <table class="table">
+			            <thead>
+			                <th>Spieltag</th>
+			                <th>Tipps</th>
+			                <th>Differenzen</th>
+			                <th>Tendenzen</th>
+			                <th>Punkte</th>
+			                <th>Schnitt</th>
+			            </thead>
+			            #{list items:gameTipStatistics, as:'gameTipStatistic'}
+			            <tr>
+			                <td>${gameTipStatistic.playday.number}</td>
+			                <td>${gameTipStatistic.correctTips}</td>
+			                <td>${gameTipStatistic.correctDiffs}</td>
+			                <td>${gameTipStatistic.correctTrends}</td>
+			                <td>${gameTipStatistic.points}</td>
+			                <td>${gameTipStatistic.avgPoints}</td>
+			            </tr>
+			            #{/list}
+			        </table>
+			    </div>
+            </div>
+          </div>
+ <div id="picture" class="tab-pane">
+            <div class="span">
+			    <div class="well">
+			        <h2>Getippte Ergebnisse</h2>
+			        <table class="table">
+			            <thead>
+			                <th>Anzahl</th>
+			                <th>Ergebnis</th>
+			            </thead>
+			            #{list items:results, as:'result'}
+			                <tr>
+			                #{list items:result, as:'r'}
+			                    <td>${r}</td>
+			                #{/list}
+			                </tr>
+			            #{/list}
+			        </table>
+			    </div>
+			</div>
+          </div> 
+<div id="password" class="tab-pane">
+            <div class="span">
+    <div class="well">
+        <h2>Gespielte Ergebnisse</h2>
+        <table class="table">
+            <thead>
+                <th>Anzahl</th>
+                <th>Ergebnis</th>
+            </thead>
+            #{list items:games, as:'game'}
+                <tr>
+                #{list items:game, as:'g'}
+                    <td>${g}</td>
+                #{/list}
+                </tr>
+            #{/list}
+        </table>
+    </div>
 </div>
-<div class="span3">
-	<div class="well">
-		<h2>Getippte Ergebnisse</h2>
-		<table class="table">
-			<thead>
-				<th>Anzahl</th>
-				<th>Ergebnis</th>
-			</thead>
-			#{list items:results, as:'result'}
-				<tr>
-			   	#{list items:result, as:'r'}
-			    	<td>${r}</td>
-				#{/list}
-				</tr>
-			#{/list}
-		</table>
-	</div>
+          </div>                     
+         </div>
+       </div>
+</div>    
+
 </div>
-<div class="span3">
-	<div class="well">
-		<h2>Gespielte Ergebnisse</h2>
-		<table class="table">
-			<thead>
-				<th>Anzahl</th>
-				<th>Ergebnis</th>
-			</thead>
-			#{list items:games, as:'game'}
-				<tr>
-			   	#{list items:game, as:'g'}
-			    	<td>${g}</td>
-				#{/list}
-				</tr>
-			#{/list}
-		</table>
-	</div>
-</div>
+
