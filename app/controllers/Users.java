@@ -27,8 +27,8 @@ import play.libs.Codec;
 import play.libs.Crypto;
 import play.libs.Images;
 import play.mvc.With;
-import services.AppService;
-import services.MailService;
+import utils.AppUtils;
+import utils.MailUtils;
 import utils.ValidationUtils;
 
 @With(Auth.class)
@@ -85,8 +85,8 @@ public class Users extends Root implements AppConstants{
 
     @Transactional(readOnly=true)
     public static void profile() {
-        final User user = AppService.getConnectedUser();
-        final Settings settings = AppService.getSettings();
+        final User user = AppUtils.getConnectedUser();
+        final Settings settings = AppUtils.getSettings();
         render(user, settings);
     }
 
@@ -102,7 +102,7 @@ public class Users extends Root implements AppConstants{
             params.flash();
             validation.keep();
         } else {
-            final User user = AppService.getConnectedUser();
+            final User user = AppUtils.getConnectedUser();
             user.setUsername(username);
             user._save();
 
@@ -129,7 +129,7 @@ public class Users extends Root implements AppConstants{
             validation.keep();
         } else {
             final String token = Codec.UUID();
-            final User user = AppService.getConnectedUser();
+            final User user = AppUtils.getConnectedUser();
             if (user != null) {
                 final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
                 final Confirmation confirmation = new Confirmation();
@@ -139,7 +139,7 @@ public class Users extends Root implements AppConstants{
                 confirmation.setToken(token);
                 confirmation.setUser(user);
                 confirmation._save();
-                MailService.confirm(user, token, confirmationType);
+                MailUtils.confirm(user, token, confirmationType);
                 flash.put("infomessage", Messages.get("confirm.message"));
             }
         }
@@ -161,17 +161,17 @@ public class Users extends Root implements AppConstants{
             validation.keep();
         } else {
             final String token = Codec.UUID();
-            final User user = AppService.getConnectedUser();
+            final User user = AppUtils.getConnectedUser();
             if (user != null) {
                 final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERPASS;
                 final Confirmation confirm = new Confirmation();
                 confirm.setConfirmType(confirmationType);
-                confirm.setConfirmValue(Crypto.encryptAES(AppService.hashPassword(userpass, user.getSalt())));
+                confirm.setConfirmValue(Crypto.encryptAES(AppUtils.hashPassword(userpass, user.getSalt())));
                 confirm.setCreated(new Date());
                 confirm.setToken(token);
                 confirm.setUser(user);
                 confirm._save();
-                MailService.confirm(user, token, confirmationType);
+                MailUtils.confirm(user, token, confirmationType);
                 flash.put("infomessage", Messages.get("confirm.message"));
                 Logger.info("Password updated: " + user.getEmail());
             }
@@ -184,7 +184,7 @@ public class Users extends Root implements AppConstants{
     public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        final User user = AppService.getConnectedUser();
+        final User user = AppUtils.getConnectedUser();
         user.setReminder(reminder);
         user.setNotification(notification);
         user.setSendStandings(sendstandings);
@@ -213,7 +213,7 @@ public class Users extends Root implements AppConstants{
             params.flash();
             validation.keep();
         } else {
-            final User user = AppService.getConnectedUser();
+            final User user = AppUtils.getConnectedUser();
             try {
                 Images.resize(picture, picture, PICTURELARGE, PICTURELARGE);
                 user.setPictureLarge(Images.toBase64(picture));
@@ -239,7 +239,7 @@ public class Users extends Root implements AppConstants{
     }
 
     public static void deletepicture() {
-        final User user = AppService.getConnectedUser();
+        final User user = AppUtils.getConnectedUser();
         user.setPicture(null);
         user.setPictureLarge(null);
         user._save();

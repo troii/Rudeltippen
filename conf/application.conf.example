@@ -70,18 +70,6 @@ mailservice.from=Rudelmail <me@example.de>
 # ~~~~~
 jvm.memory=-Xmx128m -Xms64m
 
-#################################################################################
-# Advanced application settings 												#
-#################################################################################
-
-# Twitter connection
-# ~~~~~~~~~~~~~~~~~~~~
-#%prod.twitter.consumerkey=
-#%prod.twitter.consumersecret=
-#%prod.twitter.token=
-#%prod.twitter.secret=
-#%prod.twitter.enable=false
-
 # Log4j
 # ~~~~~~~~~~~~~~~~~~~~
 #%prod.application.log.path=/log4j.prod.xml 

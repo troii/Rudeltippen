@@ -17,7 +17,7 @@ import org.apache.commons.lang.StringUtils;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.With;
-import services.AppService;
+import utils.AppUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
@@ -34,7 +34,7 @@ public class Tips extends Root {
     @Transactional(readOnly=true)
     public static void extras() {
         final List<Extra> extras = Extra.findAll();
-        final boolean tippable = AppService.extrasTipable(extras);
+        final boolean tippable = AppUtils.extrasTipable(extras);
 
         render(extras, tippable);
     }
@@ -70,7 +70,7 @@ public class Tips extends Root {
                     continue;
                 }
 
-                AppService.placeTip(game, Integer.parseInt(homeScore), Integer.parseInt(awayScore));
+                AppUtils.placeTip(game, Integer.parseInt(homeScore), Integer.parseInt(awayScore));
                 keys.add(key);
                 tipped++;
 
@@ -115,7 +115,7 @@ public class Tips extends Root {
                 final Extra extra = Extra.findById(bonusTippId);
                 if (extra.isTipable()) {
                     final Team team = Team.findById(teamId);
-                    AppService.placeExtraTip(extra, team);
+                    AppUtils.placeExtraTip(extra, team);
                     flash.put("infomessage", Messages.get("controller.tipps.bonussaved"));
                     flash.keep();
                 }

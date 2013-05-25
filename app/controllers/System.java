@@ -17,7 +17,7 @@ import play.libs.Codec;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
-import services.AppService;
+import utils.AppUtils;
 import utils.SetupUtils;
 import utils.ValidationUtils;
 
@@ -25,17 +25,17 @@ public class System extends Controller implements AppConstants {
 	
 	@Before()
 	protected static void before() {
-		AppService.setAppLanguage();
+		AppUtils.setAppLanguage();
 	}
 	public static void setup() {
-		if (AppService.rudeltippenIsInizialized()) {
+		if (AppUtils.rudeltippenIsInizialized()) {
 			redirect("/");
 		}
 		render();
 	}
 	
 	public static void init() {
-		if (!AppService.rudeltippenIsInizialized()) {
+		if (!AppUtils.rudeltippenIsInizialized()) {
 			session.clear();
 			response.removeCookie("rememberme");
 
@@ -56,8 +56,8 @@ public class System extends Controller implements AppConstants {
 				hasPlayoffs = true;
 			}
 
-			Settings settings = AppService.getSettings();
-			settings = AppService.getSettings();
+			Settings settings = AppUtils.getSettings();
+			settings = AppUtils.getSettings();
 			settings.setAppSalt(Codec.hexSHA1(Codec.UUID()));
 			settings.setGameName("Rudeltippen");
 			settings.setPointsTip(4);
@@ -75,7 +75,7 @@ public class System extends Controller implements AppConstants {
 			user.setSalt(salt);
 			user.setEmail("admin@foo.bar");
 			user.setUsername("admin");
-			user.setUserpass(AppService.hashPassword("admin", salt));
+			user.setUserpass(AppUtils.hashPassword("admin", salt));
 			user.setRegistered(new Date());
 			user.setExtraPoints(0);
 			user.setTipPoints(0);

@@ -1,4 +1,4 @@
-package services;
+package utils;
 
 import interfaces.AppConstants;
 
@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 import play.Logger;
 import play.libs.WS;
 
-public class UpdateService implements AppConstants {
+public class WSUtils implements AppConstants {
 	public static WSResults getResultsFromWebService(final Game game) {
 		WSResults wsResults = new WSResults();
 		wsResults.setUpdated(false);
@@ -53,7 +53,7 @@ public class UpdateService implements AppConstants {
 		} catch (final Exception e) {
 			final List<User> users = User.find("Admin", true).fetch();
 			for (final User user : users) {
-				MailService.error(e.getMessage(), user.getEmail());
+				MailUtils.error(e.getMessage(), user.getEmail());
 			}
 			Logger.error("Updating of results from WebService failed", e);
 		}

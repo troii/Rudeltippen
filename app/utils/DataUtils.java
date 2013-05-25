@@ -1,4 +1,4 @@
-package services;
+package utils;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import models.Playday;
 import models.User;
 import play.db.jpa.JPA;
 
-public class DataService {
+public class DataUtils {
 	
 	public static Object [] getPlaydayStatistics(Playday playday) {
 		Object result = null;

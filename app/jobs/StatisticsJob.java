@@ -17,8 +17,8 @@ import models.statistic.ResultStatistic;
 import models.statistic.UserStatistic;
 import play.Logger;
 import play.jobs.On;
-import services.AppService;
-import services.DataService;
+import utils.AppUtils;
+import utils.DataUtils;
 
 @On("0 0 4 * * ?")
 public class StatisticsJob extends AppJob {
@@ -30,11 +30,11 @@ public class StatisticsJob extends AppJob {
 
     @Override
     public void doJob() {
-        if (AppService.isJobInstance()) {
+        if (AppUtils.isJobInstance()) {
             Logger.info("Started Job: StatisticsJob");
 
             final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
-            final List<User> users = AppService.getAllActiveUsers();
+            final List<User> users = AppUtils.getAllActiveUsers();
             for (final Playday playday : playdays) {
                 if (playday.allGamesEnded()) {
                     final Map<String, Integer> scores = this.getScores(playday);
@@ -62,7 +62,7 @@ public class StatisticsJob extends AppJob {
     private void setResultStatistic(final User user) {
         ResultStatistic.delete("user = ?", user);
 
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         final List<GameTip> gameTips = GameTip.find("byUser", user).fetch();
         for (final GameTip gameTip : gameTips) {
             final Game game = gameTip.getGame();
@@ -123,7 +123,7 @@ public class StatisticsJob extends AppJob {
             gameTipStatistic.setPlayday(playday);
         }
 
-        final Object [] statistics = DataService.getPlaydayStatistics(playday);
+        final Object [] statistics = DataUtils.getPlaydayStatistics(playday);
         if ((statistics != null) && (statistics.length == 5)) {
             gameTipStatistic.setPoints(((Long) statistics [0]).intValue());
             gameTipStatistic.setCorrectTips(((Long) statistics [1]).intValue());
@@ -138,7 +138,7 @@ public class StatisticsJob extends AppJob {
     private void setAscendingPlaydayPoints(final Playday playday, final User user) {
         final UserStatistic userStatistic = UserStatistic.find("byPlaydayAndUser", playday, user).first();
 
-        final Object [] statistics = DataService.getAscendingStatistics(playday, user);
+        final Object [] statistics = DataUtils.getAscendingStatistics(playday, user);
         if ((statistics != null) && (statistics.length == 4)) {
             userStatistic.setPoints(((Long) statistics [0]).intValue());
             userStatistic.setCorrectTips(((Long) statistics [1]).intValue());
@@ -173,7 +173,7 @@ public class StatisticsJob extends AppJob {
         int correctDiffs = 0;
         int correctTrends = 0;
 
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         final List<Game> games = playday.getGames();
         for (final Game game : games) {
             final GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();

@@ -1,7 +1,7 @@
 package jobs;
 
 import play.jobs.Every;
-import services.AppService;
+import utils.AppUtils;
 
 @Every("1min")
 public class ResultsJob extends AppJob {
@@ -13,7 +13,7 @@ public class ResultsJob extends AppJob {
 
     @Override
     public void doJob() {
-        if (AppService.isJobInstance()) {
+        if (AppUtils.isJobInstance()) {
             //			Logger.info("Started Job: ResultsJob");
             //			final List<Game> games = Game.find("SELECT g FROM Game g WHERE ended != 1 AND ( TIMESTAMPDIFF(MINUTE,kickoff,now()) > 90 ) AND homeTeam_id != '' AND awayTeam_id != '' AND webserviceID != ''").fetch();
             //			for (final Game game : games) {

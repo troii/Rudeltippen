@@ -24,307 +24,304 @@ import org.junit.Test;
 
 import play.test.Fixtures;
 import play.test.UnitTest;
-import services.AppService;
-import services.MailService;
-import services.TwitterService;
-import services.UpdateService;
+import utils.AppUtils;
+import utils.MailUtils;
+import utils.WSUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
 public class UnitTests extends UnitTest implements AppConstants{
-	@Before
-	public void init() {
-		Fixtures.deleteDatabase();
-		Fixtures.loadModels("bl2012.test.yml");
+    @Before
+    public void init() {
+        Fixtures.deleteDatabase();
+        Fixtures.loadModels("bl2012.test.yml");
 
-		for (int i=1; i <= 7; i++) {
-			final User user = new User();
-			user.setAdmin(true);
-			user.setEmail("user" + i + "@rudeltippen.de");
-			user.setUsername("user" + i);
-			user.setRegistered(new Date());
-			user.setReminder(true);
-			user.setActive(true);
-			user.setSalt("foo");
-			user.setUserpass(AppService.hashPassword("user" + i, "foo"));
-			user._save();
-		}
-		User user = new User();
-		user.setAdmin(false);
-		user.setEmail("user8@rudeltippen.de");
-		user.setUsername("user8");
-		user.setRegistered(new Date());
-		user.setReminder(true);
-		user.setActive(true);
-		user.setSalt("foo");
-		user.setUserpass(AppService.hashPassword("user8", "foo"));
-		user._save();
+        for (int i=1; i <= 7; i++) {
+            final User user = new User();
+            user.setAdmin(true);
+            user.setEmail("user" + i + "@rudeltippen.de");
+            user.setUsername("user" + i);
+            user.setRegistered(new Date());
+            user.setReminder(true);
+            user.setActive(true);
+            user.setSalt("foo");
+            user.setUserpass(AppUtils.hashPassword("user" + i, "foo"));
+            user._save();
+        }
+        User user = new User();
+        user.setAdmin(false);
+        user.setEmail("user8@rudeltippen.de");
+        user.setUsername("user8");
+        user.setRegistered(new Date());
+        user.setReminder(true);
+        user.setActive(true);
+        user.setSalt("foo");
+        user.setUserpass(AppUtils.hashPassword("user8", "foo"));
+        user._save();
 
-		user = new User();
-		user.setAdmin(false);
-		user.setEmail("user555@rudeltippen.de");
-		user.setUsername("user555");
-		user.setRegistered(new Date());
-		user.setReminder(true);
-		user.setActive(false);
-		user.setSalt("foo");
-		user.setUserpass(AppService.hashPassword("user555", "foo"));
-		user._save();
-	}
+        user = new User();
+        user.setAdmin(false);
+        user.setEmail("user555@rudeltippen.de");
+        user.setUsername("user555");
+        user.setRegistered(new Date());
+        user.setReminder(true);
+        user.setActive(false);
+        user.setSalt("foo");
+        user.setUserpass(AppUtils.hashPassword("user555", "foo"));
+        user._save();
+    }
 
-	@Test
-	public void testGetPoints() {
-		final Settings settings = AppService.getSettings();
-		assertNotNull(settings);
+    @Test
+    public void testGetPoints() {
+        final Settings settings = AppUtils.getSettings();
+        assertNotNull(settings);
 
-		final int pointsWin = settings.getPointsGameWin();
-		final int pointsDraw = settings.getPointsGameDraw();
+        final int pointsWin = settings.getPointsGameWin();
+        final int pointsDraw = settings.getPointsGameDraw();
 
-		int [] points = AppService.getPoints(0, 0);
+        int [] points = AppUtils.getPoints(0, 0);
 
-		assertEquals(points.length, 2);
-		assertEquals(points[0], pointsDraw);
-		assertEquals(points[1], pointsDraw);
+        assertEquals(points.length, 2);
+        assertEquals(points[0], pointsDraw);
+        assertEquals(points[1], pointsDraw);
 
-		points = AppService.getPoints(1, 0);
+        points = AppUtils.getPoints(1, 0);
 
-		assertEquals(points.length, 2);
-		assertEquals(points[0], pointsWin);
-		assertEquals(points[1], 0);
+        assertEquals(points.length, 2);
+        assertEquals(points[0], pointsWin);
+        assertEquals(points[1], 0);
 
-		points = AppService.getPoints(0, 1);
+        points = AppUtils.getPoints(0, 1);
 
-		assertEquals(points.length, 2);
-		assertEquals(points[0], 0);
-		assertEquals(points[1], pointsWin);
-	}
+        assertEquals(points.length, 2);
+        assertEquals(points[0], 0);
+        assertEquals(points[1], pointsWin);
+    }
 
-	@Test
-	public void testGetTippPoints() {
-		final Settings setting = AppService.getSettings();
-		final int pointsTipp = setting.getPointsTip();
-		final int pointsDiff = setting.getPointsTipDiff();
-		final int pointsTrend = setting.getPointsTipTrend();
+    @Test
+    public void testGetTippPoints() {
+        final Settings setting = AppUtils.getSettings();
+        final int pointsTipp = setting.getPointsTip();
+        final int pointsDiff = setting.getPointsTipDiff();
+        final int pointsTrend = setting.getPointsTipTrend();
 
-		assertEquals(AppService.getTipPoints(1, 0, 1, 0), pointsTipp);
-		assertEquals(AppService.getTipPoints(0, 1, 0, 1), pointsTipp);
-		assertEquals(AppService.getTipPoints(1, 1, 1, 1), pointsTipp);
-		assertEquals(AppService.getTipPoints(2, 0, 5, 3), pointsDiff);
-		assertEquals(AppService.getTipPoints(0, 2, 3, 5), pointsDiff);
-		assertEquals(AppService.getTipPoints(2, 2, 1, 1), pointsDiff);
-		assertEquals(AppService.getTipPoints(1, 0, 4, 0), pointsTrend);
-		assertEquals(AppService.getTipPoints(0, 1, 0, 4), pointsTrend);
-		assertEquals(AppService.getTipPointsTrend(1, 0, 3, 0), pointsTrend);
-		assertEquals(AppService.getTipPointsTrend(4, 5, 3, 7), pointsTrend);
-		assertEquals(AppService.getTipPointsTrend(1, 2, 2, 1), 0);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 1), pointsTipp);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 0, 0), pointsDiff);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 0), 0);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 0, 1), 0);
+        assertEquals(AppUtils.getTipPoints(1, 0, 1, 0), pointsTipp);
+        assertEquals(AppUtils.getTipPoints(0, 1, 0, 1), pointsTipp);
+        assertEquals(AppUtils.getTipPoints(1, 1, 1, 1), pointsTipp);
+        assertEquals(AppUtils.getTipPoints(2, 0, 5, 3), pointsDiff);
+        assertEquals(AppUtils.getTipPoints(0, 2, 3, 5), pointsDiff);
+        assertEquals(AppUtils.getTipPoints(2, 2, 1, 1), pointsDiff);
+        assertEquals(AppUtils.getTipPoints(1, 0, 4, 0), pointsTrend);
+        assertEquals(AppUtils.getTipPoints(0, 1, 0, 4), pointsTrend);
+        assertEquals(AppUtils.getTipPointsTrend(1, 0, 3, 0), pointsTrend);
+        assertEquals(AppUtils.getTipPointsTrend(4, 5, 3, 7), pointsTrend);
+        assertEquals(AppUtils.getTipPointsTrend(1, 2, 2, 1), 0);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 1), pointsTipp);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 0, 0), pointsDiff);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 0), 0);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 1), 0);
 
-		setting.setCountFinalResult(true);
-		setting._save();
+        setting.setCountFinalResult(true);
+        setting._save();
 
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 1), 0);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 0, 0), 0);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 5, 4), pointsTipp);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 4, 5), pointsTipp);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 1, 0), pointsDiff);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 0, 1), pointsDiff);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 5, 4, 2, 0), pointsTrend);
-		assertEquals(AppService.getTipPointsOvertime(1, 1, 4, 5, 0, 2), pointsTrend);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 1), 0);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 0, 0), 0);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 5, 4), pointsTipp);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 4, 5), pointsTipp);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 1, 0), pointsDiff);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 1), pointsDiff);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 5, 4, 2, 0), pointsTrend);
+        assertEquals(AppUtils.getTipPointsOvertime(1, 1, 4, 5, 0, 2), pointsTrend);
 
-		setting.setCountFinalResult(false);
-		setting._save();
-	}
+        setting.setCountFinalResult(false);
+        setting._save();
+    }
 
-	@Test
-	public void testIsValidEmail() {
-		assertTrue(ValidationUtils.isValidEmail("sk@svenkubiak.de"));
-		assertTrue(ValidationUtils.isValidEmail("peter.pong@plong.com"));
-		assertTrue(ValidationUtils.isValidEmail("han.solo.senior@sub.domain.com"));
-		assertFalse(ValidationUtils.isValidEmail("sk"));
-		assertFalse(ValidationUtils.isValidEmail("sk@"));
-		assertFalse(ValidationUtils.isValidEmail("@"));
-		assertFalse(ValidationUtils.isValidEmail("@com.de"));
-		assertFalse(ValidationUtils.isValidEmail("sk@.de"));
-	}
+    @Test
+    public void testIsValidEmail() {
+        assertTrue(ValidationUtils.isValidEmail("sk@svenkubiak.de"));
+        assertTrue(ValidationUtils.isValidEmail("peter.pong@plong.com"));
+        assertTrue(ValidationUtils.isValidEmail("han.solo.senior@sub.domain.com"));
+        assertFalse(ValidationUtils.isValidEmail("sk"));
+        assertFalse(ValidationUtils.isValidEmail("sk@"));
+        assertFalse(ValidationUtils.isValidEmail("@"));
+        assertFalse(ValidationUtils.isValidEmail("@com.de"));
+        assertFalse(ValidationUtils.isValidEmail("sk@.de"));
+    }
 
-	@Test
-	public void testGeneratePassword() {
-		assertEquals(AppService.hashPassword("user22", "foo"), "2d56a2593b5af39bb12082ad686b44bf9268c346");
-	}
+    @Test
+    public void testGeneratePassword() {
+        assertEquals(AppUtils.hashPassword("user22", "foo"), "2d56a2593b5af39bb12082ad686b44bf9268c346");
+    }
 
-	@Test
-	public void testGetWinnerLooser() {
-		final Team home = new Team();
-		final Team away = new Team();
-		home.setName("home");
-		away.setName("away");
+    @Test
+    public void testGetWinnerLooser() {
+        final Team home = new Team();
+        final Team away = new Team();
+        home.setName("home");
+        away.setName("away");
 
-		final Game game = new Game();
-		game.setHomeTeam(home);
-		game.setAwayTeam(away);
-		game.setHomeScore("5");
-		game.setAwayScore("3");
+        final Game game = new Game();
+        game.setHomeTeam(home);
+        game.setAwayTeam(away);
+        game.setHomeScore("5");
+        game.setAwayScore("3");
 
-		assertEquals("home", game.getWinner().getName());
-		assertEquals("away", game.getLoser().getName());
+        assertEquals("home", game.getWinner().getName());
+        assertEquals("away", game.getLoser().getName());
 
-		game.setHomeScore("3");
-		game.setAwayScore("5");
+        game.setHomeScore("3");
+        game.setAwayScore("5");
 
-		assertEquals("home", game.getLoser().getName());
-		assertEquals("away", game.getWinner().getName());
+        assertEquals("home", game.getLoser().getName());
+        assertEquals("away", game.getWinner().getName());
 
-		game.setOvertime(true);
-		game.setHomeScore("1");
-		game.setAwayScore("1");
-		game.setHomeScoreOT("8");
-		game.setAwayScoreOT("3");
+        game.setOvertime(true);
+        game.setHomeScore("1");
+        game.setAwayScore("1");
+        game.setHomeScoreOT("8");
+        game.setAwayScoreOT("3");
 
-		assertEquals("home", game.getWinner().getName());
-		assertEquals("away", game.getLoser().getName());
+        assertEquals("home", game.getWinner().getName());
+        assertEquals("away", game.getLoser().getName());
 
-		game.setHomeScoreOT("3");
-		game.setAwayScoreOT("8");
+        game.setHomeScoreOT("3");
+        game.setAwayScoreOT("8");
 
-		assertEquals("home", game.getLoser().getName());
-		assertEquals("away", game.getWinner().getName());
-	}
+        assertEquals("home", game.getLoser().getName());
+        assertEquals("away", game.getWinner().getName());
+    }
 
-	@Test
-	public void testAppUtils() {
-		assertNotNull(AppService.getTeamByReference("B-1-1"));
-		assertNotNull(AppService.getTeamByReference("B-1-1"));
-		final Game g1 = new Game();
-		final Game g2 = new Game();
-		g1.setEnded(true);
-		g2.setEnded(true);
+    @Test
+    public void testAppUtils() {
+        assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+        assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+        final Game g1 = new Game();
+        final Game g2 = new Game();
+        g1.setEnded(true);
+        g2.setEnded(true);
 
-		final List<Game> games = new ArrayList<Game>();
-		games.add(g1);
-		games.add(g2);
+        final List<Game> games = new ArrayList<Game>();
+        games.add(g1);
+        games.add(g2);
 
-		assertTrue(AppService.allReferencedGamesEnded(games));
+        assertTrue(AppUtils.allReferencedGamesEnded(games));
 
-		g1.setEnded(false);
+        g1.setEnded(false);
 
-		assertFalse(AppService.allReferencedGamesEnded(games));
+        assertFalse(AppUtils.allReferencedGamesEnded(games));
 
-		assertTrue(AppService.getTimezones().size() > 0);
-		assertTrue(AppService.getLanguages().size() > 0);
+        assertTrue(AppUtils.getTimezones().size() > 0);
+        assertTrue(AppUtils.getLanguages().size() > 0);
 
-		final User user = new User();
-		user.setPlace(1);
-		user.setPreviousPlace(0);
+        final User user = new User();
+        user.setPlace(1);
+        user.setPreviousPlace(0);
 
-		assertEquals("", ViewUtils.getPlaceTrend(user));
+        assertEquals("", ViewUtils.getPlaceTrend(user));
 
-		user.setPlace(2);
-		user.setPreviousPlace(1);
+        user.setPlace(2);
+        user.setPreviousPlace(1);
 
-		assertEquals("<i class=\"icon-arrow-down icon-red\"></i> (1)", ViewUtils.getPlaceTrend(user));
+        assertEquals("<i class=\"icon-arrow-down icon-red\"></i> (1)", ViewUtils.getPlaceTrend(user));
 
-		user.setPlace(1);
-		user.setPreviousPlace(2);
+        user.setPlace(1);
+        user.setPreviousPlace(2);
 
-		assertEquals("<i class=\"icon-arrow-up icon-green\"></i> (2)", ViewUtils.getPlaceTrend(user));
+        assertEquals("<i class=\"icon-arrow-up icon-green\"></i> (2)", ViewUtils.getPlaceTrend(user));
 
-		user.setPreviousPlace(1);
+        user.setPreviousPlace(1);
 
-		assertEquals("<i class=\"icon-minus\"></i> (1)", ViewUtils.getPlaceTrend(user));
+        assertEquals("<i class=\"icon-minus\"></i> (1)", ViewUtils.getPlaceTrend(user));
 
-		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, PICTURESMALL));
-		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, PICTURELARGE));
-		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, -12));
-		assertNotNull(AppService.getGravatarImage("sk@svenkubiak.de", null, 150));
-		assertNotNull(AppService.getGravatarImage("bla@foobar5455fff.de", "mm", PICTURESMALL));
-		assertNull(AppService.getGravatarImage("d@", null, PICTURESMALL));
-	}
+        assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, PICTURESMALL));
+        assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, PICTURELARGE));
+        assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, -12));
+        assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, 150));
+        assertNotNull(AppUtils.getGravatarImage("bla@foobar5455fff.de", "mm", PICTURESMALL));
+        assertNull(AppUtils.getGravatarImage("d@", null, PICTURESMALL));
+    }
 
-	@Test
-	public void testValidationUtils() {
-		final long maxSize = 102400;
+    @Test
+    public void testValidationUtils() {
+        final long maxSize = 102400;
 
-		assertTrue(ValidationUtils.isValidUsername("ahf_bA-SS747"));
-		assertFalse(ValidationUtils.isValidUsername("ahf_bA-SS 747"));
-		assertFalse(ValidationUtils.isValidUsername("ahf_bA-SS/747"));
+        assertTrue(ValidationUtils.isValidUsername("ahf_bA-SS747"));
+        assertFalse(ValidationUtils.isValidUsername("ahf_bA-SS 747"));
+        assertFalse(ValidationUtils.isValidUsername("ahf_bA-SS/747"));
 
-		assertTrue(ValidationUtils.checkFileLength(maxSize));
-		assertFalse(ValidationUtils.checkFileLength(maxSize + 1));
-		assertTrue(ValidationUtils.emailExists("user1@rudeltippen.de"));
-		assertTrue(ValidationUtils.isValidEmail("user1@rudeltippen.de"));
-		assertFalse(ValidationUtils.emailExists("foobar555@bar.com"));
-		assertTrue(ValidationUtils.usernameExists("user5"));
-		assertTrue(ValidationUtils.isValidScore("0", "0"));
-		assertTrue(ValidationUtils.isValidScore("99", "99"));
-		assertFalse(ValidationUtils.isValidScore("-1", "-1"));
-		assertFalse(ValidationUtils.isValidScore("a", "b"));
-		assertFalse(ValidationUtils.isValidScore("100", "1"));
-		assertFalse(ValidationUtils.isValidScore("1", "100"));
-		assertFalse(ValidationUtils.isValidScore("-1", "1"));
-		assertFalse(ValidationUtils.isValidScore("1", "-51"));
-	}
+        assertTrue(ValidationUtils.checkFileLength(maxSize));
+        assertFalse(ValidationUtils.checkFileLength(maxSize + 1));
+        assertTrue(ValidationUtils.emailExists("user1@rudeltippen.de"));
+        assertTrue(ValidationUtils.isValidEmail("user1@rudeltippen.de"));
+        assertFalse(ValidationUtils.emailExists("foobar555@bar.com"));
+        assertTrue(ValidationUtils.usernameExists("user5"));
+        assertTrue(ValidationUtils.isValidScore("0", "0"));
+        assertTrue(ValidationUtils.isValidScore("99", "99"));
+        assertFalse(ValidationUtils.isValidScore("-1", "-1"));
+        assertFalse(ValidationUtils.isValidScore("a", "b"));
+        assertFalse(ValidationUtils.isValidScore("100", "1"));
+        assertFalse(ValidationUtils.isValidScore("1", "100"));
+        assertFalse(ValidationUtils.isValidScore("-1", "1"));
+        assertFalse(ValidationUtils.isValidScore("1", "-51"));
+    }
 
-	@Test
-	public void testViewUtils() {
-		assertNotNull(ViewUtils.difference(new Date()));
-		assertNotNull(ViewUtils.formatted(new Date()));
-		assertEquals(ViewUtils.getPlaceName(-5), "");
-		assertEquals(ViewUtils.getPlaceName(11), "");
-		assertEquals(ViewUtils.getPlaceName(1), "Erster");
-	}
+    @Test
+    public void testViewUtils() {
+        assertNotNull(ViewUtils.difference(new Date()));
+        assertNotNull(ViewUtils.formatted(new Date()));
+        assertEquals(ViewUtils.getPlaceName(-5), "");
+        assertEquals(ViewUtils.getPlaceName(11), "");
+        assertEquals(ViewUtils.getPlaceName(1), "Erster");
+    }
 
-	@Test
-	public void testWebServiceUpdate() {
-		final Game game = new Game();
-		game.setWebserviceID("19218");
-		final WSResults wsResults = UpdateService.getResultsFromWebService(game);
-		final Map<String, WSResult> wsResult = wsResults.getWsResult();
+    @Test
+    public void testWebServiceUpdate() {
+        final Game game = new Game();
+        game.setWebserviceID("19218");
+        final WSResults wsResults = WSUtils.getResultsFromWebService(game);
+        final Map<String, WSResult> wsResult = wsResults.getWsResult();
 
-		assertNotNull(wsResults);
-		assertNotNull(wsResult);
-		assertTrue(wsResult.containsKey("90"));
-		assertTrue(wsResult.containsKey("120"));
-		assertTrue(wsResult.containsKey("121"));
-		assertEquals(wsResult.get("90").getHomeScore(), "0");
-		assertEquals(wsResult.get("90").getAwayScore(), "0");
-		assertEquals(wsResult.get("120").getHomeScore(), "0");
-		assertEquals(wsResult.get("120").getAwayScore(), "0");
-		assertEquals(wsResult.get("121").getHomeScore(), "3");
-		assertEquals(wsResult.get("121").getAwayScore(), "4");
-	}
+        assertNotNull(wsResults);
+        assertNotNull(wsResult);
+        assertTrue(wsResult.containsKey("90"));
+        assertTrue(wsResult.containsKey("120"));
+        assertTrue(wsResult.containsKey("121"));
+        assertEquals(wsResult.get("90").getHomeScore(), "0");
+        assertEquals(wsResult.get("90").getAwayScore(), "0");
+        assertEquals(wsResult.get("120").getHomeScore(), "0");
+        assertEquals(wsResult.get("120").getAwayScore(), "0");
+        assertEquals(wsResult.get("121").getHomeScore(), "3");
+        assertEquals(wsResult.get("121").getAwayScore(), "4");
+    }
 
-	@Test
-	public void testJobs() {
-		new CleanupJob().now();
-		new ReminderJob().now();
-		new ResultsJob().now();
-		new StandingsJob().now();
-	}
+    @Test
+    public void testJobs() {
+        new CleanupJob().now();
+        new ReminderJob().now();
+        new ResultsJob().now();
+        new StandingsJob().now();
+    }
 
-	@Test
-	public void testServices() {
-		final User user = new User();
-		final User admin = new User();
+    @Test
+    public void testServices() {
+        final User user = new User();
+        final User admin = new User();
 
-		user.setEmail("foo@bar.com");
-		admin.setEmail("foo@bar.com");
+        user.setEmail("foo@bar.com");
+        admin.setEmail("foo@bar.com");
 
-		final String response = "foobar";
-		final String message = "foobar";
-		final String token = "foobar";
-		final String notification = "foobar";
-		final ConfirmationType confirmationType = ConfirmationType.ACTIVATION;
+        final String response = "foobar";
+        final String token = "foobar";
+        final String notification = "foobar";
+        final ConfirmationType confirmationType = ConfirmationType.ACTIVATION;
 
-		final List<String> statements = new ArrayList<String>();
-		statements.add("foobar");
+        final List<String> statements = new ArrayList<String>();
+        statements.add("foobar");
 
-		MailService.confirm(user, token, confirmationType);
-		MailService.newuser(user, admin);
-		MailService.notifications(notification, "foo@bar.com", admin);
-		MailService.error(response, "foo@bar.com");
-		TwitterService.updateStatus(message);
-	}
+        MailUtils.confirm(user, token, confirmationType);
+        MailUtils.newuser(user, admin);
+        MailUtils.notifications(notification, "foo@bar.com", admin);
+        MailUtils.error(response, "foo@bar.com");
+    }
 }

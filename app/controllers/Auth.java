@@ -25,15 +25,14 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.utils.Java;
-import services.AppService;
-import services.MailService;
-import services.TwitterService;
+import utils.AppUtils;
+import utils.MailUtils;
 import utils.ValidationUtils;
 
 public class Auth extends Root implements AppConstants{
     @Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm", "password", "reset", "renew"})
     protected static void checkAccess() throws Throwable {
-        AppService.setAppLanguage();
+        AppUtils.setAppLanguage();
 
         if (!session.contains("username")) {
             flash.put("url", "/");
@@ -53,7 +52,7 @@ public class Auth extends Root implements AppConstants{
 
     @Before
     protected static void registration() {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         if (settings == null) {
             renderArgs.put("isEnableRegistration", false);
         } else {
@@ -108,7 +107,7 @@ public class Auth extends Root implements AppConstants{
                 confirmation.setCreated(new Date());
                 confirmation._save();
 
-                MailService.confirm(user, token, confirmType);
+                MailUtils.confirm(user, token, confirmType);
                 flash.put("infomessage", Messages.get("confirm.message"));
                 login();
             }
@@ -148,7 +147,6 @@ public class Auth extends Root implements AppConstants{
             activateAndSetAvatar(user);
             Logger.info("User activated: " + user.getEmail());
             flash.put("infomessage", Messages.get("controller.users.accountactivated"));
-            TwitterService.updateStatus(user.getUsername() + " " + Messages.get("controller.users.twitter"));
         } else if ((ConfirmationType.CHANGEUSERNAME).equals(confirmationType)) {
             final String oldusername = user.getEmail();
             final String newusername = Crypto.decryptAES(confirmation.getConfirmValue());
@@ -168,8 +166,8 @@ public class Auth extends Root implements AppConstants{
     }
 
     private static void activateAndSetAvatar(final User user) {
-        final String avatar = AppService.getGravatarImage(user.getEmail(), "retro", PICTURELARGE);
-        final String avatarSmall = AppService.getGravatarImage(user.getEmail(), "retro", PICTURESMALL);
+        final String avatar = AppUtils.getGravatarImage(user.getEmail(), "retro", PICTURELARGE);
+        final String avatarSmall = AppUtils.getGravatarImage(user.getEmail(), "retro", PICTURESMALL);
         if (StringUtils.isNotBlank(avatar)) {
             user.setPictureLarge(avatar);
         }
@@ -183,7 +181,7 @@ public class Auth extends Root implements AppConstants{
 
     @Transactional(readOnly=true)
     public static void register() {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         if (!settings.isEnableRegistration()) {
             redirect("/");
         }
@@ -194,7 +192,7 @@ public class Auth extends Root implements AppConstants{
     public static void create(final String username, final String email, final String emailConfirmation, final String userpass, final String userpassConfirmation) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         if (!settings.isEnableRegistration()) {
             redirect("/");
         }
@@ -227,7 +225,7 @@ public class Auth extends Root implements AppConstants{
             user.setReminder(true);
             user.setAdmin(false);
             user.setSalt(salt);
-            user.setUserpass(AppService.hashPassword(userpass, salt));
+            user.setUserpass(AppUtils.hashPassword(userpass, salt));
             user.setPoints(0);
             user._save();
 
@@ -241,11 +239,11 @@ public class Auth extends Root implements AppConstants{
             confirmation.setUser(user);
             confirmation._save();
 
-            MailService.confirm(user, token, confirmType);
+            MailUtils.confirm(user, token, confirmType);
             if (settings.isInformOnNewTipper()) {
                 final List<User> admins = User.find("byAdmin", true).fetch();
                 for (final User admin : admins) {
-                    MailService.newuser(user, admin);
+                    MailUtils.newuser(user, admin);
                 }
             }
             Logger.info("User registered: " + user.getEmail());
@@ -296,7 +294,7 @@ public class Auth extends Root implements AppConstants{
             password(token);
         } else {
             final User user = confirmation.getUser();
-            final String password = AppService.hashPassword(userpass, user.getSalt());
+            final String password = AppUtils.hashPassword(userpass, user.getSalt());
             user.setUserpass(password);
             user._save();
 
@@ -371,7 +369,7 @@ public class Auth extends Root implements AppConstants{
             final User user = User.find("SELECT u FROM User u WHERE active = true AND username = ? OR email = ?", username, username).first();
             if (user != null) {
                 usersalt = user.getSalt();
-                return AppService.connectUser(username, AppService.hashPassword(userpass, usersalt)) != null;
+                return AppUtils.connectUser(username, AppUtils.hashPassword(userpass, usersalt)) != null;
             }
 
             return false;

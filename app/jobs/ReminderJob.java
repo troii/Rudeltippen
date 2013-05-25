@@ -10,8 +10,8 @@ import models.GameTip;
 import models.User;
 import play.Logger;
 import play.jobs.On;
-import services.AppService;
-import services.MailService;
+import utils.AppUtils;
+import utils.MailUtils;
 
 @On("0 0 1 * * ?")
 public class ReminderJob extends AppJob {
@@ -23,7 +23,7 @@ public class ReminderJob extends AppJob {
 
     @Override
     public void doJob() {
-        if (AppService.isJobInstance()) {
+        if (AppUtils.isJobInstance()) {
             Logger.info("Started Job: ReminderJob");
             final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE DATE(ending) = DATE(NOW())").fetch();
             final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE DATE(kickoff) = DATE(NOW())").fetch();
@@ -48,7 +48,7 @@ public class ReminderJob extends AppJob {
                 }
 
                 if ((reminderGames.size() > 0) || (reminderBonus.size() > 0)) {
-                    MailService.reminder(user, reminderGames, reminderBonus);
+                    MailUtils.reminder(user, reminderGames, reminderBonus);
                     Logger.info("Reminder send to: " + user.getEmail());
                 }
             }

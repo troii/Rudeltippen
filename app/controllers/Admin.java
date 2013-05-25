@@ -26,8 +26,8 @@ import play.i18n.Messages;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
 import play.mvc.With;
-import services.AppService;
-import services.MailService;
+import utils.AppUtils;
+import utils.MailUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
@@ -75,10 +75,10 @@ public class Admin extends Root implements AppConstants {
             final String extratime = map.get("extratime_" + key);
             final String homeScoreExtratime = map.get("game_" + key + "_homeScore_et");
             final String awayScoreExtratime = map.get("game_" + key + "_awayScore_et");
-            AppService.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
+            AppUtils.setGameScore(key, homeScore, awayScore, extratime, homeScoreExtratime, awayScoreExtratime);
         }
 
-        AppService.calculations();
+        AppUtils.calculations();
 
         flash.put("infomessage", Messages.get("controller.games.tippsstored"));
         flash.keep();
@@ -127,7 +127,7 @@ public class Admin extends Root implements AppConstants {
 
     @Transactional(readOnly=true)
     public static void settings() {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
 
         flash.put("name", settings.getGameName());
         flash.put("pointsTip", settings.getPointsTip());
@@ -142,7 +142,7 @@ public class Admin extends Root implements AppConstants {
     }
 
     public static void changeactive(final long userid) {
-        final User connectedUser = AppService.getConnectedUser();
+        final User connectedUser = AppUtils.getConnectedUser();
         final User user = User.findById(userid);
 
         if (user != null) {
@@ -177,7 +177,7 @@ public class Admin extends Root implements AppConstants {
     }
 
     public static void changeadmin(final long userid) {
-        final User connectedUser = AppService.getConnectedUser();
+        final User connectedUser = AppUtils.getConnectedUser();
         final User user = User.findById(userid);
 
         if (user != null) {
@@ -208,7 +208,7 @@ public class Admin extends Root implements AppConstants {
     }
 
     public static void deleteuser(final long userid) {
-        final User connectedUser = AppService.getConnectedUser();
+        final User connectedUser = AppUtils.getConnectedUser();
         final User user = User.findById(userid);
 
         if (user != null) {
@@ -218,7 +218,7 @@ public class Admin extends Root implements AppConstants {
                 flash.put("infomessage", Messages.get("info.delete.user", username));
                 Logger.info("User " + username + " has been deleted - by " + connectedUser.getEmail());
 
-                AppService.calculations();
+                AppUtils.calculations();
             } else {
                 flash.put("warningmessage", Messages.get("warning.delete.user"));
             }
@@ -261,12 +261,12 @@ public class Admin extends Root implements AppConstants {
 
         if (!validation.hasErrors()) {
             final List<String> recipients = new ArrayList<String>();
-            final List<User> users = AppService.getAllActiveUsers();
+            final List<User> users = AppUtils.getAllActiveUsers();
             for (final User user : users) {
                 recipients.add(user.getEmail());
             }
 
-            MailService.sendRudelmail(subject, message, recipients.toArray());
+            MailUtils.sendRudelmail(subject, message, recipients.toArray());
             flash.put("infomessage", Messages.get("info.rudelmail.send"));
         } else {
             flash.put("errormessage", Messages.get("error.rudelmail.send"));

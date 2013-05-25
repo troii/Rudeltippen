@@ -6,8 +6,8 @@ import models.Game;
 import models.User;
 import play.Logger;
 import play.jobs.Every;
-import services.AppService;
-import services.MailService;
+import utils.AppUtils;
+import utils.MailUtils;
 
 @Every("1min")
 public class GameTipJob extends AppJob{
@@ -19,12 +19,12 @@ public class GameTipJob extends AppJob{
 
     @Override
     public void doJob() {
-        if (AppService.isJobInstance()) {
+        if (AppUtils.isJobInstance()) {
             Logger.info("Started Job: GameTipJob");
-            final List<User> users = AppService.getAllActiveUsers();
+            final List<User> users = AppUtils.getAllActiveUsers();
             final List<Game> games = Game.find("SELECT g FROM Game g WHERE informed = ? AND ( TIMESTAMPDIFF(MINUTE,kickoff,now()) > 1 )", false).fetch();
             for (final User user : users) {
-                MailService.sendGameTips(user, games);
+                MailUtils.sendGameTips(user, games);
             }
 
             for (final Game game : games) {

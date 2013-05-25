@@ -1,0 +1,3475 @@
+models.Settings(settings):
+    appSalt:            dsadsadasdas
+    appName:            rudeltippen
+    name:               Rudeltippen EM 2012
+    pointsGameWin:      3
+    pointsGameDraw:     1
+    pointsTip:          4
+    pointsTipDiff:      2
+    pointsTipTrend:     1
+    minutesBeforeTip:   10
+    informOnNewTipper:  true
+    timeZoneString:     Europe/Berlin
+    dateString:         dd. MMMM yyyy
+    dateStringShort:    dd.MM.
+    timeString:         HH:mm
+    dateTimeLang:       de
+    playoffs:           true
+    prePlayoffGames:    24
+    countFinalResults:  false
+    enableRegistration: true
+    token:              rumabo99
+    playoffTeams:       2
+    appEmail:           sk@svenkubiak.de
+    appEmailFrom:       Rudelmail <mailout@rudeltippen.de>
+    appEmailFromName:   Rudelmail
+    maxPictureSize:     102400
+    
+models.Bracket(a):
+    name:           table
+    number:         1
+    overridePlaces: false
+
+models.Team(bvb):
+    name:          borussiadortmund
+    flag:          bvb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fcb):
+    name:          fcbayernmunchen
+    flag:          fcb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(s04):
+    name:          fcschalke
+    flag:          s04.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(bmg):
+    name:          borussiamonchengladbach
+    flag:          bmg.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(b04):
+    name:          bayerleverkusen
+    flag:          b04.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(vfb):
+    name:          vfbstuttgart
+    flag:          vfb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(h96):
+    name:          hannover
+    flag:          h96.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(vfl):
+    name:          vflwolfsburg
+    flag:          vfl.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(swb):
+    name:          werderbremen
+    flag:          swb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fcn):
+    name:          fcnurnburg
+    flag:          fcn.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(tsg):
+    name:          tsghoffenheim
+    flag:          tsg.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(scf):
+    name:          scfreiburg
+    flag:          scf.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(m05):
+    name:          fsvmainz
+    flag:          m05.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fca):
+    name:          fcaugsburg
+    flag:          fca.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(hsv):
+    name:          hamburgsv
+    flag:          hsv.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(sgf):
+    name:          spvgggreutherfurth
+    flag:          sgf.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(ef):
+    name:          eintrachtfrankfurt
+    flag:          ef.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fd):
+    name:          fortunadusseldorf
+    flag:          fd.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0    
+
+models.Playday(p1):
+    name:          1spieltag
+    current:       true
+    playoff:       false
+    number:        1
+
+models.Playday(p2):
+    name:          2spieltag
+    current:       false
+    playoff:       false
+    number:        2
+
+models.Playday(p3):
+    name:          3spieltag
+    current:       false
+    playoff:       false
+    number:        3
+
+models.Playday(p4):
+    name:          4spieltag
+    current:       false
+    playoff:       false
+    number:        4
+
+models.Playday(p5):
+    name:          5spieltag
+    current:       false
+    playoff:       false
+    number:        5
+
+models.Playday(p6):
+    name:          6spieltag
+    current:       false
+    playoff:       false
+    number:        6
+
+models.Playday(p7):
+    name:          7spieltag
+    current:       false
+    playoff:       false
+    number:        7
+
+models.Playday(p8):
+    name:          8spieltag
+    current:       false
+    playoff:       false
+    number:        8
+
+models.Playday(p9):
+    name:          9spieltag
+    current:       false
+    playoff:       false
+    number:        9
+
+models.Playday(p10):
+    name:          10spieltag
+    current:       false
+    playoff:       false
+    number:        10
+
+models.Playday(p11):
+    name:          11spieltag
+    current:       false
+    playoff:       false
+    number:        11
+
+models.Playday(p12):
+    name:          12spieltag
+    current:       false
+    playoff:       false
+    number:        12
+
+models.Playday(p13):
+    name:          13spieltag
+    current:       false
+    playoff:       false
+    number:        13
+
+models.Playday(p14):
+    name:          14spieltag
+    current:       false
+    playoff:       false
+    number:        14
+
+models.Playday(p15):
+    name:          15spieltag
+    current:       false
+    playoff:       false
+    number:        15
+
+models.Playday(p16):
+    name:          16spieltag
+    current:       false
+    playoff:       false
+    number:        16
+
+models.Playday(p17):
+    name:          17spieltag
+    current:       false
+    playoff:       false
+    number:        17
+
+models.Playday(p18):
+    name:          18spieltag
+    current:       false
+    playoff:       false
+    number:        18
+
+models.Playday(p19):
+    name:          19spieltag
+    current:       false
+    playoff:       false
+    number:        19
+
+models.Playday(p20):
+    name:          20spieltag
+    current:       false
+    playoff:       false
+    number:        20
+
+models.Playday(p21):
+    name:          21spieltag
+    current:       false
+    playoff:       false
+    number:        21
+
+models.Playday(p22):
+    name:          22spieltag
+    current:       false
+    playoff:       false
+    number:        22
+
+models.Playday(p23):
+    name:          23spieltag
+    current:       false
+    playoff:       false
+    number:        23
+
+models.Playday(p24):
+    name:          24spieltag
+    current:       false
+    playoff:       false
+    number:        24
+
+models.Playday(p25):
+    name:          25spieltag
+    current:       false
+    playoff:       false
+    number:        25
+
+models.Playday(p26):
+    name:          26spieltag
+    current:       false
+    playoff:       false
+    number:        26
+
+models.Playday(p27):
+    name:          27spieltag
+    current:       false
+    playoff:       false
+    number:        27
+
+models.Playday(p28):
+    name:          28spieltag
+    current:       false
+    playoff:       false
+    number:        28
+
+models.Playday(p29):
+    name:          29spieltag
+    current:       false
+    playoff:       false
+    number:        29
+
+models.Playday(p30):
+    name:          30spieltag
+    current:       false
+    playoff:       false
+    number:        30
+
+models.Playday(p31):
+    name:          31spieltag
+    current:       false
+    playoff:       false
+    number:        31
+
+models.Playday(p32):
+    name:          32spieltag
+    current:       false
+    playoff:       false
+    number:        32
+
+models.Playday(p33):
+    name:          33spieltag
+    current:       false
+    playoff:       false
+    number:        33
+
+models.Playday(p34):
+    name:          34spieltag
+    current:       false
+    playoff:       false
+    number:        34
+
+models.Game(g1):
+    number: 1
+    homeTeam: bvb
+    awayTeam: swb
+    kickoff: 2012-08-24 18:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19702
+
+models.Game(g2):
+    number: 2
+    homeTeam: bmg
+    awayTeam: tsg
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19703
+
+models.Game(g3):
+    number: 3
+    homeTeam: vfb
+    awayTeam: vfl
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19704
+
+models.Game(g4):
+    number: 4
+    homeTeam: h96
+    awayTeam: s04
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19705
+
+models.Game(g5):
+    number: 5
+    homeTeam: scf
+    awayTeam: m05
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19706
+
+models.Game(g6):
+    number: 6
+    homeTeam: fca
+    awayTeam: fd
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19707
+
+models.Game(g7):
+    number: 7
+    homeTeam: hsv
+    awayTeam: fcn
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19708
+
+models.Game(g8):
+    number: 8
+    homeTeam: sgf
+    awayTeam: fcb
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19709
+
+models.Game(g9):
+    number: 9
+    homeTeam: ef
+    awayTeam: b04
+    kickoff: 2012-08-25 13:30:00
+    playday: p1
+    playoff: false
+    ended: false
+    webserviceID: 19710
+
+models.Game(g10):
+    number: 10
+    homeTeam: fcb
+    awayTeam: vfb
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19711
+
+models.Game(g11):
+    number: 11
+    homeTeam: s04
+    awayTeam: fca
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19712
+
+models.Game(g12):
+    number: 12
+    homeTeam: b04
+    awayTeam: scf
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19713
+
+models.Game(g13):
+    number: 13
+    homeTeam: vfl
+    awayTeam: h96
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19714
+
+models.Game(g14):
+    number: 14
+    homeTeam: swb
+    awayTeam: hsv
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19715
+
+models.Game(g15):
+    number: 15
+    homeTeam: fcn
+    awayTeam: bvb
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19716
+
+models.Game(g16):
+    number: 16
+    homeTeam: tsg
+    awayTeam: ef
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19717
+
+models.Game(g17):
+    number: 17
+    homeTeam: m05
+    awayTeam: sgf
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19718
+
+models.Game(g18):
+    number: 18
+    homeTeam: fd
+    awayTeam: bmg
+    kickoff: 2012-09-01 13:30:00
+    playday: p2
+    playoff: false
+    ended: false
+    webserviceID: 19719
+
+models.Game(g19):
+    number: 19
+    homeTeam: bvb
+    awayTeam: b04
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19720
+
+models.Game(g20):
+    number: 20
+    homeTeam: fcb
+    awayTeam: m05
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19721
+
+models.Game(g21):
+    number: 21
+    homeTeam: bmg
+    awayTeam: fcn
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19722
+
+models.Game(g22):
+    number: 22
+    homeTeam: vfb
+    awayTeam: fd
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19723
+
+models.Game(g23):
+    number: 23
+    homeTeam: h96
+    awayTeam: swb
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19724
+
+models.Game(g24):
+    number: 24
+    homeTeam: scf
+    awayTeam: tsg
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19725
+
+models.Game(g25):
+    number: 25
+    homeTeam: fca
+    awayTeam: vfl
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19726
+
+models.Game(g26):
+    number: 26
+    homeTeam: sgf
+    awayTeam: s04
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19727
+
+models.Game(g27):
+    number: 27
+    homeTeam: ef
+    awayTeam: hsv
+    kickoff: 2012-09-15 13:30:00
+    playday: p3
+    playoff: false
+    ended: false
+    webserviceID: 19728
+
+models.Game(g28):
+    number: 28
+    homeTeam: s04
+    awayTeam: fcb
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19729
+
+models.Game(g29):
+    number: 29
+    homeTeam: b04
+    awayTeam: bmg
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19730
+
+models.Game(g30):
+    number: 30
+    homeTeam: vfl
+    awayTeam: sgf
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19731
+
+models.Game(g31):
+    number: 31
+    homeTeam: swb
+    awayTeam: vfb
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19732
+
+models.Game(g32):
+    number: 32
+    homeTeam: fcn
+    awayTeam: ef
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19733
+
+models.Game(g33):
+    number: 33
+    homeTeam: tsg
+    awayTeam: h96
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19734
+
+models.Game(g34):
+    number: 34
+    homeTeam: m05
+    awayTeam: fca
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19735
+
+models.Game(g35):
+    number: 35
+    homeTeam: hsv
+    awayTeam: bvb
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19736
+
+models.Game(g36):
+    number: 36
+    homeTeam: fd
+    awayTeam: scf
+    kickoff: 2012-09-22 13:30:00
+    playday: p4
+    playoff: false
+    ended: false
+    webserviceID: 19737
+
+models.Game(g37):
+    number: 37
+    homeTeam: fcb
+    awayTeam: vfl
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19738
+
+models.Game(g38):
+    number: 38
+    homeTeam: s04
+    awayTeam: m05
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19739
+
+models.Game(g39):
+    number: 39
+    homeTeam: bmg
+    awayTeam: hsv
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19740
+
+models.Game(g40):
+    number: 40
+    homeTeam: vfb
+    awayTeam: tsg
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19741
+
+models.Game(g41):
+    number: 41
+    homeTeam: h96
+    awayTeam: fcn
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19742
+
+models.Game(g42):
+    number: 42
+    homeTeam: scf
+    awayTeam: swb
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19743
+
+models.Game(g43):
+    number: 43
+    homeTeam: fca
+    awayTeam: b04
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19744
+
+models.Game(g44):
+    number: 44
+    homeTeam: sgf
+    awayTeam: fd
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19745
+
+models.Game(g45):
+    number: 45
+    homeTeam: ef
+    awayTeam: bvb
+    kickoff: 2012-09-26 18:00:00
+    playday: p5
+    playoff: false
+    ended: false
+    webserviceID: 19746
+
+models.Game(g46):
+    number: 46
+    homeTeam: bvb
+    awayTeam: bmg
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19748
+
+models.Game(g47):
+    number: 47
+    homeTeam: b04
+    awayTeam: sgf
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19749
+
+models.Game(g48):
+    number: 48
+    homeTeam: vfl
+    awayTeam: m05
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19750
+
+models.Game(g49):
+    number: 49
+    homeTeam: swb
+    awayTeam: fcb
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19751
+
+models.Game(g50):
+    number: 50
+    homeTeam: fcn
+    awayTeam: vfb
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19752
+
+models.Game(g51):
+    number: 51
+    homeTeam: tsg
+    awayTeam: fca
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19753
+
+models.Game(g52):
+    number: 52
+    homeTeam: hsv
+    awayTeam: h96
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19754
+
+models.Game(g53):
+    number: 53
+    homeTeam: ef
+    awayTeam: scf
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19755
+
+models.Game(g54):
+    number: 54
+    homeTeam: fd
+    awayTeam: s04
+    kickoff: 2012-09-29 13:30:00
+    playday: p6
+    playoff: false
+    ended: false
+    webserviceID: 19756
+
+models.Game(g55):
+    number: 55
+    homeTeam: fcb
+    awayTeam: tsg
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19757
+
+models.Game(g56):
+    number: 56
+    homeTeam: s04
+    awayTeam: vfl
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19758
+
+models.Game(g57):
+    number: 57
+    homeTeam: bmg
+    awayTeam: ef
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19759
+
+models.Game(g58):
+    number: 58
+    homeTeam: vfb
+    awayTeam: b04
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19760
+
+models.Game(g59):
+    number: 59
+    homeTeam: h96
+    awayTeam: bvb
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19761
+
+models.Game(g60):
+    number: 60
+    homeTeam: scf
+    awayTeam: fcn
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19762
+
+models.Game(g61):
+    number: 61
+    homeTeam: m05
+    awayTeam: fd
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19763
+
+models.Game(g62):
+    number: 62
+    homeTeam: fca
+    awayTeam: swb
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19764
+
+models.Game(g63):
+    number: 63
+    homeTeam: sgf
+    awayTeam: hsv
+    kickoff: 2012-10-06 13:30:00
+    playday: p7
+    playoff: false
+    ended: false
+    webserviceID: 19765
+
+models.Game(g64):
+    number: 64
+    homeTeam: bvb
+    awayTeam: s04
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19766
+
+models.Game(g65):
+    number: 65
+    homeTeam: b04
+    awayTeam: m05
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19767
+
+models.Game(g66):
+    number: 66
+    homeTeam: vfl
+    awayTeam: scf
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19768
+
+models.Game(g67):
+    number: 67
+    homeTeam: swb
+    awayTeam: bmg
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19769
+
+models.Game(g68):
+    number: 68
+    homeTeam: fcn
+    awayTeam: fca
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19770
+
+models.Game(g69):
+    number: 69
+    homeTeam: tsg
+    awayTeam: sgf
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19771
+
+models.Game(g70):
+    number: 70
+    homeTeam: hsv
+    awayTeam: vfb
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19772
+
+models.Game(g71):
+    number: 71
+    homeTeam: ef
+    awayTeam: h96
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19773
+
+models.Game(g72):
+    number: 72
+    homeTeam: fd
+    awayTeam: fcb
+    kickoff: 2012-10-20 13:30:00
+    playday: p8
+    playoff: false
+    ended: false
+    webserviceID: 19774
+
+models.Game(g73):
+    number: 73
+    homeTeam: fcb
+    awayTeam: b04
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19775
+
+models.Game(g74):
+    number: 74
+    homeTeam: s04
+    awayTeam: fcn
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19776
+
+models.Game(g75):
+    number: 75
+    homeTeam: vfb
+    awayTeam: ef
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19777
+
+models.Game(g76):
+    number: 76
+    homeTeam: h96
+    awayTeam: bmg
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19778
+
+models.Game(g77):
+    number: 77
+    homeTeam: scf
+    awayTeam: bvb
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19779
+
+models.Game(g78):
+    number: 78
+    homeTeam: m05
+    awayTeam: tsg
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19780
+
+models.Game(g79):
+    number: 79
+    homeTeam: fca
+    awayTeam: h96
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19781
+
+models.Game(g80):
+    number: 80
+    homeTeam: sgf
+    awayTeam: swb
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19782
+
+models.Game(g81):
+    number: 81
+    homeTeam: fd
+    awayTeam: vfl
+    kickoff: 2012-10-27 13:30:00
+    playday: p9
+    playoff: false
+    ended: false
+    webserviceID: 19783
+
+models.Game(g82):
+    number: 82
+    homeTeam: bvb
+    awayTeam: vfb
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19784
+
+models.Game(g83):
+    number: 83
+    homeTeam: bmg
+    awayTeam: scf
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19785
+
+models.Game(g84):
+    number: 84
+    homeTeam: b04
+    awayTeam: fd
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19786
+
+models.Game(g85):
+    number: 85
+    homeTeam: h96
+    awayTeam: fca
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19787
+
+models.Game(g86):
+    number: 86
+    homeTeam: swb
+    awayTeam: m05
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19788
+
+models.Game(g87):
+    number: 87
+    homeTeam: fcn
+    awayTeam: vfl
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19789
+
+models.Game(g88):
+    number: 88
+    homeTeam: tsg
+    awayTeam: s04
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19790
+
+models.Game(g89):
+    number: 89
+    homeTeam: hsv
+    awayTeam: fcb
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19791
+
+models.Game(g90):
+    number: 90
+    homeTeam: ef
+    awayTeam: sgf
+    kickoff: 2012-11-03 14:30:00
+    playday: p10
+    playoff: false
+    ended: false
+    webserviceID: 19792
+
+models.Game(g91):
+    number: 91
+    homeTeam: fcb
+    awayTeam: ef
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19793
+
+models.Game(g92):
+    number: 92
+    homeTeam: s04
+    awayTeam: swb
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19794
+
+models.Game(g93):
+    number: 93
+    homeTeam: vfb
+    awayTeam: h96
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19795
+
+models.Game(g94):
+    number: 94
+    homeTeam: vfl
+    awayTeam: b04
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19796
+
+models.Game(g95):
+    number: 95
+    homeTeam: scf
+    awayTeam: hsv
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19797
+
+models.Game(g96):
+    number: 96
+    homeTeam: m05
+    awayTeam: fcn
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19798
+
+models.Game(g97):
+    number: 97
+    homeTeam: fca
+    awayTeam: bvb
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19799
+
+models.Game(g98):
+    number: 98
+    homeTeam: sgf
+    awayTeam: bmg
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19800
+
+models.Game(g99):
+    number: 99
+    homeTeam: fd
+    awayTeam: tsg
+    kickoff: 2012-11-10 14:30:00
+    playday: p11
+    playoff: false
+    ended: false
+    webserviceID: 19801
+
+models.Game(g100):
+    number: 100
+    homeTeam: bvb
+    awayTeam: sgf
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19802
+
+models.Game(g101):
+    number: 101
+    homeTeam: bmg
+    awayTeam: vfb
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19803
+
+models.Game(g102):
+    number: 102
+    homeTeam: b04
+    awayTeam: s04
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19804
+
+models.Game(g103):
+    number: 103
+    homeTeam: h96
+    awayTeam: scf
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19805
+
+models.Game(g104):
+    number: 104
+    homeTeam: swb
+    awayTeam: fd
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19806
+
+models.Game(g105):
+    number: 105
+    homeTeam: fcn
+    awayTeam: fcb
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19807
+
+models.Game(g106):
+    number: 106
+    homeTeam: tsg
+    awayTeam: vfl
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19808
+
+models.Game(g107):
+    number: 107
+    homeTeam: hsv
+    awayTeam: m05
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19809
+
+models.Game(g108):
+    number: 108
+    homeTeam: ef
+    awayTeam: fca
+    kickoff: 2012-11-17 14:30:00
+    playday: p12
+    playoff: false
+    ended: false
+    webserviceID: 19810
+
+models.Game(g109):
+    number: 109
+    homeTeam: fcb
+    awayTeam: h96
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19811
+
+models.Game(g110):
+    number: 110
+    homeTeam: s04
+    awayTeam: ef
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19812
+
+models.Game(g111):
+    number: 111
+    homeTeam: vfl
+    awayTeam: swb
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19813
+
+models.Game(g112):
+    number: 112
+    homeTeam: tsg
+    awayTeam: b04
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19814
+
+models.Game(g113):
+    number: 113
+    homeTeam: scf
+    awayTeam: vfb
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19815
+
+models.Game(g114):
+    number: 114
+    homeTeam: m05
+    awayTeam: bvb
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19816
+
+models.Game(g115):
+    number: 115
+    homeTeam: fca
+    awayTeam: bmg
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19817
+
+models.Game(g116):
+    number: 116
+    homeTeam: sgf
+    awayTeam: fcn
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19818
+
+models.Game(g117):
+    number: 117
+    homeTeam: fd
+    awayTeam: hsv
+    kickoff: 2012-11-24 14:30:00
+    playday: p13
+    playoff: false
+    ended: false
+    webserviceID: 19819
+
+models.Game(g118):
+    number: 118
+    homeTeam: bvb
+    awayTeam: fd
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19820
+
+models.Game(g119):
+    number: 119
+    homeTeam: bmg
+    awayTeam: vfl
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19821
+
+models.Game(g120):
+    number: 120
+    homeTeam: vfb
+    awayTeam: fca
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19822
+
+models.Game(g121):
+    number: 121
+    homeTeam: h96
+    awayTeam: sgf
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19823
+
+models.Game(g122):
+    number: 122
+    homeTeam: swb
+    awayTeam: b04
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19824
+
+models.Game(g123):
+    number: 123
+    homeTeam: fcn
+    awayTeam: tsg
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19825
+
+models.Game(g124):
+    number: 124
+    homeTeam: scf
+    awayTeam: fcb
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19826
+
+models.Game(g125):
+    number: 125
+    homeTeam: hsv
+    awayTeam: s04
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19827
+
+models.Game(g126):
+    number: 126
+    homeTeam: ef
+    awayTeam: m05
+    kickoff: 2012-11-28 19:00:00
+    playday: p14
+    playoff: false
+    ended: false
+    webserviceID: 19828
+
+models.Game(g127):
+    number: 127
+    homeTeam: fcb
+    awayTeam: bvb
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19829
+
+models.Game(g128):
+    number: 128
+    homeTeam: s04
+    awayTeam: bmg
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19830
+
+models.Game(g129):
+    number: 129
+    homeTeam: vfl
+    awayTeam: hsv
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19831
+
+models.Game(g130):
+    number: 130
+    homeTeam: tsg
+    awayTeam: swb
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19832
+
+models.Game(g131):
+    number: 131
+    homeTeam: m05
+    awayTeam: h96
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19833
+
+models.Game(g132):
+    number: 132
+    homeTeam: fca
+    awayTeam: scf
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19834
+
+models.Game(g133):
+    number: 133
+    homeTeam: sgf
+    awayTeam: vfb
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19835
+
+models.Game(g134):
+    number: 134
+    homeTeam: fd
+    awayTeam: ef
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19836
+
+models.Game(g135):
+    number: 135
+    homeTeam: b04
+    awayTeam: fcn
+    kickoff: 2012-12-01 14:30:00
+    playday: p15
+    playoff: false
+    ended: false
+    webserviceID: 19837
+
+models.Game(g136):
+    number: 136
+    homeTeam: bmg
+    awayTeam: m05
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19839
+
+models.Game(g137):
+    number: 137
+    homeTeam: vfb
+    awayTeam: s04
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19840
+
+models.Game(g138):
+    number: 138
+    homeTeam: bvb
+    awayTeam: vfl
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19841
+
+models.Game(g139):
+    number: 139
+    homeTeam: h96
+    awayTeam: b04
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19842
+
+models.Game(g140):
+    number: 140
+    homeTeam: fcn
+    awayTeam: fd
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19843
+
+models.Game(g141):
+    number: 141
+    homeTeam: scf
+    awayTeam: sgf
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19844
+
+models.Game(g142):
+    number: 142
+    homeTeam: fca
+    awayTeam: fcb
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19845
+
+models.Game(g143):
+    number: 143
+    homeTeam: hsv
+    awayTeam: tsg
+    kickoff: 2012-12-08 14:30:00
+    playday: p16
+    playoff: false
+    ended: false
+    webserviceID: 19846
+
+models.Game(g144):
+    number: 144
+    homeTeam: fcb
+    awayTeam: bmg
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19847
+
+models.Game(g145):
+    number: 145
+    homeTeam: s04
+    awayTeam: scf
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19848
+
+models.Game(g146):
+    number: 146
+    homeTeam: b04
+    awayTeam: hsv
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19849
+
+models.Game(g147):
+    number: 147
+    homeTeam: vfl
+    awayTeam: ef
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19850
+
+models.Game(g148):
+    number: 148
+    homeTeam: swb
+    awayTeam: fcn
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19851
+
+models.Game(g149):
+    number: 149
+    homeTeam: tsg
+    awayTeam: bvb
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19852
+
+models.Game(g150):
+    number: 150
+    homeTeam: m05
+    awayTeam: vfb
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19853
+
+models.Game(g151):
+    number: 151
+    homeTeam: sgf
+    awayTeam: fca
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19854
+
+models.Game(g152):
+    number: 152
+    homeTeam: fd
+    awayTeam: h96
+    kickoff: 2012-12-15 14:30:00
+    playday: p17
+    playoff: false
+    ended: false
+    webserviceID: 19855
+
+models.Game(g153):
+    number: 153
+    homeTeam: swb
+    awayTeam: bvb
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19856
+
+models.Game(g154):
+    number: 154
+    homeTeam: b04
+    awayTeam: ef
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19857
+
+models.Game(g155):
+    number: 155
+    homeTeam: tsg
+    awayTeam: bmg
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19858
+
+models.Game(g156):
+    number: 156
+    homeTeam: vfl
+    awayTeam: vfb
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19859
+
+models.Game(g157):
+    number: 157
+    homeTeam: s04
+    awayTeam: h96
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19860
+
+models.Game(g158):
+    number: 158
+    homeTeam: m05
+    awayTeam: scf
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19861
+
+models.Game(g159):
+    number: 159
+    homeTeam: fd
+    awayTeam: fca
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19862
+
+models.Game(g160):
+    number: 160
+    homeTeam: fcn
+    awayTeam: hsv
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19863
+
+models.Game(g161):
+    number: 161
+    homeTeam: fcb
+    awayTeam: sgf
+    kickoff: 2013-01-19 14:30:00
+    playday: p18
+    playoff: false
+    ended: false
+    webserviceID: 19864
+
+models.Game(g162):
+    number: 162
+    homeTeam: sgf
+    awayTeam: m05
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19865
+
+models.Game(g163):
+    number: 163
+    homeTeam: vfb
+    awayTeam: fcb
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19866
+
+models.Game(g164):
+    number: 164
+    homeTeam: bmg
+    awayTeam: fd
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19867
+
+models.Game(g165):
+    number: 165
+    homeTeam: fca
+    awayTeam: s04
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19868
+
+models.Game(g166):
+    number: 166
+    homeTeam: scf
+    awayTeam: b04
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19869
+
+models.Game(g167):
+    number: 167
+    homeTeam: h96
+    awayTeam: vfl
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19870
+
+models.Game(g168):
+    number: 168
+    homeTeam: hsv
+    awayTeam: swb
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19871
+
+models.Game(g169):
+    number: 169
+    homeTeam: bvb
+    awayTeam: fcn
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19872
+
+models.Game(g170):
+    number: 170
+    homeTeam: ef
+    awayTeam: tsg
+    kickoff: 2013-01-26 14:30:00
+    playday: p19
+    playoff: false
+    ended: false
+    webserviceID: 19873
+
+models.Game(g171):
+    number: 171
+    homeTeam: vfl
+    awayTeam: fca
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19874
+
+models.Game(g172):
+    number: 172
+    homeTeam: s04
+    awayTeam: sgf
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19875
+
+models.Game(g173):
+    number: 173
+    homeTeam: b04
+    awayTeam: bvb
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19876
+
+models.Game(g174):
+    number: 174
+    homeTeam: hsv
+    awayTeam: ef
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19877
+
+models.Game(g175):
+    number: 175
+    homeTeam: m05
+    awayTeam: fcb
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19878
+
+models.Game(g176):
+    number: 176
+    homeTeam: fcn
+    awayTeam: bmg
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19879
+
+models.Game(g177):
+    number: 177
+    homeTeam: fd
+    awayTeam: vfb
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19880
+
+models.Game(g178):
+    number: 178
+    homeTeam: swb
+    awayTeam: h96
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19881
+
+models.Game(g179):
+    number: 179
+    homeTeam: tsg
+    awayTeam: scf
+    kickoff: 2013-02-02 14:30:00
+    playday: p20
+    playoff: false
+    ended: false
+    webserviceID: 19882
+
+models.Game(g180):
+    number: 180
+    homeTeam: h96
+    awayTeam: tsg
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19883
+
+models.Game(g181):
+    number: 181
+    homeTeam: fca
+    awayTeam: m05
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19884
+
+models.Game(g182):
+    number: 182
+    homeTeam: bvb
+    awayTeam: hsv
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19885
+
+models.Game(g183):
+    number: 183
+    homeTeam: fcb
+    awayTeam: s04
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19886
+
+models.Game(g184):
+    number: 184
+    homeTeam: scf
+    awayTeam: fd
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19887
+
+models.Game(g185):
+    number: 185
+    homeTeam: bmg
+    awayTeam: b04
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19888
+
+models.Game(g186):
+    number: 186
+    homeTeam: sgf
+    awayTeam: vfl
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19889
+
+models.Game(g187):
+    number: 187
+    homeTeam: vfb
+    awayTeam: swb
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19890
+
+models.Game(g188):
+    number: 188
+    homeTeam: ef
+    awayTeam: fcn
+    kickoff: 2013-02-09 14:30:00
+    playday: p21
+    playoff: false
+    ended: false
+    webserviceID: 19891
+
+models.Game(g189):
+    number: 189
+    homeTeam: fcn
+    awayTeam: h96
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19892
+
+models.Game(g190):
+    number: 190
+    homeTeam: swb
+    awayTeam: scf
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19893
+
+models.Game(g191):
+    number: 191
+    homeTeam: b04
+    awayTeam: fca
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19894
+
+models.Game(g192):
+    number: 192
+    homeTeam: fd
+    awayTeam: sgf
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19895
+
+models.Game(g193):
+    number: 193
+    homeTeam: vfl
+    awayTeam: fcb
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19896
+
+models.Game(g194):
+    number: 194
+    homeTeam: bvb
+    awayTeam: ef
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19897
+
+models.Game(g195):
+    number: 195
+    homeTeam: m05
+    awayTeam: s04
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19898
+
+models.Game(g196):
+    number: 196
+    homeTeam: hsv
+    awayTeam: bmg
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19899
+
+models.Game(g197):
+    number: 197
+    homeTeam: tsg
+    awayTeam: vfb
+    kickoff: 2013-02-16 14:30:00
+    playday: p22
+    playoff: false
+    ended: false
+    webserviceID: 19900
+
+models.Game(g198):
+    number: 198
+    homeTeam: fcb
+    awayTeam: swb
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19901
+
+models.Game(g199):
+    number: 199
+    homeTeam: vfb
+    awayTeam: fcn
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19902
+
+models.Game(g200):
+    number: 200
+    homeTeam: fca
+    awayTeam: tsg
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19903
+
+models.Game(g201):
+    number: 201
+    homeTeam: h96
+    awayTeam: hsv
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19904
+
+models.Game(g202):
+    number: 202
+    homeTeam: scf
+    awayTeam: ef
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19905
+
+models.Game(g203):
+    number: 203
+    homeTeam: bmg
+    awayTeam: bvb
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19906
+
+models.Game(g204):
+    number: 204
+    homeTeam: s04
+    awayTeam: fd
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19907
+
+models.Game(g205):
+    number: 205
+    homeTeam: sgf
+    awayTeam: b04
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19908
+
+models.Game(g206):
+    number: 206
+    homeTeam: m05
+    awayTeam: vfl
+    kickoff: 2013-02-23 14:30:00
+    playday: p23
+    playoff: false
+    ended: false
+    webserviceID: 19909
+
+models.Game(g207):
+    number: 207
+    homeTeam: bvb
+    awayTeam: h96
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 19910
+
+models.Game(g208):
+    number: 208
+    homeTeam: b04
+    awayTeam: vfb
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 19911
+
+models.Game(g209):
+    number: 209
+    homeTeam: vfl
+    awayTeam: s04
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 19912
+
+models.Game(g210):
+    number: 210
+    homeTeam: swb
+    awayTeam: fca
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 19913
+
+models.Game(g211):
+    number: 211
+    homeTeam: ef
+    awayTeam: bmg
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 20157
+
+models.Game(g212):
+    number: 212
+    homeTeam: fcn
+    awayTeam: scf
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 20158
+
+models.Game(g213):
+    number: 213
+    homeTeam: fd
+    awayTeam: m05
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 20159
+
+models.Game(g214):
+    number: 214
+    homeTeam: tsg
+    awayTeam: fcb
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 20160
+
+models.Game(g215):
+    number: 215
+    homeTeam: hsv
+    awayTeam: sgf
+    kickoff: 2013-03-02 14:30:00
+    playday: p24
+    playoff: false
+    ended: false
+    webserviceID: 20161
+
+models.Game(g216):
+    number: 216
+    homeTeam: m05
+    awayTeam: b04
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20162
+
+models.Game(g217):
+    number: 217
+    homeTeam: scf
+    awayTeam: vfl
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20163
+
+models.Game(g218):
+    number: 218
+    homeTeam: bmg
+    awayTeam: swb
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20164
+
+models.Game(g219):
+    number: 219
+    homeTeam: fca
+    awayTeam: fcn
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20165
+
+models.Game(g220):
+    number: 220
+    homeTeam: sgf
+    awayTeam: tsg
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20166
+
+models.Game(g221):
+    number: 221
+    homeTeam: vfb
+    awayTeam: hsv
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20167
+
+models.Game(g222):
+    number: 222
+    homeTeam: h96
+    awayTeam: ef
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20168
+
+models.Game(g223):
+    number: 223
+    homeTeam: s04
+    awayTeam: bvb
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20169
+
+models.Game(g224):
+    number: 224
+    homeTeam: fcb
+    awayTeam: fd
+    kickoff: 2013-03-09 14:30:00
+    playday: p25
+    playoff: false
+    ended: false
+    webserviceID: 20170
+
+models.Game(g225):
+    number: 225
+    homeTeam: b04
+    awayTeam: fcb
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20171
+
+models.Game(g226):
+    number: 226
+    homeTeam: vfl
+    awayTeam: fd
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20172
+
+models.Game(g227):
+    number: 227
+    homeTeam: fcn
+    awayTeam: s04
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20173
+
+models.Game(g228):
+    number: 228
+    homeTeam: ef
+    awayTeam: vfb
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20174
+
+models.Game(g229):
+    number: 229
+    homeTeam: bmg
+    awayTeam: h96
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20175
+
+models.Game(g230):
+    number: 230
+    homeTeam: bvb
+    awayTeam: scf
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20176
+
+models.Game(g231):
+    number: 231
+    homeTeam: tsg
+    awayTeam: m05
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20177
+
+models.Game(g232):
+    number: 232
+    homeTeam: hsv
+    awayTeam: fca
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20178
+
+models.Game(g233):
+    number: 233
+    homeTeam: swb
+    awayTeam: sgf
+    kickoff: 2013-03-16 14:30:00
+    playday: p26
+    playoff: false
+    ended: false
+    webserviceID: 20179
+
+models.Game(g234):
+    number: 234
+    homeTeam: fcb
+    awayTeam: hsv
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20180
+
+models.Game(g235):
+    number: 235
+    homeTeam: vfb
+    awayTeam: bvb
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20181
+
+models.Game(g236):
+    number: 236
+    homeTeam: sgf
+    awayTeam: ef
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20182
+
+models.Game(g237):
+    number: 237
+    homeTeam: scf
+    awayTeam: bmg
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20183
+
+models.Game(g238):
+    number: 238
+    homeTeam: fd
+    awayTeam: b04
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20184
+
+models.Game(g239):
+    number: 239
+    homeTeam: fca
+    awayTeam: h96
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20185
+
+models.Game(g240):
+    number: 240
+    homeTeam: m05
+    awayTeam: swb
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20186
+
+models.Game(g241):
+    number: 241
+    homeTeam: vfl
+    awayTeam: fcn
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20187
+
+models.Game(g242):
+    number: 242
+    homeTeam: s04
+    awayTeam: tsg
+    kickoff: 2013-03-30 14:30:00
+    playday: p27
+    playoff: false
+    ended: false
+    webserviceID: 20188
+
+models.Game(g243):
+    number: 243
+    homeTeam: bvb
+    awayTeam: fca
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20189
+
+models.Game(g244):
+    number: 244
+    homeTeam: bmg
+    awayTeam: sgf
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20190
+
+models.Game(g245):
+    number: 245
+    homeTeam: ef
+    awayTeam: fcb
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20191
+
+models.Game(g246):
+    number: 246
+    homeTeam: tsg
+    awayTeam: fd
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20192
+
+models.Game(g247):
+    number: 247
+    homeTeam: swb
+    awayTeam: s04
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20193
+
+models.Game(g248):
+    number: 248
+    homeTeam: h96
+    awayTeam: vfb
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20194
+
+models.Game(g249):
+    number: 249
+    homeTeam: b04
+    awayTeam: vfl
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20195
+
+models.Game(g250):
+    number: 250
+    homeTeam: hsv
+    awayTeam: scf
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20196
+
+models.Game(g251):
+    number: 251
+    homeTeam: fcn
+    awayTeam: m05
+    kickoff: 2013-04-06 13:30:00
+    playday: p28
+    playoff: false
+    ended: false
+    webserviceID: 20197
+
+models.Game(g252):
+    number: 252
+    homeTeam: fcb
+    awayTeam: fcn
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20198
+
+models.Game(g253):
+    number: 253
+    homeTeam: vfl
+    awayTeam: tsg
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20199
+
+models.Game(g254):
+    number: 254
+    homeTeam: m05
+    awayTeam: hsv
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20200
+
+models.Game(g255):
+    number: 255
+    homeTeam: sgf
+    awayTeam: bvb
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20201
+
+models.Game(g256):
+    number: 256
+    homeTeam: fca
+    awayTeam: ef
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20202
+
+models.Game(g257):
+    number: 257
+    homeTeam: vfb
+    awayTeam: bmg
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20203
+
+models.Game(g258):
+    number: 258
+    homeTeam: s04
+    awayTeam: b04
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20204
+
+models.Game(g259):
+    number: 259
+    homeTeam: scf
+    awayTeam: h96
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20205
+
+models.Game(g260):
+    number: 260
+    homeTeam: fd
+    awayTeam: swb
+    kickoff: 2013-04-13 13:30:00
+    playday: p29
+    playoff: false
+    ended: false
+    webserviceID: 20206
+
+models.Game(g261):
+    number: 261
+    homeTeam: vfb
+    awayTeam: scf
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20207
+
+models.Game(g262):
+    number: 262
+    homeTeam: bvb
+    awayTeam: m05
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20208
+
+models.Game(g263):
+    number: 263
+    homeTeam: bmg
+    awayTeam: fca
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20209
+
+models.Game(g264):
+    number: 264
+    homeTeam: fcn
+    awayTeam: sgf
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20210
+
+models.Game(g265):
+    number: 265
+    homeTeam: h96
+    awayTeam: fcb
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20211
+
+models.Game(g266):
+    number: 266
+    homeTeam: hsv
+    awayTeam: fd
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20212
+
+models.Game(g267):
+    number: 267
+    homeTeam: ef
+    awayTeam: s04
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20213
+
+models.Game(g268):
+    number: 268
+    homeTeam: swb
+    awayTeam: vfl
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20214
+
+models.Game(g269):
+    number: 269
+    homeTeam: b04
+    awayTeam: tsg
+    kickoff: 2013-04-20 13:30:00
+    playday: p30
+    playoff: false
+    ended: false
+    webserviceID: 20215
+
+models.Game(g270):
+    number: 270
+    homeTeam: sgf
+    awayTeam: h96
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20216
+
+models.Game(g271):
+    number: 271
+    homeTeam: b04
+    awayTeam: swb
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20217
+
+models.Game(g272):
+    number: 272
+    homeTeam: tsg
+    awayTeam: fcn
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20218
+
+models.Game(g273):
+    number: 273
+    homeTeam: fcb
+    awayTeam: scf
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20219
+
+models.Game(g274):
+    number: 274
+    homeTeam: s04
+    awayTeam: hsv
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20220
+
+models.Game(g275):
+    number: 275
+    homeTeam: fd
+    awayTeam: bvb
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20221
+
+models.Game(g276):
+    number: 276
+    homeTeam: m05
+    awayTeam: ef
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20222
+
+models.Game(g277):
+    number: 277
+    homeTeam: vfl
+    awayTeam: bmg
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20223
+
+models.Game(g278):
+    number: 278
+    homeTeam: fca
+    awayTeam: vfb
+    kickoff: 2013-04-27 13:30:00
+    playday: p31
+    playoff: false
+    ended: false
+    webserviceID: 20224
+
+models.Game(g279):
+    number: 279
+    homeTeam: fcn
+    awayTeam: b04
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20225
+
+models.Game(g280):
+    number: 280
+    homeTeam: hsv
+    awayTeam: vfl
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20226
+
+models.Game(g281):
+    number: 281
+    homeTeam: swb
+    awayTeam: tsg
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20227
+
+models.Game(g282):
+    number: 282
+    homeTeam: h96
+    awayTeam: m05
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20228
+
+models.Game(g283):
+    number: 283
+    homeTeam: scf
+    awayTeam: fca
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20229
+
+models.Game(g284):
+    number: 284
+    homeTeam: vfb
+    awayTeam: sgf
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20230
+
+models.Game(g285):
+    number: 285
+    homeTeam: bvb
+    awayTeam: fcb
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20231
+
+models.Game(g286):
+    number: 286
+    homeTeam: ef
+    awayTeam: fd
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20232
+
+models.Game(g287):
+    number: 287
+    homeTeam: bmg
+    awayTeam: s04
+    kickoff: 2013-05-04 13:30:00
+    playday: p32
+    playoff: false
+    ended: false
+    webserviceID: 20233
+
+models.Game(g288):
+    number: 288
+    homeTeam: m05
+    awayTeam: bmg
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20234
+
+models.Game(g289):
+    number: 289
+    homeTeam: s04
+    awayTeam: vfb
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20235
+
+models.Game(g290):
+    number: 290
+    homeTeam: b04
+    awayTeam: h96
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20236
+
+models.Game(g291):
+    number: 291
+    homeTeam: fd
+    awayTeam: fcn
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20237
+
+models.Game(g292):
+    number: 292
+    homeTeam: sgf
+    awayTeam: scf
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20238
+
+models.Game(g293):
+    number: 293
+    homeTeam: fcb
+    awayTeam: fca
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20239
+
+models.Game(g294):
+    number: 294
+    homeTeam: tsg
+    awayTeam: hsv
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20240
+
+models.Game(g295):
+    number: 295
+    homeTeam: vfl
+    awayTeam: bvb
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20241
+
+models.Game(g296):
+    number: 296
+    homeTeam: swb
+    awayTeam: ef
+    kickoff: 2013-05-11 13:30:00
+    playday: p33
+    playoff: false
+    ended: false
+    webserviceID: 20242
+
+models.Game(g297):
+    number: 297
+    homeTeam: bmg
+    awayTeam: fcb
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20243
+
+models.Game(g298):
+    number: 298
+    homeTeam: h96
+    awayTeam: fd
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20244
+
+models.Game(g299):
+    number: 299
+    homeTeam: scf
+    awayTeam: s04
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20245
+
+models.Game(g300):
+    number: 300
+    homeTeam: hsv
+    awayTeam: b04
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20246
+
+models.Game(g301):
+    number: 301
+    homeTeam: ef
+    awayTeam: vfl
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20247
+
+models.Game(g302):
+    number: 302
+    homeTeam: fcn
+    awayTeam: swb
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20248
+
+models.Game(g303):
+    number: 303
+    homeTeam: bvb
+    awayTeam: tsg
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20249
+
+models.Game(g304):
+    number: 304
+    homeTeam: vfb
+    awayTeam: m05
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20250
+
+models.Game(g305):
+    number: 305
+    homeTeam: fca
+    awayTeam: sgf
+    kickoff: 2013-05-18 13:30:00
+    playday: p34
+    playoff: false
+    ended: false
+    webserviceID: 20251
+
+models.Extra(b1):
+   question:        WhowillbeChampion
+   extraReference:  B-1-1
+   gameReferences:
+                    - g305
+   questionShort:   champion
+   points:          5
+   ending:          2012-08-24 18:30:00
+   answers:
+                    - bvb
+                    - fcb
+                    - s04
+                    - bmg
+                    - b04
+                    - vfb
+                    - h96
+                    - vfl
+                    - swb
+                    - fcn
+                    - tsg
+                    - scf
+                    - m05
+                    - fca
+                    - hsv
+                    - sgf
+                    - ef
+                    - fd                    

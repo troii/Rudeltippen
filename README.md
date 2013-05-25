@@ -17,15 +17,12 @@ Features in a Nutshell
 - Fluid responsive layout using Twitter Bootstrap
 - Smartphone and tablet compatible
 - Gravatar support
-- Twitter support
-- SSL support
-- Load balancer support
 - Multilingual
 
 Requirements
 ------------------
 
-- [Java SDK 1.6+][1]
+- [Java SDK 1.7+][1]
 - Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support
 - SMTP-Account (with SSL/non-SSL, e.g. [Gmail][12])
 - MySQL 5+
@@ -135,14 +132,7 @@ Open a Browser and go to http://www.yourdomain.com
 
 The application will now be setup and the initial data will be loaded. After setup has finished you will be redirect to the login page.
 
-### Step 7
-
-You can now login with the following default credentials.
-
-Username: admin
-Passwort: admin
-
-WARNING: You need to change the default credentials by going to your settings in your profile!
+### Step 6
 
 If you need to stop Rudeltippen at any time. Go to your INSTLLATIONFOLDER and execute the followin command
 
@@ -184,45 +174,6 @@ play start
 Advanced configuration
 ------------------
 
-### SSL
-
-By default Rudeltippen runs without SSL. If you want to enable SSL for Rudeltippen you need a private key and a certificate. In INSTLLATIONFOLDER/conf you find two empty files:
-
-```bash
-cert.txt.example
-key.txt.example
-```
-
-Rename both files by removing .example
-
-Paste you private key and your certificate in these files.
-
-Open INSTLLATIONFOLDER/conf/application.conf and uncomment the following lines:
-
-```bash
-#https.port=9904
-#%prod.certificate.key.file=conf/custom/key.txt
-#%prod.certificate.file=conf/custom/cert.txt
-```
-
-You need to restart Rudeltippen in order for the changes to take place. After the restart Rudeltippen listens for SSL-Connection on Port 9904. You will need to change your HTTP-Front-End Server settings accordingly. Edit or update your Proxy settings to connect to the new port. Read the documentation of your HTTP-Server on how to configure SSL Proxy support.
-
-### Twitter
-
-Rudeltippen can automatically post the following informations: daily top 3, results updated and new registration to a Twitter-Account. If you want to enable this feature you need a consumerkey, a consumersecret, a token and a secret. Open INSTLLATIONFOLDER/conf/application.conf, uncommend the following lines and paste your data:
-
-```bash
-#%prod.twitter.consumerkey=
-#%prod.twitter.consumersecret=
-#%prod.twitter.token=
-#%prod.twitter.secret=
-#%prod.twitter.enable=false
-```
-
-By default 'twitter.enable' is set to 'false'. Set it to 'true' to enable posting to the Twitter-Account.
-
-You need to restart Rudeltippen in order for the changes to take place.
-
 ### Log4j
 
 If you want log4j Support for your Application you find an empty log4j configuration file in INSTLLATIONFOLDER/conf/custom. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
@@ -244,12 +195,6 @@ app.jobinstance=rudeltippen
 ```
 
 You need to restart Rudeltippen in order for the changes to take place.
-
-Support
-------------------
-If you need help, just visit the [Support-Page][6] and drop your question (English or German). If you found a bug or have a feature request, please open an issue on Github.
-
-If you like Rudeltippen, [Flattr it][5]. Thanks!
 
 Licence
 ------------------

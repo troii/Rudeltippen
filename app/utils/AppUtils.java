@@ -1,4 +1,4 @@
-package services;
+package utils;
 
 import interfaces.AppConstants;
 
@@ -37,11 +37,9 @@ import play.libs.Codec;
 import play.libs.Images;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
-import utils.NotificationUtils;
-import utils.ValidationUtils;
 import controllers.Auth.Security;
 
-public class AppService implements AppConstants {
+public class AppUtils implements AppConstants {
     /**
      * Loads the currents settings from database
      * @return Settings object
@@ -58,7 +56,7 @@ public class AppService implements AppConstants {
      * @return SHA1 hashed string
      */
     public static String hashPassword(final String userpass, final String usersalt) {
-        final String salt = AppService.getSettings().getAppSalt();
+        final String salt = AppUtils.getSettings().getAppSalt();
         String hash = "";
         for (int i = 1; i <= 100000; i++) {
             hash = Codec.hexSHA1(hash + salt + userpass + usersalt);
@@ -76,7 +74,7 @@ public class AppService implements AppConstants {
         final User user = User.find("byPlace", 1).first();
         int pointsDiff = 0;
         if (user != null) {
-            final User connectedUser = AppService.getConnectedUser();
+            final User connectedUser = AppUtils.getConnectedUser();
             pointsDiff = user.getPoints() - connectedUser.getPoints();
         }
 
@@ -167,13 +165,13 @@ public class AppService implements AppConstants {
      * Calculation the points for each user based on game and extra tips
      */
     private static void calculateUserPoints() {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
 
         final List<Extra> extras = Extra.findAll();
         for (final Extra extra : extras) {
             if (extra.getAnswer() == null) {
-                if (AppService.allReferencedGamesEnded(extra.getGameReferences())) {
-                    final Team team = AppService.getTeamByReference(extra.getExtraReference());
+                if (AppUtils.allReferencedGamesEnded(extra.getGameReferences())) {
+                    final Team team = AppUtils.getTeamByReference(extra.getExtraReference());
                     if (team != null) {
                         extra.setAnswer(team);
                         extra._save();
@@ -249,7 +247,7 @@ public class AppService implements AppConstants {
      * Calculates the points, goals, etc. for each bracket
      */
     private static void calculateBrackets() {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         final int pointsWin = settings.getPointsGameWin();
         final int pointsDraw = settings.getPointsGameDraw();
 
@@ -352,7 +350,7 @@ public class AppService implements AppConstants {
      * Sets the teams to the playoff games
      */
     public static void setPlayoffTeams() {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         if (settings.isPlayoffs()) {
             Team homeTeam = null;
             Team awayTeam = null;
@@ -364,8 +362,8 @@ public class AppService implements AppConstants {
                     final String bracketString = "B-" + number + "%";
                     final List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayReference LIKE ?", bracketString, bracketString).fetch();
                     for (final Game game : games) {
-                        homeTeam = AppService.getTeamByReference(game.getHomeReference());
-                        awayTeam = AppService.getTeamByReference(game.getAwayReference());
+                        homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
+                        awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
                         game.setHomeTeam(homeTeam);
                         game.setAwayTeam(awayTeam);
                         game._save();
@@ -375,8 +373,8 @@ public class AppService implements AppConstants {
 
             final List<Game> playoffGames = Game.find("byPlayoffAndEndedAndBracket", true, false, null).fetch();
             for (final Game game : playoffGames) {
-                homeTeam = AppService.getTeamByReference(game.getHomeReference());
-                awayTeam = AppService.getTeamByReference(game.getAwayReference());
+                homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
+                awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
                 game.setHomeTeam(homeTeam);
                 game.setAwayTeam(awayTeam);
                 game._save();
@@ -487,7 +485,7 @@ public class AppService implements AppConstants {
      * @return
      */
     public static int getTipPoints(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         int points = 0;
 
         if ((homeScore == homeScoreTipp) && (awayScore == awayScoreTipp)) {
@@ -513,7 +511,7 @@ public class AppService implements AppConstants {
      * @return
      */
     public static int getTipPointsTrend(final int homeScore, final int awayScore, final int homeScoreTipp, final int awayScoreTipp) {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         int points = 0;
 
         if ((homeScore > awayScore) && (homeScoreTipp > awayScoreTipp)) {
@@ -537,7 +535,7 @@ public class AppService implements AppConstants {
      * @return
      */
     public static int getTipPointsOvertime(final int homeScore, final int awayScore, final int homeScoreOT, final int awayScoreOT, final int homeScoreTipp, final int awayScoreTipp) {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         int points = 0;
 
         if (settings.isCountFinalResult()) {
@@ -564,7 +562,7 @@ public class AppService implements AppConstants {
      * @param awayScoreExtratime The score of the away team in extratime
      */
     private static void saveScore(final Game game, final String homeScore, final String awayScore, final String extratime, String homeScoreExtratime, String awayScoreExtratime) {
-        final int[] points = AppService.getPoints(Integer.parseInt(homeScore), Integer.parseInt(awayScore));
+        final int[] points = AppUtils.getPoints(Integer.parseInt(homeScore), Integer.parseInt(awayScore));
         game.setHomePoints(points[0]);
         game.setAwayPoints(points[1]);
         game.setHomeScore(homeScore);
@@ -595,7 +593,7 @@ public class AppService implements AppConstants {
      * @return Array containing the points for the home team [0] and the away team [1]
      */
     public static int[] getPoints(final int homeScore, final int awayScore) {
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         final int[] points = new int[2];
 
         if (homeScore == awayScore) {
@@ -620,7 +618,7 @@ public class AppService implements AppConstants {
      * @param awayScore The score of the away team
      */
     public static void placeTip(final Game game, final int homeScore, final int awayScore) {
-        final User user = AppService.getConnectedUser();
+        final User user = AppUtils.getConnectedUser();
         GameTip gameTip = GameTip.find("byUserAndGame", user, game).first();
         if (game.isTippable() && ValidationUtils.isValidScore(String.valueOf(homeScore), String.valueOf(awayScore))) {
             if (gameTip == null) {
@@ -832,7 +830,7 @@ public class AppService implements AppConstants {
      * @param team The team which is the extra answer
      */
     public static void placeExtraTip(final Extra extra, final Team team) {
-        final User user = AppService.getConnectedUser();
+        final User user = AppUtils.getConnectedUser();
         if (team != null) {
             ExtraTip extraTip = ExtraTip.find("byUserAndExtra", user, extra).first();
             if (extraTip == null) {

@@ -10,8 +10,6 @@ import org.apache.commons.lang.StringUtils;
 
 import play.Play;
 import play.i18n.Messages;
-import services.MailService;
-import services.TwitterService;
 
 public class NotificationUtils {
     /**
@@ -97,11 +95,9 @@ public class NotificationUtils {
      */
     public static void sendNotfications(final Game game) {
         if (!game.isEnded()) {
-            TwitterService.updateStatus(NotificationUtils.getTwitterNotificationMessage(game));
-
             final List<User> users = User.find("byNotificationAndActive", true, true).fetch();
             for (final User user : users) {
-                MailService.notifications(Messages.get("mails.subject.notification"), NotificationUtils.getEmailNotificationMessage(user, game), user);
+                MailUtils.notifications(Messages.get("mails.subject.notification"), NotificationUtils.getEmailNotificationMessage(user, game), user);
             }
         }
     }

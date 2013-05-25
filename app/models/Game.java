@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang.StringUtils;
 
 import play.db.jpa.Model;
-import services.AppService;
+import utils.AppUtils;
 
 @Entity
 @Table(name="rudeltippen_games")
@@ -160,7 +160,7 @@ public class Game extends Model{
 
     public Date getTippEnding() {
         final long time = this.kickoff.getTime();
-        final int offset = AppService.getSettings().getMinutesBeforeTip() * 60000 ;
+        final int offset = AppUtils.getSettings().getMinutesBeforeTip() * 60000 ;
 
         return new Date (time - offset);
     }
@@ -277,7 +277,7 @@ public class Game extends Model{
 
     public boolean isTippable() {
         final Date now = new Date();
-        final Settings settings = AppService.getSettings();
+        final Settings settings = AppUtils.getSettings();
         final int secondsBefore = settings.getMinutesBeforeTip() * 60000;
 
         if (this.ended) {
