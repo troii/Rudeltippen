@@ -27,6 +27,7 @@ import models.User;
 import models.WSResult;
 import models.WSResults;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
@@ -59,7 +60,7 @@ public class AppUtils implements AppConstants {
         final String salt = AppUtils.getSettings().getAppSalt();
         String hash = "";
         for (int i = 1; i <= 100000; i++) {
-            hash = Codec.hexSHA1(hash + salt + userpass + usersalt);
+        	hash = DigestUtils.sha512Hex(hash + salt + userpass + usersalt);
         }
 
         return hash;
