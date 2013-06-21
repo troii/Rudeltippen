@@ -36,7 +36,6 @@ public class Team extends Model{
 	@Column(nullable=false)
 	private String flag;
 
-	private String showrtName;
 	private int points;
 	private int goalsFor;
 	private int goalsAgainst;
@@ -175,13 +174,5 @@ public class Team extends Model{
 		}
 
 		return "";
-	}
-
-	public String getShowrtName() {
-		return this.showrtName;
-	}
-
-	public void setShowrtName(final String showrtName) {
-		this.showrtName = showrtName;
 	}
 }

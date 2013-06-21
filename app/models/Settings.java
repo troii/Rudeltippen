@@ -12,7 +12,6 @@ public class Settings extends Model {
 	private String appSalt;//No
 	private String appName;//No
 	private String gameName;//Yes
-	private String lastTweet;//No
 	
 	private int pointsGameWin;//No
 	private int pointsGameDraw;//No
@@ -106,14 +105,6 @@ public class Settings extends Model {
 
 	public void setNumPlayoffTeams(final int numPlayoffTeams) {
 		this.numPlayoffTeams = numPlayoffTeams;
-	}
-
-	public String getLastTweet() {
-		return lastTweet;
-	}
-
-	public void setLastTweet(final String lastTweet) {
-		this.lastTweet = lastTweet;
 	}
 
 	public boolean isInformOnNewTipper() {
