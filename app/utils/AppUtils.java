@@ -704,26 +704,6 @@ public class AppUtils implements AppConstants {
     }
 
     /**
-     * Gets all available timezones on the current system
-     * @return List of timezones
-     */
-    public static List<String> getTimezones() {
-        final String [] zonesArray = TimeZone.getAvailableIDs();
-        Arrays.sort(zonesArray);
-        return Arrays.asList(zonesArray);
-    }
-
-    /**
-     * Gets all available languages on the current system
-     * @return List of languages
-     */
-    public static List<String> getLanguages() {
-        final String [] localeArray = Locale.getISOLanguages();
-        Arrays.sort(localeArray);
-        return Arrays.asList(localeArray);
-    }
-
-    /**
      * Parses a game from OpenLigaDB stores it in the database
      *
      * @param game The game object to store

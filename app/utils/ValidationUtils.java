@@ -17,25 +17,25 @@ import play.libs.Crypto;
 
 public class ValidationUtils implements AppConstants{
     /**
-     * Checks in the database and pending confirmations if a given username already exists
+     * Checks in the database and pending confirmations if a given email already exists
      * 
-     * @param username The username to check
-     * @return true if username exists, false otherwise
+     * @param email The email to check
+     * @return true if email exists, false otherwise
      */
-    public static boolean emailExists(final String username) {
+    public static boolean emailExists(final String email) {
         boolean exists = false;
         final List<Confirmation> confirmations = Confirmation.findAll();
         for (final Confirmation confirmation : confirmations) {
             String value = confirmation.getConfirmValue();
             value = Crypto.decryptAES(value);
 
-            if (value.equalsIgnoreCase(username)) {
+            if (value.equalsIgnoreCase(email)) {
                 exists = true;
             }
         }
 
         if (!exists) {
-            final User user = User.find("byUsername", username).first();
+            final User user = User.find("byEmail", email).first();
             if (user != null) {
                 exists = true;
             }

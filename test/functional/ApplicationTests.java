@@ -15,14 +15,14 @@ public class ApplicationTests extends FunctionalTest {
         assertStatus(302, response);
         assertEquals(response.getHeader("location"), "/auth/login");
     }
-
+    
     @Test
     public void testApplicationRules() {
         Response response = GET("/application/rules");
         assertStatus(302, response);
         assertEquals(response.getHeader("location"), "/auth/login");
     }
-
+    
 	@Test
 	public void testAuthLogin() {
 		Response response = GET("/auth/login");
@@ -34,12 +34,6 @@ public class ApplicationTests extends FunctionalTest {
 		Response response = GET("/auth/forgotten");
 		assertStatus(200, response);
 	}
-
-    @Test
-    public void testAuthResend() {
-        Response response = GET("/auth/resend");
-        assertStatus(302, response);
-    }
 
     @Test
     public void testAuthLogout() {
@@ -98,30 +92,10 @@ public class ApplicationTests extends FunctionalTest {
     }
 
     @Test
-    public void testTippsGames() {
-        Response response = GET("/tips");
-        assertStatus(302, response);
-        assertEquals(response.getHeader("location"), "/auth/login");
-    }
-
-    @Test
-    public void testTippsOverview() {
-        Response response = GET("/overview");
-        assertStatus(302, response);
-        assertEquals(response.getHeader("location"), "/auth/login");
-    }
-
-    @Test
     public void testTippsStandings() {
         Response response = GET("/standings");
         assertStatus(302, response);
         assertEquals(response.getHeader("location"), "/auth/login");
-    }
-
-    @Test
-    public void testUsersRegister() {
-        Response response = GET("/auth/register");
-        assertStatus(200, response);
     }
 
     @Test
@@ -142,22 +116,33 @@ public class ApplicationTests extends FunctionalTest {
 
         assertStatus(200, GET("/"));
         assertStatus(200, GET("/application/rules"));
-        assertStatus(200, GET("/tips"));
         assertStatus(200, GET("/standings"));
-        assertStatus(200, GET("/tips/extra"));
-        assertStatus(200, GET("/tips/games/2"));
         assertStatus(200, GET("/users/show/user1"));
         assertStatus(200, GET("/users/profile"));
-        assertStatus(200, GET("/tips/storeextra"));
-        assertStatus(200, GET("/tips/storetips"));
-        assertStatus(200, GET("/overview/1/1"));
-        assertStatus(200, GET("/overview/extra"));
-        assertStatus(200, GET("/admin/playday/1"));
         assertStatus(200, GET("/admin/users"));
         assertStatus(200, GET("/admin/settings"));
-        assertStatus(200, GET("/admin/deleteuser/2"));
+        assertStatus(200, GET("/admin/results/3"));
+        assertStatus(302, GET("/admin/runjob/foo"));
         assertStatus(302, GET("/admin/changeactive/3"));
         assertStatus(302, GET("/admin/changeadmin/3"));
+        assertStatus(302, GET("/admin/deleteuser/3"));
+        
+        assertStatus(200, GET("/rules"));
+        assertStatus(200, GET("/statistics"));
+        assertStatus(200, GET("/tips/extras"));
+        assertStatus(200, GET("/tips/playday"));
+        assertStatus(200, GET("/tournament/brackets"));
+        assertStatus(200, GET("/tournament/playday/1"));
+        assertStatus(200, GET("/tips/playday/1"));
+        assertStatus(200, GET("/standings"));
+        assertStatus(200, GET("/overview/playday"));
+        assertStatus(200, GET("/overview/playday/1"));
+        assertStatus(200, GET("/overview/playday/1/1"));
+        assertStatus(200, GET("/overview/extras/1"));
+        assertStatus(302, GET("/auth/confirm"));
+        assertStatus(302, GET("/auth/confirm/foo"));
+        assertStatus(302, GET("/auth/password"));
+        assertStatus(302, GET("/auth/password/foo"));
         
         response = GET("/users/updateusername");
         assertStatus(302, GET("/users/updateusername"));
@@ -171,16 +156,8 @@ public class ApplicationTests extends FunctionalTest {
         assertStatus(302, GET("/users/updatepassword"));
         assertEquals(response.getHeader("location"), "/users/profile");
 
-        response = GET("/users/updatepicture");
-        assertStatus(302, GET("/users/updatepicture"));
-        assertEquals(response.getHeader("location"), "/users/profile");
-
         response = GET("/users/updateusername");
         assertStatus(302, GET("/users/updateusername"));
-        assertEquals(response.getHeader("location"), "/users/profile");
-
-        response = GET("/users/updatepicture");
-        assertStatus(302, GET("/users/updatepicture"));
         assertEquals(response.getHeader("location"), "/users/profile");
     }
 

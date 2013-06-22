@@ -266,7 +266,7 @@ public class Admin extends Root implements AppConstants {
                 recipients.add(user.getEmail());
             }
 
-            MailUtils.sendRudelmail(subject, message, recipients.toArray());
+            MailUtils.sendRudelmail(subject, message, recipients.toArray(), AppUtils.getConnectedUser().getEmail());
             flash.put("infomessage", Messages.get("info.rudelmail.send"));
         } else {
             flash.put("errormessage", Messages.get("error.rudelmail.send"));

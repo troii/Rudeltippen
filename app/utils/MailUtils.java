@@ -29,7 +29,7 @@ public class MailUtils extends Mailer {
             setReplyTo(replyto);
             addRecipient(recipient);
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.reminder")));
-            send(AppUtils.getMailTemplate("reminder"), user, games, settings, extras);
+            send(AppUtils.getMailTemplate("notifications"), user, games, settings, extras);
         } else {
             Logger.error("Tryed to sent reminder, but recipient was invalid.");
         }
@@ -138,16 +138,16 @@ public class MailUtils extends Mailer {
         }
     }
 
-    public static void sendRudelmail(final String subject, final String message, final Object [] recipients) {
+    public static void sendRudelmail(final String subject, final String message, final Object [] bbcRecipients, String recipient) {
         final Settings settings = AppUtils.getSettings();
         final String from = Play.configuration.getProperty("mailservice.from");
         final String replyto = Play.configuration.getProperty("mailservice.replyto");
 
-        if (StringUtils.isNotBlank(subject) && StringUtils.isNotBlank(message) && (recipients != null)) {
+        if (StringUtils.isNotBlank(subject) && StringUtils.isNotBlank(message) && (bbcRecipients != null)) {
             setReplyTo(replyto);
             setFrom(from);
-            addRecipient(AppUtils.getConnectedUser().getEmail());
-            addBcc(recipients);
+            addRecipient(recipient);
+            addBcc(bbcRecipients);
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
             send(AppUtils.getMailTemplate("rudelmail"), message);
         } else {
