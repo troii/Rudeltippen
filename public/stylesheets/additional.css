@@ -491,3 +491,7 @@ table.table thead .sorting_desc_disabled { background: url('/public/img/datatabl
 	padding-top: 5px;
 	padding-right: 10px;
 }
+
+body {
+	 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}

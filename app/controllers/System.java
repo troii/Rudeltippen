@@ -97,7 +97,7 @@ public class System extends Controller implements AppConstants {
 	public static void yamler() {
 		if (("true").equals(Play.configuration.getProperty("yamler"))) {
 			final List<String> playdays = SetupUtils.generatePlaydays(34);
-			final List<String> games = SetupUtils.getGamesFromWebService(34, "bl1", "2012");
+			final List<String> games = SetupUtils.getGamesFromWebService(34, "bl1", "2013");
 			render(playdays, games);
 		}
 		notFound();

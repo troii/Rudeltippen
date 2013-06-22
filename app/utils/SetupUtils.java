@@ -94,6 +94,8 @@ public class SetupUtils implements AppConstants{
 		teams.put("40", "fcb");
 		teams.put("91", "ef");
 		teams.put("6", "b04");
+		teams.put("74", "eb");
+		teams.put("54", "bsc");
 
 		return teams;
 	}
