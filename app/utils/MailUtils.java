@@ -58,15 +58,15 @@ public class MailUtils extends Mailer {
                 subject = Messages.get("mails.subject.forgotuserpass");
                 message = Messages.get("mails.message.forgotuserpass");
             }
-
+            
             setReplyTo(replyto);
             setFrom(from);
             addRecipient(user.getEmail());
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
             if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
-                send(AppUtils.getMailTemplate("password"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+                send(AppUtils.getMailTemplate("password"), user, token, appUrl, message);
             } else {
-                send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, StringEscapeUtils.unescapeHtml(message));
+                send(AppUtils.getMailTemplate("confirm"), user, token, appUrl, message);
             }
         } else {
             Logger.error("Tryed to sent confirmation e-mail, but user or confirmType was null or recipient e-mail was invalid.");

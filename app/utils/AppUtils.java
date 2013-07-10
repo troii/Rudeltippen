@@ -752,7 +752,7 @@ public class AppUtils implements AppConstants {
             lang = "en";
         }
 
-        return "services/MailService/" + lang + "/" + name;
+        return "Mail/" + lang + "/" + name;
     }
 
     /**

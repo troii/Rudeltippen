@@ -20,7 +20,7 @@ public class Application extends Root {
         final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
         final Playday playday = AppUtils.getCurrentPlayday();
         final List<User> topUsers = User.find("SELECT u FROM User u WHERE active = true ORDER BY place ASC").fetch(5);
-        final long users = User.count();
+        final long users = AppUtils.getAllActiveUsers().size();
 
         render(topUsers, playday, users, diffToTop);
     }

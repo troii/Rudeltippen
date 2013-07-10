@@ -3,9 +3,9 @@
 	<fieldset>
 		<legend>&{'forgotten'}</legend>
 		<div class="control-group #{if errors[0] != null} error #{/if}">
-			<label for="username" class="control-label">&{'email'}</label>
+			<label for="email" class="control-label">&{'email'}</label>
 			<div class="controls">
-				<input type="text" id="username" value="${flash.username}" name="username" class="input-xlarge">
+				<input type="text" id="email" value="${flash.email}" name="email" class="input-xlarge">
 				#{if errors[0] != null}
 					<span class="help-inline">${errors[0]}</span>
 				#{/if}

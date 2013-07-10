@@ -80,22 +80,23 @@ public class Auth extends Root implements AppConstants{
         render(token);
     }
 
-    public static void reset(final String username) {
+    public static void reset(final String email) {
         if (ValidationUtils.verifyAuthenticity()) {
             checkAuthenticity();
         }
 
-        validation.required(username);
-        validation.isTrue(ValidationUtils.emailExists(username)).key("username").message("validation.userNotExists");
-        validation.email(username);
+        validation.required(email);
+        validation.isTrue(ValidationUtils.emailExists(email)).key("email").message("validation.emailNotExists");
+        validation.email(email);
 
         if (validation.hasErrors()) {
             flash.put("errormessage", Messages.get("controller.auth.resenderror"));
             validation.keep();
             params.flash();
+            flash.keep();
             forgotten();
         } else {
-            final User user = User.find("byUsername", username).first();
+            final User user = User.find("byEmailAndActive", email, true).first();
             if (user != null) {
                 final String token = Codec.UUID();
                 final ConfirmationType confirmType = ConfirmationType.NEWUSERPASS;
@@ -109,10 +110,10 @@ public class Auth extends Root implements AppConstants{
 
                 MailUtils.confirm(user, token, confirmType);
                 flash.put("infomessage", Messages.get("confirm.message"));
+                flash.keep();
                 login();
             }
         }
-        flash.keep();
         redirect("/");
     }
 
@@ -230,16 +231,16 @@ public class Auth extends Root implements AppConstants{
             user._save();
 
             final String token = Codec.UUID();
-            final ConfirmationType confirmType = ConfirmationType.ACTIVATION;
+            final ConfirmationType confirmationType = ConfirmationType.ACTIVATION;
             final Confirmation confirmation = new Confirmation();
-            confirmation.setConfirmType(confirmType);
+            confirmation.setConfirmType(confirmationType);
             confirmation.setConfirmValue(Crypto.encryptAES(Codec.UUID()));
             confirmation.setCreated(new Date());
             confirmation.setToken(token);
             confirmation.setUser(user);
             confirmation._save();
 
-            MailUtils.confirm(user, token, confirmType);
+            MailUtils.confirm(user, token, confirmationType);
             if (settings.isInformOnNewTipper()) {
                 final List<User> admins = User.find("byAdmin", true).fetch();
                 for (final User admin : admins) {
