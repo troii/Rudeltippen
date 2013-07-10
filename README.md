@@ -37,7 +37,7 @@ Available Languages
 Installation guide
 ------------------
 
-This installation guide assumes that you already have JDK 1.6+ installed and have your database- and SMTP credentials right beside you.
+This installation guide assumes that you already have JDK 1.7+ installed and have your database- and SMTP-credentials right beside you.
 
 ### Step 0
 
@@ -102,7 +102,7 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 25 users. Change this, if required.
+By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 50 users. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -132,6 +132,14 @@ Open a Browser and go to http://www.yourdomain.com
 
 The application will now be setup and the initial data will be loaded. After setup has finished you will be redirect to the login page.
 
+The initial data will create an admin user with the following credentials:
+
+Username: admin
+Password: admin
+E-Mail: admin@example.com
+
+Changing of this credentials is mandatory!
+
 ### Step 6
 
 If you need to stop Rudeltippen at any time. Go to your INSTLLATIONFOLDER and execute the followin command
@@ -157,13 +165,9 @@ play stop
 
 ### Step 3
 
-Delete everything in INSTLLATIONFOLDER except the /conf folder and any custom script you may have created
-
-### Step 4
-
 Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER and replace every every existing file.
 
-### Step 5
+### Step 4
 
 You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
@@ -205,7 +209,7 @@ Rudeltippen is distributed under [Apache 2 licence][11]
 [2]: http://www.playframework.org/download
 [3]: http://demo.rudeltippen.de
 [4]: http://www.svenkubiak.de
-[5]: https://flattr.com/thing/680536/Rudeltippen
+[5]: https://flattr.com/thing/1628177/Rudeltippen
 [6]: http://dev.svenkubiak.de/rudeltippen
 [7]: http://twitter.github.com/bootstrap/
 [8]: http://twitter.com/rudeltippen
