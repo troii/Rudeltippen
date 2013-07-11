@@ -102,13 +102,11 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 50 users. Change this, if required.
+By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 30 users. Change this, if required.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
 ```
-
-Rename application.conf.example to application.conf and save application.conf
 
 ### Step 3
 
@@ -142,7 +140,7 @@ Changing of this credentials is mandatory!
 
 ### Step 6
 
-If you need to stop Rudeltippen at any time. Go to your INSTLLATIONFOLDER and execute the followin command
+If you need to stop Rudeltippen at any time. Go to your INSTLLATIONFOLDER and execute the following command
 
 ```bash
 play stop
@@ -165,11 +163,13 @@ play stop
 
 ### Step 3
 
-Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER and replace every every existing file.
+Delete everything in your INSTLLATIONFOLDER except the /conf folder.
+
+Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER and replace all existing file.
 
 ### Step 4
 
-You are now ready to start Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
+You are now ready to start your updated version of Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
 
 ```bash
 play start
@@ -180,7 +180,7 @@ Advanced configuration
 
 ### Log4j
 
-If you want log4j Support for your Application you find an empty log4j configuration file in INSTLLATIONFOLDER/conf/custom. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
+If you want log4j Support for your Application you find an empty log4j configuration file in INSTLLATIONFOLDER/conf. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
 
 ```bash
 #%prod.application.log.path=/log4j.prod.xml
