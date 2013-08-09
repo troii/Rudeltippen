@@ -1,13 +1,13 @@
 #{extends 'main.html' /}
 <div class="span">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#username">&{'playdayoverview'}</a></li>
-        <li><a data-toggle="tab" href="#picture">&{'tipedresults'}</a></li>
-        <li><a data-toggle="tab" href="#password">&{'playedresults'}</a></li>
+        <li class="active"><a data-toggle="tab" href="#playdayoverview">&{'playdayoverview'}</a></li>
+        <li><a data-toggle="tab" href="#tipedresults">&{'tipedresults'}</a></li>
+        <li><a data-toggle="tab" href="#playedresults">&{'playedresults'}</a></li>
       </ul>
       <div class="tabbable">
         <div class="tab-content">
-          <div id="username" class="tab-pane active">
+          <div id="playdayoverview" class="tab-pane active">
             <div class="span">
                 <div class="well">
 			        <h2>Spieltags&uuml;bersicht</h2>
@@ -34,7 +34,7 @@
 			    </div>
             </div>
           </div>
- <div id="picture" class="tab-pane">
+ 		<div id="tipedresults" class="tab-pane">
             <div class="span">
 			    <div class="well">
 			        <h2>Getippte Ergebnisse</h2>
@@ -54,29 +54,26 @@
 			    </div>
 			</div>
           </div> 
-<div id="password" class="tab-pane">
-            <div class="span">
-    <div class="well">
-        <h2>Gespielte Ergebnisse</h2>
-        <table class="table">
-            <thead>
-                <th>Anzahl</th>
-                <th>Ergebnis</th>
-            </thead>
-            #{list items:games, as:'game'}
-                <tr>
-                #{list items:game, as:'g'}
-                    <td>${g}</td>
-                #{/list}
-                </tr>
-            #{/list}
-        </table>
-    </div>
-</div>
+			<div id="playedresults" class="tab-pane">
+			            <div class="span">
+			    <div class="well">
+			        <h2>Gespielte Ergebnisse</h2>
+			        <table class="table">
+			            <thead>
+			                <th>Anzahl</th>
+			                <th>Ergebnis</th>
+			            </thead>
+			            #{list items:games, as:'game'}
+			                <tr>
+			                #{list items:game, as:'g'}
+			                    <td>${g}</td>
+			                #{/list}
+			                </tr>
+			            #{/list}
+			        </table>
+			    </div>
+			</div>
           </div>                     
          </div>
        </div>
 </div>    
-
-</div>
-

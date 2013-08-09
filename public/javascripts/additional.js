@@ -1,7 +1,3 @@
-$('#ajaxplayday').hide();
-$('#ajaxloader').hide();
-$('#ajaxusers').hide();
-
 function helpify() {
 	$('.btn-primary').click(function() {
 		var btn = $(this)
@@ -55,28 +51,6 @@ $(document).ready(function(){
         setTimeout($.unblockUI, 60000); 
     }); 
 });
-
-function lazy() {
-	 var start = $('#lazyTable tr').length;
-     var users = $('#ajaxusers').text();
-     
-     if (start < users) {
-    	$('#lazybutton').hide();
-     	$('#ajaxloader').show();
-     	var playday = $('#ajaxplayday').text();
-         $.ajax({
-             cache: false,
-             url: '/overview/playday/' + playday + '/' + start,
-             success: function(html) {
-                 if (html) {
-                     $('#lazyTable tr:last').after(html);
-                 }
-                 $('#ajaxloader').hide();
-                 $('#lazybutton').show();
-             }
-         });
-     }	
-}
 
 var url = $.url(); 
 var tab = url.attr('fragment');

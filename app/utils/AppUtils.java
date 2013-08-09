@@ -744,7 +744,7 @@ public class AppUtils implements AppConstants {
      * Returns the full localized path to a mail template
      *
      * @param name The name of the template
-     * @return The full template name e.g. /services/MailServer/de/reminder.txt
+     * @return The full template name e.g. /Mail/de/reminder.txt
      */
     public static String getMailTemplate(final String name) {
         String lang = Play.configuration.getProperty("default.language");

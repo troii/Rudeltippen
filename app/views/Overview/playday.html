@@ -1,6 +1,6 @@
 #{extends 'main.html' /}
 <div class="span">
-<table id="lazyTable" class="table">
+<table class="table">
 	<thead>
 		<tr>
 			<th colspan="4"><h2>&{playday.name}</h2></th>
@@ -37,11 +37,25 @@
 		</tr>		
 	</thead>
 	<tbody>
-		#{include '/Overview/_users.html' /}
+		#{list items:tips, as:'userTips'}
+		<tr #{if userTips.entrySet().key.username == [connectedUser.username]} class="connecteduser" #{/if}>
+			#{list items:userTips.entrySet(), as:'user'}
+				#{if user.key.picture == null}
+					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+				#{/if}
+				#{else}
+					<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
+				#{/else}
+					<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.username}">${user.key.username}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+				%{ points = 0 }%
+				#{list items:user.value, as:'gameTip'}
+					<td style="vertical-align: middle;"><div align="center">${gameTip.getGameTipAndPoints()}</div></td>
+					%{ points = points + gameTip.points }%
+				#{/list}
+				<td style="vertical-align: middle;"><div align="center">%{ out.print(points); }%</div></td>
+			#{/list}
+		</tr>
+		#{/list}
 	</tbody>
 </table>
-<a href="javascript:lazy();" id="lazybutton" class="btn btn-large btn-block">&{'more'}</a>
-<div id="ajaxusers">${usersCount}</div>
-<div id="ajaxplayday">${pagination.number}</div>
-<div id="ajaxloader"><img src="@{'/public/img/ajax-loader.gif'}" /></div>
 </div>

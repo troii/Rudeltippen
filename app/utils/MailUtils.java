@@ -29,7 +29,7 @@ public class MailUtils extends Mailer {
             setReplyTo(replyto);
             addRecipient(recipient);
             setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + Messages.get("mails.subject.reminder")));
-            send(AppUtils.getMailTemplate("notifications"), user, games, settings, extras);
+            send(AppUtils.getMailTemplate("reminder"), user, games, settings, extras);
         } else {
             Logger.error("Tryed to sent reminder, but recipient was invalid.");
         }
