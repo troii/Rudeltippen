@@ -4,7 +4,7 @@ Anbei findest du eine Übersicht abgegebener Tipps für laufende Begegnungen.
 
 #{list items:games, as:'game'}
 -----------------------------------------------------------
-&{game.homeTeam.name} : &{game.awayTeam.name}
+&{game.homeTeam?.nameUnescaped()} vs. &{game.awayTeam?.nameUnescaped()}
 
 #{list items:game.gameTips, as:'gameTip'}
 ${gameTip.user.username} - ${gameTip.homeScore } : ${gameTip.awayScore }

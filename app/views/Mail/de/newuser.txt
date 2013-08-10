@@ -1,4 +1,4 @@
-Ein neuer Benutzer angemeldet.
+Ein neuer Benutzer hat sich registriert.
 
 &{'username'}: ${user.username}
 &{'email'}: ${user.email}

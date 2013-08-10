@@ -58,7 +58,8 @@ public class MailUtils extends Mailer {
                 subject = Messages.get("mails.subject.forgotuserpass");
                 message = Messages.get("mails.message.forgotuserpass");
             }
-            
+            message = StringEscapeUtils.unescapeHtml(message);
+
             setReplyTo(replyto);
             setFrom(from);
             addRecipient(user.getEmail());
