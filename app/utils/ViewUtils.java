@@ -160,7 +160,7 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
     public static String getTrend(final Game game) {
         String trend = Messages.get("model.game.notenoughtipps");
         final List<GameTip> gameTips = game.getGameTips();
-        if ((gameTips != null) && (gameTips.size() >= 3)) {
+        if ((gameTips != null) && (gameTips.size() >= 4)) {
             int tipsHome = 0;
             int tipsDraw = 0;
             int tipsAway = 0;
