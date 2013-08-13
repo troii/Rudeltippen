@@ -107,9 +107,9 @@
 						    }
 						var placesOptions = {
 						        scaleOverride : true,
-						    	scaleSteps : 6,
+						    	scaleSteps : ${users},
 						    	scaleStepWidth : -1,
-						    	scaleStartValue : 7,
+						    	scaleStartValue : ${usersScale},
 						}
 						var ctx = document.getElementById("places").getContext("2d");
 						var places = new Chart(ctx).Line(places, placesOptions);
