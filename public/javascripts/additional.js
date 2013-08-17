@@ -35,17 +35,6 @@ $(document).ready(function(){
 	        }
 	    } );		
 	}
-	if ($('.standings').length != 0) {
-	    $('.standings').dataTable( {
-	    	"bPaginate": false,
-	    	"bInfo": false,
-	    	"aaSorting": [[0,'asc']],
-	    	"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 1 ] } ],
-	    	"oLanguage": {
-	            "sSearch": "<i class=\"icon-search\"></i>"
-	        }
-	    } );		
-	}
     $('#fat-btn-loading').click(function() { 
     	$.blockUI({ message: '<h2>Calculating points...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
         setTimeout($.unblockUI, 60000); 

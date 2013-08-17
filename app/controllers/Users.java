@@ -76,8 +76,10 @@ public class Users extends Root implements AppConstants{
             }
 
             final List<UserStatistic> userStatistics = UserStatistic.find("SELECT u FROM UserStatistic u WHERE user = ? ORDER BY playday ASC", user).fetch();
-
-            render(user, statistics, pointsPerTipp, tippQuote, tippedGames, userStatistics);
+            final int users = AppUtils.getAllActiveUsers().size(); 
+            final int usersScale = users + 1;
+            
+            render(user, statistics, pointsPerTipp, tippQuote, tippedGames, userStatistics, users, usersScale);
         } else {
             redirect("/");
         }
