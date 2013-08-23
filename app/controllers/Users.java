@@ -183,13 +183,14 @@ public class Users extends Root implements AppConstants{
         redirect("/users/profile");
     }
 
-    public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings) {
+    public static void updatenotifications(final boolean reminder, final boolean notification, final boolean sendstandings, final boolean sendgametips) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
         final User user = AppUtils.getConnectedUser();
         user.setReminder(reminder);
         user.setNotification(notification);
         user.setSendStandings(sendstandings);
+        user.setSendGameTips(sendgametips);
         user._save();
 
         flash.put("infomessage", Messages.get("controller.profile.notifications"));

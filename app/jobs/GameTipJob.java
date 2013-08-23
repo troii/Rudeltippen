@@ -21,7 +21,7 @@ public class GameTipJob extends AppJob{
     public void doJob() {
         if (AppUtils.isJobInstance()) {
             Logger.info("Started Job: GameTipJob");
-            final List<User> users = AppUtils.getAllActiveUsers();
+            final List<User> users = User.find("SELECT u FROM User u WHER active = ? AND sendGameTips = ?", true, true).fetch();
             final List<Game> games = Game.find("SELECT g FROM Game g WHERE informed = ? AND ( TIMESTAMPDIFF(MINUTE,kickoff,now()) > 1 )", false).fetch();
             
             if (games != null && games.size() > 0) {
