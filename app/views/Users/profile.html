@@ -34,7 +34,7 @@
 				<form action="/users/updatepicture#picture" class="form-horizontal well" method="post" enctype="multipart/form-data">
 				<h2>&{'changepicture'}</h2>
 					<div class="control-group #{ifError 'picture'} error #{/ifError}">
-						#{if user.picture != null}
+						#{if user?.picture != null}
 							<label for="currentpicture" class="control-label">&{'current.profilepicture'}</label>
 							<div class="controls">
 			              		<img src="${user.picture}" border="0"/><br />
