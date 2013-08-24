@@ -120,6 +120,9 @@
 	            <h2>&{'changenotifications'}</h2>
 	                <div class="control-group">
 	                    <div class="controls">
+	                        <label class="checkbox"> <input type="checkbox" name="sendgametips" value="1"  #{if connectedUser.sendGameTips} checked #{/if} id="reminder"> Tipps nach Spielbeginn </label>
+	                    </div>	                
+	                    <div class="controls">
 	                        <label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
 	                    </div>
 	                    <div class="controls">

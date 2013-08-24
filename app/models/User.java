@@ -61,6 +61,7 @@ public class User extends Model {
     private boolean active;
     private boolean notification;
     private boolean sendStandings;
+    private boolean sendGameTips;
     private int tipPoints;
     private int extraPoints;
     private int points;
@@ -285,5 +286,13 @@ public class User extends Model {
 
 	public void setResultStatistic(List<ResultStatistic> resultStatistic) {
 		this.resultStatistic = resultStatistic;
+	}
+
+	public boolean isSendGameTips() {
+		return sendGameTips;
+	}
+
+	public void setSendGameTips(boolean sendGameTips) {
+		this.sendGameTips = sendGameTips;
 	}
 }
