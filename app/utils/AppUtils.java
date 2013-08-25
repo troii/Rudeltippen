@@ -72,10 +72,11 @@ public class AppUtils implements AppConstants {
      * @return The difference
      */
     public static int getPointsToFirstPlace() {
-        final User user = User.find("byPlace", 1).first();
+        final User connectedUser = AppUtils.getConnectedUser();
+    	final User user = User.find("byPlace", 1).first();
+
         int pointsDiff = 0;
-        if (user != null) {
-            final User connectedUser = AppUtils.getConnectedUser();
+        if (user != null && connectedUser != null) {
             pointsDiff = user.getPoints() - connectedUser.getPoints();
         }
 

@@ -1,3 +1,2 @@
 require:
-    - play -> play 1.2.6
     - play -> messages 1.3
