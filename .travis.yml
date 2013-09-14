@@ -1,5 +1,6 @@
 language: java
 before_script:
+  - ./travis.sh
   - wget http://download.playframework.org/releases/play-1.2.5.zip
   - unzip -q play-1.2.5.zip
 script: play-1.2.5/play auto-test ./
