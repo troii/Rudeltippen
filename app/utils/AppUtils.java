@@ -912,7 +912,7 @@ public class AppUtils implements AppConstants {
 	 * @return String The url to the qr-code
 	 */
 	public static String getQRBarcodeURL(String user, String host, String secret) {
-		String chl = "otpauth%3A%2F%2Ftotp%2F" + user + '@' + host + "%3Fsecret%3D" + secret;
+		final String chl = "otpauth%3A%2F%2Ftotp%2F" + user + '@' + host + "%3Fsecret%3D" + secret;
 		return "https://chart.apis.google.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=" + chl;
 	}
 
@@ -966,5 +966,17 @@ public class AppUtils implements AppConstants {
 		}
 
 		return (truncatedHash %= 1000000);
+	}
+
+	/**
+	 * Returns a millisecond timestamp required for 2FA (currentTimeMillis / 1000 / 30)
+	 * 
+	 * @return long The milliseconds timestamp
+	 */
+	public static long getTimeIndex() {
+		long currentTimeMillis = java.lang.System.currentTimeMillis();
+		currentTimeMillis = currentTimeMillis / 1000 / 30;
+
+		return currentTimeMillis;
 	}
 }
