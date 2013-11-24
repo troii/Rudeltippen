@@ -15,3 +15,4 @@ precompiled/
 server.pid
 .DS_Store
 /conf/application.conf
+/conf/modulesOrder.conf
