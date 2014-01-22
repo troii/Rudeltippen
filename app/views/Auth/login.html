@@ -1,45 +1,31 @@
-#{extends 'main.html' /}
-#{form @Auth.authenticate(), class:'form-horizontal well'}
-	<fieldset>
-		<legend>&{'pleaselogin'}</legend>
-		<div class="control-group">
-			<div class="control-group #{ifError 'username'} error #{/ifError}">
-				<label for="input01" class="control-label">&{'email'} &{'or'} &{'username'}</label>
-				<div class="controls">
-					<input type="text" id="username" name="username" value="${flash.username}" class="input-xlarge">
-					#{ifError 'username'}
-						<span class="help-inline">#{error 'username' /}</span>
-					#{/ifError}
+#{extends 'auth.html' /}
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		#{form @Auth.authenticate(), role:'form'}
+			<fieldset>
+				<h2>Bitte melde Dich an</h2>
+				<hr class="colorgraph">
+				<div class="form-group">
+                    <input type="email" name="username" id="username" class="form-control input-lg" placeholder="Benutzername / E-Mail-Adresse">
 				</div>
-			</div>
-			<div class="control-group #{ifError 'userpass'} error #{/ifError}">
-				<label for="input01" class="control-label">&{'password'}</label>
-				<div class="controls">
-					<input type="password" id="userpass" name="userpass" class="input-xlarge">
-					#{ifError 'userpass'}
-						<span class="help-inline">#{error 'userpass' /}</span>
-					#{/ifError}
+				<div class="form-group">
+                    <input type="password" name="userpass" id="userpass" class="form-control input-lg" placeholder="Passwort">
 				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<label class="checkbox"><input type="checkbox" value="1" name="remember" id="optionsCheckbox"> &{'stayloggedin'} </label>
+				<span class="button-checkbox">
+					<button type="button" class="btn" data-color="info">Angemeldet bleiben</button>
+                    <input type="checkbox" name="remember" value="1" id="remember_me" class="hidden">
+					<a href="@{auth.forgotten()}" class="btn btn-link pull-right">Passwort vergessen?</a>
+				</span>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a href="@{auth.register()}" class="btn btn-lg btn-primary btn-block">Registriern</a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Anmelden">
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="form-actions">
-			<button class="btn btn-primary" data-loading-text="&{'login'}..." id="fat-btn" type="submit" data-toggle="button">&{'login'}</button>
-			<br />
-			#{if isEnableRegistration}
-			<br /><a href="@{auth.register()}">&{'areyounew'}</a>
-			#{/if}
-			<br /><a href="@{auth.forgotten()}">&{'forgotten'}</a>
-		</div>
-	</fieldset>
-#{/form}
-
-${foo}
-
-#{list items:foolist, as:'s'}
-    ${s}
-#{/list}
+			</fieldset>
+		#{/form}
+	</div>
+</div>

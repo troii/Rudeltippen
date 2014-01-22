@@ -13,7 +13,7 @@
     <link href="@{'/public/img/touch-icon-ipad.png'}" rel="apple-touch-icon" sizes="72x72" />
     <link href="@{'/public/img/touch-icon-iphone-retina.png'}" rel="apple-touch-icon" sizes="114x114" />
     <link href="@{'/public/img/touch-icon-ipad-retina.png'}" rel="apple-touch-icon" sizes="144x144" />   
-    <link href="@{'/public/stylesheets/stylesheets.min.css'}" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
   </head>
   <body>
@@ -29,7 +29,9 @@
         </div>
       </div>
     </div>
-    <script src="@{'/public/javascripts/javascript.min.js'}"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="@{'/public/javascripts/blockUI.min.js'}"></script>
     <script type="text/javascript">
     $.blockUI({ message: '<h2>Setting up Rudeltippen...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
 	$.ajax({
