@@ -1,49 +1,51 @@
 #{extends 'main.html' /}
-<div class="span">
-#{form @tips.storetips(), class:'form-horizontal well'}
-    <table class="table">
-        <thead>
-            <tr>
-                <th colspan="4"><h2>&{playday.name}</h2></th>
-				<th colspan="4" style="text-align: right; vertical-align:bottom;">#{include '/Tags/playdayPagination.html' /}</th>
-            </tr>
-            <tr>
-                <th>&{'date'} - &{'time'}</th>
-                <th>&{'betending'}</th>
-                <th>&{'hometeam'}</th>
-                <th>&{'awayteam'}</th>
-                <th class="hidden-phone">&{'result'}</div></th>
-                <th colspan="3"><div align="center">&{'yourbet'}</div></th>
-            </tr>
-        </thead>
-        <tbody>
-            #{list items:playday?.games, as:'game'}
-                <tr>
-                    <td>${game.kickoff.formatted()}</td>
-                    <td>${game.tippEnding.difference()}</td>
-                    #{if game.homeTeam?.name != null && game.awayTeam?.name != null}
-                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
-                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
-                    #{/if}
-                    #{else}
-                        <td>${game.homeReferenceName()}</td>
-                        <td>${game.awayReferenceName()}</td>
-                    #{/else}
-                    <td class="hidden-phone">${game.getResult()}</td>
-                    #{if game.tippable}
-                        <td style="text-align: right;"><input type="text" value="${game.getHomeScoreTip()}" id="game_homeScore_${game_index}" name="game_${game.id}_homeScore" class="input-xmini"></td>
-                        <td style="text-align: center;">:</td>
-                        <td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="input-xmini"></td>
-                    #{/if}
-                    #{else}
-                        <td style="text-align: center;" colspan="3">${game.getGameTipAndPoints()}</td>
-                    #{/else}
-                </tr>
-            #{/list}
-        </tbody>
-    </table>
+<div class="row">
+	<div class="col-md-4"><h2>&{playday.name}</h2></div>
+	<div class="col-md-8" style="text-align: right; vertical-align:bottom;">#{include '/Tags/playdayPagination.html' /}</div>
+</div>
+<div class="row">
+	#{form @tips.storetips(), role:'form'}
+	<div class="table-responsive">
+	    <table class="table">
+	        <thead>
+	            <tr>
+	                <th>&{'date'} - &{'time'}</th>
+	                <th>&{'betending'}</th>
+	                <th>&{'hometeam'}</th>
+	                <th>&{'awayteam'}</th>
+	                <th class="hidden-phone">&{'result'}</div></th>
+	                <th colspan="3"><div align="center">&{'yourbet'}</div></th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            #{list items:playday?.games, as:'game'}
+	                <tr>
+	                    <td>${game.kickoff.formatted()}</td>
+	                    <td>${game.tippEnding.difference()}</td>
+	                    #{if game.homeTeam?.name != null && game.awayTeam?.name != null}
+	                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.homeTeam?.flag}">&{game.homeTeam?.name}</td>
+	                        <td><img class="flag hidden-phone" src="@{'/public/img/flags'}/${game.awayTeam?.flag}">&{game.awayTeam?.name}</td>
+	                    #{/if}
+	                    #{else}
+	                        <td>${game.homeReferenceName()}</td>
+	                        <td>${game.awayReferenceName()}</td>
+	                    #{/else}
+	                    <td class="hidden-phone">${game.getResult()}</td>
+	                    #{if game.tippable}
+	                        <td style="text-align: right;"><input type="text" value="${game.getHomeScoreTip()}" id="game_homeScore_${game_index}" name="game_${game.id}_homeScore" class="form-control"></td>
+	                        <td style="text-align: center;">:</td>
+	                        <td style="text-align: left;"><input type="text" value="${game.getAwayScoreTip()}" id="game_awayScore_${game_index}" name="game_${game.id}_awayScore" class="form-control"></td>
+	                    #{/if}
+	                    #{else}
+	                        <td style="text-align: center;" colspan="3">${game.getGameTipAndPoints()}</td>
+	                    #{/else}
+	                </tr>
+	            #{/list}
+	        </tbody>
+	    </table>
+    </div>
     #{if playday?.isTippable()}
         <button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
     #{/if}
-#{/form}
+    #{/form}
 </div>

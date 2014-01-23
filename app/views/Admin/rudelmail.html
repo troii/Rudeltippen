@@ -1,27 +1,29 @@
 #{extends 'main.html' /}
-#{form @Admin.send(), class:'form-horizontal well'}
-    <fieldset>
-        <legend>&{'Rudelmail'}</legend>
-        <h5>Send eine E-Mail an alle aktiven Mitspieler.</h5>
-        <div class="control-group">
-            <div class="control-group #{ifError 'subject'} error #{/ifError}">
-                <label for="input01" class="control-label">&{'subject'}</label>
-                <div class="controls">
-                    <input type="text" id="subject" name="subject" value="${flash.subject}" class="input-xlarge">
-                    #{ifError 'subject'}
-                        <span class="help-inline">#{error 'subject' /}</span>
-                    #{/ifError}
-                </div>
-            </div>
-            <div class="control-group #{ifError 'message'} error #{/ifError}">
-                <label for="input01" class="control-label">&{'message'}</label>
-                <div class="controls">
-                    <textarea rows="8" class="input-xlarge" name="message" value="${flash.message}"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="form-actions">
-            <button class="btn btn-primary" data-loading-text="&{'send'}..." id="fat-btn" type="submit" data-toggle="button">&{'send'}</button>
-        </div>
-    </fieldset>
-#{/form}
+<div class="row">
+	#{form @Admin.send(), class:'form'}
+	    <fieldset>
+	        <legend>&{'Rudelmail'}</legend>
+	        <h5>Send eine E-Mail an alle aktiven Mitspieler.</h5>
+	        <div class="control-group">
+	            <div class="control-group #{ifError 'subject'} error #{/ifError}">
+	                <label for="input01" class="control-label">&{'subject'}</label>
+	                <div class="controls">
+	                    <input type="text" id="subject" name="subject" value="${flash.subject}" class="input-xlarge">
+	                    #{ifError 'subject'}
+	                        <span class="help-inline">#{error 'subject' /}</span>
+	                    #{/ifError}
+	                </div>
+	            </div>
+	            <div class="control-group #{ifError 'message'} error #{/ifError}">
+	                <label for="input01" class="control-label">&{'message'}</label>
+	                <div class="controls">
+	                    <textarea rows="8" class="input-xlarge" name="message" value="${flash.message}"></textarea>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="form-actions">
+	            <button class="btn btn-primary" data-loading-text="&{'send'}..." id="fat-btn" type="submit" data-toggle="button">&{'send'}</button>
+	        </div>
+	    </fieldset>
+	#{/form}
+</div>

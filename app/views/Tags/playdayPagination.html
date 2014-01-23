@@ -1,20 +1,18 @@
-<div class="pagination">
-	<ul>
-		#{if pagination.number != 1}
-			<li><a href="${pagination.url}1">&laquo;</a></li>
-			<li><a href="${pagination.url}${pagination.number - 1}">&lsaquo;</a></li>
+<ul class="pagination">
+	#{if pagination.number != 1}
+		<li><a href="${pagination.url}1">&laquo;</a></li>
+		<li><a href="${pagination.url}${pagination.number - 1}">&lsaquo;</a></li>
+	#{/if}
+	#{list items:pagination.offsetStart..pagination.offset,as:'page'}
+		#{if page == pagination.number}
+			<li class="active"><a>${page}</a></li>
 		#{/if}
-		#{list items:pagination.offsetStart..pagination.offset,as:'page'}
-			#{if page == pagination.number}
-				<li class="active"><a>${page}</a></li>
-			#{/if}
-			#{else}
-				<li><a href="${pagination.url}${page}">${page}</a></li>
-			#{/else}
-		#{/list}
-		#{if pagination.number != pagination.offsetEnd}
-			<li><a href="${pagination.url}${pagination.number + 1}">&rsaquo;</a></li>
-			<li><a href="${pagination.url}${pagination.offsetEnd}">&raquo;</a></li>
-		#{/if}
-	</ul>
-</div>
+		#{else}
+			<li><a href="${pagination.url}${page}">${page}</a></li>
+		#{/else}
+	#{/list}
+	#{if pagination.number != pagination.offsetEnd}
+		<li><a href="${pagination.url}${pagination.number + 1}">&rsaquo;</a></li>
+		<li><a href="${pagination.url}${pagination.offsetEnd}">&raquo;</a></li>
+	#{/if}
+</ul>

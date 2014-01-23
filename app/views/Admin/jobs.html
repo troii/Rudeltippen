@@ -1,26 +1,30 @@
 #{extends 'main.html' /}
-<a href="@{admin.jobs()}" class="btn" type="button"><i class="icon-repeat"></i> Refresh</a>
-<table class="table table-stripes">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Scheduled</th>
-            <th>Description</th>
-            <th>Last run</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        #{list items:jobs, as:'job'}
-            <tr>
-                <td>${job.class.simpleName}</td>
-                <td>${job.executed}</td>
-                <td>${job.description}</td>
-                <td>#{if job.lastRun !=0 }${job.lastRun.formatTimestamp()}#{/if}#{else}-#{/else}</td>
-                <td>#{if job.lastRun !=0 }#{if job.wasError}Error#{/if}#{else}OK#{/else}#{/if}#{else}-#{/else}</td>
-                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');">Run now</a></td>
-            </tr>
-         #{/list}
-    </tbody>
-</table>
+<div class="row">
+	<a href="@{admin.jobs()}" class="btn" type="button"><i class="icon-repeat"></i> Refresh</a>
+	<div class="table-responsive">
+		<table class="table table-stripes">
+		    <thead>
+		        <tr>
+		            <th>Name</th>
+		            <th>Scheduled</th>
+		            <th>Description</th>
+		            <th>Last run</th>
+		            <th>Status</th>
+		            <th>Action</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        #{list items:jobs, as:'job'}
+		            <tr>
+		                <td>${job.class.simpleName}</td>
+		                <td>${job.executed}</td>
+		                <td>${job.description}</td>
+		                <td>#{if job.lastRun !=0 }${job.lastRun.formatTimestamp()}#{/if}#{else}-#{/else}</td>
+		                <td>#{if job.lastRun !=0 }#{if job.wasError}Error#{/if}#{else}OK#{/else}#{/if}#{else}-#{/else}</td>
+		                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');">Run now</a></td>
+		            </tr>
+		         #{/list}
+		    </tbody>
+		</table>
+	</div>
+</div>
