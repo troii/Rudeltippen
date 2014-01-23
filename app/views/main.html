@@ -78,6 +78,41 @@
         </div>
       </div>
     </div>
+	#{ifErrors}
+	<div class="container">
+		<div class="row">
+			<div class="alert alert-error">
+				<strong>&{'error'}</strong>
+				#{if flash.errormessage != null}
+		    		<p>${flash.errormessage.raw()}</p>
+				#{/if}
+				#{else}
+		    		<p>&{'erroroccured'}</p>
+				#{/else}
+			</div>
+		</div>
+	</div>
+	#{/ifErrors}
+	#{if flash.warningmessage != null}
+	<div class="container">
+		<div class="row">
+			<div class="alert alert-info">
+				<strong>&{'warning'}</strong>
+				<p>${flash.warningmessage.raw()}</p>
+			</div>
+		</div>
+	</div>
+	#{/if}
+	#{if flash.infomessage != null}
+	<div class="container">
+		<div class="row">
+			<div class="alert alert-success">
+				<strong>&{'info'}</strong>
+				<p>${flash.infomessage.raw()}</p>
+			</div>
+		</div>
+	</div>
+	#{/if}    
 	<div class="container">
 		#{doLayout /}
     </div>

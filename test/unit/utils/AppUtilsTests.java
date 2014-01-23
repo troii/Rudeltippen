@@ -10,7 +10,6 @@ import models.Settings;
 
 import org.junit.Test;
 
-import play.libs.Codec;
 import play.test.UnitTest;
 import utils.AppUtils;
 
@@ -180,28 +179,5 @@ public class AppUtilsTests extends UnitTest {
 	public void testGetTeamByReference() {
 		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
 		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
-	}
-
-	@Test
-	public void testGetQRBarcodeURL() {
-		assertNotNull(AppUtils.getQRBarcodeURL("foo", "bar", "foobar"));
-		assertTrue((AppUtils.getQRBarcodeURL("foo", "bar", "foobar").contains(("https://chart.apis.google.com"))));
-	}
-
-	@Test
-	public void testGetTimeIndex() {
-		assertTrue(AppUtils.getTimeIndex() > 0);
-	}
-
-	@Test
-	public void testGetCodeList() {
-		List<Long> codes = AppUtils.getCodeList(Codec.UUID(), AppUtils.getTimeIndex(), 5);
-		assertEquals(codes.size(), 11);
-	}
-
-	@Test
-	public void testGetCode() {
-		long code = AppUtils.getCode(Codec.UUID().getBytes(), AppUtils.getTimeIndex());
-		assertTrue(code > 0);
 	}
 }

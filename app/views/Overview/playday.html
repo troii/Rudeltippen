@@ -8,7 +8,7 @@
 		            <th colspan="8" style="text-align: right; vertical-align:bottom;">#{include '/Tags/playdayPagination.html' /}</th>
 				</tr>	
 				<tr>
-					<th class="hidden-phone"></th>
+					<th></th>
 					<th></th>
 					#{list items:playday.games, as:'game'}
 					<th>
@@ -24,7 +24,7 @@
 					#{/list}
 					<th></th>
 				</tr>
-				<tr class="hidden-phone">
+				<tr>
 					<th>&{'tendence'}</th>
 					<th></th>
 					#{list items:playday.games, as:'game'}
@@ -42,10 +42,10 @@
 				<tr #{if userTips.entrySet().key.username == [connectedUser.username]} class="connecteduser" #{/if}>
 					#{list items:userTips.entrySet(), as:'user'}
 						#{if user.key.picture == null}
-							<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+							<td style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
 						#{/if}
 						#{else}
-							<td class="hidden-phone" style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
+							<td style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
 						#{/else}
 							<td style="vertical-align: top;"><b><a href="@{users.show()}/${user.key.username}">${user.key.username}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
 						%{ points = 0 }%

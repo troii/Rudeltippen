@@ -7,15 +7,14 @@ If you like Rudeltippen, [Flattr it][5]. Thanks!
 
 Available tournaments
 ------------------
-- 1. Bundesliga 2013/14
+- 2014 FIFA World Cup
 
 Features in a Nutshell
 ------------------
 - Automatic results updates
 - Automatic tournament management
 - Automatic playing schedule updates
-- Fluid responsive layout using Twitter Bootstrap
-- Smartphone and tablet compatible
+- Responsive layout using Twitter Bootstrap 3
 - Gravatar support
 - Multilingual
 
@@ -31,7 +30,7 @@ Available Languages
 ------------------
 
 - German
-- English
+- English (incomplete)
 
 
 Installation guide
@@ -134,7 +133,7 @@ The initial data will create an admin user with the following credentials:
 
 Username: admin
 Password: admin
-E-Mail: admin@example.com
+E-Mail: admin@foo.bar
 
 Changing of this credentials is mandatory!
 

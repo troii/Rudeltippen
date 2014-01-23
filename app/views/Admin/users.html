@@ -4,10 +4,10 @@
 		<table class="table table-stripes usermanagement">
 			<thead>
 				<tr>
-					<th class="hidden-phone">&{'profilepicture'}</th>
-					<th class="hidden-phone">&{'username'}</th>
+					<th>&{'profilepicture'}</th>
+					<th>&{'username'}</th>
 					<th>&{'email'}</th>
-					<th class="hidden-phone">&{'registered'}</th>
+					<th>&{'registered'}</th>
 					<th>&{'isactive'}</th>
 					<th>&{'isadmin'}</th>
 					<th>&{'delete'}</th>
@@ -17,14 +17,14 @@
 				#{list items:users, as:'user'}
 					<tr>
 						#{if user.picture != null}
-							<td class="hidden-phone"><img src="${user.picture}" /></td>
+							<td><img src="${user.picture}" /></td>
 						#{/if}
 						#{else}
-							<td class="hidden-phone"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></td>
+							<td><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></td>
 						#{/else}
-						<td class="hidden-phone">${user.username}</td>
 						<td>${user.username}</td>
-						<td class="hidden-phone">${user.registered.formatted()}</td>
+						<td>${user.username}</td>
+						<td>${user.registered.formatted()}</td>
 						<td>#{if user.active}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isactive'}" onclick="return confirm(&{'admin.changedeactive.confirm', user.username})"><i class="icon-thumbs-up"></i></a>#{/if}#{else}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotactive'}" onclick="return confirm(&{'admin.changeactive.confirm', user.username})"><i class="icon-thumbs-down"></i></a>#{/else}</td>
 						<td>#{if user.admin}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isadmin'}" onclick="return confirm(&{'admin.changedeadmin.confirm', user.username})"><i class="icon-star"></i></a>#{/if}#{else}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotadmin'}"  onclick="return confirm(&{'admin.changeadmin.confirm', user.username})"><i class="icon-star-empty"></i></a>#{/else}</td>
 						<td><a href="@{admin.deleteuser()}/${user.id}" onclick="return confirm(&{'admin.deleteuser.confirm', user.username})"><i class="icon-trash"></i></a></td>

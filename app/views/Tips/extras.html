@@ -8,8 +8,8 @@
 		    		<th colspan="4"><h2>&{'extratips'}</h2></th>
 		        <tr>
 		            <th>&{'extraquestion'}</th>
-		            <th class="hidden-phone">&{'points'}</th>
-		            <th class="hidden-phone">&{'betending'}</th>
+		            <th>&{'points'}</th>
+		            <th>&{'betending'}</th>
 		            <th>&{'youranswer'}</th>
 		        </tr>
 		    </thead>
@@ -17,8 +17,8 @@
 		        #{list items:extras, as:'extra'}
 		            <tr>
 		                <td>&{extra.question}</td>
-		                <td class="hidden-phone">${extra.points}</td>
-		                <td class="hidden-phone">${extra.ending.difference()}</td>
+		                <td>${extra.points}</td>
+		                <td>${extra.ending.difference()}</td>
 		                <td>
 		                    #{if extra.tipable}
 		                        <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
@@ -45,7 +45,7 @@
 		</table>
 	</div>
 	#{if tippable}
-		<button class="btn btn-primary" data-loading-text="&{'save'}..." id="fat-btn" type="submit" data-toggle="button">&{'save'}</button>
+		<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
 	#{/if}
 	#{/form}
 </div>
