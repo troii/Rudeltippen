@@ -6,17 +6,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
 import models.Bracket;
 import models.Extra;
@@ -30,7 +24,6 @@ import models.User;
 import models.WSResult;
 import models.WSResults;
 
-import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -900,83 +893,5 @@ public class AppUtils implements AppConstants {
 		}
 
 		return users;
-	}
-
-	/**
-	 * Creates an URL to the google API for a 2FA qr-code
-	 * 
-	 * @param user The username
-	 * @param host The host (i.e. bundesliga.rudeltippen.de)
-	 * @param secret The shared-secret
-	 * 
-	 * @return String The url to the qr-code
-	 */
-	public static String getQRBarcodeURL(String user, String host, String secret) {
-		final String chl = "otpauth%3A%2F%2Ftotp%2F" + user + '@' + host + "%3Fsecret%3D" + secret;
-		return "https://chart.apis.google.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=" + chl;
-	}
-
-	/**
-	 * Creates a list of verification codes for 2FA
-	 * 
-	 * @param secret The shared secret
-	 * @param timeIndex The current time index
-	 * @param variance The variance steps for the number of codes to be created
-	 * 
-	 * @return List<long> A list of verification codes
-	 */
-	public static List<Long> getCodeList(String secret, long timeIndex, int variance) {
-		List<Long> list = new ArrayList();
-		for (int i = -variance; i <= variance; i++) {
-			list.add(getCode(new Base32().decode(secret), timeIndex + i));
-		}
-		return list;
-	}
-
-	/**
-	 * Calculates a code for 2FA
-	 * 
-	 * @param secret The shared secret
-	 * @param timeIndex The current time index
-	 * 
-	 * @return The code for the shared secret and the time index
-	 */
-	public static long getCode(byte[] secret, long timeIndex) {
-		SecretKeySpec signKey = new SecretKeySpec(secret, "HmacSHA1");
-		ByteBuffer buffer = ByteBuffer.allocate(8);
-		buffer.putLong(timeIndex);
-		byte[] timeBytes = buffer.array();
-		Mac mac = null;
-		try {
-			mac = Mac.getInstance("HmacSHA1");
-			mac.init(signKey);
-		} catch (NoSuchAlgorithmException | InvalidKeyException e) {
-			Logger.error("Failed to get code for 2FA", e);
-		}
-
-		long truncatedHash = 1000000;
-		if (mac != null) {
-			byte[] hash = mac.doFinal(timeBytes);
-			int offset = hash[19] & 0xf;
-			truncatedHash = hash[offset] & 0x7f;
-			for (int i = 1; i < 4; i++) {
-				truncatedHash <<= 8;
-				truncatedHash |= hash[offset + i] & 0xff;
-			}
-		}
-
-		return (truncatedHash %= 1000000);
-	}
-
-	/**
-	 * Returns a millisecond timestamp required for 2FA (currentTimeMillis / 1000 / 30)
-	 * 
-	 * @return long The milliseconds timestamp
-	 */
-	public static long getTimeIndex() {
-		long currentTimeMillis = java.lang.System.currentTimeMillis();
-		currentTimeMillis = currentTimeMillis / 1000 / 30;
-
-		return currentTimeMillis;
 	}
 }
