@@ -3,29 +3,6 @@ body {
 	font-size: 16px;
 }
 
-@media (max-width: 980px) {
-	body {
-	    margin-top: 0px;
-	}	
-}
-
-.sidebar-nav {
-    padding: 9px 0;
-}
-
-#ajaxloader {
-    padding-top: 30px;
-    padding-left: 50%;
-}
-
-#ajaxplayday {
-    display: none;  
-}
-
-.input-xmini{
-    width:40px;
-}
-
 .flag {
     padding-right: 8px;
 }
@@ -60,12 +37,15 @@ table.table thead .sorting_desc_disabled { background: url('/public/img/datatabl
 	margin-top: 4px;
 }
 
-.col-xs-5 {
-	text-align: right;
+hr.message-inner-separator
+{
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
 }
-
-#logo {
-	float: left;
-	padding-top: 5px;
-	padding-right: 10px;
-}}

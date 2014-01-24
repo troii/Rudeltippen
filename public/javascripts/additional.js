@@ -7,17 +7,14 @@ function helpify() {
 	$('.admintooltip').on().tooltip();
 }
 
-function showCredits() {
-	$('#modalCredits').modal('show');
-}
-
 $(document).on('DOMNodeInserted', function(e) {
 	helpify();
 });
 
 $(document).ready(function(){
-	$('.alert-info').delay(4000).slideToggle();
+	$('.alert-warning').delay(4000).slideToggle();
 	$('.alert-success').delay(4000).slideToggle();
+	$('.alert-danger').delay(4000).slideToggle();
 	helpify();
 	window.addEventListener("load", function() {
 		setTimeout(function() {
@@ -40,13 +37,3 @@ $(document).ready(function(){
         setTimeout($.unblockUI, 60000); 
     }); 
 });
-
-var url = $.url(); 
-var tab = url.attr('fragment');
-if (tab) {
-    $('ul.nav-tabs').children().removeClass('active');
-    $('a[href=#'+ tab +']').parents('li:first').addClass('active');
-    $('div.tab-content').children().removeClass('active');
-    $('#' + tab).addClass('active');
-    $('#' + tab).show();
-}

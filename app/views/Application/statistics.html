@@ -1,79 +1,74 @@
 #{extends 'main.html' /}
 <div class="row">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#playdayoverview">&{'playdayoverview'}</a></li>
-        <li><a data-toggle="tab" href="#tipedresults">&{'tipedresults'}</a></li>
-        <li><a data-toggle="tab" href="#playedresults">&{'playedresults'}</a></li>
-      </ul>
-      <div class="tabbable">
-        <div class="tab-content">
-          <div id="playdayoverview" class="tab-pane active">
-            <div class="span">
-                <div class="well">
-			        <h3>Spieltags&uuml;bersicht</h3>
-			        <table class="table">
-			            <thead>
-			                <th>Spieltag</th>
-			                <th>Richtige Tipps</th>
-			                <th>Richtige Differenzen</th>
-			                <th>Richtige Tendenzen</th>
-			                <th>Punkte Insgesamt</th>
-			                <th>Punkte pro Spieler</th>
-			            </thead>
-			            #{list items:gameTipStatistics, as:'gameTipStatistic'}
-			            <tr>
-			                <td>${gameTipStatistic.playday.number}</td>
-			                <td>${gameTipStatistic.correctTips}</td>
-			                <td>${gameTipStatistic.correctDiffs}</td>
-			                <td>${gameTipStatistic.correctTrends}</td>
-			                <td>${gameTipStatistic.points}</td>
-			                <td>${gameTipStatistic.avgPoints}</td>
-			            </tr>
-			            #{/list}
-			        </table>
-			    </div>
-            </div>
-          </div>
- 		<div id="tipedresults" class="tab-pane">
-            <div class="span">
-			    <div class="well">
-			        <h3>Getippte Ergebnisse</h3>
-			        <table class="table">
-			            <thead>
-			                <th>Anzahl</th>
-			                <th>Ergebnis</th>
-			            </thead>
-			            #{list items:results, as:'result'}
-			                <tr>
-			                #{list items:result, as:'r'}
-			                    <td>${r}</td>
-			                #{/list}
-			                </tr>
-			            #{/list}
-			        </table>
-			    </div>
-			</div>
-          </div> 
-			<div id="playedresults" class="tab-pane">
-			  <div class="span">
-			    <div class="well">
-			        <h3>Gespielte Ergebnisse</h3>
-			        <table class="table">
-			            <thead>
-			                <th>Anzahl</th>
-			                <th>Ergebnis</th>
-			            </thead>
-			            #{list items:games, as:'game'}
-			                <tr>
-			                #{list items:game, as:'g'}
-			                    <td>${g}</td>
-			                #{/list}
-			                </tr>
-			            #{/list}
-			        </table>
-			    </div>
-			</div>
-         </div>                     
-      </div>
-   </div>
-</div>    
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'playdayoverview'}</h3></div>
+	  <div class="panel-body">
+		<div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>Spieltag</th>
+                <th>Richtige Tipps</th>
+                <th>Richtige Differenzen</th>
+                <th>Richtige Tendenzen</th>
+                <th>Punkte Insgesamt</th>
+                <th>Punkte pro Spieler</th>
+            </thead>
+            #{list items:gameTipStatistics, as:'gameTipStatistic'}
+            <tr>
+                <td>${gameTipStatistic.playday.number}</td>
+                <td>${gameTipStatistic.correctTips}</td>
+                <td>${gameTipStatistic.correctDiffs}</td>
+                <td>${gameTipStatistic.correctTrends}</td>
+                <td>${gameTipStatistic.points}</td>
+                <td>${gameTipStatistic.avgPoints}</td>
+            </tr>
+            #{/list}
+        </table>
+        </div>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'tipedresults'}</h3></div>
+	  <div class="panel-body">
+		<div class="table-responsive">
+	        <table class="table">
+	            <thead>
+	                <th>Anzahl</th>
+	                <th>Ergebnis</th>
+	            </thead>
+	            #{list items:results, as:'result'}
+	                <tr>
+	                #{list items:result, as:'r'}
+	                    <td>${r}</td>
+	                #{/list}
+	                </tr>
+	            #{/list}
+	        </table>
+        </div>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'playedresults'}</h3></div>
+	  <div class="panel-body">
+		<div class="table-responsive">
+	        <table class="table">
+	            <thead>
+	                <th>Anzahl</th>
+	                <th>Ergebnis</th>
+	            </thead>
+	            #{list items:games, as:'game'}
+	                <tr>
+	                #{list items:game, as:'g'}
+	                    <td>${g}</td>
+	                #{/list}
+	                </tr>
+	            #{/list}
+	        </table>
+        </div>
+	  </div>
+	</div>
+</div>

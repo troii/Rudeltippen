@@ -7,7 +7,9 @@
 				<tr>
 					<th>&{'tipper'}</th>
 					<th>&{'username'}</th>
-					<th>&{'points'}</th>
+					<th>Punkte</th>
+					<th>Bonuspunkte</th>
+					<th>Gesamtpunkte</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,15 +22,15 @@
 						<td><a href="@{users.show()}/${topUser.username}"><img src="${topUser.picture}" /></a></td>
 					#{/else}
 					<td><b><a href="@{users.show()}/${topUser.username}">${topUser.username}</a></b></td>
+					<td>${topUser.tipPoints}</td>
+					<td>${topUser.extraPoints}</td>
 					<td><b>${topUser.points}</b></td>
 				</tr>
 			#{/list}
 			<tr>
 				<td colspan="5">&{'user.placandpoints.' + (connectedUser.points == 1 ? 'one' : 'many'), connectedUser.points, connectedUser.place, users}</td>
 			</tr>
-			<tr>
-	                  <td colspan="5">${pointsDiff}</td>
-	              </tr>
+			<tr><td colspan="5">${pointsDiff}</td></tr>
 			</tbody>
 		</table>
 	</div>

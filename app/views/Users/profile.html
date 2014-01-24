@@ -1,144 +1,141 @@
 #{extends 'main.html' /}
 <div class="row">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#username">&{'username'}</a></li>
-        <li class="visible-desktop"><a data-toggle="tab" href="#picture">&{'profilepicture'}</a></li>
-        <li><a data-toggle="tab" href="#password">&{'password'}</a></li>
-        <li><a data-toggle="tab" href="#email">&{'email'}</a></li>
-        <li><a data-toggle="tab" href="#notification">&{'notifications'}</a></li>
-      </ul>
-      <div class="tabbable">
-        <div class="tab-content">
-          <div id="username" class="tab-pane active">
-			<div class="span">
-				<form action="/users/updateusername#username" class="form-horizontal well" method="post">
-				<h2>&{'changeusername'}</h2>
-					<div class="control-group #{ifError 'username'} error #{/ifError}">
-						<label for="input01" class="control-label">&{'newusername'}</label>
-						<div class="controls">
-							<input type="text" id="username" name="username" value="" class="input-medium">
-							#{ifError 'username'}
-								<span class="help-inline">#{error 'username' /}</span>
-							#{/ifError}
-						</div>
-					</div>
-					<div class="form-actions">
-						<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button1" type="submit" data-toggle="button">&{'save'}</button>
-					</div>
-					#{authenticityToken /}
-				</form>
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'changeusername'}</h3></div>
+	  <div class="panel-body">
+		<form action="/users/updateusername#username" role="form" method="post">
+			<div class="control-group #{ifError 'username'} error #{/ifError}">
+				<label for="input01" class="control-label">&{'newusername'}</label>
+				<div class="controls">
+					<input type="text" id="username" name="username" value="" class="input-medium">
+					#{ifError 'username'}
+						<span class="help-inline">#{error 'username' /}</span>
+					#{/ifError}
+				</div>
 			</div>
-          </div>
-          <div id="picture" class="tab-pane">
-			<div class="span visible-desktop">
-				<form action="/users/updatepicture#picture" class="form-horizontal well" method="post" enctype="multipart/form-data">
-				<h2>&{'changepicture'}</h2>
-					<div class="control-group #{ifError 'picture'} error #{/ifError}">
-						#{if user?.picture != null}
-							<label for="currentpicture" class="control-label">&{'current.profilepicture'}</label>
-							<div class="controls">
-			              		<img src="${user.picture}" border="0"/><br />
-								<a href="@{users.deletepicture()}" onclick="return confirm(&{'delete.picture.confirm'})">&{'delete'}</a>
-			            	</div>
-						#{/if}
-			            <label for="fileInput" class="control-label">&{'newprofilepicture'}<br />&{'maxprofile', 100}</label>
-			            <div class="controls">
-			              <input type="file" id="picture" name="picture" class="input-file">
-			              #{ifError 'picture'}
-								<span class="help-inline">#{error 'picture' /}</span>
-						  #{/ifError}
-			            </div>
-			        </div>
-					<div class="form-actions">
-						<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button2" type="submit" data-toggle="button">&{'save'}</button>
-					</div>
-					#{authenticityToken /}
-				</form>
+			<div class="form-actions">
+				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button1" type="submit" data-toggle="button">&{'save'}</button>
 			</div>
-          </div>
-          <div id="password" class="tab-pane">
-			<div class="span">
-	            <form action="/users/updatepassword#password" class="form-horizontal well" method="post">
-	            <h2>&{'changepassword'}</h2>
-	                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
-	                    <label for="userpass" class="control-label">&{'newpassword'}</label>
-	                    <div class="controls">
-	                        <input type="password" value="" id="userpass" name="userpass" class="input-medium">
-	                        #{ifError 'userpass'}
-	                            <span class="help-inline">#{error 'userpass' /}</span>
-	                        #{/ifError}
-	                    </div>
-	                </div>
-	                <div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
-	                    <label for="userpassConfirmation" class="control-label">&{'newpasswordconfirm'}</label>
-	                    <div class="controls">
-	                        <input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
-	                        #{ifError 'userpassConfirmation'}
-	                            <span class="help-inline">#{error 'userpassConfirmation' /}</span>
-	                        #{/ifError}
-	                    </div>
-	                </div>
-		            <div class="form-actions">
-		                <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
-		            </div>
-	            #{authenticityToken /}
-	           </form>
-	        </div>          
-          </div>
-          <div id="email" class="tab-pane">
-			<div class="span">
-				<form action="/users/updateemail#email" class="form-horizontal well" method="post">
-				<h2>&{'changeemail'}</h2>
-					<div class="control-group #{ifError 'email'} error #{/ifError}">
-						<label for="email" class="control-label">&{'newemail'}</label>
-						<div class="controls">
-							<input type="text" value="" id="email" name="email" class="input-medium">
-							#{ifError 'email'}
-								<span class="help-inline">#{error 'email' /}</span>
-							#{/ifError}
-						</div>
-					</div>
-					<div class="control-group #{ifError 'emailConfirmation'} error #{/ifError}">
-						<label for="emailConfirmation" class="control-label">&{'newemailconfirm'}</label>
-						<div class="controls">
-							<input type="text" value="" id="emailConfirmation" name="emailConfirmation" class="input-medium">
-							#{ifError 'emailConfirmation'}
-								<span class="help-inline">#{error 'emailConfirmation' /}</span>
-							#{/ifError}
-						</div>
-					</div>
-					<div class="form-actions">
-						<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button4" type="submit" data-toggle="button">&{'save'}</button>
-					</div>
-					#{authenticityToken /}
-				</form>
-			</div>          
-          </div>    
-          <div id="notification" class="tab-pane">
-			<div class="span">
-	            <form action="/users/updatenotifications#notification" class="form-horizontal well" method="post">
-	            <h2>&{'changenotifications'}</h2>
-	                <div class="control-group">
-	                    <div class="controls">
-	                        <label class="checkbox"> <input type="checkbox" name="sendgametips" value="1"  #{if connectedUser.sendGameTips} checked #{/if} id="reminder"> Tipps nach Spielbeginn </label>
-	                    </div>	                
-	                    <div class="controls">
-	                        <label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
-	                    </div>
-	                    <div class="controls">
-	                        <label class="checkbox"> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
-	                    </div>  
-	                    <div class="controls">
-	                        <label class="checkbox"> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
-	                    </div>                                      
-	                </div>
-	                <div class="form-actions">
-	                    <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
-	                </div>
-	                #{authenticityToken /}
-				</form>
-	        </div>	          
-          </div>                
-        </div>
-      </div>
-    </div>
+			#{authenticityToken /}
+		</form>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'changepicture'}</h3></div>
+	  <div class="panel-body">
+		<form action="/users/updatepicture#picture" role="form" method="post" enctype="multipart/form-data">
+			<div class="control-group #{ifError 'picture'} error #{/ifError}">
+				#{if user?.picture != null}
+					<label for="currentpicture" class="control-label">&{'current.profilepicture'}</label>
+					<div class="controls">
+	              		<img src="${user.picture}" border="0"/><br />
+						<a href="@{users.deletepicture()}" onclick="return confirm(&{'delete.picture.confirm'})">&{'delete'}</a>
+	            	</div>
+				#{/if}
+	            <label for="fileInput" class="control-label">&{'newprofilepicture'}<br />&{'maxprofile', 100}</label>
+	            <div class="controls">
+	              <input type="file" id="picture" name="picture" class="input-file">
+	              #{ifError 'picture'}
+						<span class="help-inline">#{error 'picture' /}</span>
+				  #{/ifError}
+	            </div>
+	        </div>
+			<div class="form-actions">
+				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button2" type="submit" data-toggle="button">&{'save'}</button>
+			</div>
+			#{authenticityToken /}
+		</form>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'changepassword'}</h3></div>
+	  <div class="panel-body">
+            <form action="/users/updatepassword#password" role="form" method="post">
+                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
+                    <label for="userpass" class="control-label">&{'newpassword'}</label>
+                    <div class="controls">
+                        <input type="password" value="" id="userpass" name="userpass" class="input-medium">
+                        #{ifError 'userpass'}
+                            <span class="help-inline">#{error 'userpass' /}</span>
+                        #{/ifError}
+                    </div>
+                </div>
+                <div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
+                    <label for="userpassConfirmation" class="control-label">&{'newpasswordconfirm'}</label>
+                    <div class="controls">
+                        <input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
+                        #{ifError 'userpassConfirmation'}
+                            <span class="help-inline">#{error 'userpassConfirmation' /}</span>
+                        #{/ifError}
+                    </div>
+                </div>
+	            <div class="form-actions">
+	                <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
+	            </div>
+            #{authenticityToken /}
+           </form>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'changeemail'}</h3></div>
+	  <div class="panel-body">
+		<form action="/users/updateemail#email" class="form-horizontal well" method="post">
+			<div class="control-group #{ifError 'email'} error #{/ifError}">
+				<label for="email" class="control-label">&{'newemail'}</label>
+				<div class="controls">
+					<input type="text" value="" id="email" name="email" class="input-medium">
+					#{ifError 'email'}
+						<span class="help-inline">#{error 'email' /}</span>
+					#{/ifError}
+				</div>
+			</div>
+			<div class="control-group #{ifError 'emailConfirmation'} error #{/ifError}">
+				<label for="emailConfirmation" class="control-label">&{'newemailconfirm'}</label>
+				<div class="controls">
+					<input type="text" value="" id="emailConfirmation" name="emailConfirmation" class="input-medium">
+					#{ifError 'emailConfirmation'}
+						<span class="help-inline">#{error 'emailConfirmation' /}</span>
+					#{/ifError}
+				</div>
+			</div>
+			<div class="form-actions">
+				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button4" type="submit" data-toggle="button">&{'save'}</button>
+			</div>
+			#{authenticityToken /}
+		</form>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'changenotifications'}</h3></div>
+	  <div class="panel-body">
+           <form action="/users/updatenotifications#notification" class="form-horizontal well" method="post">
+               <div class="control-group">
+                   <div class="controls">
+                       <label class="checkbox"> <input type="checkbox" name="sendgametips" value="1"  #{if connectedUser.sendGameTips} checked #{/if} id="reminder"> Tipps nach Spielbeginn </label>
+                   </div>	                
+                   <div class="controls">
+                       <label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
+                   </div>
+                   <div class="controls">
+                       <label class="checkbox"> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
+                   </div>  
+                   <div class="controls">
+                       <label class="checkbox"> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
+                   </div>                                      
+               </div>
+               <div class="form-actions">
+                   <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
+               </div>
+               #{authenticityToken /}
+		</form>
+	  </div>
+	</div>
+</div>
