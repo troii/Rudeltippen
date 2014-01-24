@@ -1,29 +1,21 @@
 #{extends 'main.html' /}
 <div class="row">
-	#{form @Admin.send(), class:'form'}
+	#{form @Admin.send(), role:'form'}
 	    <fieldset>
 	        <legend>&{'Rudelmail'}</legend>
 	        <h5>Send eine E-Mail an alle aktiven Mitspieler.</h5>
-	        <div class="control-group">
-	            <div class="control-group #{ifError 'subject'} error #{/ifError}">
-	                <label for="input01" class="control-label">&{'subject'}</label>
-	                <div class="controls">
-	                    <input type="text" id="subject" name="subject" value="${flash.subject}" class="input-xlarge">
-	                    #{ifError 'subject'}
-	                        <span class="help-inline">#{error 'subject' /}</span>
-	                    #{/ifError}
-	                </div>
-	            </div>
-	            <div class="control-group #{ifError 'message'} error #{/ifError}">
-	                <label for="input01" class="control-label">&{'message'}</label>
-	                <div class="controls">
-	                    <textarea rows="8" class="input-xlarge" name="message" value="${flash.message}"></textarea>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="form-actions">
-	            <button class="btn btn-primary" data-loading-text="&{'send'}..." id="fat-btn" type="submit" data-toggle="button">&{'send'}</button>
-	        </div>
+            <div class="form-group #{ifError 'subject'} has-error #{/ifError}">
+            	<input type="text" name="subject" id="subject" class="form-control input-lg" placeholder="Betreff">
+                    #{ifError 'subject'}
+                        <p class="help-block">#{error 'subject' /}</p>
+                    #{/ifError}
+            </div>
+            <div class="form-group #{ifError 'message'} has-error #{/ifError}">
+                <div class="controls">
+                    <textarea rows="8" name="message" value="${flash.message}" class="form-control input-lg" placeholder="Nachricht"></textarea>
+                </div>
+            </div>
+			<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
 	    </fieldset>
 	#{/form}
 </div>

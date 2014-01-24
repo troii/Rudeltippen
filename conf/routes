@@ -13,7 +13,6 @@ GET     /rules                          	application.rules
 GET     /statistics                        	application.statistics
 GET	    /auth/confirm/{token}				auth.confirm
 GET     /auth/password/{token}          	auth.password
-GET	    /tips/extras			        	tips.extras
 GET	    /tips/playday/{number}				tips.playday
 GET     /standings                          tips.standings
 GET	    /overview/playday/{number}	    	overview.playday

@@ -1,32 +1,10 @@
 #{extends 'main.html' /}
 <div class="row">
 	<div class="panel panel-success">
-	  <div class="panel-heading"><h3 class="panel-title">&{'changeusername'}</h3></div>
-	  <div class="panel-body">
-		<form action="/users/updateusername#username" role="form" method="post">
-			<div class="control-group #{ifError 'username'} error #{/ifError}">
-				<label for="input01" class="control-label">&{'newusername'}</label>
-				<div class="controls">
-					<input type="text" id="username" name="username" value="" class="input-medium">
-					#{ifError 'username'}
-						<span class="help-inline">#{error 'username' /}</span>
-					#{/ifError}
-				</div>
-			</div>
-			<div class="form-actions">
-				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button1" type="submit" data-toggle="button">&{'save'}</button>
-			</div>
-			#{authenticityToken /}
-		</form>
-	  </div>
-	</div>
-</div>
-<div class="row">
-	<div class="panel panel-success">
 	  <div class="panel-heading"><h3 class="panel-title">&{'changepicture'}</h3></div>
 	  <div class="panel-body">
-		<form action="/users/updatepicture#picture" role="form" method="post" enctype="multipart/form-data">
-			<div class="control-group #{ifError 'picture'} error #{/ifError}">
+		<form action="/users/updatepicture" role="form" method="post" enctype="multipart/form-data">
+			<div class="form-group #{ifError 'picture'} has-error #{/ifError}">
 				#{if user?.picture != null}
 					<label for="currentpicture" class="control-label">&{'current.profilepicture'}</label>
 					<div class="controls">
@@ -42,9 +20,24 @@
 				  #{/ifError}
 	            </div>
 	        </div>
-			<div class="form-actions">
-				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button2" type="submit" data-toggle="button">&{'save'}</button>
+			<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
+			#{authenticityToken /}
+		</form>
+	  </div>
+	</div>
+</div>
+<div class="row">
+	<div class="panel panel-success">
+	  <div class="panel-heading"><h3 class="panel-title">&{'changeusername'}</h3></div>
+	  <div class="panel-body">
+		<form action="/users/updateusername" role="form" method="post">
+			<div class="form-group #{ifError 'username'} has-error #{/ifError}">
+            	<input type="text" name="username" id="username" class="form-control input-lg" placeholder="Neuer Benutzername">
+         		#{ifError 'username'}
+					<p class="help-block">#{error 'username' /}</p>
+				#{/ifError}
 			</div>
+			<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
 			#{authenticityToken /}
 		</form>
 	  </div>
@@ -54,28 +47,20 @@
 	<div class="panel panel-success">
 	  <div class="panel-heading"><h3 class="panel-title">&{'changepassword'}</h3></div>
 	  <div class="panel-body">
-            <form action="/users/updatepassword#password" role="form" method="post">
-                <div class="control-group #{ifError 'userpass'} error #{/ifError}">
-                    <label for="userpass" class="control-label">&{'newpassword'}</label>
-                    <div class="controls">
-                        <input type="password" value="" id="userpass" name="userpass" class="input-medium">
-                        #{ifError 'userpass'}
-                            <span class="help-inline">#{error 'userpass' /}</span>
-                        #{/ifError}
-                    </div>
-                </div>
-                <div class="control-group #{ifError 'userpassConfirmation'} error #{/ifError}">
-                    <label for="userpassConfirmation" class="control-label">&{'newpasswordconfirm'}</label>
-                    <div class="controls">
-                        <input type="password" value="" id="userpassConfirmation" name="userpassConfirmation" class="input-medium">
-                        #{ifError 'userpassConfirmation'}
-                            <span class="help-inline">#{error 'userpassConfirmation' /}</span>
-                        #{/ifError}
-                    </div>
-                </div>
-	            <div class="form-actions">
-	                <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button3" type="submit" data-toggle="button">&{'save'}</button>
-	            </div>
+            <form action="/users/updatepassword" role="form" method="post">
+               <div class="form-group #{ifError 'userpass'} has-error #{/ifError}">
+               	<input type="password" name="userpass" id="userpass" class="form-control input-lg" placeholder="Neues Passwort">
+                   #{ifError 'userpass'}
+                   	<p class="help-block">#{error 'userpass' /}</p>
+                   #{/ifError}
+               </div>
+               <div class="form-group #{ifError 'userpassConfirmation'} has-error #{/ifError}">
+				<input type="password" name="userpassConfirmation" id="userpassConfirmation" class="form-control input-lg" placeholder="Neues Passwort wiederholen">
+                      #{ifError 'userpassConfirmation'}
+                          <p class="help-block">#{error 'userpassConfirmation' /}</p>
+                      #{/ifError}
+               </div>
+			<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
             #{authenticityToken /}
            </form>
 	  </div>
@@ -85,28 +70,20 @@
 	<div class="panel panel-success">
 	  <div class="panel-heading"><h3 class="panel-title">&{'changeemail'}</h3></div>
 	  <div class="panel-body">
-		<form action="/users/updateemail#email" class="form-horizontal well" method="post">
-			<div class="control-group #{ifError 'email'} error #{/ifError}">
-				<label for="email" class="control-label">&{'newemail'}</label>
-				<div class="controls">
-					<input type="text" value="" id="email" name="email" class="input-medium">
-					#{ifError 'email'}
-						<span class="help-inline">#{error 'email' /}</span>
-					#{/ifError}
-				</div>
+		<form action="/users/updateemail" role="form" method="post">
+			<div class="form-group #{ifError 'email'} has-error #{/ifError}">
+				<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Neues E-Mail-Adresse">
+				#{ifError 'email'}
+					<p class="help-block">#{error 'email' /}</p>
+				#{/ifError}
 			</div>
-			<div class="control-group #{ifError 'emailConfirmation'} error #{/ifError}">
-				<label for="emailConfirmation" class="control-label">&{'newemailconfirm'}</label>
-				<div class="controls">
-					<input type="text" value="" id="emailConfirmation" name="emailConfirmation" class="input-medium">
-					#{ifError 'emailConfirmation'}
-						<span class="help-inline">#{error 'emailConfirmation' /}</span>
-					#{/ifError}
-				</div>
+			<div class="form-group #{ifError 'emailConfirmation'} has-error #{/ifError}">
+				<input type="text" name="emailConfirmation" id="emailConfirmation" class="form-control input-lg" placeholder="Neues E-Mail-Adresse wiederholen">
+				#{ifError 'emailConfirmation'}
+					<p class="help-block">#{error 'emailConfirmation' /}</p>
+				#{/ifError}
 			</div>
-			<div class="form-actions">
-				<button class="btn btn-primary" data-loading-text="&{'save'}..." id="button4" type="submit" data-toggle="button">&{'save'}</button>
-			</div>
+			<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
 			#{authenticityToken /}
 		</form>
 	  </div>
@@ -116,24 +93,22 @@
 	<div class="panel panel-success">
 	  <div class="panel-heading"><h3 class="panel-title">&{'changenotifications'}</h3></div>
 	  <div class="panel-body">
-           <form action="/users/updatenotifications#notification" class="form-horizontal well" method="post">
-               <div class="control-group">
-                   <div class="controls">
-                       <label class="checkbox"> <input type="checkbox" name="sendgametips" value="1"  #{if connectedUser.sendGameTips} checked #{/if} id="reminder"> Tipps nach Spielbeginn </label>
+           <form action="/users/updatenotifications" class="form" method="post">
+               <div class="form-group">
+                   <div class="checkbox">
+                       <label> <input type="checkbox" name="sendgametips" value="1"  #{if connectedUser.sendGameTips} checked #{/if} id="reminder"> Tipps nach Spielbeginn </label>
                    </div>	                
-                   <div class="controls">
-                       <label class="checkbox"> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
+                   <div class="checkbox">
+                       <label> <input type="checkbox" name="reminder" value="1"  #{if connectedUser.reminder} checked #{/if} id="reminder"> &{'betreminder'} </label>
                    </div>
-                   <div class="controls">
-                       <label class="checkbox"> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
+                   <div class="checkbox">
+                       <label> <input type="checkbox" name="notification" value="1"  #{if connectedUser.notification} checked #{/if} id="notification"> &{'resultreminder'} </label>
                    </div>  
-                   <div class="controls">
-                       <label class="checkbox"> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
+                   <div class="checkbox">
+                       <label> <input type="checkbox" name="sendstandings" value="1"  #{if connectedUser.sendStandings} checked #{/if} id="sendstandings"> &{'sendstandings'} </label>
                    </div>                                      
                </div>
-               <div class="form-actions">
-                   <button class="btn btn-primary" data-loading-text="&{'save'}..." id="button5" type="submit" data-toggle="button">&{'save'}</button>
-               </div>
+               <input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
                #{authenticityToken /}
 		</form>
 	  </div>

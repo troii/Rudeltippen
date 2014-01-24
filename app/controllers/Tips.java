@@ -27,16 +27,11 @@ public class Tips extends Root {
     public static void playday(final int number) {
         final Pagination pagination = ViewUtils.getPagination(number, "/tips/playday/");
         final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
-
-        render(playday, number,pagination);
-    }
-
-    @Transactional(readOnly=true)
-    public static void extras() {
+        
         final List<Extra> extras = Extra.findAll();
         final boolean tippable = AppUtils.extrasTipable(extras);
 
-        render(extras, tippable);
+        render(playday, number,pagination, extras, tippable);
     }
 
     public static void storetips() {
@@ -109,7 +104,7 @@ public class Tips extends Root {
                     bonusTippId = Long.parseLong(bId);
                     teamId = Long.parseLong(tId);
                 } else {
-                    extras();
+                	playday(AppUtils.getCurrentPlayday().getNumber());
                 }
 
                 final Extra extra = Extra.findById(bonusTippId);
@@ -121,7 +116,7 @@ public class Tips extends Root {
                 }
             }
         }
-        extras();
+        playday(AppUtils.getCurrentPlayday().getNumber());
     }
 
     public static void standings() {

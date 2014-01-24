@@ -49,3 +49,53 @@
     #{/form}
     </div>
 </div>
+<div class="row">
+	#{form @tips.storeextratips(), role:'form'}
+	<div class="table-responsive">
+		<table class="table">
+		    <thead>
+		    	<tr>
+		    		<th colspan="4"><h2>&{'extratips'}</h2></th>
+		        <tr>
+		            <th>&{'extraquestion'}</th>
+		            <th>&{'points'}</th>
+		            <th>&{'betending'}</th>
+		            <th>&{'youranswer'}</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        #{list items:extras, as:'extra'}
+		            <tr>
+		                <td>&{extra.question}</td>
+		                <td>${extra.points}</td>
+		                <td>${extra.ending.difference()}</td>
+		                <td>
+		                    #{if extra.tipable}
+		                        <select id="bonustipp_${extra_index}" name="bonus_${extra.id}_teamId">
+		                            #{if extra.getExtraTip() == 0}
+		                                <option value="0" selected="selected">-- &{'pleasechoose'} --</option>
+		                            #{/if}
+		                            #{list items:extra.answers, as:'team'}
+		                                #{if extra.getExtraTip() == team.id}
+		                                    <option value="${team.id}" selected="selected">&{team.name}</option>
+		                                #{/if}
+		                                #{else}
+		                                    <option value="${team.id}">&{team.name}</option>
+		                                #{/else}
+		                            #{/list}
+		                        </select>
+		                    #{/if}
+		                    #{else}
+		                        ${extra.getAnswer().raw()}
+		                    #{/else}
+		                </td>
+		            </tr>
+		        #{/list}
+		    </tbody>
+		</table>
+	</div>
+	#{if tippable}
+		<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
+	#{/if}
+	#{/form}
+</div>
