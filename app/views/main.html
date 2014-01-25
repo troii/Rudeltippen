@@ -142,9 +142,9 @@
     		<p><a href="https://github.com/svenkubiak/rudeltippen" target="_blank">Rudeltippen 2.2.0</a> | <a href="#" data-toggle="modal" data-target="#modalCredits">Credits</a> | <a href="https://flattr.com/thing/1628177/Rudeltippen" target="_blank">Flattr</a></p>
     	</div>
     </div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+	<script src="//code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="@{'/public/javascripts/canvasjs.min.js'}"></script>
+    #{if request.action == "Users.show"}<script src="@{'/public/javascripts/canvasjs.min.js'}"></script>#{/if}
     <script src="@{'/public/javascripts/additional.js'}" type="text/javascript" ></script>
   </body>
 </html>
