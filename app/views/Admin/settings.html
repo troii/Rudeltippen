@@ -1,8 +1,10 @@
 #{extends 'main.html' /}
 <div class="row">
+	<legend>Einstellungen</legend>
+</div>
+<div class="row">
 	#{form @admin.updatesettings(), role:'form'}
 	<fieldset>
-	    <legend>&{'setup.legend'}</legend>
 	    <div class="form-group #{ifError 'name'} has-error #{/ifError}">
 	    	<label for="labelName">&{'setup.name'}</label>
 	        <div class="controls">

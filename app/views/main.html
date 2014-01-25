@@ -52,7 +52,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-	            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-user" ></i> ${connectedUser.username} <span class="caret"></span></a>
+	            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-user"></span> ${connectedUser.username} <span class="caret"></span></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="@{users.profile()}"> &{'myprofile'}</a></li>
 	              #{if connectedUser.admin}
@@ -120,7 +120,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="@{'/public/javascripts/canvasjs.min.js'}"></script>
-    <script src="@{'/public/javascripts/datatables.min.js'}" type="text/javascript"></script>
     <script src="@{'/public/javascripts/additional.js'}" type="text/javascript" ></script>
   </body>
 </html>

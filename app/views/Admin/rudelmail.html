@@ -1,9 +1,11 @@
 #{extends 'main.html' /}
 <div class="row">
+	<legend>Rudelmail</legend>
+</div>
+<div class="row">
 	#{form @Admin.send(), role:'form'}
 	    <fieldset>
-	        <legend>&{'Rudelmail'}</legend>
-	        <h5>Send eine E-Mail an alle aktiven Mitspieler.</h5>
+	        <h5>Sende eine E-Mail an alle aktiven Mitspieler.</h5>
             <div class="form-group #{ifError 'subject'} has-error #{/ifError}">
             	<input type="text" name="subject" id="subject" class="form-control input-lg" placeholder="Betreff">
                     #{ifError 'subject'}

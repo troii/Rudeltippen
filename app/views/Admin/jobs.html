@@ -1,16 +1,19 @@
 #{extends 'main.html' /}
 <div class="row">
-	<a href="@{admin.jobs()}" class="btn" type="button"><i class="icon-repeat"></i> Refresh</a>
+	<legend>Jobs</legend>
+</div>
+<div class="row">
+	<a href="@{admin.jobs()}"><span class="glyphicon glyphicon-repeat"></span> Aktualisieren</a>
 	<div class="table-responsive">
 		<table class="table table-stripes">
 		    <thead>
 		        <tr>
 		            <th>Name</th>
-		            <th>Scheduled</th>
-		            <th>Description</th>
-		            <th>Last run</th>
+		            <th>Geplant</th>
+		            <th>Beschreibung</th>
+		            <th>Letzte Ausf&uuml;hrung</th>
 		            <th>Status</th>
-		            <th>Action</th>
+		            <th>Aktion</th>
 		        </tr>
 		    </thead>
 		    <tbody>

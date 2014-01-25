@@ -21,17 +21,6 @@ $(document).ready(function(){
 			window.scrollTo(0, 1);
 		}, 0);
 	});
-	if ($('.usermanagement').length != 0) {
-	    $('.usermanagement').dataTable( {
-	    	"bPaginate": false,
-	    	"bInfo": false,
-	    	"aaSorting": [[1,'asc']],
-	    	"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0,4,5,6 ] } ],
-	    	"oLanguage": {
-	            "sSearch": "<i class=\"icon-search\"></i>"
-	        }
-	    } );		
-	}
     $('#fat-btn-loading').click(function() { 
     	$.blockUI({ message: '<h2>Calculating points...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
         setTimeout($.unblockUI, 60000); 
