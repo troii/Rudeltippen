@@ -1,3 +1,7 @@
+function showCredits() {
+        $('#modalCredits').modal('show');
+}
+
 function helpify() {
 	$('.btn-success').click(function() {
 		var btn = $(this)
