@@ -2,7 +2,7 @@ package interfaces;
 
 public interface AppConstants {
 	public static final String APPNAME = "rudeltippen";
-	public static final String YAMLFILE = "bl2013.yml";
+	public static final String YAMLFILE = "wm2014.yml";
 	public static final String DEFAULT_DATEFORMAT = "dd.MM.yyyy";
 	public static final String DEFAULT_TIMEFORMAT = "kk:mm";
 	public static final String DEFAULT_TIMEZONE = "Europe/Berlin";

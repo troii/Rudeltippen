@@ -11,15 +11,12 @@ import models.User;
 import play.Logger;
 import play.Play;
 import play.db.jpa.NoTransaction;
-import play.db.jpa.Transactional;
-import play.i18n.Messages;
 import play.libs.Codec;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
 import utils.AppUtils;
 import utils.SetupUtils;
-import utils.ValidationUtils;
 
 public class System extends Controller implements AppConstants {
 	
@@ -27,6 +24,7 @@ public class System extends Controller implements AppConstants {
 	protected static void before() {
 		AppUtils.setAppLanguage();
 	}
+	
 	public static void setup() {
 		if (AppUtils.rudeltippenIsInizialized()) {
 			redirect("/");
@@ -97,7 +95,7 @@ public class System extends Controller implements AppConstants {
 	public static void yamler() {
 		if (("true").equals(Play.configuration.getProperty("yamler"))) {
 			final List<String> playdays = SetupUtils.generatePlaydays(34);
-			final List<String> games = SetupUtils.getGamesFromWebService(34, "bl1", "2013");
+			final List<String> games = SetupUtils.getGamesFromWebService(34, "WM-2014", "2014");
 			render(playdays, games);
 		}
 		notFound();

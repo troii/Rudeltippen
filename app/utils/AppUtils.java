@@ -26,9 +26,11 @@ import models.WSResults;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Session;
 
 import play.Logger;
 import play.Play;
+import play.db.jpa.JPA;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.libs.Codec;
@@ -174,6 +176,8 @@ public class AppUtils implements AppConstants {
 					if (team != null) {
 						extra.setAnswer(team);
 						extra._save();
+						
+						flushAndClear();
 					}
 				}
 			}
@@ -239,6 +243,8 @@ public class AppUtils implements AppConstants {
 			user.setPoints(bonusPoints + userTipPoints);
 			user.setCorrectExtraTips(correctExtraTips);
 			user._save();
+			
+			flushAndClear();
 		}
 	}
 
@@ -311,6 +317,8 @@ public class AppUtils implements AppConstants {
 			team.setGoalsAgainst(goalsAgainst);
 			team.setGoalsDiff(goalsFor - goalsAgainst);
 			team._save();
+			
+			flushAndClear();
 		}
 	}
 
@@ -325,6 +333,8 @@ public class AppUtils implements AppConstants {
 			user.setPlace(place);
 			user._save();
 			place++;
+			
+			flushAndClear();
 		}
 	}
 
@@ -394,6 +404,8 @@ public class AppUtils implements AppConstants {
 				team.setPlace(place);
 				team._save();
 				place++;
+				
+				flushAndClear();
 			}
 		}
 	}
@@ -894,4 +906,15 @@ public class AppUtils implements AppConstants {
 
 		return users;
 	}
+	
+	/**
+	 * Calls a flash and a clear on the JPA entity Manager forcing
+	 * the db layer to write all cached data to the persistence story.
+	 * Very useful for batch inserts or updates
+	 */
+	public static void flushAndClear() {
+		Session session = (Session) JPA.em().getDelegate();
+		session.flush();
+		session.clear();
+	}	
 }
