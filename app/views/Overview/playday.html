@@ -1,12 +1,11 @@
 #{extends 'main.html' /}
 <div class="row">
+	<h2>&{playday.name}</h2>
+</div>
+<div class="row">
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
-				<tr>
-					<th colspan="4"><h2>&{playday.name}</h2></th>
-		            <th colspan="8" style="text-align: right; vertical-align:bottom;">#{include '/Tags/playdayPagination.html' /}</th>
-				</tr>	
 				<tr>
 					<th></th>
 					<th></th>
@@ -60,4 +59,7 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+<div class="row" style="text-align:right; padding-right: 5px;">
+	#{include '/Tags/playdayPagination.html' /}
 </div>

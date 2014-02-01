@@ -433,7 +433,7 @@ models.Game(g6):
     number: 6
     homeTeam: civ
     awayTeam: jpn
-    kickoff: 2014-06-14 19:00:00
+    kickoff: 2014-06-15 01:00:00
     playday: p1
     playoff: false
     ended: false
@@ -443,7 +443,7 @@ models.Game(g7):
     number: 7
     homeTeam: uru
     awayTeam: crc
-    kickoff: 2014-06-14 22:00:00
+    kickoff: 2014-06-14 19:00:00
     playday: p1
     playoff: false
     ended: false
@@ -453,7 +453,7 @@ models.Game(g8):
     number: 8
     homeTeam: eng
     awayTeam: ita
-    kickoff: 2014-06-15 01:00:00
+    kickoff: 2014-06-14 22:00:00
     playday: p1
     playoff: false
     ended: false
@@ -493,7 +493,7 @@ models.Game(g12):
     number: 12
     homeTeam: ira
     awayTeam: nga
-    kickoff: 2014-06-16 16:00:00
+    kickoff: 2014-06-16 19:00:00
     playday: p1
     playoff: false
     ended: false
@@ -503,7 +503,7 @@ models.Game(g13):
     number: 13
     homeTeam: ger
     awayTeam: por
-    kickoff: 2014-06-16 19:00:00
+    kickoff: 2014-06-16 16:00:00
     playday: p1
     playoff: false
     ended: false
@@ -522,7 +522,7 @@ models.Game(g14):
 models.Game(g15):
     number: 15
     homeTeam: bel
-    awayTeam: ira
+    awayTeam: alg
     kickoff: 2014-06-17 16:00:00
     playday: p1
     playoff: false
@@ -533,7 +533,7 @@ models.Game(g16):
     number: 16
     homeTeam: rus
     awayTeam: kor
-    kickoff: 2014-06-17 19:00:00
+    kickoff: 2014-06-17 22:00:00
     playday: p1
     playoff: false
     ended: false
@@ -543,7 +543,7 @@ models.Game(g17):
     number: 17
     homeTeam: bra
     awayTeam: mex
-    kickoff: 2014-06-17 22:00:00
+    kickoff: 2014-06-17 19:00:00
     playday: p2
     playoff: false
     ended: false
@@ -553,7 +553,7 @@ models.Game(g18):
     number: 18
     homeTeam: cam
     awayTeam: cro
-    kickoff: 2014-06-18 16:00:00
+    kickoff: 2014-06-18 22:00:00
     playday: p2
     playoff: false
     ended: false
@@ -573,7 +573,7 @@ models.Game(g20):
     number: 20
     homeTeam: aus
     awayTeam: ned
-    kickoff: 2014-06-18 22:00:00
+    kickoff: 2014-06-18 16:00:00
     playday: p2
     playoff: false
     ended: false
@@ -593,7 +593,7 @@ models.Game(g22):
     number: 22
     homeTeam: jpn
     awayTeam: gre
-    kickoff: 2014-06-19 19:00:00
+    kickoff: 2014-06-19 22:00:00
     playday: p2
     playoff: false
     ended: false
@@ -603,7 +603,7 @@ models.Game(g23):
     number: 23
     homeTeam: uru
     awayTeam: eng
-    kickoff: 2014-06-19 22:00:00
+    kickoff: 2014-06-19 19:00:00
     playday: p2
     playoff: false
     ended: false
@@ -653,7 +653,7 @@ models.Game(g28):
     number: 28
     homeTeam: nga
     awayTeam: bih
-    kickoff: 2014-06-21 19:00:00
+    kickoff: 2014-06-21 22:00:00
     playday: p2
     playoff: false
     ended: false
@@ -663,7 +663,7 @@ models.Game(g29):
     number: 29
     homeTeam: ger
     awayTeam: gha
-    kickoff: 2014-06-21 22:00:00
+    kickoff: 2014-06-21 19:00:00
     playday: p2
     playoff: false
     ended: false
@@ -673,7 +673,7 @@ models.Game(g30):
     number: 30
     homeTeam: usa
     awayTeam: por
-    kickoff: 2014-06-22 16:00:00
+    kickoff: 2014-06-22 22:00:00
     playday: p2
     playoff: false
     ended: false
@@ -681,9 +681,9 @@ models.Game(g30):
 
 models.Game(g31):
     number: 31
-    homeTeam: usa
-    awayTeam: por
-    kickoff: 2014-06-22 19:00:00
+    homeTeam: bel
+    awayTeam: rus
+    kickoff: 2014-06-22 16:00:00
     playday: p2
     playoff: false
     ended: false
@@ -691,9 +691,9 @@ models.Game(g31):
 
 models.Game(g32):
     number: 32
-    homeTeam: bel
-    awayTeam: rus
-    kickoff: 2014-06-22 22:00:00
+    homeTeam: kor
+    awayTeam: alg
+    kickoff: 2014-06-22 19:00:00
     playday: p2
     playoff: false
     ended: false
@@ -703,7 +703,7 @@ models.Game(g33):
     number: 33
     homeTeam: cam
     awayTeam: bra
-    kickoff: 2014-06-23 16:00:00
+    kickoff: 2014-06-23 20:00:00
     playday: p3
     playoff: false
     ended: false
@@ -713,7 +713,7 @@ models.Game(g34):
     number: 34
     homeTeam: cro
     awayTeam: mex
-    kickoff: 2014-06-23 16:00:00
+    kickoff: 2014-06-23 20:00:00
     playday: p3
     playoff: false
     ended: false
@@ -723,7 +723,7 @@ models.Game(g35):
     number: 35
     homeTeam: aus
     awayTeam: esp
-    kickoff: 2014-06-23 20:00:00
+    kickoff: 2014-06-23 16:00:00
     playday: p3
     playoff: false
     ended: false
@@ -733,7 +733,7 @@ models.Game(g36):
     number: 36
     homeTeam: ned
     awayTeam: chi
-    kickoff: 2014-06-23 20:00:00
+    kickoff: 2014-06-23 16:00:00
     playday: p3
     playoff: false
     ended: false
@@ -743,7 +743,7 @@ models.Game(g37):
     number: 37
     homeTeam: jpn
     awayTeam: col
-    kickoff: 2014-06-24 16:00:00
+    kickoff: 2014-06-24 20:00:00
     playday: p3
     playoff: false
     ended: false
@@ -753,7 +753,7 @@ models.Game(g38):
     number: 38
     homeTeam: gre
     awayTeam: civ
-    kickoff: 2014-06-24 16:00:00
+    kickoff: 2014-06-24 20:00:00
     playday: p3
     playoff: false
     ended: false
@@ -763,7 +763,7 @@ models.Game(g39):
     number: 39
     homeTeam: ita
     awayTeam: uru
-    kickoff: 2014-06-24 20:00:00
+    kickoff: 2014-06-24 16:00:00
     playday: p3
     playoff: false
     ended: false
@@ -773,7 +773,7 @@ models.Game(g40):
     number: 40
     homeTeam: crc
     awayTeam: eng
-    kickoff: 2014-06-24 20:00:00
+    kickoff: 2014-06-24 16:00:00
     playday: p3
     playoff: false
     ended: false
@@ -782,8 +782,8 @@ models.Game(g40):
 models.Game(g41):
     number: 41
     homeTeam: hon
-    awayTeam: fra
-    kickoff: 2014-06-25 16:00:00
+    awayTeam: sui
+    kickoff: 2014-06-25 20:00:00
     playday: p3
     playoff: false
     ended: false
@@ -793,7 +793,7 @@ models.Game(g42):
     number: 42
     homeTeam: ecu
     awayTeam: fra
-    kickoff: 2014-06-25 16:00:00
+    kickoff: 2014-06-25 20:00:00
     playday: p3
     playoff: false
     ended: false
@@ -803,7 +803,7 @@ models.Game(g43):
     number: 43
     homeTeam: nga
     awayTeam: arg
-    kickoff: 2014-06-25 20:00:00
+    kickoff: 2014-06-25 16:00:00
     playday: p3
     playoff: false
     ended: false
@@ -813,7 +813,7 @@ models.Game(g44):
     number: 44
     homeTeam: bih
     awayTeam: ira
-    kickoff: 2014-06-25 20:00:00
+    kickoff: 2014-06-25 16:00:00
     playday: p3
     playoff: false
     ended: false
@@ -857,4 +857,351 @@ models.Game(g48):
     playday: p3
     playoff: false
     ended: false
-    webserviceID: 27076                                                     
+    webserviceID: 27076
+    
+models.Game(g49):
+    number:    49
+    kickoff:       2014-06-28 16:00:00
+    playday:       p4
+    homeReference: B-1-1
+    awayReference: B-2-2
+    playoff:       true
+    ended:         false
+
+models.Game(g50):
+    number:    50
+    kickoff:       2014-06-28 20:00:00
+    playday:       p4
+    homeReference: B-3-1
+    awayReference: B-4-2
+    playoff:       true
+    ended:         false
+    
+models.Game(g51):
+    number:    51
+    kickoff:       2014-06-29 16:00:00
+    playday:       p4
+    homeReference: B-2-1
+    awayReference: B-1-2
+    playoff:       true
+    ended:         false
+    
+models.Game(g52):
+    number:    52
+    kickoff:       2014-06-29 20:00:00
+    playday:       p4
+    homeReference: B-4-1
+    awayReference: B-3-2
+    playoff:       true
+    ended:         false
+    
+models.Game(g53):
+    number:    53
+    kickoff:       2014-06-30 16:00:00
+    playday:       p4
+    homeReference: B-5-1
+    awayReference: B-6-2
+    playoff:       true
+    ended:         false  
+    
+models.Game(g54):
+    number:    54
+    kickoff:       2014-06-30 20:00:00
+    playday:       p4
+    homeReference: B-7-1
+    awayReference: B-8-2
+    playoff:       true
+    ended:         false         
+    
+models.Game(g55):
+    number:    55
+    kickoff:       2014-07-01 16:00:00
+    playday:       p4
+    homeReference: B-6-1
+    awayReference: B-5-2
+    playoff:       true
+    ended:         false      
+    
+models.Game(g56):
+    number:    56
+    kickoff:       2014-07-01 20:00:00
+    playday:       p4
+    homeReference: B-8-1
+    awayReference: B-7-2
+    playoff:       true
+    ended:         false
+    
+models.Game(g57):
+    number:    57
+    kickoff:       2014-07-04 20:00:00
+    playday:       p5
+    homeReference: G-49-W
+    awayReference: G-50-W
+    playoff:       true
+    ended:         false       
+    
+models.Game(g58):
+    number:    58
+    kickoff:       2014-07-04 16:00:00
+    playday:       p5
+    homeReference: G-53-W
+    awayReference: G-54-W
+    playoff:       true
+    ended:         false   
+    
+models.Game(g59):
+    number:    59
+    kickoff:       2014-07-05 20:00:00
+    playday:       p5
+    homeReference: G-51-W
+    awayReference: G-52-W
+    playoff:       true
+    ended:         false  
+    
+models.Game(g60):
+    number:    60
+    kickoff:       2014-07-05 16:00:00
+    playday:       p5
+    homeReference: G-55-W
+    awayReference: G-56-W
+    playoff:       true
+    ended:         false   
+    
+models.Game(g61):
+    number:    61
+    kickoff:       2014-07-08 20:00:00
+    playday:       p6
+    homeReference: G-57-W
+    awayReference: G-58-W
+    playoff:       true
+    ended:         false
+    
+models.Game(g62):
+    number:    62
+    kickoff:       2014-07-09 20:00:00
+    playday:       p6
+    homeReference: G-59-W
+    awayReference: G-60-W
+    playoff:       true
+    ended:         false 
+    
+models.Game(g63):
+    number:    63
+    kickoff:       2014-07-12 20:00:00
+    playday:       p7
+    homeReference: G-61-L
+    awayReference: G-62-L
+    playoff:       true
+    ended:         false 
+    
+models.Game(g64):
+    number:    64
+    kickoff:       2014-07-13 19:00:00
+    playday:       p8
+    homeReference: G-61-W
+    awayReference: G-62-W
+    playoff:       true
+    ended:         false
+
+models.Extra(b1):
+   question:        WhowillbeworldChampion
+   extraReference:  G-64-W
+   gameReferences:
+                    - g64
+   questionShort:   WorldChampion
+   points:          10
+   ending:          2014-06-12 20:00:00
+   answers:
+                    - bra
+                    - cro
+                    - mex
+                    - cam
+                    - esp
+                    - ned
+                    - chi
+                    - aus
+                    - col
+                    - gre
+                    - civ
+                    - jpn
+                    - uru
+                    - crc
+                    - eng
+                    - ita
+                    - sui
+                    - ecu
+                    - fra
+                    - hon
+                    - arg
+                    - bih
+                    - ira
+                    - nga
+                    - ger
+                    - por
+                    - gha
+                    - usa
+                    - bel
+                    - alg
+                    - rus
+                    - kor
+
+models.Extra(b2):
+   question:        WhowillbeViceWorldChampion
+   extraReference:  G-64-L
+   gameReferences:
+                    - g64
+   questionShort:   viceworldchampion
+   points:          5
+   ending:          2014-06-12 20:00:00
+   answers:
+                    - bra
+                    - cro
+                    - mex
+                    - cam
+                    - esp
+                    - ned
+                    - chi
+                    - aus
+                    - col
+                    - gre
+                    - civ
+                    - jpn
+                    - uru
+                    - crc
+                    - eng
+                    - ita
+                    - sui
+                    - ecu
+                    - fra
+                    - hon
+                    - arg
+                    - bih
+                    - ira
+                    - nga
+                    - ger
+                    - por
+                    - gha
+                    - usa
+                    - bel
+                    - alg
+                    - rus
+                    - kor
+
+models.Extra(b3):
+    question:        WhowillbegroupwinnersinGroupA
+    questionShort:   WinnerGroupA
+    gameReferences:
+                     - g17
+                     - g18
+    extraReference:  B-1-1
+    ending:          2014-06-12 20:00:00
+    points:          2
+    answers:
+                    - bra
+                    - cro
+                    - mex
+                    - cam
+
+models.Extra(b4):
+     question:        WhowillbegroupwinnersinGroupB
+     questionShort:   WinnerGroupB
+     gameReferences:
+                     - g19
+                     - g20
+     extraReference:  B-2-1
+     ending:          2014-06-12 20:00:00
+     points:          2
+     answers:
+                    - esp
+                    - ned
+                    - chi
+                    - aus
+
+models.Extra(b5):
+      question:        WhowillbegroupwinnersinGroupC
+      extraReference:  B-3-1
+      gameReferences:
+                     - g21
+                     - g22
+      questionShort:   WinnerGroupC
+      ending:          2014-06-12 20:00:00
+      points:          2
+      answers:
+                    - col
+                    - gre
+                    - civ
+                    - jpn
+
+models.Extra(b6):
+     question:        WhowillbegroupwinnersinGroupD
+     questionShort:   WinnerGroupD
+     extraReference:  B-4-1
+     gameReferences:
+                     - g23
+                     - g24
+     ending:          2014-06-12 20:00:00
+     points:          2
+     answers:
+                    - uru
+                    - crc
+                    - eng
+                    - ita
+models.Extra(b7):
+     question:        WhowillbegroupwinnersinGroupe
+     questionShort:   WinnerGroupE
+     extraReference:  B-5-1
+     gameReferences:
+                     - g23
+                     - g24
+     ending:          2014-06-12 20:00:00
+     points:          2
+     answers:
+                    - sui
+                    - ecu
+                    - fra
+                    - hon
+                      
+models.Extra(b8):
+     question:        WhowillbegroupwinnersinGroupf
+     questionShort:   WinnerGroupF
+     extraReference:  B-6-1
+     gameReferences:
+                     - g23
+                     - g24
+     ending:          2014-06-12 20:00:00
+     points:          2
+     answers:
+                    - arg
+                    - bih
+                    - ira
+                    - nga
+
+models.Extra(b9):
+     question:        WhowillbegroupwinnersinGroupG
+     questionShort:   WinnerGroupG
+     extraReference:  B-7-1
+     gameReferences:
+                     - g23
+                     - g24
+     ending:          2014-06-12 20:00:00
+     points:          2
+     answers:
+                    - ger
+                    - por
+                    - gha
+                    - usa
+                      
+models.Extra(b10):
+     question:        WhowillbegroupwinnersinGroupH
+     questionShort:   WinnerGroupH
+     extraReference:  B-8-1
+     gameReferences:
+                     - g23
+                     - g24
+     ending:          2014-06-12 20:00:00
+     points:          2
+     answers:
+                    - bel
+                    - alg
+                    - rus
+                    - kor                                                                                                                                                                   
