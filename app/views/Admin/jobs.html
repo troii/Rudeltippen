@@ -13,6 +13,7 @@
 		            <th>Beschreibung</th>
 		            <th>Letzte Ausf&uuml;hrung</th>
 		            <th>Status</th>
+		            <th>Aktiv</th>
 		            <th>Aktion</th>
 		        </tr>
 		    </thead>
@@ -24,7 +25,13 @@
 		                <td>${job.description}</td>
 		                <td>#{if job.lastRun !=0 }${job.lastRun.formatTimestamp()}#{/if}#{else}-#{/else}</td>
 		                <td>#{if job.lastRun !=0 }#{if job.wasError}Error#{/if}#{else}OK#{/else}#{/if}#{else}-#{/else}</td>
-		                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');">Run now</a></td>
+		                #{if job.class.simpleName.getJobStatus()}
+		                	<td><a href="/admin/jobstatus/${job.class.simpleName}" data-toggle="tooltip" data-placement="top" title="Job ist aktiv" class="jobtooltip" onclick="return confirm('Change status of ${job.class.simpleName}?');"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+		                #{/if}
+		                #{else}
+		               		<td><a href="/admin/jobstatus/${job.class.simpleName}" data-toggle="tooltip" data-placement="top" title="Job ist nicht aktiv" class="jobtooltip" onclick="return confirm('Change status of ${job.class.simpleName}?');"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+		                #{/else}
+		                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');"><span class="glyphicon glyphicon-play-circle"></span></a></td>
 		            </tr>
 		         #{/list}
 		    </tbody>

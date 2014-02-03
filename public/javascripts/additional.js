@@ -5,6 +5,7 @@ function helpify() {
 	});
 	$('img').on().tooltip();
 	$('.admintooltip').on().tooltip();
+	$('.jobtooltip').on().tooltip();
 }
 
 $(document).on('DOMNodeInserted', function(e) {

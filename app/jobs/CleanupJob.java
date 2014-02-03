@@ -2,6 +2,7 @@ package jobs;
 
 import java.util.List;
 
+import models.AbstractJob;
 import models.Confirmation;
 import models.ConfirmationType;
 import models.ExtraTip;
@@ -22,20 +23,23 @@ public class CleanupJob extends AppJob {
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
-            Logger.info("Started Job: CleanupJob");
-            final List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE confirmType = ? AND DATE(NOW()) > (DATE(created) + 2)", ConfirmationType.ACTIVATION).fetch();
-            for (final Confirmation confirmation : confirmations) {
-                final User user = confirmation.getUser();
-                if ((user != null) && !user.isActive()) {
-                    final List<GameTip> gameTips = user.getGameTips();
-                    final List<ExtraTip> extraTips = user.getExtraTips();
-                    if ( ((gameTips == null) || (gameTips.size() <= 0)) && ((extraTips == null) || (extraTips.size() <= 0)) ) {
-                        Logger.info("Deleting user: '" + user.getUsername() + " (" + user.getEmail() + ")' - User did not activate within 2 days after registration and has no game tips and no extra tips.");
-                        user._delete();
+        	AbstractJob job = AbstractJob.find("byName", "CleanupJob").first();
+        	if (job != null && job.isActive()) {
+                Logger.info("Started Job: CleanupJob");
+                final List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE confirmType = ? AND DATE(NOW()) > (DATE(created) + 2)", ConfirmationType.ACTIVATION).fetch();
+                for (final Confirmation confirmation : confirmations) {
+                    final User user = confirmation.getUser();
+                    if ((user != null) && !user.isActive()) {
+                        final List<GameTip> gameTips = user.getGameTips();
+                        final List<ExtraTip> extraTips = user.getExtraTips();
+                        if ( ((gameTips == null) || (gameTips.size() <= 0)) && ((extraTips == null) || (extraTips.size() <= 0)) ) {
+                            Logger.info("Deleting user: '" + user.getUsername() + " (" + user.getEmail() + ")' - User did not activate within 2 days after registration and has no game tips and no extra tips.");
+                            user._delete();
+                        }
                     }
                 }
-            }
-            Logger.info("Finished Job: CleanupJob");
+                Logger.info("Finished Job: CleanupJob");	
+        	}
         }
     }
 }

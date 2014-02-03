@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import models.AbstractJob;
 import models.Bracket;
 import models.Extra;
 import models.ExtraTip;
@@ -403,4 +404,15 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 
         return pagination;
     }
+    
+	public static boolean getJobStatus(final String jobName) {
+		boolean status = false;
+
+		AbstractJob job = AbstractJob.find("byName", jobName).first();
+		if (job != null) {
+			status = job.isActive();
+		}
+
+		return status;
+	}
 }

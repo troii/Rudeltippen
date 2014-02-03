@@ -17,7 +17,7 @@ default.language=de
 # Set your default language (currently supported: de and en)
 app.timezone=Europe/Berlin
 app.dateformat=dd.MM.yyyy
-app.timeformat=kk:mm
+app.timeformat=HH:mm
 
 # Secret key
 # ~~~~~

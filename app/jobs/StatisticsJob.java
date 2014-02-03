@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import models.AbstractJob;
 import models.Game;
 import models.GameTip;
 import models.Playday;
@@ -31,31 +32,33 @@ public class StatisticsJob extends AppJob {
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
-            Logger.info("Started Job: StatisticsJob");
+        	AbstractJob job = AbstractJob.find("byName", "StandingsJob").first();
+        	if (job != null && job.isActive()) {
+                Logger.info("Started Job: StatisticsJob");
+                final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
+                final List<User> users = AppUtils.getAllActiveUsers();
+                for (final Playday playday : playdays) {
+                    if (playday.allGamesEnded()) {
+                        final Map<String, Integer> scores = this.getScores(playday);
+                        this.setPlaydayStatistics(playday, scores);
 
-            final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
-            final List<User> users = AppUtils.getAllActiveUsers();
-            for (final Playday playday : playdays) {
-                if (playday.allGamesEnded()) {
-                    final Map<String, Integer> scores = this.getScores(playday);
-                    this.setPlaydayStatistics(playday, scores);
+                        for (final User user : users) {
+                            this.setPlaydayPoints(playday, user);
+                            this.setAscendingPlaydayPoints(playday, user);
+                        }
 
-                    for (final User user : users) {
-                        this.setPlaydayPoints(playday, user);
-                        this.setAscendingPlaydayPoints(playday, user);
+                        this.setPlaydayPlaces(playday);
+                        this.setGameTipStatistics(playday);
+                        this.setGameStatistic(playday);
                     }
-
-                    this.setPlaydayPlaces(playday);
-                    this.setGameTipStatistics(playday);
-                    this.setGameStatistic(playday);
                 }
-            }
 
-            for (final User user : users) {
-                this.setResultStatistic(user);
-            }
+                for (final User user : users) {
+                    this.setResultStatistic(user);
+                }
 
-            Logger.info("Finished Job: StatisticsJob");
+                Logger.info("Finished Job: StatisticsJob");	
+        	}
         }
     }
 

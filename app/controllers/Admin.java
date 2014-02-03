@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import models.AbstractJob;
+import models.Bracket;
 import models.Confirmation;
 import models.ConfirmationType;
 import models.Game;
@@ -21,6 +23,7 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
+import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.jobs.Job;
@@ -230,13 +233,13 @@ public class Admin extends Root implements AppConstants {
         redirect("/admin/users");
     }
 
-    @Transactional(readOnly=true)
-    public static void jobs() {
-        final List<Job> jobs = JobsPlugin.scheduledJobs;
-        render(jobs);
-    }
+	@Transactional(readOnly=true)
+	public static void jobs() {
+		final List<Job> jobs = JobsPlugin.scheduledJobs;
+		render(jobs);
+	}
 
-    @Transactional(readOnly=true)
+	@Transactional(readOnly=true)
     public static void runjob(final String name) {
         if (StringUtils.isNotBlank(name)) {
             final List<Job> jobs = JobsPlugin.scheduledJobs;
@@ -249,10 +252,16 @@ public class Admin extends Root implements AppConstants {
         jobs();
     }
 
-    @Transactional(readOnly=true)
+	@NoTransaction
     public static void rudelmail() {
         render();
     }
+    
+    @Transactional(readOnly=true)
+    public static void tournament() {
+    	List<Bracket> brackets = Bracket.findAll();
+        render(brackets);
+    }    
 
     @Transactional(readOnly=true)
     public static void send(final String subject, final String message) {
@@ -277,4 +286,13 @@ public class Admin extends Root implements AppConstants {
 
         rudelmail();
     }
+    
+	public static void jobstatus(final String name) {
+		if (StringUtils.isNotBlank(name)) {
+			AbstractJob abstractJob = AbstractJob.find("byName", name).first();
+			abstractJob.setActive(!abstractJob.isActive());
+			abstractJob._save();
+		}
+		jobs();
+	}
 }

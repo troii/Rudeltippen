@@ -2,6 +2,7 @@ package jobs;
 
 import java.util.List;
 
+import models.AbstractJob;
 import models.Game;
 import models.User;
 import play.Logger;
@@ -21,31 +22,34 @@ public class StandingsJob extends AppJob {
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
-            Logger.info("Started Job: StandingsJob");
+        	AbstractJob job = AbstractJob.find("byName", "StandingsJob").first();
+        	if (job != null && job.isActive()) {
+                Logger.info("Started Job: StandingsJob");
 
-            String message = "";
-            final Game game = Game.find("byNumber", 1).first();
-            if ((game != null) && game.isEnded()) {
-                int count = 1;
-                final StringBuilder buffer = new StringBuilder();
+                String message = "";
+                final Game game = Game.find("byNumber", 1).first();
+                if ((game != null) && game.isEnded()) {
+                    int count = 1;
+                    final StringBuilder buffer = new StringBuilder();
 
-                List<User> users = User.find("SELECT u FROM User u WHERE active = true ORDER BY place ASC").fetch(3);
-                for (final User user : users) {
-                    if (count < 3) {
-                        buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
-                    } else {
-                        buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + ")");
+                    List<User> users = User.find("SELECT u FROM User u WHERE active = true ORDER BY place ASC").fetch(3);
+                    for (final User user : users) {
+                        if (count < 3) {
+                            buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + "), ");
+                        } else {
+                            buffer.append(user.getUsername() + " (" + user.getPoints() + " " + Messages.get("points") + ")");
+                        }
+                        count++;
                     }
-                    count++;
-                }
-                message = Messages.get("topthree") + ": " + buffer.toString();
+                    message = Messages.get("topthree") + ": " + buffer.toString();
 
-                users = User.find("bySendStandings", true).fetch();
-                for (final User user : users) {
-                    MailUtils.notifications(Messages.get("mails.top3.subject"), message, user);
+                    users = User.find("bySendStandings", true).fetch();
+                    for (final User user : users) {
+                        MailUtils.notifications(Messages.get("mails.top3.subject"), message, user);
+                    }
                 }
-            }
-            Logger.info("Finished Job: StandingsJob");
+                Logger.info("Finished Job: StandingsJob");
+        	}
         }
     }
 }

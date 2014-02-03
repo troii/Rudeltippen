@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+<div class="row">
+	<div class="table-responsive">
+		<table class="table">
+		#{list items:brackets, as:'bracket'}
+		    <thead>
+		        <tr>
+		            <th colspan="9"><h2>&{bracket.name}</h2></th>
+		        </tr>
+		        <tr>
+		            <th>#</th>
+		            <th>&{'team'}</th>
+		            <th>&{'games'}</th>
+		            <th>&{'gameswon'}</th>
+		            <th>&{'gamesdraw'}</th>
+		            <th>&{'gameslost'}</th>
+		            <th>&{'goals'}</th>
+		            <th>&{'goalsdiff'}</th>
+		            <th>&{'points'}</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        #{list items:bracket.teams, as:'team'}
+		            <tr>
+		                <td>${team_index} ${team.getPlaceTrend().raw()}</td>
+		                #{if team.flag != null}
+		                    <td><img class="flag" src="@{'/public/img/flags'}/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
+		                #{/if}
+		                #{else}
+		                    <td>${team.name}</td>
+		                #{/else}
+		                <td>${team.gamesPlayed}</td>
+		                <td>${team.gamesWon}</td>
+		                <td>${team.gamesDraw}</td>
+		                <td>${team.gamesLost}</td>
+		                <td>${team.goalsFor} : ${team.goalsAgainst}</td>
+		                <td>${team.goalsDiff}</td>
+		                <td>${team.points}</td>
+		            </tr>
+		        #{/list}
+		    </tbody>
+		#{/list}
+		</table>
+	</div>
+</div>

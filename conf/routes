@@ -23,6 +23,7 @@ GET	    /admin/changeadmin/{userid}			admin.changeadmin
 GET	    /admin/deleteuser/{userid}			admin.deleteuser
 GET	    /admin/results/{number}				admin.results
 GET     /admin/runjob/{name}            	admin.runjob
+GET     /admin/jobstatus/{name}       		admin.jobstatus
 GET	    /users/show/{username}				users.show
 POST    /users/updatepicture/{picture}      users.updatepicture
 GET     /tournament/brackets            	tournament.brackets
