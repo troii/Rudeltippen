@@ -260,7 +260,9 @@ public class Admin extends Root implements AppConstants {
     @Transactional(readOnly=true)
     public static void tournament() {
     	List<Bracket> brackets = Bracket.findAll();
-        render(brackets);
+    	List<Game> games = Game.findAll();
+    	
+        render(brackets, games);
     }    
 
     @Transactional(readOnly=true)
