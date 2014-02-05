@@ -51,7 +51,7 @@
 					<th>&{'date'} - &{'time'}</th>
 					<th>&{'hometeam'}</th>
 					<th>&{'awayteam'}</th>
-					<th>&{'result'}</th>
+					<th>Webservice ID</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -80,17 +80,7 @@
 					#{else}
 						<td>${game.awayReferenceName()}</td>
 					#{/else}
-					#{if !game.ended}
-						<td>- : -</td>
-					#{/if}
-					#{else}
-						#{if game.overtime}
-							<td>${game.homeScoreOT} : ${game.awayScoreOT} (&{game.overtimeType})</td>
-						#{/if}
-						#{else}
-							<td>${game.homeScore} : ${game.awayScore}</td>
-						#{/else}
-					#{/else}
+					<td><a href="#" class="editable" data-type="text" data-pk="1" data-url="/ajax/updatewebservice/${game.id}" data-title="Enter Webservice ID">${game.webserviceID}</a></td>
 				</tr>
 			#{/list}	
 			</tbody>

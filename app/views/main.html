@@ -14,6 +14,7 @@
     <link href="@{'/public/img/touch-icon-iphone-retina.png'}" rel="apple-touch-icon" sizes="114x114" />
     <link href="@{'/public/img/touch-icon-ipad-retina.png'}" rel="apple-touch-icon" sizes="144x144" />   
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
+    #{if request.action == "Admin.tournament"}<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>#{/if}
     <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
   </head>
   <body>
@@ -145,6 +146,7 @@
     </div>
 	<script src="//code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript"></script>
+	#{if request.action == "Admin.tournament"}<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>#{/if}
     #{if request.action == "Users.show"}<script src="@{'/public/javascripts/canvasjs.min.js'}"></script>#{/if}
     <script>
 	    function helpify() {
@@ -175,6 +177,7 @@
 	        	$.blockUI({ message: '<h2>Calculating points...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
 	            setTimeout($.unblockUI, 60000); 
 	        }); 
+	        $('.editable').editable();
 	    });
     </script>
   </body>
