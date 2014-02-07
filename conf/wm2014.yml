@@ -6,42 +6,42 @@ models.Settings(appsettings):
 models.Bracket(a):
     name:           groupa
     number:         1
-    overridePlaces: false
+    updateble: true
     
 models.Bracket(b):
     name:           groupb
     number:         2
-    overridePlaces: false
+    updateble: true
     
 models.Bracket(c):
     name:           groupc
     number:         3
-    overridePlaces: false  
+    updateble: true  
     
 models.Bracket(d):
     name:           groupd
     number:         4
-    overridePlaces: false 
+    updateble: true 
     
 models.Bracket(e):
     name:           groupe
     number:         5
-    overridePlaces: false  
+    updateble: true  
     
 models.Bracket(f):
     name:           groupf
     number:         6
-    overridePlaces: false 
+    updateble: true 
     
 models.Bracket(g):
     name:           groupg
     number:         7
-    overridePlaces: false 
+    updateble: true 
     
 models.Bracket(h):
     name:           grouph
     number:         8
-    overridePlaces: false      
+    updateble: true      
 
 models.Team(bra):
     name:          brazil
@@ -387,6 +387,7 @@ models.Game(g1):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27028
 
 models.Game(g2):
@@ -397,6 +398,7 @@ models.Game(g2):
     playday: p1
     playoff: false
     ended: false
+    updateble: true
     webserviceID: 27029
 
 models.Game(g3):
@@ -407,6 +409,7 @@ models.Game(g3):
     playday: p1
     playoff: false
     ended: false
+    updateble: true
     webserviceID: 27030
 
 models.Game(g4):
@@ -417,6 +420,7 @@ models.Game(g4):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27031
 
 models.Game(g5):
@@ -427,6 +431,7 @@ models.Game(g5):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27032
 
 models.Game(g6):
@@ -437,6 +442,7 @@ models.Game(g6):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27033
 
 models.Game(g7):
@@ -447,6 +453,7 @@ models.Game(g7):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27034
 
 models.Game(g8):
@@ -457,6 +464,7 @@ models.Game(g8):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27035
 
 models.Game(g9):
@@ -467,6 +475,7 @@ models.Game(g9):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27036
 
 models.Game(g10):
@@ -477,6 +486,7 @@ models.Game(g10):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27037
 
 models.Game(g11):
@@ -487,6 +497,7 @@ models.Game(g11):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27038
 
 models.Game(g12):
@@ -497,6 +508,7 @@ models.Game(g12):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27039
 
 models.Game(g13):
@@ -507,6 +519,7 @@ models.Game(g13):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27040
 
 models.Game(g14):
@@ -517,6 +530,7 @@ models.Game(g14):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27041
 
 models.Game(g15):
@@ -527,6 +541,7 @@ models.Game(g15):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27042
 
 models.Game(g16):
@@ -537,6 +552,7 @@ models.Game(g16):
     playday: p1
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27043
 
 models.Game(g17):
@@ -547,6 +563,7 @@ models.Game(g17):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27044
 
 models.Game(g18):
@@ -557,6 +574,7 @@ models.Game(g18):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27045
 
 models.Game(g19):
@@ -567,6 +585,7 @@ models.Game(g19):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27046
 
 models.Game(g20):
@@ -577,6 +596,7 @@ models.Game(g20):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27047
 
 models.Game(g21):
@@ -587,6 +607,7 @@ models.Game(g21):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27048
 
 models.Game(g22):
@@ -597,6 +618,7 @@ models.Game(g22):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27049
 
 models.Game(g23):
@@ -607,6 +629,7 @@ models.Game(g23):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27050
 
 models.Game(g24):
@@ -617,6 +640,7 @@ models.Game(g24):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27051
 
 models.Game(g25):
@@ -627,6 +651,7 @@ models.Game(g25):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27052
 
 models.Game(g26):
@@ -637,6 +662,7 @@ models.Game(g26):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27053
 
 models.Game(g27):
@@ -647,6 +673,7 @@ models.Game(g27):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27054
 
 models.Game(g28):
@@ -657,6 +684,7 @@ models.Game(g28):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27055
 
 models.Game(g29):
@@ -667,6 +695,7 @@ models.Game(g29):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27056
 
 models.Game(g30):
@@ -677,6 +706,7 @@ models.Game(g30):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27057
 
 models.Game(g31):
@@ -687,6 +717,7 @@ models.Game(g31):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27058
 
 models.Game(g32):
@@ -697,6 +728,7 @@ models.Game(g32):
     playday: p2
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27059
 
 models.Game(g33):
@@ -707,6 +739,7 @@ models.Game(g33):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27061
 
 models.Game(g34):
@@ -717,6 +750,7 @@ models.Game(g34):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27062
 
 models.Game(g35):
@@ -727,6 +761,7 @@ models.Game(g35):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27063
 
 models.Game(g36):
@@ -737,6 +772,7 @@ models.Game(g36):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27064
 
 models.Game(g37):
@@ -747,6 +783,7 @@ models.Game(g37):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27065
 
 models.Game(g38):
@@ -757,6 +794,7 @@ models.Game(g38):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27066
 
 models.Game(g39):
@@ -767,6 +805,7 @@ models.Game(g39):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27067
 
 models.Game(g40):
@@ -777,6 +816,7 @@ models.Game(g40):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27068
 
 models.Game(g41):
@@ -787,6 +827,7 @@ models.Game(g41):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27069
 
 models.Game(g42):
@@ -797,6 +838,7 @@ models.Game(g42):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27070
 
 models.Game(g43):
@@ -807,6 +849,7 @@ models.Game(g43):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27071
 
 models.Game(g44):
@@ -817,6 +860,7 @@ models.Game(g44):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27072
 
 models.Game(g45):
@@ -827,6 +871,7 @@ models.Game(g45):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27073
 
 models.Game(g46):
@@ -837,6 +882,7 @@ models.Game(g46):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27074
 
 models.Game(g47):
@@ -847,6 +893,7 @@ models.Game(g47):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27075
 
 models.Game(g48):
@@ -857,6 +904,7 @@ models.Game(g48):
     playday: p3
     playoff: false
     ended: false
+    updateble: true    
     webserviceID: 27076
     
 models.Game(g49):
@@ -867,6 +915,7 @@ models.Game(g49):
     awayReference: B-2-2
     playoff:       true
     ended:         false
+    updateble: true    
 
 models.Game(g50):
     number:    50
@@ -876,6 +925,7 @@ models.Game(g50):
     awayReference: B-4-2
     playoff:       true
     ended:         false
+    updateble: true
     
 models.Game(g51):
     number:    51
@@ -885,6 +935,7 @@ models.Game(g51):
     awayReference: B-1-2
     playoff:       true
     ended:         false
+    updateble: true    
     
 models.Game(g52):
     number:    52
@@ -894,6 +945,7 @@ models.Game(g52):
     awayReference: B-3-2
     playoff:       true
     ended:         false
+    updateble: true
     
 models.Game(g53):
     number:    53
@@ -903,6 +955,7 @@ models.Game(g53):
     awayReference: B-6-2
     playoff:       true
     ended:         false  
+    updateble: true    
     
 models.Game(g54):
     number:    54
@@ -912,6 +965,7 @@ models.Game(g54):
     awayReference: B-8-2
     playoff:       true
     ended:         false         
+    updateble: true    
     
 models.Game(g55):
     number:    55
@@ -921,6 +975,7 @@ models.Game(g55):
     awayReference: B-5-2
     playoff:       true
     ended:         false      
+    updateble: true
     
 models.Game(g56):
     number:    56
@@ -930,6 +985,7 @@ models.Game(g56):
     awayReference: B-7-2
     playoff:       true
     ended:         false
+    updateble: true
     
 models.Game(g57):
     number:    57
@@ -939,6 +995,7 @@ models.Game(g57):
     awayReference: G-50-W
     playoff:       true
     ended:         false       
+    updateble: true
     
 models.Game(g58):
     number:    58
@@ -948,6 +1005,7 @@ models.Game(g58):
     awayReference: G-54-W
     playoff:       true
     ended:         false   
+    updateble: true
     
 models.Game(g59):
     number:    59
@@ -957,6 +1015,7 @@ models.Game(g59):
     awayReference: G-52-W
     playoff:       true
     ended:         false  
+    updateble: true    
     
 models.Game(g60):
     number:    60
@@ -966,6 +1025,7 @@ models.Game(g60):
     awayReference: G-56-W
     playoff:       true
     ended:         false   
+    updateble: true    
     
 models.Game(g61):
     number:    61
@@ -975,6 +1035,7 @@ models.Game(g61):
     awayReference: G-58-W
     playoff:       true
     ended:         false
+    updateble: true    
     
 models.Game(g62):
     number:    62
@@ -984,6 +1045,7 @@ models.Game(g62):
     awayReference: G-60-W
     playoff:       true
     ended:         false 
+    updateble: true    
     
 models.Game(g63):
     number:    63
@@ -993,6 +1055,7 @@ models.Game(g63):
     awayReference: G-62-L
     playoff:       true
     ended:         false 
+    updateble: true    
     
 models.Game(g64):
     number:    64
@@ -1002,6 +1065,7 @@ models.Game(g64):
     awayReference: G-62-W
     playoff:       true
     ended:         false
+    updateble: true
 
 models.Extra(b1):
    question:        WhowillbeworldChampion

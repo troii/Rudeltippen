@@ -12,10 +12,7 @@ public class Settings extends Model {
 	private String appSalt;
 	private String appName;
 	private String gameName;
-	
-	@Lob
-	private String trackingcode;
-	
+
 	private int pointsGameWin;
 	private int pointsGameDraw;
 	private int pointsTip;
@@ -29,7 +26,7 @@ public class Settings extends Model {
 	private boolean playoffs;
 	private boolean countFinalResult;
 	private boolean enableRegistration;
-	
+
 	public String getAppSalt() {
 		return appSalt;
 	}
@@ -148,13 +145,5 @@ public class Settings extends Model {
 
 	public void setAppName(final String appName) {
 		this.appName = appName;
-	}
-
-	public String getTrackingcode() {
-		return trackingcode;
-	}
-
-	public void setTrackingcode(final String trackingcode) {
-		this.trackingcode = trackingcode;
 	}
 }

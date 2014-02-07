@@ -11,7 +11,7 @@
 		#{list items:brackets, as:'bracket'}
 		    <thead>
 		        <tr>
-		            <th colspan="9"><h2>&{bracket.name}</h2></th>
+		            <th colspan="9"><h2>&{bracket.name}</h2><input type="checkbox" data-id="${bracket.id}" class="" #{if bracket.updateble}checked#{/if}/>&nbsp;&nbsp;Auto calculation</th>
 		        </tr>
 		        <tr>
 		            <th>#</th>
@@ -60,6 +60,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Auto update</th>
 					<th>&{'date'} - &{'time'}</th>
 					<th>&{'hometeam'}</th>
 					<th>&{'awayteam'}</th>
@@ -69,6 +70,7 @@
 			<tbody>
 			#{list items:games, as:'game'}
 				<tr>
+					<td><input type="checkbox" data-id="${game.id}" class="" #{if game.updateble}checked#{/if}/></td>
 					<td><a href="#" class="editable" data-type="datetime" data-url="/ajax/game/kickoff/${team.id}" title="Select new date and time">${game.kickoff.formatted()}</td>
 					#{if game.homeTeam != null}
 						#{if game.homeTeam.flag != null}

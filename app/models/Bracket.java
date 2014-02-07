@@ -27,7 +27,7 @@ public class Bracket extends Model{
 	@Column(nullable=false)
 	private int number;
 
-	private boolean override;
+	private boolean updateble;
 
 	public String getName() {
 		return name;
@@ -53,20 +53,20 @@ public class Bracket extends Model{
 		this.number = number;
 	}
 
-	public boolean isOverride() {
-		return override;
-	}
-
-	public void setOverride(final boolean override) {
-		this.override = override;
-	}
-
 	public List<Game> getGames() {
 		return games;
 	}
 
 	public void setGames(final List<Game> games) {
 		this.games = games;
+	}
+
+	public boolean isUpdateble() {
+		return updateble;
+	}
+
+	public void setUpdateble(boolean updateble) {
+		this.updateble = updateble;
 	}
 
 	public boolean allGamesEnded() {
