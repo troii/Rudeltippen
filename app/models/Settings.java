@@ -1,7 +1,7 @@
 package models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import play.db.jpa.Model;
@@ -9,23 +9,26 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="rudeltippen_settings")
 public class Settings extends Model {
-	private String appSalt;//No
-	private String appName;//No
-	private String gameName;//Yes
+	private String appSalt;
+	private String appName;
+	private String gameName;
 	
-	private int pointsGameWin;//No
-	private int pointsGameDraw;//No
-	private int pointsTip;//Yes
-	private int pointsTipDiff;//Yes
-	private int pointsTipTrend;//Yes
-	private int minutesBeforeTip;//Yes
-	private int numPrePlayoffGames;//No
-	private int numPlayoffTeams;//No
+	@Lob
+	private String trackingcode;
+	
+	private int pointsGameWin;
+	private int pointsGameDraw;
+	private int pointsTip;
+	private int pointsTipDiff;
+	private int pointsTipTrend;
+	private int minutesBeforeTip;
+	private int numPrePlayoffGames;
+	private int numPlayoffTeams;
 
-	private boolean informOnNewTipper;//Yes
-	private boolean playoffs;//No
-	private boolean countFinalResult;//Yes
-	private boolean enableRegistration;//Yes
+	private boolean informOnNewTipper;
+	private boolean playoffs;
+	private boolean countFinalResult;
+	private boolean enableRegistration;
 	
 	public String getAppSalt() {
 		return appSalt;
@@ -145,5 +148,13 @@ public class Settings extends Model {
 
 	public void setAppName(final String appName) {
 		this.appName = appName;
+	}
+
+	public String getTrackingcode() {
+		return trackingcode;
+	}
+
+	public void setTrackingcode(final String trackingcode) {
+		this.trackingcode = trackingcode;
 	}
 }

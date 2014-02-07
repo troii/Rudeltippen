@@ -20,6 +20,7 @@ import models.Playday;
 import models.Settings;
 import models.User;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
@@ -100,7 +101,7 @@ public class Admin extends Root implements AppConstants {
         redirect("/admin/results/" + playday);
     }
 
-    public static void updatesettings (final String name, final int pointsTip, final int pointsTipDiff, final int pointsTipTrend, final int minutesBeforeTip, final boolean countFinalResult, final boolean informOnNewTipper, final boolean enableRegistration) {
+    public static void updatesettings (final String name, final int pointsTip, final int pointsTipDiff, final int pointsTipTrend, final int minutesBeforeTip, final boolean countFinalResult, final boolean informOnNewTipper, final boolean enableRegistration, final String trackingcode) {
         if (ValidationUtils.verifyAuthenticity()) { checkAuthenticity(); }
 
         validation.range(pointsTip, 0, 99);
@@ -117,6 +118,7 @@ public class Admin extends Root implements AppConstants {
             settings.setInformOnNewTipper(informOnNewTipper);
             settings.setCountFinalResult(countFinalResult);
             settings.setEnableRegistration(enableRegistration);
+            settings.setTrackingcode(StringEscapeUtils.escapeHtml(trackingcode));
             settings._save();
 
             flash.put("infomessage", Messages.get("setup.saved"));
@@ -140,6 +142,7 @@ public class Admin extends Root implements AppConstants {
         flash.put("informOnNewTipper", settings.isInformOnNewTipper());
         flash.put("countFinalResult", settings.isCountFinalResult());
         flash.put("enableRegistration", settings.isEnableRegistration());
+        flash.put("trackingcode", settings.getTrackingcode());
 
         render(settings);
     }

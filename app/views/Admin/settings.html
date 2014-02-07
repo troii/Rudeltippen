@@ -50,6 +50,15 @@
 	            #{/ifError}
 	        </div>
 	    </div>
+	    <div class="form-group #{ifError 'trackingcode'} error #{/ifError}">
+	        <label for="labelTrackingcode">Tracking code</label>
+	        <div class="controls">
+				<textarea class="form-control" name="trackingcode" rows="10">#{if flash.trackingcode != null}${flash.trackingcode.raw()}#{/if}</textarea>
+	            #{ifError 'trackingcode'}
+	                <p class="help-block">#{error 'trackingcode' /}</p>
+	            #{/ifError}
+	        </div>
+	    </div>	    
 	    <div class="form-group">
 	        <label for="input01" class="control-label">&{'setup.countfinalresult'}</label>
 	        <div class="controls">

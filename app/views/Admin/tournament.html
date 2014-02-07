@@ -1,5 +1,11 @@
 #{extends 'main.html' /}
 <div class="row">
+	<div class="bs-callout bs-callout-info">
+    	<h2>Editing brackets</h2>
+    	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
+  	</div>
+</div>
+<div class="row">
 	<div class="table-responsive">
 		<table class="table">
 		#{list items:brackets, as:'bracket'}
@@ -22,7 +28,7 @@
 		    <tbody>
 		        #{list items:bracket.teams, as:'team'}
 		            <tr>
-		                <td>${team_index} ${team.getPlaceTrend().raw()}</td>
+		                <td><a href="#" class="editable" data-type="text" data-pk="1" data-url="/ajax/bracket/place/${team.id}" data-title="Enter new place">${team.place} ${team.getPlaceTrend().raw()}</td>
 		                #{if team.flag != null}
 		                    <td><img class="flag" src="@{'/public/img/flags'}/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
 		                #{/if}
@@ -44,6 +50,12 @@
 	</div>
 </div>
 <div class="row">
+	<div class="bs-callout bs-callout-info">
+    	<h2>Editing games</h2>
+    	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
+  	</div>
+</div>
+<div class="row">
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
@@ -57,7 +69,7 @@
 			<tbody>
 			#{list items:games, as:'game'}
 				<tr>
-					<td>${game.kickoff.formatted()}</td>
+					<td><a href="#" class="editable" data-type="datetime" data-url="/ajax/game/kickoff/${team.id}" title="Select new date and time">${game.kickoff.formatted()}</td>
 					#{if game.homeTeam != null}
 						#{if game.homeTeam.flag != null}
 							<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
@@ -80,7 +92,7 @@
 					#{else}
 						<td>${game.awayReferenceName()}</td>
 					#{/else}
-					<td><a href="#" class="editable" data-type="text" data-pk="1" data-url="/ajax/updatewebservice/${game.id}" data-title="Enter Webservice ID">${game.webserviceID}</a></td>
+					<td><a href="#" class="editable" data-type="text" data-url="/ajax/game/webserviceid/${game.id}" data-title="Enter Webservice ID">${game.webserviceID}</a></td>
 				</tr>
 			#{/list}	
 			</tbody>

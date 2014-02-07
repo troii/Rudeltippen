@@ -29,7 +29,9 @@ POST    /users/updatepicture/{picture}      users.updatepicture
 GET     /tournament/brackets            	tournament.brackets
 GET	    /tournament/playday/{number}		tournament.playday
 GET     /system/updatekickoff/{number}  	system.updatekickoff
-POST    /ajax/updatewebservice/{gameid}		ajax.updatewebservice
+POST    /ajax/game/webserviceid/{gameid}	ajax.webserviceid
+POST    /ajax/game/kickoff/{gameid}			ajax.kickoff
+POST    /ajax/bracket/place/{teamid}		ajax.place
 *     	/{controller}/{action}          	{controller}.{action}
 
 # Messages extension
