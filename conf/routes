@@ -32,6 +32,8 @@ GET     /system/updatekickoff/{number}  	system.updatekickoff
 POST    /ajax/game/webserviceid/{gameid}	ajax.webserviceid
 POST    /ajax/game/kickoff/{gameid}			ajax.kickoff
 POST    /ajax/bracket/place/{teamid}		ajax.place
+POST    /ajax/bracket/updateble/{bracketid}	ajax.updateblegame
+POST    /ajax/game/updateble/{bracketid}	ajax.updateblebracket
 *     	/{controller}/{action}          	{controller}.{action}
 
 # Messages extension
