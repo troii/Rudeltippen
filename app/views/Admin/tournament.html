@@ -11,7 +11,7 @@
 		#{list items:brackets, as:'bracket'}
 		    <thead>
 		        <tr>
-		            <th colspan="9"><h2>&{bracket.name}</h2><a href="#" class="editable editable-click" data-type="select" data-pk="${bracket.id}" data-url="/ajax/bracket/updateable/${bracket.id}" title="Change updateble">${bracket.updateble}</a></th>
+		            <th colspan="9"><h2>&{bracket.name}</h2>Automatische Berechnung&nbsp;&nbsp;<input type="checkbox" title="first tooltip" value="${bracket.updateble}" class="updateable" data-url="/ajax/bracket/updateble/${bracket.id}" #{if bracket.updateble}checked#{/if} /></th>
 		        </tr>
 		        <tr>
 		            <th>#</th>
@@ -70,7 +70,7 @@
 			<tbody>
 			#{list items:games, as:'game'}
 				<tr>
-					<td><a href="#" class="editable editable-click" data-type="select" data-pk="${game.id}" data-url="/ajax/game/updateable/${game.id}" title="Change updateble">${game.updateble}</a></td>
+					<td><input type="checkbox" value="${game.updateble}" class="updateable" data-url="/ajax/game/updateble/${game.id}" #{if game.updateble}checked#{/if} /></td>
 					<td><a href="#" class="editable" data-type="datetime" data-format="dd.mm.yyyy - hh:ii" data-pk="${game.id}" data-url="/ajax/game/kickoff/${game.id}" title="Select new date and time">${game.kickoff.formatted()}</a></td>
 					#{if game.homeTeam != null}
 						#{if game.homeTeam.flag != null}

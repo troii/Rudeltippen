@@ -71,7 +71,9 @@ public class Ajax extends Controller {
 	public static void updateblegame(final long gameid) {
 		Game game = Game.findById(gameid);
 		if (game != null) {
-			
+			game.setUpdateble(!game.isUpdateble());
+			game._save();
+			ok();
 		}
 		badRequest();
 	}
@@ -79,7 +81,9 @@ public class Ajax extends Controller {
 	public static void updateblebracket(final long bracketid) {
 		Bracket bracket = Bracket.findById(bracketid);
 		if (bracket != null) {
-			
+			bracket.setUpdateble(!bracket.isUpdateble());
+			bracket._save();
+			ok();
 		}
 		badRequest();
 	}

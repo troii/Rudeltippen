@@ -395,7 +395,7 @@ public class AppUtils implements AppConstants {
 	 * Sets the places of the teams in all brackets
 	 */
 	private static void setTeamPlaces() {
-		final List<Bracket> brackets = Bracket.find("byOverride", false).fetch();
+		final List<Bracket> brackets = Bracket.find("byUpdateble", true).fetch();
 		for (final Bracket bracket : brackets) {
 			final List<Team> teams = Team.find("SELECT t FROM Team t WHERE bracket_id = ? ORDER BY points DESC, goalsDiff DESC, goalsFor DESC", bracket.getId()).fetch();
 			int place = 1;

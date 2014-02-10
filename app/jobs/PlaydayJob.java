@@ -39,7 +39,7 @@ public class PlaydayJob extends AppJob{
 	                    final List<Game> games = playday.getGames();
 	                    for (final Game game : games) {
 	                        final String matchID = game.getWebserviceID();
-	                        if (StringUtils.isNotBlank(matchID)) {
+	                        if (StringUtils.isNotBlank(matchID) && game.isUpdateble()) {
 	                            final Document document = WSUtils.getDocumentFromWebService(matchID);
 	                            final Date kickoff = SetupUtils.getKickoffFromDocument(document);
 	                            final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
