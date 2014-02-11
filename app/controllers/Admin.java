@@ -20,7 +20,6 @@ import models.Playday;
 import models.Settings;
 import models.User;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
@@ -297,5 +296,10 @@ public class Admin extends Root implements AppConstants {
 			abstractJob._save();
 		}
 		jobs();
+	}
+	
+	public static void calculations() {
+		AppUtils.calculations();
+		tournament();
 	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import models.Bracket;
 import models.Pagination;
 import models.Playday;
-import models.User;
 import play.db.jpa.Transactional;
 import play.mvc.With;
 import utils.ViewUtils;
@@ -23,5 +22,9 @@ public class Tournament extends Root {
 		final Playday playday = Playday.find("byNumber", pagination.getNumberAsInt()).first();
 
 		render(playday, pagination);
+	}
+	
+	public static void bracket() {
+		render();
 	}
 }

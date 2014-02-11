@@ -5,10 +5,6 @@ import java.util.List;
 import models.Game;
 import models.GameTip;
 import models.User;
-
-import org.apache.commons.lang.StringUtils;
-
-import play.Play;
 import play.i18n.Messages;
 
 public class NotificationUtils {
@@ -50,7 +46,7 @@ public class NotificationUtils {
     }
 
     /**
-     * Sends notification to twitter and every user who wants to be informed on new results
+     * Sends notification to every user who wants to be informed on new results
      * @param game The game object
      */
     public static void sendNotfications(final Game game) {

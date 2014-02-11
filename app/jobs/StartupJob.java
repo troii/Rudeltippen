@@ -10,7 +10,7 @@ import play.jobs.OnApplicationStart;
 public class StartupJob extends AppJob{
 	
     public StartupJob() {
-        this.setDescription("Loades the Jobs which are active or inactive");
+        this.setDescription("Loads the Jobs which are active or inactive");
         this.setExecuted("Runs at application start");
     }
 	
@@ -23,7 +23,6 @@ public class StartupJob extends AppJob{
 		jobNames.add("ReminderJob");
 		jobNames.add("ResultsJob");
 		jobNames.add("StandingsJob");
-		jobNames.add("StatisticsJob");	
 		
 		for (String jobName : jobNames) {
 			AbstractJob abstractJob = AbstractJob.find("byName", jobName).first();

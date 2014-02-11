@@ -3,6 +3,7 @@
 	<div class="bs-callout bs-callout-info">
     	<h2>Editing brackets</h2>
     	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
+  		<a href="/admin/calculations" class="btn btn-primary active" id="fat-btn-loading" role="button">Calculations</a>
   	</div>
 </div>
 <div class="row">
@@ -28,7 +29,7 @@
 		    <tbody>
 		        #{list items:bracket.teams, as:'team'}
 		            <tr>
-		                <td><a href="#" class="editable" data-type="text" data-pk="${team.id}" data-url="/ajax/bracket/place/${team.id}" data-title="Enter new place">${team.place} ${team.getPlaceTrend().raw()}</td>
+		                <td><a href="#" class="editable" data-type="text" data-pk="${team.id}" data-url="/ajax/bracket/place/${team.id}" data-title="Enter new place">${team.place}</td>
 		                #{if team.flag != null}
 		                    <td><img class="flag" src="@{'/public/img/flags'}/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
 		                #{/if}

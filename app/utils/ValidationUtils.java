@@ -71,7 +71,7 @@ public class ValidationUtils implements AppConstants{
     }
 
     /**
-     * Checks if given homeScore and awayScore is castable to string and between 0 and 99
+     * Checks if given homeScore and awayScore is casteble to string and between 0 and 99
      * 
      * @param homeScore The homeScore to check
      * @param awayScore The awayScore to check

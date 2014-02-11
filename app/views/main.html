@@ -18,7 +18,10 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <link href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}" rel="stylesheet"/>
     #{/if}
-    <link href="@{'/public/stylesheets/additional.css'}" rel="stylesheet">
+    #{if request.action == "Tournament.bracket"}
+    <link href="@{'/public/stylesheets/bracket.min.css'}" rel="stylesheet"/>
+    #{/if}    
+    <link href="@{'/public/stylesheets/additional.min.css'}" rel="stylesheet">
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -152,8 +155,10 @@
 	#{if request.action == "Admin.tournament"}
 	<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}"></script>
+	<script src="@{'/public/javascripts/blockUI.min.js'}"></script>
 	#{/if}
     #{if request.action == "Users.show"}<script src="@{'/public/javascripts/canvasjs.min.js'}"></script>#{/if}
+    #{if request.action == "Tournament.bracket"}<script src="@{'/public/javascripts/bracket.min.js'}"></script>#{/if}
     <script>
 	    function helpify() {
 	    	$('.btn-success').click(function() {
@@ -179,8 +184,8 @@
 	    			window.scrollTo(0, 1);
 	    		}, 0);
 	    	});
-	        $('#fat-btn-loading').click(function() { 
-	        	$.blockUI({ message: '<h2>Calculating points...<br/>This may take a moment!<h2><img src="/public/img/ajax-loader.gif" />' });
+	        $('#fat-btn-loading').click(function() {
+	        	$.blockUI({ message: '<h2>Calculating...<br/>This may take a moment!</h2>'});
 	            setTimeout($.unblockUI, 60000); 
 	        }); 
 	        #{if request.action == "Admin.tournament"}
@@ -188,7 +193,7 @@
 	        	$(".updateable").click(function() {
 	        		var url = $(this).attr("data-url");
 	        		if (url != null) {
-		        		$.get(url);	 
+		        		$.get(url);
 	        		}
 	        	});
 	        #{/if}

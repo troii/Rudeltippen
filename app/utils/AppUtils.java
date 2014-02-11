@@ -49,7 +49,7 @@ public class AppUtils implements AppConstants {
 	}
 
 	/**
-	 * Hashes a given clear-text password with a given salt using 500.000 rounds
+	 * Hashes a given clear-text password with a given salt using 100000 rounds
 	 *
 	 * @param userpass The password
 	 * @param usersalt The salt
@@ -160,6 +160,34 @@ public class AppUtils implements AppConstants {
 		setUserPlaces();
 		setPlayoffTeams();
 		setCurrentPlayday();
+		calculateStatistics();
+	}
+
+	/**
+	 * Calculates the statistics for all playdays
+	 */
+	private static void calculateStatistics() {
+		 final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
+         final List<User> users = AppUtils.getAllActiveUsers();
+         for (final Playday playday : playdays) {
+             if (playday.allGamesEnded()) {
+                 final Map<String, Integer> scores = StatisticUtils.getScores(playday);
+                 StatisticUtils.setPlaydayStatistics(playday, scores);
+
+                 for (final User user : users) {
+                	 StatisticUtils.setPlaydayPoints(playday, user);
+                	 StatisticUtils.setAscendingPlaydayPoints(playday, user);
+                 }
+
+                 StatisticUtils.setPlaydayPlaces(playday);
+                 StatisticUtils.setGameTipStatistics(playday);
+                 StatisticUtils.setGameStatistic(playday);
+             }
+         }
+
+         for (final User user : users) {
+        	 StatisticUtils.setResultStatistic(user);
+         }		
 	}
 
 	/**
@@ -317,8 +345,6 @@ public class AppUtils implements AppConstants {
 			team.setGoalsAgainst(goalsAgainst);
 			team.setGoalsDiff(goalsFor - goalsAgainst);
 			team._save();
-			
-			flushAndClear();
 		}
 	}
 
@@ -404,8 +430,6 @@ public class AppUtils implements AppConstants {
 				team.setPlace(place);
 				team._save();
 				place++;
-				
-				flushAndClear();
 			}
 		}
 	}
