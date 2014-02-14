@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="rudeltippen" default="zip" basedir=".">
+	<property name="project-name" value="${ant.project.name}" />
+
+	<target name="clean">
+		<delete file="${project-name}.zip" />
+	</target>
+
+	<target name="zip" depends="clean">
+		<zip destfile="${project-name}.zip" basedir="." includes="conf/**,app/**,public/**" />
+	</target>
+
+</project>

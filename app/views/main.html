@@ -148,18 +148,20 @@
     	</div>
     </div>
 	<script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript"></script>
-    <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
+    <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript" defer="defer"></script>
 	#{if request.action == "Admin.tournament"}
-	<script src="@{'/public/javascripts/bootstrap-editable.min.js'}" type="text/javascript"></script>
-	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript"></script>
-	<script src="@{'/public/javascripts/blockUI.min.js'}" type="text/javascript"></script>
+	<script src="@{'/public/javascripts/bootstrap-editable.min.js'}" type="text/javascript" defer="defer"></script>
+	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript" defer="defer"></script>
+	<script src="@{'/public/javascripts/blockUI.min.js'}" type="text/javascript" defer="defer"></script>
 	#{/if}
-    #{if request.action == "Users.show"}<script src="@{'/public/javascripts/canvasjs.min.js'}" type="text/javascript"></script>#{/if}
-    <script>
+    #{if request.action == "Users.show"}
+    <script src="@{'/public/javascripts/canvasjs.min.js'}" type="text/javascript" defer="defer"></script>
+    #{/if}
+    <script type="text/javascript">
 	    function helpify() {
 	    	$('.btn-success').click(function() {
-	    		var btn = $(this)
-	    		btn.button('loading')
+	    		var btn = $(this);
+	    		btn.button('loading');
 	    	});
 	    	$('img').on().tooltip();
 	    	$('.admintooltip').on().tooltip();
