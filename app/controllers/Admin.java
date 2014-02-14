@@ -23,7 +23,6 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 
 import play.Logger;
-import play.db.jpa.NoTransaction;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.jobs.Job;
@@ -251,8 +250,8 @@ public class Admin extends Root implements AppConstants {
 		}
 		jobs();
 	}
-
-	@NoTransaction
+	
+	@Transactional(readOnly=true)
 	public static void rudelmail() {
 		render();
 	}

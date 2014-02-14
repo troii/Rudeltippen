@@ -13,15 +13,12 @@
     <link href="@{'/public/img/touch-icon-ipad.png'}" rel="apple-touch-icon" sizes="72x72" />
     <link href="@{'/public/img/touch-icon-iphone-retina.png'}" rel="apple-touch-icon" sizes="114x114" />
     <link href="@{'/public/img/touch-icon-ipad-retina.png'}" rel="apple-touch-icon" sizes="144x144" />   
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <link href="@{'/public/stylesheets/bootstrap.min.css'}" rel="stylesheet">
     #{if request.action == "Admin.tournament"}
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <link href="@{'/public/stylesheets/bootstrap-editable.min.css'}" rel="stylesheet"/>
     <link href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}" rel="stylesheet"/>
     #{/if}
-    #{if request.action == "Tournament.bracket"}
-    <link href="@{'/public/stylesheets/bracket.min.css'}" rel="stylesheet"/>
-    #{/if}    
-    <link href="@{'/public/stylesheets/additional.min.css'}" rel="stylesheet">
+    <link href="@{'/public/stylesheets/additional.min.css'}" rel="stylesheet"/>
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -150,15 +147,14 @@
     		<p><a href="https://github.com/svenkubiak/rudeltippen" target="_blank">Rudeltippen 2.2.0</a> | <a href="#" data-toggle="modal" data-target="#modalCredits">Credits</a> | <a href="https://flattr.com/thing/1628177/Rudeltippen" target="_blank">Flattr</a></p>
     	</div>
     </div>
-	<script src="//code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript"></script>
+    <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
 	#{if request.action == "Admin.tournament"}
-	<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}"></script>
-	<script src="@{'/public/javascripts/blockUI.min.js'}"></script>
+	<script src="@{'/public/javascripts/bootstrap-editable.min.js'}" type="text/javascript"></script>
+	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript"></script>
+	<script src="@{'/public/javascripts/blockUI.min.js'}" type="text/javascript"></script>
 	#{/if}
-    #{if request.action == "Users.show"}<script src="@{'/public/javascripts/canvasjs.min.js'}"></script>#{/if}
-    #{if request.action == "Tournament.bracket"}<script src="@{'/public/javascripts/bracket.min.js'}"></script>#{/if}
+    #{if request.action == "Users.show"}<script src="@{'/public/javascripts/canvasjs.min.js'}" type="text/javascript"></script>#{/if}
     <script>
 	    function helpify() {
 	    	$('.btn-success').click(function() {

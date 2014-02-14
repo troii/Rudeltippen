@@ -13,7 +13,7 @@
     <link href="@{'/public/img/touch-icon-ipad.png'}" rel="apple-touch-icon" sizes="72x72" />
     <link href="@{'/public/img/touch-icon-iphone-retina.png'}" rel="apple-touch-icon" sizes="114x114" />
     <link href="@{'/public/img/touch-icon-ipad-retina.png'}" rel="apple-touch-icon" sizes="144x144" />   
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="@{'/public/stylesheets/bootstrap.min.css'}" rel="stylesheet">
     <style type="text/css">
 		.colorgraph {
 		  height: 5px;
@@ -41,8 +41,8 @@
   	<div class="container">
 		#{doLayout /}
 	</div>
-	<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="@{'/public/javascripts/jquery.min.js'}"></script>
+    <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
     <script type="text/javascript">
     $(function(){
         $('.button-checkbox').each(function(){
