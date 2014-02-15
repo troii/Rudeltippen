@@ -17,7 +17,7 @@
     #{if request.action == "Admin.tournament"}
     <link href="@{'/public/stylesheets/bootstrap-editable.min.css'}" rel="stylesheet"/>
     <link href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}" rel="stylesheet"/>
-    <link href="@{'/public/stylesheets/iosOverlay.css'}" rel="stylesheet"/>
+    <link href="@{'/public/stylesheets/overlay.min.css'}" rel="stylesheet"/>
     #{/if}
     <link href="@{'/public/stylesheets/additional.min.css'}" rel="stylesheet"/>
   </head>
@@ -43,7 +43,7 @@
                 <li><a href="@{tournament.playday()}/${currentPlayday.number}">Spieltage</a></li>
               </ul>
             </li>
-            <li #{if request.action == "Overview.playday" || request.action == "Overview.extras" || request.action == "Application.statistics"} class="active dropdown" #{/if} #{else} class="dropdown" #{/else}>
+            <li #{if request.action == "Overview.playday" || request.action == "Overview.extras" || request.action == "Tips.standings" || request.action == "Application.statistics"} class="active dropdown" #{/if} #{else} class="dropdown" #{/else}>
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-tasks"></span>&nbsp;&nbsp;&{'overview'} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="@{overview.playday()}/${currentPlayday.number}">Spieltage</a></li>
@@ -152,7 +152,7 @@
 	<script src="@{'/public/javascripts/bootstrap-editable.min.js'}" type="text/javascript" defer="defer"></script>
 	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript" defer="defer"></script>
 	<script src="@{'/public/javascripts/blockUI.min.js'}" type="text/javascript" defer="defer"></script>
-    <script src="@{'/public/javascripts/iosOverlay.js'}" type="text/javascript" defer="defer"></script>
+    <script src="@{'/public/javascripts/overlay.min.js'}" type="text/javascript" defer="defer"></script>
 	#{/if}
     #{if request.action == "Users.show"}
     <script src="@{'/public/javascripts/canvasjs.min.js'}" type="text/javascript" defer="defer"></script>
@@ -187,7 +187,17 @@
 	            setTimeout($.unblockUI, 60000); 
 	        }); 
 	        #{if request.action == "Admin.tournament"}
-	        	$('.editable').editable();
+	        	$('.editable').editable(
+	        		{
+	        			success: function(response, newValue) {
+        					iosOverlay({
+			        			text: "Saved!",
+			        			duration: 2e3,
+			        			icon: "/public/img/check.png"
+			        		});
+	        			}	
+	        		}
+	        	);
 	        	$(".updateable").click(function() {
 	        		var url = $(this).attr("data-url");
 	        		if (url != null) {
@@ -205,7 +215,7 @@
 				        		duration: 2e3,
 				        		icon: "/public/img/cross.png"
 				        	});
-	        			 });
+	        			});
 	        		}
 	        	});
 	        #{/if}
