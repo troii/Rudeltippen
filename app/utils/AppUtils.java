@@ -896,7 +896,7 @@ public class AppUtils implements AppConstants {
 	 * 
 	 * @return True if initialized, false otherwise
 	 */
-	public static boolean rudeltippenIsInizialized() {
+	public static boolean appIsInizialized() {
 		return getSettings() != null ? true : false;
 	}
 

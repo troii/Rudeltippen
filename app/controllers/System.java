@@ -26,14 +26,14 @@ public class System extends Controller implements AppConstants {
 	}
 	
 	public static void setup() {
-		if (AppUtils.rudeltippenIsInizialized()) {
+		if (AppUtils.appIsInizialized()) {
 			redirect("/");
 		}
 		render();
 	}
 	
 	public static void init() {
-		if (!AppUtils.rudeltippenIsInizialized()) {
+		if (!AppUtils.appIsInizialized()) {
 			session.clear();
 			response.removeCookie("rememberme");
 
