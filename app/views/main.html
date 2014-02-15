@@ -17,6 +17,7 @@
     #{if request.action == "Admin.tournament"}
     <link href="@{'/public/stylesheets/bootstrap-editable.min.css'}" rel="stylesheet"/>
     <link href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}" rel="stylesheet"/>
+    <link href="@{'/public/stylesheets/iosOverlay.css'}" rel="stylesheet"/>
     #{/if}
     <link href="@{'/public/stylesheets/additional.min.css'}" rel="stylesheet"/>
   </head>
@@ -53,8 +54,6 @@
             </li>  
             <li #{if request.action == "Tips.playday" } class="active" #{/if}><a href="@{tips.playday()}/${currentPlayday.number}"><span class="glyphicon glyphicon-play-circle"></span>&nbsp;&nbsp;&{'tips'}</a></li> 
             <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;&{'rules'}</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
 	            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${connectedUser.username} <span class="caret"></span></a>
 	            <ul class="dropdown-menu">
@@ -153,6 +152,7 @@
 	<script src="@{'/public/javascripts/bootstrap-editable.min.js'}" type="text/javascript" defer="defer"></script>
 	<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript" defer="defer"></script>
 	<script src="@{'/public/javascripts/blockUI.min.js'}" type="text/javascript" defer="defer"></script>
+    <script src="@{'/public/javascripts/iosOverlay.js'}" type="text/javascript" defer="defer"></script>
 	#{/if}
     #{if request.action == "Users.show"}
     <script src="@{'/public/javascripts/canvasjs.min.js'}" type="text/javascript" defer="defer"></script>
@@ -191,7 +191,21 @@
 	        	$(".updateable").click(function() {
 	        		var url = $(this).attr("data-url");
 	        		if (url != null) {
-		        		$.get(url);
+	        			$.get(url)
+	        			.done(function() {
+	        				iosOverlay({
+				        		text: "Saved!",
+				        		duration: 2e3,
+				        		icon: "/public/img/check.png"
+				        	});
+	        			})
+	        			.fail(function() {
+	        				iosOverlay({
+				        		text: "Error!",
+				        		duration: 2e3,
+				        		icon: "/public/img/cross.png"
+				        	});
+	        			 });
 	        		}
 	        	});
 	        #{/if}
