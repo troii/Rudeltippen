@@ -14,9 +14,10 @@ Features in a Nutshell
 - Automatic results updates
 - Automatic tournament management
 - Automatic playing schedule updates
-- Responsive layout using Twitter Bootstrap 3
+- Mobile first layout based Twitter Bootstrap 3
 - Gravatar support
 - Multilingual
+- Scalable
 
 Requirements
 ------------------
@@ -30,21 +31,21 @@ Available Languages
 ------------------
 
 - German
-- English (incomplete)
+- English
 
 
 Installation guide
 ------------------
 
-This installation guide assumes that you already have JDK 1.7+ installed and have your database- and SMTP-credentials right beside you.
+This installation guide assumes that you already have JDK 1.7+ installed and that you have your database- and SMTP-credentials right beside you.
 
 ### Step 0
 
-Download and install [Play Framework 1.2.x][17]
+Download and install [Play Framework 1.2.7][17] on your server. Make sure, that your path to play is set as an environment variable.
 
 ### Step 1
 
-Download the [latest tagged version of Rudeltippen][14] and unzip to your INSTLLATIONFOLDER
+Download the [latest release of Rudeltippen][14] and unzip to your INSTLLATIONFOLDER
 
 ### Step 2
 
@@ -58,7 +59,7 @@ Set your Rudeltippen URL
 %prod.app.register.url=http://www.yourdomain.com
 ```
 
-Set the language for Rudeltippen (de or en)
+Set the default language for Rudeltippen (de or en)
 
 ```bash
 default.language=de
@@ -135,7 +136,7 @@ Username: admin
 Password: admin
 E-Mail: admin@foo.bar
 
-Changing of this credentials is mandatory!
+Changing of this credentials is mandatory! You can change your credentials under "My Profile".
 
 ### Step 6
 
@@ -205,19 +206,10 @@ Licence
 Rudeltippen is distributed under [Apache 2 licence][11]
 
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
-[2]: http://www.playframework.org/download
-[3]: http://demo.rudeltippen.de
-[4]: http://www.svenkubiak.de
 [5]: https://flattr.com/thing/1628177/Rudeltippen
-[6]: http://dev.svenkubiak.de/rudeltippen
-[7]: http://twitter.github.com/bootstrap/
-[8]: http://twitter.com/rudeltippen
-[9]: http://www.playframework.org/documentation/1.2.4/production
+[9]: http://www.playframework.com/documentation/1.2.7/production
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
 [12]: http://mail.google.com/
-[13]: https://picasaweb.google.com/108885060281225128504/Rudeltippen
 [14]: https://github.com/svenkubiak/Rudeltippen/tags
-[15]: http://bootswatch.com/
-[16]: http://technet.microsoft.com/de-de/sysinternals/bb896649.aspx
-[17]: http://www.playframework.org/documentation/1.2.5/install
+[17]: http://www.playframework.com/documentation/1.2.7/install
 [18]: http://pastebin.com/Aqby1atw 
