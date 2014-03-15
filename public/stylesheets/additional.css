@@ -8,7 +8,7 @@ body {
 }
 
 .connecteduser {
-    background-color: #EDEBE1;
+    background-color: #f6f6f6;
 }
 
 .form-actions {
@@ -54,8 +54,18 @@ hr.message-inner-separator
     background-color: #F4F8FA;
     border-color: #5BC0DE;
 }
+
 .bs-callout {
     border-left: 3px solid #5BC0DE;
     margin: 20px 0;
     padding: 10px;
+}
+
+.remodal-close:after {
+    content: "";
+}
+
+.input-small{
+	width: 45px;
+	text-align: center;
 }

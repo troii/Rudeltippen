@@ -1,35 +1,37 @@
 #{extends 'main.html' /}
 <div class="row">
-	<h3>&{'extratips'}</h3>
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					#{list items:extras, as:'extra'}
-						<th>&{extra.questionShort}</th>
-					#{/list}
-				</tr>
-			</thead>
-			<tbody>
-				#{list items:tips, as:'extraTips'}
-				<tr #{if extraTips.entrySet().key.username == [connectedUser.username]} class="connecteduser" #{/if}>
-					#{list items:extraTips.entrySet(), as:'user'}
-						#{if user.key.picture == null}
-							<td style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" /></a></td>
-						#{/if}
-						#{else}
-							<td style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
-						#{/else}
-							<td><br /><b><a href="@{users.show()}/${user.key.username}">${user.key.username}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
-						#{list items:user.value, as:'extraTip'}
-							<td>&{extraTip.getExtraTipAnswer()}${extraTip?.getExtraTipPoints()}</td>
+	<div class="col-md-12">
+	<legend>&{'extratips'}</legend>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						#{list items:extras, as:'extra'}
+							<th>&{extra.questionShort}</th>
 						#{/list}
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:tips, as:'extraTips'}
+					<tr #{if extraTips.entrySet().key.username == [connectedUser.username]} class="connecteduser" #{/if}>
+						#{list items:extraTips.entrySet(), as:'user'}
+							#{if user.key.picture == null}
+								<td style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="@{'/public/img/user_placeholder.gif'}" /></a></td>
+							#{/if}
+							#{else}
+								<td style="width: 60px;"><a href="@{users.show()}/${user.key.username}"><img src="${user.key.picture}" /></a></td>
+							#{/else}
+								<td><br /><b><a href="@{users.show()}/${user.key.username}">${user.key.username}</a></b><br /><small>&{'place'} ${user.key.place}, ${user.key.points} &{'points'}</small></td>
+							#{list items:user.value, as:'extraTip'}
+								<td>&{extraTip.getExtraTipAnswer()}${extraTip?.getExtraTipPoints()}</td>
+							#{/list}
+						#{/list}
+					</tr>
 					#{/list}
-				</tr>
-				#{/list}
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

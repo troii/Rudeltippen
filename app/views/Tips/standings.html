@@ -1,34 +1,37 @@
 #{extends 'main.html' /}
 <div class="row">
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>&{'place'}</th>
-					<th>&{'tipper'}</th>
-					<th>&{'username'}</th>
-					<th>&{'points'}</th>
-					<th>&{'extrapoints'}</th>
-					<th>&{'totalpoints'}</th>
-				</tr>
-			</thead>
-			<tbody>
-				#{list items:users, as:'user'}
-					<tr #{if user == connectedUser} class="connecteduser" #{/if}>
-						<td>${user_index} ${user.getPlaceTrend().raw()}</td>
-						#{if user.picture != null}
-							<td><a href="@{users.show()}/${user.username}"><img src="${user.picture}" /></a></td>
-						#{/if}
-						#{else}
-							<td><a href="@{users.show()}/${user.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
-						#{/else}
-						<td><b><a href="@{users.show()}/${user.username}">${user.username}</a></b></td>
-						<td>${user.tipPoints}</td>
-						<td>${user.extraPoints}</td>
-						<td><b>${user.points}</b></td>
+	<div class="col-md-12">
+		<legend>&{'standings'}</legend>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>&{'place'}</th>
+						<th>&{'tipper'}</th>
+						<th>&{'username'}</th>
+						<th>&{'points'}</th>
+						<th>&{'extrapoints'}</th>
+						<th>&{'totalpoints'}</th>
 					</tr>
-				 #{/list}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					#{list items:users, as:'user'}
+						<tr #{if user == connectedUser} class="connecteduser" #{/if}>
+							<td>${user_index} ${user.getPlaceTrend().raw()}</td>
+							#{if user.picture != null}
+								<td><a href="@{users.show()}/${user.username}"><img src="${user.picture}" /></a></td>
+							#{/if}
+							#{else}
+								<td><a href="@{users.show()}/${user.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+							#{/else}
+							<td><b><a href="@{users.show()}/${user.username}">${user.username}</a></b></td>
+							<td>${user.tipPoints}</td>
+							<td>${user.extraPoints}</td>
+							<td><b>${user.points}</b></td>
+						</tr>
+					 #{/list}
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

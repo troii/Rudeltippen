@@ -1,104 +1,112 @@
 #{extends 'main.html' /}
 <div class="row">
-	<div class="bs-callout bs-callout-info">
-    	<h2>Editing brackets</h2>
-    	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
-  		<a href="/admin/calculations" class="btn btn-primary active" id="fat-btn-loading" role="button">Calculations</a>
+	<div class="col-md-12">
+		<div class="bs-callout bs-callout-info">
+	    	<h2>Editing brackets</h2>
+	    	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
+	  		<a href="@{admin.calculations()}" class="btn btn-success active" id="fat-btn-loading" role="button"><span class="glyphicon glyphicon-repeat"></span> Neu berechnen</a>
+	  	</div>
   	</div>
 </div>
 <div class="row">
-	<div class="table-responsive">
-		<table class="table">
-		#{list items:brackets, as:'bracket'}
-		    <thead>
-		        <tr>
-		            <th colspan="9"><h2>&{bracket.name}</h2>Automatische Berechnung&nbsp;&nbsp;<input type="checkbox" title="first tooltip" value="${bracket.updateble}" class="updateable" data-url="/ajax/bracket/updateble/${bracket.id}" #{if bracket.updateble}checked#{/if} /></th>
-		        </tr>
-		        <tr>
-		            <th>#</th>
-		            <th>&{'team'}</th>
-		            <th>&{'games'}</th>
-		            <th>&{'gameswon'}</th>
-		            <th>&{'gamesdraw'}</th>
-		            <th>&{'gameslost'}</th>
-		            <th>&{'goals'}</th>
-		            <th>&{'goalsdiff'}</th>
-		            <th>&{'points'}</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        #{list items:bracket.teams, as:'team'}
-		            <tr>
-		                <td><a href="#" class="editable" data-type="text" data-pk="${team.id}" data-url="/ajax/bracket/place/${team.id}" data-title="Enter new place">${team.place}</td>
-		                #{if team.flag != null}
-		                    <td><img class="flag" src="@{'/public/img/flags'}/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
-		                #{/if}
-		                #{else}
-		                    <td>${team.name}</td>
-		                #{/else}
-		                <td>${team.gamesPlayed}</td>
-		                <td>${team.gamesWon}</td>
-		                <td>${team.gamesDraw}</td>
-		                <td>${team.gamesLost}</td>
-		                <td>${team.goalsFor} : ${team.goalsAgainst}</td>
-		                <td>${team.goalsDiff}</td>
-		                <td>${team.points}</td>
-		            </tr>
-		        #{/list}
-		    </tbody>
-		#{/list}
-		</table>
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table">
+			#{list items:brackets, as:'bracket'}
+			    <thead>
+			        <tr>
+			            <td colspan="9"><legend>&{bracket.name}</legend>Automatische Berechnung&nbsp;&nbsp;<input type="checkbox" title="first tooltip" value="${bracket.updateble}" class="updateable" data-url="/ajax/bracket/updateble/${bracket.id}" #{if bracket.updateble}checked#{/if} /></td>
+			        </tr>
+			        <tr>
+			            <th>#</th>
+			            <th>&{'team'}</th>
+			            <th>&{'games'}</th>
+			            <th>&{'gameswon'}</th>
+			            <th>&{'gamesdraw'}</th>
+			            <th>&{'gameslost'}</th>
+			            <th>&{'goals'}</th>
+			            <th>&{'goalsdiff'}</th>
+			            <th>&{'points'}</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        #{list items:bracket.teams, as:'team'}
+			            <tr>
+			                <td><a href="#" class="editable" data-type="text" data-pk="${team.id}" data-url="/ajax/bracket/place/${team.id}" data-title="Enter new place">${team.place}</td>
+			                #{if team.flag != null}
+			                    <td><img class="flag" src="@{'/public/img/flags'}/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
+			                #{/if}
+			                #{else}
+			                    <td>${team.name}</td>
+			                #{/else}
+			                <td>${team.gamesPlayed}</td>
+			                <td>${team.gamesWon}</td>
+			                <td>${team.gamesDraw}</td>
+			                <td>${team.gamesLost}</td>
+			                <td>${team.goalsFor} : ${team.goalsAgainst}</td>
+			                <td>${team.goalsDiff}</td>
+			                <td>${team.points}</td>
+			            </tr>
+			        #{/list}
+			    </tbody>
+			#{/list}
+			</table>
+		</div>
 	</div>
 </div>
 <div class="row">
-	<div class="bs-callout bs-callout-info">
-    	<h2>Editing games</h2>
-    	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
-  	</div>
+	<div class="col-md-12">
+		<div class="bs-callout bs-callout-info">
+	    	<h2>Editing games</h2>
+	    	<p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
+	  	</div>
+	  </div>
 </div>
 <div class="row">
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Auto update</th>
-					<th>&{'date'} - &{'time'}</th>
-					<th>&{'hometeam'}</th>
-					<th>&{'awayteam'}</th>
-					<th>Webservice ID</th>
-				</tr>
-			</thead>
-			<tbody>
-			#{list items:games, as:'game'}
-				<tr>
-					<td><input type="checkbox" value="${game.updateble}" class="updateable" data-url="/ajax/game/updateble/${game.id}" #{if game.updateble}checked#{/if} /></td>
-					<td><a href="#" class="editable" data-type="datetime" data-format="dd.mm.yyyy - hh:ii" data-pk="${game.id}" data-url="/ajax/game/kickoff/${game.id}" title="Select new date and time">${game.kickoff.formatted()}</a></td>
-					#{if game.homeTeam != null}
-						#{if game.homeTeam.flag != null}
-							<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Auto update</th>
+						<th>&{'date'} - &{'time'}</th>
+						<th>&{'hometeam'}</th>
+						<th>&{'awayteam'}</th>
+						<th>Webservice ID</th>
+					</tr>
+				</thead>
+				<tbody>
+				#{list items:games, as:'game'}
+					<tr>
+						<td><input type="checkbox" value="${game.updateble}" class="updateable" data-url="/ajax/game/updateble/${game.id}" #{if game.updateble}checked#{/if} /></td>
+						<td><a href="#" class="editable" data-type="datetime" data-format="dd.mm.yyyy - hh:ii" data-pk="${game.id}" data-url="/ajax/game/kickoff/${game.id}" title="Select new date and time">${game.kickoff.formatted()}</a></td>
+						#{if game.homeTeam != null}
+							#{if game.homeTeam.flag != null}
+								<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
+							#{/if}
+							#{else}
+								<td>&{game.homeTeam?.name}</td>
+							#{/else}
 						#{/if}
 						#{else}
-							<td>&{game.homeTeam?.name}</td>
+							<td>${game.homeReferenceName()}</td>
 						#{/else}
-					#{/if}
-					#{else}
-						<td>${game.homeReferenceName()}</td>
-					#{/else}
-					#{if game.awayTeam != null}
-						#{if game.awayTeam.flag != null}
-							<td><img class="flag" src="@{'/public/img/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
+						#{if game.awayTeam != null}
+							#{if game.awayTeam.flag != null}
+								<td><img class="flag" src="@{'/public/img/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
+							#{/if}
+							#{else}
+								<td>&{game.awayTeam?.name}</td>
+							#{/else}
 						#{/if}
 						#{else}
-							<td>&{game.awayTeam?.name}</td>
+							<td>${game.awayReferenceName()}</td>
 						#{/else}
-					#{/if}
-					#{else}
-						<td>${game.awayReferenceName()}</td>
-					#{/else}
-					<td><a href="#" class="editable" data-type="text" data-pk="${game.id}" data-url="/ajax/game/webserviceid/${game.id}" data-title="Enter Webservice ID">${game.webserviceID}</a></td>
-				</tr>
-			#{/list}	
-			</tbody>
-		</table>
+						<td><a href="#" class="editable" data-type="text" data-pk="${game.id}" data-url="/ajax/game/webserviceid/${game.id}" data-title="Enter Webservice ID">${game.webserviceID}</a></td>
+					</tr>
+				#{/list}	
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

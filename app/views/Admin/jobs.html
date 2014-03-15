@@ -1,40 +1,44 @@
 #{extends 'main.html' /}
 <div class="row">
-	<legend>Jobs</legend>
+	<div class="col-md-12">
+		<legend>Jobs</legend>
+	</div>
 </div>
 <div class="row">
-	<a href="@{admin.jobs()}"><span class="glyphicon glyphicon-repeat"></span> Aktualisieren</a>
-	<div class="table-responsive">
-		<table class="table table-stripes">
-		    <thead>
-		        <tr>
-		            <th>Name</th>
-		            <th>Geplant</th>
-		            <th>Beschreibung</th>
-		            <th>Letzte Ausf&uuml;hrung</th>
-		            <th>Status</th>
-		            <th>Aktiv</th>
-		            <th>Ausf&uuml;hren</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        #{list items:jobs, as:'job'}
-		            <tr>
-		                <td>${job.class.simpleName}</td>
-		                <td>${job.executed}</td>
-		                <td>${job.description}</td>
-		                <td>#{if job.lastRun !=0 }${job.lastRun.formatTimestamp()}#{/if}#{else}-#{/else}</td>
-		                <td>#{if job.lastRun !=0 }#{if job.wasError}Error#{/if}#{else}OK#{/else}#{/if}#{else}-#{/else}</td>
-		                #{if job.class.simpleName.getJobStatus()}
-		                	<td><a href="/admin/jobstatus/${job.class.simpleName}" data-toggle="tooltip" data-placement="top" title="Job ist aktiv" class="jobtooltip" onclick="return confirm('Change status of ${job.class.simpleName}?');"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
-		                #{/if}
-		                #{else}
-		               		<td><a href="/admin/jobstatus/${job.class.simpleName}" data-toggle="tooltip" data-placement="top" title="Job ist nicht aktiv" class="jobtooltip" onclick="return confirm('Change status of ${job.class.simpleName}?');"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
-		                #{/else}
-		                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');"><span class="glyphicon glyphicon-play-circle"></span></a></td>
-		            </tr>
-		         #{/list}
-		    </tbody>
-		</table>
+	<div class="col-md-12">
+		<a href="@{admin.jobs()}" class="btn btn-success active" id="fat-btn-loading" role="button"><span class="glyphicon glyphicon-repeat"></span> Aktualisieren</a>
+		<div class="table-responsive">
+			<table class="table table-stripes">
+			    <thead>
+			        <tr>
+			            <th>Name</th>
+			            <th>Geplant</th>
+			            <th>Beschreibung</th>
+			            <th>Letzte Ausf&uuml;hrung</th>
+			            <th>Status</th>
+			            <th>Aktiv</th>
+			            <th>Ausf&uuml;hren</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        #{list items:jobs, as:'job'}
+			            <tr>
+			                <td>${job.class.simpleName}</td>
+			                <td>${job.executed}</td>
+			                <td>${job.description}</td>
+			                <td>#{if job.lastRun !=0 }${job.lastRun.formatTimestamp()}#{/if}#{else}-#{/else}</td>
+			                <td>#{if job.lastRun !=0 }#{if job.wasError}Error#{/if}#{else}OK#{/else}#{/if}#{else}-#{/else}</td>
+			                #{if job.class.simpleName.getJobStatus()}
+			                	<td><a href="/admin/jobstatus/${job.class.simpleName}" data-toggle="tooltip" data-placement="top" title="Job ist aktiv" class="jobtooltip" onclick="return confirm('Change status of ${job.class.simpleName}?');"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+			                #{/if}
+			                #{else}
+			               		<td><a href="/admin/jobstatus/${job.class.simpleName}" data-toggle="tooltip" data-placement="top" title="Job ist nicht aktiv" class="jobtooltip" onclick="return confirm('Change status of ${job.class.simpleName}?');"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+			                #{/else}
+			                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');"><span class="glyphicon glyphicon-play-circle"></span></a></td>
+			            </tr>
+			         #{/list}
+			    </tbody>
+			</table>
+		</div>
 	</div>
 </div>

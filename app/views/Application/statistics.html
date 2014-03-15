@@ -1,74 +1,79 @@
 #{extends 'main.html' /}
 <div class="row">
-	<div class="panel panel-primary">
-	  <div class="panel-heading"><h3 class="panel-title">&{'playdayoverview'}</h3></div>
-	  <div class="panel-body">
-		<div class="table-responsive">
-        <table class="table">
-            <thead>
-                <th>Spieltag</th>
-                <th>Richtige Tipps</th>
-                <th>Richtige Differenzen</th>
-                <th>Richtige Tendenzen</th>
-                <th>Punkte Insgesamt</th>
-                <th>Punkte pro Spieler</th>
-            </thead>
-            #{list items:gameTipStatistics, as:'gameTipStatistic'}
-            <tr>
-                <td>${gameTipStatistic.playday.number}</td>
-                <td>${gameTipStatistic.correctTips}</td>
-                <td>${gameTipStatistic.correctDiffs}</td>
-                <td>${gameTipStatistic.correctTrends}</td>
-                <td>${gameTipStatistic.points}</td>
-                <td>${gameTipStatistic.avgPoints}</td>
-            </tr>
-            #{/list}
-        </table>
-        </div>
-	  </div>
+	<div class="col-md-12">
+		<legend>Statistik</legend>
+		<div class="panel panel-primary">
+		  <div class="panel-heading"><h3 class="panel-title">&{'playdayoverview'}</h3></div>
+		  <div class="panel-body">
+			<div class="table-responsive">
+	        <table class="table table-hover">
+	            <thead>
+	                <th>Spieltag</th>
+	                <th>Richtige Tipps</th>
+	                <th>Richtige Differenzen</th>
+	                <th>Richtige Tendenzen</th>
+	                <th>Punkte Insgesamt</th>
+	                <th>Punkte pro Spieler</th>
+	            </thead>
+	            #{list items:gameTipStatistics, as:'gameTipStatistic'}
+	            <tr>
+	                <td>${gameTipStatistic.playday.number}</td>
+	                <td>${gameTipStatistic.correctTips}</td>
+	                <td>${gameTipStatistic.correctDiffs}</td>
+	                <td>${gameTipStatistic.correctTrends}</td>
+	                <td>${gameTipStatistic.points}</td>
+	                <td>${gameTipStatistic.avgPoints}</td>
+	            </tr>
+	            #{/list}
+	        </table>
+	        </div>
+		  </div>
+		</div>
 	</div>
 </div>
 <div class="row">
-	<div class="panel panel-primary">
-	  <div class="panel-heading"><h3 class="panel-title">&{'tipedresults'}</h3></div>
-	  <div class="panel-body">
-		<div class="table-responsive">
-	        <table class="table">
-	            <thead>
-	                <th>Anzahl</th>
-	                <th>Ergebnis</th>
-	            </thead>
-	            #{list items:results, as:'result'}
-	                <tr>
-	                #{list items:result, as:'r'}
-	                    <td>${r}</td>
-	                #{/list}
-	                </tr>
-	            #{/list}
-	        </table>
-        </div>
-	  </div>
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+		  <div class="panel-heading"><h3 class="panel-title">&{'tipedresults'}</h3></div>
+		  <div class="panel-body">
+			<div class="table-responsive">
+		        <table class="table table-hover">
+		            <thead>
+		                <th>Anzahl</th>
+		                <th>Ergebnis</th>
+		            </thead>
+		            #{list items:results, as:'result'}
+		                <tr>
+		                #{list items:result, as:'r'}
+		                    <td>${r}</td>
+		                #{/list}
+		                </tr>
+		            #{/list}
+		        </table>
+	        </div>
+		  </div>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="panel panel-primary">
-	  <div class="panel-heading"><h3 class="panel-title">&{'playedresults'}</h3></div>
-	  <div class="panel-body">
-		<div class="table-responsive">
-	        <table class="table">
-	            <thead>
-	                <th>Anzahl</th>
-	                <th>Ergebnis</th>
-	            </thead>
-	            #{list items:games, as:'game'}
-	                <tr>
-	                #{list items:game, as:'g'}
-	                    <td>${g}</td>
-	                #{/list}
-	                </tr>
-	            #{/list}
-	        </table>
-        </div>
-	  </div>
-	</div>
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+		  <div class="panel-heading"><h3 class="panel-title">&{'playedresults'}</h3></div>
+		  <div class="panel-body">
+			<div class="table-responsive">
+		        <table class="table table-hover">
+		            <thead>
+		                <th>Anzahl</th>
+		                <th>Ergebnis</th>
+		            </thead>
+		            #{list items:games, as:'game'}
+		                <tr>
+		                #{list items:game, as:'g'}
+		                    <td>${g}</td>
+		                #{/list}
+		                </tr>
+		            #{/list}
+		        </table>
+	        </div>
+		  </div>
+		</div>
+	</div>	
 </div>

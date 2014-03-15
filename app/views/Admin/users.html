@@ -1,39 +1,43 @@
 #{extends 'main.html' /}
 <div class="row">
-	<legend>Benutzerverwaltung</legend>
+	<div class="col-md-12">
+		<legend>Benutzerverwaltung</legend>
+	</div>
 </div>
 <div class="row">
-	<div class="table-responsive">
-		<table class="table table-stripes">
-			<thead>
-				<tr>
-					<th>&{'profilepicture'}</th>
-					<th>&{'username'}</th>
-					<th>&{'email'}</th>
-					<th>&{'registered'}</th>
-					<th>&{'isactive'}</th>
-					<th>&{'isadmin'}</th>
-					<th>&{'delete'}</th>
-				</tr>
-			</thead>
-			<tbody>
-				#{list items:users, as:'user'}
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
 					<tr>
-						#{if user.picture != null}
-							<td><img src="${user.picture}" /></td>
-						#{/if}
-						#{else}
-							<td><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></td>
-						#{/else}
-						<td>${user.username}</td>
-						<td>${user.username}</td>
-						<td>${user.registered.formatted()}</td>
-						<td>#{if user.active}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isactive'}" onclick="return confirm(&{'admin.changedeactive.confirm', user.username})"><span class="glyphicon glyphicon-thumbs-up"></span></a>#{/if}#{else}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotactive'}" onclick="return confirm(&{'admin.changeactive.confirm', user.username})"><span class="glyphicon glyphicon-thumbs-down"></span></a>#{/else}</td>
-						<td>#{if user.admin}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isadmin'}" onclick="return confirm(&{'admin.changedeadmin.confirm', user.username})"><span class="glyphicon glyphicon-star"></span></a>#{/if}#{else}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotadmin'}"  onclick="return confirm(&{'admin.changeadmin.confirm', user.username})"><span class="glyphicon glyphicon-star-empty"></span></a>#{/else}</td>
-						<td><a href="@{admin.deleteuser()}/${user.id}" onclick="return confirm(&{'admin.deleteuser.confirm', user.username})"><span class="glyphicon glyphicon-trash"></span></a></td>
+						<th>&{'profilepicture'}</th>
+						<th>&{'username'}</th>
+						<th>&{'email'}</th>
+						<th>&{'registered'}</th>
+						<th>&{'isactive'}</th>
+						<th>&{'isadmin'}</th>
+						<th>&{'delete'}</th>
 					</tr>
-				 #{/list}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					#{list items:users, as:'user'}
+						<tr>
+							#{if user.picture != null}
+								<td><img src="${user.picture}" /></td>
+							#{/if}
+							#{else}
+								<td><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></td>
+							#{/else}
+							<td>${user.username}</td>
+							<td>${user.username}</td>
+							<td>${user.registered.formatted()}</td>
+							<td>#{if user.active}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isactive'}" onclick="return confirm(&{'admin.changedeactive.confirm', user.username})"><span class="glyphicon glyphicon-thumbs-up"></span></a>#{/if}#{else}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotactive'}" onclick="return confirm(&{'admin.changeactive.confirm', user.username})"><span class="glyphicon glyphicon-thumbs-down"></span></a>#{/else}</td>
+							<td>#{if user.admin}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isadmin'}" onclick="return confirm(&{'admin.changedeadmin.confirm', user.username})"><span class="glyphicon glyphicon-star"></span></a>#{/if}#{else}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotadmin'}"  onclick="return confirm(&{'admin.changeadmin.confirm', user.username})"><span class="glyphicon glyphicon-star-empty"></span></a>#{/else}</td>
+							<td><a href="@{admin.deleteuser()}/${user.id}" onclick="return confirm(&{'admin.deleteuser.confirm', user.username})"><span class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					 #{/list}
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

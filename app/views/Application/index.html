@@ -1,110 +1,70 @@
 #{extends 'main.html' /}
 <div class="row">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">${connectedUser.username}</h3>
-		</div>
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
-					#{if connectedUser.picture == null}
-						<img alt="User Pic" src="@{'/public/img/user_placeholder.gif'}" class="img-circle">
-					#{/if}
-					#{else}
-						<img alt="User Pic" src="${connectedUser.picture}" class="img-circle">
-					#{/else}
-				</div>
-				<div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
-					<table class="table table-user-information">
-						<tbody>
-							<tr>
-								<td>User level:</td>
-								<td>Administrator</td>
-							</tr>
-							<tr>
-								<td>Registered since:</td>
-								<td>11/12/2013</td>
-							</tr>
-							<tr>
-								<td>Topics</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>Warnings</td>
-								<td>0</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="panel-footer">
-			<h4>&{'user.placandpoints.' + (connectedUser.points == 1 ? 'one' : 'many'), connectedUser.points, connectedUser.place, users}</h4>
+	<div class="col-md-12">
+		<legend>&{'topthree'}</legend>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>&{'tipper'}</th>
+						<th>&{'username'}</th>
+						<th>Punkte</th>
+						<th>Bonuspunkte</th>
+						<th>Gesamtpunkte</th>
+					</tr>
+				</thead>
+				<tbody>
+				#{list items:topUsers, as:'topUser'}
+					<tr>
+						#{if topUser.picture == null}
+							<td><a href="@{users.show()}/${topUser.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
+						#{/if}
+						#{else}
+							<td><a href="@{users.show()}/${topUser.username}"><img src="${topUser.picture}" /></a></td>
+						#{/else}
+						<td><b><a href="@{users.show()}/${topUser.username}">${topUser.username}</a></b></td>
+						<td>${topUser.tipPoints}</td>
+						<td>${topUser.extraPoints}</td>
+						<td><b>${topUser.points}</b></td>
+					</tr>
+				#{/list}
+				<tr><td colspan="5">&{'user.placandpoints.' + (connectedUser.points == 1 ? 'one' : 'many'), connectedUser.points, connectedUser.place, users}</td></tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
 <div class="row">
-	<h2>&{'topthree'}</h2>
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>&{'tipper'}</th>
-					<th>&{'username'}</th>
-					<th>Punkte</th>
-					<th>Bonuspunkte</th>
-					<th>Gesamtpunkte</th>
-				</tr>
-			</thead>
-			<tbody>
-			#{list items:topUsers, as:'topUser'}
-				<tr>
-					#{if topUser.picture == null}
-						<td><a href="@{users.show()}/${topUser.username}"><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></a></td>
-					#{/if}
-					#{else}
-						<td><a href="@{users.show()}/${topUser.username}"><img src="${topUser.picture}" /></a></td>
-					#{/else}
-					<td><b><a href="@{users.show()}/${topUser.username}">${topUser.username}</a></b></td>
-					<td>${topUser.tipPoints}</td>
-					<td>${topUser.extraPoints}</td>
-					<td><b>${topUser.points}</b></td>
-				</tr>
-			#{/list}
-			<tr><td colspan="5">${pointsDiff}</td></tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-<div class="row">
-	<h2>&{playday.name}</h2>
-	<div class="table-responsive">
-		<table class="table table-striped">
-	          <thead>
-	              <tr>
-	                  <th>Datum - Uhrzeit</th>
-	                  <th>&{'hometeam'}</th>
-	                  <th>&{'awayteam'}</th>
-	                  <th>&{'result'}</th>
-	                  <th>&{'yourbet'}</th>
-	              </tr>
-	          </thead>
-	          <tbody>
-	              #{list items:playday?.games, as:'game'}
-	                  <tr>
-	                      <td>${game.kickoff.formatted()}</td>
-	                      <td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}" class="flag">&{game.homeTeam?.name}</td>
-	                      <td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}" class="flag">&{game.awayTeam?.name}</td>
-	                      <td>${game.getScore()}</td>
-	                      <td>${game.getGameTipAndPoints()}</td>
-	                  </tr>
-	              #{/list}
-	              #{else}
-	                  <tr>
-	                      <td colspan="6">&{'nogamesyet'}</td>
-	                  </tr>
-	              #{/else}
-	          </tbody>
-	      </table>
-      </div>
+	<div class="col-md-12">
+		<legend>&{playday.name}</legend>
+		<div class="table-responsive">
+			<table class="table table-striped">
+		          <thead>
+		              <tr>
+		                  <th>Datum - Uhrzeit</th>
+		                  <th>&{'hometeam'}</th>
+		                  <th>&{'awayteam'}</th>
+		                  <th>&{'result'}</th>
+		                  <th>&{'yourbet'}</th>
+		              </tr>
+		          </thead>
+		          <tbody>
+		              #{list items:playday?.games, as:'game'}
+		                  <tr>
+		                      <td>${game.kickoff.formatted()}</td>
+		                      <td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}" class="flag">&{game.homeTeam?.name}</td>
+		                      <td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}" class="flag">&{game.awayTeam?.name}</td>
+		                      <td>${game.getScore()}</td>
+		                      <td>${game.getGameTipAndPoints()}</td>
+		                  </tr>
+		              #{/list}
+		              #{else}
+		                  <tr>
+		                      <td colspan="6">&{'nogamesyet'}</td>
+		                  </tr>
+		              #{/else}
+		          </tbody>
+		      </table>
+	      </div>
+	   </div>
 </div>

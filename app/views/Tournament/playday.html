@@ -1,61 +1,67 @@
 #{extends 'main.html' /}
 <div class="row">
-	<h2>&{playday.name}</h2>
-</div>
-<div class="row">
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>&{'date'} - &{'time'}</th>
-					<th>&{'hometeam'}</th>
-					<th>&{'awayteam'}</th>
-					<th>&{'result'}</th>
-				</tr>
-			</thead>
-			<tbody>
-			#{list items:playday.games, as:'game'}
-				<tr>
-					<td>${game.kickoff.formatted()}</td>
-					#{if game.homeTeam != null}
-						#{if game.homeTeam.flag != null}
-							<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
-						#{/if}
-						#{else}
-							<td>&{game.homeTeam?.name}</td>
-						#{/else}
-					#{/if}
-					#{else}
-						<td>${game.homeReferenceName()}</td>
-					#{/else}
-					#{if game.awayTeam != null}
-						#{if game.awayTeam.flag != null}
-							<td><img class="flag" src="@{'/public/img/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
-						#{/if}
-						#{else}
-							<td>&{game.awayTeam?.name}</td>
-						#{/else}
-					#{/if}
-					#{else}
-						<td>${game.awayReferenceName()}</td>
-					#{/else}
-					#{if !game.ended}
-						<td>- : -</td>
-					#{/if}
-					#{else}
-						#{if game.overtime}
-							<td>${game.homeScoreOT} : ${game.awayScoreOT} (&{game.overtimeType})</td>
-						#{/if}
-						#{else}
-							<td>${game.homeScore} : ${game.awayScore}</td>
-						#{/else}
-					#{/else}
-				</tr>
-			#{/list}	
-			</tbody>
-		</table>
+	<div class="col-md-12">
+		<legend>&{playday.name}</legend>
 	</div>
 </div>
 <div class="row" style="text-align:right; padding-right: 5px;">
-	#{include '/Tags/playdayPagination.html' /}
+	<div class="col-md-12">
+		#{include '/Tags/playdayPagination.html' /}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>&{'date'} - &{'time'}</th>
+						<th>&{'hometeam'}</th>
+						<th>&{'awayteam'}</th>
+						<th>&{'result'}</th>
+					</tr>
+				</thead>
+				<tbody>
+				#{list items:playday.games, as:'game'}
+					<tr>
+						<td>${game.kickoff.formatted()}</td>
+						#{if game.homeTeam != null}
+							#{if game.homeTeam.flag != null}
+								<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
+							#{/if}
+							#{else}
+								<td>&{game.homeTeam?.name}</td>
+							#{/else}
+						#{/if}
+						#{else}
+							<td>${game.homeReferenceName()}</td>
+						#{/else}
+						#{if game.awayTeam != null}
+							#{if game.awayTeam.flag != null}
+								<td><img class="flag" src="@{'/public/img/flags'}/${game.awayTeam?.flag}" alt="${game.awayTeam?.name}" />&{game.awayTeam?.name}</td>
+							#{/if}
+							#{else}
+								<td>&{game.awayTeam?.name}</td>
+							#{/else}
+						#{/if}
+						#{else}
+							<td>${game.awayReferenceName()}</td>
+						#{/else}
+						#{if !game.ended}
+							<td>- : -</td>
+						#{/if}
+						#{else}
+							#{if game.overtime}
+								<td>${game.homeScoreOT} : ${game.awayScoreOT} (&{game.overtimeType})</td>
+							#{/if}
+							#{else}
+								<td>${game.homeScore} : ${game.awayScore}</td>
+							#{/else}
+						#{/else}
+					</tr>
+				#{/list}	
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

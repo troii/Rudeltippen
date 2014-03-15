@@ -1,57 +1,62 @@
 #{extends 'main.html' /}
-<div class="row" style="text-align: center; padding: 20px;">
-#{if user?.pictureLarge != null}
-    <img src="${user?.pictureLarge}" width="256" height="256"/>
-#{/if}
-#{else}
-   <img src="@{'/public/img/user_placeholder_large.gif'}" width="162" height="162"/>
-#{/else}
+<div class="row">
+	<div class="col-md-12">
+		<legend>${user.username}</legend>
+	</div>
 </div>
 <div class="row">
-	<table class="table">
-	    <tbody>
-	        <tr>
-	            <td><b>&{'username'}</b></td>
-	            <td>${user?.username}</td>
-	        </tr>
-	        <tr>
-	            <td><b>&{'place'}</b></td>
-	            <td>${user?.place}</td>
-	        </tr>
-			<tr>
-				<td><b>&{'points'}</b></td>
-				<td>${user?.points}</td>
-			</tr>
-	           <tr>
-	               <td><b>&{'pointsperbet'}</b></td>
-	               <td>${pointsPerTipp}</td>
-	           </tr>
-			<tr>
-				<td><b>&{'placedbets'}</b></td>
-				<td>&{'placedbets.value', statistics?.sumTipps, statistics?.sumGames}</td>
-			</tr>
-			<tr>
-				<td><b>&{'correct.extratips'}</b></td>
-				<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
-			</tr>		
-			<tr>
-				<td><b>&{'correctresults'}</b></td>
-				<td>${statistics?.correctTipps}</td>
-			</tr>
-			<tr>
-				<td><b>&{'correctdifferences'}</b></td>
-				<td>${statistics?.correctDifference}</td>
-			</tr>
-			<tr>
-				<td><b>&{'correcttendence'}</b></td>
-				<td>${statistics?.correctTrend}</td>
-			</tr>
-	        <tr>
-	            <td><b>&{'betquote'}</b></td>
-	            <td>${tippQuote} &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
-	        </tr>      
-		</tbody>
-	</table>
+	<div class="col-md-12">
+		#{if user?.pictureLarge != null}
+		    <p><img src="${user?.pictureLarge}" width="256" height="256"/></p>
+		#{/if}
+		#{else}
+		   <p><img src="@{'/public/img/user_placeholder_large.gif'}" width="162" height="162"/></p>
+		#{/else}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table">
+		    <tbody>
+		        <tr>
+		            <td><b>&{'place'}</b></td>
+		            <td>${user?.place}</td>
+		        </tr>
+				<tr>
+					<td><b>&{'points'}</b></td>
+					<td>${user?.points}</td>
+				</tr>
+		           <tr>
+		               <td><b>&{'pointsperbet'}</b></td>
+		               <td>${pointsPerTipp}</td>
+		           </tr>
+				<tr>
+					<td><b>&{'placedbets'}</b></td>
+					<td>&{'placedbets.value', statistics?.sumTipps, statistics?.sumGames}</td>
+				</tr>
+				<tr>
+					<td><b>&{'correct.extratips'}</b></td>
+					<td>&{'extratips.statistic', statistics?.correctExtraTips, statistics?.extraTips}</td>
+				</tr>		
+				<tr>
+					<td><b>&{'correctresults'}</b></td>
+					<td>${statistics?.correctTipps}</td>
+				</tr>
+				<tr>
+					<td><b>&{'correctdifferences'}</b></td>
+					<td>${statistics?.correctDifference}</td>
+				</tr>
+				<tr>
+					<td><b>&{'correcttendence'}</b></td>
+					<td>${statistics?.correctTrend}</td>
+				</tr>
+		        <tr>
+		            <td><b>&{'betquote'}</b></td>
+		            <td>${tippQuote} &{'correctresultsquote'} (${statistics?.correctTipps} / ${tippedGames})</td>
+		        </tr>      
+			</tbody>
+		</table>
+	</div>
 </div>
 <script type="text/javascript">
 window.onload = function () {
@@ -67,62 +72,46 @@ window.onload = function () {
 	  	]
 	});
 	points.render();
-	
-	var places = new CanvasJS.Chart("places",
-	{
-		data: [
-	   		{
-	       		type: "line",
-		        dataPoints: [
-					#{list items:userStatistics, as:'userStatistic'} { y: ${userStatistic.place}, x: ${userStatistic.playday.number} } ${userStatistic_isLast ? '' : ','}#{/list}             
-		        ]
-	   		}
-	   	]
-	});
-	places.render();
 }
 </script>
 <div class="row">
-	<div class="panel panel-success">
-	  <div class="panel-heading"><h3 class="panel-title">&{'pointsperplayday'}</h3></div>
-	  <div class="panel-body">
-		<div id="points" style="height: 400px; width: 100%;"></div>	
-	  </div>
-	</div>
-</div>
-<div class="row">
-	<div class="panel panel-success">
-	  <div class="panel-heading"><h3 class="panel-title">&{'tableplaces'}</h3></div>
-	  <div class="panel-body">
-		<div id="places" style="height: 400px; width: 100%;"></div>	
-	  </div>
-	</div>
-</div>
-<div class="row">
-	<div class="panel panel-success">
-	  <div class="panel-heading"><h3 class="panel-title">&{'tipstatistic'}</h3></div>
-	  <div class="panel-body">
-	  	
-	  </div>
-	</div>
-</div>
-<div class="table-responsive">
-			<table class="table table-condensed">
-				<thead>
-					<tr>
-						<th>Spieltag</th>
-						<th>Richtige Tipps</th>
-						<th>Richtige Differenzen</th>
-						<th>Richtige Tendenzen</th>
-					</tr>
-				</thead>
-				#{list items:userStatistics, as:'userStatistic'}
-					<tr>
-						<td>${userStatistic.playday.number}</td>
-						<td>${userStatistic.playdayCorrectTips}</td>
-						<td>${userStatistic.playdayCorrectDiffs}</td>
-						<td>${userStatistic.playdayCorrectTrends}</td>
-					</tr>
-				#{/list}							
-			</table>	
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+		  <div class="panel-heading"><h3 class="panel-title">&{'pointsperplayday'}</h3></div>
+		  <div class="panel-body">
+			<div id="points" style="height: 400px; width: 100%;"></div>	
+		  </div>
 		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+		  <div class="panel-heading"><h3 class="panel-title">&{'tipstatistic'}</h3></div>
+		  <div class="panel-body">
+		  <div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Spieltag</th>
+							<th>Richtige Tipps</th>
+							<th>Richtige Differenzen</th>
+							<th>Richtige Tendenzen</th>
+							<th>Punkte</th>
+						</tr>
+					</thead>
+					#{list items:userStatistics, as:'userStatistic'}
+						<tr>
+							<td>${userStatistic.playday.number}</td>
+							<td>${userStatistic.playdayCorrectTips}</td>
+							<td>${userStatistic.playdayCorrectDiffs}</td>
+							<td>${userStatistic.playdayCorrectTrends}</td>
+							<td>${userStatistic.points}</td>
+						</tr>
+					#{/list}							
+				</table>	
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>

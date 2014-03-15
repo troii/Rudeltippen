@@ -15,26 +15,26 @@ import utils.DataUtils;
 @Transactional(readOnly=true)
 public class Application extends Root {
 
-    public static void index() {
-        final int pointsDiff = AppUtils.getPointsToFirstPlace();
-        final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
-        final Playday playday = AppUtils.getCurrentPlayday();
-        final List<User> topUsers = User.find("SELECT u FROM User u WHERE active = true ORDER BY place ASC").fetch(5);
-        final long users = AppUtils.getAllActiveUsers().size();
+	public static void index() {
+		final int pointsDiff = AppUtils.getPointsToFirstPlace();
+		final String diffToTop = AppUtils.getDiffToTop(pointsDiff);
+		final Playday playday = AppUtils.getCurrentPlayday();
+		final List<User> topUsers = User.find("SELECT u FROM User u WHERE active = true ORDER BY place ASC").fetch(3);
+		final long users = AppUtils.getAllActiveUsers().size();
 
-        render(topUsers, playday, users, diffToTop);
-    }
+		render(topUsers, playday, users, diffToTop);
+	}
 
-    public static void rules() {
-        final Settings settings = AppUtils.getSettings();
-        render(settings);
-    }
+	public static void rules() {
+		final Settings settings = AppUtils.getSettings();
+		render(settings);
+	}
 
-    public static void statistics() {
-        final List<Object[]> games = DataUtils.getGameStatistics();
-        final List<Object[]> results = DataUtils.getResultsStatistic();
-        final List<GameTipStatistic> gameTipStatistics = GameTipStatistic.find("ORDER BY playday ASC").fetch();
+	public static void statistics() {
+		final List<Object[]> games = DataUtils.getGameStatistics();
+		final List<Object[]> results = DataUtils.getResultsStatistic();
+		final List<GameTipStatistic> gameTipStatistics = GameTipStatistic.find("ORDER BY playday ASC").fetch();
 
-        render(results, gameTipStatistics, games);
-    }
+		render(results, gameTipStatistics, games);
+	}
 }
