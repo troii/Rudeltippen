@@ -69,3 +69,9 @@ hr.message-inner-separator
 	width: 45px;
 	text-align: center;
 }
+
+@media (min-width: 1023px) {
+  .navbar-brand {
+    display: none;
+  }
+}

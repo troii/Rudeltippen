@@ -55,6 +55,8 @@
             </li>  
             <li #{if request.action == "Tips.playday" } class="active" #{/if}><a href="@{tips.playday()}/${currentPlayday.number}"><span class="glyphicon glyphicon-play-circle"></span>&nbsp;&nbsp;&{'tips'}</a></li> 
             <li #{if request.action == "Application.rules" } class="active" #{/if}><a href="@{application.rules()}"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;&{'rules'}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
 	            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${connectedUser.username} <span class="caret"></span></a>
 	            <ul class="dropdown-menu">

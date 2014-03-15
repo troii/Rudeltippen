@@ -37,7 +37,7 @@ Available Languages
 Installation guide
 ------------------
 
-This installation guide assumes that you already have JDK 1.7+ installed and that you have your database- and SMTP-credentials right beside you.
+This installation guide assumes that you already have JDK 1.7+ installed and that you have your database- and SMTP-credentials ready.
 
 ### Step 0
 
@@ -63,6 +63,13 @@ Set the default language for Rudeltippen (de or en)
 
 ```bash
 default.language=de
+```
+
+Set your timezone and your date and time format
+```bash
+app.timezone=Europe/Berlin
+app.dateformat=dd.MM.yyyy
+app.timeformat=HH:mm
 ```
 
 Set the application key for Rudeltippen (make it "secure")

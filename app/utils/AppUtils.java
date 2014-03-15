@@ -167,27 +167,27 @@ public class AppUtils implements AppConstants {
 	 * Calculates the statistics for all playdays
 	 */
 	private static void calculateStatistics() {
-		 final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
-         final List<User> users = AppUtils.getAllActiveUsers();
-         for (final Playday playday : playdays) {
-             if (playday.allGamesEnded()) {
-                 final Map<String, Integer> scores = StatisticUtils.getScores(playday);
-                 StatisticUtils.setPlaydayStatistics(playday, scores);
+		final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
+		final List<User> users = AppUtils.getAllActiveUsers();
+		for (final Playday playday : playdays) {
+			if (playday.allGamesEnded()) {
+				final Map<String, Integer> scores = StatisticUtils.getScores(playday);
+				StatisticUtils.setPlaydayStatistics(playday, scores);
 
-                 for (final User user : users) {
-                	 StatisticUtils.setPlaydayPoints(playday, user);
-                	 StatisticUtils.setAscendingPlaydayPoints(playday, user);
-                 }
+				for (final User user : users) {
+					StatisticUtils.setPlaydayPoints(playday, user);
+					StatisticUtils.setAscendingPlaydayPoints(playday, user);
+				}
 
-                 StatisticUtils.setPlaydayPlaces(playday);
-                 StatisticUtils.setGameTipStatistics(playday);
-                 StatisticUtils.setGameStatistic(playday);
-             }
-         }
+				StatisticUtils.setPlaydayPlaces(playday);
+				StatisticUtils.setGameTipStatistics(playday);
+				StatisticUtils.setGameStatistic(playday);
+			}
+		}
 
-         for (final User user : users) {
-        	 StatisticUtils.setResultStatistic(user);
-         }		
+		for (final User user : users) {
+			StatisticUtils.setResultStatistic(user);
+		}
 	}
 
 	/**
@@ -204,8 +204,6 @@ public class AppUtils implements AppConstants {
 					if (team != null) {
 						extra.setAnswer(team);
 						extra._save();
-						
-						flushAndClear();
 					}
 				}
 			}
@@ -271,8 +269,6 @@ public class AppUtils implements AppConstants {
 			user.setPoints(bonusPoints + userTipPoints);
 			user.setCorrectExtraTips(correctExtraTips);
 			user._save();
-			
-			flushAndClear();
 		}
 	}
 
@@ -359,8 +355,6 @@ public class AppUtils implements AppConstants {
 			user.setPlace(place);
 			user._save();
 			place++;
-			
-			flushAndClear();
 		}
 	}
 
@@ -930,15 +924,4 @@ public class AppUtils implements AppConstants {
 
 		return users;
 	}
-	
-	/**
-	 * Calls a flash and a clear on the JPA entity Manager forcing
-	 * the db layer to write all cached data to the persistence story.
-	 * Very useful for batch inserts or updates
-	 */
-	public static void flushAndClear() {
-		Session session = (Session) JPA.em().getDelegate();
-		session.flush();
-		session.clear();
-	}	
 }
