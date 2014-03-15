@@ -1,6 +1,6 @@
 #{extends 'main.html' /}
 <div class="row">
-	<div class="panel panel-success">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">${connectedUser.username}</h3>
 		</div>
@@ -11,7 +11,7 @@
 						<img alt="User Pic" src="@{'/public/img/user_placeholder.gif'}" class="img-circle">
 					#{/if}
 					#{else}
-						<img alt="User Pic" src="${topUser.picture}" class="img-circle">
+						<img alt="User Pic" src="${connectedUser.picture}" class="img-circle">
 					#{/else}
 				</div>
 				<div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">

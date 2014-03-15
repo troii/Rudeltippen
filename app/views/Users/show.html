@@ -59,7 +59,7 @@ window.onload = function () {
 	{
 		data: [
 	  		{
-	    		type: "spline",
+	    		type: "line",
 	      		dataPoints: [
 					#{list items:userStatistics, as:'userStatistic'} { y: ${userStatistic.playdayPoints}, x: ${userStatistic.playday.number} } ${userStatistic_isLast ? '' : ','}#{/list}             
 	      		]
@@ -70,9 +70,9 @@ window.onload = function () {
 	
 	var places = new CanvasJS.Chart("places",
 	{
-	   	data: [
+		data: [
 	   		{
-	       		type: "spline",
+	       		type: "line",
 		        dataPoints: [
 					#{list items:userStatistics, as:'userStatistic'} { y: ${userStatistic.place}, x: ${userStatistic.playday.number} } ${userStatistic_isLast ? '' : ','}#{/list}             
 		        ]
@@ -102,24 +102,27 @@ window.onload = function () {
 	<div class="panel panel-success">
 	  <div class="panel-heading"><h3 class="panel-title">&{'tipstatistic'}</h3></div>
 	  <div class="panel-body">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Spieltag</th>
-					<th>Richtige Tipps</th>
-					<th>Richtige Differenzen</th>
-					<th>Richtige Tendenzen</th>
-				</tr>
-			</thead>
- 					#{list items:userStatistics, as:'userStatistic'}
- 						<tr>
- 							<td>${userStatistic.playday.number}</td>
- 							<td>${userStatistic.playdayCorrectTips}</td>
- 							<td>${userStatistic.playdayCorrectDiffs}</td>
- 							<td>${userStatistic.playdayCorrectTrends}</td>
- 						</tr>
- 					#{/list}							
-		</table>	
+	  	
 	  </div>
 	</div>
 </div>
+<div class="table-responsive">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Spieltag</th>
+						<th>Richtige Tipps</th>
+						<th>Richtige Differenzen</th>
+						<th>Richtige Tendenzen</th>
+					</tr>
+				</thead>
+				#{list items:userStatistics, as:'userStatistic'}
+					<tr>
+						<td>${userStatistic.playday.number}</td>
+						<td>${userStatistic.playdayCorrectTips}</td>
+						<td>${userStatistic.playdayCorrectDiffs}</td>
+						<td>${userStatistic.playdayCorrectTrends}</td>
+					</tr>
+				#{/list}							
+			</table>	
+		</div>
