@@ -36,14 +36,6 @@ public class Auth extends Root implements AppConstants{
 	protected static void checkAccess() throws Throwable {
 		AppUtils.setAppLanguage();
 
-
-		User user = User.find("byUsername", "svenkubiak").first();
-		List<Game> games =  Game.find("byNumber", 2).fetch();
-		List<Extra> extras = Extra.find("SELECT e FROM Extra e").fetch(10);
-
-		Mails.reminder(user, games, extras);
-
-
 		if (!session.contains("username")) {
 			flash.put("url", "/");
 			login();
