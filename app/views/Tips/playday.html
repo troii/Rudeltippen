@@ -61,12 +61,20 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
+		<legend>&{'extratips'}</legend>
+	</div>
+</div>
+<div class="row" style="text-align:right; padding-right: 5px;">
+	<div class="col-md-12">
+		<a data-toggle="collapse" id="collapseExtra" data-parent="#accordion" href="#extratips">Anzeigen</a>
+	</div>
+</div>
+<div id="extratips" class="row panel-collapse collapse">
+	<div class="col-md-12">
 		#{form @tips.storeextratips(), role:'form'}
 		<div class="table-responsive">
 			<table class="table table-striped">
 			    <thead>
-			    	<tr>
-			    		<td colspan="4"><legend>&{'extratips'}</legend></td>
 			        <tr>
 			            <th>&{'extraquestion'}</th>
 			            <th>&{'points'}</th>

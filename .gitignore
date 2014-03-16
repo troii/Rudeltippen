@@ -17,3 +17,5 @@ server.pid
 /conf/application.conf
 /conf/modulesOrder.conf
 /rudeltippen.zip
+/public/javascripts/combined.min.js
+/public/stylesheets/combined.min.css
