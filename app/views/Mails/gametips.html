@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+	<p>&{'hello'} ${user.username}!</p>
+	<p>&{'mail.gametips'}</p>
+	<table>
+		#{list items:games, as:'game'}
+			<tr>
+				<td colspan="2"><strong>&{game.homeTeam?.nameUnescaped()} - &{game.awayTeam?.nameUnescaped()}</strong></td>
+			</tr>
+			#{list items:game.gameTips, as:'gameTip'}
+				<tr>
+					<td>${gameTip.user.username}</td>
+					<td>${gameTip.homeScore} : ${gameTip.awayScore}</td>
+				</tr>			
+			#{/list}
+		#{/list}
+	</table>
+	<p>
+	--- <br>
+	#{include 'Mails/_footer.txt' /}
+	</p>
+<body>
+</html>

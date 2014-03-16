@@ -1,0 +1,4 @@
+${notification}
+
+--- 
+#{include '_footer.txt' /}

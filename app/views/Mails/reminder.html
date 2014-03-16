@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+	<p>&{'hello'} ${user.username}!</p>
+	<p>&{'mail.placetips'}</p>
+	<table>
+		<tr>
+			<td><strong>&{'mail.games'}</strong></td>
+		</tr>
+		#{list items:games, as:'game'}
+			<tr>
+				<td>${game.homeTeam?.nameUnescaped()} - ${game.awayTeam?.nameUnescaped()}</td>
+			</tr>
+			<tr>
+				<td>&{'mail.tipto'}: ${game.tippEnding.formatted()}</td>
+			</tr>
+			#{if !game_isLast}
+				<tr>
+					<td>&nbsp;</td>
+				</tr>			
+			#{/if}
+		#{/list}
+		#{else}
+			<tr>
+				<td>&{'mail.nogames'}</td>
+			</tr>
+		#{/else}
+	</table>
+	<br />
+	<table>
+		<tr>
+			<td><strong>&{'extratips'}</strong></td>
+		</tr>
+		#{list items:extras, as:'extra'}
+			<tr>
+				<td>${extra.questionUnescaped()}</td>
+			</tr>
+			<tr>
+				<td>&{'mail.tipto'}: ${extra.ending.formatted()}</td>
+			</tr>
+			#{if !extra_isLast}
+				<tr>
+					<td>&nbsp;</td>
+				</tr>			
+			#{/if}
+		#{/list}
+		#{else}
+			<tr>
+				<td>&{'mail.noextras'}</td>
+			</tr>
+		#{/else}
+	</table>
+	<p>
+	--- <br>
+	#{include 'Mails/_footer.txt' /}
+	</p>
+<body>
+</html>

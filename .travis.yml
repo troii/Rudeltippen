@@ -2,10 +2,10 @@ language: java
 before_script:
   - chmod +x ./travis.sh
   - ./travis.sh
-  - wget http://download.playframework.org/releases/play-1.2.5.zip
-  - unzip -q play-1.2.5.zip
-  - play-1.2.5/play deps --sync
-  - play-1.2.5/play precompile ./
-script: play-1.2.5/play auto-test ./
+  - wget http://downloads.typesafe.com/play/1.2.7/play-1.2.7.zip
+  - unzip -q play-1.2.7.zip
+  - play-1.2.7/play deps --sync
+  - play-1.2.7/play precompile ./
+script: play-1.2.7/play auto-test ./
 notifications:
   email: sk@svenkubiak.com
