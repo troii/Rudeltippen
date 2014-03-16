@@ -21,9 +21,8 @@ Features in a Nutshell
 
 Screenshots
 ------------------
-![Alt text](/path/to/img.jpg "Optional title")
-[![Rudeltippen login](https://github.com/altercation/solarized/raw/master/img/solarized-yinyang.png)]
-[![Rudeltippen login](https://github.com/altercation/solarized/raw/master/img/solarized-yinyang.png)]
+[![Rudeltippen login](https://raw.github.com/svenkubiak/Rudeltippen/2.2.0/assets/rudelscreen.png)]
+[![Rudeltippen overview](https://raw.github.com/svenkubiak/Rudeltippen/2.2.0/assets/rudelscreen-2.png)]
 
 Requirements
 ------------------
