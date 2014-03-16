@@ -11,13 +11,19 @@ Available tournaments
 
 Features in a Nutshell
 ------------------
+- Mobile first layout based Twitter Bootstrap 3
 - Automatic results updates
 - Automatic tournament management
 - Automatic playing schedule updates
-- Mobile first layout based Twitter Bootstrap 3
 - Gravatar support
 - Multilingual
 - Scalable
+
+Screenshots
+------------------
+![Alt text](/path/to/img.jpg "Optional title")
+[![Rudeltippen login](https://github.com/altercation/solarized/raw/master/img/solarized-yinyang.png)]
+[![Rudeltippen login](https://github.com/altercation/solarized/raw/master/img/solarized-yinyang.png)]
 
 Requirements
 ------------------
@@ -129,7 +135,7 @@ Start Rudeltippen by executing the following command in your INSTLLATIONFOLDER:
 play start
 ```
 
-> Note: play start and play stop will only work correctly under Linus and Mac. If you close your command prompt on windows, the Play application will stop also. I recommend using PsExec for running the Play application in the background. You'll find an example script [here][18].
+> Note: play start and play stop will only work correctly under Linux and Mac. If you close your command prompt on windows, the Play application will stop also. I recommend using PsExec for running the Play application in the background. You'll find an example script [here][18].
 
 ### Step 5
 
@@ -139,9 +145,11 @@ The application will now be setup and the initial data will be loaded. After set
 
 The initial data will create an admin user with the following credentials:
 
+```bash
 Username: admin
 Password: admin
 E-Mail: admin@foo.bar
+```
 
 Changing of this credentials is mandatory! You can change your credentials under "My Profile".
 
@@ -193,7 +201,7 @@ If you want log4j Support for your Application you find an empty log4j configura
 #%prod.application.log.path=/log4j.prod.xml
 ```
 
-You need to restart Rudeltippen in order for the changes to take place.
+You need to restart Rudeltippen in order for the changes to take effect.
 
 ### Load balancer
 
@@ -205,7 +213,7 @@ application.name=rudeltippen
 app.jobinstance=rudeltippen
 ```
 
-You need to restart Rudeltippen in order for the changes to take place.
+You need to restart Rudeltippen in order for the changes to take effect.
 
 Licence
 ------------------
