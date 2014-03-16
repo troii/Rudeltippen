@@ -1,4 +1,0 @@
-${notification}
-
----
-You can disable this notice at any time under "My profile".

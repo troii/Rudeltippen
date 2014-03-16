@@ -2,6 +2,7 @@ package utils;
 
 import java.util.List;
 
+import notifiers.Mails;
 import models.Game;
 import models.GameTip;
 import models.User;
@@ -53,7 +54,7 @@ public class NotificationUtils {
         if (!game.isEnded()) {
             final List<User> users = User.find("byNotificationAndActive", true, true).fetch();
             for (final User user : users) {
-                MailUtils.notifications(Messages.get("mails.subject.notification"), NotificationUtils.getEmailNotificationMessage(user, game), user);
+                Mails.notifications(Messages.get("mails.subject.notification"), NotificationUtils.getEmailNotificationMessage(user, game), user);
             }
         }
     }

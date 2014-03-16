@@ -2,13 +2,13 @@ package jobs;
 
 import java.util.List;
 
+import notifiers.Mails;
 import models.AbstractJob;
 import models.Game;
 import models.User;
 import play.Logger;
 import play.jobs.Every;
 import utils.AppUtils;
-import utils.MailUtils;
 
 @Every("1min")
 public class GameTipJob extends AppJob{
@@ -29,7 +29,7 @@ public class GameTipJob extends AppJob{
 	            
 	            if (games != null && games.size() > 0) {
 	                for (final User user : users) {
-	                    MailUtils.sendGameTips(user, games);
+	                    Mails.gametips(user, games);
 	                }
 	
 	                for (final Game game : games) {

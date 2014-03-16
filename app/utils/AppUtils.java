@@ -769,21 +769,6 @@ public class AppUtils implements AppConstants {
 	}
 
 	/**
-	 * Returns the full localized path to a mail template
-	 *
-	 * @param name The name of the template
-	 * @return The full template name e.g. /Mail/de/reminder.txt
-	 */
-	public static String getMailTemplate(final String name) {
-		String lang = Play.configuration.getProperty("default.language");
-		if (StringUtils.isBlank(lang)) {
-			lang = "en";
-		}
-
-		return "Mail/" + lang + "/" + name;
-	}
-
-	/**
 	 * Returns a Base64 encoded Image from Gravatar if available
 	 * 
 	 * @param email The email adress to check

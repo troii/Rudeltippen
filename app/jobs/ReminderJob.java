@@ -3,6 +3,7 @@ package jobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import notifiers.Mails;
 import models.AbstractJob;
 import models.Extra;
 import models.ExtraTip;
@@ -12,7 +13,6 @@ import models.User;
 import play.Logger;
 import play.jobs.On;
 import utils.AppUtils;
-import utils.MailUtils;
 
 @On("0 0 1 * * ?")
 public class ReminderJob extends AppJob {
@@ -51,7 +51,7 @@ public class ReminderJob extends AppJob {
                     }
 
                     if ((reminderGames.size() > 0) || (reminderBonus.size() > 0)) {
-                        MailUtils.reminder(user, reminderGames, reminderBonus);
+                        Mails.reminder(user, reminderGames, reminderBonus);
                         Logger.info("Reminder send to: " + user.getEmail());
                     }
                 }

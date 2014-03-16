@@ -3,15 +3,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import notifiers.Mails;
+
 import org.junit.Test;
 
 import play.test.UnitTest;
-
 import models.ConfirmationType;
 import models.Extra;
 import models.Game;
 import models.User;
-import utils.MailUtils;
 
 public class MailUtilsTests extends UnitTest {
 
@@ -23,7 +23,7 @@ public class MailUtilsTests extends UnitTest {
 		List<Game> games = new ArrayList<Game>();
 		List<Extra> extras = new ArrayList<Extra>();
 		
-		MailUtils.reminder(user, games, extras);
+		Mails.reminder(user, games, extras);
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class MailUtilsTests extends UnitTest {
 		User user = new User();
 		user.setEmail("sk@svenkubiak.de");
 		
-		MailUtils.confirm(user, "foo", ConfirmationType.ACTIVATION);
+		Mails.confirm(user, "foo", ConfirmationType.ACTIVATION);
 	}
 	
 	@Test
@@ -42,12 +42,12 @@ public class MailUtilsTests extends UnitTest {
 		User admin = new User();
 		admin.setEmail("sk@svenkubiak.com");
 		
-		MailUtils.newuser(user, admin);
+		Mails.newuser(user, admin);
 	}
 	
 	@Test
 	public void testError() {
-		MailUtils.error("foo", "sk@svenkubiak.de");
+		Mails.error("foo", "sk@svenkubiak.de");
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class MailUtilsTests extends UnitTest {
 		User user = new User();
 		user.setEmail("sk@svenkubiak.de");
 		
-		MailUtils.notifications("foo","bar", user);
+		Mails.notifications("foo","bar", user);
 	}
 	
 	@Test
@@ -65,7 +65,7 @@ public class MailUtilsTests extends UnitTest {
 		
 		List<Game> games = new ArrayList<Game>();
 		
-		MailUtils.sendGameTips(user, games);
+		Mails.gametips(user, games);
 	}
 	
 	@Test
@@ -73,6 +73,6 @@ public class MailUtilsTests extends UnitTest {
 		Object [] recipients = new Object [1];
 		recipients[0] = "sk@svenkubiak.de";
 		
-		MailUtils.sendRudelmail("foo", "bar", recipients, "sk@svenkubiak.com");
+		Mails.rudelmail("foo", "bar", recipients, "sk@svenkubiak.com");
 	}
 }

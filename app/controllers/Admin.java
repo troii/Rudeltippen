@@ -19,6 +19,7 @@ import models.Pagination;
 import models.Playday;
 import models.Settings;
 import models.User;
+import notifiers.Mails;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -29,7 +30,6 @@ import play.jobs.Job;
 import play.jobs.JobsPlugin;
 import play.mvc.With;
 import utils.AppUtils;
-import utils.MailUtils;
 import utils.ValidationUtils;
 import utils.ViewUtils;
 
@@ -276,7 +276,7 @@ public class Admin extends Root implements AppConstants {
 				recipients.add(user.getEmail());
 			}
 
-			MailUtils.sendRudelmail(subject, message, recipients.toArray(), AppUtils.getConnectedUser().getEmail());
+			Mails.rudelmail(subject, message, recipients.toArray(), AppUtils.getConnectedUser().getEmail());
 			flash.put("infomessage", Messages.get("info.rudelmail.send"));
 		} else {
 			flash.put("errormessage", Messages.get("error.rudelmail.send"));

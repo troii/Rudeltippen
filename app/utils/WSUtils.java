@@ -10,6 +10,7 @@ import models.Game;
 import models.User;
 import models.WSResult;
 import models.WSResults;
+import notifiers.Mails;
 
 import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Document;
@@ -53,7 +54,7 @@ public class WSUtils implements AppConstants {
 		} catch (final Exception e) {
 			final List<User> users = User.find("Admin", true).fetch();
 			for (final User user : users) {
-				MailUtils.error(e.getMessage(), user.getEmail());
+				Mails.error(e.getMessage(), user.getEmail());
 			}
 			Logger.error("Updating of results from WebService failed", e);
 		}

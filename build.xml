@@ -3,8 +3,8 @@
 	<property name="PROJECT_NAME" value="${ant.project.name}" description="Name of the project"/>
 	<property name="CSS_DIR" value="public/stylesheets" />
 	<property name="JS_DIR" value="public/javascripts" />
-    <property name="CSS" value="${CSS_DIR}/combined.min.css" />
-    <property name="JS" value="${JS_DIR}/combined.min.js" />
+    <property name="CSS" value="${CSS_DIR}/combined.css" />
+    <property name="JS" value="${JS_DIR}/combined.js" />
 
 	<target name="clean" description="Removes all previous builds">
 		<delete file="${PROJECT_NAME}.zip" />

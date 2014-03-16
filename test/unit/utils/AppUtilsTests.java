@@ -149,16 +149,6 @@ public class AppUtilsTests extends UnitTest {
 	}
 
 	@Test
-	public void testGetMailTemplate() {
-		assertNotNull(AppUtils.getMailTemplate("newuser"));
-		assertNotNull(AppUtils.getMailTemplate("password"));
-		assertNotNull(AppUtils.getMailTemplate("error"));
-		assertNotNull(AppUtils.getMailTemplate("reminder"));
-		assertNotNull(AppUtils.getMailTemplate("notifications"));
-		assertNotNull(AppUtils.getMailTemplate("rudelmail"));
-	}
-
-	@Test
 	public void testGetGravatarImage() {
 		assertNotNull(AppUtils.getGravatarImage("sk@svenkubiak.de", null, 64));
 	}

@@ -1,4 +1,0 @@
-A new user just registered.
-
-&{'email'}: ${user.email}
-&{'username'}: ${user.username}

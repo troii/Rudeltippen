@@ -9,8 +9,11 @@ import java.util.List;
 
 import models.Confirmation;
 import models.ConfirmationType;
+import models.Extra;
+import models.Game;
 import models.Settings;
 import models.User;
+import notifiers.Mails;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -26,13 +29,20 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.utils.Java;
 import utils.AppUtils;
-import utils.MailUtils;
 import utils.ValidationUtils;
 
 public class Auth extends Root implements AppConstants{
 	@Before(unless={"login", "authenticate", "logout", "forgotten", "resend", "register", "create", "confirm", "password", "reset", "renew"})
 	protected static void checkAccess() throws Throwable {
 		AppUtils.setAppLanguage();
+
+
+		User user = User.find("byUsername", "svenkubiak").first();
+		List<Game> games =  Game.find("byNumber", 2).fetch();
+		List<Extra> extras = Extra.find("SELECT e FROM Extra e").fetch(10);
+
+		Mails.reminder(user, games, extras);
+
 
 		if (!session.contains("username")) {
 			flash.put("url", "/");
@@ -108,7 +118,7 @@ public class Auth extends Root implements AppConstants{
 				confirmation.setCreated(new Date());
 				confirmation._save();
 
-				MailUtils.confirm(user, token, confirmType);
+				Mails.confirm(user, token, confirmType);
 				flash.put("infomessage", Messages.get("confirm.message"));
 				flash.keep();
 				login();
@@ -240,11 +250,11 @@ public class Auth extends Root implements AppConstants{
 			confirmation.setUser(user);
 			confirmation._save();
 
-			MailUtils.confirm(user, token, confirmationType);
+			Mails.confirm(user, token, confirmationType);
 			if (settings.isInformOnNewTipper()) {
 				final List<User> admins = User.find("byAdmin", true).fetch();
 				for (final User admin : admins) {
-					MailUtils.newuser(user, admin);
+					Mails.newuser(user, admin);
 				}
 			}
 			Logger.info("User registered: " + user.getEmail());

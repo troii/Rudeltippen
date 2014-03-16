@@ -2,6 +2,7 @@ package jobs;
 
 import java.util.List;
 
+import notifiers.Mails;
 import models.AbstractJob;
 import models.Game;
 import models.User;
@@ -9,7 +10,6 @@ import play.Logger;
 import play.i18n.Messages;
 import play.jobs.On;
 import utils.AppUtils;
-import utils.MailUtils;
 
 @On("0 0 3 * * ?")
 public class StandingsJob extends AppJob {
@@ -45,7 +45,7 @@ public class StandingsJob extends AppJob {
 
                     users = User.find("bySendStandings", true).fetch();
                     for (final User user : users) {
-                        MailUtils.notifications(Messages.get("mails.top3.subject"), message, user);
+                        Mails.notifications(Messages.get("mails.top3.subject"), message, user);
                     }
                 }
                 Logger.info("Finished Job: StandingsJob");

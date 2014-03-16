@@ -19,3 +19,5 @@ server.pid
 /rudeltippen.zip
 /public/javascripts/combined.min.js
 /public/stylesheets/combined.min.css
+/public/javascripts/combined.js
+/public/stylesheets/combined.css

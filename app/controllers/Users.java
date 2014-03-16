@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import notifiers.Mails;
 import models.Confirmation;
 import models.ConfirmationType;
 import models.Extra;
@@ -28,7 +29,6 @@ import play.libs.Crypto;
 import play.libs.Images;
 import play.mvc.With;
 import utils.AppUtils;
-import utils.MailUtils;
 import utils.ValidationUtils;
 
 @With(Auth.class)
@@ -141,7 +141,7 @@ public class Users extends Root implements AppConstants{
                 confirmation.setToken(token);
                 confirmation.setUser(user);
                 confirmation._save();
-                MailUtils.confirm(user, token, confirmationType);
+                Mails.confirm(user, token, confirmationType);
                 flash.put("infomessage", Messages.get("confirm.message"));
             }
         }
@@ -173,7 +173,7 @@ public class Users extends Root implements AppConstants{
                 confirm.setToken(token);
                 confirm.setUser(user);
                 confirm._save();
-                MailUtils.confirm(user, token, confirmationType);
+                Mails.confirm(user, token, confirmationType);
                 flash.put("infomessage", Messages.get("confirm.message"));
                 Logger.info("Password updated: " + user.getEmail());
             }
