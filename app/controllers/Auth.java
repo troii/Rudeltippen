@@ -9,8 +9,6 @@ import java.util.List;
 
 import models.Confirmation;
 import models.ConfirmationType;
-import models.Extra;
-import models.Game;
 import models.Settings;
 import models.User;
 import notifiers.Mails;
@@ -226,6 +224,9 @@ public class Auth extends Root implements AppConstants{
 			user.setEmail(email);
 			user.setActive(false);
 			user.setReminder(true);
+			user.setSendStandings(true);
+			user.setSendGameTips(true);
+			user.setNotification(true);
 			user.setAdmin(false);
 			user.setSalt(salt);
 			user.setUserpass(AppUtils.hashPassword(userpass, salt));

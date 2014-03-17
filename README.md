@@ -24,6 +24,8 @@ Screenshots
 ![Rudeltippen login](https://raw.github.com/svenkubiak/Rudeltippen/2.2.0/assets/rudelscreen.png)
 ![Rudeltippen overview](https://raw.github.com/svenkubiak/Rudeltippen/2.2.0/assets/rudelscreen-2.png)
 
+Screenshots made with some awesomeness from [Am I Responsive][2].
+
 Requirements
 ------------------
 
@@ -220,6 +222,7 @@ Licence
 Rudeltippen is distributed under [Apache 2 licence][11]
 
 [1]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+[2]: http://ami.responsivedesign.is
 [5]: https://flattr.com/thing/1628177/Rudeltippen
 [9]: http://www.playframework.com/documentation/1.2.7/production
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
