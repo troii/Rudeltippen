@@ -140,7 +140,7 @@ play start
 
 Open a Browser and go to http://www.yourdomain.com
 
-The application will now be setup and the initial data will be loaded. After setup has finished you will be redirect to the login page.
+The application will now be set up and the initial data will be loaded. After setup has finished you will be redirect to the login page.
 
 The initial data will create an admin user with the following credentials:
 
