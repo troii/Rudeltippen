@@ -21,8 +21,8 @@ Features in a Nutshell
 
 Screenshots
 ------------------
-![Rudeltippen login](https://github.com/svenkubiak/Rudeltippen/blob/master/assets/rudelscreen.png)
-![Rudeltippen overview](https://github.com/svenkubiak/Rudeltippen/blob/master/assets/rudelscreen-2.png)
+![Rudeltippen login](https://raw.github.com/svenkubiak/Rudeltippen/master/assets/rudelscreen.png)
+![Rudeltippen overview](https://raw.github.com/svenkubiak/Rudeltippen/master/assets/rudelscreen-2.png)
 
 Screenshots made with some awesomeness from [Am I Responsive][2].
 
