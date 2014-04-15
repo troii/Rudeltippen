@@ -35,13 +35,13 @@
 							#{if game.homeTeam?.name != null && game.awayTeam?.name != null}
 								<td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}" class="flag"/>&{game.homeTeam?.name}</td>
 								<td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}" class="flag"/>&{game.awayTeam?.name}</td>
-								<td align="right"><input type="number" class="form-control input-small" maxlength="2" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
+								<td align="right"><input type="text" class="form-control input-small" maxlength="2" name="game_${game.id}_homeScore" id="game_homeScore_${playday_index}${game_index}" value="${game.homeScore}"/></td>
 								<td align="center">:</td>
-								<td align="left"><input type="number" class="form-control input-small" maxlength="2" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
+								<td align="left"><input type="text" class="form-control input-small" maxlength="2" name="game_${game.id}_awayScore" id="game_awayScore_${playday_index}${game_index}" value="${game.awayScore}"/></td>
 								#{if game.playoff}
-									<td align="right"><input type="number" maxlength="2" class="form-control input-small" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
+									<td align="right"><input type="text" maxlength="2" class="form-control input-small" id="game_et_homeScore_${playday_index}${game_index}" name="game_${game.id}_homeScore_et" value="#{if game.overtimeType == "nv" || game.overtimeType == "ie"} ${game.homeScoreOT} #{/if}"/></td>
 									<td align="right">:</td>
-									<td align="left"><input type="number" maxlength="2" class="form-control input-small"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
+									<td align="left"><input type="text" maxlength="2" class="form-control input-small"  id="game_et_awayScore_${playday_index}${game_index}" name="game_${game.id}_awayScore_et" value="#{if game.overtimeType == "nv" ||game.overtimeType == "ie"} ${game.awayScoreOT} #{/if}"/></td>
 									<td>
 										<select id="extratime_${playday_index}_${game_index}" class="form-control" name="extratime_${game.id}">
 											#{if game.overtimeType != "nv" && game.overtimeType != "ie"}
