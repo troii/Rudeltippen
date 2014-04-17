@@ -1,13 +1,14 @@
 #{extends 'auth.html' /}
-<div class="row" style="margin-top:20px">
+<div class="row" style="margin-top:5px">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
     	<div class="panel panel-default">
 			#{form @Auth.reset(), role:'form well'}
 				<fieldset>
 					<h2>Rudeltippen - Passwort vergessen?</h2>
 					<hr class="colorgraph">
-					<div class="form-group">
-	                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Benutzername / E-Mail">
+					<div class="form-group #{ifError 'email'} has-error #{/ifError}">
+						#{ifError 'email'}<span class="help-block">#{error 'email' /}</span>#{/ifError}
+	                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="E-Mail-Adresse">
 					</div>
 					<hr class="colorgraph">
 					<div class="row">

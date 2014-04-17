@@ -132,7 +132,11 @@ public class Auth extends Root implements AppConstants{
 			final User user = confirmation.getUser();
 			if (user != null) {
 				final ConfirmationType confirmationType = confirmation.getConfirmType();
-				doConfirmation(confirmation, user, confirmationType);
+				if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
+					redirect("/auth/password/" + token);
+				} else {
+					doConfirmation(confirmation, user, confirmationType);					
+				}
 			} else {
 				flash.put("warningmessage", Messages.get("controller.users.invalidtoken"));
 			}
@@ -146,24 +150,29 @@ public class Auth extends Root implements AppConstants{
 	private static void doConfirmation(final Confirmation confirmation, final User user, final ConfirmationType confirmationType) {
 		if ((ConfirmationType.ACTIVATION).equals(confirmationType)) {
 			activateAndSetAvatar(user);
-			Logger.info("User activated: " + user.getEmail());
 			flash.put("infomessage", Messages.get("controller.users.accountactivated"));
+			confirmation._delete();
+			
+			Logger.info("User activated: " + user.getEmail());
 		} else if ((ConfirmationType.CHANGEUSERNAME).equals(confirmationType)) {
 			final String oldusername = user.getEmail();
 			final String newusername = Crypto.decryptAES(confirmation.getConfirmValue());
 			user.setEmail(newusername);
 			user._save();
 			session.remove("username");
-			Logger.info("User changed username... old username: " + oldusername + " - " + "new username: " + newusername);
 			flash.put("infomessage", Messages.get("controller.users.changedusername"));
+			confirmation._delete();
+
+			Logger.info("User changed username... old username: " + oldusername + " - " + "new username: " + newusername);
 		} else if ((ConfirmationType.CHANGEUSERPASS).equals(confirmationType)) {
 			user.setUserpass(Crypto.decryptAES(confirmation.getConfirmValue()));
 			user._save();
 			session.remove("username");
-			Logger.info(user.getEmail() + " changed his password");
 			flash.put("infomessage", Messages.get("controller.users.changeduserpass"));
+			confirmation._delete();
+
+			Logger.info(user.getEmail() + " changed his password");
 		}
-		confirmation._delete();
 	}
 
 	private static void activateAndSetAvatar(final User user) {

@@ -67,11 +67,7 @@ public class Mails extends Mailer {
 			setFrom(from);
 			addRecipient(user.getEmail());
 			setSubject(StringEscapeUtils.unescapeHtml("[" + settings.getGameName() + "] " + subject));
-			if (ConfirmationType.NEWUSERPASS.equals(confirmationType)) {
-				send(user, token, appUrl, message);
-			} else {
-				send(user, token, appUrl, message);
-			}
+			send(user, token, appUrl, message);
 		} else {
 			Logger.error("Tryed to sent confirmation e-mail, but user or confirmType was null or recipient e-mail was invalid.");
 		}
