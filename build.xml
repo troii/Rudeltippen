@@ -18,6 +18,7 @@
 
 	<target name="css" depends="clean" description="Concatenate CSS source files">
 		<echo message="Building ${CSS}" />
+		<replace file="${CSS_DIR}/bootstrap.min.css" token="(min-width:768px)" value="(min-width:1023px)"/>
 		<concat destfile="${CSS}">
 			<fileset dir="${CSS_DIR}" includes="bootstrap.min.css" />
 			<fileset dir="${CSS_DIR}" includes="bootstrap-editable.min.css" />
@@ -42,5 +43,4 @@
 		</concat>
 		<echo message="${JS} built." />
 	</target>	
-
 </project>
