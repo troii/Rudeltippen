@@ -218,7 +218,7 @@ You need to restart Rudeltippen in order for the changes to take effect.
 
 Development
 ------------------
-If you work with the master branch you need to run "ant" in the home directory. The ant jobs copies the JavaScript- and CSS-Resources into single files and builds a ZIP-File (rudeltippen.zip) ready for deployment.
+If you work with the master branch you need to run "ant" in the home directory. The ant jobs copies the JavaScript- and CSS-Resources into single files and builds a ZIP-File (rudeltippen.zip) ready for testing or deployment.
 
 Licence
 ------------------
