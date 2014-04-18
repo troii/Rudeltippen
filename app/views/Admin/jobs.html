@@ -6,7 +6,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<a href="@{admin.jobs()}" class="btn btn-success" id="fat-btn-loading" role="button"><span class="glyphicon glyphicon-repeat"></span> Aktualisieren</a>
+		<a href="@{admin.jobs()}" class="btn btn-success" id="fat-btn-loading" data-loading-text="Aktualisieren..." role="button"><span class="glyphicon glyphicon-repeat"></span> Aktualisieren</a>
 		<div class="table-responsive">
 			<table class="table table-stripes">
 			    <thead>
@@ -22,6 +22,7 @@
 			    </thead>
 			    <tbody>
 			        #{list items:jobs, as:'job'}
+			        	#{if job.class.simpleName != "StartupJob"}
 			            <tr>
 			                <td>${job.class.simpleName}</td>
 			                <td>${job.executed}</td>
@@ -36,6 +37,7 @@
 			                #{/else}
 			                <td><a href="@{admin.runjob()}/${job.class.simpleName}" onclick="return confirm('Execute ${job.class.simpleName}?');"><span class="glyphicon glyphicon-play-circle"></span></a></td>
 			            </tr>
+			            #{/if}
 			         #{/list}
 			    </tbody>
 			</table>
