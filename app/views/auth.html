@@ -36,6 +36,7 @@
 		.form-group.last {margin-bottom:0px;}
 		fieldset {padding: 15px;}
 	</style>
+    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
   </head>
   <body>
   	<div class="container">
@@ -72,6 +73,11 @@
 	<script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript"></script>
     <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
     <script type="text/javascript">
+    $(document).ready(function(){
+    	$('.alert-warning').delay(20000).slideToggle();
+    	$('.alert-success').delay(5000).slideToggle();
+    	$('.alert-danger').delay(10000).slideToggle();
+    });    	
     $(function(){
     	$('.btn-success').click(function() {
     		var btn = $(this);
@@ -124,9 +130,6 @@
     		}
     		init();
     	});
-    	$('.alert-warning').delay(20000).slideToggle();
-    	$('.alert-success').delay(5000).slideToggle();
-    	$('.alert-danger').delay(10000).slideToggle();
     });
     </script>
   </body>
