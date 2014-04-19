@@ -418,6 +418,7 @@ tiped=Getippt
 tipper=Tipper
 tips=Tippabgabe
 topthree=Die Top 3
+topthree.notification=Die Top 3 nach dem %s
 totalpoints=Gesamtpunkte
 tournament=Turnier&uuml;bersicht
 tsghoffenheim=TSG 1899 Hoffenheim

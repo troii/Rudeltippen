@@ -3,7 +3,6 @@ package unit.utils;
 import jobs.CleanupJob;
 import jobs.ReminderJob;
 import jobs.ResultsJob;
-import jobs.StandingsJob;
 
 import org.junit.Test;
 
@@ -15,6 +14,5 @@ public class JobTests extends UnitTest {
         new CleanupJob().now();
         new ReminderJob().now();
         new ResultsJob().now();
-        new StandingsJob().now();
     }
 }
