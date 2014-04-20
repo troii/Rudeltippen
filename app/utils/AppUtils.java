@@ -202,7 +202,7 @@ public class AppUtils implements AppConstants {
         final List<Extra> extras = Extra.findAll();
         for (final Extra extra : extras) {
             if (extra.getAnswer() == null) {
-                if (AppUtils.allReferencedGamesEnded(extra.getGameReferences())) {
+                if (allReferencedGamesEnded(extra.getGameReferences())) {
                     final Team team = AppUtils.getTeamByReference(extra.getExtraReference());
                     if (team != null) {
                         extra.setAnswer(team);
@@ -212,7 +212,7 @@ public class AppUtils implements AppConstants {
             }
         }
 
-        final List<User> users = User.find("byActive", true).fetch();
+        final List<User> users = getAllActiveUsers();
         for (final User user : users) {
             int correctResults = 0;
             int correctDifferences = 0;
