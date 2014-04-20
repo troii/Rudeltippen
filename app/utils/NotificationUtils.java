@@ -80,7 +80,7 @@ public class NotificationUtils {
                 }
                 count++;
             }
-            message = Messages.get("topthree.notification", playday.getName()) + ": \n" + buffer.toString();
+            message = Messages.get("topthree.notification", Messages.get(playday.getName())) + ": \n" + buffer.toString();
 
             users = User.find("bySendStandings", true).fetch();
             for (final User user : users) {
