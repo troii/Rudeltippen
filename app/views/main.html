@@ -144,7 +144,7 @@
     	<p><a href="https://github.com/svenkubiak/rudeltippen" target="_blank">Rudeltippen 2.2.0 RC1</a> | <a href="#credits">Credits</a> | <a href="https://flattr.com/thing/1628177/Rudeltippen" target="_blank">Flattr</a></p>
     </div>
 	<script src="@{'/public/javascripts/combined.js'}" type="text/javascript"></script>
-	#{if request.action == "Admin.tournament"}
+	#{if request.action == "Admin.tournament" || request.action == "Admin.results"}
 	<script src="@{'/public/javascripts/blockUI.min.js'}" type="text/javascript"></script>
 	#{/if}
     #{if request.action == "Users.show"}
@@ -168,9 +168,9 @@
 	    			window.scrollTo(0, 1);
 	    		}, 0);
 	    	});
-	        $('#fat-btn-loading').click(function() {
-	        	$.blockUI({ message: '<h2>Calculating...<br/>This may take a moment!</h2>'});
-	            setTimeout($.unblockUI, 60000); 
+	        $('#calculations').click(function() {
+	        	$.blockUI({ message: '<h2>Calculating...<br/>This may take a minute!</h2>'});
+	            setTimeout($.unblockUI, 100000); 
 	        }); 
 	        #{if request.action == "Admin.tournament"}
 	        	$('.editable').editable(

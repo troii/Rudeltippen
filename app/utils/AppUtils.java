@@ -159,8 +159,11 @@ public class AppUtils implements AppConstants {
         calculateUserPoints();
         setUserPlaces();
         setPlayoffTeams();
-        setCurrentPlayday();
-        calculateStatistics();
+
+        if (setCurrentPlayday()) {
+            flushAndClear();
+            calculateStatistics();
+        }
     }
 
     /**
@@ -361,7 +364,8 @@ public class AppUtils implements AppConstants {
     /**
      * Sets the current playday based on all games played on a playday
      */
-    private static void setCurrentPlayday() {
+    private static boolean setCurrentPlayday() {
+        boolean changed = false;
         final Playday currentPlayday = getCurrentPlayday();
         final List<Playday> playdays = Playday.find("SELECT p FROM Playday p ORDER BY number ASC").fetch();
         for (final Playday playday : playdays) {
@@ -376,8 +380,11 @@ public class AppUtils implements AppConstants {
         }
 
         if (currentPlayday != getCurrentPlayday()) {
+            changed = true;
             NotificationUtils.sendTopThree(currentPlayday);
         }
+
+        return changed;
     }
 
     /**
@@ -913,5 +920,13 @@ public class AppUtils implements AppConstants {
         }
 
         return users;
+    }
+
+    /**
+     * Sends a flush and clear command to the entitymanager
+     */
+    public static void flushAndClear() {
+        JPA.em().flush();
+        JPA.em().clear();
     }
 }
