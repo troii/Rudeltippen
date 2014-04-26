@@ -53,7 +53,7 @@
 	    </div>
 	   	#{if playday?.isTippable()}
 	   		<div style="text-align:right; padding-right: 5px;">
-	        	<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern" />
+	        	<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="&{'save'}" />
 	        </div>
 	    #{/if}
 	    #{/form}
@@ -66,7 +66,7 @@
 </div>
 <div class="row" style="text-align:right; padding-right: 5px;">
 	<div class="col-md-12">
-		<a data-toggle="collapse" id="collapseExtra" data-parent="#accordion" href="#extratips">Anzeigen</a>
+		<a data-toggle="collapse" id="collapseExtra" data-parent="#accordion" href="#extratips">&{'app.show'}</a>
 	</div>
 </div>
 <div id="extratips" class="row panel-collapse collapse">
@@ -115,7 +115,7 @@
 		</div>
 		#{if tippable}
 	   		<div style="text-align:right; padding-right: 5px;">
-	        	<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="Speichern">
+	        	<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="&{'save'}">
 	        </div>
 		#{/if}
 		#{/form}

@@ -4,33 +4,33 @@
     	<div class="panel panel-default">
 		#{form @Auth.authenticate(), role:'form'}
 			<fieldset>
-				<h2>Rudeltippen - Melde Dich an</h2>
+				<h2>&{'app.auth.login'}</h2>
 				<hr class="colorgraph">
 				<div class="form-group">
-                    <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Benutzername / E-Mail">
+                    <input type="text" name="username" id="username" class="form-control input-lg" placeholder="&{'app.auth.username.email'}">
 				</div>
 				<div class="form-group">
-                    <input type="password" name="userpass" id="userpass" class="form-control input-lg" placeholder="Passwort">
+                    <input type="password" name="userpass" id="userpass" class="form-control input-lg" placeholder="&{'password'}">
 				</div>
 				<span class="button-checkbox">
-					<button type="button" class="btn" data-color="info">Angemeldet bleiben</button>
+					<button type="button" class="btn" data-color="info">&{'app.auth.rememberme'}</button>
                     <input type="checkbox" name="remember" value="1" id="remember_me" class="hidden">
-					<a href="@{auth.forgotten()}" class="btn btn-link pull-right">Passwort vergessen?</a>
+					<a href="@{auth.forgotten()}" class="btn btn-link pull-right">&{'app.auth.forgotten'}</a>
 				</span>
 				<br />
 				<hr class="colorgraph">
 				<div class="row">
 					#{if isEnableRegistration}
 						<div class="col-xs-6 col-sm-6 col-md-6">
-							<a href="@{auth.register()}" class="btn btn-lg btn-primary btn-block">Registrieren</a>
+							<a href="@{auth.register()}" class="btn btn-lg btn-primary btn-block">&{'app.auth.register'}</a>
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6">
-	                        <input type="submit" class="btn btn-lg btn-success btn-loading btn-block" data-loading-text="Anmelden..." value="Anmelden">
+	                        <input type="submit" class="btn btn-lg btn-success btn-loading btn-block" data-loading-text="&{'login'}..." value="&{'login'}">
 						</div>
 					#{/if}
 					#{else}
 						<div class="col-xs-12 col-sm-12 col-md-12">
-	                        <input type="submit" class="btn btn-lg btn-success btn-loading btn-block" data-loading-text="Anmelden..." value="Anmelden">
+	                        <input type="submit" class="btn btn-lg btn-success btn-loading btn-block" data-loading-text="&{'login'}..." value="&{'login'}">
 						</div>					
 					#{/else}
 				</div>

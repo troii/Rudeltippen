@@ -4,16 +4,16 @@
     	<div class="panel panel-default">
 			#{form @Auth.reset(), role:'form well'}
 				<fieldset>
-					<h2>Rudeltippen - Passwort vergessen?</h2>
+					<h2>&{'app.auth.forgotten.header'}</h2>
 					<hr class="colorgraph">
 					<div class="form-group #{ifError 'email'} has-error #{/ifError}">
 						#{ifError 'email'}<span class="help-block">#{error 'email' /}</span>#{/ifError}
-	                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="E-Mail-Adresse">
+	                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="&{'app.auth.email'}">
 					</div>
 					<hr class="colorgraph">
 					<div class="row">
-						<div class="col-xs-6 col-md-6"><a href="@{auth.login()}" class="btn btn-primary btn-block btn-lg"><< Zur&uuml;ck</a></div>
-						<div class="col-xs-6 col-md-6"><input type="submit" value="Absenden" data-loading-text="Absenden..." class="btn btn-success btn-loading btn-block btn-lg" tabindex="7"></div>
+						<div class="col-xs-6 col-md-6"><a href="@{auth.login()}" class="btn btn-primary btn-block btn-lg"><< &{'app.auth.back'}</a></div>
+						<div class="col-xs-6 col-md-6"><input type="submit" value="&{'send'}" data-loading-text="&{'send'}..." class="btn btn-success btn-loading btn-block btn-lg" tabindex="7"></div>
 					</div>
 				</fieldset>
 			#{/form}
