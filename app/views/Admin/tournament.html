@@ -2,9 +2,9 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="bs-callout bs-callout-info">
-	    	<h2>Editing brackets</h2>
-	    	<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-	  		<a href="@{admin.calculations()}" class="btn btn-success" data-loading-text="Neu berechnen..." id="calculations" role="button"><span class="glyphicon glyphicon-repeat"></span> Neu berechnen</a>
+	    	<h2>&{'app.tournament.brackets'}</h2>
+	    	<p>&{'app.tournament.brackets.info'}</p>
+	  		<a href="@{admin.calculations()}" class="btn btn-success" data-loading-text="&{'app.tournament.calculate'}..." id="calculations" role="button"><span class="glyphicon glyphicon-repeat"></span> &{'app.tournament.calculate'}</a>
 	  	</div>
   	</div>
 </div>
@@ -15,7 +15,7 @@
 			#{list items:brackets, as:'bracket'}
 			    <thead>
 			        <tr>
-			            <td colspan="9"><legend>&{bracket.name}</legend>Automatische Berechnung&nbsp;&nbsp;<input type="checkbox" title="first tooltip" value="${bracket.updateble}" class="updateable" data-url="/ajax/bracket/updateble/${bracket.id}" #{if bracket.updateble}checked#{/if} /></td>
+			            <td colspan="9"><legend>&{bracket.name}</legend>&{'app.automatic.calculation'}&nbsp;&nbsp;<input type="checkbox" value="${bracket.updateble}" class="updateable" data-url="/ajax/bracket/updateble/${bracket.id}" #{if bracket.updateble}checked#{/if} /></td>
 			        </tr>
 			        <tr>
 			            <th>#</th>
@@ -32,7 +32,7 @@
 			    <tbody>
 			        #{list items:bracket.teams, as:'team'}
 			            <tr>
-			                <td><a href="#" class="editable" data-type="text" data-pk="${team.id}" data-url="/ajax/bracket/place/${team.id}" data-title="Enter new place">${team.place}</td>
+			                <td><a href="#" class="editable" data-type="text" data-pk="${team.id}" data-url="/ajax/bracket/place/${team.id}" data-title="&{'app.new.place'}">${team.place}</td>
 			                #{if team.flag != null}
 			                    <td><img class="flag" src="@{'/public/img/flags'}/${team.flag}"/>&nbsp;&nbsp;&{team.name}</td>
 			                #{/if}
@@ -57,8 +57,8 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="bs-callout bs-callout-info">
-	    	<h2>Editing games</h2>
-	    	<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+	    	<h2>&{'app.tournament.games'}</h2>
+	    	<p>&{'app.tournament.games.info'}</p>
 	  	</div>
 	  </div>
 </div>
@@ -68,18 +68,18 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Auto update</th>
+						<th>&{'app.auto.update'}</th>
 						<th>&{'date'} - &{'time'}</th>
 						<th>&{'hometeam'}</th>
 						<th>&{'awayteam'}</th>
-						<th>Webservice ID</th>
+						<th>&{'app.webservice.id'}</th>
 					</tr>
 				</thead>
 				<tbody>
 				#{list items:games, as:'game'}
 					<tr>
 						<td><input type="checkbox" value="${game.updateble}" class="updateable" data-url="/ajax/game/updateble/${game.id}" #{if game.updateble}checked#{/if} /></td>
-						<td><a href="#" class="editable" data-type="datetime" data-format="dd.mm.yyyy - hh:ii" data-pk="${game.id}" data-url="/ajax/game/kickoff/${game.id}" title="Select new date and time">${game.kickoff.formatted()}</a></td>
+						<td><a href="#" class="editable" data-type="datetime" data-format="dd.mm.yyyy - hh:ii" data-pk="${game.id}" data-url="/ajax/game/kickoff/${game.id}" title="&{'app.new.data.time'}">${game.kickoff.formatted()}</a></td>
 						#{if game.homeTeam != null}
 							#{if game.homeTeam.flag != null}
 								<td><img class="flag" src="@{'/public/img/flags'}/${game.homeTeam?.flag}" alt="${game.homeTeam?.name}" />&{game.homeTeam?.name}</td>
@@ -102,7 +102,7 @@
 						#{else}
 							<td>${game.awayReferenceName()}</td>
 						#{/else}
-						<td><a href="#" class="editable" data-type="text" data-pk="${game.id}" data-url="/ajax/game/webserviceid/${game.id}" data-title="Enter Webservice ID">${game.webserviceID}</a></td>
+						<td><a href="#" class="editable" data-type="text" data-pk="${game.id}" data-url="/ajax/game/webserviceid/${game.id}" data-title="&{'app.new.webservice.id'}">${game.webserviceID}</a></td>
 					</tr>
 				#{/list}	
 				</tbody>

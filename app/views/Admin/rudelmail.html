@@ -8,7 +8,7 @@
 	<div class="col-md-12">	
 		#{form @Admin.send(), role:'form'}
 		    <fieldset>
-		        <h5>Sende eine E-Mail an alle aktiven Mitspieler.</h5>
+		        <h5>&{'app.rudelmail.send'}</h5>
 	            <div class="form-group #{ifError 'subject'} has-error #{/ifError}">
 	            	<input type="text" name="subject" id="subject" class="form-control input-lg" placeholder="Betreff">
 	                    #{ifError 'subject'}
@@ -17,7 +17,7 @@
 	            </div>
 	            <div class="form-group #{ifError 'message'} has-error #{/ifError}">
 	                <div class="controls">
-	                    <textarea rows="8" name="message" value="${flash.message}" class="form-control input-lg" placeholder="Nachricht"></textarea>
+	                    <textarea rows="8" name="message" value="${flash.message}" class="form-control input-lg" placeholder="&{'app.message'}"></textarea>
 	                </div>
 	            </div>
 				<input type="submit" data-loading-text="&{'save'}..." class="btn btn-success" value="&{'save'}">

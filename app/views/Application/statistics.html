@@ -8,12 +8,12 @@
 			<div class="table-responsive">
 	        <table class="table table-hover">
 	            <thead>
-	                <th>Spieltag</th>
-	                <th>Richtige Tipps</th>
-	                <th>Richtige Differenzen</th>
-	                <th>Richtige Tendenzen</th>
-	                <th>Punkte Insgesamt</th>
-	                <th>Punkte pro Spieler</th>
+	                <th>&{'playday'}</th>
+	                <th>&{'app.correct.tips'}</th>
+	                <th>&{'app.correct.differences'}</th>
+	                <th>&{'app.correct.tendences'}</th>
+	                <th>&{'app.points.total'}</th>
+	                <th>&{'app.points.player'}</th>
 	            </thead>
 	            #{list items:gameTipStatistics, as:'gameTipStatistic'}
 	            <tr>
@@ -39,8 +39,8 @@
 			<div class="table-responsive">
 		        <table class="table table-hover">
 		            <thead>
-		                <th>Anzahl</th>
-		                <th>Ergebnis</th>
+		                <th>&{'app.statistics.number'}</th>
+		                <th>&{'app.statistics.result'}</th>
 		            </thead>
 		            #{list items:results, as:'result'}
 		                <tr>
@@ -61,8 +61,8 @@
 			<div class="table-responsive">
 		        <table class="table table-hover">
 		            <thead>
-		                <th>Anzahl</th>
-		                <th>Ergebnis</th>
+		                <th>&{'app.statistics.number'}</th>
+		                <th>&{'app.statistics.result'}</th>
 		            </thead>
 		            #{list items:games, as:'game'}
 		                <tr>
