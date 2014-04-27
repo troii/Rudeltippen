@@ -385,8 +385,8 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
             number = offsetEnd;
         }
 
-        long offsetStart = number - 2;
-        long offset = number + 2;
+        long offsetStart = number - 3;
+        long offset = number + 3;
 
         if (offsetStart <= 0) {
             offsetStart = 1;
@@ -404,15 +404,15 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 
         return pagination;
     }
-    
-	public static boolean getJobStatus(final String jobName) {
-		boolean status = false;
 
-		AbstractJob job = AbstractJob.find("byName", jobName).first();
-		if (job != null) {
-			status = job.isActive();
-		}
+    public static boolean getJobStatus(final String jobName) {
+        boolean status = false;
 
-		return status;
-	}
+        AbstractJob job = AbstractJob.find("byName", jobName).first();
+        if (job != null) {
+            status = job.isActive();
+        }
+
+        return status;
+    }
 }

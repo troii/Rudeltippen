@@ -1,6 +1,6 @@
 <ul class="pagination">
 	#{if pagination.number != 1}
-		<li><a href="${pagination.url}1">&laquo;</a></li>
+		<li><a href="${pagination.url}1" class="pagination-prev">&laquo;</a></li>
 		<li><a href="${pagination.url}${pagination.number - 1}">&lsaquo;</a></li>
 	#{/if}
 	#{list items:pagination.offsetStart..pagination.offset,as:'page'}
@@ -12,7 +12,7 @@
 		#{/else}
 	#{/list}
 	#{if pagination.number != pagination.offsetEnd}
-		<li><a href="${pagination.url}${pagination.number + 1}">&rsaquo;</a></li>
+		<li><a href="${pagination.url}${pagination.number + 1}" class="pagination-next">&rsaquo;</a></li>
 		<li><a href="${pagination.url}${pagination.offsetEnd}">&raquo;</a></li>
 	#{/if}
 </ul>

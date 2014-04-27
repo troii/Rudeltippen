@@ -21,10 +21,6 @@
 		<replace file="${CSS_DIR}/bootstrap.min.css" token="(min-width:768px)" value="(min-width:1023px)"/>
 		<concat destfile="${CSS}">
 			<fileset dir="${CSS_DIR}" includes="bootstrap.min.css" />
-			<fileset dir="${CSS_DIR}" includes="bootstrap-editable.min.css" />
-			<fileset dir="${CSS_DIR}" includes="bootstrap-datetimepicker.min.css" />
-			<fileset dir="${CSS_DIR}" includes="overlay.min.css" />
-			<fileset dir="${CSS_DIR}" includes="remodal.min.css" />
 			<fileset dir="${CSS_DIR}" includes="additional.min.css" />
 		</concat>
 		<echo message="${CSS} built." />
@@ -35,11 +31,7 @@
 		<concat destfile="${JS}">
 			<fileset dir="${JS_DIR}" includes="jquery.min.js" />
 			<fileset dir="${JS_DIR}" includes="bootstrap.min.js" />
-			<fileset dir="${JS_DIR}" includes="bootstrap-editable.min.js" />
-			<fileset dir="${JS_DIR}" includes="bootstrap-datetimepicker.min.js" />
-			<fileset dir="${JS_DIR}" includes="overlay.min.js" />
-			<fileset dir="${JS_DIR}" includes="remodal.min.js" />
-			<fileset dir="${JS_DIR}" includes="responsive-paginate.min.js" />
+			<fileset dir="${JS_DIR}" includes="responsive-pagination.min.js" />
 		</concat>
 		<echo message="${JS} built." />
 	</target>	
