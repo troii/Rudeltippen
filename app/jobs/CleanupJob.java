@@ -9,6 +9,7 @@ import models.ExtraTip;
 import models.GameTip;
 import models.User;
 import play.Logger;
+import play.i18n.Messages;
 import play.jobs.On;
 import utils.AppUtils;
 
@@ -16,15 +17,15 @@ import utils.AppUtils;
 public class CleanupJob extends AppJob {
 
     public CleanupJob() {
-        this.setDescription("Cleans up the database by removing users which did not activate their account within 48 hours after registration.");
-        this.setExecuted("Runs daily at 02:00");
+        this.setDescription(Messages.get("job.cleanupjob.description"));
+        this.setExecuted(Messages.get("job.cleanupjob.executed"));
     }
 
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
-        	AbstractJob job = AbstractJob.find("byName", "CleanupJob").first();
-        	if (job != null && job.isActive()) {
+            AbstractJob job = AbstractJob.find("byName", "CleanupJob").first();
+            if (job != null && job.isActive()) {
                 Logger.info("Started Job: CleanupJob");
                 final List<Confirmation> confirmations = Confirmation.find("SELECT c FROM Confirmation c WHERE confirmType = ? AND DATE(NOW()) > (DATE(created) + 2)", ConfirmationType.ACTIVATION).fetch();
                 for (final Confirmation confirmation : confirmations) {
@@ -38,8 +39,8 @@ public class CleanupJob extends AppJob {
                         }
                     }
                 }
-                Logger.info("Finished Job: CleanupJob");	
-        	}
+                Logger.info("Finished Job: CleanupJob");
+            }
         }
     }
 }

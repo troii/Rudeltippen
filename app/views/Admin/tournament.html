@@ -1,11 +1,16 @@
 #{extends 'main.html' /}
 <div class="row">
 	<div class="col-md-12">
+		<legend>&{'app.tournament.management'}</legend>
+  	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
 		<div class="bs-callout bs-callout-info">
 	    	<h2>&{'app.tournament.brackets'}</h2>
 	    	<p>&{'app.tournament.brackets.info'}</p>
-	  		<a href="@{admin.calculations()}" class="btn btn-success" data-loading-text="&{'app.tournament.calculate'}..." id="calculations" role="button"><span class="glyphicon glyphicon-repeat"></span> &{'app.tournament.calculate'}</a>
 	  	</div>
+		<p><a href="@{admin.calculations()}" class="btn btn-success" data-loading-text="&{'app.tournament.calculate'}..." id="calculations" role="button"><span class="glyphicon glyphicon-repeat"></span> &{'app.tournament.calculate'}</a></p>
   	</div>
 </div>
 <div class="row">
@@ -58,7 +63,7 @@
 	<div class="col-md-12">
 		<div class="bs-callout bs-callout-info">
 	    	<h2>&{'app.tournament.games'}</h2>
-	    	<p>&{'app.tournament.games.info'}</p>
+	    	<p>&{'app.tournament.games.info', '<a href="http://www.openligadb.de/Matches/WebserviceLivetest" target="_blank">http://www.openligadb.de/Matches/WebserviceLivetest</a>'}</p>
 	  	</div>
 	  </div>
 </div>

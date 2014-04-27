@@ -8,15 +8,15 @@
 				<hr class="colorgraph">
 				<div class="form-group #{ifError 'username'} has-error #{/ifError}">
 					#{ifError 'username'}<span class="help-block">#{error 'username' /}</span>#{/ifError}
-					<input type="text" name="username" id="username" class="form-control input-lg" placeholder="&{'username'}" tabindex="3">
+					<input type="text" name="username" id="username" class="form-control input-lg" placeholder="&{'username'}" value="${flash.username}" tabindex="3">
 				</div>
 				<div class="form-group #{ifError 'email'} has-error #{/ifError}">
 					#{ifError 'email'}<span class="help-block">#{error 'email' /}</span>#{/ifError}
-					<input type="email" name="email" id="email" class="form-control input-lg" placeholder="&{'app.auth.email'}" tabindex="4">
+					<input type="email" name="email" id="email" class="form-control input-lg" placeholder="&{'app.auth.email'}" value="${flash.email}" tabindex="4">
 				</div>
 				<div class="form-group #{ifError 'emailConfirmation'} has-error #{/ifError}">
 					#{ifError 'emailConfirmation'}<span class="help-block">#{error 'emailConfirmation' /}</span>#{/ifError}
-					<input type="email" name="emailConfirmation" id="emailConfirmation" class="form-control input-lg" placeholder="&{'app.auth.email.confirmation'}" tabindex="4">
+					<input type="email" name="emailConfirmation" id="emailConfirmation" class="form-control input-lg" placeholder="&{'app.auth.email.confirmation'}" value="${flash.emailConfirmation}" tabindex="4">
 				</div>				
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">

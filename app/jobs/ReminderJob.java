@@ -11,6 +11,7 @@ import models.Game;
 import models.GameTip;
 import models.User;
 import play.Logger;
+import play.i18n.Messages;
 import play.jobs.On;
 import utils.AppUtils;
 
@@ -18,15 +19,15 @@ import utils.AppUtils;
 public class ReminderJob extends AppJob {
 
     public ReminderJob() {
-        this.setDescription("Sends a reminder email to every activated user, reminding them of tips for games and extra.");
-        this.setExecuted("Runs daily at 01:00");
+        this.setDescription(Messages.get("job.reminderjob.description"));
+        this.setExecuted(Messages.get("job.reminderjob.executed"));
     }
 
     @Override
     public void doJob() {
         if (AppUtils.isJobInstance()) {
-        	AbstractJob job = AbstractJob.find("byName", "PlaydayJob").first();
-        	if (job != null && job.isActive()) {
+            AbstractJob job = AbstractJob.find("byName", "PlaydayJob").first();
+            if (job != null && job.isActive()) {
                 Logger.info("Started Job: ReminderJob");
                 final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE DATE(ending) = DATE(NOW())").fetch();
                 final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE DATE(kickoff) = DATE(NOW())").fetch();
@@ -56,7 +57,7 @@ public class ReminderJob extends AppJob {
                     }
                 }
                 Logger.info("Finshed Job: ReminderJob");
-        	}
+            }
         }
     }
 }
