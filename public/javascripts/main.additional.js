@@ -19,7 +19,7 @@ $(document).ready(function(){
 		}, 0);
 	});
     $('#calculations').click(function() {
-    	$.blockUI({ message: "&{'app.calculating'}"});
+    	$.blockUI({ message: "<h2>Calculating...<br/>This may take a minute!</h2>"});
         setTimeout($.unblockUI, 100000); 
     }); 
     if ($('.editable').length > 0){
@@ -27,7 +27,7 @@ $(document).ready(function(){
         		{
         			success: function(response, newValue) {
        					iosOverlay({
-		        			text: "&{'app.update.saved'}",
+		        			text: "Saved!",
 		        			duration: 2e3,
 		        			icon: "/public/img/check.png"
 		        		});
@@ -40,14 +40,14 @@ $(document).ready(function(){
         			$.get(url)
         			.done(function() {
         				iosOverlay({
-			        		text: "&{'app.update.saved'}",
+			        		text: "Saved!",
 			        		duration: 2e3,
 			        		icon: "/public/img/check.png"
 			        	});
         			})
         			.fail(function() {
         				iosOverlay({
-			        		text: "&{'app.update.error'}",
+			        		text: "Error!",
 			        		duration: 2e3,
 			        		icon: "/public/img/cross.png"
 			        	});
