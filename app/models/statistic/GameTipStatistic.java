@@ -5,7 +5,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import models.Playday;
-
 import play.db.jpa.Model;
 
 @Entity

@@ -2,10 +2,10 @@ package jobs;
 
 import java.util.List;
 
-import notifiers.Mails;
 import models.AbstractJob;
 import models.Game;
 import models.User;
+import notifiers.Mails;
 import play.Logger;
 import play.i18n.Messages;
 import play.jobs.Every;

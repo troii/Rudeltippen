@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import notifiers.Mails;
 import models.Confirmation;
 import models.ConfirmationType;
 import models.Extra;
@@ -20,6 +19,7 @@ import models.GameTip;
 import models.Settings;
 import models.User;
 import models.statistic.UserStatistic;
+import notifiers.Mails;
 import play.Logger;
 import play.data.validation.Validation;
 import play.db.jpa.Transactional;

@@ -2,11 +2,11 @@ package utils;
 
 import java.util.List;
 
-import notifiers.Mails;
 import models.Game;
 import models.GameTip;
 import models.Playday;
 import models.User;
+import notifiers.Mails;
 import play.i18n.Messages;
 
 public class NotificationUtils {

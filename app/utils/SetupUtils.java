@@ -19,7 +19,6 @@ import org.w3c.dom.NodeList;
 
 import play.Logger;
 import play.libs.WS;
-import play.test.Fixtures;
 
 public class SetupUtils implements AppConstants{
 	public static List<String> getGamesFromWebService(final int playdays, final String leagueShortcut, final String leagueSaison) {

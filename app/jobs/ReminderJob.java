@@ -3,13 +3,13 @@ package jobs;
 import java.util.ArrayList;
 import java.util.List;
 
-import notifiers.Mails;
 import models.AbstractJob;
 import models.Extra;
 import models.ExtraTip;
 import models.Game;
 import models.GameTip;
 import models.User;
+import notifiers.Mails;
 import play.Logger;
 import play.i18n.Messages;
 import play.jobs.On;

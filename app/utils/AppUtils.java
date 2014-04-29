@@ -26,7 +26,6 @@ import models.WSResults;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.Session;
 
 import play.Logger;
 import play.Play;

@@ -6,7 +6,6 @@ import javax.persistence.Table;
 
 import models.Playday;
 import models.User;
-
 import play.db.jpa.Model;
 
 @Entity

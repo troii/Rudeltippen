@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import models.statistic.GameStatistic;
 import models.statistic.GameTipStatistic;
 import models.statistic.UserStatistic;
-
 import play.db.jpa.Model;
 
 @Entity

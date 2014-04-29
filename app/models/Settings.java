@@ -1,7 +1,6 @@
 package models;
 
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import play.db.jpa.Model;

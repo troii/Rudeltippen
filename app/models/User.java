@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import models.statistic.ResultStatistic;
 import models.statistic.UserStatistic;
-
 import play.db.jpa.Model;
 
 @Entity
