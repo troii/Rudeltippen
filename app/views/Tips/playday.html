@@ -16,6 +16,7 @@
 		    <table class="table table-striped">
 		        <thead>
 		            <tr>
+		                <th>#</th>		            
 		                <th>&{'date'} - &{'time'}</th>
 		                <th>&{'betending'}</th>
 		                <th>&{'hometeam'}</th>
@@ -27,6 +28,7 @@
 		        <tbody>
 		            #{list items:playday?.games, as:'game'}
 		                <tr>
+		                    <td>${game.number}</td>		                
 		                    <td>${game.kickoff.formatted()}</td>
 		                    <td>${game.tippEnding.difference()}</td>
 		                    #{if game.homeTeam?.name != null && game.awayTeam?.name != null}
@@ -61,12 +63,12 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<legend>&{'extratips'}</legend>
+		<legend>&{'extratips'}&nbsp;&nbsp;<span class="glyphicon glyphicon-question-sign bonustips" data-toggle="tooltip" data-placement="top" title="&{'app.bonus.tooltip'}"></span></legend>
 	</div>
 </div>
 <div class="row" style="text-align:right; padding-right: 5px;">
 	<div class="col-md-12">
-		<a data-toggle="collapse" id="collapseExtra" data-parent="#accordion" href="#extratips">&{'app.show'}</a>
+		<a data-toggle="collapse" id="collapseExtra" data-parent="#accordion" href="#extratips"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
 	</div>
 </div>
 <div id="extratips" class="row panel-collapse collapse">

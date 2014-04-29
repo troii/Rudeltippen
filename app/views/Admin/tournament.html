@@ -73,7 +73,8 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>&{'app.auto.update'}</th>
+						<th>&{'app.auto.update'}</th>					
+						<th>#</th>
 						<th>&{'date'} - &{'time'}</th>
 						<th>&{'hometeam'}</th>
 						<th>&{'awayteam'}</th>
@@ -84,6 +85,7 @@
 				#{list items:games, as:'game'}
 					<tr>
 						<td><input type="checkbox" value="${game.updateble}" class="updateable" data-url="/ajax/game/updateble/${game.id}" #{if game.updateble}checked#{/if} /></td>
+						<td>&{game.number}</td>
 						<td><a href="#" class="editable" data-type="datetime" data-format="dd.mm.yyyy - hh:ii" data-pk="${game.id}" data-url="/ajax/game/kickoff/${game.id}" title="&{'app.new.data.time'}">${game.kickoff.formatted()}</a></td>
 						#{if game.homeTeam != null}
 							#{if game.homeTeam.flag != null}

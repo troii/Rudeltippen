@@ -12,6 +12,7 @@ $(document).ready(function(){
 	});   	
 	$('img').on().tooltip();
 	$('.admintooltip').on().tooltip();
+	$('.bonustips').on().tooltip();
 	$('.jobtooltip').on().tooltip();
 	window.addEventListener("load", function() {
 		setTimeout(function() {
@@ -56,9 +57,9 @@ $(document).ready(function(){
         });	        
     }
     $('#extratips').on('hidden.bs.collapse', function () {
-    	$('#collapseExtra').text("&{'app.show'}");
+    	$('#collapseExtra').html("<span class=\"glyphicon glyphicon-circle-arrow-down\">");
     });
     $('#extratips').on('show.bs.collapse', function () {
-    	$('#collapseExtra').text("&{'app.hide'}");
+    	$('#collapseExtra').html("<span class=\"glyphicon glyphicon-circle-arrow-up\">");
     })
 });

@@ -15,6 +15,7 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>&{'date'} - &{'time'}</th>
 						<th>&{'hometeam'}</th>
 						<th>&{'awayteam'}</th>
@@ -24,6 +25,7 @@
 				<tbody>
 				#{list items:playday.games, as:'game'}
 					<tr>
+						<td>${game.number}</td>					
 						<td>${game.kickoff.formatted()}</td>
 						#{if game.homeTeam != null}
 							#{if game.homeTeam.flag != null}

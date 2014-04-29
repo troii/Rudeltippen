@@ -608,3 +608,4 @@ job.reminderjob.description=Sendet eine E-Mail an alle aktivien Benutzer mit Eri
 job.reminderjob.executed=Läuft täglich um 01:00
 job.resultsjob.descrption=Prüft ob Begegnungen gestartet sind und Ergebniss für die Begegnungen vorliegen
 job.resultsjob.executed=Läuft jede Minute
+app.bonus.tooltip=Klick auf den Pfeil rechts um die Bonustips ein- und auszublenden

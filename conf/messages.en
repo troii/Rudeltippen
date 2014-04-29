@@ -608,3 +608,4 @@ job.reminderjob.description=Sends a reminder email to every activated user, remi
 job.reminderjob.executed=Runs daily at 01:00
 job.resultsjob.descrption=Checks if games have started and if results for this games are available.
 job.resultsjob.executed=Runs every minute
+app.bonus.tooltip=Click on the arrow on the right to show or hide the extratips

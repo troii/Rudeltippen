@@ -41,6 +41,7 @@
 			<table class="table table-striped">
 		          <thead>
 		              <tr>
+		              	  <th>#</th>
 		                  <th>&{'app.date.time'}</th>
 		                  <th>&{'hometeam'}</th>
 		                  <th>&{'awayteam'}</th>
@@ -51,6 +52,7 @@
 		          <tbody>
 		              #{list items:playday?.games, as:'game'}
 		                  <tr>
+		                      <td>${game.number}</td>
 		                      <td>${game.kickoff.formatted()}</td>
 		                      <td><img src="@{'/public/img/flags'}/${game.homeTeam?.flag}" class="flag">&{game.homeTeam?.name}</td>
 		                      <td><img src="@{'/public/img/flags'}/${game.awayTeam?.flag}" class="flag">&{game.awayTeam?.name}</td>
