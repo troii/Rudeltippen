@@ -15,9 +15,10 @@ Features in a Nutshell
 - Automatic results updates
 - Automatic tournament management
 - Automatic playing schedule updates
+- User and Tournament statistics
 - Gravatar support
 - Multilingual
-- Scalable
+- ...and a lot more
 
 Screenshots
 ------------------
@@ -30,7 +31,7 @@ Requirements
 ------------------
 
 - [Java SDK 1.7+][1]
-- Apache, Nginx, Lighttpd or any other HTTP-Server with Proxy-Support
+- Nginx, Apache, Lighttpd or any other HTTP-Server with Proxy-Support
 - SMTP-Account (with SSL/non-SSL, e.g. [Gmail][12])
 - MySQL 5+
 
@@ -52,7 +53,7 @@ Download and install [Play Framework 1.2.7][17] on your server. Make sure, that 
 
 ### Step 1
 
-Download the [latest release of Rudeltippen][14] and unzip to your INSTLLATIONFOLDER
+Download the [latest release of Rudeltippen][14] (the binary release, not the source code) and unzip it to your INSTLLATIONFOLDER
 
 ### Step 2
 
@@ -116,7 +117,7 @@ mailservice.replyto=me@example.de
 mailservice.from=Rudelmail <me@example.de>
 ```
 
-By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 30 users. Change this, if required.
+By default, Rudeltippen runs with -Xmx=128m -Xmx64m which should be enough memory for at least 30 users.
 
 ```bash
 jvm.memory=-Xmx128m -Xms64m
@@ -167,7 +168,7 @@ Upgrading
 
 ### Step 1
 
-Download the [latest tagged version of Rudeltippen][14]
+Download the [latest tagged version of Rudeltippen][14] (the binary release, not the source code)
 
 ### Step 2
 
@@ -185,7 +186,7 @@ Unzip the latest version of Rudeltippen to your INSTLLATIONFOLDER and replace al
 
 ### Step 4
 
-You are now ready to start your updated version of Rudeltippen. If you are on UNIX or Mac you can just run the following command in your INSTLLATIONFOLDER
+Start the application with the following command in your INSTLLATIONFOLDER
 
 ```bash
 play start
@@ -196,7 +197,7 @@ Advanced configuration
 
 ### Log4j
 
-If you want log4j Support for your Application you find an empty log4j configuration file in INSTLLATIONFOLDER/conf. Edit this file with your required appenders and uncomment the following line in INSTLLATIONFOLDER/application.conf
+If you want log4j Support for your Application you'll find an empty log4j configuration file (log4j.prod.xml.example) in INSTLLATIONFOLDER/conf. Rename the file to log4j.prod.xml and edit this file with your required appenders. Afterwards uncomment the following line in INSTLLATIONFOLDER/application.conf
 
 ```bash
 #%prod.application.log.path=/log4j.prod.xml
@@ -218,7 +219,7 @@ You need to restart Rudeltippen in order for the changes to take effect.
 
 Development
 ------------------
-If you work with the master branch you need to run "ant" in the home directory. The ant jobs copies the JavaScript- and CSS-Resources into single files and builds a ZIP-File (rudeltippen.zip) ready for testing or deployment.
+If you work with the master branch or the source code releases you need to run "ant" in the home directory. The ant jobs copies the JavaScript- and CSS-Resources into single files (combined.js and combined.css) and builds a ZIP-File (rudeltippen.zip) ready for testing or deployment.
 
 Licence
 ------------------
