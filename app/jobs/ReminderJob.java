@@ -12,10 +12,10 @@ import models.User;
 import notifiers.Mails;
 import play.Logger;
 import play.i18n.Messages;
-import play.jobs.On;
+import play.jobs.Every;
 import utils.AppUtils;
 
-@On("0 0 1 * * ?")
+@Every("1h")
 public class ReminderJob extends AppJob {
 
     public ReminderJob() {
@@ -29,8 +29,8 @@ public class ReminderJob extends AppJob {
             AbstractJob job = AbstractJob.find("byName", "PlaydayJob").first();
             if (job != null && job.isActive()) {
                 Logger.info("Started Job: ReminderJob");
-                final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE DATE(ending) = DATE(NOW())").fetch();
-                final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE DATE(kickoff) = DATE(NOW())").fetch();
+                final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE reminder = ? AND ( TIMESTAMPDIFF(HOUR,ending,now()) < 24 )", false).fetch();
+                final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE  reminder = ? AND ( TIMESTAMPDIFF(HOUR,kickoff,now()) < 24 )", false).fetch();
                 final List<User> users = User.find("byReminderAndActive", true, true).fetch();
 
                 for (final User user : users) {
@@ -56,6 +56,17 @@ public class ReminderJob extends AppJob {
                         Logger.info("Reminder send to: " + user.getEmail());
                     }
                 }
+				
+				for (final Game game : nextGames) {
+					game.setReminder(true);
+					game._save();
+                }
+
+                for (final Extra extra : nextExtras) {
+					extra.setReminder(true);
+					extra._save();
+				}
+				
                 Logger.info("Finshed Job: ReminderJob");
             }
         }

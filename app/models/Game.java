@@ -54,6 +54,7 @@ public class Game extends Model{
 	private boolean ended;
 	private boolean informed;
 	private boolean updateble;
+	private boolean reminder;
 
 	public Playday getPlayday() {
 		return this.playday;
@@ -237,7 +238,14 @@ public class Game extends Model{
 	public void setUpdateble(boolean updateble) {
 		this.updateble = updateble;
 	}
+	
+	public boolean isReminder() {
+		return reminder;
+	}
 
+	public void setReminder(boolean reminder) {
+		this.reminder = reminder;
+	}
 
 	public Team getWinner() {
 		String home, away;

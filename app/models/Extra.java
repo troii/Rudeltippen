@@ -46,6 +46,8 @@ public class Extra extends Model{
 
 	@ManyToOne
 	private Team answer;
+	
+	private boolean reminder;
 
 	public List<ExtraTip> getExtraTipps() {
 		return extraTips;
@@ -118,6 +120,14 @@ public class Extra extends Model{
 	public void setAnswer(Team answer) {
 		this.answer = answer;
 	}
+	
+	public boolean isReminder() {
+		return reminder;
+	}
+
+	public void setReminder(boolean reminder) {
+		this.reminder = reminder;
+	}	
 	
 	public boolean isTipable() {
 		if (new Date().getTime() >= this.ending.getTime()) {
