@@ -27,6 +27,9 @@ import play.i18n.Messages;
 import play.templates.JavaExtensions;
 
 public class ViewUtils extends JavaExtensions implements AppConstants{
+	private static final String ICON_ARROW_GREEN = "<span class=\"glyphicon glyphicon-arrow-up green\"></span>";
+    private static final String ICON_ARROW_RED = "<span class=\"glyphicon glyphicon-arrow-down red\"></span>";
+    private static final String ICON_MINUS = "<span class=\"glyphicon glyphicon-minus black\"></span>";
 
     public static String difference (final Date date) {
         final int MIN = 60;
@@ -326,13 +329,13 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
         final int previousPlace = user.getPreviousPlace();
         String trend = "";
 
-        if (previousPlace > 0) {
+		if (previousPlace > 0) {
             if (currentPlace < previousPlace) {
-                trend = "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
+                trend = ICON_ARROW_GREEN + " (" + previousPlace + ")";
             } else if (currentPlace > previousPlace) {
-                trend = "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
+                trend = ICON_ARROW_RED + " (" + previousPlace + ")";
             } else {
-                trend = "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
+                trend = ICON_MINUS + " (" + previousPlace + ")";
             }
         }
 
@@ -346,11 +349,11 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
 
         if (previousPlace > 0) {
             if (currentPlace < previousPlace) {
-                trend = "<i class=\"icon-arrow-up icon-green\"></i>" + " (" + previousPlace + ")";
+                trend = ICON_ARROW_GREEN + " (" + previousPlace + ")";
             } else if (currentPlace > previousPlace) {
-                trend = "<i class=\"icon-arrow-down icon-red\"></i>" + " (" + previousPlace + ")";
+                trend = ICON_ARROW_RED + " (" + previousPlace + ")";
             } else {
-                trend = "<i class=\"icon-minus\"></i>" + " (" + previousPlace + ")";
+                trend = ICON_MINUS + " (" + previousPlace + ")";
             }
         }
 
