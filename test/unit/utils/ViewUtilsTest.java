@@ -25,16 +25,16 @@ public class ViewUtilsTest extends UnitTest {
         user.setPlace(2);
         user.setPreviousPlace(1);
 
-        assertEquals("<i class=\"icon-arrow-down icon-red\"></i> (1)", ViewUtils.getPlaceTrend(user));
+        assertEquals("<span class=\"glyphicon glyphicon-arrow-down red\"></span> (1)", commonService.getPlaceTrend(user));
 
         user.setPlace(1);
         user.setPreviousPlace(2);
 
-        assertEquals("<i class=\"icon-arrow-up icon-green\"></i> (2)", ViewUtils.getPlaceTrend(user));
+        assertEquals("<span class=\"glyphicon glyphicon-arrow-up green\"></span> (2)", commonService.getPlaceTrend(user));
 
         user.setPreviousPlace(1);
 
-        assertEquals("<i class=\"icon-minus\"></i> (1)", ViewUtils.getPlaceTrend(user));
+        assertEquals("<span class=\"glyphicon glyphicon-minus black\"></span> (1)", commonService.getPlaceTrend(user));
     }
 
     @Test
