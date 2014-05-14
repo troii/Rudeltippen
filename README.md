@@ -49,11 +49,23 @@ This installation guide assumes that you already have JDK 1.7+ installed and tha
 
 ### Step 0
 
-Download and install [Play Framework 1.2.7][17] on your server. Make sure, that your path to play is set as an environment variable.
+Download and install [Play Framework 1.2.7][17] on your server. Make sure, that your path to play is set as an environment variable. Test your play installation by running the following command
+
+```bash
+play
+```
+
+Set your play installation to production environment, by running the follwing command
+
+```bash
+play id
+```
+
+When prompted, type "prod" (without the qoutes).
 
 ### Step 1
 
-Download the [latest release of Rudeltippen][14] (the binary release, not the source code) and unzip it to your INSTLLATIONFOLDER
+Download the [latest release of Rudeltippen][14] (the X.X.X.zip version file, not the source code zip) and unzip it to your INSTLLATIONFOLDER
 
 ### Step 2
 
@@ -168,7 +180,7 @@ Upgrading
 
 ### Step 1
 
-Download the [latest tagged version of Rudeltippen][14] (the binary release, not the source code)
+Download the [latest release of Rudeltippen][14] (the X.X.X.zip version file, not the source code zip)
 
 ### Step 2
 
@@ -219,7 +231,7 @@ You need to restart Rudeltippen in order for the changes to take effect.
 
 Development
 ------------------
-If you work with the master branch or the source code releases you need to run "ant" in the home directory. The ant jobs copies the JavaScript- and CSS-Resources into single files (combined.js and combined.css) and builds a ZIP-File (rudeltippen.zip) ready for testing or deployment.
+If you work with the master branch or the source code releases you need to run "ant" in the home directory. The ant jobs copies the JavaScript- and CSS-Resources into single files (combined.min.js and combined.min.css) and builds a ZIP-File (rudeltippen.zip) ready for testing or deployment.
 
 Licence
 ------------------
@@ -232,6 +244,6 @@ Rudeltippen is distributed under [Apache 2 licence][11]
 [9]: http://www.playframework.com/documentation/1.2.7/production
 [11]: http://www.apache.org/licenses/LICENSE-2.0.html
 [12]: http://mail.google.com/
-[14]: https://github.com/svenkubiak/Rudeltippen/tags
+[14]: https://github.com/svenkubiak/Rudeltippen/releases
 [17]: http://www.playframework.com/documentation/1.2.7/install
 [18]: http://pastebin.com/Aqby1atw 
