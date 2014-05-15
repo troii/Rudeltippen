@@ -29,8 +29,8 @@ public class ReminderJob extends AppJob {
             AbstractJob job = AbstractJob.find("byName", "PlaydayJob").first();
             if (job != null && job.isActive()) {
                 Logger.info("Started Job: ReminderJob");
-                final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE reminder = ? AND ( TIMESTAMPDIFF(HOUR,ending,now()) < 24 )", false).fetch();
-                final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE  reminder = ? AND ( TIMESTAMPDIFF(HOUR,kickoff,now()) < 24 )", false).fetch();
+                final List<Extra> nextExtras = Extra.find("SELECT e FROM Extra e WHERE reminder = ? AND ( TIMESTAMPDIFF(HOUR,ending,now()) > 0 ) AND ( TIMESTAMPDIFF(HOUR,ending,now()) < 24 )", false).fetch();
+                final List<Game> nextGames = Game.find("SELECT g FROM Game g WHERE  reminder = ? AND ( TIMESTAMPDIFF(HOUR,kickoff,now()) > 0 ) AND ( TIMESTAMPDIFF(HOUR,kickoff,now()) < 24 )", false).fetch();
                 final List<User> users = User.find("byReminderAndActive", true, true).fetch();
 
                 for (final User user : users) {
