@@ -165,7 +165,7 @@ Password: admin
 E-Mail: admin@foo.bar
 ```
 
-Changing of this credentials is mandatory! You can change your credentials under "My Profile".
+Changing of this credentials is mandatory! You can change your credentials under "My Profile". Please not, that you have to change your e-Mail first, Otherwise you won't recieve the confirmation for the password change.
 
 ### Step 6
 

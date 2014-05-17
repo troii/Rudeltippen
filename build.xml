@@ -13,7 +13,7 @@
 	</target>
 
 	<target name="zip" depends="clean, css, js" description="Creates a deployable ZIP file">
-		<zip destfile="${PROJECT_NAME}.zip" basedir="." includes="conf/**,app/**,public/**" />
+		<zip destfile="${PROJECT_NAME}.zip" basedir="." includes="conf/**,app/**,public/**" excludes="conf/application.conf"/>
 	</target>
 
 	<target name="css" depends="clean" description="Concatenate CSS source files">

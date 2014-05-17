@@ -133,16 +133,22 @@ public class Users extends Root implements AppConstants{
             final String token = Codec.UUID();
             final User user = AppUtils.getConnectedUser();
             if (user != null) {
-                final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
-                final Confirmation confirmation = new Confirmation();
-                confirmation.setConfirmType(confirmationType);
-                confirmation.setConfirmValue(Crypto.encryptAES(email));
-                confirmation.setCreated(new Date());
-                confirmation.setToken(token);
-                confirmation.setUser(user);
-                confirmation._save();
-                Mails.confirm(user, token, confirmationType);
-                flash.put("infomessage", Messages.get("confirm.message"));
+				if (user.isAdmin()) {
+					user.setEmail(email);
+					user._save();
+					flash.put("infomessage", Messages.get("admin.user.edited"));
+				} else {
+	                final ConfirmationType confirmationType = ConfirmationType.CHANGEUSERNAME;
+					final Confirmation confirmation = new Confirmation();
+					confirmation.setConfirmType(confirmationType);
+					confirmation.setConfirmValue(Crypto.encryptAES(email));
+					confirmation.setCreated(new Date());
+					confirmation.setToken(token);
+					confirmation.setUser(user);
+					confirmation._save();
+					Mails.confirm(user, token, confirmationType);
+					flash.put("infomessage", Messages.get("confirm.message"));
+				}
             }
         }
         flash.keep();
