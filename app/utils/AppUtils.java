@@ -392,29 +392,10 @@ public class AppUtils implements AppConstants {
     public static void setPlayoffTeams() {
         final Settings settings = AppUtils.getSettings();
         if (settings.isPlayoffs()) {
-            Team homeTeam = null;
-            Team awayTeam = null;
-
-            final List<Bracket> brackets = Bracket.findAll();
-            for (final Bracket bracket : brackets) {
-                if (bracket.allGamesEnded()) {
-                    final int number = bracket.getNumber();
-                    final String bracketString = "B-" + number + "%";
-                    final List<Game> games = Game.find("SELECT g FROM Game g WHERE homeReference LIKE ? OR awayReference LIKE ?", bracketString, bracketString).fetch();
-                    for (final Game game : games) {
-                        homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
-                        awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
-                        game.setHomeTeam(homeTeam);
-                        game.setAwayTeam(awayTeam);
-                        game._save();
-                    }
-                }
-            }
-
-            final List<Game> playoffGames = Game.find("byPlayoffAndEndedAndBracket", true, false, null).fetch();
+            final List<Game> playoffGames = Game.find("byPlayoffAndEnded", true, false).fetch();
             for (final Game game : playoffGames) {
-                homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
-                awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
+                Team homeTeam = AppUtils.getTeamByReference(game.getHomeReference());
+                Team awayTeam = AppUtils.getTeamByReference(game.getAwayReference());
                 game.setHomeTeam(homeTeam);
                 game.setAwayTeam(awayTeam);
                 game._save();
@@ -494,17 +475,17 @@ public class AppUtils implements AppConstants {
         if (StringUtils.isNotBlank(reference)) {
             final String[] references = reference.split("-");
             if ((references != null) && (references.length == 3)) {
-                if ("B".equals(references[0])) {
+                if (("B").equals(references[0])) {
                     final Bracket bracket = Bracket.find("byNumber", Integer.parseInt(references[1])).first();
-                    if (bracket != null) {
+                    if (bracket != null && bracket.allGamesEnded()) {
                         team = bracket.getTeamByPlace(Integer.parseInt(references[2]));
                     }
-                } else if ("G".equals(references[0])) {
+                } else if (("G").equals(references[0])) {
                     final Game aGame = Game.find("byNumber", Integer.parseInt(references[1])).first();
-                    if ((aGame != null) && aGame.isEnded()) {
-                        if ("W".equals(references[2])) {
+                    if (aGame != null && aGame.isEnded()) {
+                        if (("W").equals(references[2])) {
                             team = aGame.getWinner();
-                        } else if ("L".equals(references[2])) {
+                        } else if (("L").equals(references[2])) {
                             team = aGame.getLoser();
                         }
                     }

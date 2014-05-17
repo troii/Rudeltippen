@@ -389,7 +389,8 @@ models.Game(g1):
     ended: false
     updateble: true    
     webserviceID: 27028
-
+    bracket: a
+    
 models.Game(g2):
     number: 2
     homeTeam: mex
@@ -400,7 +401,8 @@ models.Game(g2):
     ended: false
     updateble: true
     webserviceID: 27029
-
+    bracket: a
+    
 models.Game(g3):
     number: 3
     homeTeam: esp
@@ -411,7 +413,8 @@ models.Game(g3):
     ended: false
     updateble: true
     webserviceID: 27030
-
+    bracket: b
+    
 models.Game(g4):
     number: 4
     homeTeam: chi
@@ -422,7 +425,8 @@ models.Game(g4):
     ended: false
     updateble: true    
     webserviceID: 27031
-
+    bracket: b
+    
 models.Game(g5):
     number: 5
     homeTeam: col
@@ -433,7 +437,8 @@ models.Game(g5):
     ended: false
     updateble: true    
     webserviceID: 27032
-
+    bracket: c
+    
 models.Game(g6):
     number: 6
     homeTeam: civ
@@ -444,7 +449,8 @@ models.Game(g6):
     ended: false
     updateble: true    
     webserviceID: 27033
-
+    bracket: c
+    
 models.Game(g7):
     number: 7
     homeTeam: uru
@@ -455,7 +461,8 @@ models.Game(g7):
     ended: false
     updateble: true    
     webserviceID: 27034
-
+    bracket: d
+    
 models.Game(g8):
     number: 8
     homeTeam: eng
@@ -466,7 +473,8 @@ models.Game(g8):
     ended: false
     updateble: true    
     webserviceID: 27035
-
+    bracket: d
+    
 models.Game(g9):
     number: 9
     homeTeam: sui
@@ -477,7 +485,8 @@ models.Game(g9):
     ended: false
     updateble: true    
     webserviceID: 27036
-
+    bracket: e
+    
 models.Game(g10):
     number: 10
     homeTeam: fra
@@ -488,7 +497,8 @@ models.Game(g10):
     ended: false
     updateble: true    
     webserviceID: 27037
-
+    bracket: e
+    
 models.Game(g11):
     number: 11
     homeTeam: arg
@@ -499,7 +509,8 @@ models.Game(g11):
     ended: false
     updateble: true    
     webserviceID: 27038
-
+    bracket: f
+    
 models.Game(g12):
     number: 12
     homeTeam: ira
@@ -510,7 +521,8 @@ models.Game(g12):
     ended: false
     updateble: true    
     webserviceID: 27039
-
+    bracket: f
+    
 models.Game(g13):
     number: 13
     homeTeam: ger
@@ -521,7 +533,8 @@ models.Game(g13):
     ended: false
     updateble: true    
     webserviceID: 27040
-
+    bracket: g
+    
 models.Game(g14):
     number: 14
     homeTeam: gha
@@ -532,7 +545,8 @@ models.Game(g14):
     ended: false
     updateble: true    
     webserviceID: 27041
-
+    bracket: g
+    
 models.Game(g15):
     number: 15
     homeTeam: bel
@@ -543,7 +557,8 @@ models.Game(g15):
     ended: false
     updateble: true    
     webserviceID: 27042
-
+    bracket: h
+    
 models.Game(g16):
     number: 16
     homeTeam: rus
@@ -554,7 +569,8 @@ models.Game(g16):
     ended: false
     updateble: true    
     webserviceID: 27043
-
+    bracket: h
+    
 models.Game(g17):
     number: 17
     homeTeam: bra
@@ -565,7 +581,8 @@ models.Game(g17):
     ended: false
     updateble: true    
     webserviceID: 27044
-
+    bracket: a
+    
 models.Game(g18):
     number: 18
     homeTeam: cam
@@ -576,7 +593,8 @@ models.Game(g18):
     ended: false
     updateble: true    
     webserviceID: 27045
-
+    bracket: a
+    
 models.Game(g19):
     number: 19
     homeTeam: esp
@@ -587,7 +605,8 @@ models.Game(g19):
     ended: false
     updateble: true    
     webserviceID: 27046
-
+    bracket: b
+    
 models.Game(g20):
     number: 20
     homeTeam: aus
@@ -598,7 +617,8 @@ models.Game(g20):
     ended: false
     updateble: true    
     webserviceID: 27047
-
+    bracket: b
+    
 models.Game(g21):
     number: 21
     homeTeam: col
@@ -609,7 +629,8 @@ models.Game(g21):
     ended: false
     updateble: true    
     webserviceID: 27048
-
+    bracket: c
+    
 models.Game(g22):
     number: 22
     homeTeam: jpn
@@ -620,7 +641,8 @@ models.Game(g22):
     ended: false
     updateble: true    
     webserviceID: 27049
-
+    bracket: c
+    
 models.Game(g23):
     number: 23
     homeTeam: uru
@@ -631,7 +653,8 @@ models.Game(g23):
     ended: false
     updateble: true    
     webserviceID: 27050
-
+    bracket: d
+    
 models.Game(g24):
     number: 24
     homeTeam: ita
@@ -642,7 +665,8 @@ models.Game(g24):
     ended: false
     updateble: true    
     webserviceID: 27051
-
+    bracket: d
+    
 models.Game(g25):
     number: 25
     homeTeam: sui
@@ -653,7 +677,8 @@ models.Game(g25):
     ended: false
     updateble: true    
     webserviceID: 27052
-
+    bracket: e
+    
 models.Game(g26):
     number: 26
     homeTeam: hon
@@ -664,7 +689,8 @@ models.Game(g26):
     ended: false
     updateble: true    
     webserviceID: 27053
-
+    bracket: e
+    
 models.Game(g27):
     number: 27
     homeTeam: arg
@@ -675,7 +701,8 @@ models.Game(g27):
     ended: false
     updateble: true    
     webserviceID: 27054
-
+    bracket: f
+    
 models.Game(g28):
     number: 28
     homeTeam: nga
@@ -686,7 +713,8 @@ models.Game(g28):
     ended: false
     updateble: true    
     webserviceID: 27055
-
+    bracket: f
+    
 models.Game(g29):
     number: 29
     homeTeam: ger
@@ -697,7 +725,8 @@ models.Game(g29):
     ended: false
     updateble: true    
     webserviceID: 27056
-
+    bracket: g
+    
 models.Game(g30):
     number: 30
     homeTeam: usa
@@ -708,7 +737,8 @@ models.Game(g30):
     ended: false
     updateble: true    
     webserviceID: 27057
-
+    bracket: g
+    
 models.Game(g31):
     number: 31
     homeTeam: bel
@@ -719,7 +749,8 @@ models.Game(g31):
     ended: false
     updateble: true    
     webserviceID: 27058
-
+    bracket: h
+    
 models.Game(g32):
     number: 32
     homeTeam: kor
@@ -730,7 +761,8 @@ models.Game(g32):
     ended: false
     updateble: true    
     webserviceID: 27059
-
+    bracket: h
+    
 models.Game(g33):
     number: 33
     homeTeam: cam
@@ -741,7 +773,8 @@ models.Game(g33):
     ended: false
     updateble: true    
     webserviceID: 27061
-
+    bracket: a
+    
 models.Game(g34):
     number: 34
     homeTeam: cro
@@ -752,7 +785,8 @@ models.Game(g34):
     ended: false
     updateble: true    
     webserviceID: 27062
-
+    bracket: a
+    
 models.Game(g35):
     number: 35
     homeTeam: aus
@@ -763,7 +797,8 @@ models.Game(g35):
     ended: false
     updateble: true    
     webserviceID: 27063
-
+    bracket: b
+    
 models.Game(g36):
     number: 36
     homeTeam: ned
@@ -774,7 +809,8 @@ models.Game(g36):
     ended: false
     updateble: true    
     webserviceID: 27064
-
+    bracket: b
+    
 models.Game(g37):
     number: 37
     homeTeam: jpn
@@ -785,7 +821,8 @@ models.Game(g37):
     ended: false
     updateble: true    
     webserviceID: 27065
-
+    bracket: c
+    
 models.Game(g38):
     number: 38
     homeTeam: gre
@@ -796,7 +833,8 @@ models.Game(g38):
     ended: false
     updateble: true    
     webserviceID: 27066
-
+    bracket: c
+    
 models.Game(g39):
     number: 39
     homeTeam: ita
@@ -807,7 +845,8 @@ models.Game(g39):
     ended: false
     updateble: true    
     webserviceID: 27067
-
+    bracket: d
+    
 models.Game(g40):
     number: 40
     homeTeam: crc
@@ -818,7 +857,8 @@ models.Game(g40):
     ended: false
     updateble: true    
     webserviceID: 27068
-
+    bracket: d
+    
 models.Game(g41):
     number: 41
     homeTeam: hon
@@ -829,7 +869,8 @@ models.Game(g41):
     ended: false
     updateble: true    
     webserviceID: 27069
-
+    bracket: e
+    
 models.Game(g42):
     number: 42
     homeTeam: ecu
@@ -840,7 +881,8 @@ models.Game(g42):
     ended: false
     updateble: true    
     webserviceID: 27070
-
+    bracket: e
+    
 models.Game(g43):
     number: 43
     homeTeam: nga
@@ -851,7 +893,8 @@ models.Game(g43):
     ended: false
     updateble: true    
     webserviceID: 27071
-
+    bracket: f
+    
 models.Game(g44):
     number: 44
     homeTeam: bih
@@ -862,7 +905,8 @@ models.Game(g44):
     ended: false
     updateble: true    
     webserviceID: 27072
-
+    bracket: f
+    
 models.Game(g45):
     number: 45
     homeTeam: usa
@@ -873,7 +917,8 @@ models.Game(g45):
     ended: false
     updateble: true    
     webserviceID: 27073
-
+    bracket: g
+    
 models.Game(g46):
     number: 46
     homeTeam: por
@@ -884,7 +929,8 @@ models.Game(g46):
     ended: false
     updateble: true    
     webserviceID: 27074
-
+    bracket: g
+    
 models.Game(g47):
     number: 47
     homeTeam: kor
@@ -895,7 +941,8 @@ models.Game(g47):
     ended: false
     updateble: true    
     webserviceID: 27075
-
+    bracket: h
+    
 models.Game(g48):
     number: 48
     homeTeam: alg
@@ -906,6 +953,7 @@ models.Game(g48):
     ended: false
     updateble: true    
     webserviceID: 27076
+    bracket: h
     
 models.Game(g49):
     number:    49

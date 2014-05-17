@@ -29,7 +29,7 @@
 								<td><img src="@{'/public/img/user_placeholder.gif'}" width="54" height="54" /></td>
 							#{/else}
 							<td>${user.username}</td>
-							<td>${user.username}</td>
+							<td>${user.email}</td>
 							<td>${user.registered.formatted()}</td>
 							<td>#{if user.active}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isactive'}" onclick="return confirm(&{'admin.changedeactive.confirm', user.username})"><span class="glyphicon glyphicon-thumbs-up"></span></a>#{/if}#{else}<a href="@{admin.changeactive()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotactive'}" onclick="return confirm(&{'admin.changeactive.confirm', user.username})"><span class="glyphicon glyphicon-thumbs-down"></span></a>#{/else}</td>
 							<td>#{if user.admin}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isadmin'}" onclick="return confirm(&{'admin.changedeadmin.confirm', user.username})"><span class="glyphicon glyphicon-star"></span></a>#{/if}#{else}<a href="@{admin.changeadmin()}/${user.id}" rel="tooltip" class="admintooltip" title="&{'admin.user.isnotadmin'}"  onclick="return confirm(&{'admin.changeadmin.confirm', user.username})"><span class="glyphicon glyphicon-star-empty"></span></a>#{/else}</td>

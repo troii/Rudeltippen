@@ -70,7 +70,7 @@ public class Bracket extends Model{
 	}
 
 	public boolean allGamesEnded() {
-		for (final Game game : games) {
+		for (final Game game : this.games) {
 			if (!game.isEnded()) {
 				return false;
 			}
@@ -81,7 +81,7 @@ public class Bracket extends Model{
 
 	public Team getTeamByPlace(final int place) {
 		int i = 1;
-		for (final Team team : teams) {
+		for (final Team team : this.teams) {
 			if  (i == place) {
 				return team;
 			}
