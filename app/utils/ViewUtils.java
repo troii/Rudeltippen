@@ -301,7 +301,9 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
     public static String getExtraTipAnswer(final ExtraTip extraTip) {
         String answer = "-";
         if (extraTip.getAnswer() != null) {
-            if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
+			if (extraTip.getUser() == AppUtils.getConnectedUser()) {
+				answer = Messages.get(extraTip.getAnswer().getName());
+			} else if (extraTip.getExtra().getEnding().getTime() < new Date().getTime()) {
                 answer = Messages.get(extraTip.getAnswer().getName());
             } else {
                 answer = Messages.get("model.user.tipped");
@@ -314,7 +316,7 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
     public static String getExtraTipPoints(final ExtraTip extraTip) {
         String points = "";
         if ((extraTip != null) && (extraTip.getExtra() != null) && (extraTip.getExtra().getAnswer() != null)) {
-            points = " ("+ extraTip.getPoints() + ")";
+            points = " (" + extraTip.getPoints() + ")";
         }
 
         return points;
