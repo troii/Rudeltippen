@@ -31,17 +31,7 @@ models.Bracket(e):
 models.Bracket(f):
     name:           groupf
     number:         6
-    updateble: true 
-    
-models.Bracket(g):
-    name:           groupg
-    number:         7
-    updateble: true 
-    
-models.Bracket(h):
-    name:           grouph
-    number:         8
-    updateble: true      
+    updateble: true
 
 models.Team(fra):
     name:          france
