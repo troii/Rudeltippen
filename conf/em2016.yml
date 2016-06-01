@@ -1,0 +1,1242 @@
+models.Settings(appsettings):
+   appName:         rudeltippen
+   pointsGameWin:   3
+   pointsGameDraw:  1
+
+models.Bracket(a):
+    name:           groupa
+    number:         1
+    updateble: true
+    
+models.Bracket(b):
+    name:           groupb
+    number:         2
+    updateble: true
+    
+models.Bracket(c):
+    name:           groupc
+    number:         3
+    updateble: true  
+    
+models.Bracket(d):
+    name:           groupd
+    number:         4
+    updateble: true 
+    
+models.Bracket(e):
+    name:           groupe
+    number:         5
+    updateble: true  
+    
+models.Bracket(f):
+    name:           groupf
+    number:         6
+    updateble: true 
+    
+models.Bracket(g):
+    name:           groupg
+    number:         7
+    updateble: true 
+    
+models.Bracket(h):
+    name:           grouph
+    number:         8
+    updateble: true      
+
+models.Team(fra):
+    name:          france
+    flag:          fra.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(rom):
+    name:          romania
+    flag:          rom.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(alb):
+    name:          albania
+    flag:          alb.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(swi):
+    name:          switzerland
+    flag:          swi.png
+    bracket:       a
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0    
+
+models.Team(esp):
+    name:          spain
+    flag:          esp.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(ned):
+    name:          netherland
+    flag:          ned.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(chi):
+    name:          chile
+    flag:          chi.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(aus):
+    name:          australia
+    flag:          aus.png
+    bracket:       b
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(col):
+    name:          columbia
+    flag:          col.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(gre):
+    name:          greece
+    flag:          gre.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(civ):
+    name:          codeivor
+    flag:          civ.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(jpn):
+    name:          japan
+    flag:          jpn.png
+    bracket:       c
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(uru):
+    name:          uruguay
+    flag:          uru.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(crc):
+    name:          costarica
+    flag:          crc.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(eng):
+    name:          england
+    flag:          eng.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(ita):
+    name:          italy
+    flag:          ita.png
+    bracket:       d
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(sui):
+    name:          suisse
+    flag:          sui.png
+    bracket:       e
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(ecu):
+    name:          ecuador
+    flag:          ecu.png
+    bracket:       e
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+
+models.Team(fra):
+    name:          france
+    flag:          fra.png
+    bracket:       e
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0    
+    
+models.Team(hon):
+    name:          honduras
+    flag:          hon.png
+    bracket:       e
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0 
+    
+models.Team(arg):
+    name:          argentina
+    flag:          arg.png
+    bracket:       f
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(bih):
+    name:          bosnia
+    flag:          bih.png
+    bracket:       f
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(ira):
+    name:          iran
+    flag:          ira.png
+    bracket:       f
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0  
+    
+models.Team(nga):
+    name:          nigeria
+    flag:          nga.png
+    bracket:       f
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0 
+    
+models.Team(ger):
+    name:          germany
+    flag:          ger.png
+    bracket:       g
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(por):
+    name:          portugal
+    flag:          por.png
+    bracket:       g
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0 
+
+models.Team(gha):
+    name:          ghana
+    flag:          gha.png
+    bracket:       g
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(usa):
+    name:          usa
+    flag:          usa.png
+    bracket:       g
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(bel):
+    name:          belgium
+    flag:          bel.png
+    bracket:       h
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(alg):
+    name:          algeria
+    flag:          alg.png
+    bracket:       h
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(rus):
+    name:          russia
+    flag:          rus.png
+    bracket:       h
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0
+    
+models.Team(kor):
+    name:          korea
+    flag:          kor.png
+    bracket:       h
+    gamesPlayed:   0
+    gamesWon:      0
+    gamesDraw:     0
+    gamesLost:     0    
+
+models.Playday(p1):
+    name: 1spieltag
+    current: true
+    playoff: false
+    number: 1
+
+models.Playday(p2):
+    name: 2spieltag
+    current: false
+    playoff: false
+    number: 2
+
+models.Playday(p3):
+    name: 3spieltag
+    current: false
+    playoff: false
+    number: 3
+    
+models.Playday(p4):
+    name: lastsixteen
+    current: false
+    playoff: true
+    number: 4
+
+models.Playday(p5):
+    name: quarterfinals
+    current: false
+    playoff: true
+    number: 5
+
+models.Playday(p6):
+    name: semifinals
+    current: false
+    playoff: true
+    number: 6
+    
+models.Playday(p7):
+    name: place3
+    current: false
+    playoff: true
+    number: 7
+    
+models.Playday(p8):
+    name: finals
+    current: false
+    playoff: true
+    number: 8
+    
+models.Game(g1):
+    number: 1
+    homeTeam: bra
+    awayTeam: cro
+    kickoff: 2014-06-12 20:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27028
+    bracket: a
+    
+models.Game(g2):
+    number: 2
+    homeTeam: mex
+    awayTeam: cam
+    kickoff: 2014-06-13 16:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true
+    webserviceID: 27029
+    bracket: a
+    
+models.Game(g3):
+    number: 3
+    homeTeam: esp
+    awayTeam: ned
+    kickoff: 2014-06-13 19:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true
+    webserviceID: 27030
+    bracket: b
+    
+models.Game(g4):
+    number: 4
+    homeTeam: chi
+    awayTeam: aus
+    kickoff: 2014-06-13 22:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27031
+    bracket: b
+    
+models.Game(g5):
+    number: 5
+    homeTeam: col
+    awayTeam: gre
+    kickoff: 2014-06-14 16:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27032
+    bracket: c
+    
+models.Game(g6):
+    number: 6
+    homeTeam: civ
+    awayTeam: jpn
+    kickoff: 2014-06-15 01:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27033
+    bracket: c
+    
+models.Game(g7):
+    number: 7
+    homeTeam: uru
+    awayTeam: crc
+    kickoff: 2014-06-14 19:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27034
+    bracket: d
+    
+models.Game(g8):
+    number: 8
+    homeTeam: eng
+    awayTeam: ita
+    kickoff: 2014-06-14 22:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27035
+    bracket: d
+    
+models.Game(g9):
+    number: 9
+    homeTeam: sui
+    awayTeam: ecu
+    kickoff: 2014-06-15 16:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27036
+    bracket: e
+    
+models.Game(g10):
+    number: 10
+    homeTeam: fra
+    awayTeam: hon
+    kickoff: 2014-06-15 19:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27037
+    bracket: e
+    
+models.Game(g11):
+    number: 11
+    homeTeam: arg
+    awayTeam: bih
+    kickoff: 2014-06-15 22:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27038
+    bracket: f
+    
+models.Game(g12):
+    number: 12
+    homeTeam: ira
+    awayTeam: nga
+    kickoff: 2014-06-16 19:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27039
+    bracket: f
+    
+models.Game(g13):
+    number: 13
+    homeTeam: ger
+    awayTeam: por
+    kickoff: 2014-06-16 16:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27040
+    bracket: g
+    
+models.Game(g14):
+    number: 14
+    homeTeam: gha
+    awayTeam: usa
+    kickoff: 2014-06-16 22:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27041
+    bracket: g
+    
+models.Game(g15):
+    number: 15
+    homeTeam: bel
+    awayTeam: alg
+    kickoff: 2014-06-17 16:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27042
+    bracket: h
+    
+models.Game(g16):
+    number: 16
+    homeTeam: rus
+    awayTeam: kor
+    kickoff: 2014-06-17 22:00:00
+    playday: p1
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27043
+    bracket: h
+    
+models.Game(g17):
+    number: 17
+    homeTeam: bra
+    awayTeam: mex
+    kickoff: 2014-06-17 19:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27044
+    bracket: a
+    
+models.Game(g18):
+    number: 18
+    homeTeam: cam
+    awayTeam: cro
+    kickoff: 2014-06-18 22:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27045
+    bracket: a
+    
+models.Game(g19):
+    number: 19
+    homeTeam: esp
+    awayTeam: chi
+    kickoff: 2014-06-18 19:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27046
+    bracket: b
+    
+models.Game(g20):
+    number: 20
+    homeTeam: aus
+    awayTeam: ned
+    kickoff: 2014-06-18 16:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27047
+    bracket: b
+    
+models.Game(g21):
+    number: 21
+    homeTeam: col
+    awayTeam: civ
+    kickoff: 2014-06-19 16:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27048
+    bracket: c
+    
+models.Game(g22):
+    number: 22
+    homeTeam: jpn
+    awayTeam: gre
+    kickoff: 2014-06-19 22:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27049
+    bracket: c
+    
+models.Game(g23):
+    number: 23
+    homeTeam: uru
+    awayTeam: eng
+    kickoff: 2014-06-19 19:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27050
+    bracket: d
+    
+models.Game(g24):
+    number: 24
+    homeTeam: ita
+    awayTeam: crc
+    kickoff: 2014-06-20 16:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27051
+    bracket: d
+    
+models.Game(g25):
+    number: 25
+    homeTeam: sui
+    awayTeam: fra
+    kickoff: 2014-06-20 19:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27052
+    bracket: e
+    
+models.Game(g26):
+    number: 26
+    homeTeam: hon
+    awayTeam: ecu
+    kickoff: 2014-06-20 22:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27053
+    bracket: e
+    
+models.Game(g27):
+    number: 27
+    homeTeam: arg
+    awayTeam: ira
+    kickoff: 2014-06-21 16:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27054
+    bracket: f
+    
+models.Game(g28):
+    number: 28
+    homeTeam: nga
+    awayTeam: bih
+    kickoff: 2014-06-21 22:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27055
+    bracket: f
+    
+models.Game(g29):
+    number: 29
+    homeTeam: ger
+    awayTeam: gha
+    kickoff: 2014-06-21 19:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27056
+    bracket: g
+    
+models.Game(g30):
+    number: 30
+    homeTeam: usa
+    awayTeam: por
+    kickoff: 2014-06-22 22:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27057
+    bracket: g
+    
+models.Game(g31):
+    number: 31
+    homeTeam: bel
+    awayTeam: rus
+    kickoff: 2014-06-22 16:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27058
+    bracket: h
+    
+models.Game(g32):
+    number: 32
+    homeTeam: kor
+    awayTeam: alg
+    kickoff: 2014-06-22 19:00:00
+    playday: p2
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27059
+    bracket: h
+    
+models.Game(g33):
+    number: 33
+    homeTeam: cam
+    awayTeam: bra
+    kickoff: 2014-06-23 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27061
+    bracket: a
+    
+models.Game(g34):
+    number: 34
+    homeTeam: cro
+    awayTeam: mex
+    kickoff: 2014-06-23 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27062
+    bracket: a
+    
+models.Game(g35):
+    number: 35
+    homeTeam: aus
+    awayTeam: esp
+    kickoff: 2014-06-23 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27063
+    bracket: b
+    
+models.Game(g36):
+    number: 36
+    homeTeam: ned
+    awayTeam: chi
+    kickoff: 2014-06-23 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27064
+    bracket: b
+    
+models.Game(g37):
+    number: 37
+    homeTeam: jpn
+    awayTeam: col
+    kickoff: 2014-06-24 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27065
+    bracket: c
+    
+models.Game(g38):
+    number: 38
+    homeTeam: gre
+    awayTeam: civ
+    kickoff: 2014-06-24 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27066
+    bracket: c
+    
+models.Game(g39):
+    number: 39
+    homeTeam: ita
+    awayTeam: uru
+    kickoff: 2014-06-24 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27067
+    bracket: d
+    
+models.Game(g40):
+    number: 40
+    homeTeam: crc
+    awayTeam: eng
+    kickoff: 2014-06-24 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27068
+    bracket: d
+    
+models.Game(g41):
+    number: 41
+    homeTeam: hon
+    awayTeam: sui
+    kickoff: 2014-06-25 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27069
+    bracket: e
+    
+models.Game(g42):
+    number: 42
+    homeTeam: ecu
+    awayTeam: fra
+    kickoff: 2014-06-25 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27070
+    bracket: e
+    
+models.Game(g43):
+    number: 43
+    homeTeam: nga
+    awayTeam: arg
+    kickoff: 2014-06-25 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27071
+    bracket: f
+    
+models.Game(g44):
+    number: 44
+    homeTeam: bih
+    awayTeam: ira
+    kickoff: 2014-06-25 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27072
+    bracket: f
+    
+models.Game(g45):
+    number: 45
+    homeTeam: usa
+    awayTeam: ger
+    kickoff: 2014-06-26 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27073
+    bracket: g
+    
+models.Game(g46):
+    number: 46
+    homeTeam: por
+    awayTeam: gha
+    kickoff: 2014-06-26 16:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27074
+    bracket: g
+    
+models.Game(g47):
+    number: 47
+    homeTeam: kor
+    awayTeam: bel
+    kickoff: 2014-06-26 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27075
+    bracket: h
+    
+models.Game(g48):
+    number: 48
+    homeTeam: alg
+    awayTeam: rus
+    kickoff: 2014-06-26 20:00:00
+    playday: p3
+    playoff: false
+    ended: false
+    updateble: true    
+    webserviceID: 27076
+    bracket: h
+    
+models.Game(g49):
+    number:    49
+    kickoff:       2014-06-28 16:00:00
+    playday:       p4
+    homeReference: B-1-1
+    awayReference: B-2-2
+    playoff:       true
+    ended:         false
+    updateble: true    
+
+models.Game(g50):
+    number:    50
+    kickoff:       2014-06-28 20:00:00
+    playday:       p4
+    homeReference: B-3-1
+    awayReference: B-4-2
+    playoff:       true
+    ended:         false
+    updateble: true
+    
+models.Game(g51):
+    number:    51
+    kickoff:       2014-06-29 16:00:00
+    playday:       p4
+    homeReference: B-2-1
+    awayReference: B-1-2
+    playoff:       true
+    ended:         false
+    updateble: true    
+    
+models.Game(g52):
+    number:    52
+    kickoff:       2014-06-29 20:00:00
+    playday:       p4
+    homeReference: B-4-1
+    awayReference: B-3-2
+    playoff:       true
+    ended:         false
+    updateble: true
+    
+models.Game(g53):
+    number:    53
+    kickoff:       2014-06-30 16:00:00
+    playday:       p4
+    homeReference: B-5-1
+    awayReference: B-6-2
+    playoff:       true
+    ended:         false  
+    updateble: true    
+    
+models.Game(g54):
+    number:    54
+    kickoff:       2014-06-30 20:00:00
+    playday:       p4
+    homeReference: B-7-1
+    awayReference: B-8-2
+    playoff:       true
+    ended:         false         
+    updateble: true    
+    
+models.Game(g55):
+    number:    55
+    kickoff:       2014-07-01 16:00:00
+    playday:       p4
+    homeReference: B-6-1
+    awayReference: B-5-2
+    playoff:       true
+    ended:         false      
+    updateble: true
+    
+models.Game(g56):
+    number:    56
+    kickoff:       2014-07-01 20:00:00
+    playday:       p4
+    homeReference: B-8-1
+    awayReference: B-7-2
+    playoff:       true
+    ended:         false
+    updateble: true
+    
+models.Game(g57):
+    number:    57
+    kickoff:       2014-07-04 20:00:00
+    playday:       p5
+    homeReference: G-49-W
+    awayReference: G-50-W
+    playoff:       true
+    ended:         false       
+    updateble: true
+    
+models.Game(g58):
+    number:    58
+    kickoff:       2014-07-04 16:00:00
+    playday:       p5
+    homeReference: G-53-W
+    awayReference: G-54-W
+    playoff:       true
+    ended:         false   
+    updateble: true
+    
+models.Game(g59):
+    number:    59
+    kickoff:       2014-07-05 20:00:00
+    playday:       p5
+    homeReference: G-51-W
+    awayReference: G-52-W
+    playoff:       true
+    ended:         false  
+    updateble: true    
+    
+models.Game(g60):
+    number:    60
+    kickoff:       2014-07-05 16:00:00
+    playday:       p5
+    homeReference: G-55-W
+    awayReference: G-56-W
+    playoff:       true
+    ended:         false   
+    updateble: true    
+    
+models.Game(g61):
+    number:    61
+    kickoff:       2014-07-08 20:00:00
+    playday:       p6
+    homeReference: G-57-W
+    awayReference: G-58-W
+    playoff:       true
+    ended:         false
+    updateble: true    
+    
+models.Game(g62):
+    number:    62
+    kickoff:       2014-07-09 20:00:00
+    playday:       p6
+    homeReference: G-59-W
+    awayReference: G-60-W
+    playoff:       true
+    ended:         false 
+    updateble: true    
+    
+models.Game(g63):
+    number:    63
+    kickoff:       2014-07-12 20:00:00
+    playday:       p7
+    homeReference: G-61-L
+    awayReference: G-62-L
+    playoff:       true
+    ended:         false 
+    updateble: true    
+    
+models.Game(g64):
+    number:    64
+    kickoff:       2014-07-13 19:00:00
+    playday:       p8
+    homeReference: G-61-W
+    awayReference: G-62-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Extra(b1):
+   question:        WhowillbeworldChampion
+   extraReference:  G-64-W
+   gameReferences:
+                    - g64
+   questionShort:   WorldChampion
+   points:          10
+   ending:          2014-06-12 20:00:00
+   answers:
+                    - bra
+                    - cro
+                    - mex
+                    - cam
+                    - esp
+                    - ned
+                    - chi
+                    - aus
+                    - col
+                    - gre
+                    - civ
+                    - jpn
+                    - uru
+                    - crc
+                    - eng
+                    - ita
+                    - sui
+                    - ecu
+                    - fra
+                    - hon
+                    - arg
+                    - bih
+                    - ira
+                    - nga
+                    - ger
+                    - por
+                    - gha
+                    - usa
+                    - bel
+                    - alg
+                    - rus
+                    - kor
+
+models.Extra(b2):
+   question:        WhowillbeViceWorldChampion
+   extraReference:  G-64-L
+   gameReferences:
+                    - g64
+   questionShort:   viceworldchampion
+   points:          5
+   ending:          2014-06-12 20:00:00
+   answers:
+                    - bra
+                    - cro
+                    - mex
+                    - cam
+                    - esp
+                    - ned
+                    - chi
+                    - aus
+                    - col
+                    - gre
+                    - civ
+                    - jpn
+                    - uru
+                    - crc
+                    - eng
+                    - ita
+                    - sui
+                    - ecu
+                    - fra
+                    - hon
+                    - arg
+                    - bih
+                    - ira
+                    - nga
+                    - ger
+                    - por
+                    - gha
+                    - usa
+                    - bel
+                    - alg
+                    - rus
+                    - kor
+
+models.Extra(b3):
+   question:        WhowillwinPlaceThree
+   extraReference:  G-63-W
+   gameReferences:
+                    - g63
+   questionShort:   placethree
+   points:          2
+   ending:          2014-06-12 20:00:00
+   answers:
+                    - bra
+                    - cro
+                    - mex
+                    - cam
+                    - esp
+                    - ned
+                    - chi
+                    - aus
+                    - col
+                    - gre
+                    - civ
+                    - jpn
+                    - uru
+                    - crc
+                    - eng
+                    - ita
+                    - sui
+                    - ecu
+                    - fra
+                    - hon
+                    - arg
+                    - bih
+                    - ira
+                    - nga
+                    - ger
+                    - por
+                    - gha
+                    - usa
+                    - bel
+                    - alg
+                    - rus
+                    - kor
