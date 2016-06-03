@@ -722,153 +722,15 @@ models.Game(g36):
     updateble: true
     webserviceID: 37216
     bracket: f
-    
-models.Game(g49):
-    number:    49
-    kickoff:       2016-06-28 13:00:00
-    playday:       p4
-    homeReference: B-1-1
-    awayReference: B-2-2
-    playoff:       true
-    ended:         false
-    updateble: true    
 
-models.Game(g50):
-    number:    50
-    kickoff:       2016-06-28 18:00:00
+# Playoff
+
+models.Game(g37):
+    number:    37
+    kickoff:       2016-06-25 13:00:00
     playday:       p4
-    homeReference: B-3-1
-    awayReference: B-4-2
-    playoff:       true
-    ended:         false
-    updateble: true
-    
-models.Game(g51):
-    number:    51
-    kickoff:       2016-06-29 13:00:00
-    playday:       p4
-    homeReference: B-2-1
-    awayReference: B-1-2
-    playoff:       true
-    ended:         false
-    updateble: true    
-    
-models.Game(g52):
-    number:    52
-    kickoff:       2016-06-29 18:00:00
-    playday:       p4
-    homeReference: B-4-1
+    homeReference: B-1-2
     awayReference: B-3-2
     playoff:       true
     ended:         false
-    updateble: true
-    
-models.Game(g53):
-    number:    53
-    kickoff:       2016-06-30 13:00:00
-    playday:       p4
-    homeReference: B-5-1
-    awayReference: B-6-2
-    playoff:       true
-    ended:         false  
     updateble: true    
-    
-models.Game(g54):
-    number:    54
-    kickoff:       2016-06-30 18:00:00
-    playday:       p4
-    homeReference: B-7-1
-    awayReference: B-8-2
-    playoff:       true
-    ended:         false         
-    updateble: true    
-    
-models.Game(g55):
-    number:    55
-    kickoff:       2016-07-01 13:00:00
-    playday:       p4
-    homeReference: B-6-1
-    awayReference: B-5-2
-    playoff:       true
-    ended:         false      
-    updateble: true
-    
-models.Game(g56):
-    number:    56
-    kickoff:       2016-07-01 18:00:00
-    playday:       p4
-    homeReference: B-8-1
-    awayReference: B-7-2
-    playoff:       true
-    ended:         false
-    updateble: true
-    
-models.Game(g57):
-    number:    57
-    kickoff:       2016-07-04 18:00:00
-    playday:       p5
-    homeReference: G-49-W
-    awayReference: G-50-W
-    playoff:       true
-    ended:         false       
-    updateble: true
-    
-models.Game(g58):
-    number:    58
-    kickoff:       2016-07-04 13:00:00
-    playday:       p5
-    homeReference: G-53-W
-    awayReference: G-54-W
-    playoff:       true
-    ended:         false   
-    updateble: true
-    
-models.Game(g59):
-    number:    59
-    kickoff:       2016-07-05 18:00:00
-    playday:       p5
-    homeReference: G-51-W
-    awayReference: G-52-W
-    playoff:       true
-    ended:         false  
-    updateble: true    
-    
-models.Game(g60):
-    number:    60
-    kickoff:       2016-07-05 13:00:00
-    playday:       p5
-    homeReference: G-55-W
-    awayReference: G-56-W
-    playoff:       true
-    ended:         false   
-    updateble: true    
-    
-models.Game(g61):
-    number:    61
-    kickoff:       2016-07-08 18:00:00
-    playday:       p6
-    homeReference: G-57-W
-    awayReference: G-58-W
-    playoff:       true
-    ended:         false
-    updateble: true    
-    
-models.Game(g62):
-    number:    62
-    kickoff:       2016-07-09 18:00:00
-    playday:       p6
-    homeReference: G-59-W
-    awayReference: G-60-W
-    playoff:       true
-    ended:         false 
-    updateble: true
-    
-models.Game(g64):
-    number:    64
-    kickoff:       2016-07-13 16:00:00
-    playday:       p7
-    homeReference: G-61-W
-    awayReference: G-62-W
-    playoff:       true
-    ended:         false
-    updateble: true
