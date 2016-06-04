@@ -411,6 +411,7 @@ minutesBeforeTipp = Minutes before the tipping period ends
 model.game.losergame      = Loser game
 model.game.notenoughtipps = N/A
 model.game.winnergame     = Winner game
+model.game.unknown     = Not yet decided
 model.user.place          = Place
 model.user.point          = Point
 model.user.points         = Points
