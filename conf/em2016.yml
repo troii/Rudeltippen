@@ -7,27 +7,27 @@ models.Bracket(a):
     name:           groupa
     number:         1
     updateble: true
-    
+
 models.Bracket(b):
     name:           groupb
     number:         2
     updateble: true
-    
+
 models.Bracket(c):
     name:           groupc
     number:         3
-    updateble: true  
-    
+    updateble: true
+
 models.Bracket(d):
     name:           groupd
     number:         4
-    updateble: true 
-    
+    updateble: true
+
 models.Bracket(e):
     name:           groupe
     number:         5
-    updateble: true  
-    
+    updateble: true
+
 models.Bracket(f):
     name:           groupf
     number:         6
@@ -59,7 +59,7 @@ models.Team(alb):
     gamesWon:      0
     gamesDraw:     0
     gamesLost:     0
-    
+
 models.Team(sui):
     name:          suisse
     flag:          sui.png
@@ -67,7 +67,7 @@ models.Team(sui):
     gamesPlayed:   0
     gamesWon:      0
     gamesDraw:     0
-    gamesLost:     0    
+    gamesLost:     0
 
 models.Team(eng):
     name:          eng
@@ -185,7 +185,7 @@ models.Team(bel):
     gamesWon:      0
     gamesDraw:     0
     gamesLost:     0
-    
+
 models.Team(ita):
     name:          italy
     flag:          ita.png
@@ -202,8 +202,8 @@ models.Team(irl):
     gamesPlayed:   0
     gamesWon:      0
     gamesDraw:     0
-    gamesLost:     0    
-    
+    gamesLost:     0
+
 models.Team(swe):
     name:          sweden
     flag:          swe.png
@@ -211,8 +211,8 @@ models.Team(swe):
     gamesPlayed:   0
     gamesWon:      0
     gamesDraw:     0
-    gamesLost:     0 
-    
+    gamesLost:     0
+
 models.Team(por):
     name:          por
     flag:          por.png
@@ -221,7 +221,7 @@ models.Team(por):
     gamesWon:      0
     gamesDraw:     0
     gamesLost:     0
-    
+
 models.Team(isl):
     name:          isl
     flag:          isl.png
@@ -230,7 +230,7 @@ models.Team(isl):
     gamesWon:      0
     gamesDraw:     0
     gamesLost:     0
-    
+
 models.Team(aut):
     name:          austria
     flag:          aut.png
@@ -238,8 +238,8 @@ models.Team(aut):
     gamesPlayed:   0
     gamesWon:      0
     gamesDraw:     0
-    gamesLost:     0  
-    
+    gamesLost:     0
+
 models.Team(hun):
     name:          hungaria
     flag:          hun.png
@@ -266,7 +266,7 @@ models.Playday(p3):
     current: false
     playoff: false
     number: 3
-    
+
 models.Playday(p4):
     name: lastsixteen
     current: false
@@ -284,7 +284,7 @@ models.Playday(p6):
     current: false
     playoff: true
     number: 6
-    
+
 models.Playday(p7):
     name: finals
     current: false
@@ -735,7 +735,7 @@ models.Game(g37):
     awayReference: B-3-2
     playoff:       true
     ended:         false
-    updateble: true    
+    updateble: true
 
 models.Game(g38):
     number:    38
@@ -878,3 +878,71 @@ models.Game(g51):
     playoff:       true
     ended:         false
     updateble: true
+
+models.Extra(b1):
+   question:        WhowillbeEuropeanChampion
+   extraReference:  G-51-W
+   gameReferences:
+                    - g51
+   questionShort:   EuropeanChampion
+   points:          10
+   ending:          2016-06-10 19:00:00
+   answers:
+              - fra
+              - rom
+              - alb
+              - sui
+              - eng
+              - rus
+              - wal
+              - slo
+              - ger
+              - ukr
+              - pol
+              - nrl
+              - esp
+              - chz
+              - tur
+              - cro
+              - bel
+              - ita
+              - irl
+              - swe
+              - por
+              - isl
+              - aut
+              - hun
+
+models.Extra(b2):
+   question:        WhowillbeVice-EuropeanChampion
+   extraReference:  G-51-L
+   gameReferences:
+                    - g51
+   questionShort:   Vice-EuropeanChampion
+   points:          5
+   ending:          2016-06-10 19:00:00
+   answers:
+              - fra
+              - rom
+              - alb
+              - sui
+              - eng
+              - rus
+              - wal
+              - slo
+              - ger
+              - ukr
+              - pol
+              - nrl
+              - esp
+              - chz
+              - tur
+              - cro
+              - bel
+              - ita
+              - irl
+              - swe
+              - por
+              - isl
+              - aut
+              - hun
