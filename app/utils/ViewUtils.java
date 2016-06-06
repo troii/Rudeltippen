@@ -189,6 +189,9 @@ public class ViewUtils extends JavaExtensions implements AppConstants{
     }
 
     private static String getReference(final String reference) {
+        if (StringUtils.isBlank(reference)) {
+            return Messages.get("model.game.unknown");
+        }
         final String [] references = reference.split("-");
         String message = "";
         if (("G").equals(references[0])) {

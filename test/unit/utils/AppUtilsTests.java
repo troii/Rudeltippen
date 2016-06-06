@@ -4,16 +4,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import models.Extra;
-import models.Game;
-import models.Settings;
+import models.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import play.test.UnitTest;
 import utils.AppUtils;
 
+import static interfaces.AppConstants.APPNAME;
+
 public class AppUtilsTests extends UnitTest {
+
+	@Before
+	public void setup() {
+		Settings settings = new Settings();
+		settings.setAppName(APPNAME);
+		settings.save();
+	}
 
 	@Test
 	public void testGetSettings() {
@@ -167,7 +175,21 @@ public class AppUtilsTests extends UnitTest {
 
 	@Test
 	public void testGetTeamByReference() {
-		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
-		assertNotNull(AppUtils.getTeamByReference("B-1-1"));
+		Bracket bracket = new Bracket();
+		bracket.setName("Gruppe A");
+		bracket.setNumber(1);
+		bracket.setGames(new ArrayList<Game>());
+		bracket.setTeams(new ArrayList<Team>());
+		Team team1 = new Team();
+		team1.setName("Team1");
+		bracket.getTeams().add(team1);
+		Team team2 = new Team();
+		team2.setName("Team2");
+		bracket.getTeams().add(team2);
+		bracket.save();
+
+		assertEquals("Team1", AppUtils.getTeamByReference("B-1-1").getName());
+		assertEquals("Team2", AppUtils.getTeamByReference("B-1-2").getName());
+
 	}
 }

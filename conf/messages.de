@@ -411,6 +411,7 @@ minutesBeforeTipp = Minuten vor Tippende
 model.game.losergame      = Verlierer Spiel
 model.game.notenoughtipps = N/A
 model.game.winnergame     = Sieger Spiel
+model.game.unknown     = Noch nicht entschieden
 model.user.place          = Platz
 model.user.point          = Punkt
 model.user.points         = Punkte

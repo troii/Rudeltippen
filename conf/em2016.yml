@@ -725,6 +725,8 @@ models.Game(g36):
 
 # Playoff
 
+# Achtelfinale
+
 models.Game(g37):
     number:    37
     kickoff:       2016-06-25 13:00:00
@@ -734,3 +736,145 @@ models.Game(g37):
     playoff:       true
     ended:         false
     updateble: true    
+
+models.Game(g38):
+    number:    38
+    kickoff:       2016-06-25 16:00:00
+    playday:       p4
+    homeReference: B-2-1
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g39):
+    number:    39
+    kickoff:       2016-06-25 19:00:00
+    playday:       p4
+    homeReference: B-4-1
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g40):
+    number:    40
+    kickoff:       2016-06-26 13:00:00
+    playday:       p4
+    homeReference: B-1-1
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g41):
+    number:    41
+    kickoff:       2016-06-26 16:00:00
+    playday:       p4
+    homeReference: B-3-1
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g42):
+    number:    42
+    kickoff:       2016-06-26 19:00:00
+    playday:       p4
+    homeReference: B-6-1
+    awayReference: B-5-2
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g43):
+    number:    43
+    kickoff:       2016-06-27 16:00:00
+    playday:       p4
+    homeReference: B-6-1
+    awayReference: B-5-2
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g44):
+    number:    44
+    kickoff:       2016-06-27 19:00:00
+    playday:       p4
+    homeReference: B-5-1
+    awayReference: B-4-2
+    playoff:       true
+    ended:         false
+    updateble: true
+
+# Viertelfinal
+
+models.Game(g45):
+    number:    45
+    kickoff:       2016-06-30 19:00:00
+    playday:       p5
+    homeReference: G-37-W
+    awayReference: G-39-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g46):
+    number:    46
+    kickoff:       2016-07-01 19:00:00
+    playday:       p5
+    homeReference: G-38-W
+    awayReference: G-42-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g47):
+    number:    47
+    kickoff:       2016-07-02 19:00:00
+    playday:       p5
+    homeReference: G-41-W
+    awayReference: G-43-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g48):
+    number:    48
+    kickoff:       2016-07-03 19:00:00
+    playday:       p5
+    homeReference: G-40-W
+    awayReference: G-44-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+# Halbfinale
+
+models.Game(g49):
+    number:    49
+    kickoff:       2016-07-06 19:00:00
+    playday:       p5
+    homeReference: G-45-W
+    awayReference: G-46-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+models.Game(g50):
+    number:    50
+    kickoff:       2016-07-06 19:00:00
+    playday:       p5
+    homeReference: G-47-W
+    awayReference: G-48-W
+    playoff:       true
+    ended:         false
+    updateble: true
+
+# Finale
+
+models.Game(g51):
+    number:    51
+    kickoff:       2016-07-10 19:00:00
+    playday:       p6
+    homeReference: G-49-W
+    awayReference: G-50-W
+    playoff:       true
+    ended:         false
+    updateble: true
